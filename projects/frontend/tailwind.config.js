@@ -12,6 +12,9 @@ module.exports = {
         300: '#73808d',
       },
     },
+    fontFamily: {
+      sans: ['Arial'],
+    },
   },
   variants: {
     extend: {},
