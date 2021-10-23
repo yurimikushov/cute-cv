@@ -1,0 +1,17 @@
+.input--size-sm {
+  @apply text-sm;
+}
+
+.input--size-md {
+  @apply text-base;
+}
+.input--size-lg {
+  @apply text-lg;
+}
+.input--size-xl {
+  @apply text-xl;
+}
+.input--size-2xl {
+  @apply text-2xl;
+  @apply font-bold;
+}

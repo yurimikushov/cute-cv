@@ -22,6 +22,12 @@ module.exports = {
       xl: '1.7rem',
       '2xl': '2rem',
     },
+    borderRadius: {
+      DEFAULT: '3px',
+    },
+    boxShadow: {
+      sm: '0 0 4px 0 #c7c7c7',
+    },
   },
   variants: {
     extend: {},
