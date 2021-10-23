@@ -15,6 +15,13 @@ module.exports = {
     fontFamily: {
       sans: ['Arial'],
     },
+    fontSize: {
+      sm: '0.77rem',
+      base: '13px',
+      lg: '1.15rem',
+      xl: '1.7rem',
+      '2xl': '2rem',
+    },
   },
   variants: {
     extend: {},
