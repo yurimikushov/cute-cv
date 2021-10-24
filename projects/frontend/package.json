@@ -1,5 +1,5 @@
 {
-  "name": "cd-editor",
+  "name": "cd-editor-frontend",
   "version": "0.1.0",
   "scripts": {
     "start": "craco start",
@@ -12,6 +12,10 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
   },
   "browserslist": {
     "production": [
@@ -42,6 +46,7 @@
     "@types/jest": "^26.0.24",
     "@types/node": "^12.20.34",
     "autoprefixer": "^9.8.8",
+    "lint-staged": "^11.2.4",
     "postcss": "^7.0.39",
     "prettier": "^2.4.1",
     "react-scripts": "^4.0.3",

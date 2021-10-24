@@ -1,0 +1,12 @@
+{
+  "name": "cd-editor",
+  "version": "0.1.0",
+  "author": "Yuri Mikushov",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^7.0.4"
+  }
+}
