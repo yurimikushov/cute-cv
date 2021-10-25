@@ -1,4 +1,5 @@
 import { FC, useState } from 'react'
+import TextArea from './components/TextArea'
 import TextInput from './components/TextInput'
 
 const App: FC = () => {
@@ -32,6 +33,7 @@ const App: FC = () => {
         onChange={setText}
         placeholder='Название поля'
       />
+      <TextArea value={text} onChange={setText} placeholder='Название поля' />
     </div>
   )
 }
