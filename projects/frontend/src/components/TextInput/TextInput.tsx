@@ -31,9 +31,10 @@ const TextInput = ({
       {...props}
       ref={inputRef}
       className={cn(
-        'p-2 max-w-full text-black rounded',
+        'p-2 max-w-full bg-white text-black rounded',
         'border border-solid border-gray-100',
         'focus:outline-none focus:shadow-sm',
+        'disabled:placeholder-black disabled:bg-white disabled:border-0',
         {
           'input--size-sm': size === 'sm',
           'input--size-md': size === 'md',

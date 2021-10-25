@@ -26,6 +26,7 @@ const App: FC = () => {
         placeholder='Название поля'
       />
       <TextInput
+        disabled
         size='2xl'
         value={text}
         onChange={setText}

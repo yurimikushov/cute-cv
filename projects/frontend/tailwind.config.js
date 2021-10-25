@@ -30,7 +30,11 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['disabled'],
+      borderWidth: ['disabled'],
+      placeholderColor: ['disabled'],
+    },
   },
   plugins: [],
 }
