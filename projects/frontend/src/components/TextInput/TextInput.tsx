@@ -5,6 +5,7 @@ import { TextInputPropsT } from './TextInput.props'
 import './TextInput.css'
 
 const TextInput = ({
+  className,
   size = 'sm',
   value,
   onChange,
@@ -31,6 +32,7 @@ const TextInput = ({
       {...props}
       ref={inputRef}
       className={cn(
+        className,
         'p-2 max-w-full bg-white text-black rounded',
         'border border-solid border-gray-100',
         'focus:outline-none focus:shadow-sm',
