@@ -37,6 +37,7 @@ const TextInput = ({
         'border border-solid border-gray-100',
         'focus:outline-none focus:shadow-sm',
         'disabled:placeholder-black disabled:bg-white disabled:border-0',
+        'readonly:placeholder-black',
         {
           'input--size-sm': size === 'sm',
           'input--size-md': size === 'md',

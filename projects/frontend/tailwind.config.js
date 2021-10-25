@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   purge: ['./src/**/*.{ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
@@ -33,8 +35,16 @@ module.exports = {
     extend: {
       backgroundColor: ['disabled'],
       borderWidth: ['disabled'],
-      placeholderColor: ['disabled'],
+      placeholderColor: ['disabled', 'readonly'],
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addVariant, e }) => {
+      addVariant('readonly', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`readonly${separator}${className}`)}[readonly]`
+        })
+      })
+    }),
+  ],
 }

@@ -27,6 +27,7 @@ const App: FC = () => {
         placeholder='Название поля'
       />
       <TextInput
+        readOnly
         disabled
         size='2xl'
         value={text}
