@@ -33,7 +33,7 @@ const TextInput = ({
       ref={inputRef}
       className={cn(
         className,
-        'p-2 max-w-full bg-white text-black rounded',
+        'px-1.5 py-1 max-w-full bg-white text-black rounded',
         'border border-solid border-gray-100',
         'focus:outline-none focus:shadow-sm',
         'disabled:placeholder-black disabled:bg-white disabled:border-0',
