@@ -2,6 +2,7 @@ import { useRef, useState, useEffect, ChangeEvent } from 'react'
 import cn from 'classnames'
 import isNil from 'lodash/isNil'
 import isEmpty from 'lodash/isEmpty'
+import mdToJsx from '../../lib/mdToJsx'
 import { TextAreaPropsT } from './TextArea.props'
 
 const TextArea = ({
@@ -32,7 +33,7 @@ const TextArea = ({
   if (disabled) {
     return (
       <div className='px-1.5 py-1 max-w-full bg-white text-black whitespace-pre-line'>
-        {isEmpty(value) ? placeholder ?? '' : value}
+        {mdToJsx(isEmpty(value) ? placeholder ?? '' : value)}
       </div>
     )
   }
