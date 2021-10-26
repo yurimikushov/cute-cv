@@ -8,4 +8,4 @@ type TextAreaPropsT = Omit<
   onChange: (value: string) => void
 }
 
-export type { TextAreaPropsT }
+export default TextAreaPropsT

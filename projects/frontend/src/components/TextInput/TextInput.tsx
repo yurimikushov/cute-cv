@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, ChangeEvent } from 'react'
 import cn from 'classnames'
 import isNil from 'lodash/isNil'
-import { TextInputPropsT } from './TextInput.props'
+import TextInputPropsT from './TextInput.props'
 import './TextInput.css'
 
 const TextInput = ({

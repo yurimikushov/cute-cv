@@ -3,7 +3,7 @@ import cn from 'classnames'
 import isNil from 'lodash/isNil'
 import isEmpty from 'lodash/isEmpty'
 import mdToJsx from 'lib/mdToJsx'
-import { TextAreaPropsT } from './TextArea.props'
+import TextAreaPropsT from './TextArea.props'
 
 const TextArea = ({
   className,
