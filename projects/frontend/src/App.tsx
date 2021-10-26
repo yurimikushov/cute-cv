@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
-import TextArea from './components/TextArea'
-import TextInput from './components/TextInput'
+import TextArea from 'components/TextArea'
+import TextInput from 'components/TextInput'
 
 const App: FC = () => {
   const [text, setText] = useState('')
