@@ -34,6 +34,12 @@ const App: FC = () => {
         placeholder='Название поля'
       />
       <TextArea value={text} onChange={setText} placeholder='Название поля' />
+      <TextArea
+        disabled
+        value={text}
+        onChange={setText}
+        placeholder='Название поля'
+      />
     </div>
   )
 }

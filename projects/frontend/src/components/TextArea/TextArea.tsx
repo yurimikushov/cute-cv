@@ -1,9 +1,17 @@
 import { useRef, useState, useEffect, ChangeEvent } from 'react'
 import cn from 'classnames'
 import isNil from 'lodash/isNil'
+import isEmpty from 'lodash/isEmpty'
 import { TextAreaPropsT } from './TextArea.props'
 
-const TextArea = ({ className, value, onChange, ...props }: TextAreaPropsT) => {
+const TextArea = ({
+  className,
+  disabled,
+  value,
+  placeholder,
+  onChange,
+  ...props
+}: TextAreaPropsT) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const [textAreaHeight, setTextAreaHeight] = useState('auto')
 
@@ -20,6 +28,15 @@ const TextArea = ({ className, value, onChange, ...props }: TextAreaPropsT) => {
     onChange(e.target.value as string)
   }
 
+  // Should use `div` element coz `html2pdf.js` package can't correctly convert `textarea` content
+  if (disabled) {
+    return (
+      <div className='px-1.5 py-1 max-w-full bg-white text-black whitespace-pre-line'>
+        {isEmpty(value) ? placeholder ?? '' : value}
+      </div>
+    )
+  }
+
   return (
     <textarea
       {...props}
@@ -32,6 +49,7 @@ const TextArea = ({ className, value, onChange, ...props }: TextAreaPropsT) => {
         'focus:outline-none focus:shadow-sm'
       )}
       value={value}
+      placeholder={placeholder}
       rows={1}
       style={{ height: textAreaHeight }}
       onChange={handleChange}
