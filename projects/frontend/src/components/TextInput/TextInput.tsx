@@ -1,11 +1,13 @@
 import { FC, useRef, useState, useEffect, ChangeEvent } from 'react'
 import cn from 'classnames'
 import isNil from 'lodash/isNil'
+import trim from 'lodash/trim'
 import TextInputPropsT from './TextInput.props'
 import './TextInput.css'
 
 const TextInput: FC<TextInputPropsT> = ({
   className,
+  disabled,
   size = 'sm',
   value,
   onChange,
@@ -46,7 +48,8 @@ const TextInput: FC<TextInputPropsT> = ({
         }
       )}
       type='text'
-      value={value}
+      disabled={disabled}
+      value={disabled ? trim(value) : value}
       style={{ width: inputWidth, maxWidth: '100%' }}
       onChange={handleChange}
     />
