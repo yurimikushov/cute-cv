@@ -1,18 +1,18 @@
-import { useRef, useState, useEffect, ChangeEvent } from 'react'
+import { FC, useRef, useState, useEffect, ChangeEvent } from 'react'
 import cn from 'classnames'
 import isNil from 'lodash/isNil'
 import isEmpty from 'lodash/isEmpty'
 import mdToJsx from 'lib/mdToJsx'
 import TextAreaPropsT from './TextArea.props'
 
-const TextArea = ({
+const TextArea: FC<TextAreaPropsT> = ({
   className,
   disabled,
   value,
   placeholder,
   onChange,
   ...props
-}: TextAreaPropsT) => {
+}) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const [textAreaHeight, setTextAreaHeight] = useState('auto')
 

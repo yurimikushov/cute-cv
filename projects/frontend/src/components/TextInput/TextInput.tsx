@@ -1,16 +1,16 @@
-import { useRef, useState, useEffect, ChangeEvent } from 'react'
+import { FC, useRef, useState, useEffect, ChangeEvent } from 'react'
 import cn from 'classnames'
 import isNil from 'lodash/isNil'
 import TextInputPropsT from './TextInput.props'
 import './TextInput.css'
 
-const TextInput = ({
+const TextInput: FC<TextInputPropsT> = ({
   className,
   size = 'sm',
   value,
   onChange,
   ...props
-}: TextInputPropsT) => {
+}) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [inputWidth, setInputWidth] = useState('auto')
 
