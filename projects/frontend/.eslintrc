@@ -11,13 +11,14 @@
     "sourceType": "module"
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "lodash"],
   "extends": [
     "react-app",
     "react-app/jest",
     "eslint:all",
     "plugin:react/all",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:lodash/recommended"
   ],
   "rules": {
     "no-unused-vars": "warn",
