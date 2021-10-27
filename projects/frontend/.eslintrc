@@ -10,8 +10,15 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react"],
-  "extends": ["react-app", "react-app/jest", "eslint:all", "plugin:react/all"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react", "@typescript-eslint"],
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "eslint:all",
+    "plugin:react/all",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "rules": {
     "no-unused-vars": "warn",
     "object-curly-spacing": "off",
@@ -46,6 +53,10 @@
     "react/jsx-indent-props": "off",
     "react/jsx-sort-props": "off",
     "react/jsx-newline": "off",
-    "react/jsx-no-bind": "off"
+    "react/jsx-no-bind": "off",
+    "@typescript-eslint/array-type": [
+      "error",
+      { "default": "generic", "readonly": "generic" }
+    ]
   }
 }
