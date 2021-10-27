@@ -24,6 +24,7 @@ module.exports = {
     },
     borderRadius: {
       DEFAULT: '3px',
+      full: '9999px',
     },
     boxShadow: {
       sm: '0 0 4px 0 #c7c7c7',

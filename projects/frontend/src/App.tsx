@@ -1,9 +1,11 @@
 import { FC, useState } from 'react'
 import TextArea from 'components/TextArea'
 import TextInput from 'components/TextInput'
+import AvatarPicker from 'components/AvatarPicker'
 
 const App: FC = () => {
   const [text, setText] = useState('')
+  const [avatar, setAvatar] = useState('')
 
   return (
     <div className='flex flex-col p-6'>
@@ -40,6 +42,7 @@ const App: FC = () => {
         onChange={setText}
         placeholder='Название поля'
       />
+      <AvatarPicker src={avatar} onPick={setAvatar} />
     </div>
   )
 }
