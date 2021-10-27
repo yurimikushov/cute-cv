@@ -7,7 +7,7 @@ const Href: FC = ({ children, ...props }) => (
   </a>
 )
 
-const mdToJsx = (text: string): JSX.Element =>
+const mdToJsx = (text: string): ReturnType<typeof compiler> =>
   compiler(text, {
     overrides: {
       a: Href,
