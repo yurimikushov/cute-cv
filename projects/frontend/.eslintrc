@@ -11,8 +11,18 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
-  "extends": ["react-app", "react-app/jest"],
+  "extends": ["react-app", "react-app/jest", "plugin:react/all"],
   "rules": {
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "react/react-in-jsx-scope": "off",
+    "react/function-component-definition": "off",
+    "react/jsx-indent": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-max-props-per-line": "off",
+    "react/jsx-indent-props": "off",
+    "react/jsx-sort-props": "off",
+    "react/jsx-newline": "off",
+    "react/jsx-no-bind": "off"
   }
 }
