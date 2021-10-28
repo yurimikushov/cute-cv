@@ -22,6 +22,7 @@
   ],
   "rules": {
     "no-unused-vars": "warn",
+    "no-console": "warn",
     "object-curly-spacing": "off",
     "quotes": "off",
     "semi": "off",
@@ -45,6 +46,11 @@
     "sort-keys": "off",
     "object-property-newline": "off",
     "no-use-before-define": "off",
+    "consistent-return": "off",
+    "arrow-body-style": "off",
+    "line-comment-position": "off",
+    "no-inline-comments": "off",
+    "capitalized-comments":"off",
     "react/react-in-jsx-scope": "off",
     "react/function-component-definition": "off",
     "react/jsx-indent": "off",
@@ -55,9 +61,12 @@
     "react/jsx-sort-props": "off",
     "react/jsx-newline": "off",
     "react/jsx-no-bind": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-no-literals": "off",
     "@typescript-eslint/array-type": [
       "error",
       { "default": "generic", "readonly": "generic" }
-    ]
+    ],
+    "lodash/preferred-alias": "off"
   }
 }
