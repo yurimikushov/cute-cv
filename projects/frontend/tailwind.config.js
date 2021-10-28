@@ -32,9 +32,12 @@ module.exports = {
   },
   variants: {
     extend: {
-      backgroundColor: ['disabled'],
+      backgroundColor: ['disabled', 'focus-visible'],
       borderWidth: ['disabled'],
       placeholderColor: ['disabled'],
+      scale: ['group-hover', 'focus-visible'],
+      boxShadow: ['focus-visible'],
+      opacity: ['focus-visible'],
     },
   },
   plugins: [],
