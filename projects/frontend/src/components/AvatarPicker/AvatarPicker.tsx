@@ -11,7 +11,7 @@ import AvatarPickerPropsT from './AvatarPicker.props'
 const ACCEPT_FORMATS = ['.png', '.jpg', '.jpeg'].join(',')
 
 const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
-  const pickButtonRef = useRef<HTMLButtonElement>(null)
+  const openFileDialogButtonRef = useRef<HTMLButtonElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -21,8 +21,8 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
       return
     }
 
-    const handleChange = async ({ target }: Event): Promise<void> => {
-      pickButtonRef.current?.blur() // when user navigate by keyboard
+    const handlePick = async ({ target }: Event): Promise<void> => {
+      openFileDialogButtonRef.current?.blur() // when user navigate by keyboard
 
       const { files } = target as HTMLInputElement
       const file = first(files)
@@ -34,19 +34,19 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
       onPick(await fileToBase64(file))
     }
 
-    fileInputNode.addEventListener('change', handleChange)
+    fileInputNode.addEventListener('change', handlePick)
 
     return (): void => {
-      fileInputNode.removeEventListener('change', handleChange)
+      fileInputNode.removeEventListener('change', handlePick)
     }
   }, [onPick])
 
-  const handleClick = () => {
+  const handleOpenFileDialog = () => {
     fileInputRef.current?.click()
   }
 
   const handleClear = () => {
-    pickButtonRef.current?.focus()
+    openFileDialogButtonRef.current?.focus()
     onPick(null)
   }
 
@@ -58,7 +58,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
         alt='Avatar picker.'
       />
       <button
-        ref={pickButtonRef}
+        ref={openFileDialogButtonRef}
         className={cn(
           'absolute top-0 left-0',
           'h-full w-full rounded-full text-lg text-gray-300 outline-none',
@@ -67,7 +67,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
           'focus-visible:scale-100 focus-visible:bg-white focus-visible:opacity-90 focus-visible:shadow-sm'
         )}
         type='button'
-        onClick={handleClick}
+        onClick={handleOpenFileDialog}
       >
         +
       </button>
