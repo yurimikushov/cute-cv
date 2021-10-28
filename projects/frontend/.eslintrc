@@ -63,6 +63,7 @@
     "react/jsx-no-bind": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-no-literals": "off",
+    "react/forbid-component-props": "off",
     "@typescript-eslint/array-type": [
       "error",
       { "default": "generic", "readonly": "generic" }
