@@ -1,4 +1,5 @@
 import { FC, useState } from 'react'
+import PageLayout from 'layout/Page'
 import TextArea from 'components/TextArea'
 import TextInput from 'components/TextInput'
 import AvatarPicker from 'components/AvatarPicker'
@@ -8,7 +9,7 @@ const App: FC = () => {
   const [avatar, setAvatar] = useState('')
 
   return (
-    <div className='flex flex-col p-6'>
+    <PageLayout className='mx-auto my-5'>
       <TextInput
         size='sm'
         value={text}
@@ -43,7 +44,7 @@ const App: FC = () => {
         placeholder='Название поля'
       />
       <AvatarPicker src={avatar} onPick={(src) => setAvatar(src ?? '')} />
-    </div>
+    </PageLayout>
   )
 }
 

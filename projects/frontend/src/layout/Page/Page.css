@@ -1,0 +1,9 @@
+@layer utilities {
+  .max-w-page {
+    width: 750px;
+  }
+
+  .min-h-page {
+    min-height: 900px;
+  }
+}
