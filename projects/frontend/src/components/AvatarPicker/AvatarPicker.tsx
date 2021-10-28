@@ -12,12 +12,12 @@ const ACCEPT_FORMATS = ['.png', '.jpg', '.jpeg'].join(',')
 
 const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
   const pickButtonRef = useRef<HTMLButtonElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    const { current: inputNode } = inputRef
+    const { current: fileInputNode } = fileInputRef
 
-    if (isNull(inputNode)) {
+    if (isNull(fileInputNode)) {
       return
     }
 
@@ -34,15 +34,15 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
       onPick(await fileToBase64(file))
     }
 
-    inputNode.addEventListener('change', handleChange)
+    fileInputNode.addEventListener('change', handleChange)
 
     return (): void => {
-      inputNode.removeEventListener('change', handleChange)
+      fileInputNode.removeEventListener('change', handleChange)
     }
   }, [onPick])
 
   const handleClick = () => {
-    inputRef.current?.click()
+    fileInputRef.current?.click()
   }
 
   return (
@@ -68,7 +68,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
         +
       </button>
       <input
-        ref={inputRef}
+        ref={fileInputRef}
         className='hidden'
         type='file'
         accept={ACCEPT_FORMATS}
