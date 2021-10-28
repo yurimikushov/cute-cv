@@ -42,7 +42,7 @@ const App: FC = () => {
         onChange={setText}
         placeholder='Название поля'
       />
-      <AvatarPicker src={avatar} onPick={setAvatar} />
+      <AvatarPicker src={avatar} onPick={(src) => setAvatar(src ?? '')} />
     </div>
   )
 }

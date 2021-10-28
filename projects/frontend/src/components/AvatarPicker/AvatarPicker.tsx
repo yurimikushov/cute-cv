@@ -45,6 +45,11 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
     fileInputRef.current?.click()
   }
 
+  const handleClear = () => {
+    pickButtonRef.current?.focus()
+    onPick(null)
+  }
+
   return (
     <div className='relative h-20 w-20 group'>
       <img
@@ -59,14 +64,30 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
           'h-full w-full rounded-full text-lg text-gray-300 outline-none',
           'transform scale-0 transition-transform duration-200 ease-out',
           'group-hover:scale-100 group-hover:bg-white group-hover:opacity-90',
-          'focus-visible:scale-100 focus-visible:bg-white focus-visible:opacity-90',
-          'focus-visible:shadow-sm'
+          'focus-visible:scale-100 focus-visible:bg-white focus-visible:opacity-90 focus-visible:shadow-sm'
         )}
         type='button'
         onClick={handleClick}
       >
         +
       </button>
+      {!isEmpty(src) && (
+        <button
+          className={cn(
+            'absolute top-0 right-1',
+            'h-5 w-5 leading-5 rounded-full',
+            'text-base text-gray-300 bg-white',
+            'outline-none shadow-xs',
+            'transform scale-0 transition-transform duration-200 ease-out',
+            'group-hover:scale-100',
+            'focus-visible:scale-100 focus-visible:shadow-sm'
+          )}
+          type='button'
+          onClick={handleClear}
+        >
+          x
+        </button>
+      )}
       <input
         ref={fileInputRef}
         className='hidden'
