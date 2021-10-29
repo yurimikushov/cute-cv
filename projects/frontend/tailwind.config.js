@@ -31,6 +31,9 @@ module.exports = {
       sm: '0 0 4px 0 #c7c7c7',
     },
     extend: {
+      spacing: {
+        18: '4.5rem',
+      },
       gridTemplateColumns: {
         page: '1fr 150px',
       },
