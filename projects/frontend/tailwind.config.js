@@ -30,6 +30,14 @@ module.exports = {
       xs: '0 0 2px 0 #e5e5e5',
       sm: '0 0 4px 0 #c7c7c7',
     },
+    extend: {
+      gridTemplateColumns: {
+        page: '1fr 150px',
+      },
+      gridTemplateRows: {
+        page: 'auto 1fr',
+      },
+    },
   },
   variants: {
     extend: {
