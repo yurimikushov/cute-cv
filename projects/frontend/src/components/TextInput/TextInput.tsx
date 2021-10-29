@@ -37,7 +37,7 @@ const TextInput: FC<TextInputPropsT> = ({
         className,
         'px-1 py-0.5 max-w-full rounded',
         'bg-white text-black leading-tight',
-        'border border-solid border-gray-100',
+        'border border-solid border-gray-200',
         'focus:outline-none focus:shadow-sm',
         'disabled:placeholder-black disabled:bg-white disabled:border-0',
         {

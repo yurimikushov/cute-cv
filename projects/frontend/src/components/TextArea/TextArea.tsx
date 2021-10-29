@@ -46,7 +46,7 @@ const TextArea: FC<TextAreaPropsT> = ({
       className={cn(
         className,
         'px-1.5 py-1 max-w-full bg-white text-black rounded',
-        'border border-solid border-gray-100',
+        'border border-solid border-gray-200',
         'resize-none overflow-hidden',
         'focus:outline-none focus:shadow-sm'
       )}
