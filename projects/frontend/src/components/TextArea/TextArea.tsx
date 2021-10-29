@@ -48,6 +48,7 @@ const TextArea: FC<TextAreaPropsT> = ({
         'px-1.5 py-1 max-w-full bg-white text-black rounded',
         'border border-solid border-gray-200',
         'resize-none overflow-hidden',
+        'placeholder-black placeholder-opacity-50',
         'focus:outline-none focus:shadow-sm'
       )}
       value={value}

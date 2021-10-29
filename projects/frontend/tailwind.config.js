@@ -19,8 +19,8 @@ module.exports = {
       sm: '0.77rem',
       base: '13px',
       lg: '1.15rem',
-      xl: '1.7rem',
-      '2xl': '2rem',
+      xl: '1.4rem',
+      '2xl': '1.6rem',
     },
     borderRadius: {
       DEFAULT: '3px',
@@ -35,7 +35,7 @@ module.exports = {
     extend: {
       backgroundColor: ['disabled', 'focus-visible'],
       borderWidth: ['disabled'],
-      placeholderColor: ['disabled'],
+      placeholderOpacity: ['disabled'],
       scale: ['group-hover', 'focus-visible'],
       boxShadow: ['focus-visible'],
       opacity: ['focus-visible'],
