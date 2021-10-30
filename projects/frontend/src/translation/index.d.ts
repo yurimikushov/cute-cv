@@ -1,0 +1,4 @@
+type TranslationT = {
+}
+
+export { TranslationT }
