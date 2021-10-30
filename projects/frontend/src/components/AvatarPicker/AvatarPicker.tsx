@@ -47,7 +47,10 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
 
   const handleClear = () => {
     openFileDialogButtonRef.current?.focus()
-    onPick(null)
+
+    if (window.confirm('Are you sure you wanna delete the pic?')) {
+      onPick(null)
+    }
   }
 
   return (
