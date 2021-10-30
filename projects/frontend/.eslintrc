@@ -50,7 +50,7 @@
     "arrow-body-style": "off",
     "line-comment-position": "off",
     "no-inline-comments": "off",
-    "capitalized-comments":"off",
+    "capitalized-comments": "off",
     "react/react-in-jsx-scope": "off",
     "react/function-component-definition": "off",
     "react/jsx-indent": "off",
