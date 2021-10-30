@@ -64,6 +64,7 @@
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-no-literals": "off",
     "react/forbid-component-props": "off",
+    "react/jsx-max-depth": ["warn", { "max": 3 }],
     "@typescript-eslint/array-type": [
       "error",
       { "default": "generic", "readonly": "generic" }
