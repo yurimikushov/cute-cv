@@ -54,7 +54,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
   }
 
   return (
-    <div className='relative h-18 w-18 group'>
+    <div className='relative h-22 w-22 group'>
       <img
         className='h-full w-full rounded-full'
         src={isEmpty(src) ? placeholderSrc : src}

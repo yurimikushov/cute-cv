@@ -19,8 +19,8 @@ module.exports = {
       sm: '0.77rem',
       base: '13px',
       lg: '1.15rem',
-      xl: '1.4rem',
-      '2xl': '1.6rem',
+      xl: '1.7rem',
+      '2xl': '2rem',
     },
     borderRadius: {
       DEFAULT: '3px',
@@ -32,7 +32,7 @@ module.exports = {
     },
     extend: {
       spacing: {
-        18: '4.5rem',
+        22: '5.5rem',
       },
       gridTemplateColumns: {
         page: '1fr 150px',
