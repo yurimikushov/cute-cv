@@ -6,6 +6,7 @@ import isNil from 'lodash/isNil'
 import isEmpty from 'lodash/isEmpty'
 import first from 'lodash/first'
 import fileToBase64 from 'lib/fileToBase64'
+import { ReactComponent as CloseIcon } from 'icons/close.svg'
 import placeholderSrc from './assets/placeholder.png'
 import AvatarPickerPropsT from './AvatarPicker.props'
 
@@ -81,7 +82,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
           className={cn(
             'absolute top-0 right-1',
             'h-5 w-5 leading-5 rounded-full',
-            'text-base text-gray-300 bg-white',
+            'bg-white',
             'outline-none shadow-xs',
             'transform scale-0 transition-transform duration-200 ease-out',
             'group-hover:scale-100',
@@ -90,7 +91,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
           type='button'
           onClick={handleClear}
         >
-          x
+          <CloseIcon className='h-3 text-gray-300' />
         </button>
       )}
       <input
