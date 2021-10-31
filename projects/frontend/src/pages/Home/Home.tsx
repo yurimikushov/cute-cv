@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import PageLayout from 'layout/Page'
+import PageLayout from 'layouts/Page'
 import TextArea from 'components/TextArea'
 import TextInput from 'components/TextInput'
 import AvatarPicker from 'components/AvatarPicker'
