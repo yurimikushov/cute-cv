@@ -67,7 +67,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
         ref={openFileDialogButtonRef}
         className={cn(
           'absolute top-0 left-0',
-          'h-full w-full rounded-full text-lg text-gray-300 outline-none',
+          'h-full w-full rounded-full text-xl text-gray-300 outline-none',
           'transform scale-0 transition-transform duration-200 ease-out',
           'group-hover:scale-100 group-hover:bg-white group-hover:opacity-90',
           'focus-visible:scale-100 focus-visible:bg-white focus-visible:opacity-90 focus-visible:shadow-sm'
