@@ -1,10 +1,12 @@
 import { FC, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import PageLayout from 'layouts/Page'
 import TextArea from 'components/TextArea'
 import TextInput from 'components/TextInput'
 import AvatarPicker from 'components/AvatarPicker'
 
 const HomePage: FC = () => {
+  const { t } = useTranslation()
   const [fullName, setFullName] = useState('')
   const [position, setPosition] = useState('')
   const [avatar, setAvatar] = useState('')
@@ -17,14 +19,14 @@ const HomePage: FC = () => {
           className='block'
           size='2xl'
           value={fullName}
-          placeholder='Full name'
+          placeholder={t('fullName.placeholder')}
           onChange={setFullName}
         />
         <TextInput
           className='block mt-3'
           size='xl'
           value={position}
-          placeholder='Position'
+          placeholder={t('position.placeholder')}
           onChange={setPosition}
         />
       </header>
@@ -33,7 +35,7 @@ const HomePage: FC = () => {
         <TextArea
           className='w-full'
           value={aboutMe}
-          placeholder='Say something about you'
+          placeholder={t('aboutMe.placeholder')}
           onChange={setAboutMe}
         />
       </main>

@@ -1,4 +1,5 @@
 import { FC, useRef, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import cn from 'classnames'
 import isNull from 'lodash/isNull'
 import isNil from 'lodash/isNil'
@@ -11,6 +12,7 @@ import AvatarPickerPropsT from './AvatarPicker.props'
 const ACCEPT_FORMATS = ['.png', '.jpg', '.jpeg'].join(',')
 
 const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'avatarPicker' })
   const openFileDialogButtonRef = useRef<HTMLButtonElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -48,7 +50,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
   const handleClear = () => {
     openFileDialogButtonRef.current?.focus()
 
-    if (window.confirm('Are you sure you wanna delete the pic?')) {
+    if (window.confirm(t('confirmDelete'))) {
       onPick(null)
     }
   }
@@ -58,7 +60,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
       <img
         className='h-full w-full rounded-full'
         src={isEmpty(src) ? placeholderSrc : src}
-        alt='Avatar picker.'
+        alt={t('img.alt')}
       />
       <button
         ref={openFileDialogButtonRef}
