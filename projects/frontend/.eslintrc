@@ -52,6 +52,7 @@
     "no-inline-comments": "off",
     "capitalized-comments": "off",
     "no-alert": "off",
+    "function-paren-newline": "off",
     "react/react-in-jsx-scope": "off",
     "react/function-component-definition": "off",
     "react/jsx-indent": "off",
