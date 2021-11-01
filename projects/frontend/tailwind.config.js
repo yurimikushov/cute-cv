@@ -36,7 +36,7 @@ module.exports = {
         22: '5.5rem',
       },
       gridTemplateColumns: {
-        page: '1fr 150px',
+        page: 'minmax(auto, 485px) 150px',
       },
       gridTemplateRows: {
         page: 'auto 1fr',
