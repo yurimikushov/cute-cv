@@ -16,6 +16,12 @@ const ru: TranslationT = {
     },
     confirmDelete: 'Вы точно хотите удалить фото?',
   },
+  experience: {
+    title: 'Опыт',
+  },
+  contacts: {
+    title: 'Контакты',
+  },
 }
 
 export default ru

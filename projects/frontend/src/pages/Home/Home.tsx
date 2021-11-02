@@ -6,6 +6,7 @@ import PageLayout from 'layouts/Page'
 import TextArea from 'components/TextArea'
 import TextInput from 'components/TextInput'
 import AvatarPicker from 'components/AvatarPicker'
+import H from 'components/H'
 
 const HomePage: FC = () => {
   const { t } = useTranslation()
@@ -40,6 +41,7 @@ const HomePage: FC = () => {
           placeholder={t('aboutMe.placeholder')}
           onChange={setAboutMe}
         />
+        <H tag='1'>{t('experience.title')}</H>
         <Card className='p-2' hasClose onClose={noop}>
           <TextInput
             className='block'
@@ -55,7 +57,9 @@ const HomePage: FC = () => {
           />
         </Card>
       </main>
-      <aside>Additional info</aside>
+      <aside>
+        <H tag='2'>{t('contacts.title')}</H>
+      </aside>
     </PageLayout>
   )
 }

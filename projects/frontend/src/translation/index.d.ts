@@ -14,6 +14,12 @@ type TranslationT = {
     }
     confirmDelete: string
   }
+  experience: {
+    title: string
+  }
+  contacts: {
+    title: string
+  }
 }
 
 export { TranslationT }

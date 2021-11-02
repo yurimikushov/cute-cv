@@ -16,6 +16,12 @@ const en: TranslationT = {
     },
     confirmDelete: 'Are you sure you wanna delete the pic?',
   },
+  experience: {
+    title: 'Experience',
+  },
+  contacts: {
+    title: 'Contacts',
+  },
 }
 
 export default en
