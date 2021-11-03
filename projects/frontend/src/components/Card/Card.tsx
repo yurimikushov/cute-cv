@@ -18,7 +18,7 @@ const Card: FC<CardPropsT> = ({
       'hover:shadow-sm'
     )}
   >
-    <div>{children}</div>
+    {children}
     {hasClose && (
       <button
         className={cn(
