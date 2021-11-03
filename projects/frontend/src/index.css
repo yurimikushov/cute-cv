@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .childs-mt-2 > * + * {
+    margin-top: 0.5rem;
+  }
+
+  .childs-mt-4 > * + * {
+    margin-top: 1rem;
+  }
+}
+
 html {
   @apply text-base;
 }
