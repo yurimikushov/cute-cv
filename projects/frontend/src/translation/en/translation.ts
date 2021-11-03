@@ -18,6 +18,18 @@ const en: TranslationT = {
   },
   experience: {
     title: 'Experience',
+    position: {
+      placeholder: 'Position',
+    },
+    company: {
+      placeholder: 'Company',
+    },
+    duration: {
+      placeholder: 'Experience duration',
+    },
+    description: {
+      placeholder: 'Experience description',
+    },
   },
   contacts: {
     title: 'Contacts',

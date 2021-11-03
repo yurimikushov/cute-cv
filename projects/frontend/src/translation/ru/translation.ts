@@ -18,6 +18,18 @@ const ru: TranslationT = {
   },
   experience: {
     title: 'Опыт',
+    position: {
+      placeholder: 'Должность',
+    },
+    company: {
+      placeholder: 'Компания',
+    },
+    duration: {
+      placeholder: 'Длительность опыта',
+    },
+    description: {
+      placeholder: 'Что вы делали на работе',
+    },
   },
   contacts: {
     title: 'Контакты',

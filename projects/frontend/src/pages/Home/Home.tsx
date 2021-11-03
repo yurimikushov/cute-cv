@@ -1,11 +1,10 @@
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import noop from 'lodash/noop'
-import Card from 'components/Card'
 import PageLayout from 'layouts/Page'
 import TextArea from 'components/TextArea'
 import TextInput from 'components/TextInput'
 import AvatarPicker from 'components/AvatarPicker'
+import Experiences from './Experiences'
 import H from 'components/H'
 
 const HomePage: FC = () => {
@@ -34,28 +33,14 @@ const HomePage: FC = () => {
         />
       </header>
       <AvatarPicker src={avatar} onPick={(src) => setAvatar(src ?? '')} />
-      <main>
+      <main className='childs-mt-4'>
         <TextArea
           className='w-full'
           value={aboutMe}
           placeholder={t('aboutMe.placeholder')}
           onChange={setAboutMe}
         />
-        <H tag='1'>{t('experience.title')}</H>
-        <Card className='p-2' hasClose onClose={noop}>
-          <TextInput
-            className='block'
-            value={position}
-            placeholder={t('position.placeholder')}
-            onChange={setPosition}
-          />
-          <TextInput
-            className='block mt-2'
-            value={position}
-            placeholder={t('position.placeholder')}
-            onChange={setPosition}
-          />
-        </Card>
+        <Experiences />
       </main>
       <aside>
         <H tag='2'>{t('contacts.title')}</H>

@@ -16,6 +16,18 @@ type TranslationT = {
   }
   experience: {
     title: string
+    position: {
+      placeholder: string
+    }
+    company: {
+      placeholder: string
+    }
+    duration: {
+      placeholder: string
+    }
+    description: {
+      placeholder: string
+    }
   }
   contacts: {
     title: string
