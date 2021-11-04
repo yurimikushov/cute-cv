@@ -1,5 +1,6 @@
 module.exports = {
   purge: ['./src/**/*.{ts,tsx}', './public/index.html'],
+  important: '.app',
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import map from 'lodash/map'
 import noop from 'lodash/noop'
 import H from 'components/H'
+import Button from 'components/Button'
 import Experience from './Experience'
 import ExperiencesPropsT from './Experiences.props'
 
@@ -42,6 +43,9 @@ const Experiences: FC<ExperiencesPropsT> = ({ className, ...props }) => {
           onDelete={noop}
         />
       ))}
+      <Button className='block mx-auto mt-2' onClick={noop}>
+        Add
+      </Button>
     </div>
   )
 }
