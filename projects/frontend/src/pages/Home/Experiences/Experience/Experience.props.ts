@@ -6,7 +6,7 @@ type ExperiencePropsT = {
   description: string
   onPositionChange: (position: string) => void
   onCompanyChange: (company: string) => void
-  onDurationChange: (onDurationChange: string) => void
+  onDurationChange: (duration: string) => void
   onDescriptionChange: (description: string) => void
   onDelete: () => void
 }
