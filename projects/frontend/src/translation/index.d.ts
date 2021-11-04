@@ -43,6 +43,12 @@ type TranslationT = {
   }
   contacts: {
     title: string
+    text: {
+      placeholder: string
+    }
+    reference: {
+      placeholder: string
+    }
   }
 }
 

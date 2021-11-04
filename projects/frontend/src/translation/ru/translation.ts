@@ -45,6 +45,12 @@ const ru: TranslationT = {
   },
   contacts: {
     title: 'Контакты',
+    text: {
+      placeholder: 'Текст',
+    },
+    reference: {
+      placeholder: 'Ссылка',
+    },
   },
 }
 

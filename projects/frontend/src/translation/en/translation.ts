@@ -45,6 +45,12 @@ const en: TranslationT = {
   },
   contacts: {
     title: 'Contacts',
+    text: {
+      placeholder: 'Text',
+    },
+    reference: {
+      placeholder: 'Reference',
+    },
   },
 }
 
