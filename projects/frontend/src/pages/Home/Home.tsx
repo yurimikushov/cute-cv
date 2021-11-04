@@ -1,15 +1,13 @@
 import { FC, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import PageLayout from 'layouts/Page'
 import Header from './Header'
 import AvatarPicker from 'components/AvatarPicker'
 import AboutMe from './AboutMe'
 import Experiences from './Experiences'
 import Educations from './Educations'
-import H from 'components/H'
+import Contacts from './Contacts'
 
 const HomePage: FC = () => {
-  const { t } = useTranslation()
   const [avatar, setAvatar] = useState('')
 
   return (
@@ -22,7 +20,7 @@ const HomePage: FC = () => {
         <Educations />
       </main>
       <aside>
-        <H tag='2'>{t('contacts.title')}</H>
+        <Contacts />
       </aside>
     </PageLayout>
   )
