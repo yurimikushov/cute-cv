@@ -29,6 +29,18 @@ type TranslationT = {
       placeholder: string
     }
   }
+  education: {
+    title: string
+    degree: {
+      placeholder: string
+    }
+    university: {
+      placeholder: string
+    }
+    duration: {
+      placeholder: string
+    }
+  }
   contacts: {
     title: string
   }

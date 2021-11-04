@@ -31,6 +31,18 @@ const en: TranslationT = {
       placeholder: 'Experience description',
     },
   },
+  education: {
+    title: 'Education',
+    degree: {
+      placeholder: 'Degree',
+    },
+    university: {
+      placeholder: 'University',
+    },
+    duration: {
+      placeholder: 'Education description',
+    },
+  },
   contacts: {
     title: 'Contacts',
   },

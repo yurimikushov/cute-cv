@@ -31,6 +31,18 @@ const ru: TranslationT = {
       placeholder: 'Что вы делали на работе',
     },
   },
+  education: {
+    title: 'Образование',
+    degree: {
+      placeholder: 'Специализация',
+    },
+    university: {
+      placeholder: 'Университет',
+    },
+    duration: {
+      placeholder: 'Длительность обучения',
+    },
+  },
   contacts: {
     title: 'Контакты',
   },
