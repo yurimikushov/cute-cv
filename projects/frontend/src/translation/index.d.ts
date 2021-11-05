@@ -54,6 +54,10 @@ type TranslationT = {
     title: string
     placeholder: string
   }
+  languages: {
+    title: string
+    placeholder: string
+  }
 }
 
 export { TranslationT }

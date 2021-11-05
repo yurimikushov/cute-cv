@@ -56,6 +56,10 @@ const en: TranslationT = {
     title: 'Technologies',
     placeholder: 'Your technology stack',
   },
+  languages: {
+    title: 'Languages',
+    placeholder: 'Language',
+  },
 }
 
 export default en
