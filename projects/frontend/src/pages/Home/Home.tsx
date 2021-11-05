@@ -6,6 +6,7 @@ import AboutMe from './AboutMe'
 import Experiences from './Experiences'
 import Educations from './Educations'
 import Contacts from './Contacts'
+import Technologies from './Technologies'
 
 const HomePage: FC = () => {
   const [avatar, setAvatar] = useState('')
@@ -21,6 +22,7 @@ const HomePage: FC = () => {
       </main>
       <aside>
         <Contacts />
+        <Technologies />
       </aside>
     </PageLayout>
   )
