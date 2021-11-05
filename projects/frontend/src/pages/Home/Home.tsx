@@ -20,7 +20,7 @@ const HomePage: FC = () => {
         <Experiences />
         <Educations />
       </main>
-      <aside>
+      <aside className='childs-mt-4'>
         <Contacts />
         <Technologies />
       </aside>
