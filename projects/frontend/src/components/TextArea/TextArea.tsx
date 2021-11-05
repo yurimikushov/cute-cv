@@ -54,7 +54,7 @@ const TextArea: FC<TextAreaPropsT> = ({
       )}
       value={value}
       placeholder={placeholder}
-      rows={1}
+      rows={2}
       style={{ height: textAreaHeight }}
       onChange={handleChange}
     />
