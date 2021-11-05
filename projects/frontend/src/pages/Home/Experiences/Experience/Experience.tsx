@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import Card from 'components/Card'
 import TextInput from 'components/TextInput'
 import ExperiencePropsT from './Experience.props'
+import TextArea from 'components/TextArea'
 
 const Experience: FC<ExperiencePropsT> = ({
   className,
@@ -45,8 +46,8 @@ const Experience: FC<ExperiencePropsT> = ({
         placeholder={t('duration.placeholder')}
         onChange={onDurationChange}
       />
-      <TextInput
-        className='block'
+      <TextArea
+        className='block min-w-full text-sm'
         value={description}
         placeholder={t('description.placeholder')}
         onChange={onDescriptionChange}
