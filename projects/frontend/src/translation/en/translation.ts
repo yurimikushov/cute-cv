@@ -52,6 +52,10 @@ const en: TranslationT = {
       placeholder: 'Reference',
     },
   },
+  technologies: {
+    title: 'Technologies',
+    placeholder: 'Your technology stack',
+  },
 }
 
 export default en

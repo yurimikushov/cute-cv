@@ -52,6 +52,10 @@ const ru: TranslationT = {
       placeholder: 'Ссылка',
     },
   },
+  technologies: {
+    title: 'Технологии',
+    placeholder: 'Технологический стек',
+  },
 }
 
 export default ru

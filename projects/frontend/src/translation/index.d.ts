@@ -50,6 +50,10 @@ type TranslationT = {
       placeholder: string
     }
   }
+  technologies: {
+    title: string
+    placeholder: string
+  }
 }
 
 export { TranslationT }
