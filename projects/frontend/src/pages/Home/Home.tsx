@@ -7,6 +7,7 @@ import Experiences from './Experiences'
 import Educations from './Educations'
 import Contacts from './Contacts'
 import Technologies from './Technologies'
+import Languages from './Languages'
 
 const HomePage: FC = () => {
   const [avatar, setAvatar] = useState('')
@@ -23,6 +24,7 @@ const HomePage: FC = () => {
       <aside className='childs-mt-4'>
         <Contacts />
         <Technologies />
+        <Languages />
       </aside>
     </PageLayout>
   )
