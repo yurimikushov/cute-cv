@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import cn from 'classnames'
-import { ReactComponent as CloseIcon } from 'icons/close.svg'
+import { CloseButton } from 'components/Button'
 import CardPropsT from './Card.props'
 
 const Card: FC<CardPropsT> = ({
@@ -20,17 +20,7 @@ const Card: FC<CardPropsT> = ({
   >
     {children}
     {hasClose && (
-      <button
-        className={cn(
-          'absolute top-2 right-2',
-          'w-4 h-4',
-          'text-gray-200 hover:text-gray-300 cursor-pointer'
-        )}
-        type='button'
-        onClick={onClose}
-      >
-        <CloseIcon />
-      </button>
+      <CloseButton className='absolute top-2 right-1.5' onClick={onClose} />
     )}
   </div>
 )

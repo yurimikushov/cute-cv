@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
-import { ReactComponent as CloseIcon } from 'icons/close.svg'
 import TextInput from 'components/TextInput'
+import { CloseButton } from 'components/Button'
 import LanguagePropsT from './Language.props'
 
 const Language: FC<LanguagePropsT> = ({
@@ -21,17 +21,7 @@ const Language: FC<LanguagePropsT> = ({
         placeholder={t('placeholder')}
         onChange={onChange}
       />
-      <button
-        className={cn(
-          'absolute top-1.5 right-1.5',
-          'w-3.5 h-3.5',
-          'text-gray-200 hover:text-gray-300 cursor-pointer'
-        )}
-        type='button'
-        onClick={onDelete}
-      >
-        <CloseIcon />
-      </button>
+      <CloseButton className='absolute top-1.5 right-1.5' onClick={onDelete} />
     </div>
   )
 }
