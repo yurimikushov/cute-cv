@@ -7,7 +7,4 @@ const rootReducer = combineReducers({
   languages: languagesReducer,
 })
 
-type RootStateT = ReturnType<typeof rootReducer>
-
 export default rootReducer
-export type { RootStateT }

@@ -1,4 +1,4 @@
-import { RootStateT } from 'services/reducer'
+import { RootStateT } from 'services/store'
 import { TechnologiesStateT } from './model'
 
 const selectTechnologies = ({

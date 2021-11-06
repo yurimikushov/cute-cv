@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 import map from 'lodash/map'
-import { RootStateT } from 'services/reducer'
+import { RootStateT } from 'services/store'
 import { LanguagesStateT } from './model'
 
 const selectIds = ({ languages }: RootStateT): LanguagesStateT['ids'] => {
