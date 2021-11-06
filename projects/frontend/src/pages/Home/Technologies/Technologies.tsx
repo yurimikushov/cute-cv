@@ -1,13 +1,14 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
+import { useTechnologies } from 'services/technologies'
 import H from 'components/H'
 import TextArea from 'components/TextArea'
 import TechnologiesPropsT from './Technologies.props'
 
 const Technologies: FC<TechnologiesPropsT> = ({ className, ...props }) => {
-  const [technologies, setTechnologies] = useState('')
   const { t } = useTranslation('translation', { keyPrefix: 'technologies' })
+  const { technologies, handleUpdate } = useTechnologies()
 
   return (
     <div className={cn(className, 'childs-mt-2')} {...props}>
@@ -16,7 +17,7 @@ const Technologies: FC<TechnologiesPropsT> = ({ className, ...props }) => {
         className='text-sm'
         value={technologies}
         placeholder={t('placeholder')}
-        onChange={setTechnologies}
+        onChange={handleUpdate}
       />
     </div>
   )
