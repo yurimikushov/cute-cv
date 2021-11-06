@@ -1,2 +1,2 @@
-export { default as technologiesReducer } from './reducer'
+export { default as technologiesReducer } from './slice'
 export { useTechnologies } from './hooks'

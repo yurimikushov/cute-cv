@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateTechnologies } from './actions'
+import { update } from './slice'
 import { selectTechnologies } from './selectors'
 
 const useTechnologies = () => {
@@ -9,7 +9,7 @@ const useTechnologies = () => {
   const dispatch = useDispatch()
 
   const handleUpdate = useCallback((technologies: string) => {
-    dispatch(updateTechnologies(technologies))
+    dispatch(update(technologies))
   }, [])
 
   return {

@@ -2,4 +2,8 @@ type TechnologiesStateT = {
   technologies: string
 }
 
-export type { TechnologiesStateT }
+type UpdatePayloadT = {
+  technologies: string
+}
+
+export type { TechnologiesStateT, UpdatePayloadT }
