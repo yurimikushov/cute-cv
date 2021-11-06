@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addLanguage, updateLanguage, deleteLanguage } from './actions'
+import { add, update, erase } from './slice'
 import { selectLanguages } from './selectors'
 
 const useLanguages = () => {
@@ -9,15 +9,15 @@ const useLanguages = () => {
   const dispatch = useDispatch()
 
   const handleAdd = useCallback(() => {
-    dispatch(addLanguage())
+    dispatch(add())
   }, [])
 
   const handleUpdate = useCallback((id: string, language: string) => {
-    dispatch(updateLanguage(id, language))
+    dispatch(update(id, language))
   }, [])
 
   const handleDelete = useCallback((id: string) => {
-    dispatch(deleteLanguage(id))
+    dispatch(erase(id))
   }, [])
 
   return {

@@ -1,2 +1,2 @@
-export { default as languagesReducer } from './reducer'
+export { default as languagesReducer } from './slice'
 export { useLanguages } from './hooks'
