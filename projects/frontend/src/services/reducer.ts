@@ -1,6 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit'
+import { languagesReducer } from './languages'
 
-const rootReducer = combineReducers({})
+const rootReducer = combineReducers({
+  languages: languagesReducer,
+})
 
 type RootStateT = ReturnType<typeof rootReducer>
 
