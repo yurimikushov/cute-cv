@@ -2,40 +2,30 @@ import { FC } from 'react'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
 import map from 'lodash/map'
-import noop from 'lodash/noop'
+import { useContacts } from 'services/cv'
 import H from 'components/H'
 import Button from 'components/Button'
 import Contact from './Contact'
 import ContactsPropsT from './Contacts.props'
 
-const contacts = [
-  {
-    text: 'example@server.com',
-    reference: 'mailto:example@server.com',
-  },
-  {
-    text: '',
-    reference: '',
-  },
-]
-
 const Contacts: FC<ContactsPropsT> = ({ className, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'contacts' })
+  const { contacts, handleAdd, handleUpdate, handleDelete } = useContacts()
 
   return (
     <div className={cn(className, 'childs-mt-2')} {...props}>
       <H tag='2'>{t('title')}</H>
-      {map(contacts, ({ text, reference }) => (
+      {map(contacts, ({ id, text, href }) => (
         <Contact
-          key={text}
+          key={id}
           text={text}
-          reference={reference}
-          onTextChange={noop}
-          onReferenceChange={noop}
-          onDelete={noop}
+          reference={href}
+          onTextChange={(text) => handleUpdate(id, text, href)}
+          onReferenceChange={(href) => handleUpdate(id, text, href)}
+          onDelete={() => handleDelete(id)}
         />
       ))}
-      <Button className='block mx-auto mt-2' onClick={noop}>
+      <Button className='block mx-auto mt-2' onClick={handleAdd}>
         Add
       </Button>
     </div>
