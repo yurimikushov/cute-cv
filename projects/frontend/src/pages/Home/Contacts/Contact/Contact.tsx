@@ -9,9 +9,9 @@ import ContactPropsT from './Contact.props'
 const Contact: FC<ContactPropsT> = ({
   className,
   text,
-  reference,
+  href,
   onTextChange,
-  onReferenceChange,
+  onHrefChange,
   onDelete,
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'contacts' })
@@ -26,9 +26,9 @@ const Contact: FC<ContactPropsT> = ({
       />
       <TextInput
         className='block min-w-full'
-        value={reference}
+        value={href}
         placeholder={t('reference.placeholder')}
-        onChange={onReferenceChange}
+        onChange={onHrefChange}
       />
       <CloseButton className='absolute top-1.5 right-2.5' onClick={onDelete} />
     </Card>

@@ -19,9 +19,9 @@ const Contacts: FC<ContactsPropsT> = ({ className, ...props }) => {
         <Contact
           key={id}
           text={text}
-          reference={href}
+          href={href}
           onTextChange={(text) => handleUpdate(id, text, href)}
-          onReferenceChange={(href) => handleUpdate(id, text, href)}
+          onHrefChange={(href) => handleUpdate(id, text, href)}
           onDelete={() => handleDelete(id)}
         />
       ))}

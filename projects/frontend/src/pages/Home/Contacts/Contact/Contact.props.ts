@@ -1,9 +1,9 @@
 type ContactPropsT = {
   className?: string
   text: string
-  reference: string
+  href: string
   onTextChange: (text: string) => void
-  onReferenceChange: (reference: string) => void
+  onHrefChange: (href: string) => void
   onDelete: () => void
 }
 
