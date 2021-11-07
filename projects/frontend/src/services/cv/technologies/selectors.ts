@@ -2,9 +2,9 @@ import { RootStateT } from 'services/store'
 import { TechnologiesStateT } from './model'
 
 const selectTechnologies = ({
-  technologies,
+  cv,
 }: RootStateT): TechnologiesStateT['technologies'] => {
-  return technologies.technologies
+  return cv.technologies.technologies
 }
 
 export { selectTechnologies }

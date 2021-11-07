@@ -3,14 +3,14 @@ import map from 'lodash/map'
 import { RootStateT } from 'services/store'
 import { LanguagesStateT } from './model'
 
-const selectIds = ({ languages }: RootStateT): LanguagesStateT['ids'] => {
-  return languages.ids
+const selectIds = ({ cv }: RootStateT): LanguagesStateT['ids'] => {
+  return cv.languages.ids
 }
 
 const selectLanguagesById = ({
-  languages,
+  cv,
 }: RootStateT): LanguagesStateT['languagesById'] => {
-  return languages.languagesById
+  return cv.languages.languagesById
 }
 
 const selectLanguages = createSelector(

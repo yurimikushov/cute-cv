@@ -1,10 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import { technologiesReducer } from './technologies'
-import { languagesReducer } from './languages'
+import { cvReducer } from './cv'
 
 const rootReducer = combineReducers({
-  technologies: technologiesReducer,
-  languages: languagesReducer,
+  cv: cvReducer,
 })
 
 export default rootReducer

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
-import { useTechnologies } from 'services/technologies'
+import { useTechnologies } from 'services/cv'
 import H from 'components/H'
 import TextArea from 'components/TextArea'
 import TechnologiesPropsT from './Technologies.props'
