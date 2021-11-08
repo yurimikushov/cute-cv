@@ -10,7 +10,13 @@ import ContactsPropsT from './Contacts.props'
 
 const Contacts: FC<ContactsPropsT> = ({ className, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'contacts' })
-  const { contacts, handleAdd, handleUpdate, handleDelete } = useContacts()
+  const {
+    contacts,
+    handleAdd,
+    handleTextChange,
+    handleHrefChange,
+    handleDelete,
+  } = useContacts()
 
   return (
     <div className={cn(className, 'childs-mt-2')} {...props}>
@@ -20,8 +26,8 @@ const Contacts: FC<ContactsPropsT> = ({ className, ...props }) => {
           key={id}
           text={text}
           href={href}
-          onTextChange={(text) => handleUpdate({ id, text, href })}
-          onHrefChange={(href) => handleUpdate({ id, text, href })}
+          onTextChange={(text) => handleTextChange({ id, text })}
+          onHrefChange={(href) => handleHrefChange({ id, href })}
           onDelete={() => handleDelete({ id })}
         />
       ))}
