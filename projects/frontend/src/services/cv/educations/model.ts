@@ -1,4 +1,4 @@
-type EducationsT = {
+type EducationT = {
   id: string
   degree: string
   university: string
@@ -7,7 +7,7 @@ type EducationsT = {
 
 type EducationsStateT = {
   ids: Array<string>
-  educationsById: Record<string, EducationsT>
+  educationsById: Record<string, EducationT>
 }
 
 type UpdateDegreePayloadT = {
