@@ -9,13 +9,13 @@ const useTechnologies = () => {
 
   const dispatch = useDispatch()
 
-  const handleUpdate = useCallback((payload: UpdatePayloadT) => {
+  const handleChange = useCallback((payload: UpdatePayloadT) => {
     dispatch(update(payload))
   }, [])
 
   return {
     technologies,
-    handleUpdate,
+    handleChange,
   }
 }
 

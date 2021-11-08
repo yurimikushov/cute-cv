@@ -8,7 +8,7 @@ import TechnologiesPropsT from './Technologies.props'
 
 const Technologies: FC<TechnologiesPropsT> = ({ className, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'technologies' })
-  const { technologies, handleUpdate } = useTechnologies()
+  const { technologies, handleChange } = useTechnologies()
 
   return (
     <div className={cn(className, 'childs-mt-2')} {...props}>
@@ -17,7 +17,7 @@ const Technologies: FC<TechnologiesPropsT> = ({ className, ...props }) => {
         className='text-sm'
         value={technologies}
         placeholder={t('placeholder')}
-        onChange={(technologies) => handleUpdate({ technologies })}
+        onChange={(technologies) => handleChange({ technologies })}
       />
     </div>
   )
