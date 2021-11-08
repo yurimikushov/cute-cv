@@ -10,10 +10,18 @@ type EducationsStateT = {
   educationsById: Record<string, EducationsT>
 }
 
-type UpdatePayloadT = {
+type UpdateDegreePayloadT = {
   id: string
   degree: string
+}
+
+type UpdateUniversityPayloadT = {
+  id: string
   university: string
+}
+
+type UpdateDurationPayloadT = {
+  id: string
   duration: string
 }
 
@@ -21,4 +29,10 @@ type DeletePayloadT = {
   id: string
 }
 
-export type { EducationsStateT, UpdatePayloadT, DeletePayloadT }
+export type {
+  EducationsStateT,
+  UpdateDegreePayloadT,
+  UpdateUniversityPayloadT,
+  UpdateDurationPayloadT,
+  DeletePayloadT,
+}

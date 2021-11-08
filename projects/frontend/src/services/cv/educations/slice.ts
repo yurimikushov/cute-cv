@@ -1,7 +1,13 @@
 import { createSlice, PayloadAction, nanoid } from '@reduxjs/toolkit'
 import filter from 'lodash/filter'
 import omit from 'lodash/omit'
-import { EducationsStateT, UpdatePayloadT, DeletePayloadT } from './model'
+import {
+  EducationsStateT,
+  UpdateDegreePayloadT,
+  UpdateUniversityPayloadT,
+  UpdateDurationPayloadT,
+  DeletePayloadT,
+} from './model'
 
 const initialState: EducationsStateT = {
   ids: [],
@@ -23,9 +29,19 @@ const { actions, reducer } = createSlice({
         duration: '',
       }
     },
-    update: (state, { payload }: PayloadAction<UpdatePayloadT>) => {
+    updateDegree: (state, { payload }: PayloadAction<UpdateDegreePayloadT>) => {
       state.educationsById[payload.id].degree = payload.degree
+    },
+    updateUniversity: (
+      state,
+      { payload }: PayloadAction<UpdateUniversityPayloadT>
+    ) => {
       state.educationsById[payload.id].university = payload.university
+    },
+    updateDuration: (
+      state,
+      { payload }: PayloadAction<UpdateDurationPayloadT>
+    ) => {
       state.educationsById[payload.id].duration = payload.duration
     },
     erase: (state, { payload }: PayloadAction<DeletePayloadT>) => {
@@ -35,5 +51,6 @@ const { actions, reducer } = createSlice({
   },
 })
 
-export const { add, update, erase } = actions
+export const { add, updateDegree, updateUniversity, updateDuration, erase } =
+  actions
 export default reducer

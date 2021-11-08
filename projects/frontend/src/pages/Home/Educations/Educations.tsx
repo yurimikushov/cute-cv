@@ -10,7 +10,14 @@ import EducationsPropsT from './Educations.props'
 
 const Educations: FC<EducationsPropsT> = ({ className, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'education' })
-  const { educations, handleAdd, handleUpdate, handleDelete } = useEducations()
+  const {
+    educations,
+    handleAdd,
+    handleDegreeChange,
+    handleUniversityChange,
+    handleDurationChange,
+    handleDelete,
+  } = useEducations()
 
   return (
     <div className={cn(className, 'childs-mt-4')} {...props}>
@@ -21,14 +28,12 @@ const Educations: FC<EducationsPropsT> = ({ className, ...props }) => {
           degree={degree}
           university={university}
           duration={duration}
-          onDegreeChange={(degree) =>
-            handleUpdate({ id, degree, university, duration })
-          }
+          onDegreeChange={(degree) => handleDegreeChange({ id, degree })}
           onUniversityChange={(university) =>
-            handleUpdate({ id, degree, university, duration })
+            handleUniversityChange({ id, university })
           }
           onDurationChange={(duration) =>
-            handleUpdate({ id, degree, university, duration })
+            handleDurationChange({ id, duration })
           }
           onDelete={() => handleDelete({ id })}
         />
