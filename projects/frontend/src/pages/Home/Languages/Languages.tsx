@@ -19,8 +19,8 @@ const Languages: FC<LanguagesPropsT> = ({ className, ...props }) => {
         <Language
           key={id}
           language={language}
-          onChange={(language) => handleUpdate(id, language)}
-          onDelete={() => handleDelete(id)}
+          onChange={(language) => handleUpdate({ id, language })}
+          onDelete={() => handleDelete({ id })}
         />
       ))}
       <Button className='block mx-auto mt-2' onClick={handleAdd}>

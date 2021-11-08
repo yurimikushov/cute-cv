@@ -1,12 +1,7 @@
 import { createSlice, PayloadAction, nanoid } from '@reduxjs/toolkit'
 import filter from 'lodash/filter'
 import omit from 'lodash/omit'
-import {
-  LanguagesStateT,
-  AddPayloadT,
-  UpdatePayloadT,
-  DeletePayloadT,
-} from './model'
+import { LanguagesStateT, UpdatePayloadT, DeletePayloadT } from './model'
 
 const initialState: LanguagesStateT = {
   ids: [],
@@ -17,42 +12,21 @@ const { actions, reducer } = createSlice({
   name: 'languages',
   initialState,
   reducers: {
-    add: {
-      reducer: (state, { payload }: PayloadAction<AddPayloadT>) => {
-        state.ids.push(payload.id)
-        state.languagesById[payload.id] = {
-          id: payload.id,
-          language: payload.language,
-        }
-      },
-      prepare: () => ({
-        payload: {
-          id: nanoid(),
-          language: '',
-        },
-      }),
+    add: (state) => {
+      const id = nanoid()
+
+      state.ids.push(id)
+      state.languagesById[id] = {
+        id,
+        language: '',
+      }
     },
-    update: {
-      reducer: (state, { payload }: PayloadAction<UpdatePayloadT>) => {
-        state.languagesById[payload.id].language = payload.language
-      },
-      prepare: (id: string, language: string) => ({
-        payload: {
-          id,
-          language,
-        },
-      }),
+    update: (state, { payload }: PayloadAction<UpdatePayloadT>) => {
+      state.languagesById[payload.id].language = payload.language
     },
-    erase: {
-      reducer: (state, { payload }: PayloadAction<DeletePayloadT>) => {
-        state.ids = filter(state.ids, (id) => payload.id !== id)
-        state.languagesById = omit(state.languagesById, payload.id)
-      },
-      prepare: (id: string) => ({
-        payload: {
-          id,
-        },
-      }),
+    erase: (state, { payload }: PayloadAction<DeletePayloadT>) => {
+      state.ids = filter(state.ids, (id) => payload.id !== id)
+      state.languagesById = omit(state.languagesById, payload.id)
     },
   },
 })

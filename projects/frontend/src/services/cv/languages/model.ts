@@ -8,11 +8,6 @@ type LanguagesStateT = {
   languagesById: Record<string, LanguageT>
 }
 
-type AddPayloadT = {
-  id: string
-  language: string
-}
-
 type UpdatePayloadT = {
   id: string
   language: string
@@ -22,4 +17,4 @@ type DeletePayloadT = {
   id: string
 }
 
-export type { LanguagesStateT, AddPayloadT, UpdatePayloadT, DeletePayloadT }
+export type { LanguagesStateT, UpdatePayloadT, DeletePayloadT }
