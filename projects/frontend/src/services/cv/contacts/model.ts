@@ -9,12 +9,6 @@ type ContactsStateT = {
   contactsById: Record<string, ContactT>
 }
 
-type AddPayloadT = {
-  id: string
-  text: string
-  href: string
-}
-
 type UpdatePayloadT = {
   id: string
   text: string
@@ -25,4 +19,4 @@ type DeletePayloadT = {
   id: string
 }
 
-export type { ContactsStateT, AddPayloadT, UpdatePayloadT, DeletePayloadT }
+export type { ContactsStateT, UpdatePayloadT, DeletePayloadT }

@@ -20,9 +20,9 @@ const Contacts: FC<ContactsPropsT> = ({ className, ...props }) => {
           key={id}
           text={text}
           href={href}
-          onTextChange={(text) => handleUpdate(id, text, href)}
-          onHrefChange={(href) => handleUpdate(id, text, href)}
-          onDelete={() => handleDelete(id)}
+          onTextChange={(text) => handleUpdate({ id, text, href })}
+          onHrefChange={(href) => handleUpdate({ id, text, href })}
+          onDelete={() => handleDelete({ id })}
         />
       ))}
       <Button className='block mx-auto mt-2' onClick={handleAdd}>
