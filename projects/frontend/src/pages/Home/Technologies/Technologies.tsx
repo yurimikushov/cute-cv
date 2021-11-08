@@ -17,7 +17,7 @@ const Technologies: FC<TechnologiesPropsT> = ({ className, ...props }) => {
         className='text-sm'
         value={technologies}
         placeholder={t('placeholder')}
-        onChange={handleUpdate}
+        onChange={(technologies) => handleUpdate({ technologies })}
       />
     </div>
   )

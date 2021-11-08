@@ -9,15 +9,8 @@ const { actions, reducer } = createSlice({
   name: 'technologies',
   initialState,
   reducers: {
-    update: {
-      reducer: (state, { payload }: PayloadAction<UpdatePayloadT>) => {
-        state.technologies = payload.technologies
-      },
-      prepare: (technologies: string) => ({
-        payload: {
-          technologies,
-        },
-      }),
+    update: (state, { payload }: PayloadAction<UpdatePayloadT>) => {
+      state.technologies = payload.technologies
     },
   },
 })
