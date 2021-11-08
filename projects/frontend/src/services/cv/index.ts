@@ -1,4 +1,5 @@
 export { default as cvReducer } from './reducer'
+export { useExperiences } from './experiences'
 export { useEducations } from './educations'
 export { useContacts } from './contacts'
 export { useTechnologies } from './technologies'
