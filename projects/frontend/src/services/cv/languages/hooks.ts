@@ -13,7 +13,7 @@ const useLanguages = () => {
     dispatch(add())
   }, [])
 
-  const handleUpdate = useCallback((payload: UpdatePayloadT) => {
+  const handleChange = useCallback((payload: UpdatePayloadT) => {
     dispatch(update(payload))
   }, [])
 
@@ -24,7 +24,7 @@ const useLanguages = () => {
   return {
     languages,
     handleAdd,
-    handleUpdate,
+    handleChange,
     handleDelete,
   }
 }

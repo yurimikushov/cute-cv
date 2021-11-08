@@ -10,7 +10,7 @@ import LanguagesPropsT from './Languages.props'
 
 const Languages: FC<LanguagesPropsT> = ({ className, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'languages' })
-  const { languages, handleAdd, handleUpdate, handleDelete } = useLanguages()
+  const { languages, handleAdd, handleChange, handleDelete } = useLanguages()
 
   return (
     <div className={cn(className, 'childs-mt-2')} {...props}>
@@ -19,7 +19,7 @@ const Languages: FC<LanguagesPropsT> = ({ className, ...props }) => {
         <Language
           key={id}
           language={language}
-          onChange={(language) => handleUpdate({ id, language })}
+          onChange={(language) => handleChange({ id, language })}
           onDelete={() => handleDelete({ id })}
         />
       ))}
