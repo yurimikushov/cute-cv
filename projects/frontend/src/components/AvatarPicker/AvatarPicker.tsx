@@ -12,7 +12,7 @@ import AvatarPickerPropsT from './AvatarPicker.props'
 
 const ACCEPT_FORMATS = ['.png', '.jpg', '.jpeg'].join(',')
 
-const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
+const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick, onClear }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'avatarPicker' })
   const openFileDialogButtonRef = useRef<HTMLButtonElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -52,7 +52,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick }) => {
     openFileDialogButtonRef.current?.focus()
 
     if (window.confirm(t('confirmDelete'))) {
-      onPick(null)
+      onClear()
     }
   }
 
