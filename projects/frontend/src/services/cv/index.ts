@@ -1,4 +1,5 @@
 export { default as cvReducer } from './reducer'
+export { useFullName } from './name'
 export { usePosition } from './position'
 export { useAvatar } from './avatar'
 export { useAboutMe } from './aboutMe'

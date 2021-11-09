@@ -1,4 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit'
+import { nameReducer } from './name'
 import { positionReducer } from './position'
 import { avatarReducer } from './avatar'
 import { aboutMeReducer } from './aboutMe'
@@ -9,6 +10,7 @@ import { technologiesReducer } from './technologies'
 import { languagesReducer } from './languages'
 
 const cvReducer = combineReducers({
+  name: nameReducer,
   position: positionReducer,
   avatar: avatarReducer,
   aboutMe: aboutMeReducer,
