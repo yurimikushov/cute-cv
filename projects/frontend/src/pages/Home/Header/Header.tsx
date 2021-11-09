@@ -1,11 +1,11 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { usePosition } from 'services/cv'
+import { useFullName, usePosition } from 'services/cv'
 import TextInput from 'components/TextInput'
 
 const Header: FC = () => {
   const { t } = useTranslation()
-  const [fullName, setFullName] = useState('')
+  const { fullName, handleChange: handleFullNameChange } = useFullName()
   const { position, handleChange: handlePositionChange } = usePosition()
 
   return (
@@ -15,7 +15,7 @@ const Header: FC = () => {
         size='2xl'
         value={fullName}
         placeholder={t('fullName.placeholder')}
-        onChange={setFullName}
+        onChange={(fullName) => handleFullNameChange({ fullName })}
       />
       <TextInput
         className='block mt-3'
