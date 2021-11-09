@@ -1,11 +1,12 @@
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { usePosition } from 'services/cv'
 import TextInput from 'components/TextInput'
 
 const Header: FC = () => {
   const { t } = useTranslation()
   const [fullName, setFullName] = useState('')
-  const [position, setPosition] = useState('')
+  const { position, handleChange: handlePositionChange } = usePosition()
 
   return (
     <header>
@@ -21,7 +22,7 @@ const Header: FC = () => {
         size='xl'
         value={position}
         placeholder={t('position.placeholder')}
-        onChange={setPosition}
+        onChange={(position) => handlePositionChange({ position })}
       />
     </header>
   )
