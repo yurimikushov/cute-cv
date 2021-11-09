@@ -1,4 +1,5 @@
 export { default as cvReducer } from './reducer'
+export { useAvatar } from './avatar'
 export { useAboutMe } from './aboutMe'
 export { useExperiences } from './experiences'
 export { useEducations } from './educations'
