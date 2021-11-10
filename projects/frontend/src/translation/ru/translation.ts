@@ -1,6 +1,10 @@
 import { TranslationT } from 'translation'
 
 const ru: TranslationT = {
+  panel: {
+    preview: 'Посмотреть',
+    edit: 'Редактировать',
+  },
   fullName: {
     placeholder: 'Полное имя',
   },

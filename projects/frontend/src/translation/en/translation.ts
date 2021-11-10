@@ -1,6 +1,10 @@
 import { TranslationT } from 'translation'
 
 const en: TranslationT = {
+  panel: {
+    preview: 'Preview',
+    edit: 'Edit',
+  },
   fullName: {
     placeholder: 'Full name',
   },

@@ -1,4 +1,8 @@
 type TranslationT = {
+  panel: {
+    preview: string
+    edit: string
+  }
   fullName: {
     placeholder: string
   }
