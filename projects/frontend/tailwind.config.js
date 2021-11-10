@@ -38,10 +38,10 @@ module.exports = {
         22: '5.5rem',
       },
       gridTemplateColumns: {
-        page: 'minmax(auto, 485px) 150px',
+        cv: 'minmax(auto, 485px) 150px',
       },
       gridTemplateRows: {
-        page: 'auto 1fr',
+        cv: 'auto 1fr',
       },
     },
   },
