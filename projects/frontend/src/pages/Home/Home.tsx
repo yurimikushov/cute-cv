@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import PageLayout from 'layouts/Page'
 import CVLayout from 'layouts/CV'
+import Panel from './Panel'
 import Header from './Header'
 import Avatar from './Avatar'
 import AboutMe from './AboutMe'
@@ -12,7 +13,8 @@ import Languages from './Languages'
 
 const HomePage: FC = () => (
   <PageLayout className='mx-auto my-5'>
-    <CVLayout className='p-12'>
+    <Panel className='p-4' />
+    <CVLayout className='p-12 -mt-11'>
       <Header />
       <Avatar />
       <main className='childs-mt-4'>
