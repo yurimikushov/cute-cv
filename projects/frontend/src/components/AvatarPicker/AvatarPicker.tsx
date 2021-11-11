@@ -12,7 +12,12 @@ import AvatarPickerPropsT from './AvatarPicker.props'
 
 const ACCEPT_FORMATS = ['.png', '.jpg', '.jpeg'].join(',')
 
-const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick, onClear }) => {
+const AvatarPicker: FC<AvatarPickerPropsT> = ({
+  editable = true,
+  src,
+  onPick,
+  onClear,
+}) => {
   const { t } = useTranslation('translation', { keyPrefix: 'avatarPicker' })
   const openFileDialogButtonRef = useRef<HTMLButtonElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -63,43 +68,47 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({ src, onPick, onClear }) => {
         src={isEmpty(src) ? placeholderSrc : src}
         alt={t('img.alt')}
       />
-      <button
-        ref={openFileDialogButtonRef}
-        className={cn(
-          'absolute top-0 left-0',
-          'h-full w-full rounded-full text-xl text-gray-300 outline-none',
-          'transform scale-0 transition-transform duration-200 ease-out',
-          'group-hover:scale-100 group-hover:bg-white group-hover:opacity-90',
-          'focus-visible:scale-100 focus-visible:bg-white focus-visible:opacity-90 focus-visible:shadow-sm'
-        )}
-        type='button'
-        onClick={handleOpenFileDialog}
-      >
-        +
-      </button>
-      {!isEmpty(src) && (
-        <button
-          className={cn(
-            'absolute top-0 right-1',
-            'h-5 w-5 leading-5 rounded-full',
-            'bg-white',
-            'outline-none shadow-xs',
-            'transform scale-0 transition-transform duration-200 ease-out',
-            'group-hover:scale-100',
-            'focus-visible:scale-100 focus-visible:shadow-sm'
+      {editable && (
+        <>
+          <button
+            ref={openFileDialogButtonRef}
+            className={cn(
+              'absolute top-0 left-0',
+              'h-full w-full rounded-full text-xl text-gray-300 outline-none',
+              'transform scale-0 transition-transform duration-200 ease-out',
+              'group-hover:scale-100 group-hover:bg-white group-hover:opacity-90',
+              'focus-visible:scale-100 focus-visible:bg-white focus-visible:opacity-90 focus-visible:shadow-sm'
+            )}
+            type='button'
+            onClick={handleOpenFileDialog}
+          >
+            +
+          </button>
+          {!isEmpty(src) && (
+            <button
+              className={cn(
+                'absolute top-0 right-1',
+                'h-5 w-5 leading-5 rounded-full',
+                'bg-white',
+                'outline-none shadow-xs',
+                'transform scale-0 transition-transform duration-200 ease-out',
+                'group-hover:scale-100',
+                'focus-visible:scale-100 focus-visible:shadow-sm'
+              )}
+              type='button'
+              onClick={handleClear}
+            >
+              <CloseIcon className='h-3 text-gray-300' />
+            </button>
           )}
-          type='button'
-          onClick={handleClear}
-        >
-          <CloseIcon className='h-3 text-gray-300' />
-        </button>
+          <input
+            ref={fileInputRef}
+            className='hidden'
+            type='file'
+            accept={ACCEPT_FORMATS}
+          />
+        </>
       )}
-      <input
-        ref={fileInputRef}
-        className='hidden'
-        type='file'
-        accept={ACCEPT_FORMATS}
-      />
     </div>
   )
 }
