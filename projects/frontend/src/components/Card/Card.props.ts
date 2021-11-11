@@ -1,15 +1,9 @@
 import { HTMLProps } from 'react'
 
-type NonClosableT = {
-  hasClose?: false | never
-  onClose?: never
+type CardPropsT = HTMLProps<HTMLDivElement> & {
+  withBorder?: boolean
+  hasClose?: boolean
+  onClose?: () => void
 }
-
-type ClosableT = {
-  hasClose: true
-  onClose: () => void
-}
-
-type CardPropsT = HTMLProps<HTMLDivElement> & (NonClosableT | ClosableT)
 
 export default CardPropsT

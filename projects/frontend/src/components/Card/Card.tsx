@@ -1,12 +1,14 @@
 import { FC } from 'react'
 import cn from 'classnames'
+import noop from 'lodash/noop'
 import { CloseButton } from 'components/Button'
 import CardPropsT from './Card.props'
 
 const Card: FC<CardPropsT> = ({
   className,
+  withBorder = true,
   hasClose = false,
-  onClose,
+  onClose = noop,
   children,
 }) => (
   <div
@@ -14,8 +16,9 @@ const Card: FC<CardPropsT> = ({
       className,
       'relative',
       'bg-white rounded-md',
-      'border border-solid border-gray-200',
-      'hover:shadow-sm'
+      `${withBorder ? 'p-2' : ''}`,
+      `${withBorder ? 'border border-solid border-gray-200' : ''}`,
+      `${withBorder ? 'hover:shadow-sm' : ''}`
     )}
   >
     {children}
