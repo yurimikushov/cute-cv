@@ -33,7 +33,7 @@ const TextArea: FC<TextAreaPropsT> = ({
   // Should use `div` element coz `html2pdf.js` package can't correctly convert `textarea` content
   if (disabled) {
     return (
-      <div className='px-1.5 py-1 max-w-full bg-white text-black whitespace-pre-line'>
+      <div className='max-w-full bg-white text-black whitespace-pre-line'>
         {mdToJsx(isEmpty(value) ? placeholder ?? '' : trim(value))}
       </div>
     )
