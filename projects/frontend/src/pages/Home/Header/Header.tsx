@@ -1,10 +1,12 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useEditable } from 'services/app'
 import { useFullName, usePosition } from 'services/cv'
 import TextInput from 'components/TextInput'
 
 const Header: FC = () => {
   const { t } = useTranslation()
+  const { editable } = useEditable()
   const { fullName, handleChange: handleFullNameChange } = useFullName()
   const { position, handleChange: handlePositionChange } = usePosition()
 
@@ -13,6 +15,7 @@ const Header: FC = () => {
       <TextInput
         className='block'
         size='2xl'
+        disabled={!editable}
         value={fullName}
         placeholder={t('fullName.placeholder')}
         onChange={(fullName) => handleFullNameChange({ fullName })}
@@ -20,6 +23,7 @@ const Header: FC = () => {
       <TextInput
         className='block mt-3'
         size='xl'
+        disabled={!editable}
         value={position}
         placeholder={t('position.placeholder')}
         onChange={(position) => handlePositionChange({ position })}
