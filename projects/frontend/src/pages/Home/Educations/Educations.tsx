@@ -2,6 +2,7 @@ import { FC } from 'react'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
 import map from 'lodash/map'
+import { useEditable } from 'services/app'
 import { useEducations } from 'services/cv'
 import H from 'components/H'
 import Button from 'components/Button'
@@ -10,6 +11,7 @@ import EducationsPropsT from './Educations.props'
 
 const Educations: FC<EducationsPropsT> = ({ className, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'education' })
+  const { editable } = useEditable()
   const {
     educations,
     handleAdd,
@@ -38,9 +40,11 @@ const Educations: FC<EducationsPropsT> = ({ className, ...props }) => {
           onDelete={() => handleDelete({ id })}
         />
       ))}
-      <Button className='block mx-auto mt-2' onClick={handleAdd}>
-        Add
-      </Button>
+      {editable && (
+        <Button className='block mx-auto mt-2' onClick={handleAdd}>
+          Add
+        </Button>
+      )}
     </div>
   )
 }
