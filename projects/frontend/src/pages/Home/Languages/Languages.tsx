@@ -2,6 +2,7 @@ import { FC } from 'react'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
 import map from 'lodash/map'
+import { useEditable } from 'services/app'
 import { useLanguages } from 'services/cv'
 import H from 'components/H'
 import Button from 'components/Button'
@@ -10,6 +11,7 @@ import LanguagesPropsT from './Languages.props'
 
 const Languages: FC<LanguagesPropsT> = ({ className, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'languages' })
+  const { editable } = useEditable()
   const { languages, handleAdd, handleChange, handleDelete } = useLanguages()
 
   return (
@@ -23,9 +25,11 @@ const Languages: FC<LanguagesPropsT> = ({ className, ...props }) => {
           onDelete={() => handleDelete({ id })}
         />
       ))}
-      <Button className='block mx-auto mt-2' onClick={handleAdd}>
-        Add
-      </Button>
+      {editable && (
+        <Button className='block mx-auto mt-2' onClick={handleAdd}>
+          Add
+        </Button>
+      )}
     </div>
   )
 }
