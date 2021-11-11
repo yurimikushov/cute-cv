@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
+import { useEditable } from 'services/app'
 import { useTechnologies } from 'services/cv'
 import H from 'components/H'
 import TextArea from 'components/TextArea'
@@ -8,6 +9,7 @@ import TechnologiesPropsT from './Technologies.props'
 
 const Technologies: FC<TechnologiesPropsT> = ({ className, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'technologies' })
+  const { editable } = useEditable()
   const { technologies, handleChange } = useTechnologies()
 
   return (
@@ -15,6 +17,7 @@ const Technologies: FC<TechnologiesPropsT> = ({ className, ...props }) => {
       <H tag='2'>{t('title')}</H>
       <TextArea
         className='text-sm'
+        disabled={!editable}
         value={technologies}
         placeholder={t('placeholder')}
         onChange={(technologies) => handleChange({ technologies })}
