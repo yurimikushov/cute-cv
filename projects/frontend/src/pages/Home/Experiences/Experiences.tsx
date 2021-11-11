@@ -2,6 +2,7 @@ import { FC } from 'react'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
 import map from 'lodash/map'
+import { useEditable } from 'services/app'
 import { useExperiences } from 'services/cv'
 import H from 'components/H'
 import Button from 'components/Button'
@@ -10,6 +11,7 @@ import ExperiencesPropsT from './Experiences.props'
 
 const Experiences: FC<ExperiencesPropsT> = ({ className, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'experience' })
+  const { editable } = useEditable()
   const {
     experiences,
     handleAdd,
@@ -46,9 +48,11 @@ const Experiences: FC<ExperiencesPropsT> = ({ className, ...props }) => {
           />
         )
       )}
-      <Button className='block mx-auto mt-2' onClick={handleAdd}>
-        Add
-      </Button>
+      {editable && (
+        <Button className='block mx-auto mt-2' onClick={handleAdd}>
+          Add
+        </Button>
+      )}
     </div>
   )
 }
