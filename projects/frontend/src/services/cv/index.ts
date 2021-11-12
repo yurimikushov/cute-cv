@@ -1,5 +1,6 @@
 export type { CV } from './model'
 export { default as cvReducer } from './reducer'
+export { useSaveCV } from './hooks'
 export { useFullName } from './name'
 export { usePosition } from './position'
 export { useAvatar } from './avatar'
