@@ -1,8 +1,9 @@
 import { FC } from 'react'
-import { useSaveCV } from 'services/cv'
+import { useLoadCV, useSaveCV } from 'services/cv'
 import HomePage from 'pages/Home'
 
 const App: FC = () => {
+  useLoadCV()
   useSaveCV()
 
   return <HomePage />
