@@ -7,11 +7,11 @@ import PanelPropsT from './Panel.props'
 
 const Panel: FC<PanelPropsT> = ({ className }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'panel' })
-  const { editable, handleSet } = useEditable()
+  const { editable, handleToggle } = useEditable()
 
   return (
     <div className={cn(className, 'flex justify-end')}>
-      <Button onClick={() => handleSet({ editable: !editable })}>
+      <Button onClick={handleToggle}>
         {editable ? t('preview') : t('edit')}
       </Button>
     </div>

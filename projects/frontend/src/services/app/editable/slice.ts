@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { EditableStateT, SetPayloadT } from './model'
+import { createSlice } from '@reduxjs/toolkit'
+import { EditableStateT } from './model'
 
 const initialState: EditableStateT = {
   editable: true,
@@ -9,11 +9,11 @@ const { actions, reducer } = createSlice({
   name: 'editable',
   initialState,
   reducers: {
-    set: (state, { payload }: PayloadAction<SetPayloadT>) => {
-      state.editable = payload.editable
+    toggle: (state) => {
+      state.editable = !state.editable
     },
   },
 })
 
-export const { set } = actions
+export const { toggle } = actions
 export default reducer
