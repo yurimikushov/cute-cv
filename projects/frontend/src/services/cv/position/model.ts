@@ -2,8 +2,12 @@ type PositionStateT = {
   position: string
 }
 
+type PresetPayloadT = {
+  position: string
+}
+
 type UpdatePayloadT = {
   position: string
 }
 
-export type { PositionStateT, UpdatePayloadT }
+export type { PositionStateT, PresetPayloadT, UpdatePayloadT }
