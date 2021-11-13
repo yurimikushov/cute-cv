@@ -1,7 +1,14 @@
 import { createSlice, PayloadAction, nanoid } from '@reduxjs/toolkit'
+import map from 'lodash/map'
+import keyBy from 'lodash/keyBy'
 import filter from 'lodash/filter'
 import omit from 'lodash/omit'
-import { LanguagesStateT, UpdatePayloadT, DeletePayloadT } from './model'
+import {
+  LanguagesStateT,
+  PresetPayloadT,
+  UpdatePayloadT,
+  DeletePayloadT,
+} from './model'
 
 const initialState: LanguagesStateT = {
   ids: [],
@@ -12,6 +19,10 @@ const { actions, reducer } = createSlice({
   name: 'languages',
   initialState,
   reducers: {
+    preset: (state, { payload }: PayloadAction<PresetPayloadT>) => {
+      state.ids = map(payload.languages, 'id')
+      state.languagesById = keyBy(payload.languages, 'id')
+    },
     add: (state) => {
       const id = nanoid()
 
@@ -31,5 +42,5 @@ const { actions, reducer } = createSlice({
   },
 })
 
-export const { add, update, erase } = actions
+export const { preset, add, update, erase } = actions
 export default reducer

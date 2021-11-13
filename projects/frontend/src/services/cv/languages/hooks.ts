@@ -1,13 +1,17 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { add, update, erase } from './slice'
 import { selectLanguages } from './selectors'
-import { DeletePayloadT, UpdatePayloadT } from './model'
+import { PresetPayloadT, DeletePayloadT, UpdatePayloadT } from './model'
+import { preset, add, update, erase } from './slice'
 
 const useLanguages = () => {
   const languages = useSelector(selectLanguages)
 
   const dispatch = useDispatch()
+
+  const handlePreset = useCallback((payload: PresetPayloadT) => {
+    dispatch(preset(payload))
+  }, [])
 
   const handleAdd = useCallback(() => {
     dispatch(add())
@@ -23,6 +27,7 @@ const useLanguages = () => {
 
   return {
     languages,
+    handlePreset,
     handleAdd,
     handleChange,
     handleDelete,
