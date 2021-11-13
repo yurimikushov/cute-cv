@@ -30,7 +30,7 @@ const useSaving = () => {
   }
 }
 
-const AUTO_SAVE_TIMING = 1000
+const AUTO_SAVE_TIMING = 1_000
 
 const useSaveCV = () => {
   const { cv } = useCV()
