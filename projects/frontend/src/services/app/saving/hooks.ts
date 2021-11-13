@@ -1,5 +1,5 @@
 /* eslint-disable max-statements */
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import debounce from 'lodash/debounce'
 import { save } from 'api/cv'
@@ -36,6 +36,7 @@ const useSaveCV = () => {
   const { cv } = useCV()
   const { isLoading } = useLoading()
   const { handleSetSaved, handleSetUnsaved } = useSaving()
+  const isPrevLoadingRef = useRef<boolean>(false)
 
   const debouncedSave = useCallback(
     debounce(async (cv: CV, cb: () => void) => {
@@ -46,7 +47,8 @@ const useSaveCV = () => {
   )
 
   useEffect(() => {
-    if (isLoading) {
+    if (isPrevLoadingRef.current || isLoading) {
+      isPrevLoadingRef.current = isLoading
       return
     }
 
