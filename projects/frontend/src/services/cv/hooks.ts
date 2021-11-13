@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import isNull from 'lodash/isNull'
 import debounce from 'lodash/debounce'
 import { load, save } from 'api/cv'
-import { useLoading } from 'services/app'
+import { useLoading, useSaving } from 'services/app'
 import { useFullName } from './name'
 import { usePosition } from './position'
 import { useAvatar } from './avatar'
@@ -63,6 +63,7 @@ const useLoadCV = () => {
 const useSaveCV = () => {
   const cv = useSelector(selectCV)
   const { isLoading } = useLoading()
+  const { handleSetSaved, handleSetUnsaved } = useSaving()
 
   const debouncedSave = useCallback(
     debounce(async (cv: CV, cb: () => void) => {
@@ -78,10 +79,10 @@ const useSaveCV = () => {
     }
 
     const handleSave = async () => {
-      // TODO: dispatch set unsaved to show info label in UI
-      // eslint-disable-next-line lodash/prefer-noop
+      handleSetUnsaved()
+
       await debouncedSave(cv, () => {
-        // TODO: dispatch set saved
+        handleSetSaved()
       })
     }
 
