@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction, nanoid } from '@reduxjs/toolkit'
+import map from 'lodash/map'
+import keyBy from 'lodash/keyBy'
 import filter from 'lodash/filter'
 import omit from 'lodash/omit'
 import {
   ExperiencesStateT,
+  PresetPayloadT,
   UpdatePositionPayloadT,
   UpdateCompanyPayloadT,
   UpdateDurationPayloadT,
@@ -19,6 +22,10 @@ const { actions, reducer } = createSlice({
   name: 'experiences',
   initialState,
   reducers: {
+    preset: (state, { payload }: PayloadAction<PresetPayloadT>) => {
+      state.ids = map(payload.experiences, 'id')
+      state.experiencesById = keyBy(payload.experiences, 'id')
+    },
     add: (state) => {
       const id = nanoid()
 
@@ -63,6 +70,7 @@ const { actions, reducer } = createSlice({
 })
 
 export const {
+  preset,
   add,
   updatePosition,
   updateCompany,

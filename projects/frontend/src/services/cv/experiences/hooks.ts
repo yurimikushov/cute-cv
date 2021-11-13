@@ -1,6 +1,16 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { selectExperiences } from './selectors'
 import {
+  PresetPayloadT,
+  UpdatePositionPayloadT,
+  UpdateCompanyPayloadT,
+  UpdateDurationPayloadT,
+  UpdateDescriptionPayloadT,
+  DeletePayloadT,
+} from './model'
+import {
+  preset,
   add,
   updatePosition,
   updateCompany,
@@ -8,19 +18,15 @@ import {
   updateDescription,
   erase,
 } from './slice'
-import { selectExperiences } from './selectors'
-import {
-  UpdatePositionPayloadT,
-  UpdateCompanyPayloadT,
-  UpdateDurationPayloadT,
-  UpdateDescriptionPayloadT,
-  DeletePayloadT,
-} from './model'
 
 const useExperiences = () => {
   const experiences = useSelector(selectExperiences)
 
   const dispatch = useDispatch()
+
+  const handlePreset = useCallback((payload: PresetPayloadT) => {
+    dispatch(preset(payload))
+  }, [])
 
   const handleAdd = useCallback(() => {
     dispatch(add())
@@ -57,6 +63,7 @@ const useExperiences = () => {
 
   return {
     experiences,
+    handlePreset,
     handleAdd,
     handlePositionChange,
     handleCompanyChange,
