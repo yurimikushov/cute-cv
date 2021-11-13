@@ -14,11 +14,11 @@ import {
   useTechnologies,
   useLanguages,
 } from 'services/cv'
-import { selectLoading } from './selectors'
+import { selectIsLoading } from './selectors'
 import { begin, complete } from './slice'
 
 const useLoading = () => {
-  const isLoading = useSelector(selectLoading)
+  const isLoading = useSelector(selectIsLoading)
 
   const dispatch = useDispatch()
 

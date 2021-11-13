@@ -1,5 +1,5 @@
 type LoadingStateT = {
-  loading: boolean
+  isLoading: boolean
 }
 
 export type { LoadingStateT }

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { LoadingStateT } from './model'
 
 const initialState: LoadingStateT = {
-  loading: true,
+  isLoading: true,
 }
 
 const { actions, reducer } = createSlice({
@@ -10,10 +10,10 @@ const { actions, reducer } = createSlice({
   initialState,
   reducers: {
     begin: (state) => {
-      state.loading = true
+      state.isLoading = true
     },
     complete: (state) => {
-      state.loading = false
+      state.isLoading = false
     },
   },
 })
