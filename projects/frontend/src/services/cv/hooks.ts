@@ -59,14 +59,14 @@ const useSaveCV = () => {
   const cv = useSelector(selectCV)
 
   useEffect(() => {
-    const saveCV = async () => {
+    const handleSave = async () => {
       await save(cv)
     }
 
-    window.addEventListener('beforeunload', saveCV)
+    window.addEventListener('beforeunload', handleSave)
 
     return () => {
-      window.removeEventListener('beforeunload', saveCV)
+      window.removeEventListener('beforeunload', handleSave)
     }
   }, [cv])
 }
