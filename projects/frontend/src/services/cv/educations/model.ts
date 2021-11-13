@@ -10,6 +10,10 @@ type EducationsStateT = {
   educationsById: Record<string, EducationT>
 }
 
+type PresetPayloadT = {
+  educations: Array<EducationT>
+}
+
 type UpdateDegreePayloadT = {
   id: string
   degree: string
@@ -31,6 +35,7 @@ type DeletePayloadT = {
 
 export type {
   EducationsStateT,
+  PresetPayloadT,
   UpdateDegreePayloadT,
   UpdateUniversityPayloadT,
   UpdateDurationPayloadT,
