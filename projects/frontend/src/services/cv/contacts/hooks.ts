@@ -1,13 +1,22 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { add, updateText, updateHref, erase } from './slice'
 import { selectContacts } from './selectors'
-import { DeletePayloadT, UpdateTextPayloadT, UpdateHrefPayloadT } from './model'
+import {
+  PresetPayloadT,
+  UpdateTextPayloadT,
+  UpdateHrefPayloadT,
+  DeletePayloadT,
+} from './model'
+import { preset, add, updateText, updateHref, erase } from './slice'
 
 const useContacts = () => {
   const contacts = useSelector(selectContacts)
 
   const dispatch = useDispatch()
+
+  const handlePreset = useCallback((payload: PresetPayloadT) => {
+    dispatch(preset(payload))
+  }, [])
 
   const handleAdd = useCallback(() => {
     dispatch(add())
@@ -27,6 +36,7 @@ const useContacts = () => {
 
   return {
     contacts,
+    handlePreset,
     handleAdd,
     handleTextChange,
     handleHrefChange,
