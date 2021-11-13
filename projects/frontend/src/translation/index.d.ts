@@ -2,6 +2,9 @@ type TranslationT = {
   panel: {
     preview: string
     edit: string
+    savedAt: string
+    saved: string
+    notSaved: string
   }
   fullName: {
     placeholder: string

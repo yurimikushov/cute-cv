@@ -4,6 +4,9 @@ const ru: TranslationT = {
   panel: {
     preview: 'Посмотреть',
     edit: 'Редактировать',
+    savedAt: 'Сохранено {{savedAt}} назад',
+    saved: 'Сохранено',
+    notSaved: 'Не сохранено',
   },
   fullName: {
     placeholder: 'Полное имя',

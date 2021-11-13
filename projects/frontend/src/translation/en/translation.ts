@@ -4,6 +4,9 @@ const en: TranslationT = {
   panel: {
     preview: 'Preview',
     edit: 'Edit',
+    savedAt: 'Saved {{savedAt}} ago',
+    saved: 'Saved',
+    notSaved: 'Not saved',
   },
   fullName: {
     placeholder: 'Full name',
