@@ -1,3 +1,5 @@
+type LanguageT = 'en' | 'ru'
+
 type TranslationT = {
   panel: {
     preview: string
@@ -67,4 +69,4 @@ type TranslationT = {
   }
 }
 
-export { TranslationT }
+export { LanguageT, TranslationT }
