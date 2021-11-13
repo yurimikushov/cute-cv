@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import isNull from 'lodash/isNull'
 import { load, save } from 'api/cv'
+import { useLoading } from 'services/app'
 import { useFullName } from './name'
 import { usePosition } from './position'
 import { useAvatar } from './avatar'
@@ -9,6 +10,8 @@ import { useAboutMe } from './aboutMe'
 import { selectCV } from './selector'
 
 const useLoadCV = () => {
+  const { handleBegin: beginLoading, handleComplete: completeLoading } =
+    useLoading()
   const { handlePreset: presetFullName } = useFullName()
   const { handlePreset: presetPosition } = usePosition()
   const { handlePreset: presetAvatar } = useAvatar()
@@ -16,11 +19,12 @@ const useLoadCV = () => {
 
   useEffect(() => {
     const loadCV = async () => {
-      // TODO: should dispatch(loading(true))
+      beginLoading()
 
       const cv = await load()
 
       if (isNull(cv)) {
+        completeLoading()
         return
       }
 
@@ -29,7 +33,7 @@ const useLoadCV = () => {
       presetAvatar({ src: cv.avatar })
       presetAboutMe({ aboutMe: cv.aboutMe })
 
-      // TODO: should dispatch(loading(false))
+      completeLoading()
     }
 
     loadCV()
