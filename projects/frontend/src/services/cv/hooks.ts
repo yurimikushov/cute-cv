@@ -1,7 +1,8 @@
 /* eslint-disable max-statements */
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import isNull from 'lodash/isNull'
+import debounce from 'lodash/debounce'
 import { load, save } from 'api/cv'
 import { useLoading } from 'services/app'
 import { useFullName } from './name'
@@ -14,6 +15,9 @@ import { useContacts } from './contacts'
 import { useTechnologies } from './technologies'
 import { useLanguages } from './languages'
 import { selectCV } from './selector'
+import { CV } from './model'
+
+const AUTO_SAVE_TIMING = 1000
 
 const useLoadCV = () => {
   const { handleBegin: beginLoading, handleComplete: completeLoading } =
@@ -55,8 +59,34 @@ const useLoadCV = () => {
     loadCV()
   }, [])
 }
+
 const useSaveCV = () => {
   const cv = useSelector(selectCV)
+  const { isLoading } = useLoading()
+
+  const debouncedSave = useCallback(
+    debounce(async (cv: CV, cb: () => void) => {
+      await save(cv)
+      cb()
+    }, AUTO_SAVE_TIMING),
+    []
+  )
+
+  useEffect(() => {
+    if (isLoading) {
+      return
+    }
+
+    const handleSave = async () => {
+      // TODO: dispatch set unsaved to show info label in UI
+      // eslint-disable-next-line lodash/prefer-noop
+      await debouncedSave(cv, () => {
+        // TODO: dispatch set saved
+      })
+    }
+
+    handleSave()
+  }, [isLoading, cv])
 
   useEffect(() => {
     const handleSave = async () => {
