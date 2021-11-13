@@ -44,7 +44,7 @@ const en: TranslationT = {
       placeholder: 'University',
     },
     duration: {
-      placeholder: 'Education description',
+      placeholder: 'Education duration',
     },
   },
   contacts: {
