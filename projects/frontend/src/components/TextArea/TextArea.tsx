@@ -1,4 +1,4 @@
-import { FC, useRef, useState, useEffect, ChangeEvent } from 'react'
+import { FC, useRef, useState, useLayoutEffect, ChangeEvent } from 'react'
 import cn from 'classnames'
 import isNil from 'lodash/isNil'
 import isEmpty from 'lodash/isEmpty'
@@ -17,7 +17,7 @@ const TextArea: FC<TextAreaPropsT> = ({
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const [textAreaHeight, setTextAreaHeight] = useState('auto')
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isNil(textAreaRef.current)) {
       return
     }
