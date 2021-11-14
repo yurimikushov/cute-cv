@@ -42,7 +42,7 @@ const Education: FC<EducationPropsT> = ({
         onChange={onUniversityChange}
       />
       <TextInput
-        className='block'
+        className='block text-gray-300'
         size='sm'
         disabled={!editable}
         value={duration}

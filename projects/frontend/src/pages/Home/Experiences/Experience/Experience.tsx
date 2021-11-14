@@ -45,7 +45,7 @@ const Experience: FC<ExperiencePropsT> = ({
         onChange={onCompanyChange}
       />
       <TextInput
-        className='block'
+        className='block text-gray-300'
         size='sm'
         disabled={!editable}
         value={duration}
