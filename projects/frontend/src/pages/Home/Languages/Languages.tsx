@@ -1,6 +1,7 @@
-import { FC } from 'react'
+import { FC, useLayoutEffect } from 'react'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
+import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 import { useEditable } from 'services/app'
 import { useLanguages } from 'services/cv'
@@ -13,6 +14,12 @@ const Languages: FC<LanguagesPropsT> = ({ className, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'languages' })
   const { editable } = useEditable()
   const { languages, handleAdd, handleChange, handleDelete } = useLanguages()
+
+  useLayoutEffect(() => {
+    if (isEmpty(languages)) {
+      handleAdd()
+    }
+  }, [isEmpty(languages)])
 
   return (
     <div className={cn(className, 'childs-mt-2')} {...props}>
