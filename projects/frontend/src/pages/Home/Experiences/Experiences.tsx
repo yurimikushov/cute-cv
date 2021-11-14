@@ -1,6 +1,7 @@
-import { FC } from 'react'
+import { FC, useLayoutEffect } from 'react'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
+import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 import { useEditable } from 'services/app'
 import { useExperiences } from 'services/cv'
@@ -21,6 +22,12 @@ const Experiences: FC<ExperiencesPropsT> = ({ className, ...props }) => {
     handleDescriptionChange,
     handleDelete,
   } = useExperiences()
+
+  useLayoutEffect(() => {
+    if (isEmpty(experiences)) {
+      handleAdd()
+    }
+  }, [isEmpty(experiences)])
 
   return (
     <div className={cn(className, 'childs-mt-4')} {...props}>
