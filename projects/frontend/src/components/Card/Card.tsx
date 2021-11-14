@@ -10,6 +10,7 @@ const Card: FC<CardPropsT> = ({
   hasClose = false,
   onClose = noop,
   children,
+  ...props
 }) => (
   <div
     className={cn(
@@ -20,6 +21,7 @@ const Card: FC<CardPropsT> = ({
       `${withBorder ? 'border border-solid border-gray-200' : ''}`,
       `${withBorder ? 'hover:shadow-sm' : ''}`
     )}
+    {...props}
   >
     {children}
     {hasClose && (
