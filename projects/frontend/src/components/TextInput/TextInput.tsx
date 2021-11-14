@@ -7,7 +7,7 @@ import TextInputPropsT from './TextInput.props'
 const TextInput: FC<TextInputPropsT> = ({
   className,
   disabled,
-  size = 'sm',
+  size = 'md',
   value,
   onChange,
   ...props
