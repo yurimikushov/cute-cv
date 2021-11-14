@@ -6,7 +6,7 @@ import { save } from 'api/cv'
 import { useLoading } from 'services/app'
 import { useCV, CV } from 'services/cv'
 import { selectIsSaved, selectSavedAt } from './selectors'
-import { setSaved, setUnsaved } from './slice'
+import { markAsSaved, markAsUnsaved } from './slice'
 
 const useSaving = () => {
   const isSaved = useSelector(selectIsSaved)
@@ -14,19 +14,19 @@ const useSaving = () => {
 
   const dispatch = useDispatch()
 
-  const handleSetSaved = useCallback(() => {
-    dispatch(setSaved())
+  const handleMarkAsSaved = useCallback(() => {
+    dispatch(markAsSaved())
   }, [])
 
-  const handleSetUnsaved = useCallback(() => {
-    dispatch(setUnsaved())
+  const handleMarkAsUnsaved = useCallback(() => {
+    dispatch(markAsUnsaved())
   }, [])
 
   return {
     isSaved,
     savedAt,
-    handleSetSaved,
-    handleSetUnsaved,
+    handleMarkAsSaved,
+    handleMarkAsUnsaved,
   }
 }
 
@@ -35,7 +35,7 @@ const AUTO_SAVE_TIMING = 1_000
 const useSaveCV = () => {
   const { cv } = useCV()
   const { isLoading } = useLoading()
-  const { handleSetSaved, handleSetUnsaved } = useSaving()
+  const { handleMarkAsSaved, handleMarkAsUnsaved } = useSaving()
   const isPrevLoadingRef = useRef<boolean>(false)
 
   const debouncedSave = useCallback(
@@ -53,10 +53,10 @@ const useSaveCV = () => {
     }
 
     const handleSave = async () => {
-      handleSetUnsaved()
+      handleMarkAsUnsaved()
 
       await debouncedSave(cv, () => {
-        handleSetSaved()
+        handleMarkAsSaved()
       })
     }
 
