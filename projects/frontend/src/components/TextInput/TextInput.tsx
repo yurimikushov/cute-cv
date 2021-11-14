@@ -35,7 +35,7 @@ const TextInput: FC<TextInputPropsT> = ({
       ref={inputRef}
       className={cn(
         className,
-        `${disabled ? '' : 'px-1 py-0.5'}`,
+        `${disabled ? '' : 'px-1 pt-1 pb-0.5'}`,
         'max-w-full rounded',
         'bg-white text-black leading-tight',
         'border border-solid border-gray-200',
