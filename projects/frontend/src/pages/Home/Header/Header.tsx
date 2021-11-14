@@ -13,7 +13,7 @@ const Header: FC = () => {
   return (
     <header>
       <TextInput
-        className='block'
+        className='block font-bold'
         size='2xl'
         disabled={!editable}
         value={fullName}
