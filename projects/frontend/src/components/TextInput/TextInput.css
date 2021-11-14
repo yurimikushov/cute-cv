@@ -3,7 +3,7 @@
 }
 
 .input--size-md {
-  @apply text-base;
+  @apply text-md;
 }
 
 .input--size-lg {
