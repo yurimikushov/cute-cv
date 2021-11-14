@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import { useEffect, useCallback, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import debounce from 'lodash/debounce'
