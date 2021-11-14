@@ -1,4 +1,4 @@
-import { FC, useRef, useState, useEffect, ChangeEvent } from 'react'
+import { FC, useRef, useState, useLayoutEffect, ChangeEvent } from 'react'
 import cn from 'classnames'
 import isNil from 'lodash/isNil'
 import trim from 'lodash/trim'
@@ -16,7 +16,7 @@ const TextInput: FC<TextInputPropsT> = ({
   const inputRef = useRef<HTMLInputElement>(null)
   const [inputWidth, setInputWidth] = useState('auto')
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isNil(inputRef.current)) {
       return
     }
