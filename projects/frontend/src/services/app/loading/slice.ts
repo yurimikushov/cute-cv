@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { ServiceNameEnum } from 'services'
 import { LoadingStateT } from './model'
 
 const initialState: LoadingStateT = {
@@ -6,7 +7,7 @@ const initialState: LoadingStateT = {
 }
 
 const { actions, reducer } = createSlice({
-  name: 'loading',
+  name: `${ServiceNameEnum.app}/loading`,
   initialState,
   reducers: {
     begin: (state) => {

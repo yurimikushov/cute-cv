@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { ServiceNameEnum } from 'services'
 import { SavingStateT } from './model'
 
 const initialState: SavingStateT = {
@@ -7,7 +8,7 @@ const initialState: SavingStateT = {
 }
 
 const { actions, reducer } = createSlice({
-  name: 'saving',
+  name: `${ServiceNameEnum.app}/saving`,
   initialState,
   reducers: {
     setSaved: (state) => {

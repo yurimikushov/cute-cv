@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { ServiceNameEnum } from 'services'
 import { PositionStateT, PresetPayloadT, UpdatePayloadT } from './model'
 
 const initialState: PositionStateT = {
@@ -6,7 +7,7 @@ const initialState: PositionStateT = {
 }
 
 const { actions, reducer } = createSlice({
-  name: 'position',
+  name: `${ServiceNameEnum.cv}/position`,
   initialState,
   reducers: {
     preset: (state, { payload }: PayloadAction<PresetPayloadT>) => {

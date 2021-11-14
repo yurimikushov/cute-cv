@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { ServiceNameEnum } from 'services'
 import { EditableStateT } from './model'
 
 const initialState: EditableStateT = {
@@ -6,7 +7,7 @@ const initialState: EditableStateT = {
 }
 
 const { actions, reducer } = createSlice({
-  name: 'editable',
+  name: `${ServiceNameEnum.app}/editable`,
   initialState,
   reducers: {
     toggle: (state) => {

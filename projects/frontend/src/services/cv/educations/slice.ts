@@ -3,6 +3,7 @@ import map from 'lodash/map'
 import keyBy from 'lodash/keyBy'
 import filter from 'lodash/filter'
 import omit from 'lodash/omit'
+import { ServiceNameEnum } from 'services'
 import {
   EducationsStateT,
   PresetPayloadT,
@@ -18,7 +19,7 @@ const initialState: EducationsStateT = {
 }
 
 const { actions, reducer } = createSlice({
-  name: 'educations',
+  name: `${ServiceNameEnum.cv}/educations`,
   initialState,
   reducers: {
     preset: (state, { payload }: PayloadAction<PresetPayloadT>) => {
