@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react'
 import cn from 'classnames'
 import isNull from 'lodash/isNull'
+import Toolbar from './Toolbar'
 import ToolbarLayoutPropsT from './ToolbarLayout.props'
 
 const ToolbarLayout: FC<ToolbarLayoutPropsT> = ({ className, children }) => {
@@ -20,7 +21,9 @@ const ToolbarLayout: FC<ToolbarLayoutPropsT> = ({ className, children }) => {
       {/* left side spacer that's needed to align content to center */}
       <div style={{ width: toolbarWidth }} />
       <div>{children}</div>
-      <div ref={toolbarRef}>Here toolbar</div>
+      <div ref={toolbarRef}>
+        <Toolbar />
+      </div>
     </div>
   )
 }
