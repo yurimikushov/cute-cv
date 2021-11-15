@@ -6,7 +6,7 @@ const Toolbar: FC<ToolbarPropsT> = ({ className }) => (
   <div
     className={cn(
       className,
-      'mt-6 py-1 px-2',
+      'mt-6 py-1 px-2 childs-mt-2',
       'rounded border-2 border-gray-200'
     )}
   >
