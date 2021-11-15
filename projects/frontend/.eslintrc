@@ -69,7 +69,7 @@
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-no-literals": "off",
     "react/forbid-component-props": "off",
-    "react/jsx-max-depth": ["warn", { "max": 3 }],
+    "react/jsx-max-depth": ["warn", { "max": 5 }],
     "react/jsx-curly-newline": "off",
     "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/array-type": [
