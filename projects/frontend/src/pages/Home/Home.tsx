@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import ToolbarLayout from 'layouts/ToolbarLayout'
 import PageLayout from 'layouts/Page'
 import CVLayout from 'layouts/CV'
 import Panel from './Panel'
@@ -12,23 +13,25 @@ import Technologies from './Technologies'
 import Languages from './Languages'
 
 const HomePage: FC = () => (
-  <PageLayout className='mx-auto my-5'>
-    <Panel className='p-4' />
-    <CVLayout className='p-12 -mt-11'>
-      <Header />
-      <Avatar />
-      <main className='childs-mt-4'>
-        <AboutMe />
-        <Experiences />
-        <Educations />
-      </main>
-      <aside className='childs-mt-4'>
-        <Contacts />
-        <Technologies />
-        <Languages />
-      </aside>
-    </CVLayout>
-  </PageLayout>
+  <ToolbarLayout className='my-5 flex justify-center'>
+    <PageLayout>
+      <Panel className='p-4' />
+      <CVLayout className='p-12 -mt-11'>
+        <Header />
+        <Avatar />
+        <main className='childs-mt-4'>
+          <AboutMe />
+          <Experiences />
+          <Educations />
+        </main>
+        <aside className='childs-mt-4'>
+          <Contacts />
+          <Technologies />
+          <Languages />
+        </aside>
+      </CVLayout>
+    </PageLayout>
+  </ToolbarLayout>
 )
 
 export default HomePage
