@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import isNull from 'lodash/isNull'
-import { LanguageT } from 'translation'
+import { LanguageEnum } from 'translation'
 import timeSince from 'lib/timeSince'
 import { useSaving } from 'services/app'
 
@@ -24,7 +24,7 @@ const useSavedSince = () => {
         }
 
         return t('savedAt', {
-          savedAt: timeSince(savedAt, i18n.language as LanguageT),
+          savedAt: timeSince(savedAt, i18n.language as LanguageEnum),
         })
       })
     }
