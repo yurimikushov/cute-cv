@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import cn from 'classnames'
-import PageLayoutPropsT from './Page.props'
-import './Page.css'
+import PageLayoutPropsT from './PageLayout.props'
+import './PageLayout.css'
 
 const PageLayout: FC<PageLayoutPropsT> = ({ className, children }) => (
   <div
