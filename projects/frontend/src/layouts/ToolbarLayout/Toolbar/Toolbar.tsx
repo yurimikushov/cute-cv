@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import cn from 'classnames'
+import Download from './Download'
 import Language from './Language'
 import ToolbarPropsT from './Toolbar.props'
 
@@ -11,6 +12,7 @@ const Toolbar: FC<ToolbarPropsT> = ({ className }) => (
       'rounded border-2 border-gray-200'
     )}
   >
+    <Download />
     <Language />
   </div>
 )

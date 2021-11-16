@@ -7,6 +7,10 @@ type TranslationT = {
     notSaved: string
   }
   toolbar: {
+    download: {
+      title: string
+      pdf: string
+    }
     language: {
       title: string
     }

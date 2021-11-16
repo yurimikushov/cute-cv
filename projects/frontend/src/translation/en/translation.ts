@@ -9,6 +9,10 @@ const en: TranslationT = {
     notSaved: 'Not saved',
   },
   toolbar: {
+    download: {
+      title: 'Download',
+      pdf: 'PDF',
+    },
     language: {
       title: 'Language',
     },

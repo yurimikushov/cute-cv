@@ -9,6 +9,10 @@ const ru: TranslationT = {
     notSaved: 'Не сохранено',
   },
   toolbar: {
+    download: {
+      title: 'Скачать',
+      pdf: 'PDF',
+    },
     language: {
       title: 'Язык',
     },
