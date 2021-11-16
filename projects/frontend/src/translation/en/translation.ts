@@ -8,6 +8,11 @@ const en: TranslationT = {
     saved: 'Saved',
     notSaved: 'Not saved',
   },
+  toolbar: {
+    language: {
+      title: 'Language',
+    },
+  },
   fullName: {
     placeholder: 'Full name',
   },

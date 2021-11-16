@@ -8,6 +8,11 @@ const ru: TranslationT = {
     saved: 'Сохранено',
     notSaved: 'Не сохранено',
   },
+  toolbar: {
+    language: {
+      title: 'Язык',
+    },
+  },
   fullName: {
     placeholder: 'Полное имя',
   },

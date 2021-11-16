@@ -6,6 +6,11 @@ type TranslationT = {
     saved: string
     notSaved: string
   }
+  toolbar: {
+    language: {
+      title: string
+    }
+  }
   fullName: {
     placeholder: string
   }
