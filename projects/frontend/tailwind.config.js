@@ -12,6 +12,7 @@ module.exports = {
         200: '#adadad',
         300: '#73808d',
       },
+      overlay: '#e5e5e5e6',
     },
     fontFamily: {
       sans: ['Arial'],
