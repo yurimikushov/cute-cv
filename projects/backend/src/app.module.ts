@@ -5,11 +5,10 @@ import {
   RequestMethod,
 } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { AuthMiddleware, CVModule } from './modules'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { LoggerMiddleware } from './middlewares'
-import { CVModule } from './modules'
-
 @Module({
   imports: [ConfigModule.forRoot(), CVModule],
   controllers: [AppController],
@@ -20,5 +19,9 @@ export class AppModule implements NestModule {
     consumer
       .apply(LoggerMiddleware)
       .forRoutes({ path: '*', method: RequestMethod.ALL })
+    consumer.apply(AuthMiddleware).forRoutes({
+      path: '*',
+      method: RequestMethod.ALL,
+    })
   }
 }
