@@ -1,5 +1,5 @@
 export {
-  useAuthState,
+  useSignInState,
   useSignInGoogle,
   useSignInFacebook,
   useSignInGitHub,

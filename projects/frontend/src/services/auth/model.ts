@@ -2,9 +2,9 @@ import { User } from 'firebase/auth'
 
 type UserT = User
 
-type AuthStateT = {
+type SignInState = {
   user: User
   token: string
 }
 
-export type { UserT, AuthStateT }
+export type { UserT, SignInState }

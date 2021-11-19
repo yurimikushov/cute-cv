@@ -1,22 +1,22 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import isNull from 'lodash/isNull'
-import { useAuthState } from 'services/auth'
+import { useSignInState } from 'services/auth'
 import { set, reset } from './slice'
 
 const useLoadUser = () => {
-  const authState = useAuthState()
+  const signInState = useSignInState()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (isNull(authState)) {
+    if (isNull(signInState)) {
       dispatch(reset())
       return
     }
 
-    const { user } = authState
+    const { user } = signInState
     dispatch(set({ user }))
-  }, [authState])
+  }, [signInState])
 }
 
 export { useLoadUser }

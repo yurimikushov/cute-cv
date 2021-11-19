@@ -1,19 +1,19 @@
 import { useCallback, useEffect, useState } from 'react'
 import isNull from 'lodash/isNull'
-import { AuthStateT } from './model'
+import { SignInState } from './model'
 import {
-  watchAuthStateChange,
+  watchSignInStateChange,
   signInGoogle,
   signInFacebook,
   signInGitHub,
   signOut,
 } from './firebase'
 
-const useAuthState = () => {
-  const [authState, setAuthState] = useState<AuthStateT | null>(null)
+const useSignInState = () => {
+  const [signInState, setAuthState] = useState<SignInState | null>(null)
 
   useEffect(() => {
-    const unsubscribe = watchAuthStateChange(setAuthState)
+    const unsubscribe = watchSignInStateChange(setAuthState)
 
     return () => {
       if (isNull(unsubscribe)) {
@@ -24,7 +24,7 @@ const useAuthState = () => {
     }
   }, [])
 
-  return authState
+  return signInState
 }
 
 const useSignInGoogle = () => {
@@ -88,7 +88,7 @@ const useSignOut = () => {
 }
 
 export {
-  useAuthState,
+  useSignInState,
   useSignInGoogle,
   useSignInFacebook,
   useSignInGitHub,
