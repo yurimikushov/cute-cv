@@ -1,7 +1,9 @@
 import { FC } from 'react'
 import cn from 'classnames'
+import Divider from 'components/Divider'
 import Download from './Download'
 import Language from './Language'
+import SignOut from './SignOut'
 import ToolbarPropsT from './Toolbar.props'
 
 const Toolbar: FC<ToolbarPropsT> = ({ className }) => (
@@ -14,6 +16,8 @@ const Toolbar: FC<ToolbarPropsT> = ({ className }) => (
   >
     <Download />
     <Language />
+    <Divider />
+    <SignOut />
   </div>
 )
 
