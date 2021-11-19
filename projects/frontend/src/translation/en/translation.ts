@@ -1,6 +1,17 @@
 import { TranslationT } from 'translation'
 
 const en: TranslationT = {
+  signIn: {
+    google: {
+      title: 'Sign in Google',
+    },
+    facebook: {
+      title: 'Sign in Facebook',
+    },
+    github: {
+      title: 'Sign in GitHub',
+    },
+  },
   panel: {
     preview: 'Preview',
     edit: 'Edit',

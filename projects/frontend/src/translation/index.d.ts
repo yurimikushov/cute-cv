@@ -1,4 +1,15 @@
 type TranslationT = {
+  signIn: {
+    google: {
+      title: string
+    }
+    facebook: {
+      title: string
+    }
+    github: {
+      title: string
+    }
+  }
   panel: {
     preview: string
     edit: string

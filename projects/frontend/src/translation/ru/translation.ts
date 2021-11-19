@@ -1,6 +1,17 @@
 import { TranslationT } from 'translation'
 
 const ru: TranslationT = {
+  signIn: {
+    google: {
+      title: 'Войти через Google',
+    },
+    facebook: {
+      title: 'Войти через Facebook',
+    },
+    github: {
+      title: 'Войти через GitHub',
+    },
+  },
   panel: {
     preview: 'Посмотреть',
     edit: 'Редактировать',
