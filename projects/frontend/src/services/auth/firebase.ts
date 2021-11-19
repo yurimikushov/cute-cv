@@ -3,6 +3,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   FacebookAuthProvider,
+  GithubAuthProvider,
   signInWithRedirect,
   getIdToken,
 } from 'firebase/auth'
@@ -20,7 +21,9 @@ initializeApp({
 
 const auth = getAuth()
 
-const signIn = async (provider: GoogleAuthProvider | FacebookAuthProvider) => {
+const signIn = async (
+  provider: GoogleAuthProvider | FacebookAuthProvider | GithubAuthProvider
+) => {
   if (isNull(auth)) {
     return
   }
@@ -37,6 +40,10 @@ const signInGoogle = async () => {
 
 const signInFacebook = async () => {
   await signIn(new FacebookAuthProvider())
+}
+
+const signInGitHub = async () => {
+  await signIn(new GithubAuthProvider())
 }
 
 const signOut = async () => {
@@ -68,4 +75,10 @@ const watchAuthStateChange = (
   return unsubscribe
 }
 
-export { signInGoogle, watchAuthStateChange, signOut }
+export {
+  signInGoogle,
+  signInFacebook,
+  signInGitHub,
+  signOut,
+  watchAuthStateChange,
+}

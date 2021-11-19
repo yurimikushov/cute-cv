@@ -5,6 +5,7 @@ import {
   watchAuthStateChange,
   signInGoogle,
   signInFacebook,
+  signInGitHub,
   signOut,
 } from './firebase'
 
@@ -56,6 +57,21 @@ const useSignInFacebook = () => {
   }
 }
 
+const useSignInGitHub = () => {
+  const [isSignIn, setIsSignIn] = useState(false)
+
+  const handleSignInGitHub = useCallback(async () => {
+    setIsSignIn(true)
+    await signInGitHub()
+    setIsSignIn(false)
+  }, [])
+
+  return {
+    isSignIn,
+    handleSignInGitHub,
+  }
+}
+
 const useSignOut = () => {
   const [isSignOut, setIsSignOut] = useState(false)
 
@@ -71,4 +87,10 @@ const useSignOut = () => {
   }
 }
 
-export { useAuthState, useSignInGoogle, useSignInFacebook, useSignOut }
+export {
+  useAuthState,
+  useSignInGoogle,
+  useSignInFacebook,
+  useSignInGitHub,
+  useSignOut,
+}
