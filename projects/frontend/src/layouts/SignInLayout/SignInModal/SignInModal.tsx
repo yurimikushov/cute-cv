@@ -1,6 +1,11 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import cn from 'classnames'
+import {
+  useSignInGitHub,
+  useSignInFacebook,
+  useSignInGoogle,
+} from 'services/auth'
 import Modal from 'components/Modal'
 import { ReactComponent as GoogleIcon } from 'icons/google.svg'
 import { ReactComponent as FacebookIcon } from 'icons/facebook.svg'
@@ -10,18 +15,9 @@ import SignInModalPropsT from './SignInModal.props'
 
 const SignInModal: FC<SignInModalPropsT> = ({ className }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'signIn' })
-
-  const handleSignInGoogle = () => {
-    console.log('Sign in Google')
-  }
-
-  const handleSignInFacebook = () => {
-    console.log('Sign in Facebook')
-  }
-
-  const handleSignInGitHub = () => {
-    console.log('Sign in GitHub')
-  }
+  const { handleSignInGoogle } = useSignInGoogle()
+  const { handleSignInFacebook } = useSignInFacebook()
+  const { handleSignInGitHub } = useSignInGitHub()
 
   return (
     <Modal
