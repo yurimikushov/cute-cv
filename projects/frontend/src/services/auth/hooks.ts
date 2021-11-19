@@ -7,13 +7,7 @@ const useAuthState = () => {
   const [authState, setAuthState] = useState<AuthStateT | null>(null)
 
   useEffect(() => {
-    const unsubscribe = watchAuthStateChange((authState) => {
-      if (isNull(authState)) {
-        return
-      }
-
-      setAuthState(authState)
-    })
+    const unsubscribe = watchAuthStateChange(setAuthState)
 
     return () => {
       if (isNull(unsubscribe)) {

@@ -13,8 +13,11 @@ const { actions, reducer } = createSlice({
     set: (state, { payload }: PayloadAction<SetUserPayloadT>) => {
       state.user = payload.user
     },
+    reset: (state) => {
+      state.user = null
+    },
   },
 })
 
-export const { set } = actions
+export const { set, reset } = actions
 export default reducer
