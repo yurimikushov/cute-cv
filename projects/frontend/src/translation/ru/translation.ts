@@ -2,6 +2,7 @@ import { TranslationT } from 'translation'
 
 const ru: TranslationT = {
   signIn: {
+    greeting: 'Привет!',
     google: {
       title: 'Войти через Google',
     },

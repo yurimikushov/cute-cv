@@ -1,5 +1,6 @@
 type TranslationT = {
   signIn: {
+    greeting: string
     google: {
       title: string
     }
