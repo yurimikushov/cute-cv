@@ -19,16 +19,19 @@ initializeApp({
 
 const auth = getAuth()
 
-const signInGoogle = async () => {
+const signIn = async (provider: GoogleAuthProvider) => {
   if (isNull(auth)) {
     return
   }
 
-  const provider = new GoogleAuthProvider()
   provider.addScope('profile')
   provider.addScope('email')
 
   await signInWithRedirect(auth, provider)
+}
+
+const signInGoogle = async () => {
+  await signIn(new GoogleAuthProvider())
 }
 
 const signOut = async () => {
