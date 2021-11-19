@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app'
 import {
   getAuth,
   GoogleAuthProvider,
+  FacebookAuthProvider,
   signInWithRedirect,
   getIdToken,
 } from 'firebase/auth'
@@ -19,7 +20,7 @@ initializeApp({
 
 const auth = getAuth()
 
-const signIn = async (provider: GoogleAuthProvider) => {
+const signIn = async (provider: GoogleAuthProvider | FacebookAuthProvider) => {
   if (isNull(auth)) {
     return
   }
@@ -32,6 +33,10 @@ const signIn = async (provider: GoogleAuthProvider) => {
 
 const signInGoogle = async () => {
   await signIn(new GoogleAuthProvider())
+}
+
+const signInFacebook = async () => {
+  await signIn(new FacebookAuthProvider())
 }
 
 const signOut = async () => {

@@ -1,7 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
 import isNull from 'lodash/isNull'
 import { AuthStateT } from './model'
-import { signInGoogle, watchAuthStateChange, signOut } from './firebase'
+import {
+  watchAuthStateChange,
+  signInGoogle,
+  signInFacebook,
+  signOut,
+} from './firebase'
 
 const useAuthState = () => {
   const [authState, setAuthState] = useState<AuthStateT | null>(null)
@@ -36,6 +41,21 @@ const useSignInGoogle = () => {
   }
 }
 
+const useSignInFacebook = () => {
+  const [isSignIn, setIsSignIn] = useState(false)
+
+  const handleSignInFacebook = useCallback(async () => {
+    setIsSignIn(true)
+    await signInFacebook()
+    setIsSignIn(false)
+  }, [])
+
+  return {
+    isSignIn,
+    handleSignInFacebook,
+  }
+}
+
 const useSignOut = () => {
   const [isSignOut, setIsSignOut] = useState(false)
 
@@ -51,4 +71,4 @@ const useSignOut = () => {
   }
 }
 
-export { useAuthState, useSignInGoogle, useSignOut }
+export { useAuthState, useSignInGoogle, useSignInFacebook, useSignOut }

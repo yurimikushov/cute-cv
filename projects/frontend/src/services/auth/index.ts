@@ -1,2 +1,7 @@
-export { useAuthState, useSignInGoogle, useSignOut } from './hooks'
+export {
+  useAuthState,
+  useSignInGoogle,
+  useSignInFacebook,
+  useSignOut,
+} from './hooks'
 export type { UserT } from './model'
