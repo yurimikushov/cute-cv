@@ -28,6 +28,7 @@ const ru: TranslationT = {
     language: {
       title: 'Язык',
     },
+    signOut: 'Выйти',
   },
   fullName: {
     placeholder: 'Полное имя',

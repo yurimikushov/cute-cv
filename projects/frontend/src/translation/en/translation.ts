@@ -28,6 +28,7 @@ const en: TranslationT = {
     language: {
       title: 'Language',
     },
+    signOut: 'Sign out',
   },
   fullName: {
     placeholder: 'Full name',

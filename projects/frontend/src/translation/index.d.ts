@@ -26,6 +26,7 @@ type TranslationT = {
     language: {
       title: string
     }
+    signOut: string
   }
   fullName: {
     placeholder: string
