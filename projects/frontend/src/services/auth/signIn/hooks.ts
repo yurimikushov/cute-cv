@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import once from 'lodash/once'
 import isNull from 'lodash/isNull'
 import pick from 'lodash/pick'
 import { SignInChangedStateT } from './model'
@@ -20,6 +21,10 @@ const useAuth = () => {
   useEffect(() => {
     dispatch(beginChecking())
 
+    const finishFirstChecking = once(() => {
+      dispatch(finishChecking())
+    })
+
     const unsubscribe = watchSignInStateChange(
       (signInState: SignInChangedStateT | null) => {
         if (isNull(signInState)) {
@@ -31,7 +36,7 @@ const useAuth = () => {
           dispatch(setUser({ user }))
         }
 
-        dispatch(finishChecking())
+        finishFirstChecking()
       }
     )
 
