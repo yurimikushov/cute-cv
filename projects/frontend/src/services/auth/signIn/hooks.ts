@@ -14,6 +14,7 @@ import {
 import { beginChecking, finishChecking, signedIn, signedOut } from './slice'
 import { selectIsChecking, selectIsSignedIn } from './selectors'
 import { set as setUser, reset as resetUser } from '../user'
+import { resetToken, setToken } from './utils'
 
 const useAuth = () => {
   const dispatch = useDispatch()
@@ -30,10 +31,12 @@ const useAuth = () => {
         if (isNull(signInState)) {
           dispatch(signedOut())
           dispatch(resetUser())
+          resetToken()
         } else {
-          const user = pick(signInState.user, ['uid', 'displayName', 'email'])
+          const { user, token } = signInState
           dispatch(signedIn())
-          dispatch(setUser({ user }))
+          dispatch(setUser({ user: pick(user, 'uid', 'displayName', 'email') }))
+          setToken(token)
         }
 
         finishFirstChecking()
