@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import isNull from 'lodash/isNull'
+import pick from 'lodash/pick'
 import { useSignInState } from 'services/auth'
 import { set, reset } from './slice'
 import { selectUser } from './selectors'
@@ -16,7 +17,7 @@ const useLoadUser = () => {
     }
 
     const { user } = signInState
-    dispatch(set({ user }))
+    dispatch(set({ user: pick(user, ['uid', 'displayName', 'email']) }))
   }, [signInState])
 }
 

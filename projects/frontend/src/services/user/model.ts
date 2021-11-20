@@ -1,4 +1,8 @@
-import { UserT } from 'services/auth'
+type UserT = {
+  uid: string
+  displayName: string | null
+  email: string | null
+}
 
 type UserStateT = {
   user: UserT | null
