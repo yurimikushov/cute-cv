@@ -1,17 +1,16 @@
 import { FC } from 'react'
+import { useIsSignInChecking, useIsSignedIn } from 'services/auth'
 import SignInModal from './SignInModal'
 import SignInLayoutPropsT from './SignInLayout.props'
 
-import isNull from 'lodash/isNull'
-import { useUser } from 'services/auth'
-
 const SignInLayout: FC<SignInLayoutPropsT> = ({ children }) => {
-  const user = useUser()
+  const isSignInChecking = useIsSignInChecking()
+  const isSignedIn = useIsSignedIn()
 
   return (
     <>
       {children}
-      {isNull(user) && <SignInModal />}
+      {!isSignInChecking && !isSignedIn && <SignInModal />}
     </>
   )
 }
