@@ -5,4 +5,8 @@ const selectIsChecking = ({ auth }: RootStateT): SignInStateT['isChecking'] => {
   return auth.signIn.isChecking
 }
 
-export { selectIsChecking }
+const selectIsSignedIn = ({ auth }: RootStateT): SignInStateT['isSignedIn'] => {
+  return auth.signIn.isSignedIn
+}
+
+export { selectIsChecking, selectIsSignedIn }

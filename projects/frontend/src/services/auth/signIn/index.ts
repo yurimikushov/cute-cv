@@ -6,4 +6,5 @@ export {
   useSignInGitHub,
   useSignOut,
   useIsSignInChecking,
+  useIsSignedIn,
 } from './hooks'

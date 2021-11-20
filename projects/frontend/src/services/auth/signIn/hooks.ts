@@ -11,7 +11,7 @@ import {
   signOut,
 } from './firebase'
 import { beginChecking, finishChecking, signedIn, notSignedIn } from './slice'
-import { selectIsChecking } from './selectors'
+import { selectIsChecking, selectIsSignedIn } from './selectors'
 import { set as setUser, reset as resetUser } from '../user'
 
 const useAuth = () => {
@@ -107,6 +107,10 @@ const useIsSignInChecking = () => {
   return useSelector(selectIsChecking)
 }
 
+const useIsSignedIn = () => {
+  return useSelector(selectIsSignedIn)
+}
+
 export {
   useAuth,
   useSignInGoogle,
@@ -114,4 +118,5 @@ export {
   useSignInGitHub,
   useSignOut,
   useIsSignInChecking,
+  useIsSignedIn,
 }

@@ -6,5 +6,6 @@ export {
   useSignInGitHub,
   useSignOut,
   useIsSignInChecking,
+  useIsSignedIn,
 } from './signIn'
 export { useUser } from './user'
