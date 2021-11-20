@@ -1,4 +1,4 @@
-export { authReducer } from './signIn'
+export { default as authReducer } from './slice'
 export {
   useAuth,
   useSignInGoogle,
@@ -6,4 +6,4 @@ export {
   useSignInGitHub,
   useSignOut,
   useUser,
-} from './signIn'
+} from './hooks'
