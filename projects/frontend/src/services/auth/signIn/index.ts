@@ -1,7 +1,9 @@
+export { default as authReducer } from './slice'
 export {
-  useSignInState,
+  useAuth,
   useSignInGoogle,
   useSignInFacebook,
   useSignInGitHub,
   useSignOut,
+  useUser,
 } from './hooks'

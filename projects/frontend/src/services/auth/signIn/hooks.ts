@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import isNull from 'lodash/isNull'
+import pick from 'lodash/pick'
 import { SignInState } from './model'
 import {
   watchSignInStateChange,
@@ -8,8 +10,10 @@ import {
   signInGitHub,
   signOut,
 } from './firebase'
+import { resetUser, setUser } from './slice'
+import { selectUser } from './selectors'
 
-const useSignInState = () => {
+const useAuth = () => {
   const [signInState, setAuthState] = useState<SignInState | null>(null)
 
   useEffect(() => {
@@ -24,7 +28,17 @@ const useSignInState = () => {
     }
   }, [])
 
-  return signInState
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (isNull(signInState)) {
+      dispatch(resetUser())
+      return
+    }
+
+    const { user } = signInState
+    dispatch(setUser({ user: pick(user, ['uid', 'displayName', 'email']) }))
+  }, [signInState])
 }
 
 const useSignInGoogle = () => {
@@ -87,10 +101,15 @@ const useSignOut = () => {
   }
 }
 
+const useUser = () => {
+  return useSelector(selectUser)
+}
+
 export {
-  useSignInState,
+  useAuth,
   useSignInGoogle,
   useSignInFacebook,
   useSignInGitHub,
   useSignOut,
+  useUser,
 }

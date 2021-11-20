@@ -1,23 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from 'services'
-import { UserStateT, SetUserPayloadT } from './model'
+import { AuthStateT, SetUserPayloadT } from './model'
 
-const initialState: UserStateT = {
+const initialState: AuthStateT = {
   user: null,
 }
 
 const { actions, reducer } = createSlice({
-  name: `${ServiceNameEnum.auth}/user`,
+  name: `${ServiceNameEnum.auth}`,
   initialState,
   reducers: {
-    set: (state, { payload }: PayloadAction<SetUserPayloadT>) => {
+    setUser: (state, { payload }: PayloadAction<SetUserPayloadT>) => {
       state.user = payload.user
     },
-    reset: (state) => {
+    resetUser: (state) => {
       state.user = null
     },
   },
 })
 
-export const { set, reset } = actions
+export const { setUser, resetUser } = actions
 export default reducer
