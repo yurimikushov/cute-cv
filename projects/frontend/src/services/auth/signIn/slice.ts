@@ -20,11 +20,11 @@ const { actions, reducer } = createSlice({
     signedIn: (state) => {
       state.isSignedIn = true
     },
-    notSignedIn: (state) => {
+    signedOut: (state) => {
       state.isSignedIn = false
     },
   },
 })
 
-export const { beginChecking, finishChecking, signedIn, notSignedIn } = actions
+export const { beginChecking, finishChecking, signedIn, signedOut } = actions
 export default reducer

@@ -10,7 +10,7 @@ import {
   signInGitHub,
   signOut,
 } from './firebase'
-import { beginChecking, finishChecking, signedIn, notSignedIn } from './slice'
+import { beginChecking, finishChecking, signedIn, signedOut } from './slice'
 import { selectIsChecking, selectIsSignedIn } from './selectors'
 import { set as setUser, reset as resetUser } from '../user'
 
@@ -23,7 +23,7 @@ const useAuth = () => {
     const unsubscribe = watchSignInStateChange(
       (signInState: SignInChangedStateT | null) => {
         if (isNull(signInState)) {
-          dispatch(notSignedIn())
+          dispatch(signedOut())
           dispatch(resetUser())
         } else {
           const user = pick(signInState.user, ['uid', 'displayName', 'email'])
