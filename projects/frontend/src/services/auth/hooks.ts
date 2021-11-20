@@ -14,10 +14,20 @@ import { resetUser, setUser } from './slice'
 import { selectUser } from './selectors'
 
 const useAuth = () => {
-  const [signInState, setAuthState] = useState<SignInStateT | null>(null)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const unsubscribe = watchSignInStateChange(setAuthState)
+    const unsubscribe = watchSignInStateChange(
+      (signInState: SignInStateT | null) => {
+        if (isNull(signInState)) {
+          dispatch(resetUser())
+          return
+        }
+
+        const { user } = signInState
+        dispatch(setUser({ user: pick(user, ['uid', 'displayName', 'email']) }))
+      }
+    )
 
     return () => {
       if (isNull(unsubscribe)) {
@@ -27,18 +37,6 @@ const useAuth = () => {
       unsubscribe()
     }
   }, [])
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    if (isNull(signInState)) {
-      dispatch(resetUser())
-      return
-    }
-
-    const { user } = signInState
-    dispatch(setUser({ user: pick(user, ['uid', 'displayName', 'email']) }))
-  }, [signInState])
 }
 
 const useSignInGoogle = () => {
