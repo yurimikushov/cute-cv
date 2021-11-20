@@ -10,9 +10,9 @@ type SetUserPayloadT = {
   user: UserT
 }
 
-type SignInState = {
+type SignInStateT = {
   user: User
   token: string
 }
 
-export type { AuthStateT, SignInState, SetUserPayloadT }
+export type { AuthStateT, SignInStateT, SetUserPayloadT }

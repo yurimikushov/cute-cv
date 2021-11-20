@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import isNull from 'lodash/isNull'
 import pick from 'lodash/pick'
-import { SignInState } from './model'
+import { SignInStateT } from './model'
 import {
   watchSignInStateChange,
   signInGoogle,
@@ -14,7 +14,7 @@ import { resetUser, setUser } from './slice'
 import { selectUser } from './selectors'
 
 const useAuth = () => {
-  const [signInState, setAuthState] = useState<SignInState | null>(null)
+  const [signInState, setAuthState] = useState<SignInStateT | null>(null)
 
   useEffect(() => {
     const unsubscribe = watchSignInStateChange(setAuthState)

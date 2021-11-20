@@ -8,7 +8,7 @@ import {
   getIdToken,
 } from 'firebase/auth'
 import isNull from 'lodash/isNull'
-import { SignInState } from './model'
+import { SignInStateT } from './model'
 
 initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -55,7 +55,7 @@ const signOut = async () => {
 }
 
 const watchSignInStateChange = (
-  cb: (state: SignInState | null) => void
+  cb: (state: SignInStateT | null) => void
 ): (() => void) | null => {
   if (isNull(auth)) {
     return null
