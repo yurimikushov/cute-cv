@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import isNull from 'lodash/isNull'
 import pick from 'lodash/pick'
-import { SignInStateT } from './model'
+import { SignInChangedStateT } from './model'
 import {
   watchSignInStateChange,
   signInGoogle,
@@ -10,15 +10,9 @@ import {
   signInGitHub,
   signOut,
 } from './firebase'
-import {
-  beginChecking,
-  finishChecking,
-  signedIn,
-  notSignedIn,
-  resetUser,
-  setUser,
-} from './slice'
-import { selectIsChecking, selectUser } from './selectors'
+import { beginChecking, finishChecking, signedIn, notSignedIn } from './slice'
+import { selectIsChecking } from './selectors'
+import { set as setUser, reset as resetUser } from '../user'
 
 const useAuth = () => {
   const dispatch = useDispatch()
@@ -27,7 +21,7 @@ const useAuth = () => {
     dispatch(beginChecking())
 
     const unsubscribe = watchSignInStateChange(
-      (signInState: SignInStateT | null) => {
+      (signInState: SignInChangedStateT | null) => {
         if (isNull(signInState)) {
           dispatch(resetUser())
           return
@@ -116,12 +110,8 @@ const useSignOut = () => {
   }
 }
 
-const useIsAuthChecking = () => {
+const useIsSignInChecking = () => {
   return useSelector(selectIsChecking)
-}
-
-const useUser = () => {
-  return useSelector(selectUser)
 }
 
 export {
@@ -130,6 +120,5 @@ export {
   useSignInFacebook,
   useSignInGitHub,
   useSignOut,
-  useIsAuthChecking,
-  useUser,
+  useIsSignInChecking,
 }
