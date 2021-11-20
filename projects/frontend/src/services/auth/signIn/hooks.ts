@@ -35,13 +35,11 @@ const useAuth = () => {
       }
     )
 
-    return () => {
-      if (isNull(unsubscribe)) {
-        return
-      }
-
-      unsubscribe()
+    if (isNull(unsubscribe)) {
+      return
     }
+
+    return unsubscribe
   }, [])
 }
 
