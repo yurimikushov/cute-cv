@@ -3,6 +3,7 @@ import { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import isNull from 'lodash/isNull'
 import { load } from 'api/cv'
+import { useIsSignedIn } from 'services/auth'
 import {
   useFullName,
   usePosition,
@@ -38,6 +39,8 @@ const useLoading = () => {
 }
 
 const useLoadCV = () => {
+  const isSignedIn = useIsSignedIn()
+
   const { handleBegin: beginLoading, handleComplete: completeLoading } =
     useLoading()
   const { handlePreset: presetFullName } = useFullName()
@@ -51,6 +54,10 @@ const useLoadCV = () => {
   const { handlePreset: presetLanguages } = useLanguages()
 
   useEffect(() => {
+    if (!isSignedIn) {
+      return
+    }
+
     const loadCV = async () => {
       beginLoading()
 
@@ -75,7 +82,7 @@ const useLoadCV = () => {
     }
 
     loadCV()
-  }, [])
+  }, [isSignedIn])
 }
 
 export { useLoadCV, useLoading }
