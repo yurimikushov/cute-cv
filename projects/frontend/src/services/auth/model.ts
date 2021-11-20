@@ -1,6 +1,7 @@
 import { User } from 'firebase/auth'
 
 type AuthStateT = {
+  isChecking: boolean
   user: UserT | null
 }
 

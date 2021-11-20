@@ -10,13 +10,15 @@ import {
   signInGitHub,
   signOut,
 } from './firebase'
-import { resetUser, setUser } from './slice'
-import { selectUser } from './selectors'
+import { beginChecking, finishChecking, resetUser, setUser } from './slice'
+import { selectIsChecking, selectUser } from './selectors'
 
 const useAuth = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(beginChecking())
+
     const unsubscribe = watchSignInStateChange(
       (signInState: SignInStateT | null) => {
         if (isNull(signInState)) {
@@ -26,6 +28,8 @@ const useAuth = () => {
 
         const { user } = signInState
         dispatch(setUser({ user: pick(user, ['uid', 'displayName', 'email']) }))
+
+        dispatch(finishChecking())
       }
     )
 
@@ -99,6 +103,10 @@ const useSignOut = () => {
   }
 }
 
+const useIsAuthChecking = () => {
+  return useSelector(selectIsChecking)
+}
+
 const useUser = () => {
   return useSelector(selectUser)
 }
@@ -109,5 +117,6 @@ export {
   useSignInFacebook,
   useSignInGitHub,
   useSignOut,
+  useIsAuthChecking,
   useUser,
 }

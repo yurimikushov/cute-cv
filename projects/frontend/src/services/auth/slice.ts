@@ -3,6 +3,7 @@ import { ServiceNameEnum } from 'services'
 import { AuthStateT, SetUserPayloadT } from './model'
 
 const initialState: AuthStateT = {
+  isChecking: false,
   user: null,
 }
 
@@ -10,6 +11,12 @@ const { actions, reducer } = createSlice({
   name: `${ServiceNameEnum.auth}`,
   initialState,
   reducers: {
+    beginChecking: (state) => {
+      state.isChecking = true
+    },
+    finishChecking: (state) => {
+      state.isChecking = false
+    },
     setUser: (state, { payload }: PayloadAction<SetUserPayloadT>) => {
       state.user = payload.user
     },
@@ -19,5 +26,5 @@ const { actions, reducer } = createSlice({
   },
 })
 
-export const { setUser, resetUser } = actions
+export const { beginChecking, finishChecking, setUser, resetUser } = actions
 export default reducer
