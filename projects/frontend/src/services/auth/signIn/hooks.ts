@@ -23,17 +23,12 @@ const useAuth = () => {
     const unsubscribe = watchSignInStateChange(
       (signInState: SignInChangedStateT | null) => {
         if (isNull(signInState)) {
-          dispatch(resetUser())
-          return
-        }
-
-        const { user } = signInState
-        dispatch(setUser({ user: pick(user, ['uid', 'displayName', 'email']) }))
-
-        if (isNull(user)) {
           dispatch(notSignedIn())
+          dispatch(resetUser())
         } else {
+          const user = pick(signInState.user, ['uid', 'displayName', 'email'])
           dispatch(signedIn())
+          dispatch(setUser({ user }))
         }
 
         dispatch(finishChecking())
