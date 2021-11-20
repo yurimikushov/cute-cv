@@ -4,6 +4,7 @@ import { AuthStateT, SetUserPayloadT } from './model'
 
 const initialState: AuthStateT = {
   isChecking: false,
+  isSignedIn: false,
   user: null,
 }
 
@@ -17,6 +18,12 @@ const { actions, reducer } = createSlice({
     finishChecking: (state) => {
       state.isChecking = false
     },
+    signedIn: (state) => {
+      state.isSignedIn = true
+    },
+    notSignedIn: (state) => {
+      state.isSignedIn = false
+    },
     setUser: (state, { payload }: PayloadAction<SetUserPayloadT>) => {
       state.user = payload.user
     },
@@ -26,5 +33,12 @@ const { actions, reducer } = createSlice({
   },
 })
 
-export const { beginChecking, finishChecking, setUser, resetUser } = actions
+export const {
+  beginChecking,
+  finishChecking,
+  signedIn,
+  notSignedIn,
+  setUser,
+  resetUser,
+} = actions
 export default reducer
