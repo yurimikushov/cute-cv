@@ -1,6 +1,6 @@
 enum ServiceNameEnum {
   app = 'app',
-  user = 'user',
+  auth = 'auth',
   cv = 'cv',
 }
 

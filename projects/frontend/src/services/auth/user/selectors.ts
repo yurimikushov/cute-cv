@@ -1,8 +1,8 @@
 import { RootStateT } from 'services/store'
 import { UserStateT } from './model'
 
-const selectUser = (state: RootStateT): UserStateT['user'] => {
-  return state.user.user
+const selectUser = ({ auth }: RootStateT): UserStateT['user'] => {
+  return auth.user.user
 }
 
 export { selectUser }
