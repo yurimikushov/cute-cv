@@ -8,3 +8,4 @@ export {
   useIsSignInChecking,
   useIsSignedIn,
 } from './hooks'
+export { getToken } from './utils'

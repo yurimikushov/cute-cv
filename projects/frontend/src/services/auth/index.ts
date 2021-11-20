@@ -7,5 +7,6 @@ export {
   useSignOut,
   useIsSignInChecking,
   useIsSignedIn,
+  getToken,
 } from './signIn'
 export { useUser } from './user'
