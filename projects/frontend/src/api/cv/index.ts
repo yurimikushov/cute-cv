@@ -1,12 +1,20 @@
+import axios from 'axios'
 import isNull from 'lodash/isNull'
 import { CV } from 'services/cv'
 
-const load = (): Promise<CV | null> => {
-  const cv = localStorage.getItem('cv')
+const load = async () => {
+  try {
+    const { data: cv } = await axios.get<CV | null>('/cv')
 
-  return new Promise((resolve) => {
-    resolve(isNull(cv) ? null : JSON.parse(cv))
-  })
+    if (isNull(cv)) {
+      return null
+    }
+
+    return cv
+  } catch (error) {
+    // TODO: should handle any error
+    return null
+  }
 }
 
 const save = (cv: CV): Promise<void> => {
