@@ -17,12 +17,13 @@ const load = async () => {
   }
 }
 
-const save = (cv: CV): Promise<void> => {
-  localStorage.setItem('cv', JSON.stringify(cv))
-
-  return new Promise((resolve) => {
-    resolve()
-  })
+const save = async (cv: CV) => {
+  try {
+    await axios.put('/cv', cv)
+    return right(null)
+  } catch (error) {
+    return left(error as AxiosError)
+  }
 }
 
 export { load, save }

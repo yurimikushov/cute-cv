@@ -1,6 +1,11 @@
 type SavingStateT = {
   isSaved: boolean
   savedAt: Date | null
+  error: Error | null
 }
 
-export type { SavingStateT }
+type FailPayloadT = {
+  error: Error
+}
+
+export type { SavingStateT, FailPayloadT }

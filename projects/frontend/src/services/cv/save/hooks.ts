@@ -5,27 +5,15 @@ import { save } from 'api/cv'
 import { useIsSignedIn } from 'services/auth'
 import { useIsCVLoading, useCV, CV } from 'services/cv'
 import { selectIsSaved, selectSavedAt } from './selectors'
-import { markAsSaved, markAsUnsaved } from './slice'
+import { begin, success, fail } from './slice'
 
 const useIsCVSaving = () => {
   const isCVSaved = useSelector(selectIsSaved)
   const savedAt = useSelector(selectSavedAt)
 
-  const dispatch = useDispatch()
-
-  const handleMarkAsSaved = useCallback(() => {
-    dispatch(markAsSaved())
-  }, [])
-
-  const handleMarkAsUnsaved = useCallback(() => {
-    dispatch(markAsUnsaved())
-  }, [])
-
   return {
     isCVSaved,
     savedAt,
-    handleMarkAsSaved,
-    handleMarkAsUnsaved,
   }
 }
 
@@ -36,14 +24,18 @@ const useSaveCV = () => {
 
   const { cv } = useCV()
   const { isCVLoading } = useIsCVLoading()
-  const { handleMarkAsSaved, handleMarkAsUnsaved } = useIsCVSaving()
   const isPrevCVLoadingRef = useRef<boolean>(false)
 
+  const dispatch = useDispatch()
+
   const debouncedSave = useCallback(
-    debounce(async (cv: CV, cb: () => void) => {
-      await save(cv)
-      cb()
-    }, AUTO_SAVE_TIMING),
+    debounce(
+      async (cv: CV, success: () => void, fail: (error: Error) => void) => {
+        const either = await save(cv)
+        either.mapRight(success).mapLeft(fail)
+      },
+      AUTO_SAVE_TIMING
+    ),
     []
   )
 
@@ -58,11 +50,17 @@ const useSaveCV = () => {
     }
 
     const handleSave = async () => {
-      handleMarkAsUnsaved()
+      dispatch(begin())
 
-      await debouncedSave(cv, () => {
-        handleMarkAsSaved()
-      })
+      await debouncedSave(
+        cv,
+        () => {
+          dispatch(success())
+        },
+        (error) => {
+          dispatch(fail({ error }))
+        }
+      )
     }
 
     handleSave()
