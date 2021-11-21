@@ -1,2 +1,2 @@
-export { default as savingReducer } from './slice'
-export { useSaveCV, useIsCVSaving } from './hooks'
+export { default as saveReducer } from './slice'
+export { useSaveCV, useIsCVSaved } from './hooks'

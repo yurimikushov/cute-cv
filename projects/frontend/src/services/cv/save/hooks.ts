@@ -7,7 +7,7 @@ import { useIsCVLoading, useCV, CV } from 'services/cv'
 import { selectIsSaved, selectSavedAt } from './selectors'
 import { begin, success, fail } from './slice'
 
-const useIsCVSaving = () => {
+const useIsCVSaved = () => {
   const isCVSaved = useSelector(selectIsSaved)
   const savedAt = useSelector(selectSavedAt)
 
@@ -79,4 +79,4 @@ const useSaveCV = () => {
   }, [cv])
 }
 
-export { useIsCVSaving, useSaveCV }
+export { useIsCVSaved, useSaveCV }
