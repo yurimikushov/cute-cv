@@ -45,7 +45,7 @@ const useLoading = () => {
 }
 
 const useLoadCV = () => {
-  const isSignedIn = useIsSignedIn()
+  const { isSignedIn } = useIsSignedIn()
 
   const {
     handleBegin: begin,

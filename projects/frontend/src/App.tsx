@@ -12,7 +12,7 @@ const App: FC = () => {
   useUpdateLangAttr()
   useUpdateTitle()
 
-  const isSignInChecking = useIsSignInChecking()
+  const { isSignInChecking } = useIsSignInChecking()
   const { isLoading } = useLoading()
 
   return (

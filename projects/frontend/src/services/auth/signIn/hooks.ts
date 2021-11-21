@@ -1,55 +1,8 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import once from 'lodash/once'
-import isNull from 'lodash/isNull'
-import pick from 'lodash/pick'
-import { SignInChangedStateT } from './model'
-import {
-  watchSignInStateChange,
-  signInGoogle,
-  signInFacebook,
-  signInGitHub,
-  signOut,
-} from './firebase'
-import { beginChecking, finishChecking, signedIn, signedOut } from './slice'
+import { signInGoogle, signInFacebook, signInGitHub, signOut } from './firebase'
 import { selectIsChecking, selectIsSignedIn } from './selectors'
-import { set as setUser, reset as resetUser } from '../user'
-import { resetToken, setToken } from './utils'
-
-const useAuth = () => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(beginChecking())
-
-    const finishFirstChecking = once(() => {
-      dispatch(finishChecking())
-    })
-
-    const unsubscribe = watchSignInStateChange(
-      (signInState: SignInChangedStateT | null) => {
-        if (isNull(signInState)) {
-          dispatch(signedOut())
-          dispatch(resetUser())
-          resetToken()
-        } else {
-          const { user, token } = signInState
-          dispatch(signedIn())
-          dispatch(setUser({ user: pick(user, 'uid', 'displayName', 'email') }))
-          setToken(token)
-        }
-
-        finishFirstChecking()
-      }
-    )
-
-    if (isNull(unsubscribe)) {
-      return
-    }
-
-    return unsubscribe
-  }, [])
-}
+import { beginChecking, finishChecking, signedIn, signedOut } from './slice'
 
 const useSignInGoogle = () => {
   const [isSignIn, setIsSignIn] = useState(false)
@@ -112,15 +65,38 @@ const useSignOut = () => {
 }
 
 const useIsSignInChecking = () => {
-  return useSelector(selectIsChecking)
+  const isSignInChecking = useSelector(selectIsChecking)
+
+  const dispatch = useDispatch()
+
+  const handleBegin = useCallback(() => {
+    dispatch(beginChecking())
+  }, [])
+
+  const handleFinish = useCallback(() => {
+    dispatch(finishChecking())
+  }, [])
+
+  return { isSignInChecking, handleBegin, handleFinish }
 }
 
 const useIsSignedIn = () => {
-  return useSelector(selectIsSignedIn)
+  const isSignedIn = useSelector(selectIsSignedIn)
+
+  const dispatch = useDispatch()
+
+  const handleSignedIn = useCallback(() => {
+    dispatch(signedIn())
+  }, [])
+
+  const handleSignedOut = useCallback(() => {
+    dispatch(signedOut())
+  }, [])
+
+  return { isSignedIn, handleSignedIn, handleSignedOut }
 }
 
 export {
-  useAuth,
   useSignInGoogle,
   useSignInFacebook,
   useSignInGitHub,

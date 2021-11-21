@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import debounce from 'lodash/debounce'
 import { save } from 'api/cv'
 import { useLoading } from 'services/app'
+import { useIsSignedIn } from 'services/auth'
 import { useCV, CV } from 'services/cv'
 import { selectIsSaved, selectSavedAt } from './selectors'
 import { markAsSaved, markAsUnsaved } from './slice'
@@ -32,6 +33,8 @@ const useSaving = () => {
 const AUTO_SAVE_TIMING = 1_000
 
 const useSaveCV = () => {
+  const { isSignedIn } = useIsSignedIn()
+
   const { cv } = useCV()
   const { isLoading } = useLoading()
   const { handleMarkAsSaved, handleMarkAsUnsaved } = useSaving()
@@ -46,6 +49,10 @@ const useSaveCV = () => {
   )
 
   useEffect(() => {
+    if (!isSignedIn) {
+      return
+    }
+
     if (isPrevLoadingRef.current || isLoading) {
       isPrevLoadingRef.current = isLoading
       return

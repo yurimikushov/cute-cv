@@ -1,6 +1,7 @@
 export { default as signInReducer } from './slice'
+export { watchSignInStateChange } from './firebase'
+export type { SignInChangedStateT } from './model'
 export {
-  useAuth,
   useSignInGoogle,
   useSignInFacebook,
   useSignInGitHub,
@@ -8,4 +9,3 @@ export {
   useIsSignInChecking,
   useIsSignedIn,
 } from './hooks'
-export { getToken } from './utils'

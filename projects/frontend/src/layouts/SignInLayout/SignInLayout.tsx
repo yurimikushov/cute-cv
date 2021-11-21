@@ -4,8 +4,8 @@ import SignInModal from './SignInModal'
 import SignInLayoutPropsT from './SignInLayout.props'
 
 const SignInLayout: FC<SignInLayoutPropsT> = ({ children }) => {
-  const isSignInChecking = useIsSignInChecking()
-  const isSignedIn = useIsSignedIn()
+  const { isSignInChecking } = useIsSignInChecking()
+  const { isSignedIn } = useIsSignedIn()
 
   return (
     <>

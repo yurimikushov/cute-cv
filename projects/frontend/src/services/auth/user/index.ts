@@ -1,2 +1,2 @@
-export { default as userReducer, set, reset } from './slice'
+export { default as userReducer } from './slice'
 export { useUser } from './hooks'
