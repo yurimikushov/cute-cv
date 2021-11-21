@@ -1,20 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ServiceNameEnum } from 'services'
-import { TechnologiesStateT, PresetPayloadT, UpdatePayloadT } from './model'
+import { SERVICE_NAME } from '../constants'
+import { AboutMeStateT, PresetPayloadT, UpdatePayloadT } from './model'
 
-const initialState: TechnologiesStateT = {
-  technologies: '',
+const initialState: AboutMeStateT = {
+  aboutMe: '',
 }
 
 const { actions, reducer } = createSlice({
-  name: `${ServiceNameEnum.cv}/technologies`,
+  name: `${SERVICE_NAME}/aboutMe`,
   initialState,
   reducers: {
     preset: (state, { payload }: PayloadAction<PresetPayloadT>) => {
-      state.technologies = payload.technologies
+      state.aboutMe = payload.aboutMe
     },
     update: (state, { payload }: PayloadAction<UpdatePayloadT>) => {
-      state.technologies = payload.technologies
+      state.aboutMe = payload.aboutMe
     },
   },
 })

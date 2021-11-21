@@ -1,12 +1,14 @@
-export type { CV } from './model'
-export { default as cvReducer } from './reducer'
-export { useCV } from './hooks'
-export { useFullName } from './name'
-export { usePosition } from './position'
-export { useAvatar } from './avatar'
-export { useAboutMe } from './aboutMe'
-export { useExperiences } from './experiences'
-export { useEducations } from './educations'
-export { useContacts } from './contacts'
-export { useTechnologies } from './technologies'
-export { useLanguages } from './languages'
+export type { CV } from './content'
+export {
+  cvReducer,
+  useCV,
+  useFullName,
+  usePosition,
+  useAvatar,
+  useAboutMe,
+  useExperiences,
+  useEducations,
+  useContacts,
+  useTechnologies,
+  useLanguages,
+} from './content'

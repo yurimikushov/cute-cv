@@ -1,4 +1,4 @@
-import { selectCV } from './selector'
+import { selectCV } from './selectors'
 
 type CV = ReturnType<typeof selectCV>
 
