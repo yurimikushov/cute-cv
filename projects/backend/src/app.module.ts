@@ -5,10 +5,11 @@ import {
   RequestMethod,
 } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import * as morgan from 'morgan'
 import { AuthMiddleware, CVModule } from './modules'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-import { LoggerMiddleware } from './middlewares'
+
 @Module({
   imports: [ConfigModule.forRoot(), CVModule],
   controllers: [AppController],
@@ -17,7 +18,7 @@ import { LoggerMiddleware } from './middlewares'
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(LoggerMiddleware)
+      .apply(morgan('combined'))
       .forRoutes({ path: '*', method: RequestMethod.ALL })
     consumer.apply(AuthMiddleware).forRoutes({
       path: '*',
