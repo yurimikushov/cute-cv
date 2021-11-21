@@ -5,7 +5,7 @@ const useUpdateTitle = () => {
   const { fullName } = useFullName()
 
   useEffect(() => {
-    document.title = fullName || 'CV editor'
+    document.title = fullName || 'Cute CV'
   }, [fullName])
 }
 
