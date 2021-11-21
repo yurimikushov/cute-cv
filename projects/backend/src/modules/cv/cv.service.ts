@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common'
+import mockCv from './mockCv'
 
 @Injectable()
 export class CVService {
-  getCV(id: string): string {
-    return `That's #${id} cv. Just imagine it`
+  getCV() {
+    return mockCv
   }
 }
