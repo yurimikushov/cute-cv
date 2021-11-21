@@ -1,2 +1,2 @@
 export { default as loadingReducer } from './slice'
-export { useLoadCV, useLoading } from './hooks'
+export { useLoadCV, useIsCVLoading } from './hooks'

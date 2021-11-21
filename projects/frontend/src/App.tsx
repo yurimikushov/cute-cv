@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { useLoadCV, useSaveCV, useLoading } from 'services/app'
+import { useLoadCV, useSaveCV, useIsCVLoading } from 'services/app'
 import { useAuth, useIsSignInChecking } from 'services/auth'
 import { useUpdateLangAttr, useUpdateTitle } from 'hooks'
 import HomePage from 'pages/HomePage'
@@ -13,11 +13,11 @@ const App: FC = () => {
   useUpdateTitle()
 
   const { isSignInChecking } = useIsSignInChecking()
-  const { isLoading } = useLoading()
+  const { isCVLoading } = useIsCVLoading()
 
   return (
     <>
-      {(isSignInChecking || isLoading) && <Loader.FullScreen />}
+      {(isSignInChecking || isCVLoading) && <Loader.FullScreen />}
       <HomePage />
     </>
   )

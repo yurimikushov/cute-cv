@@ -19,8 +19,8 @@ import { selectIsLoading } from './selectors'
 import { begin, success, fail } from './slice'
 import { FailPayloadT } from './model'
 
-const useLoading = () => {
-  const isLoading = useSelector(selectIsLoading)
+const useIsCVLoading = () => {
+  const isCVLoading = useSelector(selectIsLoading)
 
   const dispatch = useDispatch()
 
@@ -37,7 +37,7 @@ const useLoading = () => {
   }, [])
 
   return {
-    isLoading,
+    isCVLoading,
     handleBegin,
     handleSuccess,
     handleFail,
@@ -51,7 +51,7 @@ const useLoadCV = () => {
     handleBegin: begin,
     handleSuccess: success,
     handleFail: fail,
-  } = useLoading()
+  } = useIsCVLoading()
   const { handlePreset: presetFullName } = useFullName()
   const { handlePreset: presetPosition } = usePosition()
   const { handlePreset: presetAvatar } = useAvatar()
@@ -100,4 +100,4 @@ const useLoadCV = () => {
   }, [isSignedIn])
 }
 
-export { useLoadCV, useLoading }
+export { useLoadCV, useIsCVLoading }

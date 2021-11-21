@@ -2,14 +2,14 @@ import { useEffect, useCallback, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import debounce from 'lodash/debounce'
 import { save } from 'api/cv'
-import { useLoading } from 'services/app'
+import { useIsCVLoading } from 'services/app'
 import { useIsSignedIn } from 'services/auth'
 import { useCV, CV } from 'services/cv'
 import { selectIsSaved, selectSavedAt } from './selectors'
 import { markAsSaved, markAsUnsaved } from './slice'
 
-const useSaving = () => {
-  const isSaved = useSelector(selectIsSaved)
+const useIsCVSaving = () => {
+  const isCVSaved = useSelector(selectIsSaved)
   const savedAt = useSelector(selectSavedAt)
 
   const dispatch = useDispatch()
@@ -23,7 +23,7 @@ const useSaving = () => {
   }, [])
 
   return {
-    isSaved,
+    isCVSaved,
     savedAt,
     handleMarkAsSaved,
     handleMarkAsUnsaved,
@@ -36,9 +36,9 @@ const useSaveCV = () => {
   const { isSignedIn } = useIsSignedIn()
 
   const { cv } = useCV()
-  const { isLoading } = useLoading()
-  const { handleMarkAsSaved, handleMarkAsUnsaved } = useSaving()
-  const isPrevLoadingRef = useRef<boolean>(false)
+  const { isCVLoading } = useIsCVLoading()
+  const { handleMarkAsSaved, handleMarkAsUnsaved } = useIsCVSaving()
+  const isPrevCVLoadingRef = useRef<boolean>(false)
 
   const debouncedSave = useCallback(
     debounce(async (cv: CV, cb: () => void) => {
@@ -53,8 +53,8 @@ const useSaveCV = () => {
       return
     }
 
-    if (isPrevLoadingRef.current || isLoading) {
-      isPrevLoadingRef.current = isLoading
+    if (isPrevCVLoadingRef.current || isCVLoading) {
+      isPrevCVLoadingRef.current = isCVLoading
       return
     }
 
@@ -67,7 +67,7 @@ const useSaveCV = () => {
     }
 
     handleSave()
-  }, [isLoading, cv])
+  }, [isCVLoading, cv])
 
   useEffect(() => {
     const handleSave = async () => {
@@ -82,4 +82,4 @@ const useSaveCV = () => {
   }, [cv])
 }
 
-export { useSaving, useSaveCV }
+export { useIsCVSaving, useSaveCV }

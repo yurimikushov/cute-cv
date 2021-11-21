@@ -1,5 +1,5 @@
 export { default as appReducer } from './reducer'
 export { useDownload, CV_CONTAINER_ID } from './download'
 export { useEditable } from './editable'
-export { useLoadCV, useLoading } from './loading'
-export { useSaveCV, useSaving } from './saving'
+export { useLoadCV, useIsCVLoading } from './loading'
+export { useSaveCV, useIsCVSaving } from './saving'
