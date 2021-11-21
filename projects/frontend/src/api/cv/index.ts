@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
+import { right, left } from '@sweet-monads/either'
 import isNull from 'lodash/isNull'
 import { CV } from 'services/cv'
 
@@ -7,13 +8,12 @@ const load = async () => {
     const { data: cv } = await axios.get<CV | null>('/cv')
 
     if (isNull(cv)) {
-      return null
+      return right(null)
     }
 
-    return cv
+    return right(cv)
   } catch (error) {
-    // TODO: should handle any error
-    return null
+    return left(error as AxiosError)
   }
 }
 

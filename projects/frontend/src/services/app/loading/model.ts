@@ -1,5 +1,10 @@
 type LoadingStateT = {
   isLoading: boolean
+  error: Error | null
 }
 
-export type { LoadingStateT }
+type FailPayloadT = {
+  error: Error
+}
+
+export type { LoadingStateT, FailPayloadT }

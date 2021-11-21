@@ -1,9 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from 'services'
-import { LoadingStateT } from './model'
+import { LoadingStateT, FailPayloadT } from './model'
 
 const initialState: LoadingStateT = {
-  isLoading: true,
+  isLoading: false,
+  error: null,
 }
 
 const { actions, reducer } = createSlice({
@@ -12,12 +13,17 @@ const { actions, reducer } = createSlice({
   reducers: {
     begin: (state) => {
       state.isLoading = true
+      state.error = null
     },
-    complete: (state) => {
+    success: (state) => {
       state.isLoading = false
+    },
+    fail: (state, { payload }: PayloadAction<FailPayloadT>) => {
+      state.isLoading = false
+      state.error = payload.error
     },
   },
 })
 
-export const { begin, complete } = actions
+export const { begin, success, fail } = actions
 export default reducer

@@ -16,7 +16,8 @@ import {
   useLanguages,
 } from 'services/cv'
 import { selectIsLoading } from './selectors'
-import { begin, complete } from './slice'
+import { begin, success, fail } from './slice'
+import { FailPayloadT } from './model'
 
 const useLoading = () => {
   const isLoading = useSelector(selectIsLoading)
@@ -27,22 +28,30 @@ const useLoading = () => {
     dispatch(begin())
   }, [])
 
-  const handleComplete = useCallback(() => {
-    dispatch(complete())
+  const handleSuccess = useCallback(() => {
+    dispatch(success())
+  }, [])
+
+  const handleFail = useCallback((payload: FailPayloadT) => {
+    dispatch(fail(payload))
   }, [])
 
   return {
     isLoading,
     handleBegin,
-    handleComplete,
+    handleSuccess,
+    handleFail,
   }
 }
 
 const useLoadCV = () => {
   const isSignedIn = useIsSignedIn()
 
-  const { handleBegin: beginLoading, handleComplete: completeLoading } =
-    useLoading()
+  const {
+    handleBegin: begin,
+    handleSuccess: success,
+    handleFail: fail,
+  } = useLoading()
   const { handlePreset: presetFullName } = useFullName()
   const { handlePreset: presetPosition } = usePosition()
   const { handlePreset: presetAvatar } = useAvatar()
@@ -59,26 +68,32 @@ const useLoadCV = () => {
     }
 
     const loadCV = async () => {
-      beginLoading()
+      begin()
 
-      const cv = await load()
+      const either = await load()
 
-      if (isNull(cv)) {
-        completeLoading()
-        return
-      }
+      either
+        .mapRight((cv) => {
+          if (isNull(cv)) {
+            success()
+            return
+          }
 
-      presetFullName({ fullName: cv.fullName })
-      presetPosition({ position: cv.position })
-      presetAvatar({ src: cv.avatar })
-      presetAboutMe({ aboutMe: cv.aboutMe })
-      presetExperiences({ experiences: cv.experiences })
-      presetEducations({ educations: cv.educations })
-      presetContacts({ contacts: cv.contacts })
-      presetTechnologies({ technologies: cv.technologies })
-      presetLanguages({ languages: cv.languages })
+          presetFullName({ fullName: cv.fullName })
+          presetPosition({ position: cv.position })
+          presetAvatar({ src: cv.avatar })
+          presetAboutMe({ aboutMe: cv.aboutMe })
+          presetExperiences({ experiences: cv.experiences })
+          presetEducations({ educations: cv.educations })
+          presetContacts({ contacts: cv.contacts })
+          presetTechnologies({ technologies: cv.technologies })
+          presetLanguages({ languages: cv.languages })
 
-      completeLoading()
+          success()
+        })
+        .mapLeft((error) => {
+          fail({ error })
+        })
     }
 
     loadCV()
