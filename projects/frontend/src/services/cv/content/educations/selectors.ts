@@ -4,13 +4,13 @@ import { RootStateT } from 'services/store'
 import { EducationsStateT } from './model'
 
 const selectIds = ({ cv }: RootStateT): EducationsStateT['ids'] => {
-  return cv.educations.ids
+  return cv.content.educations.ids
 }
 
 const selectEducationsById = ({
   cv,
 }: RootStateT): EducationsStateT['educationsById'] => {
-  return cv.educations.educationsById
+  return cv.content.educations.educationsById
 }
 
 const selectEducations = createSelector(

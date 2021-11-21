@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import cn from 'classnames'
-import { CV_CONTAINER_ID } from 'services/app'
+import { CV_CONTAINER_ID } from 'services/cv'
 import CVLayoutPropsT from './CVLayout.props'
 
 const CVLayout: FC<CVLayoutPropsT> = ({ className, children }) => (

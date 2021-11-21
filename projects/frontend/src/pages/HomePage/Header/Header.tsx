@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useEditable } from 'services/app'
-import { useFullName, usePosition } from 'services/cv'
+import { useEditable, useFullName, usePosition } from 'services/cv'
 import TextInput from 'components/TextInput'
 
 const Header: FC = () => {

@@ -8,7 +8,7 @@ const initialState: SavingStateT = {
 }
 
 const { actions, reducer } = createSlice({
-  name: `${ServiceNameEnum.app}/saving`,
+  name: `${ServiceNameEnum.cv}/save`,
   initialState,
   reducers: {
     markAsUnsaved: (state) => {

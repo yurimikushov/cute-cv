@@ -8,7 +8,7 @@ const initialState: LoadingStateT = {
 }
 
 const { actions, reducer } = createSlice({
-  name: `${ServiceNameEnum.app}/loading`,
+  name: `${ServiceNameEnum.cv}/load`,
   initialState,
   reducers: {
     begin: (state) => {

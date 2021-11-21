@@ -1,3 +1,4 @@
+export { default as contentReducer } from './reducer'
 export type { CV } from './model'
 export { default as cvReducer } from './reducer'
 export { useCV } from './hooks'

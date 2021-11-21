@@ -7,7 +7,7 @@ const initialState: EditableStateT = {
 }
 
 const { actions, reducer } = createSlice({
-  name: `${ServiceNameEnum.app}/editable`,
+  name: `${ServiceNameEnum.cv}/editable`,
   initialState,
   reducers: {
     toggle: (state) => {

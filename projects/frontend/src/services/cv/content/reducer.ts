@@ -9,7 +9,7 @@ import { contactsReducer } from './contacts'
 import { technologiesReducer } from './technologies'
 import { languagesReducer } from './languages'
 
-const cvReducer = combineReducers({
+const contentReducer = combineReducers({
   name: nameReducer,
   position: positionReducer,
   avatar: avatarReducer,
@@ -21,4 +21,4 @@ const cvReducer = combineReducers({
   languages: languagesReducer,
 })
 
-export default cvReducer
+export default contentReducer

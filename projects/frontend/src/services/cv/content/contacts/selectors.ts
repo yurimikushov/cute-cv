@@ -4,13 +4,13 @@ import { RootStateT } from 'services/store'
 import { ContactsStateT } from './model'
 
 const selectIds = ({ cv }: RootStateT): ContactsStateT['ids'] => {
-  return cv.contacts.ids
+  return cv.content.contacts.ids
 }
 
 const selectContactsById = ({
   cv,
 }: RootStateT): ContactsStateT['contactsById'] => {
-  return cv.contacts.contactsById
+  return cv.content.contacts.contactsById
 }
 
 const selectContacts = createSelector(

@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { useLoadCV, useSaveCV, useIsCVLoading } from 'services/app'
 import { useAuth, useIsSignInChecking } from 'services/auth'
+import { useLoadCV, useSaveCV, useIsCVLoading } from 'services/cv'
 import { useUpdateLangAttr, useUpdateTitle } from 'hooks'
 import HomePage from 'pages/HomePage'
 import Loader from 'components/Loader'

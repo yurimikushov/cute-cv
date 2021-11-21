@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import cn from 'classnames'
-import { useEditable } from 'services/app'
+import { useEditable } from 'services/cv'
 import { useSavedSince } from './hooks'
 import Button from 'components/Button'
 import PanelPropsT from './Panel.props'

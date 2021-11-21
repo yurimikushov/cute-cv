@@ -4,13 +4,13 @@ import { RootStateT } from 'services/store'
 import { ExperiencesStateT } from './model'
 
 const selectIds = ({ cv }: RootStateT): ExperiencesStateT['ids'] => {
-  return cv.experiences.ids
+  return cv.content.experiences.ids
 }
 
 const selectExperiencesById = ({
   cv,
 }: RootStateT): ExperiencesStateT['experiencesById'] => {
-  return cv.experiences.experiencesById
+  return cv.content.experiences.experiencesById
 }
 
 const selectExperiences = createSelector(

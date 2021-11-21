@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDownload } from 'services/app'
+import { useDownload } from 'services/cv'
 import H from 'components/H'
 import Button from 'components/Button'
 import DownloadPropsT from './Download.props'

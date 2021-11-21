@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import isNull from 'lodash/isNull'
 import { LanguageEnum } from 'translation'
 import timeSince from 'lib/timeSince'
-import { useIsCVSaving } from 'services/app'
+import { useIsCVSaving } from 'services/cv'
 
 const UPDATE_TIMING = 5_000
 

@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useEditable } from 'services/app'
-import { useAboutMe } from 'services/cv'
+import { useEditable, useAboutMe } from 'services/cv'
 import TextArea from 'components/TextArea'
 
 const AboutMe: FC = () => {

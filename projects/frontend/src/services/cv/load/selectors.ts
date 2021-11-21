@@ -1,8 +1,8 @@
 import { RootStateT } from 'services/store'
 import { LoadingStateT } from './model'
 
-const selectIsLoading = ({ app }: RootStateT): LoadingStateT['isLoading'] => {
-  return app.loading.isLoading
+const selectIsLoading = ({ cv }: RootStateT): LoadingStateT['isLoading'] => {
+  return cv.loading.isLoading
 }
 
 export { selectIsLoading }

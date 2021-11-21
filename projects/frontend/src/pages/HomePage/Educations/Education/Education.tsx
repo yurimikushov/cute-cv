@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
-import { useEditable } from 'services/app'
+import { useEditable } from 'services/cv'
 import Card from 'components/Card'
 import TextInput from 'components/TextInput'
 import EducationPropsT from './Education.props'

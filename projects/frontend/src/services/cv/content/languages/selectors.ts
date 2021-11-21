@@ -4,13 +4,13 @@ import { RootStateT } from 'services/store'
 import { LanguagesStateT } from './model'
 
 const selectIds = ({ cv }: RootStateT): LanguagesStateT['ids'] => {
-  return cv.languages.ids
+  return cv.content.languages.ids
 }
 
 const selectLanguagesById = ({
   cv,
 }: RootStateT): LanguagesStateT['languagesById'] => {
-  return cv.languages.languagesById
+  return cv.content.languages.languagesById
 }
 
 const selectLanguages = createSelector(
