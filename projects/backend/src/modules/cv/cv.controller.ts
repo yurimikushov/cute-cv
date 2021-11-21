@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller, Get, Put, Body } from '@nestjs/common'
+import { UpdateCvDto } from './dto'
 import { CVService } from './cv.service'
 
 @Controller('cv')
@@ -8,5 +9,10 @@ export class CVController {
   @Get()
   findOne() {
     return this.cvService.getCV()
+  }
+
+  @Put()
+  update(@Body() updateCvDto: UpdateCvDto) {
+    this.cvService.updateCV(updateCvDto)
   }
 }
