@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { Request, Response, NextFunction } from 'express'
+import { replace, trim } from 'lodash'
 import firebase, { app } from 'firebase-admin'
 import { startsWith, isEmpty } from 'lodash'
 
@@ -33,7 +34,7 @@ export class AuthMiddleware implements NestMiddleware {
       throw new UnauthorizedException()
     }
 
-    const token = authorization.replace('Bearer ', '')
+    const token = trim(replace(authorization, 'Bearer', ''))
 
     if (isEmpty(token)) {
       throw new UnauthorizedException()
