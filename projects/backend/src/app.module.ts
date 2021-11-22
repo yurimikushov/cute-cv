@@ -8,13 +8,9 @@ import { ConfigModule } from '@nestjs/config'
 import * as morgan from 'morgan'
 import { AuthMiddleware } from './auth'
 import { CVModule } from './cv'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
 
 @Module({
   imports: [ConfigModule.forRoot(), CVModule],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
