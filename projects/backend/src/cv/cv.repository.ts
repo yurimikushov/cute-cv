@@ -9,7 +9,6 @@ import {
   uploadBytes,
 } from 'firebase/storage'
 import axios from 'axios'
-import { readFile, writeFile, unlink } from 'fs/promises'
 import { CV } from './cv.interface'
 
 @Injectable()
@@ -42,21 +41,13 @@ export class CVRepository {
   }
 
   async updateCV(uid: string, cv: CV) {
-    const tempPath = `${uid}.json`
-
     try {
-      await writeFile(tempPath, JSON.stringify(cv))
-
-      const buffer = await readFile(tempPath)
-      const cvRef = ref(this.storage, `cv/${uid}.json`)
-
-      const { metadata } = await uploadBytes(cvRef, buffer)
-
-      console.log({ metadata })
+      await uploadBytes(
+        ref(this.storage, `cv/${uid}.json`),
+        Buffer.from(JSON.stringify(cv))
+      )
     } catch (error) {
       console.log({ error })
-    } finally {
-      unlink(tempPath)
     }
   }
 }
