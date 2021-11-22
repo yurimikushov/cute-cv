@@ -1,6 +1,7 @@
-import { Controller, Get, Put, Body } from '@nestjs/common'
+import { Controller, Get, Put, Body, Req } from '@nestjs/common'
 import { UpdateCvDto } from './dto'
 import { CVService } from './cv.service'
+import { Request } from 'express'
 
 @Controller('cv')
 export class CVController {
@@ -12,7 +13,7 @@ export class CVController {
   }
 
   @Put()
-  update(@Body() updateCvDto: UpdateCvDto) {
-    this.cvService.updateCV(updateCvDto)
+  async update(@Req() req: Request, @Body() updateCvDto: UpdateCvDto) {
+    await this.cvService.updateCV(req.user.uid, updateCvDto)
   }
 }
