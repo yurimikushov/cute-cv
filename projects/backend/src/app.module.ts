@@ -10,7 +10,7 @@ import { AuthMiddleware } from './auth'
 import { CVModule } from './cv'
 
 @Module({
-  imports: [ConfigModule.forRoot(), CVModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), CVModule],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
