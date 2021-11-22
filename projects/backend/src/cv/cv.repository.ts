@@ -1,7 +1,14 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { FirebaseApp, initializeApp } from 'firebase/app'
-import { FirebaseStorage, getStorage, ref, uploadBytes } from 'firebase/storage'
+import {
+  FirebaseStorage,
+  getStorage,
+  ref,
+  getDownloadURL,
+  uploadBytes,
+} from 'firebase/storage'
+import axios from 'axios'
 import { readFile, writeFile, unlink } from 'fs/promises'
 import { CV } from './cv.interface'
 
@@ -22,6 +29,18 @@ export class CVRepository {
     this.storage = getStorage(this.firebaseApp)
   }
 
+  async readCV(uid: string): Promise<CV | null> {
+    try {
+      const cvRef = ref(this.storage, `cv/${uid}.json`)
+      const url = await getDownloadURL(cvRef)
+      const { data: cv } = await axios.get<CV>(url)
+      return cv
+    } catch (error) {
+      console.log({ error })
+      return null
+    }
+  }
+
   async updateCV(uid: string, cv: CV) {
     const tempPath = `${uid}.json`
 
@@ -39,10 +58,5 @@ export class CVRepository {
     } finally {
       unlink(tempPath)
     }
-  }
-
-  readCV(uid: string): CV | null {
-    console.log('readCV')
-    return null
   }
 }

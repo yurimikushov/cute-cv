@@ -8,8 +8,8 @@ export class CVController {
   constructor(private readonly cvService: CVService) {}
 
   @Get()
-  findOne() {
-    return this.cvService.getCV()
+  async findOne(@Req() req: Request) {
+    return await this.cvService.getCV(req.user.uid)
   }
 
   @Put()
