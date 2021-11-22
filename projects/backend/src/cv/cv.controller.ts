@@ -14,6 +14,6 @@ export class CVController {
 
   @Put()
   async update(@Req() req: Request, @Body() updateCvDto: UpdateCvDto) {
-    await this.cvService.updateCV(req.user.uid, updateCvDto)
+    return await this.cvService.updateCV(req.user.uid, updateCvDto)
   }
 }

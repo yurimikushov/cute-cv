@@ -41,13 +41,15 @@ export class CVRepository {
   }
 
   async updateCV(uid: string, cv: CV) {
-    try {
-      await uploadBytes(
-        ref(this.storage, `cv/${uid}.json`),
-        Buffer.from(JSON.stringify(cv))
-      )
-    } catch (error) {
-      console.log({ error })
-    }
+    const { metadata } = await uploadBytes(
+      ref(this.storage, `cv/${uid}.json`),
+      Buffer.from(JSON.stringify(cv))
+    )
+
+    const { updated: savedAt } = metadata
+
+    return {
+      savedAt,
+    } as const
   }
 }

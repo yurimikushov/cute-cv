@@ -11,6 +11,6 @@ export class CVService {
   }
 
   async updateCV(uid: string, cv: CV) {
-    await this.cvRepository.updateCV(uid, cv)
+    return await this.cvRepository.updateCV(uid, cv)
   }
 }
