@@ -1,7 +1,12 @@
-import { Injectable, NestMiddleware } from '@nestjs/common'
+import {
+  ForbiddenException,
+  Injectable,
+  NestMiddleware,
+  UnauthorizedException,
+} from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { Request, Response, NextFunction } from 'express'
-import firebase, { app, FirebaseError } from 'firebase-admin'
+import firebase, { app } from 'firebase-admin'
 import { startsWith, isEmpty } from 'lodash'
 
 @Injectable()
@@ -25,15 +30,13 @@ export class AuthMiddleware implements NestMiddleware {
     const authorization = req.headers.authorization
 
     if (!startsWith(authorization, 'Bearer')) {
-      this.denyAccess(req, res)
-      return
+      throw new UnauthorizedException()
     }
 
     const token = authorization.replace('Bearer ', '')
 
     if (isEmpty(token)) {
-      this.denyAccess(req, res)
-      return
+      throw new UnauthorizedException()
     }
 
     this.firebaseApp
@@ -46,18 +49,8 @@ export class AuthMiddleware implements NestMiddleware {
         }
         next()
       })
-      .catch((error: FirebaseError) => {
-        console.error(error)
-        this.denyAccess(req, res)
+      .catch(() => {
+        throw new ForbiddenException()
       })
-  }
-
-  private denyAccess(req: Request, res: Response) {
-    res.status(403).json({
-      statusCode: 403,
-      timestamp: new Date().toISOString(),
-      path: req.url,
-      message: 'Access denied',
-    })
   }
 }
