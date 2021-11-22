@@ -43,7 +43,7 @@ export class AuthMiddleware implements NestMiddleware {
       .auth()
       .verifyIdToken(token)
       .then(async (decodedIdToken) => {
-        req['user'] = {
+        req.user = {
           uid: decodedIdToken.uid,
           email: decodedIdToken.email,
         }
