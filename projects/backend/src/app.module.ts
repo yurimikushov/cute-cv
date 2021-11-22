@@ -6,7 +6,8 @@ import {
 } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import * as morgan from 'morgan'
-import { AuthMiddleware, CVModule } from './modules'
+import { AuthMiddleware } from './auth'
+import { CVModule } from './cv'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 
