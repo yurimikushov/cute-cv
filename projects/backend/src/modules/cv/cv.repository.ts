@@ -19,7 +19,7 @@ export class CVRepository {
   async readCV(uid: string): Promise<CV | null> {
     const [isCvExists] = await this.storage
       .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      .file(`cv/${uid}.json`)
+      .file(this.getFileName(uid))
       .exists()
 
     if (!isCvExists) {
@@ -31,7 +31,7 @@ export class CVRepository {
 
       this.storage
         .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-        .file(`cv/${uid}.json`)
+        .file(this.getFileName(uid))
         .createReadStream()
         .pipe(receiver)
         .on('finish', () => {
@@ -51,7 +51,7 @@ export class CVRepository {
         .pipe(
           this.storage
             .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-            .file(`cv/${uid}.json`)
+            .file(this.getFileName(uid))
             .createWriteStream()
         )
         .on('finish', resolve)
@@ -60,11 +60,15 @@ export class CVRepository {
 
     const [{ updated: savedAt }] = await this.storage
       .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      .file(`cv/${uid}.json`)
+      .file(this.getFileName(uid))
       .getMetadata()
 
     return {
       savedAt,
     } as const
+  }
+
+  private getFileName(uid: string) {
+    return `cv/${uid}.json`
   }
 }
