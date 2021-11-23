@@ -4,27 +4,17 @@ import {
   NestMiddleware,
   UnauthorizedException,
 } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
 import { Request, Response, NextFunction } from 'express'
-import { replace, trim } from 'lodash'
-import firebase, { app } from 'firebase-admin'
-import { startsWith, isEmpty } from 'lodash'
+import firebase from 'firebase-admin'
+import { replace, trim, startsWith, isEmpty } from 'lodash'
+import { getFirebaseApp } from 'lib/firebase'
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
-  private firebaseApp: app.App
+  private firebaseApp: firebase.app.App
 
-  constructor(private configService: ConfigService) {
-    this.firebaseApp = firebase.initializeApp({
-      credential: firebase.credential.cert({
-        projectId: this.configService.get('FIREBASE_PROJECT_ID'),
-        privateKey: this.configService
-          .get('FIREBASE_PRIVATE_KEY')
-          .replace(/\\n/g, '\n'),
-        clientEmail: this.configService.get('FIREBASE_CLIENT_EMAIL'),
-      }),
-      databaseURL: this.configService.get('FIREBASE_DATABASE_URL'),
-    })
+  constructor() {
+    this.firebaseApp = getFirebaseApp()
   }
 
   use(req: Request, res: Response, next: NextFunction) {
