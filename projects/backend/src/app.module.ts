@@ -6,8 +6,7 @@ import {
 } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import * as morgan from 'morgan'
-import { AuthMiddleware } from './auth'
-import { CVModule } from './cv'
+import { AuthMiddleware, CVModule } from './modules'
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), CVModule],
