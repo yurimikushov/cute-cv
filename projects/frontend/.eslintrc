@@ -57,6 +57,9 @@
     "no-warning-comments": "off",
     "no-shadow": "off",
     "newline-per-chained-call": "off",
+    "space-before-function-paren": "off",
+    "class-methods-use-this": "off",
+    "multiline-comment-style": "off",
     "react/react-in-jsx-scope": "off",
     "react/function-component-definition": "off",
     "react/jsx-indent": "off",
@@ -73,6 +76,7 @@
     "react/jsx-max-depth": ["warn", { "max": 5 }],
     "react/jsx-curly-newline": "off",
     "react-hooks/exhaustive-deps": "off",
+    "react/prop-types": "off",
     "@typescript-eslint/array-type": [
       "error",
       { "default": "generic", "readonly": "generic" }
