@@ -35,7 +35,7 @@ export class CVRepository {
         .createReadStream()
         .pipe(receiver)
         .on('finish', () => {
-          resolve(receiver.read().toString())
+          resolve(JSON.parse(receiver.read().toString()))
         })
         .on('error', reject)
     })
