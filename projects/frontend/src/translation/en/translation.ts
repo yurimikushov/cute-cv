@@ -17,7 +17,6 @@ const en: TranslationT = {
     preview: 'Preview',
     edit: 'Edit',
     savedAt: 'Saved {{savedAt}} ago',
-    saved: 'Saved',
     notSaved: 'Not saved',
   },
   toolbar: {

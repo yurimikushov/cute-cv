@@ -20,7 +20,7 @@ const useSavedSince = () => {
         }
 
         if (isNull(savedAt)) {
-          return t('saved')
+          return ''
         }
 
         return t('savedAt', {

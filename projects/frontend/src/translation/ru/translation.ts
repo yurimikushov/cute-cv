@@ -17,7 +17,6 @@ const ru: TranslationT = {
     preview: 'Посмотреть',
     edit: 'Редактировать',
     savedAt: 'Сохранено {{savedAt}} назад',
-    saved: 'Сохранено',
     notSaved: 'Не сохранено',
   },
   toolbar: {

@@ -15,7 +15,6 @@ type TranslationT = {
     preview: string
     edit: string
     savedAt: string
-    saved: string
     notSaved: string
   }
   toolbar: {
