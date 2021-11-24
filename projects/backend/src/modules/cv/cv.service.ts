@@ -11,6 +11,12 @@ export class CVService {
   }
 
   async updateCV(uid: string, cv: CV) {
-    return await this.cvRepository.updateCV(uid, cv)
+    await this.cvRepository.updateCV(uid, cv)
+
+    const { updated: savedAt } = await this.cvRepository.getMetadata(uid)
+
+    return {
+      savedAt,
+    } as const
   }
 }

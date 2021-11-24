@@ -42,7 +42,7 @@ export class CVRepository {
   }
 
   async updateCV(uid: string, cv: CV) {
-    await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       const sender = new Stream.PassThrough()
       sender.write(JSON.stringify(cv))
       sender.end()
@@ -57,15 +57,15 @@ export class CVRepository {
         .on('finish', resolve)
         .on('error', reject)
     })
+  }
 
-    const [{ updated: savedAt }] = await this.storage
+  async getMetadata(uid: string) {
+    const [metadata] = await this.storage
       .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
       .file(this.getFileName(uid))
       .getMetadata()
 
-    return {
-      savedAt,
-    } as const
+    return metadata
   }
 
   private getFileName(uid: string) {
