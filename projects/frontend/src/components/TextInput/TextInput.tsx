@@ -45,7 +45,8 @@ const TextInput: FC<TextInputPropsT> = ({
         'border border-solid border-gray-200',
         'placeholder-black placeholder-opacity-50',
         'focus:outline-none focus:shadow-sm',
-        'disabled:placeholder-opacity-100 disabled:bg-white disabled:border-0'
+        'disabled:placeholder-opacity-100 disabled:bg-white disabled:border-0',
+        `${disabled ? 'cursor-text' : ''}`
       )}
       type='text'
       disabled={disabled}
