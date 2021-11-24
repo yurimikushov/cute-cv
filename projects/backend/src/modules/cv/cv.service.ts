@@ -6,12 +6,12 @@ import { CVRepository } from './cv.repository'
 export class CVService {
   constructor(private cvRepository: CVRepository) {}
 
-  async getCV(uid: string) {
-    return await this.cvRepository.readCV(uid)
+  async get(uid: string) {
+    return await this.cvRepository.read(uid)
   }
 
-  async updateCV(uid: string, cv: CV) {
-    await this.cvRepository.updateCV(uid, cv)
+  async update(uid: string, cv: CV) {
+    await this.cvRepository.update(uid, cv)
 
     const { updated: savedAt } = await this.cvRepository.getMetadata(uid)
 

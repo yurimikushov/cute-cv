@@ -16,7 +16,7 @@ export class CVRepository {
     this.storage = getStorage(this.firebaseApp)
   }
 
-  async readCV(uid: string): Promise<CV | null> {
+  async read(uid: string): Promise<CV | null> {
     const [isCvExists] = await this.storage
       .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
       .file(this.getFileName(uid))
@@ -41,7 +41,7 @@ export class CVRepository {
     })
   }
 
-  async updateCV(uid: string, cv: CV) {
+  async update(uid: string, cv: CV) {
     return new Promise((resolve, reject) => {
       const sender = new Stream.PassThrough()
       sender.write(JSON.stringify(cv))

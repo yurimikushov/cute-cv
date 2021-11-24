@@ -9,11 +9,11 @@ export class CVController {
 
   @Get()
   async findOne(@Req() req: Request) {
-    return await this.cvService.getCV(req.user.uid)
+    return await this.cvService.get(req.user.uid)
   }
 
   @Put()
   async update(@Req() req: Request, @Body() updateCvDto: UpdateCvDto) {
-    return await this.cvService.updateCV(req.user.uid, updateCvDto)
+    return await this.cvService.update(req.user.uid, updateCvDto)
   }
 }
