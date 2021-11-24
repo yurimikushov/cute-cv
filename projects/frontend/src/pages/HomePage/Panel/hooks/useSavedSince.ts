@@ -3,19 +3,19 @@ import { useTranslation } from 'react-i18next'
 import isNull from 'lodash/isNull'
 import { LanguageEnum } from 'translation'
 import timeSince from 'lib/timeSince'
-import { useIsCVSaved } from 'services/cv'
+import { useMetadata } from 'services/cv'
 
 const UPDATE_TIMING = 5_000
 
 const useSavedSince = () => {
   const { t, i18n } = useTranslation('translation', { keyPrefix: 'panel' })
-  const { isCVSaved, savedAt } = useIsCVSaved()
+  const { isSaved, savedAt } = useMetadata()
   const [savedSince, setSavedSince] = useState('')
 
   useEffect(() => {
     const handleSetSavedSince = () => {
       setSavedSince(() => {
-        if (!isCVSaved) {
+        if (!isSaved) {
           return t('notSaved')
         }
 
@@ -36,7 +36,7 @@ const useSavedSince = () => {
     return () => {
       clearInterval(intervalId)
     }
-  }, [isCVSaved, savedAt, i18n.language])
+  }, [isSaved, savedAt, i18n.language])
 
   return savedSince
 }

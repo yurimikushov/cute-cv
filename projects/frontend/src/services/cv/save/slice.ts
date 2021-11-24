@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from 'services'
-import { FailPayloadT, SavingStateT } from './model'
+import { SaveStateT, FailPayloadT } from './model'
 
-const initialState: SavingStateT = {
-  isSaved: true,
-  savedAt: null,
+const initialState: SaveStateT = {
+  isSaving: false,
   error: null,
 }
 
@@ -13,15 +12,14 @@ const { actions, reducer } = createSlice({
   initialState,
   reducers: {
     begin: (state) => {
-      state.isSaved = false
-      state.savedAt = null
+      state.isSaving = true
+      state.error = null
     },
     success: (state) => {
-      state.isSaved = true
-      state.savedAt = new Date()
+      state.isSaving = false
     },
     fail: (state, { payload }: PayloadAction<FailPayloadT>) => {
-      state.isSaved = false
+      state.isSaving = false
       state.error = payload.error
     },
   },

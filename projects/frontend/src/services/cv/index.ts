@@ -3,7 +3,7 @@ export { useConnectCV } from './hooks'
 export { useDownload, CV_CONTAINER_ID } from './download'
 export { useEditable } from './editable'
 export { useIsCVLoading } from './load'
-export { useIsCVSaved } from './save'
+export { useMetadata } from './metadata'
 export type { CV } from './content'
 export {
   useCV,

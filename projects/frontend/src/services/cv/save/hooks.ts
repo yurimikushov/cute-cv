@@ -1,21 +1,10 @@
 import { useEffect, useCallback, useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import debounce from 'lodash/debounce'
 import { save } from 'api/cv'
 import { useIsSignedIn } from 'services/auth'
 import { useIsCVLoading, useCV, CV } from 'services/cv'
-import { selectIsSaved, selectSavedAt } from './selectors'
 import { begin, success, fail } from './slice'
-
-const useIsCVSaved = () => {
-  const isCVSaved = useSelector(selectIsSaved)
-  const savedAt = useSelector(selectSavedAt)
-
-  return {
-    isCVSaved,
-    savedAt,
-  }
-}
 
 const AUTO_SAVE_TIMING = 1_000
 
@@ -79,4 +68,4 @@ const useSaveCV = () => {
   }, [cv])
 }
 
-export { useIsCVSaved, useSaveCV }
+export { useSaveCV }
