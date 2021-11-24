@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectIsSaved, selectSavedAt } from './selectors'
-import { update } from './slice'
-import { UpdatePayloadT } from './model'
+import { saved, unsaved } from './slice'
+import { SavedPayloadT } from './model'
 
 const useMetadata = () => {
   const isSaved = useSelector(selectIsSaved)
@@ -10,14 +10,19 @@ const useMetadata = () => {
 
   const dispatch = useDispatch()
 
-  const handleUpdate = useCallback((payload: UpdatePayloadT) => {
-    dispatch(update(payload))
+  const handleMarkAsSaved = useCallback((payload: SavedPayloadT) => {
+    dispatch(saved(payload))
+  }, [])
+
+  const handleMarkAsUnsaved = useCallback(() => {
+    dispatch(unsaved())
   }, [])
 
   return {
     isSaved,
     savedAt,
-    handleUpdate,
+    handleMarkAsSaved,
+    handleMarkAsUnsaved,
   }
 }
 

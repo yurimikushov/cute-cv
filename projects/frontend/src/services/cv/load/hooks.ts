@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import isNull from 'lodash/isNull'
 import { load } from 'api/cv'
 import { useIsSignedIn } from 'services/auth'
+import { useMetadata } from '../metadata'
 import {
   useFullName,
   usePosition,
@@ -52,6 +53,7 @@ const useLoadCV = () => {
     handleSuccess: success,
     handleFail: fail,
   } = useIsCVLoading()
+  const { handleMarkAsSaved: markAsSaved } = useMetadata()
   const { handlePreset: presetFullName } = useFullName()
   const { handlePreset: presetPosition } = usePosition()
   const { handlePreset: presetAvatar } = useAvatar()
@@ -73,11 +75,15 @@ const useLoadCV = () => {
       const either = await load()
 
       either
-        .mapRight((cv) => {
-          if (isNull(cv)) {
+        .mapRight((data) => {
+          if (isNull(data)) {
             success()
             return
           }
+
+          const { metadata, content: cv } = data
+
+          markAsSaved({ savedAt: new Date(metadata.savedAt) })
 
           presetFullName({ fullName: cv.fullName })
           presetPosition({ position: cv.position })

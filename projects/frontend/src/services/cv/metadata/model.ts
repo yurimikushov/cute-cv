@@ -3,9 +3,12 @@ type MetadataStateT = {
   savedAt: Date | null
 }
 
-type UpdatePayloadT = {
-  isSaved: boolean
+type SavedPayloadT = {
   savedAt: Date | null
 }
 
-export type { MetadataStateT, UpdatePayloadT }
+type MetadataT = {
+  savedAt: Date | null
+}
+
+export type { MetadataStateT, SavedPayloadT, MetadataT }
