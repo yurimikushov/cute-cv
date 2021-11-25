@@ -3,6 +3,7 @@ import cn from 'classnames'
 import noop from 'lodash/noop'
 import { CloseButton } from 'components/Button'
 import CardPropsT from './Card.props'
+import './Card.css'
 
 const Card: FC<CardPropsT> = ({
   className,
@@ -13,20 +14,11 @@ const Card: FC<CardPropsT> = ({
   ...props
 }) => (
   <div
-    className={cn(
-      className,
-      'relative',
-      'bg-white rounded-md',
-      `${withBorder ? 'p-2' : ''}`,
-      `${withBorder ? 'border border-solid border-gray-200' : ''}`,
-      `${withBorder ? 'hover:shadow-sm' : ''}`
-    )}
+    className={cn(className, 'card', { 'card--with-border': withBorder })}
     {...props}
   >
     {children}
-    {hasClose && (
-      <CloseButton className='absolute top-2 right-1.5' onClick={onClose} />
-    )}
+    {hasClose && <CloseButton className='card__close' onClick={onClose} />}
   </div>
 )
 

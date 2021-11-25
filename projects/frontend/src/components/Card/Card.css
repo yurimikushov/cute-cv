@@ -1,0 +1,15 @@
+.card {
+  @apply relative bg-white rounded-md;
+}
+
+.card--with-border {
+  @apply p-2 border border-solid border-gray-200;
+}
+
+.card--with-border:hover {
+  @apply shadow-sm;
+}
+
+.card__close {
+  @apply absolute top-2 right-1.5;
+}
