@@ -1,0 +1,35 @@
+.text-input {
+  @apply px-1 pt-1 pb-0.5;
+  @apply max-w-full rounded;
+  @apply bg-white text-black leading-tight;
+  @apply border border-solid border-gray-200;
+  @apply placeholder-black placeholder-opacity-50;
+}
+
+.text-input:focus {
+  @apply outline-none shadow-sm;
+}
+
+.text-input--disabled {
+  @apply p-0 bg-white border-0 placeholder-opacity-100 cursor-text;
+}
+
+.text-input--size-sm {
+  @apply text-sm;
+}
+
+.text-input--size-md {
+  @apply text-md;
+}
+
+.text-input--size-lg {
+  @apply text-lg;
+}
+
+.text-input--size-xl {
+  @apply text-xl;
+}
+
+.text-input--size-2xl {
+  @apply text-2xl;
+}

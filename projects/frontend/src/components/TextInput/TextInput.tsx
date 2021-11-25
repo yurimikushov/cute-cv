@@ -11,6 +11,7 @@ import cn from 'classnames'
 import isNil from 'lodash/isNil'
 import trim from 'lodash/trim'
 import TextInputPropsT from './TextInput.props'
+import './TextInput.css'
 
 const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
   { className, disabled, size = 'md', value, onChange, ...props },
@@ -38,22 +39,14 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
     <input
       {...props}
       ref={inputRef}
-      className={cn(
-        className,
-        `${disabled ? '' : 'px-1 pt-1 pb-0.5'}`,
-        'max-w-full rounded',
-        'bg-white text-black leading-tight',
-        size === 'sm' ? 'text-sm' : '',
-        size === 'md' ? 'text-md' : '',
-        size === 'lg' ? 'text-lg' : '',
-        size === 'xl' ? 'text-xl' : '',
-        size === '2xl' ? 'text-2xl' : '',
-        'border border-solid border-gray-200',
-        'placeholder-black placeholder-opacity-50',
-        'focus:outline-none focus:shadow-sm',
-        'disabled:placeholder-opacity-100 disabled:bg-white disabled:border-0',
-        `${disabled ? 'cursor-text' : ''}`
-      )}
+      className={cn(className, 'text-input', {
+        'text-input--disabled': disabled,
+        'text-input--size-sm': size === 'sm',
+        'text-input--size-md': size === 'md',
+        'text-input--size-lg': size === 'lg',
+        'text-input--size-xl': size === 'xl',
+        'text-input--size-2xl': size === '2xl',
+      })}
       type='text'
       disabled={disabled}
       value={disabled ? trim(value) : value}
