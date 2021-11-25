@@ -5,6 +5,7 @@ import isEmpty from 'lodash/isEmpty'
 import trim from 'lodash/trim'
 import mdToJsx from 'lib/mdToJsx'
 import TextAreaPropsT from './TextArea.props'
+import './TextArea.css'
 
 const TextArea: FC<TextAreaPropsT> = ({
   className,
@@ -33,7 +34,7 @@ const TextArea: FC<TextAreaPropsT> = ({
   // Should use `div` element coz `html2pdf.js` package can't correctly convert `textarea` content
   if (disabled) {
     return (
-      <div className='max-w-full bg-white text-black whitespace-pre-line'>
+      <div className={cn(className, 'text-area text-area--disabled')}>
         {mdToJsx(isEmpty(value) ? placeholder ?? '' : trim(value))}
       </div>
     )
@@ -43,15 +44,7 @@ const TextArea: FC<TextAreaPropsT> = ({
     <textarea
       {...props}
       ref={textAreaRef}
-      className={cn(
-        className,
-        'px-1 pt-1.5 pb-2 max-w-full rounded',
-        'bg-white text-black  leading-tight',
-        'border border-solid border-gray-200',
-        'resize-none overflow-hidden',
-        'placeholder-black placeholder-opacity-50',
-        'focus:outline-none focus:shadow-sm'
-      )}
+      className={cn(className, 'text-area')}
       value={value}
       placeholder={placeholder}
       rows={2}
