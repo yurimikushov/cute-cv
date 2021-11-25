@@ -1,19 +1,25 @@
-import { FC, useRef, useState, useLayoutEffect, ChangeEvent } from 'react'
+import {
+  ForwardRefRenderFunction,
+  forwardRef,
+  useRef,
+  useState,
+  useLayoutEffect,
+  useImperativeHandle,
+  ChangeEvent,
+} from 'react'
 import cn from 'classnames'
 import isNil from 'lodash/isNil'
 import trim from 'lodash/trim'
 import TextInputPropsT from './TextInput.props'
 
-const TextInput: FC<TextInputPropsT> = ({
-  className,
-  disabled,
-  size = 'md',
-  value,
-  onChange,
-  ...props
-}) => {
+const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
+  { className, disabled, size = 'md', value, onChange, ...props },
+  externalRef
+) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [inputWidth, setInputWidth] = useState('auto')
+
+  useImperativeHandle(externalRef, () => inputRef.current as HTMLInputElement)
 
   useLayoutEffect(() => {
     if (isNil(inputRef.current)) {
@@ -57,4 +63,4 @@ const TextInput: FC<TextInputPropsT> = ({
   )
 }
 
-export default TextInput
+export default forwardRef(TextInput)
