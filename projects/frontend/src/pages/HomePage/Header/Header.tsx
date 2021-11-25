@@ -1,17 +1,29 @@
-import { FC } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useIsSignedIn } from 'services/auth'
 import { useEditable, useFullName, usePosition } from 'services/cv'
 import TextInput from 'components/TextInput'
 
 const Header: FC = () => {
   const { t } = useTranslation()
+  const { isSignedIn } = useIsSignedIn()
   const { editable } = useEditable()
   const { fullName, handleChange: handleFullNameChange } = useFullName()
   const { position, handleChange: handlePositionChange } = usePosition()
+  const fullNameRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (!isSignedIn) {
+      return
+    }
+
+    fullNameRef.current?.focus()
+  }, [isSignedIn])
 
   return (
     <header>
       <TextInput
+        ref={fullNameRef}
         className='block font-bold'
         size='2xl'
         disabled={!editable}
