@@ -1,0 +1,35 @@
+.avatar-picker {
+  @apply relative h-22 w-22;
+}
+
+.avatar-picker__img {
+  @apply h-full w-full rounded-full;
+}
+
+.avatar-picker__pick {
+  @apply absolute top-0 left-0;
+  @apply h-full w-full rounded-full text-xl text-gray-300 outline-none;
+  @apply transform scale-0 transition-transform duration-200 ease-out;
+  @apply focus-visible:scale-100 focus-visible:bg-white focus-visible:opacity-90 focus-visible:shadow-sm;
+}
+
+.avatar-picker:hover .avatar-picker__pick {
+  @apply scale-100 bg-white opacity-90;
+}
+
+.avatar-picker__clear {
+  @apply absolute top-0 right-1;
+  @apply h-5 w-5 leading-5 rounded-full;
+  @apply bg-white;
+  @apply outline-none shadow-xs;
+  @apply transform scale-0 transition-transform duration-200 ease-out;
+  @apply focus-visible:scale-100 focus-visible:shadow-sm;
+}
+
+.avatar-picker:hover .avatar-picker__clear {
+  @apply scale-100;
+}
+
+.avatar-picker__clear-icon {
+  @apply h-3 text-gray-300;
+}
