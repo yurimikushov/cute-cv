@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   purge: ['./src/**/*.{ts,tsx}', './public/index.html'],
   important: '.app',
@@ -57,5 +60,19 @@ module.exports = {
       opacity: ['focus-visible'],
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        '.childs-mt-1 > * + * ': {
+          'margin-top': '0.25rem',
+        },
+        '.childs-mt-2 > * + * ': {
+          'margin-top': '0.5rem',
+        },
+        '.childs-mt-4 > * + * ': {
+          'margin-top': '1rem',
+        },
+      })
+    }),
+  ],
 }
