@@ -1,0 +1,3 @@
+.cv-layout {
+  @apply grid grid-cols-cv grid-rows-cv gap-10;
+}
