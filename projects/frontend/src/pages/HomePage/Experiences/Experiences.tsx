@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 import { useEditable, useExperiences } from 'services/cv'
-import H from 'components/H'
+import { H1 } from 'components/H'
 import Button from 'components/Button'
 import Experience from './Experience'
 import ExperiencesPropsT from './Experiences.props'
@@ -30,7 +30,7 @@ const Experiences: FC<ExperiencesPropsT> = ({ className, ...props }) => {
 
   return (
     <div className={cn(className, 'childs-mt-4')} {...props}>
-      <H tag='1'>{t('title')}</H>
+      <H1>{t('title')}</H1>
       {map(
         experiences,
         ({ id, position, company, duration, description }, i) => (

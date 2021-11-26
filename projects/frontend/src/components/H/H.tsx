@@ -32,3 +32,4 @@ const H: FC<HPropsT> = ({ tag, children, ...props }) => {
 }
 
 export default H
+export { H1, H2 }

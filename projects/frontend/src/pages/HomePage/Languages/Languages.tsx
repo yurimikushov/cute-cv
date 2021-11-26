@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 import { useEditable, useLanguages } from 'services/cv'
-import H from 'components/H'
+import { H2 } from 'components/H'
 import Button from 'components/Button'
 import Language from './Language'
 import LanguagesPropsT from './Languages.props'
@@ -22,7 +22,7 @@ const Languages: FC<LanguagesPropsT> = ({ className, ...props }) => {
 
   return (
     <div className={cn(className, 'childs-mt-2')} {...props}>
-      <H tag='2'>{t('title')}</H>
+      <H2>{t('title')}</H2>
       {map(languages, ({ id, language }) => (
         <Language
           key={id}

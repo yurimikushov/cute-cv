@@ -2,7 +2,7 @@ import { FC } from 'react'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { useEditable, useTechnologies } from 'services/cv'
-import H from 'components/H'
+import { H2 } from 'components/H'
 import TextArea from 'components/TextArea'
 import TechnologiesPropsT from './Technologies.props'
 
@@ -13,7 +13,7 @@ const Technologies: FC<TechnologiesPropsT> = ({ className, ...props }) => {
 
   return (
     <div className={cn(className, 'childs-mt-2')} {...props}>
-      <H tag='2'>{t('title')}</H>
+      <H2>{t('title')}</H2>
       <TextArea
         className='text-sm'
         disabled={!editable}
