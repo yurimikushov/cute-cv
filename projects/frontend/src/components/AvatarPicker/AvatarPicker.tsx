@@ -1,5 +1,6 @@
 import { FC, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import isNull from 'lodash/isNull'
 import isNil from 'lodash/isNil'
 import isEmpty from 'lodash/isEmpty'
@@ -8,7 +9,73 @@ import fileToBase64 from 'lib/fileToBase64'
 import { ReactComponent as CloseIcon } from 'icons/close.svg'
 import placeholderSrc from './assets/placeholder.png'
 import AvatarPickerPropsT from './AvatarPicker.props'
-import './AvatarPicker.css'
+
+const Wrapper = styled.div`
+  position: relative;
+  height: 5.5rem;
+  width: 5.5rem;
+`
+
+const Img = styled.img`
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+`
+
+const PickBtn = styled.button`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  font-size: 1.7rem;
+  color: #73808d;
+  background-color: #fff;
+  outline: none;
+  border-radius: 50%;
+  box-shadow: 0 0 4px 0 #c7c7c7;
+  transform: scale(0);
+  transition-property: transform;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+
+  ${Wrapper}:hover &,
+  &:focus-visible {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+`
+
+const ClearBtn = styled.button`
+  position: absolute;
+  top: 0px;
+  right: 0.25rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  border-radius: 50%;
+  line-height: 1.25rem;
+  background-color: #fff;
+  box-shadow: 0 0 4px 0 #c7c7c7;
+  outline: none;
+  transform: scale(0);
+  transition-property: transform;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+
+  ${Wrapper}:hover &,
+  &:focus-visible {
+    transform: scale(1);
+  }
+`
+
+const CloseSvg = styled(CloseIcon)`
+  height: 0.75rem;
+  color: #73808d;
+`
+
+const HiddenInput = styled.input`
+  display: none;
+`
 
 const ACCEPT_FORMATS = ['.png', '.jpg', '.jpeg'].join(',')
 
@@ -62,40 +129,26 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({
   }
 
   return (
-    <div className='avatar-picker'>
-      <img
-        className='avatar-picker__img'
-        src={isEmpty(src) ? placeholderSrc : src}
-        alt={t('img.alt')}
-      />
+    <Wrapper>
+      <Img src={isEmpty(src) ? placeholderSrc : src} alt={t('img.alt')} />
       {editable && (
         <>
-          <button
+          <PickBtn
             ref={openFileDialogButtonRef}
-            className='avatar-picker__pick'
             type='button'
             onClick={handleOpenFileDialog}
           >
             +
-          </button>
+          </PickBtn>
           {!isEmpty(src) && (
-            <button
-              className='avatar-picker__clear'
-              type='button'
-              onClick={handleClear}
-            >
-              <CloseIcon className='avatar-picker__clear-icon' />
-            </button>
+            <ClearBtn type='button' onClick={handleClear}>
+              <CloseSvg />
+            </ClearBtn>
           )}
-          <input
-            ref={fileInputRef}
-            className='hidden'
-            type='file'
-            accept={ACCEPT_FORMATS}
-          />
+          <HiddenInput ref={fileInputRef} type='file' accept={ACCEPT_FORMATS} />
         </>
       )}
-    </div>
+    </Wrapper>
   )
 }
 
