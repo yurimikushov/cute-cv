@@ -61,7 +61,7 @@ const watchSignInStateChange = (
     return null
   }
 
-  const unsubscribe = auth.onAuthStateChanged(async (user) => {
+  const unsubscribe = auth.onIdTokenChanged(async (user) => {
     if (isNull(user)) {
       cb(null)
       return
