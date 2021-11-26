@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import styled from 'styled-components'
 import cn from 'classnames'
 import ButtonPropsT from './Button.props'
 

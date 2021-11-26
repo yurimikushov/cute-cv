@@ -1,25 +1,24 @@
 import { FC } from 'react'
-import cn from 'classnames'
+import styled from 'styled-components'
 import { ReactComponent as CloseIcon } from 'icons/close.svg'
 import CloseButtonPropsT from './CloseButton.props'
 
-const CloseButton: FC<CloseButtonPropsT> = ({
-  className,
-  onClick,
-  ...props
-}) => (
-  <button
-    {...props}
-    className={cn(
-      className,
-      'w-3.5 h-3.5',
-      'text-gray-200 hover:text-gray-300 cursor-pointer'
-    )}
-    type='button'
-    onClick={onClick}
-  >
+const StyledCloseButton = styled.button`
+  width: 0.875rem;
+  height: 0.875rem;
+  color: #adadad;
+  cursor: pointer;
+
+  &:hover {
+    color: #73808d;
+  }
+`
+
+const CloseButton: FC<CloseButtonPropsT> = (props) => (
+  // @ts-expect-error bad typing
+  <StyledCloseButton {...props} type='button'>
     <CloseIcon />
-  </button>
+  </StyledCloseButton>
 )
 
 export default CloseButton
