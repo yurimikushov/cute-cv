@@ -1,5 +1,9 @@
-import { FC } from 'react'
+import styled from 'styled-components'
 
-const Divider: FC = () => <div className='w-full h-px bg-gray-100' />
+const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: #c7c7c7;
+`
 
 export default Divider
