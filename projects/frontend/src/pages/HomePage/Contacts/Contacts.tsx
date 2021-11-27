@@ -1,6 +1,6 @@
 import { FC, useLayoutEffect } from 'react'
-import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 import { useEditable, useContacts } from 'services/cv'
@@ -9,7 +9,18 @@ import Button from 'components/Button'
 import Contact from './Contact'
 import ContactsPropsT from './Contacts.props'
 
-const Contacts: FC<ContactsPropsT> = ({ className, ...props }) => {
+const Container = styled.div`
+  & > * + * {
+    margin-top: 0.5rem;
+  }
+`
+
+const Add = styled(Button)`
+  display: block;
+  margin: 0.5rem auto 0;
+`
+
+const Contacts: FC<ContactsPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'contacts' })
   const { editable } = useEditable()
   const {
@@ -27,7 +38,7 @@ const Contacts: FC<ContactsPropsT> = ({ className, ...props }) => {
   }, [isEmpty(contacts)])
 
   return (
-    <div className={cn(className, 'childs-mt-2')} {...props}>
+    <Container {...props}>
       <H2>{t('title')}</H2>
       {map(contacts, ({ id, text, href }) => (
         <Contact
@@ -39,12 +50,8 @@ const Contacts: FC<ContactsPropsT> = ({ className, ...props }) => {
           onDelete={() => handleDelete({ id })}
         />
       ))}
-      {editable && (
-        <Button className='block mx-auto mt-2' onClick={handleAdd}>
-          Add
-        </Button>
-      )}
-    </div>
+      {editable && <Add onClick={handleAdd}>Add</Add>}
+    </Container>
   )
 }
 

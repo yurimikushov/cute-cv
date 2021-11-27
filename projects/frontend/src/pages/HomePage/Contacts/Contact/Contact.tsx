@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import { useEditable } from 'services/cv'
 import Card from 'components/Card'
 import Href from 'components/Href'
@@ -8,13 +8,38 @@ import TextInput from 'components/TextInput'
 import { CloseButton } from 'components/Button'
 import ContactPropsT from './Contact.props'
 
+const Container = styled(Card)`
+  position: relative;
+  padding: 0.375rem;
+
+  & > * + * {
+    margin-top: 0.25rem;
+  }
+`
+
+const Text = styled(TextInput)`
+  display: block;
+  min-width: 100%;
+`
+
+const Reference = styled(TextInput)`
+  display: block;
+  min-width: 100%;
+`
+
+const Close = styled(CloseButton)`
+  position: absolute;
+  top: 0.375rem;
+  right: 0.625rem;
+`
+
 const Contact: FC<ContactPropsT> = ({
-  className,
   text,
   href,
   onTextChange,
   onHrefChange,
   onDelete,
+  ...props
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'contacts' })
   const { editable } = useEditable()
@@ -24,28 +49,21 @@ const Contact: FC<ContactPropsT> = ({
   }
 
   return (
-    <Card className={cn(className, 'relative p-1.5 childs-mt-1')}>
-      <TextInput
-        className='block min-w-full'
+    <Container {...props}>
+      <Text
         disabled={!editable}
         value={text}
         placeholder={t('text.placeholder')}
         onChange={onTextChange}
       />
-      <TextInput
-        className='block min-w-full'
+      <Reference
         disabled={!editable}
         value={href}
         placeholder={t('reference.placeholder')}
         onChange={onHrefChange}
       />
-      {editable && (
-        <CloseButton
-          className='absolute top-1.5 right-2.5'
-          onClick={onDelete}
-        />
-      )}
-    </Card>
+      {editable && <Close onClick={onDelete} />}
+    </Container>
   )
 }
 
