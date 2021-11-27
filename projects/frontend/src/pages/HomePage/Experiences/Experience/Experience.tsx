@@ -1,14 +1,40 @@
 import { FC } from 'react'
-import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import { useEditable } from 'services/cv'
 import Card from 'components/Card'
 import TextInput from 'components/TextInput'
 import ExperiencePropsT from './Experience.props'
 import TextArea from 'components/TextArea'
 
+const Container = styled(Card)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+`
+
+const Position = styled(TextInput)`
+  display: block;
+  font-weight: bold;
+`
+
+const Company = styled(TextInput)`
+  display: block;
+`
+
+const Duration = styled(TextInput)`
+  display: block;
+  color: #73808d;
+`
+
+const Description = styled(TextArea)`
+  display: block;
+  min-width: 100%;
+  font-size: 0.9rem;
+`
+
 const Experience: FC<ExperiencePropsT> = ({
-  className,
   position,
   company,
   duration,
@@ -18,48 +44,46 @@ const Experience: FC<ExperiencePropsT> = ({
   onDurationChange,
   onDescriptionChange,
   onDelete,
+  ...props
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'experience' })
   const { editable } = useEditable()
 
   return (
-    <Card
-      className={cn(className, 'flex flex-col gap-2 items-start')}
+    <Container
+      {...props}
       withBorder={editable}
       hasClose={editable}
       onClose={onDelete}
     >
-      <TextInput
-        className='block font-bold'
+      <Position
         size='md'
         disabled={!editable}
         value={position}
         placeholder={t('position.placeholder')}
         onChange={onPositionChange}
       />
-      <TextInput
-        className='block'
+      <Company
+        size='md'
         disabled={!editable}
         value={company}
         placeholder={t('company.placeholder')}
         onChange={onCompanyChange}
       />
-      <TextInput
-        className='block text-gray-300'
+      <Duration
         size='sm'
         disabled={!editable}
         value={duration}
         placeholder={t('duration.placeholder')}
         onChange={onDurationChange}
       />
-      <TextArea
-        className='block min-w-full text-sm'
+      <Description
         disabled={!editable}
         value={description}
         placeholder={t('description.placeholder')}
         onChange={onDescriptionChange}
       />
-    </Card>
+    </Container>
   )
 }
 

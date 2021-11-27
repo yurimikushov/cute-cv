@@ -1,6 +1,6 @@
 import { FC, useLayoutEffect } from 'react'
-import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 import { useEditable, useExperiences } from 'services/cv'
@@ -9,7 +9,18 @@ import Button from 'components/Button'
 import Experience from './Experience'
 import ExperiencesPropsT from './Experiences.props'
 
-const Experiences: FC<ExperiencesPropsT> = ({ className, ...props }) => {
+const Container = styled.div`
+  & > * + * {
+    margin-top: 1rem;
+  }
+`
+
+const Add = styled(Button)`
+  display: block;
+  margin: 0.5rem auto 0;
+`
+
+const Experiences: FC<ExperiencesPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'experience' })
   const { editable } = useEditable()
   const {
@@ -29,7 +40,7 @@ const Experiences: FC<ExperiencesPropsT> = ({ className, ...props }) => {
   }, [isEmpty(experiences)])
 
   return (
-    <div className={cn(className, 'childs-mt-4')} {...props}>
+    <Container {...props}>
       <H1>{t('title')}</H1>
       {map(
         experiences,
@@ -54,12 +65,8 @@ const Experiences: FC<ExperiencesPropsT> = ({ className, ...props }) => {
           />
         )
       )}
-      {editable && (
-        <Button className='block mx-auto mt-2' onClick={handleAdd}>
-          Add
-        </Button>
-      )}
-    </div>
+      {editable && <Add onClick={handleAdd}>Add</Add>}
+    </Container>
   )
 }
 

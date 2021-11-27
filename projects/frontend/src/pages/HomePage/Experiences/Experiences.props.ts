@@ -1,5 +1,5 @@
-import { HTMLProps } from 'react'
-
-type ExperiencesPropsT = HTMLProps<HTMLDivElement>
+type ExperiencesPropsT = {
+  className?: string
+}
 
 export default ExperiencesPropsT
