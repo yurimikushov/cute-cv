@@ -1,5 +1,5 @@
-import { HTMLProps } from 'react'
-
-type TechnologiesPropsT = HTMLProps<HTMLDivElement>
+type TechnologiesPropsT = {
+  className?: string
+}
 
 export default TechnologiesPropsT
