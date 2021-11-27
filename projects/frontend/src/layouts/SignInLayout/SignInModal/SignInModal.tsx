@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import cn from 'classnames'
+import styled from 'styled-components'
 import {
   useSignInGitHub,
   useSignInFacebook,
@@ -13,23 +13,37 @@ import { ReactComponent as GitHubIcon } from 'icons/github.svg'
 import SignInButton from './SignInButton'
 import SignInModalPropsT from './SignInModal.props'
 
-const SignInModal: FC<SignInModalPropsT> = ({ className }) => {
+const StyledModal = styled(Modal)`
+  padding: 5rem 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+`
+
+const Title = styled.h1`
+  font-size: 2rem;
+  color: #000;
+`
+
+const Container = styled.div`
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`
+
+const SignInModal: FC<SignInModalPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'signIn' })
   const { handleSignInGoogle } = useSignInGoogle()
   const { handleSignInFacebook } = useSignInFacebook()
   const { handleSignInGitHub } = useSignInGitHub()
 
   return (
-    <Modal
-      className={cn(
-        className,
-        'py-20 px-24',
-        'flex flex-col justify-center items-center',
-        'rounded-md'
-      )}
-    >
-      <h1 className='block text-2xl text-black'>{t('greeting')}</h1>
-      <div className='mt-14 flex flex-col gap-3'>
+    <StyledModal {...props}>
+      <Title>{t('greeting')}</Title>
+      <Container>
         <SignInButton icon={<GoogleIcon />} onClick={handleSignInGoogle}>
           {t('google.title')}
         </SignInButton>
@@ -39,8 +53,8 @@ const SignInModal: FC<SignInModalPropsT> = ({ className }) => {
         <SignInButton icon={<GitHubIcon />} onClick={handleSignInGitHub}>
           {t('github.title')}
         </SignInButton>
-      </div>
-    </Modal>
+      </Container>
+    </StyledModal>
   )
 }
 export default SignInModal

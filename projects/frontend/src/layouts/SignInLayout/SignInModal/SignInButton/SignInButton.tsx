@@ -1,26 +1,35 @@
 import { FC, cloneElement } from 'react'
-import cn from 'classnames'
+import styled from 'styled-components'
 import Button from 'components/Button'
 import SignInButtonPropsT from './SignInButton.props'
 
+const StyledButton = styled(Button)`
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-width: 1px;
+  border-radius: 5px;
+`
+
+const Icon = styled(({ children, ...props }) => cloneElement(children, props))`
+  width: 1.75rem;
+  height: 1.75rem;
+`
+
+const Title = styled.span`
+  white-space: nowrap;
+`
+
 const SignInButton: FC<SignInButtonPropsT> = ({
-  className,
   icon,
-  children,
-  onClick,
+  children: title,
+  ...props
 }) => (
-  <Button
-    className={cn(
-      className,
-      'py-2 px-4',
-      'flex items-center gap-3',
-      'border rounded-md'
-    )}
-    onClick={onClick}
-  >
-    {cloneElement(icon, { className: 'w-7 h-7' })}
-    <span className='whitespace-nowrap'>{children}</span>
-  </Button>
+  <StyledButton {...props}>
+    <Icon>{icon}</Icon>
+    <Title>{title}</Title>
+  </StyledButton>
 )
 
 export default SignInButton
