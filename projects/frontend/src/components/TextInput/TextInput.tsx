@@ -7,14 +7,54 @@ import {
   useImperativeHandle,
   ChangeEvent,
 } from 'react'
-import cn from 'classnames'
+import styled from 'styled-components'
 import isNil from 'lodash/isNil'
 import trim from 'lodash/trim'
 import TextInputPropsT from './TextInput.props'
-import './TextInput.css'
+
+const StyledTextInput = styled.input<TextInputPropsT>`
+  padding: 0.25rem 0.25rem 0.125rem;
+  max-width: 100%;
+  background-color: #fff;
+  color: #000;
+  line-height: 1.25;
+  border: 1px solid #adadad;
+  border-radius: 3px;
+
+  &::placeholder {
+    color: black;
+    opacity: 0.5;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 4px 0 #c7c7c7;
+  }
+
+  ${({ disabled }) =>
+    (disabled &&
+      `
+    padding: 0;
+    border: none;
+    cursor: text;
+
+    &::placeholder {
+      opacity: 1;
+    }
+  `) ||
+    ''}
+
+  ${({ size }) => `
+    ${(size === 'sm' && 'font-size: 0.9rem;') || ''}
+    ${(size === 'md' && 'font-size: 1rem;') || ''}
+    ${(size === 'lg' && 'font-size: 1.15rem;') || ''}
+    ${(size === 'xl' && 'font-size: 1.7rem;') || ''}
+    ${(size === '2xl' && 'font-size: 2rem;') || ''}
+  `}
+`
 
 const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
-  { className, disabled, size = 'md', value, onChange, ...props },
+  { disabled, size = 'md', value, onChange, ...props },
   externalRef
 ) => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -36,18 +76,12 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
   }
 
   return (
-    <input
+    // @ts-expect-error bad typing
+    <StyledTextInput
       {...props}
       ref={inputRef}
-      className={cn(className, 'text-input', {
-        'text-input--disabled': disabled,
-        'text-input--size-sm': size === 'sm',
-        'text-input--size-md': size === 'md',
-        'text-input--size-lg': size === 'lg',
-        'text-input--size-xl': size === 'xl',
-        'text-input--size-2xl': size === '2xl',
-      })}
       type='text'
+      size={size}
       disabled={disabled}
       value={disabled ? trim(value) : value}
       style={{ width: inputWidth, maxWidth: '100%' }}
