@@ -3,6 +3,7 @@ import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { useEditable } from 'services/cv'
 import Card from 'components/Card'
+import Href from 'components/Href'
 import TextInput from 'components/TextInput'
 import { CloseButton } from 'components/Button'
 import ContactPropsT from './Contact.props'
@@ -19,16 +20,7 @@ const Contact: FC<ContactPropsT> = ({
   const { editable } = useEditable()
 
   if (!editable) {
-    return (
-      <a
-        className='block text-gray-300 hover:text-black leading-5'
-        href={href || '/'}
-        rel='noreferrer'
-        target='_blank'
-      >
-        {text || 'Contact'}
-      </a>
-    )
+    return <Href href={href || '/'}>{text || 'Contact'}</Href>
   }
 
   return (
