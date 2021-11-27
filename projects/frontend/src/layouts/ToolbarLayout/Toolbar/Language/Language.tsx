@@ -8,11 +8,11 @@ import LanguagePropsT from './Language.props'
 
 const AVAILABLE_LANGUAGES = map(LanguageEnum)
 
-const Language: FC<LanguagePropsT> = ({ className }) => {
+const Language: FC<LanguagePropsT> = (props) => {
   const { t, i18n } = useTranslation('translation', { keyPrefix: 'toolbar' })
 
   return (
-    <div className={className}>
+    <div {...props}>
       <H2>{t('language.title')}</H2>
       <Radio
         activeOption={i18n.language}

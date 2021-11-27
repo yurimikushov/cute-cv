@@ -1,24 +1,30 @@
 import { FC } from 'react'
-import cn from 'classnames'
+import styled from 'styled-components'
 import Divider from 'components/Divider'
 import Download from './Download'
 import Language from './Language'
 import SignOut from './SignOut'
 import ToolbarPropsT from './Toolbar.props'
 
-const Toolbar: FC<ToolbarPropsT> = ({ className }) => (
-  <div
-    className={cn(
-      className,
-      'mt-6 py-1 px-2 w-24 childs-mt-2',
-      'rounded border-2 border-gray-200'
-    )}
-  >
+const ToolbarContainer = styled.div`
+  margin-top: 1.5rem;
+  padding: 0.25rem 0.5rem;
+  width: 6rem;
+  border-radius: 3px;
+  border: 2px solid #adadad;
+
+  & > * + * {
+    margin-top: 0.5rem;
+  }
+`
+
+const Toolbar: FC<ToolbarPropsT> = (props) => (
+  <ToolbarContainer {...props}>
     <Download />
     <Language />
     <Divider />
     <SignOut />
-  </div>
+  </ToolbarContainer>
 )
 
 export default Toolbar

@@ -1,5 +1,5 @@
-import { HTMLProps } from 'react'
-
-type ToolbarPropsT = HTMLProps<HTMLDivElement>
+type ToolbarPropsT = {
+  className?: string
+}
 
 export default ToolbarPropsT
