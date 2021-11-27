@@ -1,6 +1,6 @@
 import { FC, useLayoutEffect } from 'react'
-import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 import { useEditable, useEducations } from 'services/cv'
@@ -9,7 +9,18 @@ import Button from 'components/Button'
 import Education from './Education'
 import EducationsPropsT from './Educations.props'
 
-const Educations: FC<EducationsPropsT> = ({ className, ...props }) => {
+const Container = styled.div`
+  & > * + * {
+    margin-top: 1rem;
+  }
+`
+
+const Add = styled(Button)`
+  display: block;
+  margin: 0.5rem auto 0;
+`
+
+const Educations: FC<EducationsPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'education' })
   const { editable } = useEditable()
   const {
@@ -28,7 +39,7 @@ const Educations: FC<EducationsPropsT> = ({ className, ...props }) => {
   }, [isEmpty(educations)])
 
   return (
-    <div className={cn(className, 'childs-mt-4')} {...props}>
+    <Container {...props}>
       <H1>{t('title')}</H1>
       {map(educations, ({ id, degree, university, duration }, i) => (
         <Education
@@ -46,12 +57,8 @@ const Educations: FC<EducationsPropsT> = ({ className, ...props }) => {
           onDelete={() => handleDelete({ id })}
         />
       ))}
-      {editable && (
-        <Button className='block mx-auto mt-2' onClick={handleAdd}>
-          Add
-        </Button>
-      )}
-    </div>
+      {editable && <Add onClick={handleAdd}>Add</Add>}
+    </Container>
   )
 }
 
