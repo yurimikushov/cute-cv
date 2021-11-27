@@ -15,6 +15,21 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: #e5e5e5;
+    line-height: 1.25;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  button {
+    background: none;
+    border: none;
+  }
+
+  a {
+    text-decoration: none;
   }
 `
 
