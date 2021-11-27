@@ -1,5 +1,5 @@
-import { HTMLProps } from 'react'
-
-type PanelPropsT = HTMLProps<HTMLDivElement>
+type PanelPropsT = {
+  className?: string
+}
 
 export default PanelPropsT
