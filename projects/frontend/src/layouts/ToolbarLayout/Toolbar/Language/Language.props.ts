@@ -1,5 +1,5 @@
-import { HTMLProps } from 'react'
-
-type LanguagePropsT = HTMLProps<HTMLDivElement>
+type LanguagePropsT = {
+  className?: string
+}
 
 export default LanguagePropsT

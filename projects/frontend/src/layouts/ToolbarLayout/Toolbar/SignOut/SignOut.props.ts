@@ -1,5 +1,5 @@
-import { HTMLProps } from 'react'
-
-type DownloadPropsT = HTMLProps<HTMLDivElement>
+type DownloadPropsT = {
+  className?: string
+}
 
 export default DownloadPropsT
