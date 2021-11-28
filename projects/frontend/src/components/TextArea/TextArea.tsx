@@ -4,6 +4,7 @@ import isNil from 'lodash/isNil'
 import trim from 'lodash/trim'
 import mdToJsx from 'lib/mdToJsx'
 import colors from 'styles/colors'
+import shadows from 'styles/shadows'
 import TextAreaPropsT from './TextArea.props'
 
 const BaseTextAreaMixin = css`
@@ -27,7 +28,7 @@ const EditableTextArea = styled.textarea`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 4px 0 ${colors.gray100};
+    box-shadow: ${shadows.sm};
   }
 `
 

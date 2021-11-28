@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import noop from 'lodash/noop'
 import { CloseButton } from 'components/Button'
 import colors from 'styles/colors'
+import shadows from 'styles/shadows'
 import CardPropsT from './Card.props'
 
 const Container = styled.div<CardPropsT>`
@@ -15,7 +16,7 @@ const Container = styled.div<CardPropsT>`
   padding: 0.5rem;
   border: 1px solid ${colors.gray200};
   &:hover {
-    box-shadow: 0 0 4px 0 ${colors.gray100};
+    box-shadow: ${shadows.sm};
   }
   `}
 `

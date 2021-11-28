@@ -12,6 +12,7 @@ import isNil from 'lodash/isNil'
 import trim from 'lodash/trim'
 import colors from 'styles/colors'
 import fonts from 'styles/fonts'
+import shadows from 'styles/shadows'
 import TextInputPropsT from './TextInput.props'
 
 const BaseTextInputMixin = css<Pick<TextInputPropsT, 'size'>>`
@@ -41,7 +42,7 @@ const EditableTextInput = styled.input`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 4px 0 ${colors.gray100};
+    box-shadow: ${shadows.sm};
   }
 `
 

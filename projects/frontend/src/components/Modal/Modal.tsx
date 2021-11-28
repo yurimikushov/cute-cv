@@ -2,6 +2,7 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import Portal from 'components/Portal'
 import colors from 'styles/colors'
+import shadows from 'styles/shadows'
 import ModalPropsT from './Modal.props'
 
 const PortalWrapper = styled(Portal)`
@@ -18,7 +19,7 @@ const PortalWrapper = styled(Portal)`
 
 const Content = styled.div`
   background-color: ${colors.white};
-  box-shadow: 0 0 2px 0 ${colors.gray50};
+  box-shadow: ${shadows.xs};
 `
 
 const Modal: FC<ModalPropsT> = ({ children, ...props }) => (
