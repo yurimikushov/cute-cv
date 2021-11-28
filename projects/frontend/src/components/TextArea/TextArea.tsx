@@ -63,7 +63,6 @@ const TextArea: FC<TextAreaPropsT> = ({
   // Should use `div` element coz `html2pdf.js` package can't correctly convert `textarea` content
   if (disabled) {
     return (
-      // @ts-expect-error bad typing
       <DisabledTextArea {...props}>
         {mdToJsx(isEmpty(value) ? placeholder ?? '' : trim(value))}
       </DisabledTextArea>
@@ -71,7 +70,6 @@ const TextArea: FC<TextAreaPropsT> = ({
   }
 
   return (
-    // @ts-expect-error bad typing
     <EditableTextArea
       {...props}
       ref={textAreaRef}
