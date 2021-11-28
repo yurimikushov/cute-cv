@@ -1,13 +1,14 @@
 import { FC, KeyboardEvent } from 'react'
 import styled from 'styled-components'
+import colors from 'styles/colors'
 import RadioItemPropsT from './RadioItem.props'
 
 const Label = styled.label<RadioItemPropsT>`
-  color: ${({ isActive }) => (isActive ? '#000' : '#73808d')};
+  color: ${({ isActive }) => (isActive ? colors.black : colors.gray300)};
   ${({ isActive }) => !isActive && 'cursor: pointer;'}
 
   &:hover {
-    ${({ isActive }) => !isActive && 'color: #000;'}
+    ${({ isActive }) => !isActive && `color: ${colors.black};`}
   }
 `
 

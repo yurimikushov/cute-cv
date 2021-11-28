@@ -7,6 +7,7 @@ import isEmpty from 'lodash/isEmpty'
 import first from 'lodash/first'
 import fileToBase64 from 'lib/fileToBase64'
 import { ReactComponent as CloseIcon } from 'icons/close.svg'
+import colors from 'styles/colors'
 import placeholderSrc from './assets/placeholder.png'
 import AvatarPickerPropsT from './AvatarPicker.props'
 
@@ -29,11 +30,11 @@ const PickBtn = styled.button`
   height: 100%;
   width: 100%;
   font-size: 1.7rem;
-  color: #73808d;
-  background-color: #fff;
+  color: ${colors.gray300};
+  background-color: ${colors.white};
   outline: none;
   border-radius: 50%;
-  box-shadow: 0 0 4px 0 #c7c7c7;
+  box-shadow: 0 0 4px 0 ${colors.gray100};
   transform: scale(0);
   transition-property: transform;
   transition-duration: 200ms;
@@ -54,8 +55,8 @@ const ClearBtn = styled.button`
   width: 1.25rem;
   border-radius: 50%;
   line-height: 1.25rem;
-  background-color: #fff;
-  box-shadow: 0 0 4px 0 #c7c7c7;
+  background-color: ${colors.white};
+  box-shadow: 0 0 4px 0 ${colors.gray100};
   outline: none;
   transform: scale(0);
   transition-property: transform;
@@ -70,7 +71,7 @@ const ClearBtn = styled.button`
 
 const CloseSvg = styled(CloseIcon)`
   height: 0.75rem;
-  color: #73808d;
+  color: ${colors.gray300};
 `
 
 const HiddenInput = styled.input`

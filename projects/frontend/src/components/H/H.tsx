@@ -1,9 +1,10 @@
 import { FC } from 'react'
 import styled, { css } from 'styled-components'
+import colors from 'styles/colors'
 import HPropsT from './H.props'
 
 const HMixin = css`
-  color: #73808d;
+  color: ${colors.gray300};
   letter-spacing: 0.025em;
 `
 

@@ -10,12 +10,13 @@ import {
 import styled, { css } from 'styled-components'
 import isNil from 'lodash/isNil'
 import trim from 'lodash/trim'
+import colors from 'styles/colors'
 import TextInputPropsT from './TextInput.props'
 
 const BaseTextInputMixin = css<Pick<TextInputPropsT, 'size'>>`
   max-width: 100%;
-  background-color: #fff;
-  color: #000;
+  background-color: ${colors.white};
+  color: ${colors.black};
 
   ${({ size }) => `
     ${(size === 'sm' && 'font-size: 0.9rem;') || ''}
@@ -29,7 +30,7 @@ const BaseTextInputMixin = css<Pick<TextInputPropsT, 'size'>>`
 const EditableTextInput = styled.input`
   ${BaseTextInputMixin}
   padding: 0.25rem 0.25rem 0.125rem;
-  border: 1px solid #adadad;
+  border: 1px solid ${colors.gray200};
   border-radius: 3px;
 
   &::placeholder {
@@ -39,7 +40,7 @@ const EditableTextInput = styled.input`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 4px 0 #c7c7c7;
+    box-shadow: 0 0 4px 0 ${colors.gray100};
   }
 `
 

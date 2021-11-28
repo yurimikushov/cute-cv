@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useEditable } from 'services/cv'
 import Button from 'components/Button'
+import colors from 'styles/colors'
 import { useSavedSince } from './hooks'
 import PanelPropsT from './Panel.props'
 
@@ -12,7 +13,7 @@ const Container = styled.div`
 `
 
 const SavedSince = styled.div`
-  color: #73808d;
+  color: ${colors.gray300};
 `
 
 const Panel: FC<PanelPropsT> = (props) => {

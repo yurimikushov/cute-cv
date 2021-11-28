@@ -10,6 +10,7 @@ import Modal from 'components/Modal'
 import { ReactComponent as GoogleIcon } from 'icons/google.svg'
 import { ReactComponent as FacebookIcon } from 'icons/facebook.svg'
 import { ReactComponent as GitHubIcon } from 'icons/github.svg'
+import colors from 'styles/colors'
 import SignInButton from './SignInButton'
 import SignInModalPropsT from './SignInModal.props'
 
@@ -24,7 +25,7 @@ const StyledModal = styled(Modal)`
 
 const Title = styled.h1`
   font-size: 2rem;
-  color: #000;
+  color: ${colors.black};
 `
 
 const Container = styled.div`

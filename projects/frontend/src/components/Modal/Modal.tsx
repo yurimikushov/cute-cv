@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import Portal from 'components/Portal'
+import colors from 'styles/colors'
 import ModalPropsT from './Modal.props'
 
 const PortalWrapper = styled(Portal)`
@@ -12,12 +13,12 @@ const PortalWrapper = styled(Portal)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e5e5e5e6;
+  background-color: ${colors.overlay};
 `
 
 const Content = styled.div`
-  background-color: #fff;
-  box-shadow: 0 0 2px 0 #e5e5e5;
+  background-color: ${colors.white};
+  box-shadow: 0 0 2px 0 ${colors.gray50};
 `
 
 const Modal: FC<ModalPropsT> = ({ children, ...props }) => (

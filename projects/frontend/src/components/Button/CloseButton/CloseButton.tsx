@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import { ReactComponent as CloseIcon } from 'icons/close.svg'
+import colors from 'styles/colors'
 import CloseButtonPropsT from './CloseButton.props'
 
 const CloseButton: FC<CloseButtonPropsT> = styled.button.attrs({
@@ -9,11 +10,11 @@ const CloseButton: FC<CloseButtonPropsT> = styled.button.attrs({
 })`
   width: 0.875rem;
   height: 0.875rem;
-  color: #adadad;
+  color: ${colors.gray200};
   cursor: pointer;
 
   &:hover {
-    color: #73808d;
+    color: ${colors.gray300};
   }
 `
 

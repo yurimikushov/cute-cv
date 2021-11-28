@@ -4,8 +4,9 @@ import styled from 'styled-components'
 import { useEditable } from 'services/cv'
 import Card from 'components/Card'
 import TextInput from 'components/TextInput'
-import ExperiencePropsT from './Experience.props'
 import TextArea from 'components/TextArea'
+import colors from 'styles/colors'
+import ExperiencePropsT from './Experience.props'
 
 const Container = styled(Card)`
   display: flex;
@@ -25,7 +26,7 @@ const Company = styled(TextInput)`
 
 const Duration = styled(TextInput)`
   display: block;
-  color: #73808d;
+  color: ${colors.gray300};
 `
 
 const Description = styled(TextArea)`

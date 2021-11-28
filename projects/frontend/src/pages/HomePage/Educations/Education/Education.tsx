@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { useEditable } from 'services/cv'
 import Card from 'components/Card'
 import TextInput from 'components/TextInput'
+import colors from 'styles/colors'
 import EducationPropsT from './Education.props'
 
 const Container = styled(Card)`
@@ -24,7 +25,7 @@ const University = styled(TextInput)`
 
 const Duration = styled(TextInput)`
   display: block;
-  color: #73808d;
+  color: ${colors.gray300};
 `
 
 const Education: FC<EducationPropsT> = ({

@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import Divider from 'components/Divider'
+import colors from 'styles/colors'
 import Download from './Download'
 import Language from './Language'
 import SignOut from './SignOut'
@@ -11,7 +12,7 @@ const ToolbarContainer = styled.div`
   padding: 0.25rem 0.5rem;
   width: 6rem;
   border-radius: 3px;
-  border: 2px solid #adadad;
+  border: 2px solid ${colors.gray200};
 
   & > * + * {
     margin-top: 0.5rem;

@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
+import colors from 'styles/colors'
 import Loader from '../Loader'
 import FullScreenPropsT from './FullScreen.props'
 
@@ -15,7 +16,7 @@ const FullScreen: FC<FullScreenPropsT> = styled.div.attrs({
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: ${colors.white};
   opacity: 0.95;
 `
 

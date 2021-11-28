@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
+import colors from 'styles/colors'
 import ButtonPropsT from './Button.props'
 
 const Button: FC<ButtonPropsT> = styled.button.attrs(
@@ -10,12 +11,12 @@ const Button: FC<ButtonPropsT> = styled.button.attrs(
 )`
   ${({ withPaddings }) => (withPaddings ? 'padding-left: 0.5rem;' : '')}
   ${({ withPaddings }) => (withPaddings ? 'padding-right: 0.5rem;' : '')}
-  color: #73808d;
+  color: ${colors.gray300};
   line-height: 1.25rem;
   cursor: pointer;
 
   &:hover {
-    color: #000;
+    color: ${colors.black};
   }
 `
 

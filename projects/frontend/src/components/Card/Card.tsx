@@ -2,19 +2,20 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import noop from 'lodash/noop'
 import { CloseButton } from 'components/Button'
+import colors from 'styles/colors'
 import CardPropsT from './Card.props'
 
 const Container = styled.div<CardPropsT>`
   position: relative;
-  background-color: #fff;
+  background-color: ${colors.white};
   border-radius: 5px;
   ${({ withBorder }) =>
     withBorder &&
     `
   padding: 0.5rem;
-  border: 1px solid #adadad;
+  border: 1px solid ${colors.gray200};
   &:hover {
-    box-shadow: 0 0 4px 0 #c7c7c7;
+    box-shadow: 0 0 4px 0 ${colors.gray100};
   }
   `}
 `

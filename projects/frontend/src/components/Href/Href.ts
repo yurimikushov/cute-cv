@@ -1,14 +1,15 @@
 import styled from 'styled-components'
+import colors from 'styles/colors'
 
 const Href = styled.a.attrs({
   rel: 'noreferrer',
   target: '_blank',
 })`
   display: block;
-  color: #73808d;
+  color: ${colors.gray300};
 
   &:hover {
-    color: #000;
+    color: ${colors.black};
   }
 `
 

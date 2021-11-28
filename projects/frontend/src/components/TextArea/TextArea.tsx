@@ -3,30 +3,31 @@ import styled, { css } from 'styled-components'
 import isNil from 'lodash/isNil'
 import trim from 'lodash/trim'
 import mdToJsx from 'lib/mdToJsx'
+import colors from 'styles/colors'
 import TextAreaPropsT from './TextArea.props'
 
 const BaseTextAreaMixin = css`
   max-width: 100%;
-  background-color: #fff;
-  color: #000;
+  background-color: ${colors.white};
+  color: ${colors.black};
 `
 
 const EditableTextArea = styled.textarea`
   ${BaseTextAreaMixin}
   padding: 0.25rem 0.375rem 0.5rem;
   border-radius: 3px;
-  border: 1px solid #adadad;
+  border: 1px solid ${colors.gray200};
   resize: none;
   overflow: hidden;
 
   &::placeholder {
-    color: #000;
+    color: ${colors.black};
     opacity: 0.5;
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 4px 0 #c7c7c7;
+    box-shadow: 0 0 4px 0 ${colors.gray100};
   }
 `
 
