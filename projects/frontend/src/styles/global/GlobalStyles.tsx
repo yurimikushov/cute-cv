@@ -10,6 +10,14 @@ const GlobalStyles = createGlobalStyle`
   body {
     background-color: ${colors.gray50};
   }
+
+  a {
+    color: ${colors.gray300};
+
+    &:hover {
+      color: ${colors.black};
+    }
+  }
 `
 
 export default GlobalStyles
