@@ -1,24 +1,22 @@
 import { FC } from 'react'
-import cn from 'classnames'
+import styled from 'styled-components'
 import ButtonPropsT from './Button.props'
 
-const Button: FC<ButtonPropsT> = ({
-  className,
-  withPaddings = true,
-  children,
-  ...props
-}) => (
-  <button
-    {...props}
-    className={cn(
-      className,
-      `${withPaddings ? 'px-2' : ''}`,
-      'text-gray-300 hover:text-black leading-5 cursor-pointer'
-    )}
-    type='button'
-  >
-    {children}
-  </button>
-)
+const Button: FC<ButtonPropsT> = styled.button.attrs(
+  ({ withPaddings = true }: ButtonPropsT) => ({
+    type: 'button',
+    withPaddings,
+  })
+)`
+  ${({ withPaddings }) => (withPaddings ? 'padding-left: 0.5rem;' : '')}
+  ${({ withPaddings }) => (withPaddings ? 'padding-right: 0.5rem;' : '')}
+  color: #73808d;
+  line-height: 1.25rem;
+  cursor: pointer;
+
+  &:hover {
+    color: #000;
+  }
+`
 
 export default Button

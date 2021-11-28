@@ -1,6 +1,9 @@
 import { HTMLProps } from 'react'
 
-type ButtonPropsT = HTMLProps<HTMLButtonElement> & {
+type ButtonPropsT = Pick<
+  HTMLProps<HTMLButtonElement>,
+  'className' | 'children' | 'onClick'
+> & {
   withPaddings?: boolean
 }
 

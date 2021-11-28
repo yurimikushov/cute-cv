@@ -1,5 +1,5 @@
-import { HTMLProps } from 'react'
-
-type CVLayoutPropsT = HTMLProps<HTMLDivElement>
+type CVLayoutPropsT = {
+  className?: string
+}
 
 export default CVLayoutPropsT

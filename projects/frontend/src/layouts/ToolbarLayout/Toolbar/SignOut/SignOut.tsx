@@ -4,12 +4,12 @@ import { useSignOut } from 'services/auth'
 import Button from 'components/Button'
 import SignOutPropsT from './SignOut.props'
 
-const SignOut: FC<SignOutPropsT> = ({ className }) => {
+const SignOut: FC<SignOutPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'toolbar' })
   const { handleSignOut } = useSignOut()
 
   return (
-    <div className={className}>
+    <div {...props}>
       <Button withPaddings={false} onClick={handleSignOut}>
         {t('signOut')}
       </Button>

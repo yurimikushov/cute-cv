@@ -1,27 +1,34 @@
 import { FC } from 'react'
-import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import { useEditable, useTechnologies } from 'services/cv'
-import H from 'components/H'
+import { H2 } from 'components/H'
 import TextArea from 'components/TextArea'
 import TechnologiesPropsT from './Technologies.props'
 
-const Technologies: FC<TechnologiesPropsT> = ({ className, ...props }) => {
+const Container = styled.div`
+  & > * + * {
+    margin-top: 0.5rem;
+  }
+`
+
+const Description = styled(TextArea)``
+
+const Technologies: FC<TechnologiesPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'technologies' })
   const { editable } = useEditable()
   const { technologies, handleChange } = useTechnologies()
 
   return (
-    <div className={cn(className, 'childs-mt-2')} {...props}>
-      <H tag='2'>{t('title')}</H>
-      <TextArea
-        className='text-sm'
+    <Container {...props}>
+      <H2>{t('title')}</H2>
+      <Description
         disabled={!editable}
         value={technologies}
         placeholder={t('placeholder')}
         onChange={(technologies) => handleChange({ technologies })}
       />
-    </div>
+    </Container>
   )
 }
 

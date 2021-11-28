@@ -1,5 +1,5 @@
-import { HTMLProps } from 'react'
-
-type ModalPropsT = HTMLProps<HTMLDivElement>
+type ModalPropsT = {
+  className?: string
+}
 
 export default ModalPropsT

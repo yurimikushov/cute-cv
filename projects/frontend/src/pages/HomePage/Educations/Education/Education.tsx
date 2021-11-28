@@ -1,13 +1,33 @@
 import { FC } from 'react'
-import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import { useEditable } from 'services/cv'
 import Card from 'components/Card'
 import TextInput from 'components/TextInput'
 import EducationPropsT from './Education.props'
 
+const Container = styled(Card)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+`
+
+const Degree = styled(TextInput)`
+  display: block;
+  font-weight: bold;
+`
+
+const University = styled(TextInput)`
+  display: block;
+`
+
+const Duration = styled(TextInput)`
+  display: block;
+  color: #73808d;
+`
+
 const Education: FC<EducationPropsT> = ({
-  className,
   degree,
   university,
   duration,
@@ -15,41 +35,40 @@ const Education: FC<EducationPropsT> = ({
   onUniversityChange,
   onDurationChange,
   onDelete,
+  ...props
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'education' })
   const { editable } = useEditable()
 
   return (
-    <Card
-      className={cn(className, 'flex flex-col gap-2 items-start')}
+    <Container
+      {...props}
       withBorder={editable}
       hasClose={editable}
       onClose={onDelete}
     >
-      <TextInput
-        className='block font-bold'
+      <Degree
         size='md'
         disabled={!editable}
         value={degree}
         placeholder={t('degree.placeholder')}
         onChange={onDegreeChange}
       />
-      <TextInput
-        className='block'
+      <University
+        size='md'
         disabled={!editable}
         value={university}
         placeholder={t('university.placeholder')}
         onChange={onUniversityChange}
       />
-      <TextInput
-        className='block text-gray-300'
+      <Duration
         size='sm'
         disabled={!editable}
         value={duration}
         placeholder={t('duration.placeholder')}
         onChange={onDurationChange}
       />
-    </Card>
+    </Container>
   )
 }
 

@@ -1,23 +1,32 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import cn from 'classnames'
+import styled from 'styled-components'
 import { useEditable } from 'services/cv'
-import { useSavedSince } from './hooks'
 import Button from 'components/Button'
+import { useSavedSince } from './hooks'
 import PanelPropsT from './Panel.props'
 
-const Panel: FC<PanelPropsT> = ({ className }) => {
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const SavedSince = styled.div`
+  color: #73808d;
+`
+
+const Panel: FC<PanelPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'panel' })
   const { editable, handleToggle } = useEditable()
   const savedSince = useSavedSince()
 
   return (
-    <div className={cn(className, 'flex justify-between')}>
-      <div className='text-gray-300'>{savedSince}</div>
+    <Container {...props}>
+      <SavedSince>{savedSince}</SavedSince>
       <Button onClick={handleToggle}>
         {editable ? t('preview') : t('edit')}
       </Button>
-    </div>
+    </Container>
   )
 }
 

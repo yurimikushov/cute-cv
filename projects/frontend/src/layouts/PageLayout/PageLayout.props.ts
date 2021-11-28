@@ -1,5 +1,5 @@
-import { HTMLProps } from 'react'
-
-type PageLayoutPropsT = HTMLProps<HTMLDivElement>
+type PageLayoutPropsT = {
+  className?: string
+}
 
 export default PageLayoutPropsT

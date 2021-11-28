@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import styled from 'styled-components'
 import SignInLayout from 'layouts/SignInLayout'
 import ToolbarLayout from 'layouts/ToolbarLayout'
 import PageLayout from 'layouts/PageLayout'
@@ -13,27 +14,55 @@ import Contacts from './Contacts'
 import Technologies from './Technologies'
 import Languages from './Languages'
 
+const StyledToolbarLayout = styled(ToolbarLayout)`
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: center;
+`
+
+const StyledPanel = styled(Panel)`
+  padding: 1rem;
+`
+
+const CV = styled(CVLayout)`
+  padding: 3rem;
+  margin-top: -2.75rem;
+`
+
+const Main = styled.main`
+  & > * + * {
+    margin-top: 1.5rem;
+  }
+`
+
+const Aside = styled.aside`
+  & > * + * {
+    margin-top: 1rem;
+  }
+`
+
 const HomePage: FC = () => (
   <SignInLayout>
-    <ToolbarLayout className='my-5 flex justify-center'>
+    <StyledToolbarLayout>
       <PageLayout>
-        <Panel className='p-4' />
-        <CVLayout className='p-12 -mt-11'>
+        <StyledPanel />
+        <CV>
           <Header />
           <Avatar />
-          <main className='childs-mt-4'>
+          <Main>
             <AboutMe />
             <Experiences />
             <Educations />
-          </main>
-          <aside className='childs-mt-4'>
+          </Main>
+          <Aside>
             <Contacts />
             <Technologies />
             <Languages />
-          </aside>
-        </CVLayout>
+          </Aside>
+        </CV>
       </PageLayout>
-    </ToolbarLayout>
+    </StyledToolbarLayout>
   </SignInLayout>
 )
 

@@ -1,15 +1,26 @@
 import { FC, useLayoutEffect } from 'react'
-import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 import { useEditable, useLanguages } from 'services/cv'
-import H from 'components/H'
+import { H2 } from 'components/H'
 import Button from 'components/Button'
 import Language from './Language'
 import LanguagesPropsT from './Languages.props'
 
-const Languages: FC<LanguagesPropsT> = ({ className, ...props }) => {
+const Container = styled.div`
+  & > * + * {
+    margin-top: 0.5rem;
+  }
+`
+
+const Add = styled(Button)`
+  display: block;
+  margin: 0.5rem auto 0;
+`
+
+const Languages: FC<LanguagesPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'languages' })
   const { editable } = useEditable()
   const { languages, handleAdd, handleChange, handleDelete } = useLanguages()
@@ -21,8 +32,8 @@ const Languages: FC<LanguagesPropsT> = ({ className, ...props }) => {
   }, [isEmpty(languages)])
 
   return (
-    <div className={cn(className, 'childs-mt-2')} {...props}>
-      <H tag='2'>{t('title')}</H>
+    <Container {...props}>
+      <H2>{t('title')}</H2>
       {map(languages, ({ id, language }) => (
         <Language
           key={id}
@@ -31,12 +42,8 @@ const Languages: FC<LanguagesPropsT> = ({ className, ...props }) => {
           onDelete={() => handleDelete({ id })}
         />
       ))}
-      {editable && (
-        <Button className='block mx-auto mt-2' onClick={handleAdd}>
-          Add
-        </Button>
-      )}
-    </div>
+      {editable && <Add onClick={handleAdd}>Add</Add>}
+    </Container>
   )
 }
 

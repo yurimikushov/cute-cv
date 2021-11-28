@@ -1,16 +1,21 @@
 import { FC } from 'react'
-import cn from 'classnames'
+import styled from 'styled-components'
 import map from 'lodash/map'
 import RadioItem from './RadioItem'
 import RadioPropsT from './Radio.props'
 
+const RadioContainer = styled.div`
+  display: flex;
+  gap: 0.375rem;
+`
+
 const Radio: FC<RadioPropsT> = ({
-  className,
   activeOption,
   options,
   onChange,
+  ...props
 }) => (
-  <div className={cn(className, 'flex gap-1.5')}>
+  <RadioContainer {...props}>
     {map(options, (option) => (
       <RadioItem
         key={option}
@@ -19,7 +24,7 @@ const Radio: FC<RadioPropsT> = ({
         onChange={onChange}
       />
     ))}
-  </div>
+  </RadioContainer>
 )
 
 export default Radio

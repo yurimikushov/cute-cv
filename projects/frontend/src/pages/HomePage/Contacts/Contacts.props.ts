@@ -1,5 +1,5 @@
-import { HTMLProps } from 'react'
-
-type ContactsPropsT = HTMLProps<HTMLDivElement>
+type ContactsPropsT = {
+  className?: string
+}
 
 export default ContactsPropsT

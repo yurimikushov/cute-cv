@@ -1,6 +1,5 @@
-import { HTMLProps } from 'react'
-
-type RadioItemPropsT = Omit<HTMLProps<HTMLLabelElement>, 'onChange'> & {
+type RadioItemPropsT = {
+  className?: string
   isActive: boolean
   option: string
   onChange: (option: string) => void
