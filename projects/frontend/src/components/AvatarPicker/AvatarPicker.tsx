@@ -9,6 +9,7 @@ import fileToBase64 from 'lib/fileToBase64'
 import { ReactComponent as CloseIcon } from 'icons/close.svg'
 import colors from 'styles/colors'
 import fonts from 'styles/fonts'
+import radiuses from 'styles/radiuses'
 import shadows from 'styles/shadows'
 import placeholderSrc from './assets/placeholder.png'
 import AvatarPickerPropsT from './AvatarPicker.props'
@@ -22,7 +23,7 @@ const Container = styled.div`
 const Img = styled.img`
   height: 100%;
   width: 100%;
-  border-radius: 50%;
+  border-radius: ${radiuses.full};
 `
 
 const PickBtn = styled.button`
@@ -35,7 +36,7 @@ const PickBtn = styled.button`
   color: ${colors.gray300};
   background-color: ${colors.white};
   outline: none;
-  border-radius: 50%;
+  border-radius: ${radiuses.full};
   box-shadow: ${shadows.sm};
   transform: scale(0);
   transition-property: transform;
@@ -55,7 +56,7 @@ const ClearBtn = styled.button`
   right: 0.25rem;
   height: 1.25rem;
   width: 1.25rem;
-  border-radius: 50%;
+  border-radius: ${radiuses.full};
   line-height: 1.25rem;
   background-color: ${colors.white};
   box-shadow: ${shadows.sm};

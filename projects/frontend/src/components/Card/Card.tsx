@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import noop from 'lodash/noop'
 import { CloseButton } from 'components/Button'
 import colors from 'styles/colors'
+import radiuses from 'styles/radiuses'
 import shadows from 'styles/shadows'
 import CardPropsT from './Card.props'
 
 const Container = styled.div<CardPropsT>`
   position: relative;
   background-color: ${colors.white};
-  border-radius: 5px;
+  border-radius: ${radiuses.md};
   ${({ withBorder }) =>
     withBorder &&
     `

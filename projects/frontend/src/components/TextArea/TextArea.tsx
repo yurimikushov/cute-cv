@@ -4,6 +4,7 @@ import isNil from 'lodash/isNil'
 import trim from 'lodash/trim'
 import mdToJsx from 'lib/mdToJsx'
 import colors from 'styles/colors'
+import radiuses from 'styles/radiuses'
 import shadows from 'styles/shadows'
 import TextAreaPropsT from './TextArea.props'
 
@@ -16,7 +17,7 @@ const BaseTextAreaMixin = css`
 const EditableTextArea = styled.textarea`
   ${BaseTextAreaMixin}
   padding: 0.25rem 0.375rem 0.5rem;
-  border-radius: 3px;
+  border-radius: ${radiuses.sm};
   border: 1px solid ${colors.gray200};
   resize: none;
   overflow: hidden;

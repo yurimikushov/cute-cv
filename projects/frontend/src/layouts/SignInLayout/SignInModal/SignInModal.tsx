@@ -12,6 +12,7 @@ import { ReactComponent as FacebookIcon } from 'icons/facebook.svg'
 import { ReactComponent as GitHubIcon } from 'icons/github.svg'
 import colors from 'styles/colors'
 import fonts from 'styles/fonts'
+import radiuses from 'styles/radiuses'
 import SignInButton from './SignInButton'
 import SignInModalPropsT from './SignInModal.props'
 
@@ -21,7 +22,7 @@ const StyledModal = styled(Modal)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
+  border-radius: ${radiuses.md};
 `
 
 const Title = styled.h1`

@@ -1,6 +1,7 @@
 import { FC, cloneElement } from 'react'
 import styled from 'styled-components'
 import Button from 'components/Button'
+import radiuses from 'styles/radiuses'
 import SignInButtonPropsT from './SignInButton.props'
 
 const StyledButton = styled(Button)`
@@ -9,7 +10,7 @@ const StyledButton = styled(Button)`
   align-items: center;
   gap: 0.75rem;
   border-width: 1px;
-  border-radius: 5px;
+  border-radius: ${radiuses.md};
 `
 
 const Icon = styled(({ children, ...props }) => cloneElement(children, props))`

@@ -12,6 +12,7 @@ import isNil from 'lodash/isNil'
 import trim from 'lodash/trim'
 import colors from 'styles/colors'
 import fonts from 'styles/fonts'
+import radiuses from 'styles/radiuses'
 import shadows from 'styles/shadows'
 import TextInputPropsT from './TextInput.props'
 
@@ -33,7 +34,7 @@ const EditableTextInput = styled.input`
   ${BaseTextInputMixin}
   padding: 0.25rem 0.25rem 0.125rem;
   border: 1px solid ${colors.gray200};
-  border-radius: 3px;
+  border-radius: ${radiuses.sm};
 
   &::placeholder {
     color: black;
