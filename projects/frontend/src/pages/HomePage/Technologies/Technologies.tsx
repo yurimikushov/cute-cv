@@ -12,9 +12,7 @@ const Container = styled.div`
   }
 `
 
-const Description = styled(TextArea)`
-  font-size: 0.9rem;
-`
+const Description = styled(TextArea)``
 
 const Technologies: FC<TechnologiesPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'technologies' })

@@ -31,7 +31,6 @@ const Duration = styled(TextInput)`
 const Description = styled(TextArea)`
   display: block;
   min-width: 100%;
-  font-size: 0.9rem;
 `
 
 const Experience: FC<ExperiencePropsT> = ({
