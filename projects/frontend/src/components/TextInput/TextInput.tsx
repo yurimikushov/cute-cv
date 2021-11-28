@@ -43,7 +43,7 @@ const EditableTextInput = styled.input`
   }
 `
 
-// Should use `div` element coz `html2pdf.js` package can't correctly convert `textarea` content
+// Should use `div` element coz `html2pdf.js` package can't correctly convert `input` content
 // But should do it correctly: on the old app ver input content renders correctly
 // Should find bug and fix it
 const DisabledTextInput = styled.div`
