@@ -1,7 +1,6 @@
 import { FC, useRef, useState, useLayoutEffect, ChangeEvent } from 'react'
 import styled, { css } from 'styled-components'
 import isNil from 'lodash/isNil'
-import isEmpty from 'lodash/isEmpty'
 import trim from 'lodash/trim'
 import mdToJsx from 'lib/mdToJsx'
 import TextAreaPropsT from './TextArea.props'
@@ -64,7 +63,7 @@ const TextArea: FC<TextAreaPropsT> = ({
   if (disabled) {
     return (
       <DisabledTextArea {...props}>
-        {mdToJsx(isEmpty(value) ? placeholder ?? '' : trim(value))}
+        {mdToJsx(trim(value) || placeholder || '')}
       </DisabledTextArea>
     )
   }
