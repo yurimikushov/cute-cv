@@ -22,7 +22,6 @@ const Content = styled.div`
 
 const Modal: FC<ModalPropsT> = ({ children, ...props }) => (
   <PortalWrapper>
-    {/* @ts-expect-error bad typing */}
     <Content {...props}>{children}</Content>
   </PortalWrapper>
 )

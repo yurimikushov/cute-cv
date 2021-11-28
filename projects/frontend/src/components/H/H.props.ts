@@ -1,6 +1,5 @@
-import { HTMLProps } from 'react'
-
-type HPropsT = HTMLProps<HTMLHeadingElement> & {
+type HPropsT = {
+  className?: string
   tag: '1' | '2'
 }
 

@@ -21,10 +21,8 @@ const H2 = styled.h1`
 const H: FC<HPropsT> = ({ tag, children, ...props }) => {
   switch (tag) {
     case '1':
-      // @ts-expect-error bad typing
       return <H1 {...props}>{children}</H1>
     case '2':
-      // @ts-expect-error bad typing
       return <H2 {...props}>{children}</H2>
     default:
       throw new Error('[H] missing `tag`, this is required prop')

@@ -1,6 +1,5 @@
-import { HTMLProps } from 'react'
-
-type CardPropsT = HTMLProps<HTMLDivElement> & {
+type CardPropsT = {
+  className?: string
   withBorder?: boolean
   hasClose?: boolean
   onClose?: () => void

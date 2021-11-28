@@ -1,6 +1,5 @@
-import { HTMLProps } from 'react'
-
-type AvatarPickerPropsT = HTMLProps<HTMLDivElement> & {
+type AvatarPickerPropsT = {
+  className?: string
   editable?: boolean
   src: string | null
   onPick: (src: string) => void

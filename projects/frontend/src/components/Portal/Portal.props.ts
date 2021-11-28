@@ -1,5 +1,5 @@
-import { HTMLProps } from 'react'
-
-type PortalPropsT = HTMLProps<HTMLDivElement>
+type PortalPropsT = {
+  className?: string
+}
 
 export default PortalPropsT

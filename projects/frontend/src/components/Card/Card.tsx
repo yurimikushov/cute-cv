@@ -32,7 +32,6 @@ const Card: FC<CardPropsT> = ({
   children,
   ...props
 }) => (
-  // @ts-expect-error bad typing
   <Container withBorder={withBorder} {...props}>
     {children}
     {hasClose && <Close onClick={onClose} />}

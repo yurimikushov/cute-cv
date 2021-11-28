@@ -15,7 +15,6 @@ const Radio: FC<RadioPropsT> = ({
   onChange,
   ...props
 }) => (
-  // @ts-expect-error bad typing
   <RadioContainer {...props}>
     {map(options, (option) => (
       <RadioItem

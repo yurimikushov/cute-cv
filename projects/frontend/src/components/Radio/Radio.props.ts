@@ -1,6 +1,5 @@
-import { HTMLProps } from 'react'
-
-type RadioPropsT = Omit<HTMLProps<HTMLDivElement>, 'onChange'> & {
+type RadioPropsT = {
+  className?: string
   activeOption: string
   options: Array<string>
   onChange: (activeOption: string) => void
