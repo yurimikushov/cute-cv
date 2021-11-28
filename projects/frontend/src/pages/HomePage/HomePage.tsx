@@ -25,7 +25,11 @@ const StyledPanel = styled(Panel)`
   padding: 1rem;
 `
 
-const CV = styled(CVLayout)`
+const StyledCVLayout = styled(({ children, ...props }) => (
+  <div {...props}>
+    <CVLayout>{children}</CVLayout>
+  </div>
+))`
   padding: 3rem;
   margin-top: -2.75rem;
 `
@@ -47,7 +51,7 @@ const HomePage: FC = () => (
     <StyledToolbarLayout>
       <PageLayout>
         <StyledPanel />
-        <CV>
+        <StyledCVLayout>
           <Header />
           <Avatar />
           <Main>
@@ -60,7 +64,7 @@ const HomePage: FC = () => (
             <Technologies />
             <Languages />
           </Aside>
-        </CV>
+        </StyledCVLayout>
       </PageLayout>
     </StyledToolbarLayout>
   </SignInLayout>
