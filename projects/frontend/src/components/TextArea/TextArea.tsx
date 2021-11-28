@@ -32,6 +32,7 @@ const EditableTextArea = styled.textarea`
   }
 `
 
+// Should use `div` element coz `html2pdf.js` package can't correctly convert `textarea` content
 const DisabledTextArea = styled.div`
   ${BaseTextAreaMixin}
   white-space: pre-line;
@@ -60,7 +61,6 @@ const TextArea: FC<TextAreaPropsT> = ({
     onChange(e.target.value as string)
   }
 
-  // Should use `div` element coz `html2pdf.js` package can't correctly convert `textarea` content
   if (disabled) {
     return (
       <DisabledTextArea {...props}>
