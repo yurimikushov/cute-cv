@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled, { css } from 'styled-components'
 import colors from 'styles/colors'
+import fonts from 'styles/fonts'
 import HPropsT from './H.props'
 
 const HMixin = css`
@@ -10,12 +11,12 @@ const HMixin = css`
 
 const H1 = styled.h1`
   ${HMixin}
-  font-size: 0.77rem;
+  font-size: ${fonts.size.xs};
   text-transform: uppercase;
 `
 const H2 = styled.h1`
   ${HMixin}
-  font-size: 0.9rem;
+  font-size: ${fonts.size.sm};
   font-weight: bold;
 `
 

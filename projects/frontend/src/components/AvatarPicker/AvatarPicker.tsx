@@ -8,6 +8,7 @@ import first from 'lodash/first'
 import fileToBase64 from 'lib/fileToBase64'
 import { ReactComponent as CloseIcon } from 'icons/close.svg'
 import colors from 'styles/colors'
+import fonts from 'styles/fonts'
 import placeholderSrc from './assets/placeholder.png'
 import AvatarPickerPropsT from './AvatarPicker.props'
 
@@ -29,7 +30,7 @@ const PickBtn = styled.button`
   left: 0px;
   height: 100%;
   width: 100%;
-  font-size: 1.7rem;
+  font-size: ${fonts.size.xl};
   color: ${colors.gray300};
   background-color: ${colors.white};
   outline: none;

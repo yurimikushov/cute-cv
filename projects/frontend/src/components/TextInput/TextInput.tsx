@@ -11,6 +11,7 @@ import styled, { css } from 'styled-components'
 import isNil from 'lodash/isNil'
 import trim from 'lodash/trim'
 import colors from 'styles/colors'
+import fonts from 'styles/fonts'
 import TextInputPropsT from './TextInput.props'
 
 const BaseTextInputMixin = css<Pick<TextInputPropsT, 'size'>>`
@@ -19,11 +20,11 @@ const BaseTextInputMixin = css<Pick<TextInputPropsT, 'size'>>`
   color: ${colors.black};
 
   ${({ size }) => `
-    ${(size === 'sm' && 'font-size: 0.9rem;') || ''}
-    ${(size === 'md' && 'font-size: 1rem;') || ''}
-    ${(size === 'lg' && 'font-size: 1.15rem;') || ''}
-    ${(size === 'xl' && 'font-size: 1.7rem;') || ''}
-    ${(size === '2xl' && 'font-size: 2rem;') || ''}
+    ${(size === 'sm' && `font-size: ${fonts.size.sm};`) || ''}
+    ${(size === 'md' && `font-size: ${fonts.size.md};`) || ''}
+    ${(size === 'lg' && `font-size: ${fonts.size.lg};`) || ''}
+    ${(size === 'xl' && `font-size: ${fonts.size.xl};`) || ''}
+    ${(size === '2xl' && `font-size: ${fonts.size['2xl']};`) || ''}
   `}
 `
 
