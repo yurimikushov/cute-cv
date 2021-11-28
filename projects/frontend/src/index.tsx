@@ -4,15 +4,15 @@ import { Provider } from 'react-redux'
 import 'api/config'
 import store from 'services/store'
 import 'translation/config'
-import ResetStyle from './ResetStyle'
-import GlobalStyle from 'GlobalStyle'
+import ResetStyles from 'styles/global/ResetStyles'
+import GlobalStyles from 'styles/global/GlobalStyles'
 import App from './App'
 
 render(
   <React.StrictMode>
     <Provider store={store}>
-      <ResetStyle />
-      <GlobalStyle />
+      <ResetStyles />
+      <GlobalStyles />
       <App />
     </Provider>
   </React.StrictMode>,

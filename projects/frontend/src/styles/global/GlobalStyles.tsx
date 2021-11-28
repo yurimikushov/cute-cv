@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 import colors from 'styles/colors'
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
   html {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
@@ -12,4 +12,4 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-export default GlobalStyle
+export default GlobalStyles
