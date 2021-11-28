@@ -3,3 +3,7 @@
 
 cd projects/frontend
 npx lint-staged
+
+cd ../..
+cd projects/backend
+npx lint-staged
