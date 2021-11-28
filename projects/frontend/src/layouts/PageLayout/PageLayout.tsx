@@ -7,7 +7,7 @@ const PageLayout: FC<PageLayoutPropsT> = styled.div`
   min-height: 900px;
   background-color: #fff;
   border-top-width: 4px;
-  border-style: solid;
+  border-top-style: solid;
   border-color: #000;
 `
 
