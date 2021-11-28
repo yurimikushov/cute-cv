@@ -16,7 +16,6 @@ const BaseTextInputMixin = css<Pick<TextInputPropsT, 'size'>>`
   max-width: 100%;
   background-color: #fff;
   color: #000;
-  line-height: 1.25;
 
   ${({ size }) => `
     ${(size === 'sm' && 'font-size: 0.9rem;') || ''}

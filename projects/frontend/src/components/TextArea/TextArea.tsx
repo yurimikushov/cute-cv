@@ -9,7 +9,6 @@ const BaseTextAreaMixin = css`
   max-width: 100%;
   background-color: #fff;
   color: #000;
-  line-height: 1.25;
 `
 
 const EditableTextArea = styled.textarea`

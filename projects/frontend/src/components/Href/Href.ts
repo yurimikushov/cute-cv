@@ -6,7 +6,6 @@ const Href = styled.a.attrs({
 })`
   display: block;
   color: #73808d;
-  line-height: 1.25;
 
   &:hover {
     color: #000;
