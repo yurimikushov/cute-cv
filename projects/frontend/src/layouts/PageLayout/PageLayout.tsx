@@ -4,7 +4,7 @@ import colors from 'styles/colors'
 import PageLayoutPropsT from './PageLayout.props'
 
 const PageLayout: FC<PageLayoutPropsT> = styled.div`
-  max-width: 750px;
+  max-width: 765px;
   min-height: 900px;
   background-color: ${colors.white};
   border-top-width: 4px;

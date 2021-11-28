@@ -30,8 +30,8 @@ const StyledCVLayout = styled(({ children, ...props }) => (
     <CVLayout>{children}</CVLayout>
   </div>
 ))`
-  padding: 3rem;
-  margin-top: -2.75rem;
+  padding: 4rem;
+  margin-top: -3rem;
 `
 
 const Main = styled.main`
