@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import Loader from '../Loader'
 import FullScreenPropsT from './FullScreen.props'
 
-const Wrapper = styled.div`
+const FullScreen: FC<FullScreenPropsT> = styled.div.attrs({
+  children: <Loader />,
+})`
   position: fixed;
   top: 0;
   right: 0;
@@ -16,11 +18,5 @@ const Wrapper = styled.div`
   background-color: #fff;
   opacity: 0.95;
 `
-
-const FullScreen: FC<FullScreenPropsT> = (props) => (
-  <Wrapper {...props}>
-    <Loader />
-  </Wrapper>
-)
 
 export default FullScreen
