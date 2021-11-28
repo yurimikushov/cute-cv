@@ -130,7 +130,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({
 
   return (
     <Container>
-      <Img src={isEmpty(src) ? placeholderSrc : src} alt={t('img.alt')} />
+      <Img src={src ?? placeholderSrc} alt={t('img.alt')} />
       {editable && (
         <>
           <PickBtn
