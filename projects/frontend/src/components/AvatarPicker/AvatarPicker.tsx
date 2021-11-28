@@ -10,7 +10,7 @@ import { ReactComponent as CloseIcon } from 'icons/close.svg'
 import placeholderSrc from './assets/placeholder.png'
 import AvatarPickerPropsT from './AvatarPicker.props'
 
-const Wrapper = styled.div`
+const Container = styled.div`
   position: relative;
   height: 5.5rem;
   width: 5.5rem;
@@ -39,7 +39,7 @@ const PickBtn = styled.button`
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 
-  ${Wrapper}:hover &,
+  ${Container}:hover &,
   &:focus-visible {
     opacity: 0.9;
     transform: scale(1);
@@ -62,7 +62,7 @@ const ClearBtn = styled.button`
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 
-  ${Wrapper}:hover &,
+  ${Container}:hover &,
   &:focus-visible {
     transform: scale(1);
   }
@@ -129,7 +129,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({
   }
 
   return (
-    <Wrapper>
+    <Container>
       <Img src={isEmpty(src) ? placeholderSrc : src} alt={t('img.alt')} />
       {editable && (
         <>
@@ -148,7 +148,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({
           <HiddenInput ref={fileInputRef} type='file' accept={ACCEPT_FORMATS} />
         </>
       )}
-    </Wrapper>
+    </Container>
   )
 }
 

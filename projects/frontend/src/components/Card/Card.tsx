@@ -4,7 +4,7 @@ import noop from 'lodash/noop'
 import { CloseButton } from 'components/Button'
 import CardPropsT from './Card.props'
 
-const Wrapper = styled.div<CardPropsT>`
+const Container = styled.div<CardPropsT>`
   position: relative;
   background-color: #fff;
   border-radius: 5px;
@@ -33,10 +33,10 @@ const Card: FC<CardPropsT> = ({
   ...props
 }) => (
   // @ts-expect-error bad typing
-  <Wrapper withBorder={withBorder} {...props}>
+  <Container withBorder={withBorder} {...props}>
     {children}
     {hasClose && <Close onClick={onClose} />}
-  </Wrapper>
+  </Container>
 )
 
 export default Card
