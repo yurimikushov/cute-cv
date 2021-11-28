@@ -32,7 +32,7 @@ const CV = styled(CVLayout)`
 
 const Main = styled.main`
   & > * + * {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
 `
 

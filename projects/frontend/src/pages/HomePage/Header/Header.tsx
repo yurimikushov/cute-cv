@@ -12,7 +12,7 @@ const FullName = styled(TextInput)`
 
 const Position = styled(TextInput)`
   display: block;
-  margin-top: 0.75rem;
+  margin-top: 0.375rem;
 `
 
 const Header: FC = () => {
