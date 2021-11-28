@@ -35,7 +35,6 @@ const PickBtn = styled.button`
   font-size: ${fonts.size.xl};
   color: ${colors.gray300};
   background-color: ${colors.white};
-  outline: none;
   border-radius: ${radiuses.full};
   box-shadow: ${shadows.sm};
   transform: scale(0);
@@ -60,7 +59,6 @@ const ClearBtn = styled.button`
   line-height: 1.25rem;
   background-color: ${colors.white};
   box-shadow: ${shadows.sm};
-  outline: none;
   transform: scale(0);
   transition-property: transform;
   transition-duration: 200ms;
