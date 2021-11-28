@@ -1,8 +1,8 @@
 import { HTMLProps } from 'react'
 
-type TextInputPropsT = Omit<
+type TextInputPropsT = Pick<
   HTMLProps<HTMLInputElement>,
-  'size' | 'value' | 'onChange'
+  'className' | 'disabled' | 'placeholder'
 > & {
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
   value: string
