@@ -2,7 +2,7 @@
 
 Simple and easy CV editor: `write` -> `download` -> `send to HR` -> `receive a dream offer`.
 
-# Features
+## Features
 
 📄 **Download PDF**
 
@@ -21,6 +21,6 @@ You can make CV with English or Russian section titles. To toggle language, use 
 You can use `markdown` syntax in a textarea (field where is supported multiline text).
 So you can add refs, highlight words, even insert pictures. For example, to add this ref [My GitHub profile](https://github.com/yurimikushov) you should write like this  `[My GitHub profile](https://github.com/yurimikushov)`.
 
-# License
+## License
 
 Cute CV is [MIT licensed](LICENSE).
