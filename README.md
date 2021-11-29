@@ -23,6 +23,8 @@ So you can add refs, highlight words, even insert pictures. For example, to add 
 
 ## Dev
 
+This's monorepository that has frontend and backend apps. Frontend app provide UI for editing a CV, downloading a PDF file. And backend app provide REST API for getting and saving a CV.
+
 This project is being linted and formatted on the git `pre-commit` phase by `husky`, `eslint` and `prettier`.
 And `[front]` and `[back]` prefixes are added to commit messages on the git `commit-msg` phase by `husky` and custom script.
 
