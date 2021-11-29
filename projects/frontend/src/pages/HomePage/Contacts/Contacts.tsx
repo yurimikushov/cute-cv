@@ -10,9 +10,9 @@ import Contact from './Contact'
 import ContactsPropsT from './Contacts.props'
 
 const Container = styled.div`
-  & > * + * {
-    margin-top: 0.5rem;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 `
 
 const Add = styled(Button)`
