@@ -41,7 +41,7 @@ const Educations: FC<EducationsPropsT> = (props) => {
   return (
     <Container {...props}>
       <H1>{t('title')}</H1>
-      {map(educations, ({ id, degree, university, duration }, i) => (
+      {map(educations, ({ id, degree, university, duration }) => (
         <Education
           key={id}
           degree={degree}

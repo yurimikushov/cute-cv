@@ -42,29 +42,26 @@ const Experiences: FC<ExperiencesPropsT> = (props) => {
   return (
     <Container {...props}>
       <H1>{t('title')}</H1>
-      {map(
-        experiences,
-        ({ id, position, company, duration, description }, i) => (
-          <Experience
-            key={id}
-            position={position}
-            company={company}
-            duration={duration}
-            description={description}
-            onPositionChange={(position) =>
-              handlePositionChange({ id, position })
-            }
-            onCompanyChange={(company) => handleCompanyChange({ id, company })}
-            onDurationChange={(duration) =>
-              handleDurationChange({ id, duration })
-            }
-            onDescriptionChange={(description) =>
-              handleDescriptionChange({ id, description })
-            }
-            onDelete={() => handleDelete({ id })}
-          />
-        )
-      )}
+      {map(experiences, ({ id, position, company, duration, description }) => (
+        <Experience
+          key={id}
+          position={position}
+          company={company}
+          duration={duration}
+          description={description}
+          onPositionChange={(position) =>
+            handlePositionChange({ id, position })
+          }
+          onCompanyChange={(company) => handleCompanyChange({ id, company })}
+          onDurationChange={(duration) =>
+            handleDurationChange({ id, duration })
+          }
+          onDescriptionChange={(description) =>
+            handleDescriptionChange({ id, description })
+          }
+          onDelete={() => handleDelete({ id })}
+        />
+      ))}
       {editable && <Add onClick={handleAdd}>Add</Add>}
     </Container>
   )
