@@ -18,6 +18,12 @@ const GlobalStyles = createGlobalStyle`
       color: ${colors.black};
     }
   }
+
+  ul,
+  ol {
+    padding-left: 1.25rem;
+    list-style: auto;
+  }
 `
 
 export default GlobalStyles
