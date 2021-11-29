@@ -1,5 +1,5 @@
 {
-  "name": "cd-editor-backend",
+  "name": "cv-editor-backend",
   "version": "0.1.0",
   "scripts": {
     "prebuild": "rimraf dist",
