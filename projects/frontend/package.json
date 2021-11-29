@@ -30,7 +30,6 @@
     "@types/react": "^17.0.31",
     "@types/react-dom": "^17.0.10",
     "axios": "^0.24.0",
-    "classnames": "^2.3.1",
     "date-fns": "^2.25.0",
     "firebase": "^9.4.1",
     "html2pdf.js": "^0.10.1",
