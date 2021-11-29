@@ -50,9 +50,12 @@ const SignInModal: FC<SignInModalPropsT> = (props) => {
         <SignInButton icon={<GoogleIcon />} onClick={handleSignInGoogle}>
           {t('google.title')}
         </SignInButton>
-        <SignInButton icon={<FacebookIcon />} onClick={handleSignInFacebook}>
-          {t('facebook.title')}
-        </SignInButton>
+        {/* Should enable Facebook auth on Firebase Console */}
+        {false && (
+          <SignInButton icon={<FacebookIcon />} onClick={handleSignInFacebook}>
+            {t('facebook.title')}
+          </SignInButton>
+        )}
         <SignInButton icon={<GitHubIcon />} onClick={handleSignInGitHub}>
           {t('github.title')}
         </SignInButton>
