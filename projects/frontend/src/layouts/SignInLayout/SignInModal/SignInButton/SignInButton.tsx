@@ -1,6 +1,7 @@
 import { FC, cloneElement } from 'react'
 import styled from 'styled-components'
 import Button from 'components/Button'
+import colors from 'styles/colors'
 import radiuses from 'styles/radiuses'
 import SignInButtonPropsT from './SignInButton.props'
 
@@ -9,7 +10,7 @@ const StyledButton = styled(Button)`
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  border-width: 1px;
+  border: 1px solid ${colors.gray100};
   border-radius: ${radiuses.md};
 `
 
