@@ -9,7 +9,7 @@ const Avatar: FC = () => {
   return (
     <AvatarPicker
       editable={editable}
-      src={src ?? ''}
+      src={src}
       onPick={(src) => handleChange({ src })}
       onClear={handleDelete}
     />
