@@ -13,9 +13,13 @@ const resources: Resource = {
 }
 
 i18n.use(initReactI18next).init({
-  lng: 'en',
+  lng: localStorage.getItem('persist:lang') ?? 'en',
   interpolation: {
     escapeValue: false, // not needed for react as it escapes by default
   },
   resources,
+})
+
+i18n.on('languageChanged', (lang) => {
+  localStorage.setItem('persist:lang', lang)
 })
