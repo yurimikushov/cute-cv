@@ -12,6 +12,10 @@ const en: TranslationT = {
     github: {
       title: 'Sign in GitHub',
     },
+    skip: {
+      title: 'Skip',
+      description: 'to just try it',
+    },
   },
   panel: {
     preview: 'Preview',

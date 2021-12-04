@@ -12,6 +12,10 @@ const ru: TranslationT = {
     github: {
       title: 'Войти через GitHub',
     },
+    skip: {
+      title: 'Пропустить',
+      description: 'чтобы просто попробовать',
+    },
   },
   panel: {
     preview: 'Посмотреть',

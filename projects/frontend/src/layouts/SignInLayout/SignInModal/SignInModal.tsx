@@ -7,6 +7,7 @@ import {
   useSignInGoogle,
 } from 'services/auth'
 import Modal from 'components/Modal'
+import Button from 'components/Button'
 import { ReactComponent as GoogleIcon } from 'icons/google.svg'
 import { ReactComponent as FacebookIcon } from 'icons/facebook.svg'
 import { ReactComponent as GitHubIcon } from 'icons/github.svg'
@@ -37,7 +38,11 @@ const SignInOptions = styled.div`
   gap: 0.75rem;
 `
 
-const SignInModal: FC<SignInModalPropsT> = (props) => {
+const Skip = styled.div`
+  margin-top: 2rem;
+`
+
+const SignInModal: FC<SignInModalPropsT> = ({ onSkip, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'signIn' })
   const { handleSignInGoogle } = useSignInGoogle()
   const { handleSignInFacebook } = useSignInFacebook()
@@ -60,6 +65,13 @@ const SignInModal: FC<SignInModalPropsT> = (props) => {
           {t('github.title')}
         </SignInButton>
       </SignInOptions>
+      <Skip>
+        <Button withPaddings={false} onClick={onSkip}>
+          {t('skip.title')}
+        </Button>
+        &#44;&nbsp;
+        <span>{t('skip.description')}</span>
+      </Skip>
     </Container>
   )
 }

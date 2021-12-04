@@ -10,6 +10,10 @@ type TranslationT = {
     github: {
       title: string
     }
+    skip: {
+      title: string
+      description: string
+    }
   }
   panel: {
     preview: string
