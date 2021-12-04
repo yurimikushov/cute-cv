@@ -16,7 +16,7 @@ import radiuses from 'styles/radiuses'
 import SignInButton from './SignInButton'
 import SignInModalPropsT from './SignInModal.props'
 
-const StyledModal = styled(Modal)`
+const Container = styled(Modal)`
   padding: 5rem 6rem;
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@ const Title = styled.h1`
   color: ${colors.black};
 `
 
-const Container = styled.div`
+const SignInOptions = styled.div`
   margin-top: 3.5rem;
   display: flex;
   flex-direction: column;
@@ -44,9 +44,9 @@ const SignInModal: FC<SignInModalPropsT> = (props) => {
   const { handleSignInGitHub } = useSignInGitHub()
 
   return (
-    <StyledModal {...props}>
+    <Container {...props}>
       <Title>{t('greeting')}</Title>
-      <Container>
+      <SignInOptions>
         <SignInButton icon={<GoogleIcon />} onClick={handleSignInGoogle}>
           {t('google.title')}
         </SignInButton>
@@ -59,8 +59,8 @@ const SignInModal: FC<SignInModalPropsT> = (props) => {
         <SignInButton icon={<GitHubIcon />} onClick={handleSignInGitHub}>
           {t('github.title')}
         </SignInButton>
-      </Container>
-    </StyledModal>
+      </SignInOptions>
+    </Container>
   )
 }
 export default SignInModal
