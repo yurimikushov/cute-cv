@@ -3,6 +3,7 @@ import {
   useIsSignInChecking,
   useIsSignedIn,
   useSkipSignIn,
+  useSignInModal,
 } from 'services/auth'
 import SignInModal from './SignInModal'
 import SignInLayoutPropsT from './SignInLayout.props'
@@ -10,13 +11,19 @@ import SignInLayoutPropsT from './SignInLayout.props'
 const SignInLayout: FC<SignInLayoutPropsT> = ({ children }) => {
   const { isSignInChecking } = useIsSignInChecking()
   const { isSignedIn } = useIsSignedIn()
-  const { isSignInSkipped, handleSkipSignIn } = useSkipSignIn()
+  const { isSignInModalDisplayed, handleHideSignInModal } = useSignInModal()
+  const { handleSkipSignIn } = useSkipSignIn()
+
+  const handleSkip = () => {
+    handleSkipSignIn()
+    handleHideSignInModal()
+  }
 
   return (
     <>
       {children}
-      {!isSignInChecking && !isSignedIn && !isSignInSkipped && (
-        <SignInModal onSkip={handleSkipSignIn} />
+      {!isSignInChecking && !isSignedIn && isSignInModalDisplayed && (
+        <SignInModal onSkip={handleSkip} />
       )}
     </>
   )
