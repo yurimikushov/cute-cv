@@ -31,6 +31,7 @@ const ru: TranslationT = {
     language: {
       title: 'Язык',
     },
+    signIn: 'Войти',
     signOut: 'Выйти',
   },
   fullName: {

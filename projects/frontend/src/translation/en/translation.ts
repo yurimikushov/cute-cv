@@ -31,6 +31,7 @@ const en: TranslationT = {
     language: {
       title: 'Language',
     },
+    signIn: 'Sign in',
     signOut: 'Sign out',
   },
   fullName: {

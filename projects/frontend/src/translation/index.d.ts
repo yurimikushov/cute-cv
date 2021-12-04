@@ -29,6 +29,7 @@ type TranslationT = {
     language: {
       title: string
     }
+    signIn: string
     signOut: string
   }
   fullName: {
