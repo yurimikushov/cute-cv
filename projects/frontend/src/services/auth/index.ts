@@ -8,5 +8,6 @@ export {
   useSignOut,
   useIsSignInChecking,
   useIsSignedIn,
+  useSkipSignIn,
 } from './signIn'
 export { useUser } from './user'

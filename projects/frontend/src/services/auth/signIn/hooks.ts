@@ -1,8 +1,18 @@
 import { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { signInGoogle, signInFacebook, signInGitHub, signOut } from './firebase'
-import { selectIsChecking, selectIsSignedIn } from './selectors'
-import { beginChecking, finishChecking, signedIn, signedOut } from './slice'
+import {
+  selectIsChecking,
+  selectIsSignedIn,
+  selectIsSkipped,
+} from './selectors'
+import {
+  beginChecking,
+  finishChecking,
+  signedIn,
+  signedOut,
+  skip,
+} from './slice'
 
 const useSignInGoogle = () => {
   const [isSignIn, setIsSignIn] = useState(false)
@@ -96,6 +106,21 @@ const useIsSignedIn = () => {
   return { isSignedIn, handleSignedIn, handleSignedOut }
 }
 
+const useSkipSignIn = () => {
+  const isSignInSkipped = useSelector(selectIsSkipped)
+
+  const dispatch = useDispatch()
+
+  const handleSkipSignIn = useCallback(() => {
+    dispatch(skip())
+  }, [])
+
+  return {
+    isSignInSkipped,
+    handleSkipSignIn,
+  }
+}
+
 export {
   useSignInGoogle,
   useSignInFacebook,
@@ -103,4 +128,5 @@ export {
   useSignOut,
   useIsSignInChecking,
   useIsSignedIn,
+  useSkipSignIn,
 }

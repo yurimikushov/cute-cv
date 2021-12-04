@@ -9,4 +9,8 @@ const selectIsSignedIn = ({ auth }: RootStateT): SignInStateT['isSignedIn'] => {
   return auth.signIn.isSignedIn
 }
 
-export { selectIsChecking, selectIsSignedIn }
+const selectIsSkipped = ({ auth }: RootStateT): SignInStateT['isSkipped'] => {
+  return auth.signIn.isSkipped
+}
+
+export { selectIsChecking, selectIsSignedIn, selectIsSkipped }
