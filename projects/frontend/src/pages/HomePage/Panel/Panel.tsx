@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useEditable } from 'services/cv'
 import Button from 'components/Button'
 import colors from 'styles/colors'
-import { useSavedSince } from './hooks'
+import { useSavedStatus } from './hooks'
 import PanelPropsT from './Panel.props'
 
 const Container = styled.div`
@@ -12,18 +12,18 @@ const Container = styled.div`
   justify-content: space-between;
 `
 
-const SavedSince = styled.div`
+const SavedStatus = styled.div`
   color: ${colors.gray300};
 `
 
 const Panel: FC<PanelPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'panel' })
   const { editable, handleToggle } = useEditable()
-  const savedSince = useSavedSince()
+  const savedStatus = useSavedStatus()
 
   return (
     <Container {...props}>
-      <SavedSince>{savedSince}</SavedSince>
+      <SavedStatus>{savedStatus}</SavedStatus>
       <Button onClick={handleToggle}>
         {editable ? t('preview') : t('edit')}
       </Button>

@@ -22,6 +22,7 @@ const ru: TranslationT = {
     edit: 'Редактировать',
     savedAt: 'Сохранено {{savedAt}} назад',
     notSaved: 'Не сохранено',
+    noSave: 'Войдите, чтобы сохранить изменения',
   },
   toolbar: {
     download: {

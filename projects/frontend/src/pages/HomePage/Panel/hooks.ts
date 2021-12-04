@@ -4,17 +4,23 @@ import isNull from 'lodash/isNull'
 import { LanguageEnum } from 'translation'
 import timeSince from 'lib/timeSince'
 import { useMetadata } from 'services/cv'
+import { useSkipSignIn } from 'services/auth'
 
 const UPDATE_TIMING = 5_000
 
-const useSavedSince = () => {
+const useSavedStatus = () => {
   const { t, i18n } = useTranslation('translation', { keyPrefix: 'panel' })
+  const { isSignInSkipped } = useSkipSignIn()
   const { isSaved, savedAt } = useMetadata()
-  const [savedSince, setSavedSince] = useState('')
+  const [savedStatus, setSavedStatus] = useState('')
 
   useEffect(() => {
-    const handleSetSavedSince = () => {
-      setSavedSince(() => {
+    const handleSetSavedStatus = () => {
+      setSavedStatus(() => {
+        if (isSignInSkipped) {
+          return t('noSave')
+        }
+
         if (!isSaved) {
           return t('notSaved')
         }
@@ -29,16 +35,18 @@ const useSavedSince = () => {
       })
     }
 
-    handleSetSavedSince()
+    handleSetSavedStatus()
 
-    const intervalId = setInterval(handleSetSavedSince, UPDATE_TIMING)
+    if (!isSignInSkipped) {
+      const intervalId = setInterval(handleSetSavedStatus, UPDATE_TIMING)
 
-    return () => {
-      clearInterval(intervalId)
+      return () => {
+        clearInterval(intervalId)
+      }
     }
-  }, [isSaved, savedAt, i18n.language])
+  }, [isSignInSkipped, isSaved, savedAt, i18n.language])
 
-  return savedSince
+  return savedStatus
 }
 
-export default useSavedSince
+export { useSavedStatus }

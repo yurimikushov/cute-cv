@@ -20,6 +20,7 @@ type TranslationT = {
     edit: string
     savedAt: string
     notSaved: string
+    noSave: string
   }
   toolbar: {
     download: {

@@ -22,6 +22,7 @@ const en: TranslationT = {
     edit: 'Edit',
     savedAt: 'Saved {{savedAt}} ago',
     notSaved: 'Not saved',
+    noSave: 'Sign in, to save changes',
   },
   toolbar: {
     download: {
