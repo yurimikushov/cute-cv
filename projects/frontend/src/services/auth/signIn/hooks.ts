@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { signInGoogle, signInFacebook, signInGitHub, signOut } from './firebase'
 import {
   selectIsChecking,
+  selectIsModalDisplayed,
   selectIsSignedIn,
   selectIsSkipped,
 } from './selectors'
 import {
   beginChecking,
+  displayModal,
   finishChecking,
+  hideModal,
   signedIn,
   signedOut,
   skip,
@@ -121,6 +124,26 @@ const useSkipSignIn = () => {
   }
 }
 
+const useSignInModal = () => {
+  const isSignInModalDisplayed = useSelector(selectIsModalDisplayed)
+
+  const dispatch = useDispatch()
+
+  const handleDisplaySignInModal = useCallback(() => {
+    dispatch(displayModal())
+  }, [])
+
+  const handleHideSignInModal = useCallback(() => {
+    dispatch(hideModal())
+  }, [])
+
+  return {
+    isSignInModalDisplayed,
+    handleDisplaySignInModal,
+    handleHideSignInModal,
+  }
+}
+
 export {
   useSignInGoogle,
   useSignInFacebook,
@@ -129,4 +152,5 @@ export {
   useIsSignInChecking,
   useIsSignedIn,
   useSkipSignIn,
+  useSignInModal,
 }

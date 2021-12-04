@@ -9,5 +9,6 @@ export {
   useIsSignInChecking,
   useIsSignedIn,
   useSkipSignIn,
+  useSignInModal,
 } from './signIn'
 export { useUser } from './user'

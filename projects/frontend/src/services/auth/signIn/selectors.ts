@@ -13,4 +13,15 @@ const selectIsSkipped = ({ auth }: RootStateT): SignInStateT['isSkipped'] => {
   return auth.signIn.isSkipped
 }
 
-export { selectIsChecking, selectIsSignedIn, selectIsSkipped }
+const selectIsModalDisplayed = ({
+  auth,
+}: RootStateT): SignInStateT['isModalDisplayed'] => {
+  return auth.signIn.isModalDisplayed
+}
+
+export {
+  selectIsChecking,
+  selectIsSignedIn,
+  selectIsSkipped,
+  selectIsModalDisplayed,
+}

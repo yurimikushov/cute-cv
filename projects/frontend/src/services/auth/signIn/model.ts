@@ -4,6 +4,7 @@ type SignInStateT = {
   isChecking: boolean
   isSignedIn: boolean
   isSkipped: boolean
+  isModalDisplayed: boolean
 }
 
 type SignInChangedStateT = {
