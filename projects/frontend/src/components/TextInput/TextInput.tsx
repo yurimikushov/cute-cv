@@ -71,7 +71,7 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
     }
 
     setInputWidth(`${inputRef.current.scrollWidth + X_PADDINGS}px`)
-  }, [value])
+  }, [value, disabled])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputWidth('auto')
