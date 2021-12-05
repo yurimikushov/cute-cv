@@ -55,7 +55,7 @@ const TextArea: FC<TextAreaPropsT> = ({
     }
 
     setTextAreaHeight(`${textAreaRef.current.scrollHeight}px`)
-  }, [value])
+  }, [value, disabled])
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTextAreaHeight('auto')
