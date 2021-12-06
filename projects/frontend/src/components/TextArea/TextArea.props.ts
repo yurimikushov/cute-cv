@@ -1,10 +1,8 @@
-import { HTMLProps } from 'react'
-
-type TextAreaPropsT = Pick<
-  HTMLProps<HTMLTextAreaElement>,
-  'className' | 'disabled' | 'placeholder'
-> & {
+type TextAreaPropsT = {
+  className?: string
+  disabled?: boolean
   value: string
+  placeholder?: string
   onChange: (value: string) => void
 }
 

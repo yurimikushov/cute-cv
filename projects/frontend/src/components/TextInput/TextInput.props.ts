@@ -1,11 +1,9 @@
-import { HTMLProps } from 'react'
-
-type TextInputPropsT = Pick<
-  HTMLProps<HTMLInputElement>,
-  'className' | 'disabled' | 'placeholder'
-> & {
+type TextInputPropsT = {
+  className?: string
+  disabled?: boolean
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
   value: string
+  placeholder?: string
   onChange: (value: string) => void
 }
 
