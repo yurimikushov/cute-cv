@@ -1,11 +1,14 @@
-import { FC } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import styled from 'styled-components'
+import 'wicg-inert'
+import forEach from 'lodash/forEach'
+import getSiblings from 'lib/getSiblings'
 import Portal from 'components/Portal'
 import colors from 'styles/colors'
 import shadows from 'styles/shadows'
 import ModalPropsT from './Modal.props'
 
-const PortalWrapper = styled(Portal)`
+const Overlay = styled.div`
   position: fixed;
   top: 0;
   right: 0;
@@ -22,10 +25,30 @@ const Content = styled.div`
   box-shadow: ${shadows.xs};
 `
 
-const Modal: FC<ModalPropsT> = ({ children, ...props }) => (
-  <PortalWrapper>
-    <Content {...props}>{children}</Content>
-  </PortalWrapper>
-)
+const Modal: FC<ModalPropsT> = ({ children, ...props }) => {
+  const portalRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const siblings = getSiblings(portalRef.current)
+
+    forEach(siblings, (sibling) => {
+      sibling.inert = true
+    })
+
+    return () => {
+      forEach(siblings, (sibling) => {
+        sibling.inert = false
+      })
+    }
+  }, [])
+
+  return (
+    <Portal ref={portalRef}>
+      <Overlay>
+        <Content {...props}>{children}</Content>
+      </Overlay>
+    </Portal>
+  )
+}
 
 export default Modal

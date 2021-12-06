@@ -1,5 +1,7 @@
+import { ReactNode } from 'react'
+
 type PortalPropsT = {
-  className?: string
+  children: ReactNode
 }
 
 export default PortalPropsT
