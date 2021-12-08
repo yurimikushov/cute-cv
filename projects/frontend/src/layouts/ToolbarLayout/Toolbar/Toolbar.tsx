@@ -5,7 +5,7 @@ import colors from 'styles/colors'
 import radiuses from 'styles/radiuses'
 import Download from './Download'
 import Language from './Language'
-import SignOut from './SignOut'
+import Auth from './Auth'
 import ToolbarPropsT from './Toolbar.props'
 
 const ToolbarContainer = styled.div`
@@ -25,7 +25,7 @@ const Toolbar: FC<ToolbarPropsT> = (props) => (
     <Download />
     <Language />
     <Divider />
-    <SignOut />
+    <Auth />
   </ToolbarContainer>
 )
 

@@ -2,9 +2,9 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSignOut, useSkipSignIn, useSignInModal } from 'services/auth'
 import Button from 'components/Button'
-import SignOutPropsT from './SignOut.props'
+import AuthPropsT from './Auth.props'
 
-const SignOut: FC<SignOutPropsT> = (props) => {
+const Auth: FC<AuthPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'toolbar' })
   const { isSignInSkipped } = useSkipSignIn()
   const { handleDisplaySignInModal } = useSignInModal()
@@ -25,4 +25,4 @@ const SignOut: FC<SignOutPropsT> = (props) => {
   )
 }
 
-export default SignOut
+export default Auth
