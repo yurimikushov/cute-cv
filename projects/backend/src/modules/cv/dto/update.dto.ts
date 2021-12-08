@@ -1,4 +1,4 @@
-import { IsString, IsArray, ValidateNested } from 'class-validator'
+import { IsString, IsOptional, IsArray, ValidateNested } from 'class-validator'
 import { Type } from 'class-transformer'
 
 class UpdateCvDto {
@@ -9,6 +9,7 @@ class UpdateCvDto {
   readonly position: string
 
   @IsString()
+  @IsOptional()
   readonly avatar: string
 
   @IsString()
