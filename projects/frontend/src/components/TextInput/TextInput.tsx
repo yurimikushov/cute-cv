@@ -54,8 +54,6 @@ const DisabledTextInput = styled.div`
   ${BaseTextInputMixin}
 `
 
-const X_PADDINGS = 6
-
 const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
   { disabled, size = 'md', value, placeholder, onChange, ...props },
   externalRef
@@ -70,7 +68,7 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
       return
     }
 
-    setInputWidth(`${inputRef.current.scrollWidth + X_PADDINGS}px`)
+    setInputWidth(`${inputRef.current.scrollWidth}px`)
   }, [value, disabled])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
