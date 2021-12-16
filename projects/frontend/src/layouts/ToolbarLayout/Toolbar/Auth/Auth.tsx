@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSignOut, useIsSignedIn, useSignInModal } from 'services/auth'
+import { useDownload } from 'services/cv'
 import Button from 'components/Button'
 import AuthPropsT from './Auth.props'
 
@@ -9,15 +10,24 @@ const Auth: FC<AuthPropsT> = (props) => {
   const { isSignedIn } = useIsSignedIn()
   const { handleDisplaySignInModal } = useSignInModal()
   const { handleSignOut } = useSignOut()
+  const { isDownloading } = useDownload()
 
   return (
     <div {...props}>
       {isSignedIn ? (
-        <Button withPaddings={false} onClick={handleSignOut}>
+        <Button
+          withPaddings={false}
+          disabled={isDownloading}
+          onClick={handleSignOut}
+        >
           {t('signOut')}
         </Button>
       ) : (
-        <Button withPaddings={false} onClick={handleDisplaySignInModal}>
+        <Button
+          withPaddings={false}
+          disabled={isDownloading}
+          onClick={handleDisplaySignInModal}
+        >
           {t('signIn')}
         </Button>
       )}

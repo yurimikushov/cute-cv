@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useEditable } from 'services/cv'
+import { useDownload, useEditable } from 'services/cv'
 import Button from 'components/Button'
 import colors from 'styles/colors'
 import { useSavedStatus } from './hooks'
@@ -20,11 +20,12 @@ const Panel: FC<PanelPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'panel' })
   const { editable, handleToggle } = useEditable()
   const savedStatus = useSavedStatus()
+  const { isDownloading } = useDownload()
 
   return (
     <Container {...props}>
       <SavedStatus>{savedStatus}</SavedStatus>
-      <Button onClick={handleToggle}>
+      <Button disabled={isDownloading} onClick={handleToggle}>
         {editable ? t('preview') : t('edit')}
       </Button>
     </Container>

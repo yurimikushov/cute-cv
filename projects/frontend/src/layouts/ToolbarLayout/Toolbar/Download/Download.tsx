@@ -16,7 +16,7 @@ const Download: FC<DownloadPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'toolbar' })
   const prevEditableRef = useRef<boolean>(false)
   const { editable, handleToggle } = useEditable()
-  const { handleDownloadPDF } = useDownload()
+  const { isDownloading, handleDownloadPDF } = useDownload()
 
   const handleToggleEditableAndDownloadPDF = async () => {
     prevEditableRef.current = editable
@@ -35,7 +35,11 @@ const Download: FC<DownloadPropsT> = (props) => {
   return (
     <Container {...props}>
       <H2>{t('download.title')}</H2>
-      <Button withPaddings={false} onClick={handleToggleEditableAndDownloadPDF}>
+      <Button
+        withPaddings={false}
+        disabled={isDownloading}
+        onClick={handleToggleEditableAndDownloadPDF}
+      >
         {t('download.pdf')}
       </Button>
     </Container>
