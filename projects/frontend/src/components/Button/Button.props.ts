@@ -1,10 +1,8 @@
-import { HTMLProps } from 'react'
-
-type ButtonPropsT = Pick<
-  HTMLProps<HTMLButtonElement>,
-  'className' | 'children' | 'onClick'
-> & {
+type ButtonPropsT = {
+  className?: string
   withPaddings?: boolean
+  disabled?: boolean
+  onClick: () => void
 }
 
 export default ButtonPropsT

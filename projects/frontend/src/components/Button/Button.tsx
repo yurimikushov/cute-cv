@@ -3,20 +3,22 @@ import styled from 'styled-components'
 import colors from 'styles/colors'
 import ButtonPropsT from './Button.props'
 
+// @ts-expect-error bad typing
 const Button: FC<ButtonPropsT> = styled.button.attrs(
-  ({ withPaddings = true }: ButtonPropsT) => ({
+  ({ withPaddings = true, disabled = false }: ButtonPropsT) => ({
     type: 'button',
     withPaddings,
+    disabled,
   })
 )`
   ${({ withPaddings }) => (withPaddings ? 'padding-left: 0.5rem;' : '')}
   ${({ withPaddings }) => (withPaddings ? 'padding-right: 0.5rem;' : '')}
   color: ${colors.gray300};
   line-height: 1.25rem;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
   &:hover {
-    color: ${colors.black};
+    ${({ disabled }) => (!disabled && `color: ${colors.black};`) || ''}
   }
 `
 
