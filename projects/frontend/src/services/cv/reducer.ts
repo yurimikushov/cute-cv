@@ -5,6 +5,7 @@ import { ServiceNameEnum } from 'services'
 import { editableReducer } from './editable'
 import { loadReducer } from './load'
 import { saveReducer } from './save'
+import { downloadReducer } from './download'
 import { metadataReducer } from './metadata'
 import { contentReducer } from './content'
 
@@ -17,6 +18,7 @@ const cvReducer = combineReducers({
   editable: persistReducer(persistConfig, editableReducer),
   load: loadReducer,
   save: saveReducer,
+  download: downloadReducer,
   metadata: metadataReducer,
   content: contentReducer,
 })
