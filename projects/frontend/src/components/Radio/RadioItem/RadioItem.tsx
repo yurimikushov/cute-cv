@@ -6,9 +6,11 @@ import RadioItemPropsT from './RadioItem.props'
 const Label = styled.label<RadioItemPropsT>`
   color: ${({ isActive }) => (isActive ? colors.black : colors.gray300)};
   ${({ isActive }) => !isActive && 'cursor: pointer;'}
+  ${({ disabled }) => disabled && 'cursor: not-allowed;'}
 
   &:hover {
-    ${({ isActive }) => !isActive && `color: ${colors.black};`}
+    ${({ isActive, disabled }) =>
+      !isActive && !disabled && `color: ${colors.black};`}
   }
 `
 
@@ -19,6 +21,7 @@ const HiddenInput = styled.input`
 const RadioItem: FC<RadioItemPropsT> = ({
   isActive,
   option,
+  disabled,
   onChange,
   ...props
 }) => {
@@ -37,8 +40,9 @@ const RadioItem: FC<RadioItemPropsT> = ({
     <Label
       {...props}
       isActive={isActive}
+      disabled={disabled}
       // eslint-disable-next-line no-magic-numbers
-      tabIndex={isActive ? -1 : 0}
+      tabIndex={isActive && disabled ? -1 : 0}
       onKeyDown={handleKeyDown}
       onClick={handleClick}
     >

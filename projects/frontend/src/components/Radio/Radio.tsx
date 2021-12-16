@@ -12,6 +12,7 @@ const RadioContainer = styled.div`
 const Radio: FC<RadioPropsT> = ({
   activeOption,
   options,
+  disabled = false,
   onChange,
   ...props
 }) => (
@@ -21,6 +22,7 @@ const Radio: FC<RadioPropsT> = ({
         key={option}
         isActive={option === activeOption}
         option={option}
+        disabled={disabled}
         onChange={onChange}
       />
     ))}
