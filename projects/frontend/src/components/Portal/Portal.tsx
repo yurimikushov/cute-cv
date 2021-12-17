@@ -2,10 +2,10 @@ import {
   forwardRef,
   ForwardRefRenderFunction,
   useImperativeHandle,
-  useRef,
 } from 'react'
 import { createPortal } from 'react-dom'
-import isNull from 'lodash/isNull'
+import nonNullable from 'lib/nonNullable'
+import usePortalRef from './hooks/usePortalRef'
 import useAppendIntoRoot from './hooks/useAppendIntoRoot'
 import PortalPropsT from './Portal.props'
 
@@ -13,17 +13,13 @@ const Portal: ForwardRefRenderFunction<HTMLDivElement, PortalPropsT> = (
   { children },
   externalRef
 ) => {
-  const portalRef = useRef<HTMLDivElement | null>(null)
+  const portalRef = usePortalRef()
 
-  useImperativeHandle(externalRef, () => portalRef.current as HTMLDivElement)
-
-  if (isNull(portalRef.current)) {
-    portalRef.current = document.createElement('div')
-  }
+  useImperativeHandle(externalRef, () => nonNullable(portalRef.current))
 
   useAppendIntoRoot(portalRef)
 
-  return createPortal(children, portalRef.current)
+  return createPortal(children, nonNullable(portalRef.current))
 }
 
 export default forwardRef(Portal)
