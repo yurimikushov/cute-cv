@@ -2,15 +2,12 @@ import {
   forwardRef,
   ForwardRefRenderFunction,
   useImperativeHandle,
-  useLayoutEffect,
   useRef,
 } from 'react'
 import { createPortal } from 'react-dom'
 import isNull from 'lodash/isNull'
-import nonNullable from 'lib/nonNullable'
+import useAppendIntoRoot from './hooks/useAppendIntoRoot'
 import PortalPropsT from './Portal.props'
-
-const portalContainer = document.querySelector('.app') as HTMLDivElement
 
 const Portal: ForwardRefRenderFunction<HTMLDivElement, PortalPropsT> = (
   { children },
@@ -24,13 +21,7 @@ const Portal: ForwardRefRenderFunction<HTMLDivElement, PortalPropsT> = (
     portalRef.current = document.createElement('div')
   }
 
-  useLayoutEffect(() => {
-    portalContainer.appendChild(nonNullable(portalRef.current))
-
-    return () => {
-      portalContainer.removeChild(nonNullable(portalRef.current))
-    }
-  }, [portalRef.current])
+  useAppendIntoRoot(portalRef)
 
   return createPortal(children, portalRef.current)
 }
