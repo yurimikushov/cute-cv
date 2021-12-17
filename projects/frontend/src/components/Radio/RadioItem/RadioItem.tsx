@@ -14,10 +14,6 @@ const Label = styled.label<RadioItemPropsT>`
   }
 `
 
-const HiddenInput = styled.input`
-  display: none;
-`
-
 const RadioItem: FC<RadioItemPropsT> = ({
   isActive,
   option,
@@ -47,7 +43,6 @@ const RadioItem: FC<RadioItemPropsT> = ({
       onClick={handleClick}
     >
       {option}
-      <HiddenInput type='radio' value={option} />
     </Label>
   )
 }
