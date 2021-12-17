@@ -1,8 +1,6 @@
-import { FC, useEffect, useRef } from 'react'
+import { FC, useRef } from 'react'
 import styled from 'styled-components'
-import 'wicg-inert'
-import forEach from 'lodash/forEach'
-import getSiblings from 'lib/getSiblings'
+import useInertSiblings from 'hooks/useInertSiblings'
 import Portal from 'components/Portal'
 import colors from 'styles/colors'
 import shadows from 'styles/shadows'
@@ -28,19 +26,7 @@ const Content = styled.div`
 const Modal: FC<ModalPropsT> = ({ children, ...props }) => {
   const portalRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const siblings = getSiblings(portalRef.current)
-
-    forEach(siblings, (sibling) => {
-      sibling.inert = true
-    })
-
-    return () => {
-      forEach(siblings, (sibling) => {
-        sibling.inert = false
-      })
-    }
-  }, [])
+  useInertSiblings(portalRef)
 
   return (
     <Portal ref={portalRef}>
