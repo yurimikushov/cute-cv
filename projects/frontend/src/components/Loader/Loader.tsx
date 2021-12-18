@@ -1,23 +1,15 @@
 import { FC } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { ReactComponent as LoaderIcon } from 'icons/loader.svg'
 import colors from 'styles/colors'
+import keyframes from 'styles/keyframes'
 import LoaderPropsT from './Loader.props'
 
-const spin = keyframes`
- from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`
-
-const Loader: FC<LoaderPropsT> = styled(LoaderIcon)<LoaderPropsT>`
+const Loader: FC<LoaderPropsT> = styled(LoaderIcon)`
   width: 3rem;
   height: 3rem;
   color: ${colors.black};
-  animation: ${spin} 1s linear infinite;
+  animation: ${keyframes.spin} 1s linear infinite;
 `
 
 export default Loader
