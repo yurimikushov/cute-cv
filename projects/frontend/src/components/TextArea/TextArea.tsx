@@ -1,11 +1,11 @@
-import { FC, useRef, useState, useLayoutEffect, ChangeEvent } from 'react'
+import { ChangeEvent, FC } from 'react'
 import styled, { css } from 'styled-components'
-import isNil from 'lodash/isNil'
 import trim from 'lodash/trim'
 import mdToJsx from 'lib/mdToJsx'
 import colors from 'styles/colors'
 import radiuses from 'styles/radiuses'
 import shadows from 'styles/shadows'
+import useElementHeight from './hooks/useElementHeight'
 import TextAreaPropsT from './TextArea.props'
 
 const BaseTextAreaMixin = css`
@@ -40,26 +40,18 @@ const DisabledTextArea = styled.div`
 `
 
 const TextArea: FC<TextAreaPropsT> = ({
-  disabled,
+  disabled = false,
   value,
   placeholder,
   onChange,
   ...props
 }) => {
-  const textAreaRef = useRef<HTMLTextAreaElement>(null)
-  const [textAreaHeight, setTextAreaHeight] = useState('auto')
-
-  useLayoutEffect(() => {
-    if (isNil(textAreaRef.current)) {
-      return
-    }
-
-    setTextAreaHeight(`${textAreaRef.current.scrollHeight}px`)
-  }, [value, disabled])
+  const { ref, height, handleHeightChange } =
+    useElementHeight<HTMLTextAreaElement>([value, disabled])
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setTextAreaHeight('auto')
-    onChange(e.target.value as string)
+    handleHeightChange()
+    onChange(e.target.value)
   }
 
   if (disabled) {
@@ -73,11 +65,11 @@ const TextArea: FC<TextAreaPropsT> = ({
   return (
     <EditableTextArea
       {...props}
-      ref={textAreaRef}
+      ref={ref}
       value={value}
       placeholder={placeholder}
       rows={2}
-      style={{ height: textAreaHeight }}
+      style={{ height }}
       onChange={handleChange}
     />
   )
