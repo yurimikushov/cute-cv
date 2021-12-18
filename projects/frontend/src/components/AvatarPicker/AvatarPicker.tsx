@@ -1,16 +1,13 @@
-import { FC, useRef, useEffect } from 'react'
+import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import isNull from 'lodash/isNull'
-import isNil from 'lodash/isNil'
 import isEmpty from 'lodash/isEmpty'
-import first from 'lodash/first'
-import fileToBase64 from 'lib/fileToBase64'
 import { ReactComponent as CloseIcon } from 'icons/close.svg'
 import colors from 'styles/colors'
 import fonts from 'styles/fonts'
 import radiuses from 'styles/radiuses'
 import shadows from 'styles/shadows'
+import useAvatarPicker from './hooks/useAvatarPicker'
 import placeholderSrc from './assets/placeholder.png'
 import AvatarPickerPropsT from './AvatarPicker.props'
 
@@ -88,58 +85,16 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({
   onClear,
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'avatarPicker' })
-  const openFileDialogButtonRef = useRef<HTMLButtonElement>(null)
-  const fileInputRef = useRef<HTMLInputElement>(null)
 
-  useEffect(() => {
-    const { current: fileInputNode } = fileInputRef
-
-    if (isNull(fileInputNode)) {
-      return
-    }
-
-    const handlePick = async ({ target }: Event): Promise<void> => {
-      openFileDialogButtonRef.current?.blur() // when user navigate by keyboard
-
-      const { files } = target as HTMLInputElement
-      const file = first(files)
-
-      if (isNil(file)) {
-        return
-      }
-
-      onPick(await fileToBase64(file))
-    }
-
-    fileInputNode.addEventListener('change', handlePick)
-
-    return (): void => {
-      fileInputNode.removeEventListener('change', handlePick)
-    }
-  }, [onPick])
-
-  const handleOpenFileDialog = () => {
-    fileInputRef.current?.click()
-  }
-
-  const handleClear = () => {
-    openFileDialogButtonRef.current?.focus()
-
-    if (window.confirm(t('confirmDelete'))) {
-      onClear()
-    }
-  }
+  const { pickButtonRef, fileInputRef, handlePick, handleClear } =
+    useAvatarPicker(onPick, onClear)
 
   return (
     <Container>
       <Img src={src ?? placeholderSrc} alt={t('img.alt')} />
       {editable && (
         <>
-          <PickBtn
-            ref={openFileDialogButtonRef}
-            type='button'
-            onClick={handleOpenFileDialog}
-          >
+          <PickBtn ref={pickButtonRef} type='button' onClick={handlePick}>
             +
           </PickBtn>
           {!isEmpty(src) && (
