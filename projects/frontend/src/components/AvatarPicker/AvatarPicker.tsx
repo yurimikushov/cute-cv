@@ -2,12 +2,10 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
-import { ReactComponent as CloseIcon } from 'icons/close.svg'
-import colors from 'styles/colors'
-import fonts from 'styles/fonts'
 import radiuses from 'styles/radiuses'
-import shadows from 'styles/shadows'
 import useAvatarPicker from './hooks/useAvatarPicker'
+import PickBtn from './components/PickBtn'
+import ClearBtn from './components/ClearBtn'
 import placeholderSrc from './assets/placeholder.png'
 import AvatarPickerPropsT from './AvatarPicker.props'
 
@@ -23,17 +21,10 @@ const Img = styled.img`
   border-radius: ${radiuses.full};
 `
 
-const PickBtn = styled.button`
+const Pick = styled(PickBtn)`
   position: absolute;
   top: 0px;
   left: 0px;
-  height: 100%;
-  width: 100%;
-  font-size: ${fonts.size.xl};
-  color: ${colors.gray300};
-  background-color: ${colors.white};
-  border-radius: ${radiuses.full};
-  box-shadow: ${shadows.sm};
   transform: scale(0);
   transition-property: transform;
   transition-duration: 200ms;
@@ -46,16 +37,10 @@ const PickBtn = styled.button`
   }
 `
 
-const ClearBtn = styled.button`
+const Clear = styled(ClearBtn)`
   position: absolute;
   top: 0px;
   right: 0.25rem;
-  height: 1.25rem;
-  width: 1.25rem;
-  border-radius: ${radiuses.full};
-  line-height: 1.25rem;
-  background-color: ${colors.white};
-  box-shadow: ${shadows.sm};
   transform: scale(0);
   transition-property: transform;
   transition-duration: 200ms;
@@ -65,11 +50,6 @@ const ClearBtn = styled.button`
   &:focus-visible {
     transform: scale(1);
   }
-`
-
-const CloseSvg = styled(CloseIcon)`
-  height: 0.75rem;
-  color: ${colors.gray300};
 `
 
 const HiddenInput = styled.input`
@@ -94,14 +74,8 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({
       <Img src={src ?? placeholderSrc} alt={t('img.alt')} />
       {editable && (
         <>
-          <PickBtn ref={pickButtonRef} type='button' onClick={handlePick}>
-            +
-          </PickBtn>
-          {!isEmpty(src) && (
-            <ClearBtn type='button' onClick={handleClear}>
-              <CloseSvg />
-            </ClearBtn>
-          )}
+          <Pick ref={pickButtonRef} onClick={handlePick} />
+          {!isEmpty(src) && <Clear onClick={handleClear} />}
           <HiddenInput ref={fileInputRef} type='file' accept={ACCEPT_FORMATS} />
         </>
       )}
