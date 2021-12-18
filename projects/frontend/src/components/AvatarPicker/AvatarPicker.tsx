@@ -6,6 +6,7 @@ import radiuses from 'styles/radiuses'
 import useAvatarPicker from './hooks/useAvatarPicker'
 import PickBtn from './components/PickBtn'
 import ClearBtn from './components/ClearBtn'
+import HiddenImgInput from './components/HiddenImgInput'
 import placeholderSrc from './assets/placeholder.png'
 import AvatarPickerPropsT from './AvatarPicker.props'
 
@@ -52,12 +53,6 @@ const Clear = styled(ClearBtn)`
   }
 `
 
-const HiddenInput = styled.input`
-  display: none;
-`
-
-const ACCEPT_FORMATS = ['.png', '.jpg', '.jpeg'].join(',')
-
 const AvatarPicker: FC<AvatarPickerPropsT> = ({
   editable = true,
   src,
@@ -76,7 +71,7 @@ const AvatarPicker: FC<AvatarPickerPropsT> = ({
         <>
           <Pick ref={pickButtonRef} onClick={handlePick} />
           {!isEmpty(src) && <Clear onClick={handleClear} />}
-          <HiddenInput ref={fileInputRef} type='file' accept={ACCEPT_FORMATS} />
+          <HiddenImgInput ref={fileInputRef} />
         </>
       )}
     </Container>
