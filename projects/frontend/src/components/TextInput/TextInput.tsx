@@ -1,19 +1,16 @@
 import {
   ForwardRefRenderFunction,
   forwardRef,
-  useRef,
-  useState,
-  useLayoutEffect,
   useImperativeHandle,
   ChangeEvent,
 } from 'react'
 import styled, { css } from 'styled-components'
-import isNil from 'lodash/isNil'
 import trim from 'lodash/trim'
 import colors from 'styles/colors'
 import fonts from 'styles/fonts'
 import radiuses from 'styles/radiuses'
 import shadows from 'styles/shadows'
+import useElementWidth from './hooks/useElementWidth'
 import TextInputPropsT from './TextInput.props'
 
 const BaseTextInputMixin = css<Pick<TextInputPropsT, 'size'>>`
@@ -55,25 +52,19 @@ const DisabledTextInput = styled.div`
 `
 
 const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
-  { disabled, size = 'md', value, placeholder, onChange, ...props },
+  { disabled = false, size = 'md', value, placeholder, onChange, ...props },
   externalRef
 ) => {
-  const inputRef = useRef<HTMLInputElement>(null)
-  const [inputWidth, setInputWidth] = useState('auto')
+  const { ref, width, handleWidthChange } = useElementWidth<HTMLInputElement>([
+    value,
+    disabled,
+  ])
 
-  useImperativeHandle(externalRef, () => inputRef.current as HTMLInputElement)
-
-  useLayoutEffect(() => {
-    if (isNil(inputRef.current)) {
-      return
-    }
-
-    setInputWidth(`${inputRef.current.scrollWidth}px`)
-  }, [value, disabled])
+  useImperativeHandle(externalRef, () => ref.current as HTMLInputElement)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputWidth('auto')
-    onChange(e.target.value as string)
+    handleWidthChange()
+    onChange(e.target.value)
   }
 
   if (disabled) {
@@ -87,13 +78,13 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
   return (
     <EditableTextInput
       {...props}
-      ref={inputRef}
+      ref={ref}
       type='text'
       // @ts-expect-error bad typing
       size={size}
       value={value}
       placeholder={placeholder}
-      style={{ width: inputWidth }}
+      style={{ width }}
       onChange={handleChange}
     />
   )
