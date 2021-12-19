@@ -18,6 +18,7 @@ const AboutMe: FC = () => {
       disabled={!editable}
       value={aboutMe}
       placeholder={t('placeholder')}
+      maxLength={1_000}
       onChange={(aboutMe) => handleChange({ aboutMe })}
     />
   )

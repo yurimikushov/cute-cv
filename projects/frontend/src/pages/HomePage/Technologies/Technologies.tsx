@@ -26,6 +26,7 @@ const Technologies: FC<TechnologiesPropsT> = (props) => {
         disabled={!editable}
         value={technologies}
         placeholder={t('placeholder')}
+        maxLength={500}
         onChange={(technologies) => handleChange({ technologies })}
       />
     </Container>
