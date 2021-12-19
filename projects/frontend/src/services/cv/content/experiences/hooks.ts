@@ -1,5 +1,7 @@
+/* eslint-disable max-statements */
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import size from 'lodash/size'
 import { selectExperiences } from './selectors'
 import {
   PresetPayloadT,
@@ -18,6 +20,7 @@ import {
   updateDescription,
   erase,
 } from './slice'
+import { MAX_EXPERIENCES_SIZE } from './constants'
 
 const useExperiences = () => {
   const experiences = useSelector(selectExperiences)
@@ -29,8 +32,12 @@ const useExperiences = () => {
   }, [])
 
   const handleAdd = useCallback(() => {
+    if (MAX_EXPERIENCES_SIZE <= size(experiences)) {
+      return
+    }
+
     dispatch(add())
-  }, [])
+  }, [size(experiences)])
 
   const handlePositionChange = useCallback(
     (payload: UpdatePositionPayloadT) => {

@@ -17,4 +17,5 @@ export {
   useContacts,
   useTechnologies,
   useLanguages,
+  MAX_EXPERIENCES_SIZE,
 } from './content'
