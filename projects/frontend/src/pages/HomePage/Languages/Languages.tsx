@@ -2,8 +2,9 @@ import { FC, useLayoutEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
+import size from 'lodash/size'
 import map from 'lodash/map'
-import { useEditable, useLanguages } from 'services/cv'
+import { useEditable, useLanguages, MAX_LANGUAGES_SIZE } from 'services/cv'
 import { H2 } from 'components/H'
 import Button from 'components/Button'
 import Language from './Language'
@@ -42,7 +43,9 @@ const Languages: FC<LanguagesPropsT> = (props) => {
           onDelete={() => handleDelete({ id })}
         />
       ))}
-      {editable && <Add onClick={handleAdd}>Add</Add>}
+      {editable && size(languages) < MAX_LANGUAGES_SIZE && (
+        <Add onClick={handleAdd}>Add</Add>
+      )}
     </Container>
   )
 }
