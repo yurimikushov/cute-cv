@@ -53,6 +53,7 @@ const Education: FC<EducationPropsT> = ({
         disabled={!editable}
         value={degree}
         placeholder={t('degree.placeholder')}
+        maxLength={75}
         onChange={onDegreeChange}
       />
       <University
@@ -60,6 +61,7 @@ const Education: FC<EducationPropsT> = ({
         disabled={!editable}
         value={university}
         placeholder={t('university.placeholder')}
+        maxLength={75}
         onChange={onUniversityChange}
       />
       <Duration
@@ -67,6 +69,7 @@ const Education: FC<EducationPropsT> = ({
         disabled={!editable}
         value={duration}
         placeholder={t('duration.placeholder')}
+        maxLength={25}
         onChange={onDurationChange}
       />
     </Container>

@@ -54,12 +54,14 @@ const Contact: FC<ContactPropsT> = ({
         disabled={!editable}
         value={text}
         placeholder={t('text.placeholder')}
+        maxLength={50}
         onChange={onTextChange}
       />
       <Reference
         disabled={!editable}
         value={href}
         placeholder={t('reference.placeholder')}
+        maxLength={50}
         onChange={onHrefChange}
       />
       {editable && <Close onClick={onDelete} />}

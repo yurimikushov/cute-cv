@@ -61,6 +61,7 @@ const Experience: FC<ExperiencePropsT> = ({
         disabled={!editable}
         value={position}
         placeholder={t('position.placeholder')}
+        maxLength={50}
         onChange={onPositionChange}
       />
       <Company
@@ -68,6 +69,7 @@ const Experience: FC<ExperiencePropsT> = ({
         disabled={!editable}
         value={company}
         placeholder={t('company.placeholder')}
+        maxLength={50}
         onChange={onCompanyChange}
       />
       <Duration
@@ -75,6 +77,7 @@ const Experience: FC<ExperiencePropsT> = ({
         disabled={!editable}
         value={duration}
         placeholder={t('duration.placeholder')}
+        maxLength={25}
         onChange={onDurationChange}
       />
       <Description

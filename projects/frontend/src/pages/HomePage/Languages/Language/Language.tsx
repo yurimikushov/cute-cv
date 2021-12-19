@@ -35,6 +35,7 @@ const Language: FC<LanguagePropsT> = ({
         disabled={!editable}
         value={language}
         placeholder={t('placeholder')}
+        maxLength={25}
         onChange={onChange}
       />
       {editable && <Close onClick={onDelete} />}

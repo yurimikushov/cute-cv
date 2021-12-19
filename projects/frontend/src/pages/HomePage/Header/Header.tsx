@@ -39,6 +39,7 @@ const Header: FC = () => {
         disabled={!editable}
         value={fullName}
         placeholder={t('fullName.placeholder')}
+        maxLength={50}
         onChange={(fullName) => handleFullNameChange({ fullName })}
       />
       <Position
@@ -46,6 +47,7 @@ const Header: FC = () => {
         disabled={!editable}
         value={position}
         placeholder={t('position.placeholder')}
+        maxLength={50}
         onChange={(position) => handlePositionChange({ position })}
       />
     </header>
