@@ -2,8 +2,9 @@ import { FC, useLayoutEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
+import size from 'lodash/size'
 import map from 'lodash/map'
-import { useEditable, useEducations } from 'services/cv'
+import { useEditable, useEducations, MAX_EDUCATIONS_SIZE } from 'services/cv'
 import { H1 } from 'components/H'
 import Button from 'components/Button'
 import Education from './Education'
@@ -57,7 +58,9 @@ const Educations: FC<EducationsPropsT> = (props) => {
           onDelete={() => handleDelete({ id })}
         />
       ))}
-      {editable && <Add onClick={handleAdd}>Add</Add>}
+      {editable && size(educations) < MAX_EDUCATIONS_SIZE && (
+        <Add onClick={handleAdd}>Add</Add>
+      )}
     </Container>
   )
 }

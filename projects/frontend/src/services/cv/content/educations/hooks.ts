@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import size from 'lodash/size'
 import { selectEducations } from './selectors'
 import {
   PresetPayloadT,
@@ -16,6 +17,7 @@ import {
   updateDuration,
   erase,
 } from './slice'
+import { MAX_EDUCATIONS_SIZE } from './constants'
 
 const useEducations = () => {
   const educations = useSelector(selectEducations)
@@ -27,8 +29,12 @@ const useEducations = () => {
   }, [])
 
   const handleAdd = useCallback(() => {
+    if (MAX_EDUCATIONS_SIZE <= size(educations)) {
+      return
+    }
+
     dispatch(add())
-  }, [])
+  }, [size(educations)])
 
   const handleDegreeChange = useCallback((payload: UpdateDegreePayloadT) => {
     dispatch(updateDegree(payload))
