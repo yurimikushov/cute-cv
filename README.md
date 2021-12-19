@@ -2,6 +2,8 @@
 
 Simple and easy CV editor: `write` -> `download` -> `send to HR` -> `receive a dream offer`.
 
+![Preview](docs/img/preview.png)
+
 ## Features
 
 📄 **Download PDF**
