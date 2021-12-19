@@ -2,8 +2,9 @@ import { FC, useLayoutEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
+import size from 'lodash/size'
 import map from 'lodash/map'
-import { useEditable, useContacts } from 'services/cv'
+import { useEditable, useContacts, MAX_CONTACTS_SIZE } from 'services/cv'
 import { H2 } from 'components/H'
 import Button from 'components/Button'
 import Contact from './Contact'
@@ -50,7 +51,9 @@ const Contacts: FC<ContactsPropsT> = (props) => {
           onDelete={() => handleDelete({ id })}
         />
       ))}
-      {editable && <Add onClick={handleAdd}>Add</Add>}
+      {editable && size(contacts) < MAX_CONTACTS_SIZE && (
+        <Add onClick={handleAdd}>Add</Add>
+      )}
     </Container>
   )
 }

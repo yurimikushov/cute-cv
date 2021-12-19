@@ -19,4 +19,5 @@ export {
   useLanguages,
   MAX_EXPERIENCES_SIZE,
   MAX_EDUCATIONS_SIZE,
+  MAX_CONTACTS_SIZE,
 } from './content'
