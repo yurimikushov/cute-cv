@@ -3,7 +3,7 @@ import { ServiceNameEnum } from 'services'
 import { SignInStateT } from './model'
 
 const initialState: SignInStateT = {
-  isChecking: false,
+  isChecking: true, // to don't have glitch of sign in modal
   isSignedIn: false,
   isSkipped: false,
   isModalDisplayed: true,
