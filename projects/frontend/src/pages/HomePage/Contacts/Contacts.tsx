@@ -1,10 +1,11 @@
-import { FC, useLayoutEffect } from 'react'
+import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
 import { useEditable, useContacts, MAX_CONTACTS_SIZE } from 'services/cv'
+import useEffectWhen from 'hooks/useEffectWhen'
 import { H2 } from 'components/H'
 import Button from 'components/Button'
 import Contact from './Contact'
@@ -32,11 +33,7 @@ const Contacts: FC<ContactsPropsT> = (props) => {
     handleDelete,
   } = useContacts()
 
-  useLayoutEffect(() => {
-    if (isEmpty(contacts)) {
-      handleAdd()
-    }
-  }, [isEmpty(contacts)])
+  useEffectWhen(handleAdd, isEmpty(contacts))
 
   return (
     <Container {...props}>

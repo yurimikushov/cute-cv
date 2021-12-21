@@ -1,10 +1,11 @@
-import { FC, useLayoutEffect } from 'react'
+import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
 import { useEditable, useLanguages, MAX_LANGUAGES_SIZE } from 'services/cv'
+import useEffectWhen from 'hooks/useEffectWhen'
 import { H2 } from 'components/H'
 import Button from 'components/Button'
 import Language from './Language'
@@ -26,11 +27,7 @@ const Languages: FC<LanguagesPropsT> = (props) => {
   const { editable } = useEditable()
   const { languages, handleAdd, handleChange, handleDelete } = useLanguages()
 
-  useLayoutEffect(() => {
-    if (isEmpty(languages)) {
-      handleAdd()
-    }
-  }, [isEmpty(languages)])
+  useEffectWhen(handleAdd, isEmpty(languages))
 
   return (
     <Container {...props}>

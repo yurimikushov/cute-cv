@@ -1,10 +1,11 @@
-import { FC, useLayoutEffect } from 'react'
+import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
 import { useEditable, useEducations, MAX_EDUCATIONS_SIZE } from 'services/cv'
+import useEffectWhen from 'hooks/useEffectWhen'
 import { H1 } from 'components/H'
 import Button from 'components/Button'
 import Education from './Education'
@@ -33,11 +34,7 @@ const Educations: FC<EducationsPropsT> = (props) => {
     handleDelete,
   } = useEducations()
 
-  useLayoutEffect(() => {
-    if (isEmpty(educations)) {
-      handleAdd()
-    }
-  }, [isEmpty(educations)])
+  useEffectWhen(handleAdd, isEmpty(educations))
 
   return (
     <Container {...props}>

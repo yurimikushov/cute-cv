@@ -1,10 +1,11 @@
-import { FC, useLayoutEffect } from 'react'
+import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
 import { useEditable, useExperiences, MAX_EXPERIENCES_SIZE } from 'services/cv'
+import useEffectWhen from 'hooks/useEffectWhen'
 import { H1 } from 'components/H'
 import Button from 'components/Button'
 import Experience from './Experience'
@@ -34,11 +35,7 @@ const Experiences: FC<ExperiencesPropsT> = (props) => {
     handleDelete,
   } = useExperiences()
 
-  useLayoutEffect(() => {
-    if (isEmpty(experiences)) {
-      handleAdd()
-    }
-  }, [isEmpty(experiences)])
+  useEffectWhen(handleAdd, isEmpty(experiences))
 
   return (
     <Container {...props}>
