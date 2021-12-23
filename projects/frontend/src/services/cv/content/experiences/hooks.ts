@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import size from 'lodash/size'
 import { selectExperiences } from './selectors'
 import {
-  PresetPayloadT,
   UpdatePositionPayloadT,
   UpdateCompanyPayloadT,
   UpdateDurationPayloadT,
@@ -12,7 +11,6 @@ import {
   DeletePayloadT,
 } from './model'
 import {
-  preset,
   add,
   updatePosition,
   updateCompany,
@@ -26,10 +24,6 @@ const useExperiences = () => {
   const experiences = useSelector(selectExperiences)
 
   const dispatch = useDispatch()
-
-  const handlePreset = useCallback((payload: PresetPayloadT) => {
-    dispatch(preset(payload))
-  }, [])
 
   const handleAdd = useCallback(() => {
     if (MAX_EXPERIENCES_SIZE <= size(experiences)) {
@@ -70,7 +64,6 @@ const useExperiences = () => {
 
   return {
     experiences,
-    handlePreset,
     handleAdd,
     handlePositionChange,
     handleCompanyChange,

@@ -3,10 +3,10 @@ import map from 'lodash/map'
 import keyBy from 'lodash/keyBy'
 import filter from 'lodash/filter'
 import omit from 'lodash/omit'
+import { load } from 'services/cv/load'
 import { SERVICE_NAME } from '../constants'
 import {
   ExperiencesStateT,
-  PresetPayloadT,
   UpdatePositionPayloadT,
   UpdateCompanyPayloadT,
   UpdateDurationPayloadT,
@@ -22,11 +22,15 @@ const initialState: ExperiencesStateT = {
 const { actions, reducer } = createSlice({
   name: `${SERVICE_NAME}/experiences`,
   initialState,
+  extraReducers: (builder) => {
+    builder.addCase(load.fulfilled, (state, { payload }) => {
+      const { experiences } = payload.content
+
+      state.ids = map(experiences, 'id')
+      state.experiencesById = keyBy(experiences, 'id')
+    })
+  },
   reducers: {
-    preset: (state, { payload }: PayloadAction<PresetPayloadT>) => {
-      state.ids = map(payload.experiences, 'id')
-      state.experiencesById = keyBy(payload.experiences, 'id')
-    },
     add: (state) => {
       const id = nanoid()
 
@@ -71,7 +75,6 @@ const { actions, reducer } = createSlice({
 })
 
 export const {
-  preset,
   add,
   updatePosition,
   updateCompany,

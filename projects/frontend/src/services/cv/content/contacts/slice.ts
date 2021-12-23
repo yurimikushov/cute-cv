@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction, nanoid } from '@reduxjs/toolkit'
+
 import map from 'lodash/map'
 import keyBy from 'lodash/keyBy'
 import filter from 'lodash/filter'
 import omit from 'lodash/omit'
+import { load } from 'services/cv/load'
 import {
   ContactsStateT,
-  PresetPayloadT,
   UpdateTextPayloadT,
   UpdateHrefPayloadT,
   DeletePayloadT,
@@ -20,11 +21,15 @@ const initialState: ContactsStateT = {
 const { actions, reducer } = createSlice({
   name: `${SERVICE_NAME}/contacts`,
   initialState,
+  extraReducers: (builder) => {
+    builder.addCase(load.fulfilled, (state, { payload }) => {
+      const { contacts } = payload.content
+
+      state.ids = map(contacts, 'id')
+      state.contactsById = keyBy(contacts, 'id')
+    })
+  },
   reducers: {
-    preset: (state, { payload }: PayloadAction<PresetPayloadT>) => {
-      state.ids = map(payload.contacts, 'id')
-      state.contactsById = keyBy(payload.contacts, 'id')
-    },
     add: (state) => {
       const id = nanoid()
 
@@ -48,5 +53,5 @@ const { actions, reducer } = createSlice({
   },
 })
 
-export const { preset, add, updateText, updateHref, erase } = actions
+export const { add, updateText, updateHref, erase } = actions
 export default reducer

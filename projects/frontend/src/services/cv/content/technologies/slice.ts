@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { load } from 'services/cv/load'
 import { SERVICE_NAME } from '../constants'
-import { TechnologiesStateT, PresetPayloadT, UpdatePayloadT } from './model'
+import { TechnologiesStateT, UpdatePayloadT } from './model'
 
 const initialState: TechnologiesStateT = {
   technologies: '',
@@ -9,15 +10,17 @@ const initialState: TechnologiesStateT = {
 const { actions, reducer } = createSlice({
   name: `${SERVICE_NAME}/technologies`,
   initialState,
+  extraReducers: (builder) => {
+    builder.addCase(load.fulfilled, (state, { payload }) => {
+      state.technologies = payload.content.technologies
+    })
+  },
   reducers: {
-    preset: (state, { payload }: PayloadAction<PresetPayloadT>) => {
-      state.technologies = payload.technologies
-    },
     update: (state, { payload }: PayloadAction<UpdatePayloadT>) => {
       state.technologies = payload.technologies
     },
   },
 })
 
-export const { preset, update } = actions
+export const { update } = actions
 export default reducer

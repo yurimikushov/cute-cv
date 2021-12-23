@@ -9,10 +9,6 @@ type ContactsStateT = {
   contactsById: Record<string, ContactT>
 }
 
-type PresetPayloadT = {
-  contacts: Array<ContactT>
-}
-
 type UpdateTextPayloadT = {
   id: string
   text: string
@@ -29,7 +25,6 @@ type DeletePayloadT = {
 
 export type {
   ContactsStateT,
-  PresetPayloadT,
   UpdateTextPayloadT,
   UpdateHrefPayloadT,
   DeletePayloadT,

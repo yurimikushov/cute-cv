@@ -1,108 +1,27 @@
-/* eslint-disable max-statements */
-import { useEffect, useCallback } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import isNull from 'lodash/isNull'
-import { load } from 'api/cv'
 import { useIsSignedIn } from 'services/auth'
-import { useMetadata } from '../metadata'
-import {
-  useFullName,
-  usePosition,
-  useAvatar,
-  useAboutMe,
-  useExperiences,
-  useEducations,
-  useContacts,
-  useTechnologies,
-  useLanguages,
-} from 'services/cv'
 import { selectIsLoading } from './selectors'
-import { begin, success, fail } from './slice'
-import { FailPayloadT } from './model'
+import { load } from './thunks'
 
 const useIsCVLoading = () => {
   const isCVLoading = useSelector(selectIsLoading)
 
-  const dispatch = useDispatch()
-
-  const handleBegin = useCallback(() => {
-    dispatch(begin())
-  }, [])
-
-  const handleSuccess = useCallback(() => {
-    dispatch(success())
-  }, [])
-
-  const handleFail = useCallback((payload: FailPayloadT) => {
-    dispatch(fail(payload))
-  }, [])
-
   return {
     isCVLoading,
-    handleBegin,
-    handleSuccess,
-    handleFail,
   }
 }
 
 const useLoadCV = () => {
+  const dispatch = useDispatch()
   const { isSignedIn } = useIsSignedIn()
-
-  const {
-    handleBegin: begin,
-    handleSuccess: success,
-    handleFail: fail,
-  } = useIsCVLoading()
-  const { handleMarkAsSaved: markAsSaved } = useMetadata()
-  const { handlePreset: presetFullName } = useFullName()
-  const { handlePreset: presetPosition } = usePosition()
-  const { handlePreset: presetAvatar } = useAvatar()
-  const { handlePreset: presetAboutMe } = useAboutMe()
-  const { handlePreset: presetExperiences } = useExperiences()
-  const { handlePreset: presetEducations } = useEducations()
-  const { handlePreset: presetContacts } = useContacts()
-  const { handlePreset: presetTechnologies } = useTechnologies()
-  const { handlePreset: presetLanguages } = useLanguages()
 
   useEffect(() => {
     if (!isSignedIn) {
       return
     }
 
-    const loadCV = async () => {
-      begin()
-
-      const either = await load()
-
-      either
-        .mapRight((data) => {
-          if (isNull(data)) {
-            success()
-            return
-          }
-
-          const { metadata, content: cv } = data
-
-          markAsSaved({ savedAt: new Date(metadata.savedAt) })
-
-          presetFullName({ fullName: cv.fullName })
-          presetPosition({ position: cv.position })
-          presetAvatar({ src: cv.avatar })
-          presetAboutMe({ aboutMe: cv.aboutMe })
-          presetExperiences({ experiences: cv.experiences })
-          presetEducations({ educations: cv.educations })
-          presetContacts({ contacts: cv.contacts })
-          presetTechnologies({ technologies: cv.technologies })
-          presetLanguages({ languages: cv.languages })
-
-          success()
-        })
-        .mapLeft((error) => {
-          fail({ error })
-        })
-    }
-
-    loadCV()
+    dispatch(load())
   }, [isSignedIn])
 }
 

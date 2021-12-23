@@ -2,23 +2,14 @@ import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import size from 'lodash/size'
 import { selectContacts } from './selectors'
-import {
-  PresetPayloadT,
-  UpdateTextPayloadT,
-  UpdateHrefPayloadT,
-  DeletePayloadT,
-} from './model'
-import { preset, add, updateText, updateHref, erase } from './slice'
+import { UpdateTextPayloadT, UpdateHrefPayloadT, DeletePayloadT } from './model'
+import { add, updateText, updateHref, erase } from './slice'
 import { MAX_CONTACTS_SIZE } from './constants'
 
 const useContacts = () => {
   const contacts = useSelector(selectContacts)
 
   const dispatch = useDispatch()
-
-  const handlePreset = useCallback((payload: PresetPayloadT) => {
-    dispatch(preset(payload))
-  }, [])
 
   const handleAdd = useCallback(() => {
     if (MAX_CONTACTS_SIZE <= size(contacts)) {
@@ -42,7 +33,6 @@ const useContacts = () => {
 
   return {
     contacts,
-    handlePreset,
     handleAdd,
     handleTextChange,
     handleHrefChange,

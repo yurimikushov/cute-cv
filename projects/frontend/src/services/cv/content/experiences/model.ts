@@ -11,10 +11,6 @@ type ExperiencesStateT = {
   experiencesById: Record<string, ExperienceT>
 }
 
-type PresetPayloadT = {
-  experiences: Array<ExperienceT>
-}
-
 type UpdatePositionPayloadT = {
   id: string
   position: string
@@ -41,7 +37,6 @@ type DeletePayloadT = {
 
 export type {
   ExperiencesStateT,
-  PresetPayloadT,
   UpdatePositionPayloadT,
   UpdateCompanyPayloadT,
   UpdateDurationPayloadT,

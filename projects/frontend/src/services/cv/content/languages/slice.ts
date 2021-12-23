@@ -3,13 +3,9 @@ import map from 'lodash/map'
 import keyBy from 'lodash/keyBy'
 import filter from 'lodash/filter'
 import omit from 'lodash/omit'
+import { load } from 'services/cv/load'
 import { SERVICE_NAME } from '../constants'
-import {
-  LanguagesStateT,
-  PresetPayloadT,
-  UpdatePayloadT,
-  DeletePayloadT,
-} from './model'
+import { LanguagesStateT, UpdatePayloadT, DeletePayloadT } from './model'
 
 const initialState: LanguagesStateT = {
   ids: [],
@@ -19,11 +15,15 @@ const initialState: LanguagesStateT = {
 const { actions, reducer } = createSlice({
   name: `${SERVICE_NAME}/languages`,
   initialState,
+  extraReducers: (builder) => {
+    builder.addCase(load.fulfilled, (state, { payload }) => {
+      const { languages } = payload.content
+
+      state.ids = map(languages, 'id')
+      state.languagesById = keyBy(languages, 'id')
+    })
+  },
   reducers: {
-    preset: (state, { payload }: PayloadAction<PresetPayloadT>) => {
-      state.ids = map(payload.languages, 'id')
-      state.languagesById = keyBy(payload.languages, 'id')
-    },
     add: (state) => {
       const id = nanoid()
 
@@ -43,5 +43,5 @@ const { actions, reducer } = createSlice({
   },
 })
 
-export const { preset, add, update, erase } = actions
+export const { add, update, erase } = actions
 export default reducer

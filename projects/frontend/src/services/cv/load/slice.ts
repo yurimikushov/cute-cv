@@ -1,29 +1,34 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from 'services'
-import { LoadingStateT, FailPayloadT } from './model'
+import { LoadingStateT } from './model'
+import { load } from './thunks'
 
 const initialState: LoadingStateT = {
   isLoading: false,
   error: null,
 }
 
-const { actions, reducer } = createSlice({
+const { reducer } = createSlice({
   name: `${ServiceNameEnum.cv}/load`,
   initialState,
-  reducers: {
-    begin: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(load.pending, (state) => {
       state.isLoading = true
       state.error = null
-    },
-    success: (state) => {
+    })
+    builder.addCase(load.fulfilled, (state) => {
       state.isLoading = false
-    },
-    fail: (state, { payload }: PayloadAction<FailPayloadT>) => {
+    })
+    builder.addCase(load.rejected, (state, { payload, error }) => {
       state.isLoading = false
-      state.error = payload.error
-    },
+
+      // @ts-expect-error bad typing
+      if (!('isEmpty' in payload)) {
+        state.error = error
+      }
+    })
   },
+  reducers: {},
 })
 
-export const { begin, success, fail } = actions
 export default reducer

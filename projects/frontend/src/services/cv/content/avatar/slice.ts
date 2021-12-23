@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { load } from 'services/cv/load'
 import { SERVICE_NAME } from '../constants'
-import { AvatarStateT, PresetPayloadT, UpdatePayloadT } from './model'
+import { AvatarStateT, UpdatePayloadT } from './model'
 
 const initialState: AvatarStateT = {
   src: null,
@@ -9,10 +10,12 @@ const initialState: AvatarStateT = {
 const { actions, reducer } = createSlice({
   name: `${SERVICE_NAME}/avatar`,
   initialState,
+  extraReducers: (builder) => {
+    builder.addCase(load.fulfilled, (state, { payload }) => {
+      state.src = payload.content.avatar
+    })
+  },
   reducers: {
-    preset: (state, { payload }: PayloadAction<PresetPayloadT>) => {
-      state.src = payload.src
-    },
     update: (state, { payload }: PayloadAction<UpdatePayloadT>) => {
       state.src = payload.src
     },
@@ -22,5 +25,5 @@ const { actions, reducer } = createSlice({
   },
 })
 
-export const { preset, update, erase } = actions
+export const { update, erase } = actions
 export default reducer

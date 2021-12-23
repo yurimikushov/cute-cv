@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { load } from 'services/cv/load'
 import { SERVICE_NAME } from '../constants'
-import { NameStateT, PresetPayloadT, UpdatePayloadT } from './model'
+import { NameStateT, UpdatePayloadT } from './model'
 
 const initialState: NameStateT = {
   fullName: '',
@@ -9,15 +10,17 @@ const initialState: NameStateT = {
 const { actions, reducer } = createSlice({
   name: `${SERVICE_NAME}/name`,
   initialState,
+  extraReducers: (builder) => {
+    builder.addCase(load.fulfilled, (state, { payload }) => {
+      state.fullName = payload.content.fullName
+    })
+  },
   reducers: {
-    preset: (state, { payload }: PayloadAction<PresetPayloadT>) => {
-      state.fullName = payload.fullName
-    },
     update: (state, { payload }: PayloadAction<UpdatePayloadT>) => {
       state.fullName = payload.fullName
     },
   },
 })
 
-export const { preset, update } = actions
+export const { update } = actions
 export default reducer

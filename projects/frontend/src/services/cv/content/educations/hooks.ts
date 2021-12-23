@@ -3,14 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import size from 'lodash/size'
 import { selectEducations } from './selectors'
 import {
-  PresetPayloadT,
   DeletePayloadT,
   UpdateDegreePayloadT,
   UpdateUniversityPayloadT,
   UpdateDurationPayloadT,
 } from './model'
 import {
-  preset,
   add,
   updateDegree,
   updateUniversity,
@@ -23,10 +21,6 @@ const useEducations = () => {
   const educations = useSelector(selectEducations)
 
   const dispatch = useDispatch()
-
-  const handlePreset = useCallback((payload: PresetPayloadT) => {
-    dispatch(preset(payload))
-  }, [])
 
   const handleAdd = useCallback(() => {
     if (MAX_EDUCATIONS_SIZE <= size(educations)) {
@@ -60,7 +54,6 @@ const useEducations = () => {
 
   return {
     educations,
-    handlePreset,
     handleAdd,
     handleDegreeChange,
     handleUniversityChange,
