@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import colors from 'styles/colors'
+import gradients from 'styles/gradients'
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -8,7 +9,9 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: ${colors.gray50};
+    background-color: ${colors.silver};
+    background-image: ${gradients.silver};
+    background-attachment: fixed;
   }
 
   a {
