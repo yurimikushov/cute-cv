@@ -16,7 +16,7 @@ import Languages from './Languages'
 
 const StyledToolbarLayout = styled(ToolbarLayout)`
   margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 3.5rem;
   display: flex;
   justify-content: center;
 `
