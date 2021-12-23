@@ -10,8 +10,9 @@ import ToolbarPropsT from './Toolbar.props'
 
 const ToolbarContainer = styled.div`
   margin-top: 1.5rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem;
   width: 6rem;
+  background-color: ${colors.white};
   border-radius: ${radiuses.sm};
   border: 2px solid ${colors.gray200};
 
