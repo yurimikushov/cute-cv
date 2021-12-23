@@ -21,8 +21,11 @@ const RadioItem: FC<RadioItemPropsT> = ({
   onChange,
   ...props
 }) => {
-  const handleKeyDown = ({ code }: KeyboardEvent) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    const { code } = e
+
     if (code === 'Space' || code === 'Enter') {
+      e.preventDefault()
       onChange(option)
     }
   }
