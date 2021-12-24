@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from 'services'
 import { load } from 'services/cv/load'
+import { save } from '../save'
 import { MetadataStateT, SavedPayloadT } from './model'
 
 const initialState: MetadataStateT = {
@@ -15,6 +16,10 @@ const { actions, reducer } = createSlice({
     builder.addCase(load.fulfilled, (state, { payload }) => {
       state.isSaved = true
       state.savedAt = new Date(payload.metadata.savedAt)
+    })
+    builder.addCase(save.fulfilled, (state, { payload }) => {
+      state.isSaved = true
+      state.savedAt = new Date(payload.savedAt)
     })
   },
   reducers: {

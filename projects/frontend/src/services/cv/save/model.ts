@@ -1,10 +1,8 @@
+import { SerializedError } from '@reduxjs/toolkit'
+
 type SaveStateT = {
   isSaving: boolean
-  error: Error | null
+  error: SerializedError | null
 }
 
-type FailPayloadT = {
-  error: Error
-}
-
-export type { SaveStateT, FailPayloadT }
+export type { SaveStateT }

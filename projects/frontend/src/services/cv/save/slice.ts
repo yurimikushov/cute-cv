@@ -1,29 +1,30 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from 'services'
-import { SaveStateT, FailPayloadT } from './model'
+import { SaveStateT } from './model'
+import { save } from './thunks'
 
 const initialState: SaveStateT = {
   isSaving: false,
   error: null,
 }
 
-const { actions, reducer } = createSlice({
+const { reducer } = createSlice({
   name: `${ServiceNameEnum.cv}/save`,
   initialState,
-  reducers: {
-    begin: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(save.pending, (state) => {
       state.isSaving = true
       state.error = null
-    },
-    success: (state) => {
+    })
+    builder.addCase(save.fulfilled, (state) => {
       state.isSaving = false
-    },
-    fail: (state, { payload }: PayloadAction<FailPayloadT>) => {
+    })
+    builder.addCase(save.rejected, (state, { error }) => {
       state.isSaving = false
-      state.error = payload.error
-    },
+      state.error = error
+    })
   },
+  reducers: {},
 })
 
-export const { begin, success, fail } = actions
 export default reducer

@@ -1,5 +1,4 @@
-import axios, { AxiosError } from 'axios'
-import { right, left } from '@sweet-monads/either'
+import axios from 'axios'
 import { CV } from 'services/cv'
 import { LoadResultT, SaveResultT } from './model'
 
@@ -14,19 +13,11 @@ class cvApi {
 
     return data || null
   }
-}
 
-const save = async (cv: CV) => {
-  try {
-    const { data: metadata } = await axios.put<SaveResultT>('/cv', cv)
-    return right({
-      ...metadata,
-      savedAt: new Date(metadata.savedAt),
-    } as const)
-  } catch (error) {
-    return left(error as AxiosError)
+  public static async save(cv: CV) {
+    const { data } = await axios.put<SaveResultT>('/cv', cv)
+    return data
   }
 }
 
-export { save }
 export default cvApi
