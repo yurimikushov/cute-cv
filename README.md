@@ -1,6 +1,6 @@
 # Cute CV
 
-Simple and easy CV editor: `write` -> `download` -> `send to HR` -> `receive a dream offer`.
+Simple and easy CV editor.
 
 ![Preview](docs/img/preview.png)
 
