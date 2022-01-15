@@ -28,6 +28,7 @@ const ru: TranslationT = {
     download: {
       title: 'Скачать',
       pdf: 'PDF',
+      json: 'JSON',
     },
     language: {
       title: 'Язык',

@@ -9,6 +9,8 @@ import DownloadPropsT from './Download.props'
 const Container = styled.div`
   & > * + * {
     margin-top: 0.25rem;
+    display: flex;
+    flex-direction: column;
   }
 `
 
@@ -34,6 +36,16 @@ const Download: FC<DownloadPropsT> = (props) => {
     }
   }
 
+  const handleDownloadJSON = (): Promise<void> => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        alert('Just imagine json file has downloaded')
+        resolve()
+        // eslint-disable-next-line no-magic-numbers
+      }, 500)
+    })
+  }
+
   return (
     <Container {...props}>
       <H2>{t('download.title')}</H2>
@@ -43,6 +55,13 @@ const Download: FC<DownloadPropsT> = (props) => {
         onClick={withToggleEditable(handleDownloadPDF)}
       >
         {t('download.pdf')}
+      </Button>
+      <Button
+        withPaddings={false}
+        disabled={isDownloading}
+        onClick={withToggleEditable(handleDownloadJSON)}
+      >
+        {t('download.json')}
       </Button>
     </Container>
   )

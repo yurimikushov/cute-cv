@@ -26,6 +26,7 @@ type TranslationT = {
     download: {
       title: string
       pdf: string
+      json: string
     }
     language: {
       title: string

@@ -28,6 +28,7 @@ const en: TranslationT = {
     download: {
       title: 'Download',
       pdf: 'PDF',
+      json: 'JSON',
     },
     language: {
       title: 'Language',
