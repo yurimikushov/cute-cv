@@ -18,7 +18,7 @@ const Download: FC<DownloadPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'toolbar' })
   const prevEditableRef = useRef<boolean>(false)
   const { editable, handleToggle } = useEditable()
-  const { isDownloading, handleDownloadPDF } = useDownload()
+  const { isDownloading, handleDownloadPDF, handleDownloadJSON } = useDownload()
 
   const withToggleEditable = (handler: () => Promise<void>) => {
     return async function withToggleEditable() {
@@ -34,16 +34,6 @@ const Download: FC<DownloadPropsT> = (props) => {
         handleToggle()
       }
     }
-  }
-
-  const handleDownloadJSON = (): Promise<void> => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        alert('Just imagine json file has downloaded')
-        resolve()
-        // eslint-disable-next-line no-magic-numbers
-      }, 500)
-    })
   }
 
   return (
