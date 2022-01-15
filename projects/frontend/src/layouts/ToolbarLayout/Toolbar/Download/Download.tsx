@@ -18,17 +18,19 @@ const Download: FC<DownloadPropsT> = (props) => {
   const { editable, handleToggle } = useEditable()
   const { isDownloading, handleDownloadPDF } = useDownload()
 
-  const handleToggleEditableAndDownloadPDF = async () => {
-    prevEditableRef.current = editable
+  const withToggleEditable = (handler: () => Promise<void>) => {
+    return async function withToggleEditable() {
+      prevEditableRef.current = editable
 
-    if (editable) {
-      handleToggle()
-    }
+      if (editable) {
+        handleToggle()
+      }
 
-    await handleDownloadPDF()
+      await handler()
 
-    if (prevEditableRef.current) {
-      handleToggle()
+      if (prevEditableRef.current) {
+        handleToggle()
+      }
     }
   }
 
@@ -38,7 +40,7 @@ const Download: FC<DownloadPropsT> = (props) => {
       <Button
         withPaddings={false}
         disabled={isDownloading}
-        onClick={handleToggleEditableAndDownloadPDF}
+        onClick={withToggleEditable(handleDownloadPDF)}
       >
         {t('download.pdf')}
       </Button>
