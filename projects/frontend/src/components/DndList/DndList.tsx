@@ -33,7 +33,14 @@ const DndList = ({
       return
     }
 
-    onDragEnd(source.index, destination.index)
+    const startIndex = source.index
+    const endIndex = destination.index
+
+    if (startIndex === endIndex) {
+      return
+    }
+
+    onDragEnd(startIndex, endIndex)
   }
 
   return (
