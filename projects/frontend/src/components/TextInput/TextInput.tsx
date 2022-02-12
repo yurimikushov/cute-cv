@@ -55,10 +55,10 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
   { disabled = false, size = 'md', value, placeholder, onChange, ...props },
   externalRef
 ) => {
-  const { ref, width, handleWidthChange } = useElementWidth<HTMLInputElement>([
-    value,
-    disabled,
-  ])
+  const { ref, width, handleWidthChange } = useElementWidth<HTMLInputElement>(
+    [value, disabled],
+    { extraSpace: 3 /* fixes right side padding */ }
+  )
 
   useImperativeHandle(externalRef, () => ref.current as HTMLInputElement)
 

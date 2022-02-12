@@ -1,7 +1,15 @@
 import { DependencyList, useLayoutEffect, useRef, useState } from 'react'
 import isNull from 'lodash/isNull'
 
-const useElementWidth = <T extends HTMLElement>(deps: DependencyList) => {
+type Options = {
+  extraSpace?: number
+}
+
+const useElementWidth = <T extends HTMLElement>(
+  deps: DependencyList,
+  // eslint-disable-next-line no-magic-numbers
+  { extraSpace = 0 }: Options
+) => {
   const ref = useRef<T>(null)
   const [width, setWidth] = useState('auto')
 
@@ -10,7 +18,7 @@ const useElementWidth = <T extends HTMLElement>(deps: DependencyList) => {
       return
     }
 
-    setWidth(`${ref.current.scrollWidth}px`)
+    setWidth(`${ref.current.scrollWidth + extraSpace}px`)
   }, deps)
 
   const handleWidthChange = () => {
