@@ -11,6 +11,7 @@ const Container = styled.div`
 `
 
 const LanguageField = styled(TextInput)`
+  padding-right: 1.25rem;
   min-width: 100%;
 `
 

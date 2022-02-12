@@ -18,6 +18,7 @@ const Container = styled(Card)`
 `
 
 const Text = styled(TextInput)`
+  padding-right: 1.25rem;
   display: block;
   min-width: 100%;
 `
