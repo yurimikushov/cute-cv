@@ -35,6 +35,11 @@ type DeletePayloadT = {
   id: string
 }
 
+type ReorderPayloadT = {
+  startIndex: number
+  endIndex: number
+}
+
 export type {
   ExperiencesStateT,
   UpdatePositionPayloadT,
@@ -42,4 +47,5 @@ export type {
   UpdateDurationPayloadT,
   UpdateDescriptionPayloadT,
   DeletePayloadT,
+  ReorderPayloadT,
 }

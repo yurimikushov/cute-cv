@@ -9,6 +9,7 @@ import {
   UpdateDurationPayloadT,
   UpdateDescriptionPayloadT,
   DeletePayloadT,
+  ReorderPayloadT,
 } from './model'
 import {
   add,
@@ -17,6 +18,7 @@ import {
   updateDuration,
   updateDescription,
   erase,
+  reorder,
 } from './slice'
 import { MAX_EXPERIENCES_SIZE } from './constants'
 
@@ -62,6 +64,10 @@ const useExperiences = () => {
     dispatch(erase(payload))
   }, [])
 
+  const handleReorder = useCallback((payload: ReorderPayloadT) => {
+    dispatch(reorder(payload))
+  }, [])
+
   return {
     experiences,
     handleAdd,
@@ -70,6 +76,7 @@ const useExperiences = () => {
     handleDurationChange,
     handleDescriptionChange,
     handleDelete,
+    handleReorder,
   }
 }
 

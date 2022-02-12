@@ -3,6 +3,7 @@ import map from 'lodash/map'
 import keyBy from 'lodash/keyBy'
 import filter from 'lodash/filter'
 import omit from 'lodash/omit'
+import swap from 'lib/reorder'
 import { load } from 'services/cv/load'
 import { SERVICE_NAME } from '../constants'
 import {
@@ -12,6 +13,7 @@ import {
   UpdateDurationPayloadT,
   UpdateDescriptionPayloadT,
   DeletePayloadT,
+  ReorderPayloadT,
 } from './model'
 
 const initialState: ExperiencesStateT = {
@@ -71,6 +73,9 @@ const { actions, reducer } = createSlice({
       state.ids = filter(state.ids, (id) => payload.id !== id)
       state.experiencesById = omit(state.experiencesById, payload.id)
     },
+    reorder: (state, { payload }: PayloadAction<ReorderPayloadT>) => {
+      state.ids = swap(state.ids, payload.startIndex, payload.endIndex)
+    },
   },
 })
 
@@ -81,5 +86,6 @@ export const {
   updateDuration,
   updateDescription,
   erase,
+  reorder,
 } = actions
 export default reducer
