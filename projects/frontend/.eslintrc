@@ -59,6 +59,7 @@
     "class-methods-use-this": "off",
     "multiline-comment-style": "off",
     "dot-location": "off",
+    "no-trailing-spaces": "off",
     "react/react-in-jsx-scope": "off",
     "react/function-component-definition": "off",
     "react/jsx-indent": "off",
