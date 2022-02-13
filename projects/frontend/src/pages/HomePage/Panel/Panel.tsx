@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import useKeyDown from 'hooks/useKeyDown'
 import { useDownload, useEditable } from 'services/cv'
 import Button from 'components/Button'
 import colors from 'styles/colors'
-import { useSavedStatus } from './hooks'
+import useSavedStatus from './hooks/useSavedStatus'
 import PanelPropsT from './Panel.props'
 
 const Container = styled.div`

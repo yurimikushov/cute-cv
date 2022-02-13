@@ -49,4 +49,4 @@ const useSavedStatus = () => {
   return savedStatus
 }
 
-export { useSavedStatus }
+export default useSavedStatus
