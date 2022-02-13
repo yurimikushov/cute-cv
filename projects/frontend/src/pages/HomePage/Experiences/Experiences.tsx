@@ -49,6 +49,7 @@ const Experiences: FC<ExperiencesPropsT> = (props) => {
     <Container {...props}>
       <H1>{t('title')}</H1>
       <List
+        isDndDisabled={!editable}
         onDragEnd={(startIndex, endIndex) =>
           handleReorder({ startIndex, endIndex })
         }

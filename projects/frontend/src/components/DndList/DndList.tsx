@@ -22,11 +22,12 @@ const List = styled('ul')<{ isDragging: boolean }>`
 
 const DndList = ({
   className,
+  isDndDisabled = false,
   children,
   onDragEnd,
 }: DndListProps): JSX.Element => {
   // eslint-disable-next-line no-magic-numbers
-  const isDragDisabled = size(children) < 2
+  const isDragDisabled = isDndDisabled || size(children) < 2
 
   const handleDragEnd = ({ destination, source }: DropResult) => {
     if (!destination) {
