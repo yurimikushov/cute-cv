@@ -23,6 +23,12 @@ const Panel: FC<PanelPropsT> = (props) => {
   const savedStatus = useSavedStatus()
   const { isDownloading } = useDownload()
 
+  useKeyDown({
+    code: 'KeyW',
+    altKey: true,
+    listener: handleToggle,
+  })
+
   return (
     <Container {...props}>
       <SavedStatus>{savedStatus}</SavedStatus>
