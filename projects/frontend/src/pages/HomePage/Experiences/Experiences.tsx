@@ -18,7 +18,7 @@ const Container = styled.div`
   }
 `
 
-const List = styled(DndList)`
+const DraggableList = styled(DndList)`
   & > * + * {
     margin-top: 1rem;
   }
@@ -48,7 +48,7 @@ const Experiences: FC<ExperiencesPropsT> = (props) => {
   return (
     <Container {...props}>
       <H1>{t('title')}</H1>
-      <List
+      <DraggableList
         isDndDisabled={!editable}
         onDragEnd={(startIndex, endIndex) =>
           handleReorder({ startIndex, endIndex })
@@ -57,7 +57,7 @@ const Experiences: FC<ExperiencesPropsT> = (props) => {
         {map(
           experiences,
           ({ id, position, company, duration, description }) => (
-            <List.Item key={id}>
+            <DraggableList.Item key={id}>
               <Experience
                 position={position}
                 company={company}
@@ -77,10 +77,10 @@ const Experiences: FC<ExperiencesPropsT> = (props) => {
                 }
                 onDelete={() => handleDelete({ id })}
               />
-            </List.Item>
+            </DraggableList.Item>
           )
         )}
-      </List>
+      </DraggableList>
       {editable && size(experiences) < MAX_EXPERIENCES_SIZE && (
         <Add onClick={handleAdd}>Add</Add>
       )}
