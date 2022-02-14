@@ -56,7 +56,6 @@ const Educations: FC<EducationsPropsT> = (props) => {
         {map(educations, ({ id, degree, university, duration }) => (
           <DraggableList.Item key={id}>
             <Education
-              key={id}
               degree={degree}
               university={university}
               duration={duration}
