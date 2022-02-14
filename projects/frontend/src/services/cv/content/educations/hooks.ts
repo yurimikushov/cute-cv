@@ -7,6 +7,7 @@ import {
   UpdateDegreePayloadT,
   UpdateUniversityPayloadT,
   UpdateDurationPayloadT,
+  ReorderPayloadT,
 } from './model'
 import {
   add,
@@ -14,6 +15,7 @@ import {
   updateUniversity,
   updateDuration,
   erase,
+  reorder,
 } from './slice'
 import { MAX_EDUCATIONS_SIZE } from './constants'
 
@@ -52,6 +54,10 @@ const useEducations = () => {
     dispatch(erase(payload))
   }, [])
 
+  const handleReorder = useCallback((payload: ReorderPayloadT) => {
+    dispatch(reorder(payload))
+  }, [])
+
   return {
     educations,
     handleAdd,
@@ -59,6 +65,7 @@ const useEducations = () => {
     handleUniversityChange,
     handleDurationChange,
     handleDelete,
+    handleReorder,
   }
 }
 

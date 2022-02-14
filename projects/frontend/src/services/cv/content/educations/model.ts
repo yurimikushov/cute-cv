@@ -29,10 +29,16 @@ type DeletePayloadT = {
   id: string
 }
 
+type ReorderPayloadT = {
+  startIndex: number
+  endIndex: number
+}
+
 export type {
   EducationsStateT,
   UpdateDegreePayloadT,
   UpdateUniversityPayloadT,
   UpdateDurationPayloadT,
   DeletePayloadT,
+  ReorderPayloadT,
 }
