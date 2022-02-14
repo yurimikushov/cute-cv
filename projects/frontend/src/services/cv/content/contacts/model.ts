@@ -23,9 +23,15 @@ type DeletePayloadT = {
   id: string
 }
 
+type ReorderPayloadT = {
+  startIndex: number
+  endIndex: number
+}
+
 export type {
   ContactsStateT,
   UpdateTextPayloadT,
   UpdateHrefPayloadT,
   DeletePayloadT,
+  ReorderPayloadT,
 }

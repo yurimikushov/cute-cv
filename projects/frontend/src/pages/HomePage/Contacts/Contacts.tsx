@@ -7,6 +7,7 @@ import map from 'lodash/map'
 import { useEditable, useContacts, MAX_CONTACTS_SIZE } from 'services/cv'
 import useEffectWhen from 'hooks/useEffectWhen'
 import { H2 } from 'components/H'
+import DndList from 'components/DndList'
 import Button from 'components/Button'
 import Contact from './Contact'
 import ContactsPropsT from './Contacts.props'
@@ -15,6 +16,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+`
+
+const DraggableList = styled(DndList)`
+  & > * + * {
+    margin-top: 0.5rem;
+  }
 `
 
 const Add = styled(Button)`
@@ -31,6 +38,7 @@ const Contacts: FC<ContactsPropsT> = (props) => {
     handleTextChange,
     handleHrefChange,
     handleDelete,
+    handleReorder,
   } = useContacts()
 
   useEffectWhen(handleAdd, isEmpty(contacts))
@@ -38,16 +46,24 @@ const Contacts: FC<ContactsPropsT> = (props) => {
   return (
     <Container {...props}>
       <H2>{t('title')}</H2>
-      {map(contacts, ({ id, text, href }) => (
-        <Contact
-          key={id}
-          text={text}
-          href={href}
-          onTextChange={(text) => handleTextChange({ id, text })}
-          onHrefChange={(href) => handleHrefChange({ id, href })}
-          onDelete={() => handleDelete({ id })}
-        />
-      ))}
+      <DraggableList
+        isDndDisabled={!editable}
+        onDragEnd={(startIndex, endIndex) => {
+          handleReorder({ startIndex, endIndex })
+        }}
+      >
+        {map(contacts, ({ id, text, href }) => (
+          <DraggableList.Item key={id}>
+            <Contact
+              text={text}
+              href={href}
+              onTextChange={(text) => handleTextChange({ id, text })}
+              onHrefChange={(href) => handleHrefChange({ id, href })}
+              onDelete={() => handleDelete({ id })}
+            />
+          </DraggableList.Item>
+        ))}
+      </DraggableList>
       {editable && size(contacts) < MAX_CONTACTS_SIZE && (
         <Add onClick={handleAdd}>Add</Add>
       )}

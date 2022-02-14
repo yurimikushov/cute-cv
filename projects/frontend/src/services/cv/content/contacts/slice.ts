@@ -1,15 +1,16 @@
 import { createSlice, PayloadAction, nanoid } from '@reduxjs/toolkit'
-
 import map from 'lodash/map'
 import keyBy from 'lodash/keyBy'
 import filter from 'lodash/filter'
 import omit from 'lodash/omit'
+import swap from 'lib/reorder'
 import { load } from 'services/cv/load'
 import {
   ContactsStateT,
   UpdateTextPayloadT,
   UpdateHrefPayloadT,
   DeletePayloadT,
+  ReorderPayloadT,
 } from './model'
 import { SERVICE_NAME } from '../constants'
 
@@ -50,8 +51,11 @@ const { actions, reducer } = createSlice({
       state.ids = filter(state.ids, (id) => payload.id !== id)
       state.contactsById = omit(state.contactsById, payload.id)
     },
+    reorder: (state, { payload }: PayloadAction<ReorderPayloadT>) => {
+      state.ids = swap(state.ids, payload.startIndex, payload.endIndex)
+    },
   },
 })
 
-export const { add, updateText, updateHref, erase } = actions
+export const { add, updateText, updateHref, erase, reorder } = actions
 export default reducer
