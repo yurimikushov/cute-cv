@@ -52,6 +52,18 @@ cd ../../projects/backend
 npm i
 ```
 
+## Plans/Ideas
+
+### Versions
+
+You can't create multiple versions of your CV right now. For example, you can't create a targeted CV for specific companies or positions. Sometimes it may be annoying.
+
+Versions may solve this and another issue. Now you can compose a CV even if you aren't signed in. So if you compose a CV and then sign in you'll lose your current CV. It works this way because we can't exactly decide which CV is more important (current or old).
+
+### Share CV via link
+
+I think it's a good idea to be able to share a composed CV with other people via a link. Just imagine a situation where you can share your CV without saving it as PDf file. Sometimes this ability can save time.
+
 ## License
 
 Cute CV is [MIT licensed](LICENSE).
