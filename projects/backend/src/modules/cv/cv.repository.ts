@@ -15,10 +15,10 @@ export class CVRepository {
     this.storage = getStorage(this.firebaseApp)
   }
 
-  async read(uid: string): Promise<CV | null> {
+  async read(userId: string, cvId: string): Promise<CV | null> {
     const [isCvExists] = await this.storage
       .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      .file(this.getFileName(uid))
+      .file(this.getFileName(userId, cvId))
       .exists()
 
     if (!isCvExists) {
@@ -27,29 +27,30 @@ export class CVRepository {
 
     const buffer = await this.storage
       .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      .file(this.getFileName(uid))
+      .file(this.getFileName(userId, cvId))
       .download()
 
     return JSON.parse(buffer.toString())
   }
 
-  async update(uid: string, cv: CV) {
+  async update(userId: string, cvId: string, cv: CV) {
     await this.storage
       .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      .file(this.getFileName(uid))
+      // The Storage API dynamically creates "folders" if isn't exist
+      .file(this.getFileName(userId, cvId))
       .save(JSON.stringify(cv))
   }
 
-  async getMetadata(uid: string) {
+  async getMetadata(userId: string, cvId: string) {
     const [metadata] = await this.storage
       .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      .file(this.getFileName(uid))
+      .file(this.getFileName(userId, cvId))
       .getMetadata()
 
     return metadata
   }
 
-  private getFileName(uid: string) {
-    return `cv/${uid}.json`
+  private getFileName(userId: string, cvId: string) {
+    return `cv/${userId}/${cvId}.json`
   }
 }

@@ -10,6 +10,18 @@ import {
 import { Type } from 'class-transformer'
 import { NANO_ID_LENGTH } from 'modules/constants'
 
+class FindOneCvParamsDto {
+  @IsString()
+  @Length(NANO_ID_LENGTH)
+  readonly id: string
+}
+
+class UpdateCvParamsDto {
+  @IsString()
+  @Length(NANO_ID_LENGTH)
+  readonly id: string
+}
+
 class UpdateCvDto {
   @IsString()
   @MaxLength(50)
@@ -120,4 +132,4 @@ class LanguageDto {
   readonly language: string
 }
 
-export { UpdateCvDto }
+export { FindOneCvParamsDto, UpdateCvParamsDto, UpdateCvDto }

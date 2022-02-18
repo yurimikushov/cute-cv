@@ -7,14 +7,17 @@ import { CVRepository } from './cv.repository'
 export class CVService {
   constructor(private cvRepository: CVRepository) {}
 
-  async get(uid: string) {
-    const cv = await this.cvRepository.read(uid)
+  async get(userId: string, cvId: string) {
+    const cv = await this.cvRepository.read(userId, cvId)
 
     if (isNull(cv)) {
       return null
     }
 
-    const { updated: savedAt } = await this.cvRepository.getMetadata(uid)
+    const { updated: savedAt } = await this.cvRepository.getMetadata(
+      userId,
+      cvId
+    )
 
     return {
       metadata: {
@@ -24,10 +27,13 @@ export class CVService {
     } as const
   }
 
-  async update(uid: string, cv: CV) {
-    await this.cvRepository.update(uid, cv)
+  async update(userId: string, cvId: string, cv: CV) {
+    await this.cvRepository.update(userId, cvId, cv)
 
-    const { updated: savedAt } = await this.cvRepository.getMetadata(uid)
+    const { updated: savedAt } = await this.cvRepository.getMetadata(
+      userId,
+      cvId
+    )
 
     return {
       savedAt,

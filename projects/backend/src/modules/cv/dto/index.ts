@@ -1,1 +1,5 @@
-export { UpdateCvDto } from './update.dto'
+export {
+  FindOneCvParamsDto,
+  UpdateCvParamsDto,
+  UpdateCvDto,
+} from './update.dto'

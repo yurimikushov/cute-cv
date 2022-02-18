@@ -1,5 +1,5 @@
-import { Controller, Get, Put, Body, Req } from '@nestjs/common'
-import { UpdateCvDto } from './dto'
+import { Controller, Get, Put, Body, Req, Param } from '@nestjs/common'
+import { FindOneCvParamsDto, UpdateCvParamsDto, UpdateCvDto } from './dto'
 import { CVService } from './cv.service'
 import { Request } from 'express'
 
@@ -7,13 +7,17 @@ import { Request } from 'express'
 export class CVController {
   constructor(private readonly cvService: CVService) {}
 
-  @Get()
-  async findOne(@Req() req: Request) {
-    return await this.cvService.get(req.user.uid)
+  @Get(':id')
+  async findOne(@Req() req: Request, @Param() params: FindOneCvParamsDto) {
+    return await this.cvService.get(req.user.uid, params.id)
   }
 
-  @Put()
-  async update(@Req() req: Request, @Body() updateCvDto: UpdateCvDto) {
-    return await this.cvService.update(req.user.uid, updateCvDto)
+  @Put(':id')
+  async update(
+    @Req() req: Request,
+    @Param() params: UpdateCvParamsDto,
+    @Body() updateCvDto: UpdateCvDto
+  ) {
+    return await this.cvService.update(req.user.uid, params.id, updateCvDto)
   }
 }
