@@ -4,21 +4,18 @@ import {
   IsArray,
   ValidateNested,
   MaxLength,
-  Length,
   ArrayMaxSize,
 } from 'class-validator'
 import { Type } from 'class-transformer'
-import { NANO_ID_LENGTH } from 'modules/constants'
+import { IsID } from 'validators'
 
 class FindOneCvParamsDto {
-  @IsString()
-  @Length(NANO_ID_LENGTH)
+  @IsID()
   readonly id: string
 }
 
 class UpdateCvParamsDto {
-  @IsString()
-  @Length(NANO_ID_LENGTH)
+  @IsID()
   readonly id: string
 }
 
@@ -69,8 +66,7 @@ class UpdateCvDto {
 }
 
 class ExperienceDto {
-  @IsString()
-  @Length(NANO_ID_LENGTH)
+  @IsID()
   readonly id: string
 
   @IsString()
@@ -91,8 +87,7 @@ class ExperienceDto {
 }
 
 class EducationDto {
-  @IsString()
-  @Length(NANO_ID_LENGTH)
+  @IsID()
   readonly id: string
 
   @IsString()
@@ -109,8 +104,7 @@ class EducationDto {
 }
 
 class ContactDto {
-  @IsString()
-  @Length(NANO_ID_LENGTH)
+  @IsID()
   readonly id: string
 
   @IsString()
@@ -123,8 +117,7 @@ class ContactDto {
 }
 
 class LanguageDto {
-  @IsString()
-  @Length(NANO_ID_LENGTH)
+  @IsID()
   readonly id: string
 
   @IsString()
