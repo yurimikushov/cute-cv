@@ -1,4 +1,4 @@
-name: Deploy frontend (to Firebase)
+name: Deploy frontend (Firebase)
 
 on: workflow_dispatch
 
