@@ -1,5 +1,10 @@
 import { CV } from 'services/cv'
 
+type LoadAllResult = Array<{
+  id: string
+  name: string
+}>
+
 type LoadResult = {
   metadata: Metadata
   content: CV
@@ -18,4 +23,4 @@ type SavePayload = {
   content: CV
 }
 
-export type { LoadResult, SaveResult, SavePayload }
+export type { LoadAllResult, LoadResult, SaveResult, SavePayload }

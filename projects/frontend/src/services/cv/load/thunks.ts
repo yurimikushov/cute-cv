@@ -7,6 +7,11 @@ import { ServiceNameEnum } from 'services'
 // and pass dynamically id of cv version
 const CV_VERSION_ID = 'o9uHJNX4AkTao9uHJNX4A'
 
+const loadAll = createAsyncThunk(`${ServiceNameEnum.cv}/loadAll`, async () => {
+  const allCv = await cvApi.loadAll()
+  return allCv
+})
+
 const load = createAsyncThunk(
   `${ServiceNameEnum.cv}/load`,
   async (_, { rejectWithValue }) => {
@@ -20,4 +25,4 @@ const load = createAsyncThunk(
   }
 )
 
-export { load }
+export { loadAll, load }

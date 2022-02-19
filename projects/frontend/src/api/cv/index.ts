@@ -1,7 +1,18 @@
 import axios from 'axios'
-import { LoadResult, SaveResult, SavePayload } from './model'
+import { LoadAllResult, LoadResult, SaveResult, SavePayload } from './model'
 
 class cvApi {
+  public static async loadAll() {
+    const { status, data } = await axios.get<LoadAllResult>('/cv')
+
+    // eslint-disable-next-line no-magic-numbers
+    if (status !== 200) {
+      throw new Error(`Unexpected response status code: ${status}`)
+    }
+
+    return data
+  }
+
   public static async load(id: string) {
     const { status, data } = await axios.get<LoadResult | ''>(`/cv/${id}`)
 

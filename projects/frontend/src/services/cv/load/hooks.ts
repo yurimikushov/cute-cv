@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useIsSignedIn } from 'services/auth'
 import { selectIsLoading } from './selectors'
-import { load } from './thunks'
+import { loadAll, load } from './thunks'
 
 const useIsCVLoading = () => {
   const isCVLoading = useSelector(selectIsLoading)
@@ -10,6 +10,19 @@ const useIsCVLoading = () => {
   return {
     isCVLoading,
   }
+}
+
+const useLoadAllCV = () => {
+  const dispatch = useDispatch()
+  const { isSignedIn } = useIsSignedIn()
+
+  useEffect(() => {
+    if (!isSignedIn) {
+      return
+    }
+
+    dispatch(loadAll())
+  }, [isSignedIn])
 }
 
 const useLoadCV = () => {
@@ -25,4 +38,4 @@ const useLoadCV = () => {
   }, [isSignedIn])
 }
 
-export { useLoadCV, useIsCVLoading }
+export { useLoadAllCV, useLoadCV, useIsCVLoading }
