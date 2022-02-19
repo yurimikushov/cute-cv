@@ -5,6 +5,7 @@ import { getStorage, Storage } from 'firebase-admin/storage'
 import { map } from 'lodash'
 import { getFirebaseApp } from 'lib/firebase'
 import getCvId from './utils/getCvId'
+import { FILE_STORAGE_ROOT_DIR } from './constants'
 import { CV } from './cv.interface'
 
 @Injectable()
@@ -64,6 +65,6 @@ export class CVRepository {
   }
 
   private getFileName(userId: string, cvId: string) {
-    return `cv/${userId}/${cvId}.json`
+    return `${FILE_STORAGE_ROOT_DIR}/${userId}/${cvId}.json`
   }
 }
