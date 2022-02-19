@@ -1,6 +1,7 @@
 import {
   IsString,
   IsOptional,
+  IsObject,
   IsArray,
   ValidateNested,
   MaxLength,
@@ -9,12 +10,12 @@ import {
 import { Type } from 'class-transformer'
 import { IsID } from 'validators'
 
-class UpdateCvParamsDto {
-  @IsID()
-  readonly id: string
+class MetadataDto {
+  @IsString()
+  @MaxLength(50)
+  readonly name: string
 }
-
-class UpdateCvDto {
+class ContentDto {
   @IsString()
   @MaxLength(50)
   readonly fullName: string
@@ -118,6 +119,23 @@ class LanguageDto {
   @IsString()
   @MaxLength(25)
   readonly language: string
+}
+
+class UpdateCvParamsDto {
+  @IsID()
+  readonly id: string
+}
+
+class UpdateCvDto {
+  @IsObject()
+  @ValidateNested()
+  @Type(() => MetadataDto)
+  readonly metadata: MetadataDto
+
+  @IsObject()
+  @ValidateNested()
+  @Type(() => ContentDto)
+  readonly content: ContentDto
 }
 
 export { UpdateCvParamsDto, UpdateCvDto }

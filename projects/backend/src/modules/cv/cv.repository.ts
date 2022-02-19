@@ -6,7 +6,7 @@ import { map } from 'lodash'
 import { getFirebaseApp } from 'lib/firebase'
 import getCvId from './utils/getCvId'
 import { FILE_STORAGE_ROOT_DIR } from './constants'
-import { CV } from './cv.interface'
+import { CV, Content } from './cv.interface'
 
 @Injectable()
 export class CVRepository {
@@ -18,7 +18,7 @@ export class CVRepository {
     this.storage = getStorage(this.firebaseApp)
   }
 
-  async read(userId: string, cvId: string): Promise<CV | null> {
+  async read(userId: string, cvId: string): Promise<Content | null> {
     const [isCvExists] = await this.storage
       .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
       .file(this.getFileName(userId, cvId))
@@ -41,7 +41,17 @@ export class CVRepository {
       .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
       // The Storage API dynamically creates "folders" if isn't exist
       .file(this.getFileName(userId, cvId))
-      .save(JSON.stringify(cv))
+      .save(JSON.stringify(cv.content))
+
+    await this.storage
+      .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
+      .file(this.getFileName(userId, cvId))
+      .setMetadata({
+        metadata: {
+          id: cvId,
+          name: cv.metadata.name,
+        },
+      })
   }
 
   async getMetadata(userId: string, cvId: string) {

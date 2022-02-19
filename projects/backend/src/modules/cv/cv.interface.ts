@@ -1,4 +1,13 @@
 interface CV {
+  metadata: Metadata
+  content: Content
+}
+
+interface Metadata {
+  name: string
+}
+
+interface Content {
   fullName: string
   position: string
   avatar: string
@@ -36,4 +45,4 @@ interface LanguageI {
   language: string
 }
 
-export type { CV }
+export type { CV, Content }
