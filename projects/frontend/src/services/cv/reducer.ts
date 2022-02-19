@@ -6,6 +6,7 @@ import { editableReducer } from './editable'
 import { loadReducer } from './load'
 import { saveReducer } from './save'
 import { downloadReducer } from './download'
+import { versionsReducer } from './versions'
 import { metadataReducer } from './metadata'
 import { contentReducer } from './content'
 
@@ -19,6 +20,7 @@ const cvReducer = combineReducers({
   load: loadReducer,
   save: saveReducer,
   download: downloadReducer,
+  versions: versionsReducer,
   metadata: metadataReducer,
   content: contentReducer,
 })

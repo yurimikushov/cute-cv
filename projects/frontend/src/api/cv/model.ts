@@ -1,9 +1,6 @@
 import { CV } from 'services/cv'
 
-type LoadAllResult = Array<{
-  id: string
-  name: string
-}>
+type LoadAllResult = Array<Metadata>
 
 type LoadResult = {
   metadata: Metadata
@@ -13,6 +10,8 @@ type LoadResult = {
 type SaveResult = Metadata
 
 type Metadata = {
+  id: string
+  name: string
   savedAt: string
 }
 

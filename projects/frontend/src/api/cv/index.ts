@@ -1,4 +1,5 @@
 import axios from 'axios'
+import isString from 'lodash/isString'
 import { LoadAllResult, LoadResult, SaveResult, SavePayload } from './model'
 
 class cvApi {
@@ -21,7 +22,15 @@ class cvApi {
       throw new Error(`Unexpected response status code: ${status}`)
     }
 
-    return data || null
+    if (isString(data)) {
+      return null
+    }
+
+    // TODO: should include these values into backend response
+    data.metadata.id = id
+    data.metadata.name = 'Custom version name'
+
+    return data
   }
 
   public static async save(id: string, cv: SavePayload) {

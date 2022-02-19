@@ -5,7 +5,7 @@ type VersionsState = {
 
 type Version = {
   metadata: Metadata
-  content: Content | null
+  content: Content
 }
 
 type Metadata = {
