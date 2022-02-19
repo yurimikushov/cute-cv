@@ -48,10 +48,7 @@ export class CVRepository {
   }
 
   async getMetadataAll(userId: string) {
-    const files = await this.storage
-      .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      .getFiles({ prefix: `cv/${userId}/` })
-      .then((res) => res[0])
+    const files = await this.getStorageFiles(userId)
 
     return map(files, ({ metadata }) => ({
       id: getCvId(metadata.name),
@@ -62,5 +59,12 @@ export class CVRepository {
     return this.storage
       .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
       .file(`${FILE_STORAGE_ROOT_DIR}/${userId}/${cvId}.json`)
+  }
+
+  private async getStorageFiles(userId: string) {
+    return this.storage
+      .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
+      .getFiles({ prefix: `cv/${userId}/` })
+      .then((res) => res[0])
   }
 }
