@@ -1,8 +1,9 @@
 import axios from 'axios'
-import { LoadResultT, SaveResultT, SavePayload } from './model'
+import { LoadResult, SaveResult, SavePayload } from './model'
+
 class cvApi {
   public static async load(id: string) {
-    const { status, data } = await axios.get<LoadResultT | ''>(`/cv/${id}`)
+    const { status, data } = await axios.get<LoadResult | ''>(`/cv/${id}`)
 
     // eslint-disable-next-line no-magic-numbers
     if (status !== 200) {
@@ -13,7 +14,7 @@ class cvApi {
   }
 
   public static async save(id: string, cv: SavePayload) {
-    const { data } = await axios.put<SaveResultT>(`/cv/${id}`, cv)
+    const { data } = await axios.put<SaveResult>(`/cv/${id}`, cv)
     return data
   }
 }

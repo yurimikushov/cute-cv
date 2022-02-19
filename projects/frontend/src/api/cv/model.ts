@@ -1,13 +1,13 @@
 import { CV } from 'services/cv'
 
-type LoadResultT = {
-  metadata: MetadataT
+type LoadResult = {
+  metadata: Metadata
   content: CV
 }
 
-type SaveResultT = MetadataT
+type SaveResult = Metadata
 
-type MetadataT = {
+type Metadata = {
   savedAt: string
 }
 
@@ -18,4 +18,4 @@ type SavePayload = {
   content: CV
 }
 
-export type { LoadResultT, SaveResultT, SavePayload }
+export type { LoadResult, SaveResult, SavePayload }
