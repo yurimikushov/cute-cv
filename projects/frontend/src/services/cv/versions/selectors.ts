@@ -40,5 +40,5 @@ const selectCV = createSelector(
 
 type CV = ReturnType<typeof selectCV>
 
-export { selectCV }
+export { selectCV, selectCurrentCvId }
 export type { CV }
