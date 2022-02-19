@@ -11,7 +11,20 @@ const selectCV = createSelector(
   selectCurrentCvId,
   selectCvVersions,
   (cvId, cvVersions) => {
-    const { content } = cvVersions.byId[cvId]
+    const { content } = cvVersions.byId[cvId] ?? {
+      content: {
+        fullName: '',
+        position: '',
+        aboutMe: '',
+        avatar: null,
+        experiences: { ids: [], byId: {} },
+        educations: { ids: [], byId: {} },
+        contacts: { ids: [], byId: {} },
+        technologies: '',
+        languages: { ids: [], byId: {} },
+      },
+    }
+
     const {
       fullName,
       position,
