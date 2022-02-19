@@ -50,8 +50,9 @@ export class CVRepository {
   async getMetadataAll(userId: string) {
     const files = await this.getStorageFiles(userId)
 
-    return map(files, ({ metadata }) => ({
+    return map(files, ({ metadata }, i) => ({
       id: getCvId(metadata.name),
+      name: (metadata.metadata.name as string | undefined) ?? `Draft #${i + 1}`,
     }))
   }
 
