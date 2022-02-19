@@ -19,47 +19,31 @@ export class CVRepository {
   }
 
   async read(userId: string, cvId: string): Promise<Content | null> {
-    const [isCvExists] = await this.storage
-      .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      .file(this.getFileName(userId, cvId))
-      .exists()
+    const [isCvExists] = await this.getStorageFile(userId, cvId).exists()
 
     if (!isCvExists) {
       return null
     }
 
-    const buffer = await this.storage
-      .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      .file(this.getFileName(userId, cvId))
-      .download()
+    const buffer = await this.getStorageFile(userId, cvId).download()
 
     return JSON.parse(buffer.toString())
   }
 
   async update(userId: string, cvId: string, cv: CV) {
-    await this.storage
-      .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      // The Storage API dynamically creates "folders" if isn't exist
-      .file(this.getFileName(userId, cvId))
-      .save(JSON.stringify(cv.content))
+    // The Storage API dynamically creates "folders" if isn't exist
+    await this.getStorageFile(userId, cvId).save(JSON.stringify(cv.content))
 
-    await this.storage
-      .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      .file(this.getFileName(userId, cvId))
-      .setMetadata({
-        metadata: {
-          id: cvId,
-          name: cv.metadata.name,
-        },
-      })
+    await this.getStorageFile(userId, cvId).setMetadata({
+      metadata: {
+        id: cvId,
+        name: cv.metadata.name,
+      },
+    })
   }
 
   async getMetadata(userId: string, cvId: string) {
-    const [metadata] = await this.storage
-      .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      .file(this.getFileName(userId, cvId))
-      .getMetadata()
-
+    const [metadata] = await this.getStorageFile(userId, cvId).getMetadata()
     return metadata
   }
 
@@ -74,7 +58,9 @@ export class CVRepository {
     }))
   }
 
-  private getFileName(userId: string, cvId: string) {
-    return `${FILE_STORAGE_ROOT_DIR}/${userId}/${cvId}.json`
+  private getStorageFile(userId: string, cvId: string) {
+    return this.storage
+      .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
+      .file(`${FILE_STORAGE_ROOT_DIR}/${userId}/${cvId}.json`)
   }
 }
