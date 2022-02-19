@@ -12,14 +12,14 @@ interface Content {
   position: string
   avatar: string
   aboutMe: string
-  experiences: Array<ExperienceI>
-  educations: Array<EducationI>
-  contacts: Array<ContactI>
+  experiences: Array<Experience>
+  educations: Array<Education>
+  contacts: Array<Contact>
   technologies: string
-  languages: Array<LanguageI>
+  languages: Array<Language>
 }
 
-interface ExperienceI {
+interface Experience {
   id: string
   position: string
   company: string
@@ -27,20 +27,20 @@ interface ExperienceI {
   description: string
 }
 
-interface EducationI {
+interface Education {
   id: string
   degree: string
   university: string
   duration: string
 }
 
-interface ContactI {
+interface Contact {
   id: string
   text: string
   href: string
 }
 
-interface LanguageI {
+interface Language {
   id: string
   language: string
 }
