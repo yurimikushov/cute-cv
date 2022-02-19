@@ -18,9 +18,7 @@ type Metadata = {
 type Content = {
   fullName: string
   position: string
-  avatar: {
-    src: string | null
-  }
+  avatar: string | null
   aboutMe: string
   experiences: {
     ids: Array<string>

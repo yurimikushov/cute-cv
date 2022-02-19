@@ -42,9 +42,7 @@ const { actions, reducer } = createSlice({
               fullName: '',
               position: '',
               aboutMe: '',
-              avatar: {
-                src: null,
-              },
+              avatar: null,
               experiences: { ids: [], byId: {} },
               educations: { ids: [], byId: {} },
               contacts: { ids: [], byId: {} },
@@ -66,9 +64,7 @@ const { actions, reducer } = createSlice({
           },
           content: {
             ...content,
-            avatar: {
-              src: avatar,
-            },
+            avatar,
             experiences: {
               ids: map(experiences, 'id'),
               byId: keyBy(experiences, 'id'),
@@ -113,7 +109,7 @@ const { actions, reducer } = createSlice({
     },
     updateAvatar: (state, { payload }: PayloadAction<UpdateAvatarPayload>) => {
       const { id, src } = payload
-      state.byId[id].content.avatar.src = src
+      state.byId[id].content.avatar = src
     },
     updateExperience: (
       state,

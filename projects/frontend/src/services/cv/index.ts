@@ -5,9 +5,7 @@ export { useEditable } from './editable'
 export { useIsCVLoading } from './load'
 export { useMetadata } from './metadata'
 export type { MetadataT } from './metadata'
-export type { CV } from './content'
 export {
-  useCV,
   useFullName,
   usePosition,
   useAvatar,
@@ -22,4 +20,6 @@ export {
   MAX_CONTACTS_SIZE,
   MAX_LANGUAGES_SIZE,
 } from './content'
+export { useCV } from './versions'
+export type { CV } from './versions'
 export { CURRENT_CV_ID } from './constants'
