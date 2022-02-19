@@ -9,11 +9,6 @@ import {
 import { Type } from 'class-transformer'
 import { IsID } from 'validators'
 
-class FindOneCvParamsDto {
-  @IsID()
-  readonly id: string
-}
-
 class UpdateCvParamsDto {
   @IsID()
   readonly id: string
@@ -125,4 +120,4 @@ class LanguageDto {
   readonly language: string
 }
 
-export { FindOneCvParamsDto, UpdateCvParamsDto, UpdateCvDto }
+export { UpdateCvParamsDto, UpdateCvDto }
