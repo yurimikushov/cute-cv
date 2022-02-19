@@ -11,4 +11,11 @@ type MetadataT = {
   savedAt: string
 }
 
-export type { LoadResultT, SaveResultT }
+type SavePayload = {
+  metadata: {
+    name: string
+  }
+  content: CV
+}
+
+export type { LoadResultT, SaveResultT, SavePayload }
