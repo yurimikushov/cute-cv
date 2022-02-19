@@ -1,17 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import map from 'lodash/map'
 import forEach from 'lodash/forEach'
 import keyBy from 'lodash/keyBy'
 import { ServiceNameEnum } from 'services'
 import { loadAll, load } from '../load'
-import { VersionsState } from './model'
+import {
+  VersionsState,
+  UpdateFullNamePayload,
+  UpdatePositionPayload,
+  UpdateAboutMePayload,
+  UpdateAvatarPayload,
+  UpdateExperiencePayload,
+  UpdateEducationPayload,
+  UpdateContactPayload,
+  UpdateTechnologiesPayload,
+  UpdateLanguagePayload,
+} from './model'
 
 const initialState: VersionsState = {
   ids: [],
   byId: {},
 }
 
-const { reducer } = createSlice({
+const { actions, reducer } = createSlice({
   name: `${ServiceNameEnum.cv}/versions`,
   initialState,
   extraReducers: (builder) => {
@@ -78,7 +89,103 @@ const { reducer } = createSlice({
         }
       })
   },
-  reducers: {},
+  reducers: {
+    updateFullName: (
+      state,
+      { payload }: PayloadAction<UpdateFullNamePayload>
+    ) => {
+      const { id, fullName } = payload
+      state.byId[id].content.fullName = fullName
+    },
+    updatePosition: (
+      state,
+      { payload }: PayloadAction<UpdatePositionPayload>
+    ) => {
+      const { id, position } = payload
+      state.byId[id].content.position = position
+    },
+    updateAboutMe: (
+      state,
+      { payload }: PayloadAction<UpdateAboutMePayload>
+    ) => {
+      const { id, aboutMe } = payload
+      state.byId[id].content.aboutMe = aboutMe
+    },
+    updateAvatar: (state, { payload }: PayloadAction<UpdateAvatarPayload>) => {
+      const { id, src } = payload
+      state.byId[id].content.avatar.src = src
+    },
+    updateExperience: (
+      state,
+      { payload }: PayloadAction<UpdateExperiencePayload>
+    ) => {
+      const { id, experienceId, position, company, duration, description } =
+        payload
+
+      state.byId[id].content.experiences.byId[experienceId] = {
+        id: experienceId,
+        position,
+        company,
+        duration,
+        description,
+      }
+    },
+    updateEduction: (
+      state,
+      { payload }: PayloadAction<UpdateEducationPayload>
+    ) => {
+      const { id, educationId, degree, university, duration } = payload
+
+      state.byId[id].content.educations.byId[educationId] = {
+        id: educationId,
+        degree,
+        university,
+        duration,
+      }
+    },
+    updateContact: (
+      state,
+      { payload }: PayloadAction<UpdateContactPayload>
+    ) => {
+      const { id, contactId, text, href } = payload
+
+      state.byId[id].content.contacts.byId[contactId] = {
+        id: contactId,
+        text,
+        href,
+      }
+    },
+    updateTechnologies: (
+      state,
+      { payload }: PayloadAction<UpdateTechnologiesPayload>
+    ) => {
+      const { id, technologies } = payload
+
+      state.byId[id].content.technologies = technologies
+    },
+    updateLanguage: (
+      state,
+      { payload }: PayloadAction<UpdateLanguagePayload>
+    ) => {
+      const { id, languageId, language } = payload
+
+      state.byId[id].content.languages.byId[languageId] = {
+        id: languageId,
+        language,
+      }
+    },
+  },
 })
 
+export const {
+  updateFullName,
+  updatePosition,
+  updateAboutMe,
+  updateAvatar,
+  updateExperience,
+  updateEduction,
+  updateContact,
+  updateTechnologies,
+  updateLanguage,
+} = actions
 export default reducer
