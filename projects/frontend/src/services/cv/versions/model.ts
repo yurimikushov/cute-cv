@@ -67,4 +67,70 @@ type Language = {
   language: string
 }
 
-export type { VersionsState }
+type UpdateFullNamePayload = {
+  id: string
+  fullName: string
+}
+
+type UpdatePositionPayload = {
+  id: string
+  position: string
+}
+
+type UpdateAboutMePayload = {
+  id: string
+  aboutMe: string
+}
+
+type UpdateAvatarPayload = {
+  id: string
+  src: string | null
+}
+
+type UpdateExperiencePayload = {
+  id: string
+  experienceId: string
+  position: string
+  company: string
+  duration: string
+  description: string
+}
+
+type UpdateEducationPayload = {
+  id: string
+  educationId: string
+  degree: string
+  university: string
+  duration: string
+}
+
+type UpdateContactPayload = {
+  id: string
+  contactId: string
+  text: string
+  href: string
+}
+
+type UpdateTechnologiesPayload = {
+  id: string
+  technologies: string
+}
+
+type UpdateLanguagePayload = {
+  id: string
+  languageId: string
+  language: string
+}
+
+export type {
+  VersionsState,
+  UpdateFullNamePayload,
+  UpdatePositionPayload,
+  UpdateAboutMePayload,
+  UpdateAvatarPayload,
+  UpdateExperiencePayload,
+  UpdateEducationPayload,
+  UpdateContactPayload,
+  UpdateTechnologiesPayload,
+  UpdateLanguagePayload,
+}
