@@ -1,3 +1,7 @@
+type Id = string
+type UserId = Id
+type CvId = Id
+
 interface CV {
   metadata: Metadata
   content: Content
@@ -20,7 +24,7 @@ interface Content {
 }
 
 interface Experience {
-  id: string
+  id: Id
   position: string
   company: string
   duration: string
@@ -28,21 +32,21 @@ interface Experience {
 }
 
 interface Education {
-  id: string
+  id: Id
   degree: string
   university: string
   duration: string
 }
 
 interface Contact {
-  id: string
+  id: Id
   text: string
   href: string
 }
 
 interface Language {
-  id: string
+  id: Id
   language: string
 }
 
-export type { CV, Content }
+export type { UserId, CvId, CV, Content }

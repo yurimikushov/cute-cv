@@ -6,7 +6,7 @@ import { map } from 'lodash'
 import { getFirebaseApp } from 'lib/firebase'
 import getCvId from './utils/getCvId'
 import { FILE_STORAGE_ROOT_DIR } from './constants'
-import { CV, Content } from './cv.interface'
+import { UserId, CvId, CV, Content } from './cv.interface'
 
 @Injectable()
 export class CVRepository {
@@ -18,7 +18,7 @@ export class CVRepository {
     this.storage = getStorage(this.firebaseApp)
   }
 
-  async read(userId: string, cvId: string): Promise<Content | null> {
+  async read(userId: UserId, cvId: CvId): Promise<Content | null> {
     const [isCvExists] = await this.getStorageFile(userId, cvId).exists()
 
     if (!isCvExists) {
@@ -30,7 +30,7 @@ export class CVRepository {
     return JSON.parse(buffer.toString())
   }
 
-  async update(userId: string, cvId: string, cv: CV) {
+  async update(userId: UserId, cvId: CvId, cv: CV) {
     // The Storage API dynamically creates "folders" if isn't exist
     await this.getStorageFile(userId, cvId).save(JSON.stringify(cv.content))
 
@@ -42,12 +42,12 @@ export class CVRepository {
     })
   }
 
-  async getMetadata(userId: string, cvId: string) {
+  async getMetadata(userId: UserId, cvId: CvId) {
     const [metadata] = await this.getStorageFile(userId, cvId).getMetadata()
     return metadata
   }
 
-  async getMetadataAll(userId: string) {
+  async getMetadataAll(userId: UserId) {
     const files = await this.getStorageFiles(userId)
 
     return map(files, ({ metadata }, i) => ({
@@ -56,13 +56,13 @@ export class CVRepository {
     }))
   }
 
-  private getStorageFile(userId: string, cvId: string) {
+  private getStorageFile(userId: UserId, cvId: CvId) {
     return this.storage
       .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
       .file(`${FILE_STORAGE_ROOT_DIR}/${userId}/${cvId}.json`)
   }
 
-  private async getStorageFiles(userId: string) {
+  private async getStorageFiles(userId: UserId) {
     return this.storage
       .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
       .getFiles({ prefix: `cv/${userId}/` })
