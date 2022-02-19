@@ -1,12 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit'
 import map from 'lodash/map'
 import { RootStateT } from 'services/store'
+import { CURRENT_CV_ID } from 'services/cv'
 
-// TODO: should add cv versions feature
-// and pass dynamically id of cv version
-const CV_VERSION_ID = 'o9uHJNX4AkTao9uHJNX4A'
-
-const selectCurrentCvId = () => CV_VERSION_ID
+const selectCurrentCvId = () => CURRENT_CV_ID
 
 const selectCvVersions = (state: RootStateT) => state.cv.versions
 

@@ -22,3 +22,4 @@ export {
   MAX_CONTACTS_SIZE,
   MAX_LANGUAGES_SIZE,
 } from './content'
+export { CURRENT_CV_ID } from './constants'
