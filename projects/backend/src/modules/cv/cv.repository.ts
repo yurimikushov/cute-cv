@@ -2,7 +2,9 @@ import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import firebase from 'firebase-admin'
 import { getStorage, Storage } from 'firebase-admin/storage'
+import { map } from 'lodash'
 import { getFirebaseApp } from 'lib/firebase'
+import getCvId from './utils/getCvId'
 import { CV } from './cv.interface'
 
 @Injectable()
@@ -48,6 +50,17 @@ export class CVRepository {
       .getMetadata()
 
     return metadata
+  }
+
+  async getMetadataAll(userId: string) {
+    const files = await this.storage
+      .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
+      .getFiles({ prefix: `cv/${userId}/` })
+      .then((res) => res[0])
+
+    return map(files, ({ metadata }) => ({
+      id: getCvId(metadata.name),
+    }))
   }
 
   private getFileName(userId: string, cvId: string) {

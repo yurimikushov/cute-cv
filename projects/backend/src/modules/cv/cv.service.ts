@@ -7,6 +7,10 @@ import { CVRepository } from './cv.repository'
 export class CVService {
   constructor(private cvRepository: CVRepository) {}
 
+  async getAll(userId: string) {
+    return await this.cvRepository.getMetadataAll(userId)
+  }
+
   async get(userId: string, cvId: string) {
     const cv = await this.cvRepository.read(userId, cvId)
 

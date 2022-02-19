@@ -7,6 +7,11 @@ import { Request } from 'express'
 export class CVController {
   constructor(private readonly cvService: CVService) {}
 
+  @Get()
+  async findAll(@Req() req: Request) {
+    return await this.cvService.getAll(req.user.uid)
+  }
+
   @Get(':id')
   async findOne(@Req() req: Request, @Param() params: FindOneCvParamsDto) {
     return await this.cvService.get(req.user.uid, params.id)
