@@ -6,17 +6,6 @@ export { useIsCVLoading } from './load'
 export { useMetadata } from './metadata'
 export type { MetadataT } from './metadata'
 export {
-  useFullName,
-  usePosition,
-  useAvatar,
-  useAboutMe,
-  useExperiences,
-  useEducations,
-  useContacts,
-  useTechnologies,
-  useLanguages,
-} from './content'
-export {
   useCvContent,
   MAX_FULL_NAME_LENGTH,
   MAX_POSITION_LENGTH,

@@ -1,1 +1,0 @@
-export const MAX_EXPERIENCES_SIZE = 10
