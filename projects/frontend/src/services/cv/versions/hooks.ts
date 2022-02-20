@@ -19,7 +19,7 @@ import {
   updatePosition,
   updateAboutMe,
   updateAvatar,
-  deleteAvatar as deleteAvatarById,
+  deleteAvatar,
   addExperience,
   updateExperience,
   reorderExperience,
@@ -28,7 +28,7 @@ import {
   updateContact,
   updateTechnologies,
   updateLanguage,
-  selectCv as setCurrentCv,
+  selectCv,
 } from './slice'
 
 // eslint-disable-next-line max-statements
@@ -38,31 +38,35 @@ const useCV = () => {
 
   const dispatch = useDispatch()
 
-  const changeFullName = (fullName: UpdateFullNamePayload['fullName']) => {
+  const handleChangeFullName = (
+    fullName: UpdateFullNamePayload['fullName']
+  ) => {
     dispatch(updateFullName({ id, fullName }))
   }
 
-  const changePosition = (position: UpdatePositionPayload['position']) => {
+  const handleChangePosition = (
+    position: UpdatePositionPayload['position']
+  ) => {
     dispatch(updatePosition({ id, position }))
   }
 
-  const changeAboutMe = (aboutMe: UpdateAboutMePayload['aboutMe']) => {
+  const handleChangeAboutMe = (aboutMe: UpdateAboutMePayload['aboutMe']) => {
     dispatch(updateAboutMe({ id, aboutMe }))
   }
 
-  const changeAvatar = (src: UpdateAvatarPayload['src']) => {
+  const handleChangeAvatar = (src: UpdateAvatarPayload['src']) => {
     dispatch(updateAvatar({ id, src }))
   }
 
-  const deleteAvatar = () => {
-    dispatch(deleteAvatarById({ id }))
+  const handleDeleteAvatar = () => {
+    dispatch(deleteAvatar({ id }))
   }
 
   const handleAddExperience = () => {
     dispatch(addExperience({ id }))
   }
 
-  const changeExperience = (
+  const handleChangeExperience = (
     experienceId: UpdateExperiencePayload['experienceId'],
     position: UpdateExperiencePayload['position'],
     company: UpdateExperiencePayload['company'],
@@ -95,7 +99,7 @@ const useCV = () => {
     dispatch(deleteExperience({ id, experienceId }))
   }
 
-  const changeEducation = (
+  const handleChangeEducation = (
     educationId: UpdateEducationPayload['educationId'],
     degree: UpdateEducationPayload['degree'],
     university: UpdateEducationPayload['university'],
@@ -113,7 +117,7 @@ const useCV = () => {
     )
   }
 
-  const changeContact = (
+  const handleChangeContact = (
     contactId: UpdateContactPayload['contactId'],
     text: UpdateContactPayload['text'],
     href: UpdateContactPayload['href']
@@ -128,13 +132,13 @@ const useCV = () => {
     )
   }
 
-  const changeTechnologies = (
+  const handleChangeTechnologies = (
     technologies: UpdateTechnologiesPayload['technologies']
   ) => {
     dispatch(updateTechnologies({ id, technologies }))
   }
 
-  const changeLanguage = (
+  const handleChangeLanguage = (
     languageId: UpdateLanguagePayload['languageId'],
     language: UpdateLanguagePayload['language']
   ) => {
@@ -147,27 +151,27 @@ const useCV = () => {
     )
   }
 
-  const selectCvById = (id: SelectCvPayload['id']) => {
-    dispatch(setCurrentCv({ id }))
+  const handleSelectCv = (id: SelectCvPayload['id']) => {
+    dispatch(selectCv({ id }))
   }
 
   return {
     id,
     cv,
-    changeFullName,
-    changePosition,
-    changeAboutMe,
-    changeAvatar,
-    deleteAvatar,
+    changeFullName: handleChangeFullName,
+    changePosition: handleChangePosition,
+    changeAboutMe: handleChangeAboutMe,
+    changeAvatar: handleChangeAvatar,
+    deleteAvatar: handleDeleteAvatar,
     addExperience: handleAddExperience,
-    changeExperience,
+    changeExperience: handleChangeExperience,
     reorderExperience: handleReorderExperience,
     deleteExperience: handleDeleteExperience,
-    changeEducation,
-    changeContact,
-    changeTechnologies,
-    changeLanguage,
-    selectCvById,
+    changeEducation: handleChangeEducation,
+    changeContact: handleChangeContact,
+    changeTechnologies: handleChangeTechnologies,
+    changeLanguage: handleChangeLanguage,
+    selectCv: handleSelectCv,
   }
 }
 
