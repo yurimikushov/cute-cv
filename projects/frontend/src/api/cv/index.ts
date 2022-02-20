@@ -26,19 +26,12 @@ class cvApi {
       return null
     }
 
-    // TODO: should include these values into backend response
-    data.metadata.id = id
-    data.metadata.name = 'Custom version name'
-
     return data
   }
 
   public static async save(id: string, cv: SavePayload) {
     const { data } = await axios.put<SaveResult>(`/cv/${id}`, cv)
-    return {
-      ...data,
-      id,
-    }
+    return data
   }
 }
 
