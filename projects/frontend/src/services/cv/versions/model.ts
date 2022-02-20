@@ -66,6 +66,15 @@ type Language = {
   language: string
 }
 
+type MarkAsSavedPayload = {
+  id: string
+  savedAt: Date
+}
+
+type MarkAsUnsavedPayload = {
+  id: string
+}
+
 type UpdateFullNamePayload = {
   id: string
   fullName: string
@@ -187,6 +196,8 @@ export type {
   VersionsState,
   Version,
   Content,
+  MarkAsSavedPayload,
+  MarkAsUnsavedPayload,
   UpdateFullNamePayload,
   UpdatePositionPayload,
   UpdateAboutMePayload,

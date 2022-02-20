@@ -10,9 +10,12 @@ import omit from 'lodash/omit'
 import swap from 'lib/reorder'
 import { ServiceNameEnum } from 'services'
 import { loadAll, load } from '../load'
+import { save } from '../save'
 import createDummyCv from './utils/createDummyCv'
 import {
   VersionsState,
+  MarkAsSavedPayload,
+  MarkAsUnsavedPayload,
   UpdateFullNamePayload,
   UpdatePositionPayload,
   UpdateAboutMePayload,
@@ -91,7 +94,8 @@ const { actions, reducer } = createSlice({
 
         state.currentId = head(state.ids) as string
       })
-      .addCase(load.fulfilled, (state, { payload: { metadata, content } }) => {
+      .addCase(load.fulfilled, (state, { payload }) => {
+        const { metadata, content } = payload
         const { id, savedAt } = metadata
         const { avatar, experiences, educations, contacts, languages } = content
 
@@ -123,8 +127,33 @@ const { actions, reducer } = createSlice({
           },
         }
       })
+      .addCase(save.fulfilled, (state, { payload }) => {
+        const { id, savedAt } = payload
+        const { metadata } = state.byId[id]
+
+        metadata.isSaved = true
+        metadata.savedAt = new Date(savedAt)
+      })
   },
   reducers: {
+    markAsSaved: (state, { payload }: PayloadAction<MarkAsSavedPayload>) => {
+      const { id, savedAt } = payload
+      const { metadata } = state.byId[id]
+
+      metadata.isSaved = true
+      metadata.savedAt = savedAt
+    },
+    markAsUnsaved: (
+      state,
+      { payload }: PayloadAction<MarkAsUnsavedPayload>
+    ) => {
+      const { id } = payload
+      const { metadata } = state.byId[id]
+
+      metadata.isSaved = false
+      metadata.savedAt = null
+    },
+
     updateFullName: (
       state,
       { payload }: PayloadAction<UpdateFullNamePayload>
@@ -347,6 +376,8 @@ const { actions, reducer } = createSlice({
 })
 
 export const {
+  markAsSaved,
+  markAsUnsaved,
   updateFullName,
   updatePosition,
   updateAboutMe,

@@ -3,9 +3,8 @@ export { useConnectCV } from './hooks'
 export { useDownload, CV_CONTAINER_ID } from './download'
 export { useEditable } from './editable'
 export { useIsCVLoading } from './load'
-export { useMetadata } from './metadata'
-export type { MetadataT } from './metadata'
 export {
+  useCvMetadata,
   useCvContent,
   MAX_FULL_NAME_LENGTH,
   MAX_POSITION_LENGTH,

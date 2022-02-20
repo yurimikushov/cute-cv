@@ -2,7 +2,7 @@ import { useEffect, useCallback, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import debounce from 'lodash/debounce'
 import { useIsSignedIn } from 'services/auth'
-import { useCvContent, useIsCVLoading, useMetadata, CV } from 'services/cv'
+import { useCvContent, useIsCVLoading, useCvMetadata, CV } from 'services/cv'
 import { save } from './thunks'
 
 const AUTO_SAVE_TIMING = 1_000
@@ -13,7 +13,7 @@ const useSaveCV = () => {
   const { cv } = useCvContent()
   const { isCVLoading } = useIsCVLoading()
   const isPrevCVLoadingRef = useRef<boolean>(false)
-  const { handleMarkAsUnsaved } = useMetadata()
+  const { markAsUnsaved } = useCvMetadata()
 
   const dispatch = useDispatch()
 
@@ -34,7 +34,7 @@ const useSaveCV = () => {
       return
     }
 
-    handleMarkAsUnsaved()
+    markAsUnsaved()
     debouncedSave(cv)
   }, [isCVLoading, cv])
 }

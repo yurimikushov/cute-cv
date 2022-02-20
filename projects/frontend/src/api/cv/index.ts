@@ -35,7 +35,10 @@ class cvApi {
 
   public static async save(id: string, cv: SavePayload) {
     const { data } = await axios.put<SaveResult>(`/cv/${id}`, cv)
-    return data
+    return {
+      ...data,
+      id,
+    }
   }
 }
 

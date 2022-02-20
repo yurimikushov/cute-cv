@@ -7,7 +7,6 @@ import { loadReducer } from './load'
 import { saveReducer } from './save'
 import { downloadReducer } from './download'
 import { versionsReducer } from './versions'
-import { metadataReducer } from './metadata'
 
 const persistConfig = {
   key: `${ServiceNameEnum.cv}/editable`,
@@ -20,7 +19,6 @@ const cvReducer = combineReducers({
   save: saveReducer,
   download: downloadReducer,
   versions: versionsReducer,
-  metadata: metadataReducer,
 })
 
 export default cvReducer

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import isNull from 'lodash/isNull'
 import { LanguageEnum } from 'translation'
 import timeSince from 'lib/timeSince'
-import { useMetadata } from 'services/cv'
+import { useCvMetadata } from 'services/cv'
 import { useSkipSignIn } from 'services/auth'
 
 const UPDATE_TIMING = 5_000
@@ -11,7 +11,7 @@ const UPDATE_TIMING = 5_000
 const useSavedStatus = () => {
   const { t, i18n } = useTranslation('translation', { keyPrefix: 'panel' })
   const { isSignInSkipped } = useSkipSignIn()
-  const { isSaved, savedAt } = useMetadata()
+  const { isSaved, savedAt } = useCvMetadata()
   const [savedStatus, setSavedStatus] = useState('')
 
   useEffect(() => {
