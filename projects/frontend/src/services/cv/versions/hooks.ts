@@ -8,6 +8,8 @@ import {
   ReorderExperiencePayload,
   DeleteExperiencePayload,
   UpdateEducationPayload,
+  ReorderEducationPayload,
+  DeleteEducationPayload,
   UpdateContactPayload,
   UpdateTechnologiesPayload,
   UpdateLanguagePayload,
@@ -24,7 +26,10 @@ import {
   updateExperience,
   reorderExperience,
   deleteExperience,
+  addEduction,
   updateEduction,
+  reorderEducation,
+  deleteEducation,
   updateContact,
   updateTechnologies,
   updateLanguage,
@@ -99,6 +104,10 @@ const useCV = () => {
     dispatch(deleteExperience({ id, experienceId }))
   }
 
+  const handleAddEducation = () => {
+    dispatch(addEduction({ id }))
+  }
+
   const handleChangeEducation = (
     educationId: UpdateEducationPayload['educationId'],
     degree: UpdateEducationPayload['degree'],
@@ -115,6 +124,19 @@ const useCV = () => {
         duration,
       })
     )
+  }
+
+  const handleReorderEducation = (
+    startIndex: ReorderEducationPayload['startIndex'],
+    endIndex: ReorderEducationPayload['endIndex']
+  ) => {
+    dispatch(reorderEducation({ id, startIndex, endIndex }))
+  }
+
+  const handleDeleteEducation = (
+    educationId: DeleteEducationPayload['educationId']
+  ) => {
+    dispatch(deleteEducation({ id, educationId }))
   }
 
   const handleChangeContact = (
@@ -167,7 +189,10 @@ const useCV = () => {
     changeExperience: handleChangeExperience,
     reorderExperience: handleReorderExperience,
     deleteExperience: handleDeleteExperience,
+    addEduction: handleAddEducation,
     changeEducation: handleChangeEducation,
+    reorderEducation: handleReorderEducation,
+    deleteEducation: handleDeleteEducation,
     changeContact: handleChangeContact,
     changeTechnologies: handleChangeTechnologies,
     changeLanguage: handleChangeLanguage,

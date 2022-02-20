@@ -114,12 +114,27 @@ type DeleteExperiencePayload = {
   experienceId: string
 }
 
+type AddEducationPayload = {
+  id: string
+}
+
 type UpdateEducationPayload = {
   id: string
   educationId: string
   degree: string
   university: string
   duration: string
+}
+
+type ReorderEducationPayload = {
+  id: string
+  startIndex: number
+  endIndex: number
+}
+
+type DeleteEducationPayload = {
+  id: string
+  educationId: string
 }
 
 type UpdateContactPayload = {
@@ -157,7 +172,10 @@ export type {
   UpdateExperiencePayload,
   ReorderExperiencePayload,
   DeleteExperiencePayload,
+  AddEducationPayload,
   UpdateEducationPayload,
+  ReorderEducationPayload,
+  DeleteEducationPayload,
   UpdateContactPayload,
   UpdateTechnologiesPayload,
   UpdateLanguagePayload,

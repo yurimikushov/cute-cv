@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
 import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
@@ -21,7 +22,10 @@ import {
   UpdateExperiencePayload,
   ReorderExperiencePayload,
   DeleteExperiencePayload,
+  AddEducationPayload,
   UpdateEducationPayload,
+  ReorderEducationPayload,
+  DeleteEducationPayload,
   UpdateContactPayload,
   UpdateTechnologiesPayload,
   UpdateLanguagePayload,
@@ -199,6 +203,19 @@ const { actions, reducer } = createSlice({
       experiences.byId = omit(experiences.byId, experienceId)
     },
 
+    addEduction: (state, { payload }: PayloadAction<AddEducationPayload>) => {
+      const { id } = payload
+      const educationId = nanoid()
+      const { educations } = state.byId[id].content
+
+      educations.ids.push(educationId)
+      educations.byId[educationId] = {
+        id: educationId,
+        degree: '',
+        university: '',
+        duration: '',
+      }
+    },
     updateEduction: (
       state,
       { payload }: PayloadAction<UpdateEducationPayload>
@@ -212,6 +229,26 @@ const { actions, reducer } = createSlice({
         duration,
       }
     },
+    reorderEducation: (
+      state,
+      { payload }: PayloadAction<ReorderEducationPayload>
+    ) => {
+      const { id, startIndex, endIndex } = payload
+      const { educations } = state.byId[id].content
+
+      educations.ids = swap(educations.ids, startIndex, endIndex)
+    },
+    deleteEducation: (
+      state,
+      { payload }: PayloadAction<DeleteEducationPayload>
+    ) => {
+      const { id, educationId } = payload
+      const { educations } = state.byId[id].content
+
+      educations.ids = filter(educations.ids, (id) => id !== educationId)
+      educations.byId = omit(educations.byId, educationId)
+    },
+
     updateContact: (
       state,
       { payload }: PayloadAction<UpdateContactPayload>
@@ -259,7 +296,10 @@ export const {
   updateExperience,
   reorderExperience,
   deleteExperience,
+  addEduction,
   updateEduction,
+  reorderEducation,
+  deleteEducation,
   updateContact,
   updateTechnologies,
   updateLanguage,
