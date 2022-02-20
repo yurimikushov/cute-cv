@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
-import { useEditable, useExperiences, MAX_EXPERIENCES_SIZE } from 'services/cv'
+import { useEditable, useCvContent, MAX_EXPERIENCES_SIZE } from 'services/cv'
 import useEffectWhen from 'hooks/useEffectWhen'
 import { H1 } from 'components/H'
 import DndList from 'components/DndList'
@@ -33,27 +33,19 @@ const Experiences: FC<ExperiencesPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'experience' })
   const { editable } = useEditable()
   const {
-    experiences,
-    handleAdd,
-    handlePositionChange,
-    handleCompanyChange,
-    handleDurationChange,
-    handleDescriptionChange,
-    handleDelete,
-    handleReorder,
-  } = useExperiences()
+    cv: { experiences },
+    addExperience,
+    changeExperience,
+    reorderExperience,
+    deleteExperience,
+  } = useCvContent()
 
-  useEffectWhen(handleAdd, isEmpty(experiences))
+  useEffectWhen(addExperience, isEmpty(experiences))
 
   return (
     <Container {...props}>
       <H1>{t('title')}</H1>
-      <DraggableList
-        isDndDisabled={!editable}
-        onDragEnd={(startIndex, endIndex) =>
-          handleReorder({ startIndex, endIndex })
-        }
-      >
+      <DraggableList isDndDisabled={!editable} onDragEnd={reorderExperience}>
         {map(
           experiences,
           ({ id, position, company, duration, description }) => (
@@ -64,25 +56,25 @@ const Experiences: FC<ExperiencesPropsT> = (props) => {
                 duration={duration}
                 description={description}
                 onPositionChange={(position) =>
-                  handlePositionChange({ id, position })
+                  changeExperience(id, position, company, duration, description)
                 }
                 onCompanyChange={(company) =>
-                  handleCompanyChange({ id, company })
+                  changeExperience(id, position, company, duration, description)
                 }
                 onDurationChange={(duration) =>
-                  handleDurationChange({ id, duration })
+                  changeExperience(id, position, company, duration, description)
                 }
                 onDescriptionChange={(description) =>
-                  handleDescriptionChange({ id, description })
+                  changeExperience(id, position, company, duration, description)
                 }
-                onDelete={() => handleDelete({ id })}
+                onDelete={() => deleteExperience(id)}
               />
             </DraggableList.Item>
           )
         )}
       </DraggableList>
       {editable && size(experiences) < MAX_EXPERIENCES_SIZE && (
-        <Add onClick={handleAdd}>Add</Add>
+        <Add onClick={addExperience}>Add</Add>
       )}
     </Container>
   )

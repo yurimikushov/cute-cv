@@ -1,10 +1,12 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useEditable, useTechnologies } from 'services/cv'
+import { useEditable, useCvContent } from 'services/cv'
 import { H2 } from 'components/H'
 import TextArea from 'components/TextArea'
 import TechnologiesPropsT from './Technologies.props'
+
+const MAX_TECHNOLOGIES_LENGTH = 500
 
 const Container = styled.div`
   & > * + * {
@@ -17,7 +19,10 @@ const Description = styled(TextArea)``
 const Technologies: FC<TechnologiesPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'technologies' })
   const { editable } = useEditable()
-  const { technologies, handleChange } = useTechnologies()
+  const {
+    cv: { technologies },
+    changeTechnologies,
+  } = useCvContent()
 
   return (
     <Container {...props}>
@@ -26,8 +31,8 @@ const Technologies: FC<TechnologiesPropsT> = (props) => {
         disabled={!editable}
         value={technologies}
         placeholder={t('placeholder')}
-        maxLength={500}
-        onChange={(technologies) => handleChange({ technologies })}
+        maxLength={MAX_TECHNOLOGIES_LENGTH}
+        onChange={changeTechnologies}
       />
     </Container>
   )

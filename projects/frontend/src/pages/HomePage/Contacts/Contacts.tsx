@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
-import { useEditable, useContacts, MAX_CONTACTS_SIZE } from 'services/cv'
+import { useEditable, useCvContent, MAX_CONTACTS_SIZE } from 'services/cv'
 import useEffectWhen from 'hooks/useEffectWhen'
 import { H2 } from 'components/H'
 import DndList from 'components/DndList'
@@ -33,39 +33,33 @@ const Contacts: FC<ContactsPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'contacts' })
   const { editable } = useEditable()
   const {
-    contacts,
-    handleAdd,
-    handleTextChange,
-    handleHrefChange,
-    handleDelete,
-    handleReorder,
-  } = useContacts()
+    cv: { contacts },
+    addContact,
+    changeContact,
+    reorderContact,
+    deleteContact,
+  } = useCvContent()
 
-  useEffectWhen(handleAdd, isEmpty(contacts))
+  useEffectWhen(addContact, isEmpty(contacts))
 
   return (
     <Container {...props}>
       <H2>{t('title')}</H2>
-      <DraggableList
-        isDndDisabled={!editable}
-        onDragEnd={(startIndex, endIndex) => {
-          handleReorder({ startIndex, endIndex })
-        }}
-      >
+      <DraggableList isDndDisabled={!editable} onDragEnd={reorderContact}>
         {map(contacts, ({ id, text, href }) => (
           <DraggableList.Item key={id}>
             <Contact
               text={text}
               href={href}
-              onTextChange={(text) => handleTextChange({ id, text })}
-              onHrefChange={(href) => handleHrefChange({ id, href })}
-              onDelete={() => handleDelete({ id })}
+              onTextChange={(text) => changeContact(id, text, href)}
+              onHrefChange={(href) => changeContact(id, text, href)}
+              onDelete={() => deleteContact(id)}
             />
           </DraggableList.Item>
         ))}
       </DraggableList>
       {editable && size(contacts) < MAX_CONTACTS_SIZE && (
-        <Add onClick={handleAdd}>Add</Add>
+        <Add onClick={addContact}>Add</Add>
       )}
     </Container>
   )

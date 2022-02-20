@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useEditable, useAboutMe } from 'services/cv'
+import { useEditable, useCvContent } from 'services/cv'
 import TextArea from 'components/TextArea'
 
 const Description = styled(TextArea)`
@@ -11,7 +11,10 @@ const Description = styled(TextArea)`
 const AboutMe: FC = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'aboutMe' })
   const { editable } = useEditable()
-  const { aboutMe, handleChange } = useAboutMe()
+  const {
+    cv: { aboutMe },
+    changeAboutMe,
+  } = useCvContent()
 
   return (
     <Description
@@ -19,7 +22,7 @@ const AboutMe: FC = () => {
       value={aboutMe}
       placeholder={t('placeholder')}
       maxLength={1_000}
-      onChange={(aboutMe) => handleChange({ aboutMe })}
+      onChange={changeAboutMe}
     />
   )
 }

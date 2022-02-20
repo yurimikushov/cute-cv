@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
-import { useEditable, useEducations, MAX_EDUCATIONS_SIZE } from 'services/cv'
+import { useEditable, useCvContent, MAX_EDUCATIONS_SIZE } from 'services/cv'
 import useEffectWhen from 'hooks/useEffectWhen'
 import { H1 } from 'components/H'
 import DndList from 'components/DndList'
@@ -33,46 +33,41 @@ const Educations: FC<EducationsPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'education' })
   const { editable } = useEditable()
   const {
-    educations,
-    handleAdd,
-    handleDegreeChange,
-    handleUniversityChange,
-    handleDurationChange,
-    handleDelete,
-    handleReorder,
-  } = useEducations()
+    cv: { educations },
+    addEduction,
+    changeEducation,
+    reorderEducation,
+    deleteEducation,
+  } = useCvContent()
 
-  useEffectWhen(handleAdd, isEmpty(educations))
+  useEffectWhen(addEduction, isEmpty(educations))
 
   return (
     <Container {...props}>
       <H1>{t('title')}</H1>
-      <DraggableList
-        isDndDisabled={!editable}
-        onDragEnd={(startIndex, endIndex) =>
-          handleReorder({ startIndex, endIndex })
-        }
-      >
+      <DraggableList isDndDisabled={!editable} onDragEnd={reorderEducation}>
         {map(educations, ({ id, degree, university, duration }) => (
           <DraggableList.Item key={id}>
             <Education
               degree={degree}
               university={university}
               duration={duration}
-              onDegreeChange={(degree) => handleDegreeChange({ id, degree })}
+              onDegreeChange={(degree) =>
+                changeEducation(id, degree, university, duration)
+              }
               onUniversityChange={(university) =>
-                handleUniversityChange({ id, university })
+                changeEducation(id, degree, university, duration)
               }
               onDurationChange={(duration) =>
-                handleDurationChange({ id, duration })
+                changeEducation(id, degree, university, duration)
               }
-              onDelete={() => handleDelete({ id })}
+              onDelete={() => deleteEducation(id)}
             />
           </DraggableList.Item>
         ))}
       </DraggableList>
       {editable && size(educations) < MAX_EDUCATIONS_SIZE && (
-        <Add onClick={handleAdd}>Add</Add>
+        <Add onClick={addEduction}>Add</Add>
       )}
     </Container>
   )

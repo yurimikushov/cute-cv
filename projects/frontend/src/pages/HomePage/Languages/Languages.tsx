@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
-import { useEditable, useLanguages, MAX_LANGUAGES_SIZE } from 'services/cv'
+import { useEditable, useCvContent, MAX_LANGUAGES_SIZE } from 'services/cv'
 import useEffectWhen from 'hooks/useEffectWhen'
 import { H2 } from 'components/H'
 import Button from 'components/Button'
@@ -25,9 +25,14 @@ const Add = styled(Button)`
 const Languages: FC<LanguagesPropsT> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'languages' })
   const { editable } = useEditable()
-  const { languages, handleAdd, handleChange, handleDelete } = useLanguages()
+  const {
+    cv: { languages },
+    addLanguage,
+    changeLanguage,
+    deleteLanguage,
+  } = useCvContent()
 
-  useEffectWhen(handleAdd, isEmpty(languages))
+  useEffectWhen(addLanguage, isEmpty(languages))
 
   return (
     <Container {...props}>
@@ -36,12 +41,12 @@ const Languages: FC<LanguagesPropsT> = (props) => {
         <Language
           key={id}
           language={language}
-          onChange={(language) => handleChange({ id, language })}
-          onDelete={() => handleDelete({ id })}
+          onChange={(language) => changeLanguage(id, language)}
+          onDelete={() => deleteLanguage(id)}
         />
       ))}
       {editable && size(languages) < MAX_LANGUAGES_SIZE && (
-        <Add onClick={handleAdd}>Add</Add>
+        <Add onClick={addLanguage}>Add</Add>
       )}
     </Container>
   )

@@ -2,7 +2,7 @@ import { FC, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useIsSignedIn } from 'services/auth'
-import { useEditable, useFullName, usePosition } from 'services/cv'
+import { useEditable, useCvContent } from 'services/cv'
 import TextInput from 'components/TextInput'
 
 const FullName = styled(TextInput)`
@@ -19,8 +19,11 @@ const Header: FC = () => {
   const { t } = useTranslation()
   const { isSignedIn } = useIsSignedIn()
   const { editable } = useEditable()
-  const { fullName, handleChange: handleFullNameChange } = useFullName()
-  const { position, handleChange: handlePositionChange } = usePosition()
+  const {
+    cv: { fullName, position },
+    changeFullName,
+    changePosition,
+  } = useCvContent()
   const fullNameRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -40,7 +43,7 @@ const Header: FC = () => {
         value={fullName}
         placeholder={t('fullName.placeholder')}
         maxLength={50}
-        onChange={(fullName) => handleFullNameChange({ fullName })}
+        onChange={changeFullName}
       />
       <Position
         size='xl'
@@ -48,7 +51,7 @@ const Header: FC = () => {
         value={position}
         placeholder={t('position.placeholder')}
         maxLength={50}
-        onChange={(position) => handlePositionChange({ position })}
+        onChange={changePosition}
       />
     </header>
   )
