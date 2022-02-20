@@ -70,6 +70,8 @@ const { actions, reducer } = createSlice({
         state.ids = map(allCv, 'id')
         state.byId = {}
 
+        const { content } = createDummyCv()
+
         forEach(allCv, ({ id, name }) => {
           state.byId[id] = {
             metadata: {
@@ -79,15 +81,7 @@ const { actions, reducer } = createSlice({
               savedAt: null,
             },
             content: {
-              fullName: '',
-              position: '',
-              aboutMe: '',
-              avatar: null,
-              experiences: { ids: [], byId: {} },
-              educations: { ids: [], byId: {} },
-              contacts: { ids: [], byId: {} },
-              technologies: '',
-              languages: { ids: [], byId: {} },
+              ...content,
             },
           }
         })
