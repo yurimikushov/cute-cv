@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
+import head from 'lodash/head'
 import forEach from 'lodash/forEach'
 import keyBy from 'lodash/keyBy'
 import { ServiceNameEnum } from 'services'
@@ -71,6 +72,8 @@ const { actions, reducer } = createSlice({
             },
           }
         })
+
+        state.currentId = head(state.ids) as string
       })
       .addCase(load.fulfilled, (state, { payload: { metadata, content } }) => {
         const { id, savedAt } = metadata
