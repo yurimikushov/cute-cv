@@ -50,6 +50,7 @@ const { actions, reducer } = createSlice({
         }
 
         state.ids = map(allCv, 'id')
+        state.byId = {}
 
         forEach(allCv, ({ id, name }) => {
           state.byId[id] = {
