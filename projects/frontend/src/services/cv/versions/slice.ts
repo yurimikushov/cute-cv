@@ -15,11 +15,13 @@ import {
   UpdateContactPayload,
   UpdateTechnologiesPayload,
   UpdateLanguagePayload,
+  SelectCvPayload,
 } from './model'
 
 const initialState: VersionsState = {
   ids: [],
   byId: {},
+  currentId: null,
 }
 
 const { actions, reducer } = createSlice({
@@ -170,6 +172,9 @@ const { actions, reducer } = createSlice({
         language,
       }
     },
+    selectCv: (state, { payload }: PayloadAction<SelectCvPayload>) => {
+      state.currentId = payload.id
+    },
   },
 })
 
@@ -183,5 +188,6 @@ export const {
   updateContact,
   updateTechnologies,
   updateLanguage,
+  selectCv,
 } = actions
 export default reducer

@@ -1,6 +1,7 @@
 type VersionsState = {
   ids: Array<string>
   byId: Record<string, Version>
+  currentId: string | null
 }
 
 type Version = {
@@ -120,6 +121,10 @@ type UpdateLanguagePayload = {
   language: string
 }
 
+type SelectCvPayload = {
+  id: string
+}
+
 export type {
   VersionsState,
   UpdateFullNamePayload,
@@ -131,4 +136,5 @@ export type {
   UpdateContactPayload,
   UpdateTechnologiesPayload,
   UpdateLanguagePayload,
+  SelectCvPayload,
 }

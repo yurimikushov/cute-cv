@@ -9,6 +9,7 @@ import {
   UpdateContactPayload,
   UpdateTechnologiesPayload,
   UpdateLanguagePayload,
+  SelectCvPayload,
 } from './model'
 import { selectCV, selectCurrentCvId } from './selectors'
 import {
@@ -21,6 +22,7 @@ import {
   updateContact,
   updateTechnologies,
   updateLanguage,
+  selectCv as setCurrentCv,
 } from './slice'
 
 // eslint-disable-next-line max-statements
@@ -118,6 +120,10 @@ const useCV = () => {
     )
   }
 
+  const selectCvById = (id: SelectCvPayload['id']) => {
+    dispatch(setCurrentCv({ id }))
+  }
+
   return {
     id,
     cv,
@@ -130,6 +136,7 @@ const useCV = () => {
     changeContact,
     changeTechnologies,
     changeLanguage,
+    selectCvById,
   }
 }
 
