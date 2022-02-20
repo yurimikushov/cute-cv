@@ -137,11 +137,26 @@ type DeleteEducationPayload = {
   educationId: string
 }
 
+type AddContactPayload = {
+  id: string
+}
+
 type UpdateContactPayload = {
   id: string
   contactId: string
   text: string
   href: string
+}
+
+type ReorderContactPayload = {
+  id: string
+  startIndex: number
+  endIndex: number
+}
+
+type DeleteContactPayload = {
+  id: string
+  contactId: string
 }
 
 type UpdateTechnologiesPayload = {
@@ -176,7 +191,10 @@ export type {
   UpdateEducationPayload,
   ReorderEducationPayload,
   DeleteEducationPayload,
+  AddContactPayload,
   UpdateContactPayload,
+  ReorderContactPayload,
+  DeleteContactPayload,
   UpdateTechnologiesPayload,
   UpdateLanguagePayload,
   SelectCvPayload,

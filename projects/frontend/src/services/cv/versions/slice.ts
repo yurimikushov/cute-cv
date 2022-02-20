@@ -26,7 +26,10 @@ import {
   UpdateEducationPayload,
   ReorderEducationPayload,
   DeleteEducationPayload,
+  AddContactPayload,
   UpdateContactPayload,
+  ReorderContactPayload,
+  DeleteContactPayload,
   UpdateTechnologiesPayload,
   UpdateLanguagePayload,
   SelectCvPayload,
@@ -249,6 +252,18 @@ const { actions, reducer } = createSlice({
       educations.byId = omit(educations.byId, educationId)
     },
 
+    addContact: (state, { payload }: PayloadAction<AddContactPayload>) => {
+      const { id } = payload
+      const contactId = nanoid()
+      const { contacts } = state.byId[id].content
+
+      contacts.ids.push(contactId)
+      contacts.byId[contactId] = {
+        id: contactId,
+        text: '',
+        href: '',
+      }
+    },
     updateContact: (
       state,
       { payload }: PayloadAction<UpdateContactPayload>
@@ -261,6 +276,26 @@ const { actions, reducer } = createSlice({
         href,
       }
     },
+    reorderContact: (
+      state,
+      { payload }: PayloadAction<ReorderContactPayload>
+    ) => {
+      const { id, startIndex, endIndex } = payload
+      const { contacts } = state.byId[id].content
+
+      contacts.ids = swap(contacts.ids, startIndex, endIndex)
+    },
+    deleteContact: (
+      state,
+      { payload }: PayloadAction<DeleteContactPayload>
+    ) => {
+      const { id, contactId } = payload
+      const { contacts } = state.byId[id].content
+
+      contacts.ids = filter(contacts.ids, (id) => id !== contactId)
+      contacts.byId = omit(contacts.byId, contactId)
+    },
+
     updateTechnologies: (
       state,
       { payload }: PayloadAction<UpdateTechnologiesPayload>
@@ -300,7 +335,10 @@ export const {
   updateEduction,
   reorderEducation,
   deleteEducation,
+  addContact,
   updateContact,
+  reorderContact,
+  deleteContact,
   updateTechnologies,
   updateLanguage,
   selectCv,

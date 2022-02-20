@@ -11,6 +11,8 @@ import {
   ReorderEducationPayload,
   DeleteEducationPayload,
   UpdateContactPayload,
+  ReorderContactPayload,
+  DeleteContactPayload,
   UpdateTechnologiesPayload,
   UpdateLanguagePayload,
   SelectCvPayload,
@@ -30,7 +32,10 @@ import {
   updateEduction,
   reorderEducation,
   deleteEducation,
+  addContact,
   updateContact,
+  reorderContact,
+  deleteContact,
   updateTechnologies,
   updateLanguage,
   selectCv,
@@ -139,6 +144,10 @@ const useCV = () => {
     dispatch(deleteEducation({ id, educationId }))
   }
 
+  const handleAddContact = () => {
+    dispatch(addContact({ id }))
+  }
+
   const handleChangeContact = (
     contactId: UpdateContactPayload['contactId'],
     text: UpdateContactPayload['text'],
@@ -152,6 +161,19 @@ const useCV = () => {
         href,
       })
     )
+  }
+
+  const handleReorderContact = (
+    startIndex: ReorderContactPayload['startIndex'],
+    endIndex: ReorderContactPayload['endIndex']
+  ) => {
+    dispatch(reorderContact({ id, startIndex, endIndex }))
+  }
+
+  const handleDeleteContact = (
+    contactId: DeleteContactPayload['contactId']
+  ) => {
+    dispatch(deleteContact({ id, contactId }))
   }
 
   const handleChangeTechnologies = (
@@ -193,6 +215,9 @@ const useCV = () => {
     changeEducation: handleChangeEducation,
     reorderEducation: handleReorderEducation,
     deleteEducation: handleDeleteEducation,
+    addContact: handleAddContact,
+    reorderContact: handleReorderContact,
+    deleteContact: handleDeleteContact,
     changeContact: handleChangeContact,
     changeTechnologies: handleChangeTechnologies,
     changeLanguage: handleChangeLanguage,
