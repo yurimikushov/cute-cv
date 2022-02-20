@@ -38,7 +38,7 @@ const useAvatarPicker = (
     return (): void => {
       fileInputNode.removeEventListener('change', handleFileChange)
     }
-  }, [])
+  }, [onPick])
 
   const handlePick = () => {
     fileInputRef.current?.click()
