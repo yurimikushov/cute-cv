@@ -1,10 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit'
 import map from 'lodash/map'
 import { RootStateT } from 'services/store'
-import { CURRENT_CV_ID } from 'services/cv'
 
-const selectCurrentCvId = () => CURRENT_CV_ID
-
+const selectCurrentCvId = (state: RootStateT) => state.cv.versions.currentId
 const selectCvVersions = (state: RootStateT) => state.cv.versions
 
 const selectCV = createSelector(
