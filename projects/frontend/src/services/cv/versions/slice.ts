@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 import forEach from 'lodash/forEach'
 import keyBy from 'lodash/keyBy'
@@ -42,6 +43,11 @@ const { actions, reducer } = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loadAll.fulfilled, (state, { payload: allCv }) => {
+        if (isEmpty(allCv)) {
+          state = createInitialState()
+          return
+        }
+
         state.ids = map(allCv, 'id')
 
         forEach(allCv, ({ id, name }) => {
