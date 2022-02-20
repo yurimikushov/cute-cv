@@ -1,7 +1,7 @@
 type VersionsState = {
   ids: Array<string>
   byId: Record<string, Version>
-  currentId: string | null
+  currentId: string
 }
 
 type Version = {
