@@ -22,7 +22,7 @@ const selectRawCvContent = (state: RootStateT) => {
   return content
 }
 
-const selectCV = createSelector(selectRawCvContent, (content) => {
+const selectCvContent = createSelector(selectRawCvContent, (content) => {
   content ??= {
     fullName: '',
     position: '',
@@ -46,7 +46,7 @@ const selectCV = createSelector(selectRawCvContent, (content) => {
   }
 })
 
-type CV = ReturnType<typeof selectCV>
+type CV = ReturnType<typeof selectCvContent>
 
-export { selectCvMetadata, selectCV, selectCurrentCvId }
+export { selectCvMetadata, selectCvContent, selectCurrentCvId }
 export type { CV }

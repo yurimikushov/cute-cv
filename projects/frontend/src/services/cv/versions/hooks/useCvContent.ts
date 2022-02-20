@@ -18,7 +18,7 @@ import {
   DeleteLanguagePayload,
   SelectCvPayload,
 } from '../model'
-import { selectCV, selectCurrentCvId } from '../selectors'
+import { selectCvContent, selectCurrentCvId } from '../selectors'
 import {
   updateFullName,
   updatePosition,
@@ -47,7 +47,7 @@ import {
 // eslint-disable-next-line max-statements
 const useCvContent = () => {
   const id = useSelector(selectCurrentCvId)
-  const cv = useSelector(selectCV)
+  const cv = useSelector(selectCvContent)
 
   const dispatch = useDispatch()
 
