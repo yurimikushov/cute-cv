@@ -12,35 +12,23 @@ export class CVService {
   }
 
   async get(userId: UserId, cvId: CvId) {
-    const cv = await this.cvRepository.read(userId, cvId)
+    const content = await this.cvRepository.read(userId, cvId)
 
-    if (isNull(cv)) {
+    if (isNull(content)) {
       return null
     }
 
-    const { updated: savedAt } = await this.cvRepository.getMetadata(
-      userId,
-      cvId
-    )
+    const metadata = await this.cvRepository.getMetadata(userId, cvId)
 
     return {
-      metadata: {
-        savedAt,
-      },
-      content: cv,
+      metadata,
+      content,
     } as const
   }
 
   async update(userId: UserId, cvId: CvId, cv: CV) {
     await this.cvRepository.update(userId, cvId, cv)
 
-    const { updated: savedAt } = await this.cvRepository.getMetadata(
-      userId,
-      cvId
-    )
-
-    return {
-      savedAt,
-    } as const
+    return await this.cvRepository.getMetadata(userId, cvId)
   }
 }

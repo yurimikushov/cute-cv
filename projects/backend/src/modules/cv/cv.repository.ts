@@ -6,7 +6,7 @@ import { map } from 'lodash'
 import { getFirebaseApp } from 'lib/firebase'
 import getCvId from './utils/getCvId'
 import { FILE_STORAGE_ROOT_DIR } from './constants'
-import { UserId, CvId, CV, Content } from './cv.interface'
+import { UserId, CvId, CV, Metadata, Content } from './cv.interface'
 
 @Injectable()
 export class CVRepository {
@@ -43,8 +43,18 @@ export class CVRepository {
   }
 
   async getMetadata(userId: UserId, cvId: CvId) {
-    const [metadata] = await this.getStorageFile(userId, cvId).getMetadata()
-    return metadata
+    const [{ updated, metadata }] = await this.getStorageFile(
+      userId,
+      cvId
+    ).getMetadata()
+
+    const { id, name } = metadata
+
+    return {
+      id,
+      name,
+      savedAt: updated,
+    } as Metadata
   }
 
   async getMetadataAll(userId: UserId) {

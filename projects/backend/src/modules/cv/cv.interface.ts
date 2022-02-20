@@ -3,12 +3,14 @@ type UserId = Id
 type CvId = Id
 
 interface CV {
-  metadata: Metadata
+  metadata: Omit<Metadata, 'id' | 'savedAt'>
   content: Content
 }
 
 interface Metadata {
+  id: string
   name: string
+  savedAt: string
 }
 
 interface Content {
@@ -49,4 +51,4 @@ interface Language {
   language: string
 }
 
-export type { UserId, CvId, CV, Content }
+export type { UserId, CvId, CV, Metadata, Content }
