@@ -15,6 +15,7 @@ import {
   DeleteContactPayload,
   UpdateTechnologiesPayload,
   UpdateLanguagePayload,
+  DeleteLanguagePayload,
   SelectCvPayload,
 } from './model'
 import { selectCV, selectCurrentCvId } from './selectors'
@@ -37,7 +38,9 @@ import {
   reorderContact,
   deleteContact,
   updateTechnologies,
+  addLanguage,
   updateLanguage,
+  deleteLanguage,
   selectCv,
 } from './slice'
 
@@ -182,6 +185,10 @@ const useCV = () => {
     dispatch(updateTechnologies({ id, technologies }))
   }
 
+  const handleAddLanguage = () => {
+    dispatch(addLanguage({ id }))
+  }
+
   const handleChangeLanguage = (
     languageId: UpdateLanguagePayload['languageId'],
     language: UpdateLanguagePayload['language']
@@ -193,6 +200,12 @@ const useCV = () => {
         language,
       })
     )
+  }
+
+  const handleDeleteLanguage = (
+    languageId: DeleteLanguagePayload['languageId']
+  ) => {
+    dispatch(deleteLanguage({ id, languageId }))
   }
 
   const handleSelectCv = (id: SelectCvPayload['id']) => {
@@ -220,7 +233,9 @@ const useCV = () => {
     deleteContact: handleDeleteContact,
     changeContact: handleChangeContact,
     changeTechnologies: handleChangeTechnologies,
+    addLanguage: handleAddLanguage,
     changeLanguage: handleChangeLanguage,
+    deleteLanguage: handleDeleteLanguage,
     selectCv: handleSelectCv,
   }
 }

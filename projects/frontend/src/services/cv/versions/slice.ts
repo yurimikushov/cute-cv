@@ -31,7 +31,9 @@ import {
   ReorderContactPayload,
   DeleteContactPayload,
   UpdateTechnologiesPayload,
+  AddLanguagePayload,
   UpdateLanguagePayload,
+  DeleteLanguagePayload,
   SelectCvPayload,
 } from './model'
 
@@ -304,6 +306,18 @@ const { actions, reducer } = createSlice({
 
       state.byId[id].content.technologies = technologies
     },
+
+    addLanguage: (state, { payload }: PayloadAction<AddLanguagePayload>) => {
+      const { id } = payload
+      const languageId = nanoid()
+      const { languages } = state.byId[id].content
+
+      languages.ids.push(languageId)
+      languages.byId[languageId] = {
+        id: languageId,
+        language: '',
+      }
+    },
     updateLanguage: (
       state,
       { payload }: PayloadAction<UpdateLanguagePayload>
@@ -315,6 +329,17 @@ const { actions, reducer } = createSlice({
         language,
       }
     },
+    deleteLanguage: (
+      state,
+      { payload }: PayloadAction<DeleteLanguagePayload>
+    ) => {
+      const { id, languageId } = payload
+      const { languages } = state.byId[id].content
+
+      languages.ids = filter(languages.ids, (id) => id !== languageId)
+      languages.byId = omit(languages.byId, languageId)
+    },
+
     selectCv: (state, { payload }: PayloadAction<SelectCvPayload>) => {
       state.currentId = payload.id
     },
@@ -340,7 +365,9 @@ export const {
   reorderContact,
   deleteContact,
   updateTechnologies,
+  addLanguage,
   updateLanguage,
+  deleteLanguage,
   selectCv,
 } = actions
 export default reducer

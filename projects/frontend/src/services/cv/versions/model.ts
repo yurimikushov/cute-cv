@@ -164,10 +164,19 @@ type UpdateTechnologiesPayload = {
   technologies: string
 }
 
+type AddLanguagePayload = {
+  id: string
+}
+
 type UpdateLanguagePayload = {
   id: string
   languageId: string
   language: string
+}
+
+type DeleteLanguagePayload = {
+  id: string
+  languageId: string
 }
 
 type SelectCvPayload = {
@@ -196,6 +205,8 @@ export type {
   ReorderContactPayload,
   DeleteContactPayload,
   UpdateTechnologiesPayload,
+  AddLanguagePayload,
   UpdateLanguagePayload,
+  DeleteLanguagePayload,
   SelectCvPayload,
 }
