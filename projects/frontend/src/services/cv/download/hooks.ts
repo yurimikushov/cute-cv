@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import downloadPDF from 'lib/downloadPDF'
 import downloadJSON from 'lib/downloadJSON'
-import { useCV, useFullName } from 'services/cv'
+import { useCvContent } from 'services/cv'
 import { CV_CONTAINER_ID } from './constants'
 import { selectIsDownloading } from './selectors'
 import { begin, success } from './slice'
@@ -13,8 +13,8 @@ const useDownload = () => {
 
   const dispatch = useDispatch()
 
-  const { cv } = useCV()
-  const { fullName } = useFullName()
+  const { cv } = useCvContent()
+  const { fullName } = cv
 
   const handleDownloadPDF = useCallback(async () => {
     dispatch(begin())
