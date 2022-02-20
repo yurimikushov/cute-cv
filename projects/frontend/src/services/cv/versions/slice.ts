@@ -169,8 +169,9 @@ const { actions, reducer } = createSlice({
     ) => {
       const { id, experienceId, position, company, duration, description } =
         payload
+      const { experiences } = state.byId[id].content
 
-      state.byId[id].content.experiences.byId[experienceId] = {
+      experiences.byId[experienceId] = {
         id: experienceId,
         position,
         company,
