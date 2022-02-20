@@ -1,12 +1,10 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useEditable, useCvContent } from 'services/cv'
+import { useEditable, useCvContent, MAX_TECHNOLOGIES_LENGTH } from 'services/cv'
 import { H2 } from 'components/H'
 import TextArea from 'components/TextArea'
 import TechnologiesPropsT from './Technologies.props'
-
-const MAX_TECHNOLOGIES_LENGTH = 500
 
 const Container = styled.div`
   & > * + * {

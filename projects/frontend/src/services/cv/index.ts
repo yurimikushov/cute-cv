@@ -20,6 +20,12 @@ export {
   MAX_CONTACTS_SIZE,
   MAX_LANGUAGES_SIZE,
 } from './content'
-export { useCvContent } from './versions'
+export {
+  useCvContent,
+  MAX_FULL_NAME_LENGTH,
+  MAX_POSITION_LENGTH,
+  MAX_ABOUT_ME_LENGTH,
+  MAX_TECHNOLOGIES_LENGTH,
+} from './versions'
 export type { CV } from './versions'
 export { CURRENT_CV_ID } from './constants'

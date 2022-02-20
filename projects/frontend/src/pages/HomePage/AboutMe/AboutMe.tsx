@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useEditable, useCvContent } from 'services/cv'
+import { useEditable, useCvContent, MAX_ABOUT_ME_LENGTH } from 'services/cv'
 import TextArea from 'components/TextArea'
 
 const Description = styled(TextArea)`
@@ -21,7 +21,7 @@ const AboutMe: FC = () => {
       disabled={!editable}
       value={aboutMe}
       placeholder={t('placeholder')}
-      maxLength={1_000}
+      maxLength={MAX_ABOUT_ME_LENGTH}
       onChange={changeAboutMe}
     />
   )

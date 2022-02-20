@@ -2,7 +2,12 @@ import { FC, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useIsSignedIn } from 'services/auth'
-import { useEditable, useCvContent } from 'services/cv'
+import {
+  useEditable,
+  useCvContent,
+  MAX_FULL_NAME_LENGTH,
+  MAX_POSITION_LENGTH,
+} from 'services/cv'
 import TextInput from 'components/TextInput'
 
 const FullName = styled(TextInput)`
@@ -42,7 +47,7 @@ const Header: FC = () => {
         disabled={!editable}
         value={fullName}
         placeholder={t('fullName.placeholder')}
-        maxLength={50}
+        maxLength={MAX_FULL_NAME_LENGTH}
         onChange={changeFullName}
       />
       <Position
@@ -50,7 +55,7 @@ const Header: FC = () => {
         disabled={!editable}
         value={position}
         placeholder={t('position.placeholder')}
-        maxLength={50}
+        maxLength={MAX_POSITION_LENGTH}
         onChange={changePosition}
       />
     </header>
