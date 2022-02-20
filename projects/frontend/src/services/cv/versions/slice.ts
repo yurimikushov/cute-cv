@@ -4,6 +4,7 @@ import forEach from 'lodash/forEach'
 import keyBy from 'lodash/keyBy'
 import { ServiceNameEnum } from 'services'
 import { loadAll, load } from '../load'
+import createDummyCv from './utils/createDummyCv'
 import {
   VersionsState,
   UpdateFullNamePayload,
@@ -19,15 +20,25 @@ import {
   SelectCvPayload,
 } from './model'
 
-const initialState: VersionsState = {
-  ids: [],
-  byId: {},
-  currentId: null,
+const createInitialState = (): VersionsState => {
+  const { metadata, content } = createDummyCv()
+  const { id } = metadata
+
+  return {
+    ids: [id],
+    byId: {
+      [id]: {
+        metadata,
+        content,
+      },
+    },
+    currentId: id,
+  }
 }
 
 const { actions, reducer } = createSlice({
   name: `${ServiceNameEnum.cv}/versions`,
-  initialState,
+  initialState: createInitialState(),
   extraReducers: (builder) => {
     builder
       .addCase(loadAll.fulfilled, (state, { payload: allCv }) => {

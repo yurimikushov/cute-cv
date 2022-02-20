@@ -131,6 +131,7 @@ type SelectCvPayload = {
 
 export type {
   VersionsState,
+  Version,
   UpdateFullNamePayload,
   UpdatePositionPayload,
   UpdateAboutMePayload,
