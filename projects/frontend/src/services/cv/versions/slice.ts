@@ -1,9 +1,12 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
 import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 import head from 'lodash/head'
 import forEach from 'lodash/forEach'
 import keyBy from 'lodash/keyBy'
+import filter from 'lodash/filter'
+import omit from 'lodash/omit'
+import swap from 'lib/reorder'
 import { ServiceNameEnum } from 'services'
 import { loadAll, load } from '../load'
 import createDummyCv from './utils/createDummyCv'
@@ -14,7 +17,10 @@ import {
   UpdateAboutMePayload,
   UpdateAvatarPayload,
   DeleteAvatarPayload,
+  AddExperiencePayload,
   UpdateExperiencePayload,
+  ReorderExperiencePayload,
+  DeleteExperiencePayload,
   UpdateEducationPayload,
   UpdateContactPayload,
   UpdateTechnologiesPayload,
@@ -139,6 +145,24 @@ const { actions, reducer } = createSlice({
       const { id } = payload
       state.byId[id].content.avatar = null
     },
+
+    addExperience: (
+      state,
+      { payload }: PayloadAction<AddExperiencePayload>
+    ) => {
+      const { id } = payload
+      const experienceId = nanoid()
+      const { experiences } = state.byId[id].content
+
+      experiences.ids.push(experienceId)
+      experiences.byId[experienceId] = {
+        id: experienceId,
+        position: '',
+        company: '',
+        duration: '',
+        description: '',
+      }
+    },
     updateExperience: (
       state,
       { payload }: PayloadAction<UpdateExperiencePayload>
@@ -154,6 +178,26 @@ const { actions, reducer } = createSlice({
         description,
       }
     },
+    reorderExperience: (
+      state,
+      { payload }: PayloadAction<ReorderExperiencePayload>
+    ) => {
+      const { id, startIndex, endIndex } = payload
+      const { experiences } = state.byId[id].content
+
+      experiences.ids = swap(experiences.ids, startIndex, endIndex)
+    },
+    deleteExperience: (
+      state,
+      { payload }: PayloadAction<DeleteExperiencePayload>
+    ) => {
+      const { id, experienceId } = payload
+      const { experiences } = state.byId[id].content
+
+      experiences.ids = filter(experiences.ids, (id) => id !== experienceId)
+      experiences.byId = omit(experiences.byId, experienceId)
+    },
+
     updateEduction: (
       state,
       { payload }: PayloadAction<UpdateEducationPayload>
@@ -210,7 +254,10 @@ export const {
   updateAboutMe,
   updateAvatar,
   deleteAvatar,
+  addExperience,
   updateExperience,
+  reorderExperience,
+  deleteExperience,
   updateEduction,
   updateContact,
   updateTechnologies,

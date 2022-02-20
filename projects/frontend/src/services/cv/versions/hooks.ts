@@ -5,6 +5,8 @@ import {
   UpdateAboutMePayload,
   UpdateAvatarPayload,
   UpdateExperiencePayload,
+  ReorderExperiencePayload,
+  DeleteExperiencePayload,
   UpdateEducationPayload,
   UpdateContactPayload,
   UpdateTechnologiesPayload,
@@ -18,7 +20,10 @@ import {
   updateAboutMe,
   updateAvatar,
   deleteAvatar as deleteAvatarById,
+  addExperience,
   updateExperience,
+  reorderExperience,
+  deleteExperience,
   updateEduction,
   updateContact,
   updateTechnologies,
@@ -53,6 +58,10 @@ const useCV = () => {
     dispatch(deleteAvatarById({ id }))
   }
 
+  const handleAddExperience = () => {
+    dispatch(addExperience({ id }))
+  }
+
   const changeExperience = (
     experienceId: UpdateExperiencePayload['experienceId'],
     position: UpdateExperiencePayload['position'],
@@ -71,6 +80,19 @@ const useCV = () => {
         description,
       })
     )
+  }
+
+  const handleReorderExperience = (
+    startIndex: ReorderExperiencePayload['startIndex'],
+    endIndex: ReorderExperiencePayload['endIndex']
+  ) => {
+    dispatch(reorderExperience({ id, startIndex, endIndex }))
+  }
+
+  const handleDeleteExperience = (
+    experienceId: DeleteExperiencePayload['experienceId']
+  ) => {
+    dispatch(deleteExperience({ id, experienceId }))
   }
 
   const changeEducation = (
@@ -137,7 +159,10 @@ const useCV = () => {
     changeAboutMe,
     changeAvatar,
     deleteAvatar,
+    addExperience: handleAddExperience,
     changeExperience,
+    reorderExperience: handleReorderExperience,
+    deleteExperience: handleDeleteExperience,
     changeEducation,
     changeContact,
     changeTechnologies,

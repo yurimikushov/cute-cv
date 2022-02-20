@@ -90,6 +90,10 @@ type DeleteAvatarPayload = {
   id: string
 }
 
+type AddExperiencePayload = {
+  id: string
+}
+
 type UpdateExperiencePayload = {
   id: string
   experienceId: string
@@ -97,6 +101,17 @@ type UpdateExperiencePayload = {
   company: string
   duration: string
   description: string
+}
+
+type ReorderExperiencePayload = {
+  id: string
+  startIndex: number
+  endIndex: number
+}
+
+type DeleteExperiencePayload = {
+  id: string
+  experienceId: string
 }
 
 type UpdateEducationPayload = {
@@ -132,12 +147,16 @@ type SelectCvPayload = {
 export type {
   VersionsState,
   Version,
+  Content,
   UpdateFullNamePayload,
   UpdatePositionPayload,
   UpdateAboutMePayload,
   UpdateAvatarPayload,
   DeleteAvatarPayload,
+  AddExperiencePayload,
   UpdateExperiencePayload,
+  ReorderExperiencePayload,
+  DeleteExperiencePayload,
   UpdateEducationPayload,
   UpdateContactPayload,
   UpdateTechnologiesPayload,
