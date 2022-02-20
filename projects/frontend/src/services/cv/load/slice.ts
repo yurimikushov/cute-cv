@@ -1,9 +1,11 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from 'services'
 import { LoadingStateT } from './model'
 import { loadAll, load } from './thunks'
 
 const initialState: LoadingStateT = {
+  isLoadingAll: false,
+  errorAll: null,
   isLoading: false,
   error: null,
 }
@@ -13,24 +15,37 @@ const { reducer } = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addMatcher(isAnyOf(loadAll.pending, load.pending), (state) => {
+      .addCase(loadAll.pending, (state) => {
+        state.isLoadingAll = true
+        state.errorAll = null
+      })
+      .addCase(loadAll.fulfilled, (state) => {
+        state.isLoadingAll = false
+      })
+      .addCase(loadAll.rejected, (state, { payload, error }) => {
+        state.isLoadingAll = false
+
+        // @ts-expect-error bad typing
+        if (!('isEmpty' in payload)) {
+          state.errorAll = error
+        }
+      })
+
+      .addCase(load.pending, (state) => {
         state.isLoading = true
         state.error = null
       })
-      .addMatcher(isAnyOf(loadAll.fulfilled, load.fulfilled), (state) => {
+      .addCase(load.fulfilled, (state) => {
         state.isLoading = false
       })
-      .addMatcher(
-        isAnyOf(loadAll.rejected, load.rejected),
-        (state, { payload, error }) => {
-          state.isLoading = false
+      .addCase(load.rejected, (state, { payload, error }) => {
+        state.isLoading = false
 
-          // @ts-expect-error bad typing
-          if (!('isEmpty' in payload)) {
-            state.error = error
-          }
+        // @ts-expect-error bad typing
+        if (!('isEmpty' in payload)) {
+          state.error = error
         }
-      )
+      })
   },
   reducers: {},
 })
