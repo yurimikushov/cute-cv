@@ -17,6 +17,7 @@ import {
   updatePosition,
   updateAboutMe,
   updateAvatar,
+  deleteAvatar as deleteAvatarById,
   updateExperience,
   updateEduction,
   updateContact,
@@ -46,6 +47,10 @@ const useCV = () => {
 
   const changeAvatar = (src: UpdateAvatarPayload['src']) => {
     dispatch(updateAvatar({ id, src }))
+  }
+
+  const deleteAvatar = () => {
+    dispatch(deleteAvatarById({ id }))
   }
 
   const changeExperience = (
@@ -131,6 +136,7 @@ const useCV = () => {
     changePosition,
     changeAboutMe,
     changeAvatar,
+    deleteAvatar,
     changeExperience,
     changeEducation,
     changeContact,

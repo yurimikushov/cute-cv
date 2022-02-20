@@ -10,6 +10,7 @@ import {
   UpdatePositionPayload,
   UpdateAboutMePayload,
   UpdateAvatarPayload,
+  DeleteAvatarPayload,
   UpdateExperiencePayload,
   UpdateEducationPayload,
   UpdateContactPayload,
@@ -113,6 +114,10 @@ const { actions, reducer } = createSlice({
       const { id, src } = payload
       state.byId[id].content.avatar = src
     },
+    deleteAvatar: (state, { payload }: PayloadAction<DeleteAvatarPayload>) => {
+      const { id } = payload
+      state.byId[id].content.avatar = null
+    },
     updateExperience: (
       state,
       { payload }: PayloadAction<UpdateExperiencePayload>
@@ -183,6 +188,7 @@ export const {
   updatePosition,
   updateAboutMe,
   updateAvatar,
+  deleteAvatar,
   updateExperience,
   updateEduction,
   updateContact,

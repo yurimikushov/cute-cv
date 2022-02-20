@@ -83,7 +83,11 @@ type UpdateAboutMePayload = {
 
 type UpdateAvatarPayload = {
   id: string
-  src: string | null
+  src: string
+}
+
+type DeleteAvatarPayload = {
+  id: string
 }
 
 type UpdateExperiencePayload = {
@@ -131,6 +135,7 @@ export type {
   UpdatePositionPayload,
   UpdateAboutMePayload,
   UpdateAvatarPayload,
+  DeleteAvatarPayload,
   UpdateExperiencePayload,
   UpdateEducationPayload,
   UpdateContactPayload,
