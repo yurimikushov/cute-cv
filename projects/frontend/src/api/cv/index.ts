@@ -1,6 +1,7 @@
 import axios from 'axios'
 import isString from 'lodash/isString'
-import { LoadAllResult, LoadResult, SaveResult, SavePayload } from './model'
+import { CV } from 'services/cv'
+import { LoadAllResult, LoadResult, SaveResult } from './model'
 
 class cvApi {
   public static async loadAll() {
@@ -29,8 +30,14 @@ class cvApi {
     return data
   }
 
-  public static async save(id: string, cv: SavePayload) {
-    const { data } = await axios.put<SaveResult>(`/cv/${id}`, cv)
+  public static async save(id: string, name: string, cv: CV) {
+    const { data } = await axios.put<SaveResult>(`/cv/${id}`, {
+      metadata: {
+        name,
+      },
+      content: cv,
+    })
+
     return data
   }
 }

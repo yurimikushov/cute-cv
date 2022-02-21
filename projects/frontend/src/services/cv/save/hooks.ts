@@ -10,16 +10,17 @@ const AUTO_SAVE_TIMING = 1_000
 const useSaveCV = () => {
   const { isSignedIn } = useIsSignedIn()
 
+  const { id, name, markAsUnsaved } = useCvMetadata()
   const { cv } = useCvContent()
   const { isCVLoading } = useIsCVLoading()
   const isPrevCVLoadingRef = useRef<boolean>(false)
-  const { markAsUnsaved } = useCvMetadata()
+  const metadataRef = useRef<{ id: string; name: string }>({ id, name })
 
   const dispatch = useDispatch()
 
   const debouncedSave = useCallback(
-    debounce((cv: CV) => {
-      dispatch(save(cv))
+    debounce((id: string, name: string, cv: CV) => {
+      dispatch(save({ id, name, cv }))
     }, AUTO_SAVE_TIMING),
     []
   )
@@ -34,8 +35,12 @@ const useSaveCV = () => {
       return
     }
 
+    const {
+      current: { id, name },
+    } = metadataRef
+
     markAsUnsaved()
-    debouncedSave(cv)
+    debouncedSave(id, name, cv)
   }, [isCVLoading, cv])
 }
 
