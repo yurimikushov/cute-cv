@@ -5,6 +5,7 @@ type RadioProps = {
   className?: string
   value: string
   disabled?: boolean
+  vertical?: boolean
   children: Array<ReactElement<RadioItemProps>>
   onChange: (value: string) => void
 }
