@@ -14,8 +14,6 @@ const Container = styled.div`
   }
 `
 
-const AVAILABLE_LANGUAGES = map(LanguageEnum)
-
 const Language: FC<LanguagePropsT> = (props) => {
   const { t, i18n } = useTranslation('translation', { keyPrefix: 'toolbar' })
   const { isDownloading } = useDownload()
@@ -24,11 +22,16 @@ const Language: FC<LanguagePropsT> = (props) => {
     <Container {...props}>
       <H2>{t('language.title')}</H2>
       <Radio
+        value={i18n.language}
         disabled={isDownloading}
-        activeOption={i18n.language}
-        options={AVAILABLE_LANGUAGES}
         onChange={(language) => i18n.changeLanguage(language)}
-      />
+      >
+        {map(LanguageEnum, (lang) => (
+          <Radio.Item key={lang} value={lang}>
+            {lang}
+          </Radio.Item>
+        ))}
+      </Radio>
     </Container>
   )
 }

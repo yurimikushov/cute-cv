@@ -1,9 +1,12 @@
-type RadioPropsT = {
+import { ReactElement } from 'react'
+import { RadioItemProps } from './RadioItem'
+
+type RadioProps = {
   className?: string
-  activeOption: string
-  options: Array<string>
+  value: string
   disabled?: boolean
-  onChange: (activeOption: string) => void
+  children: Array<ReactElement<RadioItemProps>>
+  onChange: (value: string) => void
 }
 
-export default RadioPropsT
+export default RadioProps

@@ -1,9 +1,9 @@
-type RadioItemPropsT = {
+type RadioItemProps = {
   className?: string
   isActive: boolean
-  option: string
+  value: string
   disabled: boolean
-  onChange: (option: string) => void
+  onClick: () => void
 }
 
-export default RadioItemPropsT
+export default RadioItemProps

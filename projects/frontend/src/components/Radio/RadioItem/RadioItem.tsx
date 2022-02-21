@@ -1,9 +1,9 @@
 import { FC, KeyboardEvent } from 'react'
 import styled from 'styled-components'
 import colors from 'styles/colors'
-import RadioItemPropsT from './RadioItem.props'
+import RadioItemProps from './RadioItem.props'
 
-const Label = styled.label<RadioItemPropsT>`
+const Label = styled.label<RadioItemProps>`
   color: ${({ isActive }) => (isActive ? colors.black : colors.gray300)};
   ${({ isActive }) => !isActive && 'cursor: pointer;'}
   ${({ disabled }) => disabled && 'cursor: not-allowed;'}
@@ -14,11 +14,11 @@ const Label = styled.label<RadioItemPropsT>`
   }
 `
 
-const RadioItem: FC<RadioItemPropsT> = ({
+const RadioItem: FC<RadioItemProps> = ({
   isActive,
-  option,
   disabled,
-  onChange,
+  children,
+  onClick,
   ...props
 }) => {
   const handleKeyDown = (e: KeyboardEvent) => {
@@ -26,16 +26,11 @@ const RadioItem: FC<RadioItemPropsT> = ({
 
     if (code === 'Space' || code === 'Enter') {
       e.preventDefault()
-      onChange(option)
+      onClick()
     }
   }
 
-  const handleClick = () => {
-    onChange(option)
-  }
-
   return (
-    // @ts-expect-error bad typing
     <Label
       {...props}
       isActive={isActive}
@@ -43,9 +38,9 @@ const RadioItem: FC<RadioItemPropsT> = ({
       // eslint-disable-next-line no-magic-numbers
       tabIndex={isActive || disabled ? -1 : 0}
       onKeyDown={handleKeyDown}
-      onClick={handleClick}
+      onClick={onClick}
     >
-      {option}
+      {children}
     </Label>
   )
 }
