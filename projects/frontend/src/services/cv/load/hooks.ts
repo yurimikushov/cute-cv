@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useIsSignedIn } from 'services/auth'
+import { useCvMetadata } from 'services/cv'
 import { selectIsLoading } from './selectors'
 import { loadAll, load } from './thunks'
 
@@ -26,6 +27,7 @@ const useLoadAllCV = () => {
 }
 
 const useLoadCV = () => {
+  const { id } = useCvMetadata()
   const dispatch = useDispatch()
   const { isSignedIn } = useIsSignedIn()
 
@@ -34,8 +36,8 @@ const useLoadCV = () => {
       return
     }
 
-    dispatch(load())
-  }, [isSignedIn])
+    dispatch(load(id))
+  }, [isSignedIn, id])
 }
 
 export { useLoadAllCV, useLoadCV, useIsCVLoading }
