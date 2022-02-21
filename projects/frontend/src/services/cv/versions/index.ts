@@ -1,5 +1,5 @@
 export { default as versionsReducer } from './slice'
-export { useCvMetadata, useCvContent } from './hooks'
+export { useAllCvMetadata, useCvMetadata, useCvContent } from './hooks'
 export type { CV } from './selectors'
 export {
   MAX_FULL_NAME_LENGTH,

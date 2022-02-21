@@ -12,6 +12,20 @@ const selectCurrentVersion = (state: RootStateT) => {
   return versions.byId[id]
 }
 
+const selectAllCvMetadata = (state: RootStateT) => {
+  const { ids, byId } = selectCvVersions(state)
+  return map(ids, (id) => {
+    const {
+      metadata: { name },
+    } = byId[id]
+
+    return {
+      id,
+      name,
+    }
+  })
+}
+
 const selectCvMetadata = (state: RootStateT) => {
   const { metadata } = selectCurrentVersion(state)
   return metadata
@@ -48,5 +62,10 @@ const selectCvContent = createSelector(selectRawCvContent, (content) => {
 
 type CV = ReturnType<typeof selectCvContent>
 
-export { selectCvMetadata, selectCvContent, selectCurrentCvId }
+export {
+  selectAllCvMetadata,
+  selectCvMetadata,
+  selectCvContent,
+  selectCurrentCvId,
+}
 export type { CV }

@@ -4,6 +4,7 @@ export { useDownload, CV_CONTAINER_ID } from './download'
 export { useEditable } from './editable'
 export { useIsCVLoading } from './load'
 export {
+  useAllCvMetadata,
   useCvMetadata,
   useCvContent,
   MAX_FULL_NAME_LENGTH,
