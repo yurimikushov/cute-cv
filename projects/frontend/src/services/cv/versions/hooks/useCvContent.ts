@@ -213,7 +213,6 @@ const useCvContent = () => {
   }
 
   return {
-    id,
     cv,
     changeFullName: handleChangeFullName,
     changePosition: handleChangePosition,
