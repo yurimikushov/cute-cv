@@ -1,0 +1,50 @@
+import { isAnyOf } from '@reduxjs/toolkit'
+import {
+  updateFullName,
+  updatePosition,
+  updateAboutMe,
+  updateAvatar,
+  deleteAvatar,
+  addExperience,
+  updateExperience,
+  reorderExperience,
+  deleteExperience,
+  addEduction,
+  updateEduction,
+  reorderEducation,
+  deleteEducation,
+  addContact,
+  updateContact,
+  reorderContact,
+  deleteContact,
+  updateTechnologies,
+  addLanguage,
+  updateLanguage,
+  deleteLanguage,
+} from './slice'
+
+const isCvContentChanged = isAnyOf(
+  updateFullName,
+  updatePosition,
+  updateAboutMe,
+  updateAvatar,
+  deleteAvatar,
+  addExperience,
+  updateExperience,
+  reorderExperience,
+  deleteExperience,
+  addEduction,
+  updateEduction,
+  reorderEducation,
+  deleteEducation,
+  addContact,
+  updateContact,
+  reorderContact,
+  deleteContact,
+  updateTechnologies,
+  addLanguage,
+  updateLanguage,
+  deleteLanguage
+)
+
+export { isCvContentChanged }

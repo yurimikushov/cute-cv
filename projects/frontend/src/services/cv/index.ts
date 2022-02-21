@@ -7,6 +7,8 @@ export {
   useAllCvMetadata,
   useCvMetadata,
   useCvContent,
+  selectCvContent,
+  selectCvMetadata,
   MAX_FULL_NAME_LENGTH,
   MAX_POSITION_LENGTH,
   MAX_ABOUT_ME_LENGTH,
@@ -18,3 +20,4 @@ export {
 } from './versions'
 export type { CV } from './versions'
 export { CURRENT_CV_ID } from './constants'
+export { default as cvMiddlewares } from './middlewares'

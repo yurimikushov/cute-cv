@@ -1,4 +1,9 @@
-export { default as versionsReducer } from './slice'
+export { default as versionsReducer, markAsUnsaved } from './slice'
+export {
+  selectCurrentCvId,
+  selectCvContent,
+  selectCvMetadata,
+} from './selectors'
 export { useAllCvMetadata, useCvMetadata, useCvContent } from './hooks'
 export type { CV } from './selectors'
 export {
@@ -11,3 +16,4 @@ export {
   MAX_CONTACTS_SIZE,
   MAX_LANGUAGES_SIZE,
 } from './constants'
+export { isCvContentChanged } from './matchers'
