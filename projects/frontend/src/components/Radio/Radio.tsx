@@ -6,6 +6,7 @@ import RadioProps from './Radio.props'
 const Container = styled.div<Pick<RadioProps, 'vertical'>>`
   display: flex;
   ${({ vertical = false }) => vertical && 'flex-direction: column;'}
+  ${({ vertical = false }) => vertical && ' align-items: flex-start;'}
   gap: 0.375rem;
 `
 
