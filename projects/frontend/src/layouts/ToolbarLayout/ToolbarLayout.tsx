@@ -1,12 +1,17 @@
 import { FC, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import isNull from 'lodash/isNull'
-import Toolbar from './Toolbar'
+import { marginTopMixin } from './mixins'
+import BaseToolbar from './Toolbar'
 import ToolbarLayoutPropsT from './ToolbarLayout.props'
 
 const Container = styled.div`
   display: flex;
   gap: 2.5rem;
+`
+
+const Toolbar = styled(BaseToolbar)`
+  ${marginTopMixin}
 `
 
 const ToolbarLayout: FC<ToolbarLayoutPropsT> = ({ children, ...props }) => {
