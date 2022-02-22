@@ -5,7 +5,7 @@ import noop from 'lodash/noop'
 import {
   useAllCvMetadata,
   useCurrentCvMetadata,
-  useSelectAndLoadCv,
+  useSelectCv,
 } from 'services/cv'
 import Card from 'components/Card'
 import { H2 } from 'components/H'
@@ -22,12 +22,12 @@ const Container = styled(Card)`
 const Versions: FC<VersionsProps> = (props) => {
   const allCv = useAllCvMetadata()
   const { id } = useCurrentCvMetadata()
-  const selectAndLoadCv = useSelectAndLoadCv()
+  const selectCv = useSelectCv()
 
   return (
     <Container {...props}>
       <H2>Versions</H2>
-      <Radio value={id} vertical onChange={selectAndLoadCv}>
+      <Radio value={id} vertical onChange={selectCv}>
         {map(allCv, ({ id, name }) => (
           <Radio.Item key={id} value={id}>
             {name}

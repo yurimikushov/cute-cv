@@ -1,5 +1,5 @@
 export { default as cvReducer } from './reducer'
-export { useSelectAndLoadCv } from './hooks'
+export { useAutoLoadAllCv, useAutoLoadCurrentCv } from './hooks'
 export { useDownload, CV_CONTAINER_ID } from './download'
 export { useEditable } from './editable'
 export { useLoadAllCV, useIsCVLoading } from './load'
@@ -9,6 +9,7 @@ export {
   useCurrentCvContent,
   selectCvContent,
   selectCvMetadata,
+  useSelectCv,
   MAX_FULL_NAME_LENGTH,
   MAX_POSITION_LENGTH,
   MAX_ABOUT_ME_LENGTH,

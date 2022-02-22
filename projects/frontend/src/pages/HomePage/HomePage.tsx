@@ -3,7 +3,12 @@ import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useAuth, useIsSignInChecking } from 'services/auth'
-import { useLoadAllCV, useCurrentCvContent, useIsCVLoading } from 'services/cv'
+import {
+  useAutoLoadAllCv,
+  useAutoLoadCurrentCv,
+  useCurrentCvContent,
+  useIsCVLoading,
+} from 'services/cv'
 import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import CVLayout from 'layouts/CVLayout'
@@ -53,7 +58,8 @@ const Aside = styled.aside`
 
 const HomePage: FC = () => {
   useAuth()
-  useLoadAllCV()
+  useAutoLoadAllCv()
+  useAutoLoadCurrentCv()
 
   const { i18n } = useTranslation()
   const { cv } = useCurrentCvContent()

@@ -1,21 +1,29 @@
+import { useEffect } from 'react'
+import useEffectWhen from 'hooks/useEffectWhen'
 import { useIsSignedIn } from 'services/auth'
-import { useLoadCV } from './load'
-import { useSelectCv } from './versions'
+import { useLoadAllCV, useLoadCV } from './load'
+import { useCurrentCvMetadata } from './versions'
 
-const useSelectAndLoadCv = () => {
+const useAutoLoadAllCv = () => {
   const { isSignedIn } = useIsSignedIn()
-  const selectCv = useSelectCv()
-  const loadCv = useLoadCV()
 
-  const handleSelectAndLoadCv = (id: string) => {
-    selectCv(id)
+  const loadAllCv = useLoadAllCV()
 
-    if (isSignedIn) {
-      loadCv(id)
-    }
-  }
-
-  return handleSelectAndLoadCv
+  useEffectWhen(loadAllCv, isSignedIn)
 }
 
-export { useSelectAndLoadCv }
+const useAutoLoadCurrentCv = () => {
+  const { isSignedIn } = useIsSignedIn()
+  const { id } = useCurrentCvMetadata()
+  const loadCv = useLoadCV()
+
+  useEffect(() => {
+    if (!isSignedIn) {
+      return
+    }
+
+    loadCv(id)
+  }, [isSignedIn, id])
+}
+
+export { useAutoLoadAllCv, useAutoLoadCurrentCv }
