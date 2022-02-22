@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
+import { HelmetProvider } from 'react-helmet-async'
 import 'api/config'
 import store, { persistor } from 'services/store'
 import 'translation/config'
@@ -15,7 +16,9 @@ render(
       <PersistGate persistor={persistor}>
         <ResetStyles />
         <GlobalStyles />
-        <App />
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>,
