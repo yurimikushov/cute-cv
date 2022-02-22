@@ -52,6 +52,7 @@ const Experience: FC<ExperiencePropsT> = ({
   return (
     <Container
       {...props}
+      hoverable
       withBorder={editable}
       hasClose={editable}
       onClose={onDelete}

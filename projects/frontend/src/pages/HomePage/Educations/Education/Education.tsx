@@ -44,6 +44,7 @@ const Education: FC<EducationPropsT> = ({
   return (
     <Container
       {...props}
+      hoverable
       withBorder={editable}
       hasClose={editable}
       onClose={onDelete}

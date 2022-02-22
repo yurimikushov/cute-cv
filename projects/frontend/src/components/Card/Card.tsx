@@ -11,13 +11,16 @@ const Container = styled.div<CardPropsT>`
   position: relative;
   background-color: ${colors.white};
   border-radius: ${radiuses.md};
-  ${({ withBorder }) =>
+  ${({ withBorder, hoverable }) =>
     withBorder &&
     `
   padding: 0.5rem;
   border: 1px solid ${colors.gray200};
-  &:hover {
+  ${
+    hoverable &&
+    `&:hover {
     box-shadow: ${shadows.sm};
+  }`
   }
   `}
 `
@@ -31,11 +34,12 @@ const Close = styled(CloseButton)`
 const Card: FC<CardPropsT> = ({
   withBorder = true,
   hasClose = false,
+  hoverable = false,
   onClose = noop,
   children,
   ...props
 }) => (
-  <Container withBorder={withBorder} {...props}>
+  <Container withBorder={withBorder} hoverable={hoverable} {...props}>
     {children}
     {hasClose && <Close onClick={onClose} />}
   </Container>

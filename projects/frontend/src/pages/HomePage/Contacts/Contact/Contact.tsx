@@ -50,7 +50,7 @@ const Contact: FC<ContactPropsT> = ({
   }
 
   return (
-    <Container {...props}>
+    <Container {...props} hoverable>
       <Text
         disabled={!editable}
         value={text}
