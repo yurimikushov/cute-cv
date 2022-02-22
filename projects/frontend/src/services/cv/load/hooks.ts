@@ -26,15 +26,9 @@ const useLoadAllCV = () => {
 }
 
 const useLoadCV = () => {
-  const { isSignedIn } = useIsSignedIn()
-
   const dispatch = useDispatch()
 
   const handleLoadCv = (id: string) => {
-    if (!isSignedIn) {
-      return
-    }
-
     dispatch(load(id))
   }
 
