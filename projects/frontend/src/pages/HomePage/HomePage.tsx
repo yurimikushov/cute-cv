@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import SignInLayout from 'layouts/SignInLayout'
-import ToolbarLayout from 'layouts/ToolbarLayout'
+import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import CVLayout from 'layouts/CVLayout'
 import Panel from './Panel'
@@ -14,7 +14,7 @@ import Contacts from './Contacts'
 import Technologies from './Technologies'
 import Languages from './Languages'
 
-const StyledToolbarLayout = styled(ToolbarLayout)`
+const PanelsLayout = styled(BasePanelsLayout)`
   margin-top: 1.25rem;
   margin-bottom: 3.5rem;
   display: flex;
@@ -48,7 +48,7 @@ const Aside = styled.aside`
 
 const HomePage: FC = () => (
   <SignInLayout>
-    <StyledToolbarLayout>
+    <PanelsLayout>
       <PageLayout>
         <StyledPanel />
         <StyledCVLayout>
@@ -66,7 +66,7 @@ const HomePage: FC = () => (
           </Aside>
         </StyledCVLayout>
       </PageLayout>
-    </StyledToolbarLayout>
+    </PanelsLayout>
   </SignInLayout>
 )
 

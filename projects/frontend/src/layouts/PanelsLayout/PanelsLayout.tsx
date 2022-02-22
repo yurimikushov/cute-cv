@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import BaseVersions from './Versions'
 import BaseToolbar from './Toolbar'
 import { marginTopMixin } from './mixins'
-import ToolbarLayoutPropsT from './ToolbarLayout.props'
+import PanelsLayoutProps from './PanelsLayout.props'
 
 const Container = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const Toolbar = styled(BaseToolbar)`
   ${marginTopMixin}
 `
 
-const ToolbarLayout: FC<ToolbarLayoutPropsT> = ({ children, ...props }) => {
+const PanelsLayout: FC<PanelsLayoutProps> = ({ children, ...props }) => {
   return (
     <Container {...props}>
       <div>
@@ -32,4 +32,4 @@ const ToolbarLayout: FC<ToolbarLayoutPropsT> = ({ children, ...props }) => {
   )
 }
 
-export default ToolbarLayout
+export default PanelsLayout
