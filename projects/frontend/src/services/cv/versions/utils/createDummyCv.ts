@@ -1,61 +1,70 @@
+import { nanoid } from '@reduxjs/toolkit'
 import { Version } from '../model'
 
-const createDummyCv = (): Version => ({
-  metadata: {
-    id: 'BEVw1y4awdGV966i1vvd7',
-    name: 'Dummy',
-    isSaved: false,
-    savedAt: null,
-  },
-  content: {
-    fullName: '',
-    position: '',
-    aboutMe: '',
-    avatar: null,
-    experiences: {
-      ids: ['YMBe7HUE6dRtaMMCefHiO'],
-      byId: {
-        YMBe7HUE6dRtaMMCefHiO: {
-          id: 'YMBe7HUE6dRtaMMCefHiO',
-          position: '',
-          company: '',
-          duration: '',
-          description: '',
+const createDummyCv = (name = 'Dummy'): Version => {
+  const id = nanoid()
+  const experienceId = nanoid()
+  const educationId = nanoid()
+  const contactId = nanoid()
+  const languageId = nanoid()
+
+  return {
+    metadata: {
+      id,
+      name,
+      isSaved: false,
+      savedAt: null,
+    },
+    content: {
+      fullName: '',
+      position: '',
+      aboutMe: '',
+      avatar: null,
+      experiences: {
+        ids: [experienceId],
+        byId: {
+          [experienceId]: {
+            id: experienceId,
+            position: '',
+            company: '',
+            duration: '',
+            description: '',
+          },
+        },
+      },
+      educations: {
+        ids: [educationId],
+        byId: {
+          [educationId]: {
+            id: educationId,
+            degree: '',
+            university: '',
+            duration: '',
+          },
+        },
+      },
+      contacts: {
+        ids: [contactId],
+        byId: {
+          [contactId]: {
+            id: contactId,
+            text: '',
+            href: '',
+          },
+        },
+      },
+      technologies: '',
+      languages: {
+        ids: [languageId],
+        byId: {
+          [languageId]: {
+            id: languageId,
+            language: '',
+          },
         },
       },
     },
-    educations: {
-      ids: ['r8_xAf7clY7az-CX5FkS8'],
-      byId: {
-        'r8_xAf7clY7az-CX5FkS8': {
-          id: 'r8_xAf7clY7az-CX5FkS8',
-          degree: '',
-          university: '',
-          duration: '',
-        },
-      },
-    },
-    contacts: {
-      ids: ['euhfCXwqyvVULDSvAFIjd'],
-      byId: {
-        euhfCXwqyvVULDSvAFIjd: {
-          id: 'euhfCXwqyvVULDSvAFIjd',
-          text: '',
-          href: '',
-        },
-      },
-    },
-    technologies: '',
-    languages: {
-      ids: ['YlgEDyb0C22jlsM7PVQ2V'],
-      byId: {
-        YlgEDyb0C22jlsM7PVQ2V: {
-          id: 'YlgEDyb0C22jlsM7PVQ2V',
-          language: '',
-        },
-      },
-    },
-  },
-})
+  }
+}
 
 export default createDummyCv
