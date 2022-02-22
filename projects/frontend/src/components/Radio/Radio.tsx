@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { RadioItemProps } from './RadioItem'
 import RadioProps from './Radio.props'
 
-const Container = styled('div')<Pick<RadioProps, 'vertical'>>`
+const Container = styled.div<Pick<RadioProps, 'vertical'>>`
   display: flex;
   ${({ vertical = false }) => vertical && 'flex-direction: column;'}
   gap: 0.375rem;
