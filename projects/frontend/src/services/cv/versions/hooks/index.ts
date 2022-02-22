@@ -1,4 +1,4 @@
 export { default as useAllCvMetadata } from './useAllCvMetadata'
-export { default as useCvMetadata } from './useCvMetadata'
-export { default as useCvContent } from './useCvContent'
+export { default as useCurrentCvMetadata } from './useCurrentCvMetadata'
+export { default as useCurrentCvContent } from './useCurrentCvContent'
 export { default as useSelectCv } from './useSelectCv'

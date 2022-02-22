@@ -4,7 +4,11 @@ import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
-import { useEditable, useCvContent, MAX_CONTACTS_SIZE } from 'services/cv'
+import {
+  useEditable,
+  useCurrentCvContent,
+  MAX_CONTACTS_SIZE,
+} from 'services/cv'
 import useEffectWhen from 'hooks/useEffectWhen'
 import { H2 } from 'components/H'
 import DndList from 'components/DndList'
@@ -38,7 +42,7 @@ const Contacts: FC<ContactsPropsT> = (props) => {
     changeContact,
     reorderContact,
     deleteContact,
-  } = useCvContent()
+  } = useCurrentCvContent()
 
   useEffectWhen(addContact, isEmpty(contacts))
 

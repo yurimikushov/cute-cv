@@ -4,7 +4,11 @@ import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
-import { useEditable, useCvContent, MAX_EDUCATIONS_SIZE } from 'services/cv'
+import {
+  useEditable,
+  useCurrentCvContent,
+  MAX_EDUCATIONS_SIZE,
+} from 'services/cv'
 import useEffectWhen from 'hooks/useEffectWhen'
 import { H1 } from 'components/H'
 import DndList from 'components/DndList'
@@ -38,7 +42,7 @@ const Educations: FC<EducationsPropsT> = (props) => {
     changeEducation,
     reorderEducation,
     deleteEducation,
-  } = useCvContent()
+  } = useCurrentCvContent()
 
   useEffectWhen(addEduction, isEmpty(educations))
 

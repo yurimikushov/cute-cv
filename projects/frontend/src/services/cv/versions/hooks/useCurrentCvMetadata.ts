@@ -3,7 +3,7 @@ import { MarkAsSavedPayload } from '../model'
 import { selectCvMetadata } from '../selectors'
 import { markAsSaved, markAsUnsaved } from '../slice'
 
-const useCvMetadata = () => {
+const useCurrentCvMetadata = () => {
   const { id, name, isSaved, savedAt } = useSelector(selectCvMetadata)
 
   const dispatch = useDispatch()
@@ -26,4 +26,4 @@ const useCvMetadata = () => {
   }
 }
 
-export default useCvMetadata
+export default useCurrentCvMetadata

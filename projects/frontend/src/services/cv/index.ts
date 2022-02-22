@@ -5,8 +5,8 @@ export { useEditable } from './editable'
 export { useIsCVLoading } from './load'
 export {
   useAllCvMetadata,
-  useCvMetadata,
-  useCvContent,
+  useCurrentCvMetadata,
+  useCurrentCvContent,
   useSelectCv,
   selectCvContent,
   selectCvMetadata,

@@ -4,7 +4,11 @@ import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
-import { useEditable, useCvContent, MAX_LANGUAGES_SIZE } from 'services/cv'
+import {
+  useEditable,
+  useCurrentCvContent,
+  MAX_LANGUAGES_SIZE,
+} from 'services/cv'
 import useEffectWhen from 'hooks/useEffectWhen'
 import { H2 } from 'components/H'
 import Button from 'components/Button'
@@ -30,7 +34,7 @@ const Languages: FC<LanguagesPropsT> = (props) => {
     addLanguage,
     changeLanguage,
     deleteLanguage,
-  } = useCvContent()
+  } = useCurrentCvContent()
 
   useEffectWhen(addLanguage, isEmpty(languages))
 

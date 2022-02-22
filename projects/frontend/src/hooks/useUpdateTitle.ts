@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import { useCvContent } from 'services/cv'
+import { useCurrentCvContent } from 'services/cv'
 
 const useUpdateTitle = () => {
   const {
     cv: { fullName },
-  } = useCvContent()
+  } = useCurrentCvContent()
 
   useEffect(() => {
     document.title = fullName || 'Cute CV'

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { useEditable, useCvContent } from 'services/cv'
+import { useEditable, useCurrentCvContent } from 'services/cv'
 import AvatarPicker from 'components/AvatarPicker'
 
 const Avatar: FC = () => {
@@ -8,7 +8,7 @@ const Avatar: FC = () => {
     cv: { avatar },
     changeAvatar,
     deleteAvatar,
-  } = useCvContent()
+  } = useCurrentCvContent()
 
   return (
     <AvatarPicker

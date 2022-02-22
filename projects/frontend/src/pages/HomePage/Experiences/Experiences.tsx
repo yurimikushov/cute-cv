@@ -4,7 +4,11 @@ import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
-import { useEditable, useCvContent, MAX_EXPERIENCES_SIZE } from 'services/cv'
+import {
+  useEditable,
+  useCurrentCvContent,
+  MAX_EXPERIENCES_SIZE,
+} from 'services/cv'
 import useEffectWhen from 'hooks/useEffectWhen'
 import { H1 } from 'components/H'
 import DndList from 'components/DndList'
@@ -38,7 +42,7 @@ const Experiences: FC<ExperiencesPropsT> = (props) => {
     changeExperience,
     reorderExperience,
     deleteExperience,
-  } = useCvContent()
+  } = useCurrentCvContent()
 
   useEffectWhen(addExperience, isEmpty(experiences))
 

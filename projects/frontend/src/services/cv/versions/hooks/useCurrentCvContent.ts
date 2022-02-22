@@ -43,7 +43,7 @@ import {
 } from '../slice'
 
 // eslint-disable-next-line max-statements
-const useCvContent = () => {
+const useCurrentCvContent = () => {
   const id = useSelector(selectCurrentCvId)
   const cv = useSelector(selectCvContent)
 
@@ -232,4 +232,4 @@ const useCvContent = () => {
   }
 }
 
-export default useCvContent
+export default useCurrentCvContent

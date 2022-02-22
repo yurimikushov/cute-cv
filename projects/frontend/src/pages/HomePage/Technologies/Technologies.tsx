@@ -1,7 +1,11 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useEditable, useCvContent, MAX_TECHNOLOGIES_LENGTH } from 'services/cv'
+import {
+  useEditable,
+  useCurrentCvContent,
+  MAX_TECHNOLOGIES_LENGTH,
+} from 'services/cv'
 import { H2 } from 'components/H'
 import TextArea from 'components/TextArea'
 import TechnologiesPropsT from './Technologies.props'
@@ -20,7 +24,7 @@ const Technologies: FC<TechnologiesPropsT> = (props) => {
   const {
     cv: { technologies },
     changeTechnologies,
-  } = useCvContent()
+  } = useCurrentCvContent()
 
   return (
     <Container {...props}>

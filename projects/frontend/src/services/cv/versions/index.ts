@@ -6,8 +6,8 @@ export {
 } from './selectors'
 export {
   useAllCvMetadata,
-  useCvMetadata,
-  useCvContent,
+  useCurrentCvMetadata,
+  useCurrentCvContent,
   useSelectCv,
 } from './hooks'
 export type { CV } from './selectors'

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useIsSignedIn } from 'services/auth'
 import {
   useEditable,
-  useCvContent,
+  useCurrentCvContent,
   MAX_FULL_NAME_LENGTH,
   MAX_POSITION_LENGTH,
 } from 'services/cv'
@@ -28,7 +28,7 @@ const Header: FC = () => {
     cv: { fullName, position },
     changeFullName,
     changePosition,
-  } = useCvContent()
+  } = useCurrentCvContent()
   const fullNameRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
