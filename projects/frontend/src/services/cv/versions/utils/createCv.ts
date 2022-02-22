@@ -1,7 +1,7 @@
 import { nanoid } from '@reduxjs/toolkit'
 import { Version } from '../model'
 
-const createDummyCv = (name = 'Dummy'): Version => {
+const createCv = (name = 'Dummy'): Version => {
   const id = nanoid()
   const experienceId = nanoid()
   const educationId = nanoid()
@@ -67,4 +67,4 @@ const createDummyCv = (name = 'Dummy'): Version => {
   }
 }
 
-export default createDummyCv
+export default createCv

@@ -11,7 +11,7 @@ import swap from 'lib/reorder'
 import { ServiceNameEnum } from 'services'
 import { loadAll, load } from '../load'
 import { save } from '../save'
-import createDummyCv from './utils/createDummyCv'
+import createCv from './utils/createCv'
 import {
   VersionsState,
   MarkAsSavedPayload,
@@ -41,7 +41,7 @@ import {
 } from './model'
 
 const createInitialState = (): VersionsState => {
-  const { metadata, content } = createDummyCv()
+  const { metadata, content } = createCv()
   const { id } = metadata
 
   return {
@@ -70,7 +70,7 @@ const { actions, reducer } = createSlice({
         state.ids = map(allCv, 'id')
         state.byId = {}
 
-        const { content } = createDummyCv()
+        const { content } = createCv()
 
         forEach(allCv, ({ id, name }) => {
           state.byId[id] = {
@@ -80,9 +80,7 @@ const { actions, reducer } = createSlice({
               isSaved: true,
               savedAt: null,
             },
-            content: {
-              ...content,
-            },
+            content,
           }
         })
 
