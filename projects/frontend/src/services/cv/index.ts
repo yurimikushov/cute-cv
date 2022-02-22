@@ -1,5 +1,5 @@
 export { default as cvReducer } from './reducer'
-export { useConnectCV, useSelectAndLoadCv } from './hooks'
+export { useSelectAndLoadCv } from './hooks'
 export { useDownload, CV_CONTAINER_ID } from './download'
 export { useEditable } from './editable'
 export { useLoadAllCV, useIsCVLoading } from './load'

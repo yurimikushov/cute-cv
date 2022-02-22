@@ -1,9 +1,5 @@
-import { useLoadAllCV, useLoadCV } from './load'
+import { useLoadCV } from './load'
 import { useSelectCv } from './versions'
-
-const useConnectCV = () => {
-  useLoadAllCV()
-}
 
 const useSelectAndLoadCv = () => {
   const selectCv = useSelectCv()
@@ -17,4 +13,4 @@ const useSelectAndLoadCv = () => {
   return handleSelectAndLoadCv
 }
 
-export { useConnectCV, useSelectAndLoadCv }
+export { useSelectAndLoadCv }
