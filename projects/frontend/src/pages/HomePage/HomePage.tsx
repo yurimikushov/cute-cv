@@ -1,8 +1,13 @@
 import { FC } from 'react'
+import { Helmet } from 'react-helmet-async'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import { useAuth, useIsSignInChecking } from 'services/auth'
+import { useLoadAllCV, useCurrentCvContent, useIsCVLoading } from 'services/cv'
 import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import CVLayout from 'layouts/CVLayout'
+import Loader from 'components/Loader'
 import SignIn from './SignIn'
 import Panel from './Panel'
 import Header from './Header'
@@ -46,29 +51,43 @@ const Aside = styled.aside`
   }
 `
 
-const HomePage: FC = () => (
-  <>
-    <SignIn />
-    <PanelsLayout>
-      <PageLayout>
-        <StyledPanel />
-        <StyledCVLayout>
-          <Header />
-          <Avatar />
-          <Main>
-            <AboutMe />
-            <Experiences />
-            <Educations />
-          </Main>
-          <Aside>
-            <Contacts />
-            <Technologies />
-            <Languages />
-          </Aside>
-        </StyledCVLayout>
-      </PageLayout>
-    </PanelsLayout>
-  </>
-)
+const HomePage: FC = () => {
+  useAuth()
+  useLoadAllCV()
+
+  const { i18n } = useTranslation()
+  const { cv } = useCurrentCvContent()
+  const { isCVLoading } = useIsCVLoading()
+  const { isSignInChecking } = useIsSignInChecking()
+
+  return (
+    <>
+      <Helmet htmlAttributes={{ lang: i18n.language }}>
+        <title>{cv.fullName || 'Cute CV'} </title>
+      </Helmet>
+      {(isSignInChecking || isCVLoading) && <Loader.FullScreen />}
+      <SignIn />
+      <PanelsLayout>
+        <PageLayout>
+          <StyledPanel />
+          <StyledCVLayout>
+            <Header />
+            <Avatar />
+            <Main>
+              <AboutMe />
+              <Experiences />
+              <Educations />
+            </Main>
+            <Aside>
+              <Contacts />
+              <Technologies />
+              <Languages />
+            </Aside>
+          </StyledCVLayout>
+        </PageLayout>
+      </PanelsLayout>
+    </>
+  )
+}
 
 export default HomePage
