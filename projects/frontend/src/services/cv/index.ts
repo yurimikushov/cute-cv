@@ -7,6 +7,7 @@ export {
   useAllCvMetadata,
   useCvMetadata,
   useCvContent,
+  useSelectCv,
   selectCvContent,
   selectCvMetadata,
   MAX_FULL_NAME_LENGTH,

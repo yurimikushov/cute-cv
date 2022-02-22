@@ -4,7 +4,12 @@ export {
   selectCvContent,
   selectCvMetadata,
 } from './selectors'
-export { useAllCvMetadata, useCvMetadata, useCvContent } from './hooks'
+export {
+  useAllCvMetadata,
+  useCvMetadata,
+  useCvContent,
+  useSelectCv,
+} from './hooks'
 export type { CV } from './selectors'
 export {
   MAX_FULL_NAME_LENGTH,

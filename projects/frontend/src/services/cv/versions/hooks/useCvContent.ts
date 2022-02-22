@@ -16,7 +16,6 @@ import {
   UpdateTechnologiesPayload,
   UpdateLanguagePayload,
   DeleteLanguagePayload,
-  SelectCvPayload,
 } from '../model'
 import { selectCvContent, selectCurrentCvId } from '../selectors'
 import {
@@ -41,7 +40,6 @@ import {
   addLanguage,
   updateLanguage,
   deleteLanguage,
-  selectCv,
 } from '../slice'
 
 // eslint-disable-next-line max-statements
@@ -208,10 +206,6 @@ const useCvContent = () => {
     dispatch(deleteLanguage({ id, languageId }))
   }
 
-  const handleSelectCv = (id: SelectCvPayload['id']) => {
-    dispatch(selectCv({ id }))
-  }
-
   return {
     cv,
     changeFullName: handleChangeFullName,
@@ -235,7 +229,6 @@ const useCvContent = () => {
     addLanguage: handleAddLanguage,
     changeLanguage: handleChangeLanguage,
     deleteLanguage: handleDeleteLanguage,
-    selectCv: handleSelectCv,
   }
 }
 
