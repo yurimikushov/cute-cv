@@ -1,8 +1,8 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
-import isNull from 'lodash/isNull'
-import { marginTopMixin } from './mixins'
+import BaseVersions from './Versions'
 import BaseToolbar from './Toolbar'
+import { marginTopMixin } from './mixins'
 import ToolbarLayoutPropsT from './ToolbarLayout.props'
 
 const Container = styled.div`
@@ -10,28 +10,22 @@ const Container = styled.div`
   gap: 2.5rem;
 `
 
+const Versions = styled(BaseVersions)`
+  ${marginTopMixin}
+`
+
 const Toolbar = styled(BaseToolbar)`
   ${marginTopMixin}
 `
 
 const ToolbarLayout: FC<ToolbarLayoutPropsT> = ({ children, ...props }) => {
-  const toolbarRef = useRef<HTMLDivElement>(null)
-  const [toolbarWidth, setToolbarWidth] = useState('0px')
-
-  useEffect(() => {
-    if (isNull(toolbarRef.current)) {
-      return
-    }
-
-    setToolbarWidth(`${toolbarRef.current.offsetWidth}px`)
-  }, [])
-
   return (
     <Container {...props}>
-      {/* left side spacer that's needed to align content to center */}
-      <div style={{ width: toolbarWidth }} />
+      <div>
+        <Versions />
+      </div>
       <div>{children}</div>
-      <div ref={toolbarRef}>
+      <div>
         <Toolbar />
       </div>
     </Container>
