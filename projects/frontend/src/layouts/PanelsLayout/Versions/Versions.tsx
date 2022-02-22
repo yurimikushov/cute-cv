@@ -14,6 +14,7 @@ import Divider from 'components/Divider'
 import Button from 'components/Button'
 import { panelMixin } from '../mixins'
 import VersionsProps from './Versions.props'
+import { useIsSignedIn } from 'services/auth'
 
 const Container = styled(Card)`
   ${panelMixin}
@@ -23,6 +24,7 @@ const Versions: FC<VersionsProps> = (props) => {
   const allCv = useAllCvMetadata()
   const { id } = useCurrentCvMetadata()
   const selectCv = useSelectCv()
+  const { isSignedIn } = useIsSignedIn()
 
   return (
     <Container {...props}>
@@ -34,10 +36,14 @@ const Versions: FC<VersionsProps> = (props) => {
           </Radio.Item>
         ))}
       </Radio>
-      <Divider />
-      <Button withPaddings={false} onClick={noop}>
-        Add
-      </Button>
+      {isSignedIn && (
+        <>
+          <Divider />
+          <Button withPaddings={false} onClick={noop}>
+            Add
+          </Button>
+        </>
+      )}
     </Container>
   )
 }
