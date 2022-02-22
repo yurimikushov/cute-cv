@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import SignInLayout from 'layouts/SignInLayout'
 import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import CVLayout from 'layouts/CVLayout'
+import SignIn from './SignIn'
 import Panel from './Panel'
 import Header from './Header'
 import Avatar from './Avatar'
@@ -47,7 +47,8 @@ const Aside = styled.aside`
 `
 
 const HomePage: FC = () => (
-  <SignInLayout>
+  <>
+    <SignIn />
     <PanelsLayout>
       <PageLayout>
         <StyledPanel />
@@ -67,7 +68,7 @@ const HomePage: FC = () => (
         </StyledCVLayout>
       </PageLayout>
     </PanelsLayout>
-  </SignInLayout>
+  </>
 )
 
 export default HomePage
