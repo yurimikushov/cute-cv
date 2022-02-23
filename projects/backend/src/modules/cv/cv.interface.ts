@@ -10,6 +10,7 @@ interface CV {
 interface Metadata {
   id: string
   name: string
+  number: number
   savedAt: string
 }
 

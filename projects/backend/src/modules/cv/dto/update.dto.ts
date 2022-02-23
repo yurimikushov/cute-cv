@@ -1,5 +1,7 @@
 import {
   IsString,
+  IsInt,
+  IsPositive,
   IsOptional,
   IsObject,
   IsArray,
@@ -14,6 +16,10 @@ class MetadataDto {
   @IsString()
   @MaxLength(50)
   readonly name: string
+
+  @IsInt()
+  @IsPositive()
+  number: number
 }
 class ContentDto {
   @IsString()

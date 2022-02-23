@@ -32,7 +32,7 @@ export class CVRepository {
 
   async update(userId: UserId, cvId: CvId, cv: CV) {
     const { metadata, content } = cv
-    const { name } = metadata
+    const { name, number } = metadata
 
     // The Storage API dynamically creates "folders" if isn't exist
     await this.getStorageFile(userId, cvId).save(JSON.stringify(content))
@@ -41,6 +41,7 @@ export class CVRepository {
       metadata: {
         id: cvId,
         name,
+        number,
       },
     })
   }
@@ -51,11 +52,12 @@ export class CVRepository {
       cvId
     ).getMetadata()
 
-    const { id, name } = metadata
+    const { id, name, number } = metadata
 
     return {
       id,
       name,
+      number: Number(number),
       savedAt: updated,
     } as Metadata
   }
@@ -71,6 +73,7 @@ export class CVRepository {
       return {
         id: (metadata?.id as string | undefined) ?? getCvId(fileName),
         name: (metadata?.name as string | undefined) ?? `Draft #${i + 1}`,
+        number: Number((metadata?.number as string | undefined) ?? i + 1),
       }
     })
   }
