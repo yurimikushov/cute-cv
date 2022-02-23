@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit'
+import sortBy from 'lodash/sortBy'
 import map from 'lodash/map'
 import { RootStateT } from 'services/store'
 
@@ -14,16 +15,19 @@ const selectCurrentVersion = (state: RootStateT) => {
 
 const selectAllCvMetadata = (state: RootStateT) => {
   const { ids, byId } = selectCvVersions(state)
-  return map(ids, (id) => {
-    const {
-      metadata: { name },
-    } = byId[id]
+
+  const allCvMetadata = map(ids, (id) => {
+    const { metadata } = byId[id]
+    const { name, number } = metadata
 
     return {
       id,
       name,
+      number,
     }
   })
+
+  return sortBy(allCvMetadata, 'number')
 }
 
 const selectCvMetadata = (state: RootStateT) => {
