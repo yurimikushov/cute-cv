@@ -13,6 +13,7 @@ export {
 } from './hooks'
 export type { CV } from './selectors'
 export {
+  MAX_CV_VERSIONS,
   MAX_FULL_NAME_LENGTH,
   MAX_POSITION_LENGTH,
   MAX_ABOUT_ME_LENGTH,
