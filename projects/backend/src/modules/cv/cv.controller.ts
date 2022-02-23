@@ -1,5 +1,10 @@
-import { Controller, Get, Put, Body, Req, Param } from '@nestjs/common'
-import { FindOneCvParamsDto, UpdateCvParamsDto, UpdateCvDto } from './dto'
+import { Controller, Get, Put, Delete, Body, Req, Param } from '@nestjs/common'
+import {
+  FindOneCvParamsDto,
+  UpdateCvParamsDto,
+  UpdateCvDto,
+  DeleteOneCvParamsDto,
+} from './dto'
 import { CVService } from './cv.service'
 import { Request } from 'express'
 
@@ -24,5 +29,10 @@ export class CVController {
     @Body() updateCvDto: UpdateCvDto
   ) {
     return await this.cvService.update(req.user.uid, params.id, updateCvDto)
+  }
+
+  @Delete(':id')
+  async deleteOne(@Req() req: Request, @Param() params: DeleteOneCvParamsDto) {
+    return await this.cvService.delete(req.user.uid, params.id)
   }
 }

@@ -31,4 +31,8 @@ export class CVService {
 
     return await this.cvRepository.getMetadata(userId, cvId)
   }
+
+  async delete(userId: UserId, cvId: CvId) {
+    await this.cvRepository.delete(userId, cvId)
+  }
 }

@@ -46,6 +46,10 @@ export class CVRepository {
     })
   }
 
+  async delete(userId: UserId, cvId: CvId) {
+    await this.getStorageFile(userId, cvId).delete()
+  }
+
   async getMetadata(userId: UserId, cvId: CvId) {
     const [{ updated, metadata }] = await this.getStorageFile(
       userId,
