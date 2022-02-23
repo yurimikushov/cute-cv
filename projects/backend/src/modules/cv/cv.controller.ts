@@ -1,4 +1,5 @@
 import { Controller, Get, Put, Delete, Body, Req, Param } from '@nestjs/common'
+import { Request } from 'express'
 import {
   FindOneCvParamsDto,
   UpdateCvParamsDto,
@@ -6,7 +7,6 @@ import {
   DeleteOneCvParamsDto,
 } from './dto'
 import { CVService } from './cv.service'
-import { Request } from 'express'
 
 @Controller('cv')
 export class CVController {
