@@ -5,6 +5,7 @@ import {
   IsOptional,
   IsObject,
   IsArray,
+  Max,
   ValidateNested,
   MaxLength,
   ArrayMaxSize,
@@ -19,6 +20,7 @@ class MetadataDto {
 
   @IsInt()
   @IsPositive()
+  @Max(Number.MAX_SAFE_INTEGER)
   number: number
 }
 class ContentDto {
