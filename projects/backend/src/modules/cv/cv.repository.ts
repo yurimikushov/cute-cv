@@ -31,13 +31,16 @@ export class CVRepository {
   }
 
   async update(userId: UserId, cvId: CvId, cv: CV) {
+    const { metadata, content } = cv
+    const { name } = metadata
+
     // The Storage API dynamically creates "folders" if isn't exist
-    await this.getStorageFile(userId, cvId).save(JSON.stringify(cv.content))
+    await this.getStorageFile(userId, cvId).save(JSON.stringify(content))
 
     await this.getStorageFile(userId, cvId).setMetadata({
       metadata: {
         id: cvId,
-        name: cv.metadata.name,
+        name,
       },
     })
   }
