@@ -5,7 +5,7 @@ import map from 'lodash/map'
 import head from 'lodash/head'
 import forEach from 'lodash/forEach'
 import keyBy from 'lodash/keyBy'
-import filter from 'lodash/filter'
+import without from 'lodash/without'
 import omit from 'lodash/omit'
 import swap from 'lib/reorder'
 import { ServiceNameEnum } from 'services'
@@ -229,7 +229,7 @@ const { actions, reducer } = createSlice({
       const { id, experienceId } = payload
       const { experiences } = state.byId[id].content
 
-      experiences.ids = filter(experiences.ids, (id) => id !== experienceId)
+      experiences.ids = without(experiences.ids, experienceId)
       experiences.byId = omit(experiences.byId, experienceId)
     },
 
@@ -275,7 +275,7 @@ const { actions, reducer } = createSlice({
       const { id, educationId } = payload
       const { educations } = state.byId[id].content
 
-      educations.ids = filter(educations.ids, (id) => id !== educationId)
+      educations.ids = without(educations.ids, educationId)
       educations.byId = omit(educations.byId, educationId)
     },
 
@@ -319,7 +319,7 @@ const { actions, reducer } = createSlice({
       const { id, contactId } = payload
       const { contacts } = state.byId[id].content
 
-      contacts.ids = filter(contacts.ids, (id) => id !== contactId)
+      contacts.ids = without(contacts.ids, contactId)
       contacts.byId = omit(contacts.byId, contactId)
     },
 
@@ -361,7 +361,7 @@ const { actions, reducer } = createSlice({
       const { id, languageId } = payload
       const { languages } = state.byId[id].content
 
-      languages.ids = filter(languages.ids, (id) => id !== languageId)
+      languages.ids = without(languages.ids, languageId)
       languages.byId = omit(languages.byId, languageId)
     },
 

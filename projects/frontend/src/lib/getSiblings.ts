@@ -1,7 +1,12 @@
-import filter from 'lodash/filter'
+import isNull from 'lodash/isNull'
+import without from 'lodash/without'
 
 const getSiblings = (element: HTMLElement | null) => {
-  return filter(element?.parentNode?.childNodes, (node) => node !== element)
+  if (isNull(element)) {
+    return []
+  }
+
+  return without(element?.parentNode?.childNodes, element)
 }
 
 export default getSiblings
