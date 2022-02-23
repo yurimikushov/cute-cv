@@ -30,8 +30,8 @@ const Reference = styled(TextInput)`
 
 const Close = styled(CloseButton)`
   position: absolute;
-  top: 0.375rem;
-  right: 0.625rem;
+  top: 0.5rem;
+  right: 0.65rem;
 `
 
 const Contact: FC<ContactPropsT> = ({
