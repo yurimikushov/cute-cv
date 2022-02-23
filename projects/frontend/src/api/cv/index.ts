@@ -40,6 +40,15 @@ class cvApi {
 
     return data
   }
+
+  static async delete(id: string) {
+    const { status } = await axios.delete(`/cv/${id}`)
+
+    // eslint-disable-next-line no-magic-numbers
+    if (status !== 200) {
+      throw new Error(`Unexpected response status code: ${status}`)
+    }
+  }
 }
 
 export default cvApi
