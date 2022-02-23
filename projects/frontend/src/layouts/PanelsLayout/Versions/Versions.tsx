@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import map from 'lodash/map'
-import noop from 'lodash/noop'
 import {
   useAllCvMetadata,
   useCurrentCvMetadata,
   useSelectCv,
+  useAddCv,
 } from 'services/cv'
 import Card from 'components/Card'
 import { H2 } from 'components/H'
@@ -26,6 +26,8 @@ const Versions: FC<VersionsProps> = (props) => {
   const selectCv = useSelectCv()
   const { isSignedIn } = useIsSignedIn()
 
+  const addCv = useAddCv()
+
   return (
     <Container {...props}>
       <H2>Versions</H2>
@@ -39,7 +41,7 @@ const Versions: FC<VersionsProps> = (props) => {
       {isSignedIn && (
         <>
           <Divider />
-          <Button withPaddings={false} onClick={noop}>
+          <Button withPaddings={false} onClick={addCv}>
             Add
           </Button>
         </>

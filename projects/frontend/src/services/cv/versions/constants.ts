@@ -6,3 +6,4 @@ export const MAX_EXPERIENCES_SIZE = 10
 export const MAX_EDUCATIONS_SIZE = 10
 export const MAX_CONTACTS_SIZE = 10
 export const MAX_LANGUAGES_SIZE = 10
+export const VERSION_PREFIX = 'Version #'

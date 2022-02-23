@@ -1,7 +1,8 @@
 import { nanoid } from '@reduxjs/toolkit'
+import { VERSION_PREFIX } from '../constants'
 import { Version } from '../model'
 
-const createCv = (name = 'Dummy'): Version => {
+const createCv = (name = `${VERSION_PREFIX}1`): Version => {
   const id = nanoid()
   const experienceId = nanoid()
   const educationId = nanoid()

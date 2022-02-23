@@ -39,6 +39,7 @@ import {
   DeleteLanguagePayload,
   SelectCvPayload,
 } from './model'
+import getNextCvName from './utils/getNextCvName'
 
 const createInitialState = (): VersionsState => {
   const { metadata, content } = createCv()
@@ -366,6 +367,19 @@ const { actions, reducer } = createSlice({
     selectCv: (state, { payload }: PayloadAction<SelectCvPayload>) => {
       state.currentId = payload.id
     },
+
+    addCv: (state) => {
+      const cvNames = map(state.ids, (id) => state.byId[id].metadata.name)
+      const { metadata, content } = createCv(getNextCvName(cvNames))
+      const { id } = metadata
+
+      state.currentId = id
+      state.ids.push(id)
+      state.byId[id] = {
+        metadata,
+        content,
+      }
+    },
   },
 })
 
@@ -394,5 +408,6 @@ export const {
   updateLanguage,
   deleteLanguage,
   selectCv,
+  addCv,
 } = actions
 export default reducer

@@ -10,6 +10,7 @@ export {
   selectCvContent,
   selectCvMetadata,
   useSelectCv,
+  useAddCv,
   MAX_FULL_NAME_LENGTH,
   MAX_POSITION_LENGTH,
   MAX_ABOUT_ME_LENGTH,

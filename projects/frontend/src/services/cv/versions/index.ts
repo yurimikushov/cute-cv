@@ -9,6 +9,7 @@ export {
   useCurrentCvMetadata,
   useCurrentCvContent,
   useSelectCv,
+  useAddCv,
 } from './hooks'
 export type { CV } from './selectors'
 export {
