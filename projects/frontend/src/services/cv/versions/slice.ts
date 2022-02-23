@@ -77,6 +77,7 @@ const { actions, reducer } = createSlice({
             metadata: {
               id,
               name,
+              isNew: false,
               isSaved: true,
               savedAt: null,
             },
@@ -94,6 +95,7 @@ const { actions, reducer } = createSlice({
         state.byId[id] = {
           metadata: {
             ...metadata,
+            isNew: false,
             isSaved: Boolean(savedAt),
             savedAt: new Date(savedAt),
           },

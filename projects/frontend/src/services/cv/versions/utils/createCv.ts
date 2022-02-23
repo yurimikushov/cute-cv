@@ -12,6 +12,7 @@ const createCv = (name = 'Dummy'): Version => {
     metadata: {
       id,
       name,
+      isNew: true,
       isSaved: false,
       savedAt: null,
     },
