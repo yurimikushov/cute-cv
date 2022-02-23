@@ -22,6 +22,10 @@ type TranslationT = {
     notSaved: string
     noSave: string
   }
+  versions: {
+    title: string
+    add: string
+  }
   toolbar: {
     download: {
       title: string

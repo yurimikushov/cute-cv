@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import map from 'lodash/map'
 import { useIsSignedIn } from 'services/auth'
@@ -21,6 +22,7 @@ const Container = styled(Card)`
 `
 
 const Versions: FC<VersionsProps> = (props) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const allCv = useAllCvMetadata()
   const { id } = useCurrentCvMetadata()
   const selectCv = useSelectCv()
@@ -30,7 +32,7 @@ const Versions: FC<VersionsProps> = (props) => {
 
   return (
     <Container {...props}>
-      <H2>Versions</H2>
+      <H2>{t('title')}</H2>
       <Radio value={id} vertical onChange={selectCv}>
         {map(allCv, ({ id, name }) => (
           <Radio.Item key={id} value={id}>
@@ -42,7 +44,7 @@ const Versions: FC<VersionsProps> = (props) => {
         <>
           <Divider />
           <Button withPaddings={false} onClick={addCv}>
-            Add
+            {t('add')}
           </Button>
         </>
       )}

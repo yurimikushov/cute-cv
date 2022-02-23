@@ -24,6 +24,10 @@ const ru: TranslationT = {
     notSaved: 'Не сохранено',
     noSave: 'Войдите, чтобы сохранить изменения',
   },
+  versions: {
+    title: 'Версии',
+    add: 'Добавить',
+  },
   toolbar: {
     download: {
       title: 'Скачать',

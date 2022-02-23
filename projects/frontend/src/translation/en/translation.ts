@@ -24,6 +24,10 @@ const en: TranslationT = {
     notSaved: 'Not saved',
     noSave: 'Sign in, to save changes',
   },
+  versions: {
+    title: 'Versions',
+    add: 'Add',
+  },
   toolbar: {
     download: {
       title: 'Download',
