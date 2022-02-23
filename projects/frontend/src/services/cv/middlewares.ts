@@ -1,3 +1,4 @@
+import { AnyAction } from '@reduxjs/toolkit'
 import debounce from 'lodash/debounce'
 import defer from 'lodash/defer'
 import { Middleware, Store } from 'services/store'
@@ -17,8 +18,7 @@ const debouncedSave = debounce((store: Store) => {
   const { id, name, number } = selectCvMetadata(store.getState())
   const cv = selectCvContent(store.getState())
 
-  // @ts-expect-error bad typing
-  store.dispatch(save({ id, name, number, cv }))
+  store.dispatch(save({ id, name, number, cv }) as unknown as AnyAction)
 }, AUTO_SAVE_TIMING)
 
 const markAsUnsavedMiddleware: Middleware =
