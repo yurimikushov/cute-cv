@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import map from 'lodash/map'
+import { useIsSignedIn } from 'services/auth'
 import {
   useAllCvMetadata,
   useCurrentCvMetadata,
@@ -14,7 +15,6 @@ import Divider from 'components/Divider'
 import Button from 'components/Button'
 import { panelMixin } from '../mixins'
 import VersionsProps from './Versions.props'
-import { useIsSignedIn } from 'services/auth'
 
 const Container = styled(Card)`
   ${panelMixin}
