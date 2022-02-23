@@ -9,6 +9,7 @@ type SaveStateT = {
 type SavePayload = {
   id: string
   name: string
+  number: number
   cv: CV
 }
 

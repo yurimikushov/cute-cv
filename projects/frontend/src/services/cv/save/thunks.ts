@@ -5,8 +5,8 @@ import { SavePayload } from './model'
 
 const save = createAsyncThunk(
   `${ServiceNameEnum.cv}/save`,
-  async ({ id, name, cv }: SavePayload) => {
-    const metadata = await cvApi.save(id, name, cv)
+  async ({ id, name, number, cv }: SavePayload) => {
+    const metadata = await cvApi.save({ id, name, number, cv })
     return metadata
   }
 )

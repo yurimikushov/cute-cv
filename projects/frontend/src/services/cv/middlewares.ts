@@ -14,11 +14,11 @@ import { save } from './save'
 const AUTO_SAVE_TIMING = 1_000
 
 const debouncedSave = debounce((store: Store) => {
-  const { id, name } = selectCvMetadata(store.getState())
+  const { id, name, number } = selectCvMetadata(store.getState())
   const cv = selectCvContent(store.getState())
 
   // @ts-expect-error bad typing
-  store.dispatch(save({ id, name, cv }))
+  store.dispatch(save({ id, name, number, cv }))
 }, AUTO_SAVE_TIMING)
 
 const markAsUnsavedMiddleware: Middleware =

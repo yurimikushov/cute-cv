@@ -2,7 +2,9 @@ import { nanoid } from '@reduxjs/toolkit'
 import { VERSION_PREFIX } from '../constants'
 import { Version } from '../model'
 
-const createCv = (name = `${VERSION_PREFIX}1`): Version => {
+const DEFAULT_CV_NUMBER = 1
+
+const createCv = (number = DEFAULT_CV_NUMBER): Version => {
   const id = nanoid()
   const experienceId = nanoid()
   const educationId = nanoid()
@@ -12,7 +14,8 @@ const createCv = (name = `${VERSION_PREFIX}1`): Version => {
   return {
     metadata: {
       id,
-      name,
+      name: `${VERSION_PREFIX}${number}`,
+      number,
       isNew: true,
       isSaved: false,
       savedAt: null,

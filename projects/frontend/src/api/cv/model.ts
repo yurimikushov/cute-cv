@@ -9,10 +9,18 @@ type LoadResult = {
 
 type SaveResult = Metadata
 
+type SavePayload = {
+  id: string
+  name: string
+  number: number
+  cv: CV
+}
+
 type Metadata = {
   id: string
   name: string
+  number: number
   savedAt: string
 }
 
-export type { LoadAllResult, LoadResult, SaveResult }
+export type { LoadAllResult, LoadResult, SavePayload, SaveResult }

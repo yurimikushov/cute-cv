@@ -12,6 +12,7 @@ import { ServiceNameEnum } from 'services'
 import { loadAll, load } from '../load'
 import { save } from '../save'
 import createCv from './utils/createCv'
+import getNextCvNumber from './utils/getNextCvNumber'
 import {
   VersionsState,
   MarkAsSavedPayload,
@@ -39,7 +40,6 @@ import {
   DeleteLanguagePayload,
   SelectCvPayload,
 } from './model'
-import getNextCvName from './utils/getNextCvName'
 
 const createInitialState = (): VersionsState => {
   const { metadata, content } = createCv()
@@ -73,11 +73,12 @@ const { actions, reducer } = createSlice({
 
         const { content } = createCv()
 
-        forEach(allCv, ({ id, name }) => {
+        forEach(allCv, ({ id, name, number }) => {
           state.byId[id] = {
             metadata: {
               id,
               name,
+              number,
               isNew: false,
               isSaved: true,
               savedAt: null,
@@ -369,8 +370,8 @@ const { actions, reducer } = createSlice({
     },
 
     addCv: (state) => {
-      const cvNames = map(state.ids, (id) => state.byId[id].metadata.name)
-      const { metadata, content } = createCv(getNextCvName(cvNames))
+      const numbers = map(state.ids, (id) => state.byId[id].metadata.number)
+      const { metadata, content } = createCv(getNextCvNumber(numbers))
       const { id } = metadata
 
       state.currentId = id

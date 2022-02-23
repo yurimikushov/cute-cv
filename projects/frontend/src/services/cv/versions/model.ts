@@ -12,6 +12,7 @@ type Version = {
 type Metadata = {
   id: string
   name: string
+  number: number
   isNew: boolean
   isSaved: boolean
   savedAt: Date | null
