@@ -14,16 +14,16 @@ const useAutoLoadAllCv = () => {
 
 const useAutoLoadCurrentCv = () => {
   const { isSignedIn } = useIsSignedIn()
-  const { id } = useCurrentCvMetadata()
+  const { id, isNew } = useCurrentCvMetadata()
   const loadCv = useLoadCV()
 
   useEffect(() => {
-    if (!isSignedIn) {
+    if (!isSignedIn || isNew) {
       return
     }
 
     loadCv(id)
-  }, [isSignedIn, id])
+  }, [isSignedIn, id, isNew])
 }
 
 export { useAutoLoadAllCv, useAutoLoadCurrentCv }
