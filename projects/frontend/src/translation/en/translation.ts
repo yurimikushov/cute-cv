@@ -65,6 +65,7 @@ const en: TranslationT = {
     description: {
       placeholder: 'Experience description',
     },
+    add: 'Add',
   },
   education: {
     title: 'Education',
@@ -77,6 +78,7 @@ const en: TranslationT = {
     duration: {
       placeholder: 'Education duration',
     },
+    add: 'Add',
   },
   contacts: {
     title: 'Contacts',
@@ -86,6 +88,7 @@ const en: TranslationT = {
     reference: {
       placeholder: 'Reference',
     },
+    add: 'Add',
   },
   technologies: {
     title: 'Technologies',
@@ -94,6 +97,7 @@ const en: TranslationT = {
   languages: {
     title: 'Languages',
     placeholder: 'Language',
+    add: 'Add',
   },
 }
 

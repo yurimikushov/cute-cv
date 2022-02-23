@@ -63,6 +63,7 @@ type TranslationT = {
     description: {
       placeholder: string
     }
+    add: string
   }
   education: {
     title: string
@@ -75,6 +76,7 @@ type TranslationT = {
     duration: {
       placeholder: string
     }
+    add: string
   }
   contacts: {
     title: string
@@ -84,6 +86,7 @@ type TranslationT = {
     reference: {
       placeholder: string
     }
+    add: string
   }
   technologies: {
     title: string
@@ -92,6 +95,7 @@ type TranslationT = {
   languages: {
     title: string
     placeholder: string
+    add: string
   }
 }
 

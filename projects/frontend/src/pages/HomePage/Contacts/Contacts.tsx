@@ -63,7 +63,7 @@ const Contacts: FC<ContactsPropsT> = (props) => {
         ))}
       </DraggableList>
       {editable && size(contacts) < MAX_CONTACTS_SIZE && (
-        <Add onClick={addContact}>Add</Add>
+        <Add onClick={addContact}>{t('add')}</Add>
       )}
     </Container>
   )

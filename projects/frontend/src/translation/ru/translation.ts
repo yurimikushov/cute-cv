@@ -65,6 +65,7 @@ const ru: TranslationT = {
     description: {
       placeholder: 'Что вы делали на работе',
     },
+    add: 'Добавить',
   },
   education: {
     title: 'Образование',
@@ -77,6 +78,7 @@ const ru: TranslationT = {
     duration: {
       placeholder: 'Длительность обучения',
     },
+    add: 'Добавить',
   },
   contacts: {
     title: 'Контакты',
@@ -86,6 +88,7 @@ const ru: TranslationT = {
     reference: {
       placeholder: 'Ссылка',
     },
+    add: 'Добавить',
   },
   technologies: {
     title: 'Технологии',
@@ -94,6 +97,7 @@ const ru: TranslationT = {
   languages: {
     title: 'Языки',
     placeholder: 'Язык',
+    add: 'Добавить',
   },
 }
 

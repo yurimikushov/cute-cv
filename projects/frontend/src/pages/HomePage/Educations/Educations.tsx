@@ -71,7 +71,7 @@ const Educations: FC<EducationsPropsT> = (props) => {
         ))}
       </DraggableList>
       {editable && size(educations) < MAX_EDUCATIONS_SIZE && (
-        <Add onClick={addEduction}>Add</Add>
+        <Add onClick={addEduction}>{t('add')}</Add>
       )}
     </Container>
   )
