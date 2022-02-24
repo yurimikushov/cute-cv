@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 type Options = {
-  code: 'KeyW' // should expand it as needed
+  code: 'Space' // should expand it as needed
   altKey?: boolean
   listener: (e: KeyboardEvent) => void
 }

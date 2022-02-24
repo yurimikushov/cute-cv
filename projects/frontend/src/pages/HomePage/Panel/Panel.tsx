@@ -24,7 +24,7 @@ const Panel: FC<PanelPropsT> = (props) => {
   const { isDownloading } = useDownload()
 
   useKeyDown({
-    code: 'KeyW',
+    code: 'Space',
     altKey: true,
     listener: handleToggle,
   })
