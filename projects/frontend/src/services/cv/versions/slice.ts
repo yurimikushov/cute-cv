@@ -64,7 +64,6 @@ const { actions, reducer } = createSlice({
     builder
       .addCase(loadAll.fulfilled, (state, { payload: allCv }) => {
         if (isEmpty(allCv)) {
-          state = createInitialState()
           return
         }
 
