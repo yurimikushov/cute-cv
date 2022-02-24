@@ -47,6 +47,12 @@ export class CVRepository {
   }
 
   async delete(userId: UserId, cvId: CvId) {
+    const [isCvExists] = await this.getStorageFile(userId, cvId).exists()
+
+    if (!isCvExists) {
+      return
+    }
+
     await this.getStorageFile(userId, cvId).delete()
   }
 
