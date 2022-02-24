@@ -9,7 +9,7 @@ import {
   useCurrentCvContent,
   MAX_EDUCATIONS_SIZE,
 } from 'services/cv'
-import useEffectWhen from 'hooks/useEffectWhen'
+import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { H1 } from 'components/H'
 import DndList from 'components/DndList'
 import Button from 'components/Button'
@@ -44,7 +44,7 @@ const Educations: FC<EducationsPropsT> = (props) => {
     deleteEducation,
   } = useCurrentCvContent()
 
-  useEffectWhen(addEduction, isEmpty(educations))
+  useLayoutEffectWhen(addEduction, isEmpty(educations))
 
   return (
     <Container {...props}>

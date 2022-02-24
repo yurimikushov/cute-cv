@@ -9,7 +9,7 @@ import {
   useCurrentCvContent,
   MAX_EXPERIENCES_SIZE,
 } from 'services/cv'
-import useEffectWhen from 'hooks/useEffectWhen'
+import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { H1 } from 'components/H'
 import DndList from 'components/DndList'
 import Button from 'components/Button'
@@ -44,7 +44,7 @@ const Experiences: FC<ExperiencesPropsT> = (props) => {
     deleteExperience,
   } = useCurrentCvContent()
 
-  useEffectWhen(addExperience, isEmpty(experiences))
+  useLayoutEffectWhen(addExperience, isEmpty(experiences))
 
   return (
     <Container {...props}>

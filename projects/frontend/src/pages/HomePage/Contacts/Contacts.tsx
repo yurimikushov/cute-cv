@@ -9,7 +9,7 @@ import {
   useCurrentCvContent,
   MAX_CONTACTS_SIZE,
 } from 'services/cv'
-import useEffectWhen from 'hooks/useEffectWhen'
+import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { H2 } from 'components/H'
 import DndList from 'components/DndList'
 import Button from 'components/Button'
@@ -44,7 +44,7 @@ const Contacts: FC<ContactsPropsT> = (props) => {
     deleteContact,
   } = useCurrentCvContent()
 
-  useEffectWhen(addContact, isEmpty(contacts))
+  useLayoutEffectWhen(addContact, isEmpty(contacts))
 
   return (
     <Container {...props}>

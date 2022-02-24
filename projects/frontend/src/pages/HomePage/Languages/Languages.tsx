@@ -9,7 +9,7 @@ import {
   useCurrentCvContent,
   MAX_LANGUAGES_SIZE,
 } from 'services/cv'
-import useEffectWhen from 'hooks/useEffectWhen'
+import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { H2 } from 'components/H'
 import Button from 'components/Button'
 import Language from './Language'
@@ -36,7 +36,7 @@ const Languages: FC<LanguagesPropsT> = (props) => {
     deleteLanguage,
   } = useCurrentCvContent()
 
-  useEffectWhen(addLanguage, isEmpty(languages))
+  useLayoutEffectWhen(addLanguage, isEmpty(languages))
 
   return (
     <Container {...props}>
