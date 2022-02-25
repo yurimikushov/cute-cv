@@ -10,6 +10,7 @@ export {
   useCurrentCvContent,
   useSelectCv,
   useAddCv,
+  useDeleteCv,
 } from './hooks'
 export type { CV } from './selectors'
 export {

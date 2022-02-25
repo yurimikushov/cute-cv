@@ -38,6 +38,7 @@ import {
   AddLanguagePayload,
   UpdateLanguagePayload,
   DeleteLanguagePayload,
+  DeleteCvPayload,
   SelectCvPayload,
 } from './model'
 
@@ -380,6 +381,13 @@ const { actions, reducer } = createSlice({
         content,
       }
     },
+
+    deleteCv: (state, { payload }: PayloadAction<DeleteCvPayload>) => {
+      const { id } = payload
+
+      state.ids = without(state.ids, id)
+      state.byId = omit(state.byId, id)
+    },
   },
 })
 
@@ -409,5 +417,6 @@ export const {
   deleteLanguage,
   selectCv,
   addCv,
+  deleteCv,
 } = actions
 export default reducer
