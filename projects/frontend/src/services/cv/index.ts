@@ -24,5 +24,4 @@ export {
   MAX_LANGUAGES_SIZE,
 } from './versions'
 export type { CV } from './versions'
-export { CURRENT_CV_ID } from './constants'
 export { default as cvMiddlewares } from './middlewares'
