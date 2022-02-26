@@ -1,7 +1,7 @@
 export {
   default as versionsReducer,
-  markAsUnsaved,
   updateCvMetadata,
+  markAsUnsaved,
 } from './slice'
 export {
   selectCurrentCvId,
