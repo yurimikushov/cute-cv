@@ -127,6 +127,7 @@ const { actions, reducer } = createSlice({
         const { id, savedAt } = payload
         const { metadata } = state.byId[id]
 
+        metadata.isNew = false
         metadata.isSaved = true
         metadata.savedAt = new Date(savedAt)
       })
