@@ -9,7 +9,7 @@ import {
   isCvContentChanged,
   updateCvMetadata,
 } from '../versions'
-import { save } from '../save'
+import { save, SaveResult } from '../save'
 
 const AUTO_SAVE_TIMING = 1_000
 
@@ -20,8 +20,7 @@ const debouncedSave = debounce((store: Store) => {
   store
     .dispatch(save({ id, name, number, cv }) as unknown as AnyAction)
     .unwrap()
-    // @ts-expect-error bad typing
-    .then(({ id, savedAt }) => {
+    .then(({ id, savedAt }: SaveResult) => {
       store.dispatch(
         updateCvMetadata({
           id,
