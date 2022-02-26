@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useIsSignedIn } from 'services/auth'
 import { useLoadCV } from '../load'
 import { useCurrentCvMetadata, useUpdateCv } from '../versions'
@@ -8,8 +8,15 @@ const useAutoLoadCurrentCv = () => {
   const { id, isNew } = useCurrentCvMetadata()
   const loadCv = useLoadCV()
   const updateCv = useUpdateCv()
+  const prevIdRef = useRef(id)
 
   useEffect(() => {
+    if (prevIdRef.current === id) {
+      return
+    }
+
+    prevIdRef.current = id
+
     if (!isSignedIn || isNew) {
       return
     }
