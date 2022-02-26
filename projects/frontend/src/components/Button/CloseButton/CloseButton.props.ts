@@ -1,8 +1,8 @@
 import { HTMLProps } from 'react'
 
-type CloseButtonPropsT = Pick<
+type CloseButtonProps = Pick<
   HTMLProps<HTMLButtonElement>,
   'className' | 'disabled' | 'onClick'
 >
 
-export default CloseButtonPropsT
+export default CloseButtonProps
