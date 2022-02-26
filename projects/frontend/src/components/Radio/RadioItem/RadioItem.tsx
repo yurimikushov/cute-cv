@@ -5,6 +5,7 @@ import RadioItemProps from './RadioItem.props'
 
 const Item = styled.li<RadioItemProps>`
   color: ${({ isActive }) => (isActive ? colors.black : colors.gray300)};
+  cursor: default;
   ${({ isActive }) => !isActive && 'cursor: pointer;'}
   ${({ disabled }) => disabled && 'cursor: not-allowed;'}
 
