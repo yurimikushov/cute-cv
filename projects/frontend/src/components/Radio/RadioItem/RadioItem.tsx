@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import { FC, KeyboardEvent } from 'react'
 import styled from 'styled-components'
 import colors from 'styles/colors'
 import RadioItemProps from './RadioItem.props'
 
-const Item = styled.button<RadioItemProps>`
+const Item = styled.li<RadioItemProps>`
   color: ${({ isActive }) => (isActive ? colors.black : colors.gray300)};
   ${({ isActive }) => !isActive && 'cursor: pointer;'}
   ${({ disabled }) => disabled && 'cursor: not-allowed;'}
@@ -21,6 +21,12 @@ const RadioItem: FC<RadioItemProps> = ({
   onClick,
   ...props
 }) => {
+  const handleKeyDown = ({ code }: KeyboardEvent) => {
+    if (code === 'Space' || code === 'Enter') {
+      onClick()
+    }
+  }
+
   return (
     <Item
       {...props}
@@ -29,6 +35,7 @@ const RadioItem: FC<RadioItemProps> = ({
       // eslint-disable-next-line no-magic-numbers
       tabIndex={isActive || disabled ? -1 : 0}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
     >
       {children}
     </Item>
