@@ -1,6 +1,5 @@
 /* eslint-disable max-lines */
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
-import isEmpty from 'lodash/isEmpty'
 import map from 'lodash/map'
 import head from 'lodash/head'
 import forEach from 'lodash/forEach'
@@ -9,10 +8,10 @@ import without from 'lodash/without'
 import omit from 'lodash/omit'
 import swap from 'lib/reorder'
 import { ServiceNameEnum } from 'services'
-import { loadAll } from '../load'
 import createCv from './utils/createCv'
 import {
   VersionsState,
+  InitAllCvPayload,
   UpdateCvPayload,
   UpdateCvMetadataPayload,
   MarkAsSavedPayload,
@@ -62,12 +61,8 @@ const createInitialState = (): VersionsState => {
 const { actions, reducer } = createSlice({
   name: `${ServiceNameEnum.cv}/versions`,
   initialState: createInitialState(),
-  extraReducers: (builder) => {
-    builder.addCase(loadAll.fulfilled, (state, { payload: allCv }) => {
-      if (isEmpty(allCv)) {
-        return
-      }
-
+  reducers: {
+    initAllCv: (state, { payload: allCv }: PayloadAction<InitAllCvPayload>) => {
       state.ids = map(allCv, 'id')
       state.byId = {}
 
@@ -88,9 +83,8 @@ const { actions, reducer } = createSlice({
       })
 
       state.currentId = head(state.ids) as string
-    })
-  },
-  reducers: {
+    },
+
     updateCv: (state, { payload }: PayloadAction<UpdateCvPayload>) => {
       const { metadata, content } = payload
       const { id, savedAt } = metadata
@@ -396,6 +390,7 @@ const { actions, reducer } = createSlice({
 })
 
 export const {
+  initAllCv,
   updateCv,
   updateCvMetadata,
   markAsSaved,

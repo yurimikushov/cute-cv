@@ -68,6 +68,8 @@ type Language = {
   language: string
 }
 
+type InitAllCvPayload = Array<RawMetadata>
+
 type UpdateCvPayload = {
   metadata: RawMetadata
   content: RawContent
@@ -236,6 +238,7 @@ export type {
   VersionsState,
   Version,
   Content,
+  InitAllCvPayload,
   UpdateCvPayload,
   UpdateCvMetadataPayload,
   MarkAsSavedPayload,
