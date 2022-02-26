@@ -1,3 +1,4 @@
+export { default as useUpdateCv } from './useUpdateCv'
 export { default as useCvCount } from './useCvCount'
 export { default as useAllCvMetadata } from './useAllCvMetadata'
 export { default as useCurrentCvMetadata } from './useCurrentCvMetadata'

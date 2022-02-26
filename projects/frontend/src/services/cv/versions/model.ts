@@ -68,6 +68,26 @@ type Language = {
   language: string
 }
 
+type UpdateCvPayload = {
+  metadata: {
+    id: string
+    name: string
+    number: number
+    savedAt: string
+  }
+  content: {
+    fullName: string
+    position: string
+    avatar: string | null
+    aboutMe: string
+    experiences: Array<Experience>
+    educations: Array<Education>
+    contacts: Array<Contact>
+    technologies: string
+    languages: Array<Language>
+  }
+}
+
 type UpdateCvMetadataPayload = Pick<
   Metadata,
   'id' | 'isNew' | 'isSaved' | 'savedAt'
@@ -212,6 +232,7 @@ export type {
   VersionsState,
   Version,
   Content,
+  UpdateCvPayload,
   UpdateCvMetadataPayload,
   MarkAsSavedPayload,
   MarkAsUnsavedPayload,

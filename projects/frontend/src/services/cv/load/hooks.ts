@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { selectIsLoading } from './selectors'
-import { loadAll, load } from './thunks'
+import { loadAll, load, LoadResult } from './thunks'
 
 const useIsCVLoading = () => {
   const isCVLoading = useSelector(selectIsLoading)
@@ -24,7 +24,11 @@ const useLoadCV = () => {
   const dispatch = useDispatch()
 
   const handleLoadCv = (id: string) => {
-    dispatch(load(id))
+    return (
+      dispatch(load(id))
+        // @ts-expect-error bad typing
+        .unwrap() as unknown as Promise<LoadResult>
+    )
   }
 
   return handleLoadCv

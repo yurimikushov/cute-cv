@@ -9,10 +9,11 @@ import without from 'lodash/without'
 import omit from 'lodash/omit'
 import swap from 'lib/reorder'
 import { ServiceNameEnum } from 'services'
-import { loadAll, load } from '../load'
+import { loadAll } from '../load'
 import createCv from './utils/createCv'
 import {
   VersionsState,
+  UpdateCvPayload,
   UpdateCvMetadataPayload,
   MarkAsSavedPayload,
   MarkAsUnsavedPayload,
@@ -62,69 +63,69 @@ const { actions, reducer } = createSlice({
   name: `${ServiceNameEnum.cv}/versions`,
   initialState: createInitialState(),
   extraReducers: (builder) => {
-    builder
-      .addCase(loadAll.fulfilled, (state, { payload: allCv }) => {
-        if (isEmpty(allCv)) {
-          return
-        }
+    builder.addCase(loadAll.fulfilled, (state, { payload: allCv }) => {
+      if (isEmpty(allCv)) {
+        return
+      }
 
-        state.ids = map(allCv, 'id')
-        state.byId = {}
+      state.ids = map(allCv, 'id')
+      state.byId = {}
 
-        const { content } = createCv()
+      const { content } = createCv()
 
-        forEach(allCv, ({ id, name, number }) => {
-          state.byId[id] = {
-            metadata: {
-              id,
-              name,
-              number,
-              isNew: false,
-              isSaved: true,
-              savedAt: null,
-            },
-            content,
-          }
-        })
-
-        state.currentId = head(state.ids) as string
-      })
-      .addCase(load.fulfilled, (state, { payload }) => {
-        const { metadata, content } = payload
-        const { id, savedAt } = metadata
-        const { avatar, experiences, educations, contacts, languages } = content
-
+      forEach(allCv, ({ id, name, number }) => {
         state.byId[id] = {
           metadata: {
-            ...metadata,
+            id,
+            name,
+            number,
             isNew: false,
-            isSaved: Boolean(savedAt),
-            savedAt: new Date(savedAt),
+            isSaved: true,
+            savedAt: null,
           },
-          content: {
-            ...content,
-            avatar,
-            experiences: {
-              ids: map(experiences, 'id'),
-              byId: keyBy(experiences, 'id'),
-            },
-            educations: {
-              ids: map(educations, 'id'),
-              byId: keyBy(educations, 'id'),
-            },
-            contacts: {
-              ids: map(contacts, 'id'),
-              byId: keyBy(contacts, 'id'),
-            },
-            languages: {
-              ids: map(languages, 'id'),
-              byId: keyBy(languages, 'id'),
-            },
-          },
+          content,
         }
       })
+
+      state.currentId = head(state.ids) as string
+    })
   },
   reducers: {
+    updateCv: (state, { payload }: PayloadAction<UpdateCvPayload>) => {
+      const { metadata, content } = payload
+      const { id, savedAt } = metadata
+      const { avatar, experiences, educations, contacts, languages } = content
+
+      state.byId[id] = {
+        metadata: {
+          ...metadata,
+          isNew: false,
+          isSaved: Boolean(savedAt),
+          savedAt: new Date(savedAt),
+        },
+        content: {
+          ...content,
+          avatar,
+          experiences: {
+            ids: map(experiences, 'id'),
+            byId: keyBy(experiences, 'id'),
+          },
+          educations: {
+            ids: map(educations, 'id'),
+            byId: keyBy(educations, 'id'),
+          },
+          contacts: {
+            ids: map(contacts, 'id'),
+            byId: keyBy(contacts, 'id'),
+          },
+          languages: {
+            ids: map(languages, 'id'),
+            byId: keyBy(languages, 'id'),
+          },
+        },
+      }
+    },
+
     updateCvMetadata: (
       state,
       { payload }: PayloadAction<UpdateCvMetadataPayload>
@@ -395,6 +396,7 @@ const { actions, reducer } = createSlice({
 })
 
 export const {
+  updateCv,
   updateCvMetadata,
   markAsSaved,
   markAsUnsaved,
