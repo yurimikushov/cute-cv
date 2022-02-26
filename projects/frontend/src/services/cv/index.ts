@@ -3,6 +3,7 @@ export { useAutoLoadAllCv, useAutoLoadCurrentCv, useDeleteCv } from './hooks'
 export { useDownload, CV_CONTAINER_ID } from './download'
 export { useEditable } from './editable'
 export { useLoadAllCV, useIsCVLoading } from './load'
+export { useIsCvSaving } from './save'
 export { useIsCvDeleting } from './delete'
 export {
   useCvCount,
