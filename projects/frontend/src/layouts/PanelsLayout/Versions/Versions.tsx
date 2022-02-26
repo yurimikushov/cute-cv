@@ -2,9 +2,9 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import map from 'lodash/map'
-import size from 'lodash/size'
 import { useIsSignedIn } from 'services/auth'
 import {
+  useCvCount,
   useAllCvMetadata,
   useCurrentCvMetadata,
   useSelectCv,
@@ -25,6 +25,7 @@ const Container = styled(Card)`
 
 const Versions: FC<VersionsProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
+  const cvCount = useCvCount()
   const allCv = useAllCvMetadata()
   const { id } = useCurrentCvMetadata()
   const selectCv = useSelectCv()
@@ -42,7 +43,7 @@ const Versions: FC<VersionsProps> = (props) => {
           </Radio.Item>
         ))}
       </Radio>
-      {isSignedIn && size(allCv) < MAX_CV_VERSIONS && (
+      {isSignedIn && cvCount < MAX_CV_VERSIONS && (
         <>
           <Divider />
           <Button withPaddings={false} onClick={addCv}>

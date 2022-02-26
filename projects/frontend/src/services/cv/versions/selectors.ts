@@ -1,10 +1,16 @@
 import { createSelector } from '@reduxjs/toolkit'
+import size from 'lodash/size'
 import sortBy from 'lodash/sortBy'
 import map from 'lodash/map'
 import { RootStateT } from 'services/store'
 
 const selectCurrentCvId = (state: RootStateT) => state.cv.versions.currentId
 const selectCvVersions = (state: RootStateT) => state.cv.versions
+
+const selectCvCount = (state: RootStateT) => {
+  const { ids } = selectCvVersions(state)
+  return size(ids)
+}
 
 const selectCurrentVersion = (state: RootStateT) => {
   const id = selectCurrentCvId(state)
@@ -67,6 +73,7 @@ const selectCvContent = createSelector(selectRawCvContent, (content) => {
 type CV = ReturnType<typeof selectCvContent>
 
 export {
+  selectCvCount,
   selectAllCvMetadata,
   selectCvMetadata,
   selectCvContent,

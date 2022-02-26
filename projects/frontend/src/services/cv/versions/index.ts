@@ -5,6 +5,7 @@ export {
   selectCvMetadata,
 } from './selectors'
 export {
+  useCvCount,
   useAllCvMetadata,
   useCurrentCvMetadata,
   useCurrentCvContent,
