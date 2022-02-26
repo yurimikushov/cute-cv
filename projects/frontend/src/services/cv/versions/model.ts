@@ -68,6 +68,11 @@ type Language = {
   language: string
 }
 
+type UpdateCvMetadataPayload = Pick<
+  Metadata,
+  'id' | 'isNew' | 'isSaved' | 'savedAt'
+>
+
 type MarkAsSavedPayload = {
   id: string
   savedAt: Date
@@ -207,6 +212,7 @@ export type {
   VersionsState,
   Version,
   Content,
+  UpdateCvMetadataPayload,
   MarkAsSavedPayload,
   MarkAsUnsavedPayload,
   UpdateFullNamePayload,

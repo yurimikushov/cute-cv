@@ -10,10 +10,10 @@ import omit from 'lodash/omit'
 import swap from 'lib/reorder'
 import { ServiceNameEnum } from 'services'
 import { loadAll, load } from '../load'
-import { save } from '../save'
 import createCv from './utils/createCv'
 import {
   VersionsState,
+  UpdateCvMetadataPayload,
   MarkAsSavedPayload,
   MarkAsUnsavedPayload,
   UpdateFullNamePayload,
@@ -123,16 +123,20 @@ const { actions, reducer } = createSlice({
           },
         }
       })
-      .addCase(save.fulfilled, (state, { payload }) => {
-        const { id, savedAt } = payload
-        const { metadata } = state.byId[id]
-
-        metadata.isNew = false
-        metadata.isSaved = true
-        metadata.savedAt = new Date(savedAt)
-      })
   },
   reducers: {
+    updateCvMetadata: (
+      state,
+      { payload }: PayloadAction<UpdateCvMetadataPayload>
+    ) => {
+      const { id, isNew, isSaved, savedAt } = payload
+      const { metadata } = state.byId[id]
+
+      metadata.isNew = isNew
+      metadata.isSaved = isSaved
+      metadata.savedAt = savedAt
+    },
+
     markAsSaved: (state, { payload }: PayloadAction<MarkAsSavedPayload>) => {
       const { id, savedAt } = payload
       const { metadata } = state.byId[id]
@@ -391,6 +395,7 @@ const { actions, reducer } = createSlice({
 })
 
 export const {
+  updateCvMetadata,
   markAsSaved,
   markAsUnsaved,
   updateFullName,
