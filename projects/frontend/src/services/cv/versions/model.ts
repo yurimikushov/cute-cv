@@ -69,23 +69,27 @@ type Language = {
 }
 
 type UpdateCvPayload = {
-  metadata: {
-    id: string
-    name: string
-    number: number
-    savedAt: string
-  }
-  content: {
-    fullName: string
-    position: string
-    avatar: string | null
-    aboutMe: string
-    experiences: Array<Experience>
-    educations: Array<Education>
-    contacts: Array<Contact>
-    technologies: string
-    languages: Array<Language>
-  }
+  metadata: RawMetadata
+  content: RawContent
+}
+
+type RawMetadata = {
+  id: string
+  name: string
+  number: number
+  savedAt: string
+}
+
+type RawContent = {
+  fullName: string
+  position: string
+  avatar: string | null
+  aboutMe: string
+  experiences: Array<Experience>
+  educations: Array<Education>
+  contacts: Array<Contact>
+  technologies: string
+  languages: Array<Language>
 }
 
 type UpdateCvMetadataPayload = Pick<
