@@ -4,8 +4,7 @@ import { Version } from '../model'
 
 const DEFAULT_CV_NUMBER = 1
 
-const createCv = (number = DEFAULT_CV_NUMBER): Version => {
-  const id = nanoid()
+const createCv = (id = nanoid(), number = DEFAULT_CV_NUMBER): Version => {
   const experienceId = nanoid()
   const educationId = nanoid()
   const contactId = nanoid()

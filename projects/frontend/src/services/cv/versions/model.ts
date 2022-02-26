@@ -190,6 +190,11 @@ type DeleteLanguagePayload = {
   languageId: string
 }
 
+type AddCvPayload = {
+  id: string
+  number: number
+}
+
 type DeleteCvPayload = {
   id: string
 }
@@ -225,6 +230,7 @@ export type {
   AddLanguagePayload,
   UpdateLanguagePayload,
   DeleteLanguagePayload,
+  AddCvPayload,
   DeleteCvPayload,
   SelectCvPayload,
 }

@@ -12,7 +12,6 @@ import { ServiceNameEnum } from 'services'
 import { loadAll, load } from '../load'
 import { save } from '../save'
 import createCv from './utils/createCv'
-import getNextCvNumber from './utils/getNextCvNumber'
 import {
   VersionsState,
   MarkAsSavedPayload,
@@ -38,6 +37,7 @@ import {
   AddLanguagePayload,
   UpdateLanguagePayload,
   DeleteLanguagePayload,
+  AddCvPayload,
   DeleteCvPayload,
   SelectCvPayload,
 } from './model'
@@ -370,10 +370,9 @@ const { actions, reducer } = createSlice({
       state.currentId = payload.id
     },
 
-    addCv: (state) => {
-      const numbers = map(state.ids, (id) => state.byId[id].metadata.number)
-      const { metadata, content } = createCv(getNextCvNumber(numbers))
-      const { id } = metadata
+    addCv: (state, { payload }: PayloadAction<AddCvPayload>) => {
+      const { id, number } = payload
+      const { metadata, content } = createCv(id, number)
 
       state.currentId = id
       state.ids.push(id)

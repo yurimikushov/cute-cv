@@ -1,22 +1,31 @@
+import { nanoid } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-import size from 'lodash/size'
 import { MAX_CV_VERSIONS } from '../constants'
 import { addCv } from '../slice'
-import useAllCvMetadata from './useAllCvMetadata'
+import useCvCount from './useCvCount'
+import useCvNumbers from './useCvNumbers'
 
 const useAddCv = () => {
-  const allCv = useAllCvMetadata()
+  const cvCount = useCvCount()
+  const cvNumbers = useCvNumbers()
+
   const dispatch = useDispatch()
 
   const handleAddCv = () => {
-    if (size(allCv) >= MAX_CV_VERSIONS) {
+    if (cvCount >= MAX_CV_VERSIONS) {
       throw new Error(
-        `You already have ${size(allCv)} cv versions.
+        `You already have ${cvCount} cv versions.
         ${MAX_CV_VERSIONS} is maximum available number of cv versions`
       )
     }
 
-    dispatch(addCv())
+    const id = nanoid()
+    // eslint-disable-next-line no-magic-numbers
+    const number = Math.max(...cvNumbers) + 1
+
+    dispatch(addCv({ id, number }))
+
+    return id
   }
 
   return handleAddCv
