@@ -1,41 +1,15 @@
-import { useEffect } from 'react'
 import map from 'lodash/map'
 import without from 'lodash/without'
 import isEmpty from 'lodash/isEmpty'
-import useEffectWhen from 'hooks/useEffectWhen'
-import { useIsSignedIn } from 'services/auth'
-import getNextCurrentId from './utils/getNextCurrentId'
-import { useLoadAllCV, useLoadCV } from './load'
-import { useDeleteCv as useDeleteCvFromBackend } from './delete'
+import { useDeleteCv as useDeleteCvFromBackend } from '../delete'
 import {
   useAllCvMetadata,
   useCurrentCvMetadata,
   useSelectCv,
   useAddCv,
   useDeleteCv as useDeleteCvFromStore,
-} from './versions'
-
-const useAutoLoadAllCv = () => {
-  const { isSignedIn } = useIsSignedIn()
-
-  const loadAllCv = useLoadAllCV()
-
-  useEffectWhen(loadAllCv, isSignedIn)
-}
-
-const useAutoLoadCurrentCv = () => {
-  const { isSignedIn } = useIsSignedIn()
-  const { id, isNew } = useCurrentCvMetadata()
-  const loadCv = useLoadCV()
-
-  useEffect(() => {
-    if (!isSignedIn || isNew) {
-      return
-    }
-
-    loadCv(id)
-  }, [isSignedIn, id, isNew])
-}
+} from '../versions'
+import getNextCurrentId from './utils/getNextCurrentId'
 
 const useDeleteCv = () => {
   const allCv = useAllCvMetadata()
@@ -75,4 +49,4 @@ const useDeleteCv = () => {
   return handleDeleteCv
 }
 
-export { useAutoLoadAllCv, useAutoLoadCurrentCv, useDeleteCv }
+export default useDeleteCv
