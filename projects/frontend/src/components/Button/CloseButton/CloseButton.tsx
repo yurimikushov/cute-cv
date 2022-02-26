@@ -12,6 +12,7 @@ const CloseButton: FC<CloseButtonPropsT> = styled.button.attrs({
   height: 0.875rem;
   color: ${colors.gray200};
   cursor: pointer;
+  ${({ disabled }) => disabled && 'cursor: not-allowed;'}
 
   &:hover {
     color: ${colors.gray300};
