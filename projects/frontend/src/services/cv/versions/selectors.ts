@@ -12,6 +12,11 @@ const selectCvCount = (state: RootStateT) => {
   return size(ids)
 }
 
+const selectCvNumbers = (state: RootStateT) => {
+  const versions = selectCvVersions(state)
+  return map(versions.ids, (id) => versions.byId[id].metadata.number)
+}
+
 const selectCurrentVersion = (state: RootStateT) => {
   const id = selectCurrentCvId(state)
   const versions = selectCvVersions(state)
@@ -74,6 +79,7 @@ type CV = ReturnType<typeof selectCvContent>
 
 export {
   selectCvCount,
+  selectCvNumbers,
   selectAllCvMetadata,
   selectCvMetadata,
   selectCvContent,
