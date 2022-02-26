@@ -29,13 +29,7 @@ const selectAllCvMetadata = (state: RootStateT) => {
 
   const allCvMetadata = map(ids, (id) => {
     const { metadata } = byId[id]
-    const { name, number } = metadata
-
-    return {
-      id,
-      name,
-      number,
-    }
+    return metadata
   })
 
   return sortBy(allCvMetadata, 'number')
