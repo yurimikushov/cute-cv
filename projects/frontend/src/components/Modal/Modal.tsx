@@ -4,6 +4,7 @@ import useInertSiblings from 'hooks/useInertSiblings'
 import Portal from 'components/Portal'
 import colors from 'styles/colors'
 import shadows from 'styles/shadows'
+import zIndex from 'styles/zIndex'
 import ModalPropsT from './Modal.props'
 
 const Overlay = styled.div`
@@ -12,6 +13,7 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: ${zIndex.modal};
   display: flex;
   justify-content: center;
   align-items: center;

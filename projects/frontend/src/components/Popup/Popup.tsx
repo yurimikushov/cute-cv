@@ -1,6 +1,7 @@
 import { FC, cloneElement } from 'react'
 import styled from 'styled-components'
 import Portal from 'components/Portal'
+import zIndex from 'styles/zIndex'
 import usePopup from './hooks/usePopup'
 import PopupProps from './Popup.props'
 
@@ -13,7 +14,7 @@ const Content = styled.div<ContentProps>`
   position: absolute;
   top: ${({ top }) => top}px;
   left: ${({ left }) => left}px;
-  z-index: 20;
+  z-index: ${zIndex.popup};
 `
 
 const Popup: FC<PopupProps> = ({
