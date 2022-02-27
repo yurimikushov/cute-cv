@@ -78,7 +78,7 @@ const Experience: FC<ExperiencePropsT> = ({
         disabled={!editable}
         value={duration}
         placeholder={t('duration.placeholder')}
-        maxLength={25}
+        maxLength={30}
         onChange={onDurationChange}
       />
       <Description

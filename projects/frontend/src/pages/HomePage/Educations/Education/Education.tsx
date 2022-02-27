@@ -70,7 +70,7 @@ const Education: FC<EducationPropsT> = ({
         disabled={!editable}
         value={duration}
         placeholder={t('duration.placeholder')}
-        maxLength={25}
+        maxLength={30}
         onChange={onDurationChange}
       />
     </Container>
