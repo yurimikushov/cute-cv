@@ -77,7 +77,11 @@ const Versions: FC<VersionsProps> = (props) => {
       {isSignedIn && cvCount < MAX_CV_VERSIONS && (
         <>
           <Divider />
-          <Button withPaddings={false} onClick={handleAddCv}>
+          <Button
+            withPaddings={false}
+            disabled={shouldDisable}
+            onClick={handleAddCv}
+          >
             {t('add')}
           </Button>
         </>
