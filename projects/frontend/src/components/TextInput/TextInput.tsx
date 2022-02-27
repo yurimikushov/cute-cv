@@ -13,7 +13,7 @@ import focusMixin from 'styles/mixins/focus'
 import useElementWidth from './hooks/useElementWidth'
 import TextInputPropsT from './TextInput.props'
 
-const BaseTextInputMixin = css<Pick<TextInputPropsT, 'size'>>`
+const textInputMixin = css<Pick<TextInputPropsT, 'size'>>`
   max-width: 100%;
   background-color: ${colors.white};
   color: ${colors.black};
@@ -28,7 +28,7 @@ const BaseTextInputMixin = css<Pick<TextInputPropsT, 'size'>>`
 `
 
 const EditableTextInput = styled.input`
-  ${BaseTextInputMixin}
+  ${textInputMixin}
   ${focusMixin}
 
   padding: 0.25rem 0.25rem 0.125rem;
@@ -45,7 +45,7 @@ const EditableTextInput = styled.input`
 // But should do it correctly: on the old app ver input content renders correctly
 // Should find bug and fix it
 const DisabledTextInput = styled.div`
-  ${BaseTextInputMixin}
+  ${textInputMixin}
 `
 
 const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (

@@ -8,14 +8,14 @@ import focusMixin from 'styles/mixins/focus'
 import useElementHeight from './hooks/useElementHeight'
 import TextAreaPropsT from './TextArea.props'
 
-const BaseTextAreaMixin = css`
+const textAreaMixin = css`
   max-width: 100%;
   background-color: ${colors.white};
   color: ${colors.black};
 `
 
 const EditableTextArea = styled.textarea`
-  ${BaseTextAreaMixin}
+  ${textAreaMixin}
   ${focusMixin}
 
   padding: 0.25rem 0.375rem 0.5rem;
@@ -32,7 +32,8 @@ const EditableTextArea = styled.textarea`
 
 // Should use `div` element coz `html2pdf.js` package can't correctly convert `textarea` content
 const DisabledTextArea = styled.div`
-  ${BaseTextAreaMixin}
+  ${textAreaMixin}
+
   white-space: pre-line;
 `
 
