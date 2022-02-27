@@ -7,7 +7,7 @@ import map from 'lodash/map'
 import {
   useEditable,
   useCurrentCvContent,
-  MAX_LANGUAGES_SIZE,
+  LANGUAGES_MAX_COUNT,
 } from 'services/cv'
 import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { H2 } from 'components/H'
@@ -49,7 +49,7 @@ const Languages: FC<LanguagesPropsT> = (props) => {
           onDelete={() => deleteLanguage(id)}
         />
       ))}
-      {editable && size(languages) < MAX_LANGUAGES_SIZE && (
+      {editable && size(languages) < LANGUAGES_MAX_COUNT && (
         <Add onClick={addLanguage}>{t('add')}</Add>
       )}
     </Container>

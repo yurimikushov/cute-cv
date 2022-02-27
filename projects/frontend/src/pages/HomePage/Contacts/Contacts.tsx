@@ -7,7 +7,7 @@ import map from 'lodash/map'
 import {
   useEditable,
   useCurrentCvContent,
-  MAX_CONTACTS_SIZE,
+  CONTACTS_MAX_COUNT,
 } from 'services/cv'
 import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { H2 } from 'components/H'
@@ -62,7 +62,7 @@ const Contacts: FC<ContactsPropsT> = (props) => {
           </DraggableList.Item>
         ))}
       </DraggableList>
-      {editable && size(contacts) < MAX_CONTACTS_SIZE && (
+      {editable && size(contacts) < CONTACTS_MAX_COUNT && (
         <Add onClick={addContact}>{t('add')}</Add>
       )}
     </Container>

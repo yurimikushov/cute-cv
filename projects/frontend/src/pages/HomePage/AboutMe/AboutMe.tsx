@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import {
   useEditable,
   useCurrentCvContent,
-  MAX_ABOUT_ME_LENGTH,
+  ABOUT_ME_MAX_LENGTH,
 } from 'services/cv'
 import TextArea from 'components/TextArea'
 
@@ -25,7 +25,7 @@ const AboutMe: FC = () => {
       disabled={!editable}
       value={aboutMe}
       placeholder={t('placeholder')}
-      maxLength={MAX_ABOUT_ME_LENGTH}
+      maxLength={ABOUT_ME_MAX_LENGTH}
       onChange={changeAboutMe}
     />
   )

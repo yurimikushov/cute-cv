@@ -5,8 +5,8 @@ import { useIsSignedIn } from 'services/auth'
 import {
   useEditable,
   useCurrentCvContent,
-  MAX_FULL_NAME_LENGTH,
-  MAX_POSITION_LENGTH,
+  FULL_NAME_MAX_LENGTH,
+  POSITION_MAX_LENGTH,
 } from 'services/cv'
 import TextInput from 'components/TextInput'
 
@@ -47,7 +47,7 @@ const Header: FC = () => {
         disabled={!editable}
         value={fullName}
         placeholder={t('fullName.placeholder')}
-        maxLength={MAX_FULL_NAME_LENGTH}
+        maxLength={FULL_NAME_MAX_LENGTH}
         onChange={changeFullName}
       />
       <Position
@@ -55,7 +55,7 @@ const Header: FC = () => {
         disabled={!editable}
         value={position}
         placeholder={t('position.placeholder')}
-        maxLength={MAX_POSITION_LENGTH}
+        maxLength={POSITION_MAX_LENGTH}
         onChange={changePosition}
       />
     </header>

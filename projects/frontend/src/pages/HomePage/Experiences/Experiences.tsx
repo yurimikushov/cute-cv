@@ -7,7 +7,7 @@ import map from 'lodash/map'
 import {
   useEditable,
   useCurrentCvContent,
-  MAX_EXPERIENCES_SIZE,
+  EXPERIENCES_MAX_COUNT,
 } from 'services/cv'
 import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { H1 } from 'components/H'
@@ -77,7 +77,7 @@ const Experiences: FC<ExperiencesPropsT> = (props) => {
           )
         )}
       </DraggableList>
-      {editable && size(experiences) < MAX_EXPERIENCES_SIZE && (
+      {editable && size(experiences) < EXPERIENCES_MAX_COUNT && (
         <Add onClick={addExperience}>{t('add')}</Add>
       )}
     </Container>

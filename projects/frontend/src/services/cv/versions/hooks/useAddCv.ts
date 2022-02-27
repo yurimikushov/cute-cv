@@ -1,6 +1,6 @@
 import { nanoid } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-import { MAX_CV_VERSIONS } from '../constants'
+import { CV_VERSIONS_MAX_COUNT } from '../constants'
 import { addCv } from '../slice'
 import useCvCount from './useCvCount'
 import useCvNumbers from './useCvNumbers'
@@ -14,10 +14,10 @@ const useAddCv = () => {
   const dispatch = useDispatch()
 
   const handleAddCv = (number?: number) => {
-    if (cvCount >= MAX_CV_VERSIONS) {
+    if (cvCount >= CV_VERSIONS_MAX_COUNT) {
       throw new Error(
         `You already have ${cvCount} cv versions.
-        ${MAX_CV_VERSIONS} is maximum available number of cv versions`
+        ${CV_VERSIONS_MAX_COUNT} is maximum available number of cv versions`
       )
     }
 

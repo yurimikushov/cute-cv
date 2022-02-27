@@ -12,7 +12,7 @@ import {
   useDeleteCv,
   useIsCvSaving,
   useIsCvDeleting,
-  MAX_CV_VERSIONS,
+  CV_VERSIONS_MAX_COUNT,
 } from 'services/cv'
 import Card from 'components/Card'
 import { H2 } from 'components/H'
@@ -74,7 +74,7 @@ const Versions: FC<VersionsProps> = (props) => {
           </Item>
         ))}
       </Radio>
-      {isSignedIn && cvCount < MAX_CV_VERSIONS && (
+      {isSignedIn && cvCount < CV_VERSIONS_MAX_COUNT && (
         <>
           <Divider />
           <Button
