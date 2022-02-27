@@ -1,17 +1,14 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
-import shadows from 'styles/shadows'
+import focusMixin from 'styles/mixins/focus'
 import DndItemProps from './DndItem.props'
 
 const STUB_STRING = ''
 const STUB_NUMBER = 0
 
 const Item = styled.li`
-  &:focus-visible {
-    outline: none;
-    box-shadow: ${shadows.sm};
-  }
+  ${focusMixin}
 `
 
 const DndItem: FC<DndItemProps> = ({

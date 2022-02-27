@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
+import focusMixin from 'styles/mixins/focus'
 import useAvatarPicker from './hooks/useAvatarPicker'
 import AvatarImg from './components/AvatarImg'
 import PickBtn from './components/PickBtn'
@@ -15,6 +16,8 @@ const Container = styled.div`
 `
 
 const Pick = styled(PickBtn)`
+  ${focusMixin}
+
   position: absolute;
   top: 0px;
   left: 0px;
@@ -31,6 +34,8 @@ const Pick = styled(PickBtn)`
 `
 
 const Clear = styled(ClearBtn)`
+  ${focusMixin}
+
   position: absolute;
   top: 0px;
   right: 0.25rem;

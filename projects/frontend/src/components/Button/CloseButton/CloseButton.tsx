@@ -2,12 +2,15 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import { ReactComponent as CloseIcon } from 'icons/close.svg'
 import colors from 'styles/colors'
+import focusMixin from 'styles/mixins/focus'
 import CloseButtonProps from './CloseButton.props'
 
 const CloseButton: FC<CloseButtonProps> = styled.button.attrs({
   type: 'button',
   children: <CloseIcon />,
 })`
+  ${focusMixin}
+
   width: 0.875rem;
   height: 0.875rem;
   color: ${colors.gray200};

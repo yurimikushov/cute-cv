@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import colors from 'styles/colors'
+import focusMixin from 'styles/mixins/focus'
 import ButtonPropsT from './Button.props'
 
 // @ts-expect-error bad typing
@@ -11,6 +12,8 @@ const Button: FC<ButtonPropsT> = styled.button.attrs(
     disabled,
   })
 )`
+  ${focusMixin}
+
   ${({ withPaddings }) => (withPaddings ? 'padding-left: 0.5rem;' : '')}
   ${({ withPaddings }) => (withPaddings ? 'padding-right: 0.5rem;' : '')}
   color: ${colors.gray300};

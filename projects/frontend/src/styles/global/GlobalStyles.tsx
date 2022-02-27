@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 import colors from 'styles/colors'
 import gradients from 'styles/gradients'
+import focusMixin from 'styles/mixins/focus'
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -15,6 +16,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   a {
+    ${focusMixin}
+
     color: ${colors.gray300};
 
     &:hover {

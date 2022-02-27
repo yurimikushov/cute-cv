@@ -4,7 +4,7 @@ import trim from 'lodash/trim'
 import mdToJsx from 'lib/mdToJsx'
 import colors from 'styles/colors'
 import radiuses from 'styles/radiuses'
-import shadows from 'styles/shadows'
+import focusMixin from 'styles/mixins/focus'
 import useElementHeight from './hooks/useElementHeight'
 import TextAreaPropsT from './TextArea.props'
 
@@ -16,6 +16,8 @@ const BaseTextAreaMixin = css`
 
 const EditableTextArea = styled.textarea`
   ${BaseTextAreaMixin}
+  ${focusMixin}
+
   padding: 0.25rem 0.375rem 0.5rem;
   border-radius: ${radiuses.sm};
   border: 1px solid ${colors.gray200};
@@ -25,11 +27,6 @@ const EditableTextArea = styled.textarea`
   &::placeholder {
     color: ${colors.black};
     opacity: 0.5;
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: ${shadows.sm};
   }
 `
 

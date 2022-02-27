@@ -9,7 +9,7 @@ import trim from 'lodash/trim'
 import colors from 'styles/colors'
 import fonts from 'styles/fonts'
 import radiuses from 'styles/radiuses'
-import shadows from 'styles/shadows'
+import focusMixin from 'styles/mixins/focus'
 import useElementWidth from './hooks/useElementWidth'
 import TextInputPropsT from './TextInput.props'
 
@@ -29,6 +29,8 @@ const BaseTextInputMixin = css<Pick<TextInputPropsT, 'size'>>`
 
 const EditableTextInput = styled.input`
   ${BaseTextInputMixin}
+  ${focusMixin}
+
   padding: 0.25rem 0.25rem 0.125rem;
   border: 1px solid ${colors.gray200};
   border-radius: ${radiuses.sm};
@@ -36,11 +38,6 @@ const EditableTextInput = styled.input`
   &::placeholder {
     color: black;
     opacity: 0.5;
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: ${shadows.sm};
   }
 `
 
