@@ -1,7 +1,11 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useEditable } from 'services/cv'
+import {
+  useEditable,
+  CONTACT_TEXT_MAX_LENGTH,
+  CONTACT_HREF_MAX_LENGTH,
+} from 'services/cv'
 import Card from 'components/Card'
 import Href from 'components/Href'
 import TextInput from 'components/TextInput'
@@ -55,14 +59,14 @@ const Contact: FC<ContactPropsT> = ({
         disabled={!editable}
         value={text}
         placeholder={t('text.placeholder')}
-        maxLength={50}
+        maxLength={CONTACT_TEXT_MAX_LENGTH}
         onChange={onTextChange}
       />
       <Reference
         disabled={!editable}
         value={href}
         placeholder={t('reference.placeholder')}
-        maxLength={50}
+        maxLength={CONTACT_HREF_MAX_LENGTH}
         onChange={onHrefChange}
       />
       {editable && <Close onClick={onDelete} />}

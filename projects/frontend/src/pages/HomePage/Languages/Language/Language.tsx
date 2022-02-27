@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useEditable } from 'services/cv'
+import { useEditable, LANGUAGE_MAX_LENGTH } from 'services/cv'
 import TextInput from 'components/TextInput'
 import { CloseButton } from 'components/Button'
 import LanguagePropsT from './Language.props'
@@ -36,7 +36,7 @@ const Language: FC<LanguagePropsT> = ({
         disabled={!editable}
         value={language}
         placeholder={t('placeholder')}
-        maxLength={25}
+        maxLength={LANGUAGE_MAX_LENGTH}
         onChange={onChange}
       />
       {editable && <Close onClick={onDelete} />}

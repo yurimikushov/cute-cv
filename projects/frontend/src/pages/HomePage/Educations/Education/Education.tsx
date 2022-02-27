@@ -1,7 +1,12 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useEditable } from 'services/cv'
+import {
+  useEditable,
+  EDUCATION_DEGREE_MAX_LENGTH,
+  EDUCATION_UNIVERSITY_MAX_LENGTH,
+  EDUCATION_DURATION_MAX_LENGTH,
+} from 'services/cv'
 import Card from 'components/Card'
 import TextInput from 'components/TextInput'
 import colors from 'styles/colors'
@@ -54,7 +59,7 @@ const Education: FC<EducationPropsT> = ({
         disabled={!editable}
         value={degree}
         placeholder={t('degree.placeholder')}
-        maxLength={75}
+        maxLength={EDUCATION_DEGREE_MAX_LENGTH}
         onChange={onDegreeChange}
       />
       <University
@@ -62,7 +67,7 @@ const Education: FC<EducationPropsT> = ({
         disabled={!editable}
         value={university}
         placeholder={t('university.placeholder')}
-        maxLength={75}
+        maxLength={EDUCATION_UNIVERSITY_MAX_LENGTH}
         onChange={onUniversityChange}
       />
       <Duration
@@ -70,7 +75,7 @@ const Education: FC<EducationPropsT> = ({
         disabled={!editable}
         value={duration}
         placeholder={t('duration.placeholder')}
-        maxLength={30}
+        maxLength={EDUCATION_DURATION_MAX_LENGTH}
         onChange={onDurationChange}
       />
     </Container>

@@ -1,7 +1,13 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useEditable } from 'services/cv'
+import {
+  useEditable,
+  EXPERIENCE_POSITION_MAX_LENGTH,
+  EXPERIENCE_COMPANY_MAX_LENGTH,
+  EXPERIENCE_DURATION_MAX_LENGTH,
+  EXPERIENCE_DESCRIPTION_MAX_LENGTH,
+} from 'services/cv'
 import Card from 'components/Card'
 import TextInput from 'components/TextInput'
 import TextArea from 'components/TextArea'
@@ -62,7 +68,7 @@ const Experience: FC<ExperiencePropsT> = ({
         disabled={!editable}
         value={position}
         placeholder={t('position.placeholder')}
-        maxLength={50}
+        maxLength={EXPERIENCE_POSITION_MAX_LENGTH}
         onChange={onPositionChange}
       />
       <Company
@@ -70,7 +76,7 @@ const Experience: FC<ExperiencePropsT> = ({
         disabled={!editable}
         value={company}
         placeholder={t('company.placeholder')}
-        maxLength={50}
+        maxLength={EXPERIENCE_COMPANY_MAX_LENGTH}
         onChange={onCompanyChange}
       />
       <Duration
@@ -78,14 +84,14 @@ const Experience: FC<ExperiencePropsT> = ({
         disabled={!editable}
         value={duration}
         placeholder={t('duration.placeholder')}
-        maxLength={30}
+        maxLength={EXPERIENCE_DURATION_MAX_LENGTH}
         onChange={onDurationChange}
       />
       <Description
         disabled={!editable}
         value={description}
         placeholder={t('description.placeholder')}
-        maxLength={1_000}
+        maxLength={EXPERIENCE_DESCRIPTION_MAX_LENGTH}
         onChange={onDescriptionChange}
       />
     </Container>
