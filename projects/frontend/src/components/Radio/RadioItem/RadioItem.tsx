@@ -25,9 +25,17 @@ const RadioItem: FC<RadioItemProps> = ({
   onClick,
   ...props
 }) => {
+  const handleClick = () => {
+    if (isActive || disabled) {
+      return
+    }
+
+    onClick()
+  }
+
   const handleKeyDown = ({ code }: KeyboardEvent) => {
     if (code === 'Space' || code === 'Enter') {
-      onClick()
+      handleClick()
     }
   }
 
@@ -38,7 +46,7 @@ const RadioItem: FC<RadioItemProps> = ({
       disabled={disabled}
       // eslint-disable-next-line no-magic-numbers
       tabIndex={isActive || disabled ? -1 : 0}
-      onClick={onClick}
+      onClick={handleClick}
       onKeyDown={handleKeyDown}
     >
       {children}
