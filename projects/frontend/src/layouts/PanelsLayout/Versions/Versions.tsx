@@ -52,7 +52,7 @@ const Versions: FC<VersionsProps> = (props) => {
   }
 
   const handleDeleteCv = (id: string, isNew: boolean) => {
-    if (confirm('Are you sure you wanna delete this one?')) {
+    if (confirm(t('confirmDelete'))) {
       deleteCv(id, isNew)
     }
   }

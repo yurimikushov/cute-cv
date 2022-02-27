@@ -25,6 +25,7 @@ type TranslationT = {
   versions: {
     title: string
     add: string
+    confirmDelete: string
   }
   toolbar: {
     download: {
