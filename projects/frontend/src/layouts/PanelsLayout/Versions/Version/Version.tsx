@@ -5,6 +5,7 @@ import Card from 'components/Card'
 import Button from 'components/Button'
 import { ReactComponent as ArrowBottomIcon } from 'icons/arrow-bottom.svg'
 import VersionProps from './Version.props'
+import { useTranslation } from 'react-i18next'
 
 const Container = styled.div`
   display: inline-flex;
@@ -26,6 +27,8 @@ const ArrowButton = styled(Button).attrs({
 `
 
 const Version: FC<VersionProps> = ({ name, disabled, onDelete, ...props }) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'versions' })
+
   return (
     <Container {...props}>
       {name}
@@ -34,7 +37,7 @@ const Version: FC<VersionProps> = ({ name, disabled, onDelete, ...props }) => {
         content={
           <Content>
             <Button withPaddings={false} onClick={onDelete}>
-              Delete
+              {t('delete')}
             </Button>
           </Content>
         }

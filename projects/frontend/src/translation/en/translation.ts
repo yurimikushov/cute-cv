@@ -27,6 +27,7 @@ const en: TranslationT = {
   versions: {
     title: 'Versions',
     add: 'Add',
+    delete: 'Delete',
     confirmDelete: 'Are you sure you wanna delete this version?',
   },
   toolbar: {

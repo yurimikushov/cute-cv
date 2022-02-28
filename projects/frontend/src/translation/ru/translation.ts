@@ -27,6 +27,7 @@ const ru: TranslationT = {
   versions: {
     title: 'Версии',
     add: 'Добавить',
+    delete: 'Удалить',
     confirmDelete: 'Вы точно хотите удалить эту версию?',
   },
   toolbar: {
