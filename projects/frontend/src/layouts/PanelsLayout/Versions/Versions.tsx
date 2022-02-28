@@ -18,18 +18,13 @@ import Card from 'components/Card'
 import { H2 } from 'components/H'
 import Radio from 'components/Radio'
 import Divider from 'components/Divider'
-import Button, { CloseButton } from 'components/Button'
+import Button from 'components/Button'
 import { panelMixin } from '../mixins'
+import Version from './Version'
 import VersionsProps from './Versions.props'
 
 const Container = styled(Card)`
   ${panelMixin}
-`
-
-const Item = styled(Radio.Item)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
 `
 
 // eslint-disable-next-line max-statements
@@ -62,16 +57,13 @@ const Versions: FC<VersionsProps> = (props) => {
       <H2>{t('title')}</H2>
       <Radio value={id} vertical disabled={shouldDisable} onChange={selectCv}>
         {map(allCv, ({ id, name, isNew }) => (
-          <Item key={id} value={id}>
-            {name}
-            <CloseButton
+          <Radio.Item key={id} value={id}>
+            <Version
+              name={name}
               disabled={shouldDisable}
-              onClick={(e) => {
-                e.stopPropagation() // to not affect onChange event of radio
-                handleDeleteCv(id, isNew)
-              }}
+              onDelete={() => handleDeleteCv(id, isNew)}
             />
-          </Item>
+          </Radio.Item>
         ))}
       </Radio>
       {isSignedIn && cvCount < CV_VERSIONS_MAX_COUNT && (
