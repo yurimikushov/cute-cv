@@ -2,7 +2,7 @@ type ButtonPropsT = {
   className?: string
   withPaddings?: boolean
   disabled?: boolean
-  onClick?: () => void
+  onClick?: (e: MouseEvent) => void
 }
 
 export default ButtonPropsT
