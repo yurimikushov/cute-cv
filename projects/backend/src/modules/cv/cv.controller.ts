@@ -2,8 +2,8 @@ import { Controller, Get, Put, Delete, Body, Req, Param } from '@nestjs/common'
 import { Request } from 'express'
 import {
   FindOneCvParamsDto,
-  UpdateCvParamsDto,
-  UpdateCvDto,
+  UpdateOneCvParamsDto,
+  UpdateOneCvDto,
   DeleteOneCvParamsDto,
 } from './dto'
 import { CVService } from './cv.service'
@@ -23,10 +23,10 @@ export class CVController {
   }
 
   @Put(':id')
-  async update(
+  async updateOne(
     @Req() req: Request,
-    @Param() params: UpdateCvParamsDto,
-    @Body() updateCvDto: UpdateCvDto
+    @Param() params: UpdateOneCvParamsDto,
+    @Body() updateCvDto: UpdateOneCvDto
   ) {
     return await this.cvService.update(req.user.uid, params.id, updateCvDto)
   }

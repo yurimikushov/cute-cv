@@ -129,12 +129,12 @@ class LanguageDto {
   readonly language: string
 }
 
-class UpdateCvParamsDto {
+class UpdateOneCvParamsDto {
   @IsID()
   readonly id: string
 }
 
-class UpdateCvDto {
+class UpdateOneCvDto {
   @IsObject()
   @ValidateNested()
   @Type(() => MetadataDto)
@@ -146,4 +146,4 @@ class UpdateCvDto {
   readonly content: ContentDto
 }
 
-export { UpdateCvParamsDto, UpdateCvDto }
+export { UpdateOneCvParamsDto, UpdateOneCvDto }
