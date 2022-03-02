@@ -7,6 +7,11 @@ interface CV {
   content: Content
 }
 
+interface PartialCV {
+  metadata?: Partial<Metadata>
+  content?: Partial<Content>
+}
+
 interface Metadata {
   id: string
   name: string
@@ -52,4 +57,4 @@ interface Language {
   language: string
 }
 
-export type { UserId, CvId, CV, Metadata, Content }
+export type { UserId, CvId, CV, PartialCV, Metadata, Content }

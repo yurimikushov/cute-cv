@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import { isNull } from 'lodash'
-import { CvId, UserId, CV } from './cv.interface'
+import { assign, isNil, isNull } from 'lodash'
+import { CvId, UserId, CV, PartialCV } from './cv.interface'
 import { CVRepository } from './cv.repository'
 
 @Injectable()
@@ -30,6 +30,25 @@ export class CVService {
     await this.cvRepository.update(userId, cvId, cv)
 
     return await this.cvRepository.getMetadata(userId, cvId)
+  }
+
+  async patch(userId: UserId, cvId: CvId, cv: PartialCV) {
+    const { metadata, content } = cv
+
+    if (isNil(metadata) && isNil(content)) {
+      return
+    }
+
+    const oldMetadata = await this.cvRepository.getMetadata(userId, cvId)
+    const newMetadata = assign(oldMetadata, metadata)
+
+    const oldContent = await this.cvRepository.read(userId, cvId)
+    const newContent = assign(oldContent, content)
+
+    await this.cvRepository.update(userId, cvId, {
+      metadata: newMetadata,
+      content: newContent,
+    })
   }
 
   async delete(userId: UserId, cvId: CvId) {
