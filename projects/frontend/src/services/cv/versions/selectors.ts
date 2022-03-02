@@ -2,29 +2,29 @@ import { createSelector } from '@reduxjs/toolkit'
 import size from 'lodash/size'
 import sortBy from 'lodash/sortBy'
 import map from 'lodash/map'
-import { RootStateT } from 'services/store'
+import { RootState } from 'services/store'
 
-const selectCurrentCvId = (state: RootStateT) => state.cv.versions.currentId
-const selectCvVersions = (state: RootStateT) => state.cv.versions
+const selectCurrentCvId = (state: RootState) => state.cv.versions.currentId
+const selectCvVersions = (state: RootState) => state.cv.versions
 
-const selectCvCount = (state: RootStateT) => {
+const selectCvCount = (state: RootState) => {
   const { ids } = selectCvVersions(state)
   return size(ids)
 }
 
-const selectCvNumbers = (state: RootStateT) => {
+const selectCvNumbers = (state: RootState) => {
   const versions = selectCvVersions(state)
   return map(versions.ids, (id) => versions.byId[id].metadata.number)
 }
 
-const selectCurrentVersion = (state: RootStateT) => {
+const selectCurrentVersion = (state: RootState) => {
   const id = selectCurrentCvId(state)
   const versions = selectCvVersions(state)
 
   return versions.byId[id]
 }
 
-const selectAllCvMetadata = (state: RootStateT) => {
+const selectAllCvMetadata = (state: RootState) => {
   const { ids, byId } = selectCvVersions(state)
 
   const allCvMetadata = map(ids, (id) => {
@@ -35,12 +35,12 @@ const selectAllCvMetadata = (state: RootStateT) => {
   return sortBy(allCvMetadata, 'number')
 }
 
-const selectCvMetadata = (state: RootStateT) => {
+const selectCvMetadata = (state: RootState) => {
   const { metadata } = selectCurrentVersion(state)
   return metadata
 }
 
-const selectRawCvContent = (state: RootStateT) => {
+const selectRawCvContent = (state: RootState) => {
   const { content } = selectCurrentVersion(state)
   return content
 }

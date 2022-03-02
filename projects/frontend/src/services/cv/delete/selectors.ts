@@ -1,6 +1,6 @@
-import { RootStateT } from 'services/store'
+import { RootState } from 'services/store'
 
-const selectIsDeleting = ({ cv }: RootStateT): boolean => {
+const selectIsDeleting = ({ cv }: RootState): boolean => {
   return cv.delete.isDeleting
 }
 

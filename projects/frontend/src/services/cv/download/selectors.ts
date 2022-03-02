@@ -1,9 +1,9 @@
-import { RootStateT } from 'services/store'
+import { RootState } from 'services/store'
 import { DownloadStateT } from './model'
 
 const selectIsDownloading = ({
   cv,
-}: RootStateT): DownloadStateT['isDownloading'] => {
+}: RootState): DownloadStateT['isDownloading'] => {
   return cv.download.isDownloading
 }
 

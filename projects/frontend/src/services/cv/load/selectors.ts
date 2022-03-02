@@ -1,6 +1,6 @@
-import { RootStateT } from 'services/store'
+import { RootState } from 'services/store'
 
-const selectIsLoading = ({ cv }: RootStateT): boolean => {
+const selectIsLoading = ({ cv }: RootState): boolean => {
   return cv.load.isLoadingAll || cv.load.isLoading
 }
 

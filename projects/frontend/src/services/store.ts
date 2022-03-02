@@ -18,14 +18,14 @@ const store = configureStore({
 
 const persistor = persistStore(store)
 
-type RootStateT = ReturnType<typeof rootReducer>
+type RootState = ReturnType<typeof rootReducer>
 
-type Store = MiddlewareAPI<Dispatch, RootStateT>
+type Store = MiddlewareAPI<Dispatch, RootState>
 
 type Middleware = (
-  store: MiddlewareAPI<Dispatch, RootStateT>
+  store: MiddlewareAPI<Dispatch, RootState>
 ) => (dispatch: Dispatch) => (action: AnyAction) => unknown
 
 export default store
 export { persistor }
-export type { RootStateT, Store, Middleware }
+export type { RootState, Store, Middleware }

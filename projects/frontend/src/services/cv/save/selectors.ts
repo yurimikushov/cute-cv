@@ -1,6 +1,6 @@
-import { RootStateT } from 'services/store'
+import { RootState } from 'services/store'
 
-const selectIsSaving = ({ cv }: RootStateT): boolean => {
+const selectIsSaving = ({ cv }: RootState): boolean => {
   return cv.save.isSaving
 }
 

@@ -1,7 +1,7 @@
-import { RootStateT } from 'services/store'
+import { RootState } from 'services/store'
 import { UserStateT } from './model'
 
-const selectUser = ({ auth }: RootStateT): UserStateT['user'] => {
+const selectUser = ({ auth }: RootState): UserStateT['user'] => {
   return auth.user.user
 }
 
