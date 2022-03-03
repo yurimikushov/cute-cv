@@ -49,6 +49,8 @@ export class CVService {
       metadata: newMetadata,
       content: newContent,
     })
+
+    return await this.cvRepository.getMetadata(userId, cvId)
   }
 
   async delete(userId: UserId, cvId: CvId) {
