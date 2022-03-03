@@ -7,14 +7,23 @@ type LoadResult = {
   content: CV
 }
 
-type SaveResult = Metadata
-
 type SavePayload = {
   id: string
   name: string
   number: number
   cv: CV
 }
+
+type SaveResult = Metadata
+
+type PatchPayload = {
+  id: string
+  name?: string
+  number?: number
+  cv?: Partial<CV>
+}
+
+type PatchResult = Metadata
 
 type Metadata = {
   id: string
@@ -23,4 +32,11 @@ type Metadata = {
   savedAt: string
 }
 
-export type { LoadAllResult, LoadResult, SavePayload, SaveResult }
+export type {
+  LoadAllResult,
+  LoadResult,
+  SavePayload,
+  SaveResult,
+  PatchPayload,
+  PatchResult,
+}
