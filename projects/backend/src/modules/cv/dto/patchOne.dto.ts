@@ -10,7 +10,7 @@ import { IsID } from 'validators'
 
 class PatchOneCvParamsDto {
   @IsID()
-  id: string
+  readonly id: string
 }
 
 class PatchOneCvDto {
