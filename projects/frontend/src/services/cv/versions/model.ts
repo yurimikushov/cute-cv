@@ -99,6 +99,11 @@ type UpdateCvMetadataPayload = Pick<
   'id' | 'isNew' | 'isSaved' | 'savedAt'
 >
 
+type UpdateCvNamePayload = {
+  id: string
+  name: string
+}
+
 type MarkAsSavedPayload = {
   id: string
   savedAt: Date
@@ -241,6 +246,7 @@ export type {
   InitAllCvPayload,
   UpdateCvPayload,
   UpdateCvMetadataPayload,
+  UpdateCvNamePayload,
   MarkAsSavedPayload,
   MarkAsUnsavedPayload,
   UpdateFullNamePayload,

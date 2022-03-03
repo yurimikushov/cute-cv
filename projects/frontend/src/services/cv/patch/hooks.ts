@@ -1,5 +1,6 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectIsPatching } from './selectors'
+import { patch, PatchResult } from './thunks'
 
 const useIsCvPatching = () => {
   const isCvPatching = useSelector(selectIsPatching)
@@ -9,4 +10,18 @@ const useIsCvPatching = () => {
   }
 }
 
-export { useIsCvPatching }
+const useUpdateCvName = () => {
+  const dispatch = useDispatch()
+
+  const handleUpdateCvName = (id: string, name: string) => {
+    return (
+      dispatch(patch({ id, name }))
+        // @ts-expect-error bad typing
+        .unwrap() as unknown as Promise<PatchResult>
+    )
+  }
+
+  return handleUpdateCvName
+}
+
+export { useIsCvPatching, useUpdateCvName }

@@ -1,5 +1,10 @@
 export { default as cvReducer } from './reducer'
-export { useAutoLoadAllCv, useAutoLoadCurrentCv, useDeleteCv } from './hooks'
+export {
+  useAutoLoadAllCv,
+  useAutoLoadCurrentCv,
+  useUpdateCvName,
+  useDeleteCv,
+} from './hooks'
 export { useDownload, CV_CONTAINER_ID } from './download'
 export { useEditable } from './editable'
 export { useLoadAllCV, useIsCVLoading } from './load'

@@ -14,6 +14,7 @@ import {
   InitAllCvPayload,
   UpdateCvPayload,
   UpdateCvMetadataPayload,
+  UpdateCvNamePayload,
   MarkAsSavedPayload,
   MarkAsUnsavedPayload,
   UpdateFullNamePayload,
@@ -130,6 +131,13 @@ const { actions, reducer } = createSlice({
       metadata.isNew = isNew
       metadata.isSaved = isSaved
       metadata.savedAt = savedAt
+    },
+
+    updateCvName: (state, { payload }: PayloadAction<UpdateCvNamePayload>) => {
+      const { id, name } = payload
+      const { metadata } = state.byId[id]
+
+      metadata.name = name
     },
 
     markAsSaved: (state, { payload }: PayloadAction<MarkAsSavedPayload>) => {
@@ -393,6 +401,7 @@ export const {
   initAllCv,
   updateCv,
   updateCvMetadata,
+  updateCvName,
   markAsSaved,
   markAsUnsaved,
   updateFullName,

@@ -11,6 +11,7 @@ export {
 export {
   useInitAllCv,
   useUpdateCv,
+  useUpdateCvName,
   useCvCount,
   useAllCvMetadata,
   useCurrentCvMetadata,
