@@ -1,11 +1,13 @@
 import { FC, useRef } from 'react'
 import styled from 'styled-components'
+import noop from 'lodash/noop'
 import useInertSiblings from 'hooks/useInertSiblings'
 import Portal from 'components/Portal'
 import colors from 'styles/colors'
 import shadows from 'styles/shadows'
 import zIndex from 'styles/zIndex'
-import ModalPropsT from './Modal.props'
+import useCloseModal from './hooks/useCloseModal'
+import ModalProps from './Modal.props'
 
 const Overlay = styled.div`
   position: fixed;
@@ -25,15 +27,18 @@ const Content = styled.div`
   box-shadow: ${shadows.xs};
 `
 
-const Modal: FC<ModalPropsT> = ({ children, ...props }) => {
+const Modal: FC<ModalProps> = ({ children, onClose = noop, ...props }) => {
   const portalRef = useRef<HTMLDivElement>(null)
+  const { contentRef } = useCloseModal<HTMLDivElement>(onClose)
 
   useInertSiblings(portalRef)
 
   return (
     <Portal ref={portalRef}>
       <Overlay>
-        <Content {...props}>{children}</Content>
+        <Content ref={contentRef} {...props}>
+          {children}
+        </Content>
       </Overlay>
     </Portal>
   )

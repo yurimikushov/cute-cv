@@ -1,5 +1,6 @@
-type ModalPropsT = {
+type ModalProps = {
   className?: string
+  onClose?: () => void
 }
 
-export default ModalPropsT
+export default ModalProps
