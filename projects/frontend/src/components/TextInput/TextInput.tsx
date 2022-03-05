@@ -62,6 +62,7 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
     value,
     placeholder,
     onChange,
+    onBlur,
     ...props
   },
   externalRef
@@ -98,6 +99,7 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
       placeholder={placeholder}
       style={{ width }}
       onChange={handleChange}
+      onBlur={onBlur}
     />
   )
 }

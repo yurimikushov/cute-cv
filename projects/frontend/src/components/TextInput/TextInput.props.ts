@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react'
+import { ChangeEvent, FocusEvent } from 'react'
 
 type TextInputPropsT = {
   className?: string
@@ -9,6 +9,7 @@ type TextInputPropsT = {
   placeholder?: string
   maxLength?: number
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void
 }
 
 export default TextInputPropsT
