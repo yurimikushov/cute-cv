@@ -58,10 +58,10 @@ const Version: FC<VersionProps> = ({
         content={
           <Content>
             <Button withPaddings={false} onClick={handleOpenEditNameModal}>
-              {t('editName')}
+              {t('toolsPopup.editName')}
             </Button>
             <Button withPaddings={false} onClick={onDelete}>
-              {t('delete')}
+              {t('toolsPopup.delete')}
             </Button>
           </Content>
         }

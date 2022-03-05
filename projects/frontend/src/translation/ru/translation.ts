@@ -26,16 +26,18 @@ const ru: TranslationT = {
   },
   versions: {
     title: 'Версии',
-    add: 'Добавить',
-    editName: 'Изменить имя',
-    delete: 'Удалить',
-    confirmDelete: 'Вы точно хотите удалить эту версию?',
+    toolsPopup: {
+      editName: 'Изменить имя',
+      delete: 'Удалить',
+      confirmDelete: 'Вы точно хотите удалить эту версию?',
+    },
     editNameModal: {
       title: 'Изменить',
       name: {
         placeholder: 'Название резюме',
       },
     },
+    add: 'Добавить',
   },
   toolbar: {
     download: {

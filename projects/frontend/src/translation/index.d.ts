@@ -24,16 +24,18 @@ type TranslationT = {
   }
   versions: {
     title: string
-    add: string
-    editName: string
-    delete: string
-    confirmDelete: string
+    toolsPopup: {
+      editName: string
+      delete: string
+      confirmDelete: string
+    }
     editNameModal: {
       title: string
       name: {
         placeholder: string
       }
     }
+    add: string
   }
   toolbar: {
     download: {
