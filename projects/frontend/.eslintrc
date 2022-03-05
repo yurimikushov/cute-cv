@@ -60,6 +60,7 @@
     "multiline-comment-style": "off",
     "dot-location": "off",
     "no-trailing-spaces": "off",
+    "comma-spacing": "off",
     "react/react-in-jsx-scope": "off",
     "react/function-component-definition": "off",
     "react/jsx-indent": "off",
