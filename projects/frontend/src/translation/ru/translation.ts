@@ -27,12 +27,12 @@ const ru: TranslationT = {
   versions: {
     title: 'Версии',
     toolsPopup: {
-      editName: 'Изменить имя',
+      editName: 'Изменить название',
       delete: 'Удалить',
       confirmDelete: 'Вы точно хотите удалить эту версию?',
     },
     editNameModal: {
-      title: 'Изменить',
+      title: 'Изменить название',
       name: {
         placeholder: 'Название резюме',
       },
