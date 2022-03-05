@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import defer from 'lodash/defer'
 import useOutsideClick from 'hooks/useOutsideClick'
+import useKeyDown from 'hooks/useKeyDown'
 
 const useCloseModal = <T extends HTMLElement>(onClose: () => void) => {
   const contentRef = useRef<T>(null)
@@ -18,6 +19,11 @@ const useCloseModal = <T extends HTMLElement>(onClose: () => void) => {
     }
 
     onClose()
+  })
+
+  useKeyDown({
+    code: 'Escape',
+    listener: onClose,
   })
 
   return {
