@@ -39,6 +39,12 @@ const EditableTextInput = styled.input`
     color: black;
     opacity: 0.5;
   }
+
+  &:disabled {
+    color: ${colors.gray300};
+    border-color: ${colors.gray100};
+    cursor: not-allowed;
+  }
 `
 
 // Should use `div` element coz `html2pdf.js` package can't correctly convert `input` content
@@ -49,7 +55,15 @@ const DisabledTextInput = styled.div`
 `
 
 const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
-  { readonly = false, size = 'md', value, placeholder, onChange, ...props },
+  {
+    readonly = false,
+    disabled = false,
+    size = 'md',
+    value,
+    placeholder,
+    onChange,
+    ...props
+  },
   externalRef
 ) => {
   const { ref, width, handleWidthChange } = useElementWidth<HTMLInputElement>(
@@ -77,6 +91,7 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
       {...props}
       ref={ref}
       type='text'
+      disabled={disabled}
       // @ts-expect-error bad typing
       size={size}
       value={value}

@@ -28,6 +28,12 @@ const EditableTextArea = styled.textarea`
     color: ${colors.black};
     opacity: 0.5;
   }
+
+  &:disabled {
+    color: ${colors.gray300};
+    border-color: ${colors.gray100};
+    cursor: not-allowed;
+  }
 `
 
 // Should use `div` element coz `html2pdf.js` package can't correctly convert `textarea` content
@@ -39,6 +45,7 @@ const DisabledTextArea = styled.div`
 
 const TextArea: FC<TextAreaPropsT> = ({
   readonly = false,
+  disabled = false,
   value,
   placeholder,
   onChange,
@@ -64,6 +71,7 @@ const TextArea: FC<TextAreaPropsT> = ({
     <EditableTextArea
       {...props}
       ref={ref}
+      disabled={disabled}
       value={value}
       placeholder={placeholder}
       rows={2}
