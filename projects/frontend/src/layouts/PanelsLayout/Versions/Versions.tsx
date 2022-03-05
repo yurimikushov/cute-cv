@@ -53,6 +53,11 @@ const Versions: FC<VersionsProps> = (props) => {
   }
 
   const handleDeleteCv = (id: string, isNew: boolean) => {
+    if (isNew) {
+      deleteCv(id, isNew)
+      return
+    }
+
     if (confirm(t('confirmDelete'))) {
       deleteCv(id, isNew)
     }
