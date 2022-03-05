@@ -49,6 +49,7 @@ const TextArea: FC<TextAreaPropsT> = ({
   value,
   placeholder,
   onChange,
+  onBlur,
   ...props
 }) => {
   const { ref, height, handleHeightChange } =
@@ -77,6 +78,7 @@ const TextArea: FC<TextAreaPropsT> = ({
       rows={2}
       style={{ height }}
       onChange={handleChange}
+      onBlur={onBlur}
     />
   )
 }
