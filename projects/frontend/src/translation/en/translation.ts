@@ -30,6 +30,12 @@ const en: TranslationT = {
     editName: 'Edit name',
     delete: 'Delete',
     confirmDelete: 'Are you sure you wanna delete this version?',
+    editNameModal: {
+      title: 'Edit name',
+      name: {
+        placeholder: 'CV name',
+      },
+    },
   },
   toolbar: {
     download: {

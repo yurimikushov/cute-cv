@@ -28,6 +28,12 @@ type TranslationT = {
     editName: string
     delete: string
     confirmDelete: string
+    editNameModal: {
+      title: string
+      name: {
+        placeholder: string
+      }
+    }
   }
   toolbar: {
     download: {

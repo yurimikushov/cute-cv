@@ -47,7 +47,9 @@ const EditNameModal: FC<EditNameModalProps> = ({
   onClose,
   ...props
 }) => {
-  const { t } = useTranslation('translation', { keyPrefix: 'versions' })
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'versions.editNameModal',
+  })
   const [currentName, setCurrentName] = useState(name)
 
   useEffect(() => {
@@ -61,12 +63,12 @@ const EditNameModal: FC<EditNameModalProps> = ({
 
   return (
     <Container {...props} onClose={onClose}>
-      <Title>{t('editName')}</Title>
+      <Title>{t('title')}</Title>
       <Form onSubmit={handleSave}>
         <Name
           size='lg'
           value={currentName}
-          placeholder='CV name' // TODO: internalization needed
+          placeholder={t('name.placeholder')}
           disabled={isSaving}
           maxLength={CV_NAME_MAX_LENGTH}
           onChange={setCurrentName}

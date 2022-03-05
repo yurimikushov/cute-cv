@@ -30,6 +30,12 @@ const ru: TranslationT = {
     editName: 'Изменить имя',
     delete: 'Удалить',
     confirmDelete: 'Вы точно хотите удалить эту версию?',
+    editNameModal: {
+      title: 'Изменить',
+      name: {
+        placeholder: 'Название резюме',
+      },
+    },
   },
   toolbar: {
     download: {
