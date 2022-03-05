@@ -16,6 +16,7 @@ const Container = styled.div`
 `
 
 const Content = styled(Card)`
+  max-width: 8rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
