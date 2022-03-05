@@ -67,6 +67,10 @@ const Experience: FC<ExperiencePropsT> = ({
     onDurationChange(e.target.value)
   }
 
+  const handleChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    onDescriptionChange(e.target.value)
+  }
+
   return (
     <Container
       {...props}
@@ -104,7 +108,7 @@ const Experience: FC<ExperiencePropsT> = ({
         value={description}
         placeholder={t('description.placeholder')}
         maxLength={EXPERIENCE_DESCRIPTION_MAX_LENGTH}
-        onChange={onDescriptionChange}
+        onChange={handleChangeDescription}
       />
     </Container>
   )

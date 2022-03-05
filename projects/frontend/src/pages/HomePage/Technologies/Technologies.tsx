@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
@@ -26,6 +26,10 @@ const Technologies: FC<TechnologiesPropsT> = (props) => {
     changeTechnologies,
   } = useCurrentCvContent()
 
+  const handleChangeTechnologies = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    changeTechnologies(e.target.value)
+  }
+
   return (
     <Container {...props}>
       <H2>{t('title')}</H2>
@@ -34,7 +38,7 @@ const Technologies: FC<TechnologiesPropsT> = (props) => {
         value={technologies}
         placeholder={t('placeholder')}
         maxLength={MAX_TECHNOLOGIES_LENGTH}
-        onChange={changeTechnologies}
+        onChange={handleChangeTechnologies}
       />
     </Container>
   )

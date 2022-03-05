@@ -56,7 +56,7 @@ const TextArea: FC<TextAreaPropsT> = ({
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     handleHeightChange()
-    onChange(e.target.value)
+    onChange(e)
   }
 
   if (readonly) {

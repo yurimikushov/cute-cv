@@ -1,3 +1,5 @@
+import { ChangeEvent } from 'react'
+
 type TextAreaPropsT = {
   className?: string
   readonly?: boolean
@@ -5,7 +7,7 @@ type TextAreaPropsT = {
   value: string
   placeholder?: string
   maxLength?: number
-  onChange: (value: string) => void
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 export default TextAreaPropsT

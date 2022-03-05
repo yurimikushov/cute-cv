@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
@@ -20,13 +20,17 @@ const AboutMe: FC = () => {
     changeAboutMe,
   } = useCurrentCvContent()
 
+  const handleChangeAboutMe = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    changeAboutMe(e.target.value)
+  }
+
   return (
     <Description
       readonly={!editable}
       value={aboutMe}
       placeholder={t('placeholder')}
       maxLength={ABOUT_ME_MAX_LENGTH}
-      onChange={changeAboutMe}
+      onChange={handleChangeAboutMe}
     />
   )
 }
