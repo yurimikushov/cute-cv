@@ -1,8 +1,9 @@
-type ButtonPropsT = {
+type ButtonProps = {
   className?: string
+  type?: 'button' | 'submit'
   withPaddings?: boolean
   disabled?: boolean
   onClick?: (e: MouseEvent) => void
 }
 
-export default ButtonPropsT
+export default ButtonProps

@@ -2,12 +2,16 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import colors from 'styles/colors'
 import focusMixin from 'styles/mixins/focus'
-import ButtonPropsT from './Button.props'
+import ButtonProps from './Button.props'
 
 // @ts-expect-error bad typing
-const Button: FC<ButtonPropsT> = styled.button.attrs(
-  ({ withPaddings = true, disabled = false }: ButtonPropsT) => ({
-    type: 'button',
+const Button: FC<ButtonProps> = styled.button.attrs(
+  ({
+    type = 'button',
+    withPaddings = true,
+    disabled = false,
+  }: ButtonProps) => ({
+    type,
     withPaddings,
     disabled,
   })
