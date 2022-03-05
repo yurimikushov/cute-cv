@@ -34,6 +34,7 @@ type TranslationT = {
       name: {
         placeholder: string
       }
+      save: string
     }
     add: string
   }

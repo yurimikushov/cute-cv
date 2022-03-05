@@ -36,6 +36,7 @@ const en: TranslationT = {
       name: {
         placeholder: 'CV name',
       },
+      save: 'Save',
     },
     add: 'Add',
   },

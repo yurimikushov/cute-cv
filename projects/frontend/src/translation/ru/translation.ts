@@ -36,6 +36,7 @@ const ru: TranslationT = {
       name: {
         placeholder: 'Название резюме',
       },
+      save: 'Сохранить',
     },
     add: 'Добавить',
   },

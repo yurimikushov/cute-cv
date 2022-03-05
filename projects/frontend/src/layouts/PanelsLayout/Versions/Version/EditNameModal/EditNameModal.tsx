@@ -74,7 +74,7 @@ const EditNameModal: FC<EditNameModalProps> = ({
           onChange={setCurrentName}
         />
         <Button type='submit' disabled={isSaving}>
-          Save
+          {t('save')}
         </Button>
       </Form>
     </Container>
