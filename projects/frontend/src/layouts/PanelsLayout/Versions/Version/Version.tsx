@@ -26,7 +26,13 @@ const ArrowButton = styled(Button).attrs({
   height: 0.9rem;
 `
 
-const Version: FC<VersionProps> = ({ name, disabled, onDelete, ...props }) => {
+const Version: FC<VersionProps> = ({
+  name,
+  disabled,
+  onEditCvName,
+  onDelete,
+  ...props
+}) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
 
   return (
@@ -36,6 +42,9 @@ const Version: FC<VersionProps> = ({ name, disabled, onDelete, ...props }) => {
         trigger='click'
         content={
           <Content>
+            <Button withPaddings={false} onClick={onEditCvName}>
+              {t('editName')}
+            </Button>
             <Button withPaddings={false} onClick={onDelete}>
               {t('delete')}
             </Button>

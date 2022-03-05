@@ -46,6 +46,10 @@ const Versions: FC<VersionsProps> = (props) => {
     addCv()
   }
 
+  const handleEditCvName = (id: string) => {
+    console.log('updateCvName', { id })
+  }
+
   const handleDeleteCv = (id: string, isNew: boolean) => {
     if (confirm(t('confirmDelete'))) {
       deleteCv(id, isNew)
@@ -61,6 +65,7 @@ const Versions: FC<VersionsProps> = (props) => {
             <Version
               name={name}
               disabled={shouldDisable}
+              onEditCvName={() => handleEditCvName(id)}
               onDelete={() => handleDeleteCv(id, isNew)}
             />
           </Radio.Item>

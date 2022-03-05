@@ -25,6 +25,7 @@ type TranslationT = {
   versions: {
     title: string
     add: string
+    editName: string
     delete: string
     confirmDelete: string
   }
