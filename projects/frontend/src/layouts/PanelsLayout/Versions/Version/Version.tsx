@@ -1,11 +1,11 @@
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import Popup from 'components/Popup'
 import Card from 'components/Card'
 import Button from 'components/Button'
 import { ReactComponent as ArrowBottomIcon } from 'icons/arrow-bottom.svg'
 import VersionProps from './Version.props'
-import { useTranslation } from 'react-i18next'
 
 const Container = styled.div`
   display: inline-flex;
