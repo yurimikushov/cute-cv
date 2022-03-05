@@ -44,7 +44,7 @@ const Header: FC = () => {
       <FullName
         ref={fullNameRef}
         size='2xl'
-        disabled={!editable}
+        readonly={!editable}
         value={fullName}
         placeholder={t('fullName.placeholder')}
         maxLength={FULL_NAME_MAX_LENGTH}
@@ -52,7 +52,7 @@ const Header: FC = () => {
       />
       <Position
         size='xl'
-        disabled={!editable}
+        readonly={!editable}
         value={position}
         placeholder={t('position.placeholder')}
         maxLength={POSITION_MAX_LENGTH}

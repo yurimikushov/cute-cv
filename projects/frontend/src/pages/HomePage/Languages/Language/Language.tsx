@@ -33,7 +33,7 @@ const Language: FC<LanguagePropsT> = ({
   return (
     <Container {...props}>
       <LanguageField
-        disabled={!editable}
+        readonly={!editable}
         value={language}
         placeholder={t('placeholder')}
         maxLength={LANGUAGE_MAX_LENGTH}

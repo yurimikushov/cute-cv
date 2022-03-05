@@ -38,21 +38,21 @@ const DisabledTextArea = styled.div`
 `
 
 const TextArea: FC<TextAreaPropsT> = ({
-  disabled = false,
+  readonly = false,
   value,
   placeholder,
   onChange,
   ...props
 }) => {
   const { ref, height, handleHeightChange } =
-    useElementHeight<HTMLTextAreaElement>([value, disabled])
+    useElementHeight<HTMLTextAreaElement>([value, readonly])
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     handleHeightChange()
     onChange(e.target.value)
   }
 
-  if (disabled) {
+  if (readonly) {
     return (
       <DisabledTextArea {...props}>
         {mdToJsx(trim(value) || placeholder || '')}

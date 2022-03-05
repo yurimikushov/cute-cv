@@ -22,7 +22,7 @@ const AboutMe: FC = () => {
 
   return (
     <Description
-      disabled={!editable}
+      readonly={!editable}
       value={aboutMe}
       placeholder={t('placeholder')}
       maxLength={ABOUT_ME_MAX_LENGTH}

@@ -30,7 +30,7 @@ const Technologies: FC<TechnologiesPropsT> = (props) => {
     <Container {...props}>
       <H2>{t('title')}</H2>
       <Description
-        disabled={!editable}
+        readonly={!editable}
         value={technologies}
         placeholder={t('placeholder')}
         maxLength={MAX_TECHNOLOGIES_LENGTH}

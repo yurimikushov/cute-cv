@@ -56,14 +56,14 @@ const Contact: FC<ContactPropsT> = ({
   return (
     <Container {...props} hoverable>
       <Text
-        disabled={!editable}
+        readonly={!editable}
         value={text}
         placeholder={t('text.placeholder')}
         maxLength={CONTACT_TEXT_MAX_LENGTH}
         onChange={onTextChange}
       />
       <Reference
-        disabled={!editable}
+        readonly={!editable}
         value={href}
         placeholder={t('reference.placeholder')}
         maxLength={CONTACT_HREF_MAX_LENGTH}

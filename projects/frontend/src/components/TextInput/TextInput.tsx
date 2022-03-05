@@ -49,11 +49,11 @@ const DisabledTextInput = styled.div`
 `
 
 const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
-  { disabled = false, size = 'md', value, placeholder, onChange, ...props },
+  { readonly = false, size = 'md', value, placeholder, onChange, ...props },
   externalRef
 ) => {
   const { ref, width, handleWidthChange } = useElementWidth<HTMLInputElement>(
-    [value, disabled],
+    [value, readonly],
     { extraSpace: 3 /* fixes right side padding */ }
   )
 
@@ -64,7 +64,7 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
     onChange(e.target.value)
   }
 
-  if (disabled) {
+  if (readonly) {
     return (
       <DisabledTextInput {...props} size={size}>
         {trim(value) || placeholder || ''}

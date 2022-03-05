@@ -65,7 +65,7 @@ const Experience: FC<ExperiencePropsT> = ({
     >
       <Position
         size='md'
-        disabled={!editable}
+        readonly={!editable}
         value={position}
         placeholder={t('position.placeholder')}
         maxLength={EXPERIENCE_POSITION_MAX_LENGTH}
@@ -73,7 +73,7 @@ const Experience: FC<ExperiencePropsT> = ({
       />
       <Company
         size='md'
-        disabled={!editable}
+        readonly={!editable}
         value={company}
         placeholder={t('company.placeholder')}
         maxLength={EXPERIENCE_COMPANY_MAX_LENGTH}
@@ -81,14 +81,14 @@ const Experience: FC<ExperiencePropsT> = ({
       />
       <Duration
         size='sm'
-        disabled={!editable}
+        readonly={!editable}
         value={duration}
         placeholder={t('duration.placeholder')}
         maxLength={EXPERIENCE_DURATION_MAX_LENGTH}
         onChange={onDurationChange}
       />
       <Description
-        disabled={!editable}
+        readonly={!editable}
         value={description}
         placeholder={t('description.placeholder')}
         maxLength={EXPERIENCE_DESCRIPTION_MAX_LENGTH}

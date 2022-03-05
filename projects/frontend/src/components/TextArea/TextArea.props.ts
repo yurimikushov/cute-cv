@@ -1,6 +1,6 @@
 type TextAreaPropsT = {
   className?: string
-  disabled?: boolean
+  readonly?: boolean
   value: string
   placeholder?: string
   maxLength?: number

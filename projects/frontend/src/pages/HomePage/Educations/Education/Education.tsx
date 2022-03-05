@@ -56,7 +56,7 @@ const Education: FC<EducationPropsT> = ({
     >
       <Degree
         size='md'
-        disabled={!editable}
+        readonly={!editable}
         value={degree}
         placeholder={t('degree.placeholder')}
         maxLength={EDUCATION_DEGREE_MAX_LENGTH}
@@ -64,7 +64,7 @@ const Education: FC<EducationPropsT> = ({
       />
       <University
         size='md'
-        disabled={!editable}
+        readonly={!editable}
         value={university}
         placeholder={t('university.placeholder')}
         maxLength={EDUCATION_UNIVERSITY_MAX_LENGTH}
@@ -72,7 +72,7 @@ const Education: FC<EducationPropsT> = ({
       />
       <Duration
         size='sm'
-        disabled={!editable}
+        readonly={!editable}
         value={duration}
         placeholder={t('duration.placeholder')}
         maxLength={EDUCATION_DURATION_MAX_LENGTH}
