@@ -8,6 +8,13 @@ import {
 import { Type } from 'class-transformer'
 import { IsID } from 'validators'
 
+class MetadataDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  readonly name?: string
+}
+
 class PatchOneCvParamsDto {
   @IsID()
   readonly id: string
@@ -21,11 +28,4 @@ class PatchOneCvDto {
   readonly metadata?: MetadataDto
 }
 
-class MetadataDto {
-  @IsOptional()
-  @IsString()
-  @MaxLength(50)
-  readonly name?: string
-}
-
-export type { PatchOneCvParamsDto, PatchOneCvDto }
+export { PatchOneCvParamsDto, PatchOneCvDto }
