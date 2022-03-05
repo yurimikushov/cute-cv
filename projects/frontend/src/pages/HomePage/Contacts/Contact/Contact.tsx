@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
@@ -49,6 +49,14 @@ const Contact: FC<ContactPropsT> = ({
   const { t } = useTranslation('translation', { keyPrefix: 'contacts' })
   const { editable } = useEditable()
 
+  const handleChangeText = (e: ChangeEvent<HTMLInputElement>) => {
+    onTextChange(e.target.value)
+  }
+
+  const handleChangeHref = (e: ChangeEvent<HTMLInputElement>) => {
+    onHrefChange(e.target.value)
+  }
+
   if (!editable) {
     return <Href href={href || '/'}>{text || 'Contact'}</Href>
   }
@@ -60,14 +68,14 @@ const Contact: FC<ContactPropsT> = ({
         value={text}
         placeholder={t('text.placeholder')}
         maxLength={CONTACT_TEXT_MAX_LENGTH}
-        onChange={onTextChange}
+        onChange={handleChangeText}
       />
       <Reference
         readonly={!editable}
         value={href}
         placeholder={t('reference.placeholder')}
         maxLength={CONTACT_HREF_MAX_LENGTH}
-        onChange={onHrefChange}
+        onChange={handleChangeHref}
       />
       {editable && <Close onClick={onDelete} />}
     </Container>

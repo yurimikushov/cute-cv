@@ -1,4 +1,4 @@
-import { FC, FormEvent, useEffect, useState } from 'react'
+import { FC, ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { CV_NAME_MAX_LENGTH } from 'services/cv'
@@ -56,6 +56,10 @@ const EditNameModal: FC<EditNameModalProps> = ({
     setCurrentName(name)
   }, [name])
 
+  const handleChangeCurrentName = (e: ChangeEvent<HTMLInputElement>) => {
+    setCurrentName(e.target.value)
+  }
+
   const handleSave = (e: FormEvent) => {
     e.preventDefault()
     onSave(currentName)
@@ -71,7 +75,7 @@ const EditNameModal: FC<EditNameModalProps> = ({
           placeholder={t('name.placeholder')}
           disabled={isSaving}
           maxLength={CV_NAME_MAX_LENGTH}
-          onChange={setCurrentName}
+          onChange={handleChangeCurrentName}
         />
         <Button type='submit' disabled={isSaving}>
           {t('save')}

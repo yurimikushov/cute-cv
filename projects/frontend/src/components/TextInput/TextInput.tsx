@@ -75,7 +75,7 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     handleWidthChange()
-    onChange(e.target.value)
+    onChange(e)
   }
 
   if (readonly) {

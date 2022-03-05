@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useEditable, LANGUAGE_MAX_LENGTH } from 'services/cv'
@@ -30,6 +30,10 @@ const Language: FC<LanguagePropsT> = ({
   const { t } = useTranslation('translation', { keyPrefix: 'languages' })
   const { editable } = useEditable()
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value)
+  }
+
   return (
     <Container {...props}>
       <LanguageField
@@ -37,7 +41,7 @@ const Language: FC<LanguagePropsT> = ({
         value={language}
         placeholder={t('placeholder')}
         maxLength={LANGUAGE_MAX_LENGTH}
-        onChange={onChange}
+        onChange={handleChange}
       />
       {editable && <Close onClick={onDelete} />}
     </Container>

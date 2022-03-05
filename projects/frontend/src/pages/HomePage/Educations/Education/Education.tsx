@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
@@ -46,6 +46,18 @@ const Education: FC<EducationPropsT> = ({
   const { t } = useTranslation('translation', { keyPrefix: 'education' })
   const { editable } = useEditable()
 
+  const handleChangeDegree = (e: ChangeEvent<HTMLInputElement>) => {
+    onDegreeChange(e.target.value)
+  }
+
+  const handleChangeUniversity = (e: ChangeEvent<HTMLInputElement>) => {
+    onUniversityChange(e.target.value)
+  }
+
+  const handleChangeDuration = (e: ChangeEvent<HTMLInputElement>) => {
+    onDurationChange(e.target.value)
+  }
+
   return (
     <Container
       {...props}
@@ -60,7 +72,7 @@ const Education: FC<EducationPropsT> = ({
         value={degree}
         placeholder={t('degree.placeholder')}
         maxLength={EDUCATION_DEGREE_MAX_LENGTH}
-        onChange={onDegreeChange}
+        onChange={handleChangeDegree}
       />
       <University
         size='md'
@@ -68,7 +80,7 @@ const Education: FC<EducationPropsT> = ({
         value={university}
         placeholder={t('university.placeholder')}
         maxLength={EDUCATION_UNIVERSITY_MAX_LENGTH}
-        onChange={onUniversityChange}
+        onChange={handleChangeUniversity}
       />
       <Duration
         size='sm'
@@ -76,7 +88,7 @@ const Education: FC<EducationPropsT> = ({
         value={duration}
         placeholder={t('duration.placeholder')}
         maxLength={EDUCATION_DURATION_MAX_LENGTH}
-        onChange={onDurationChange}
+        onChange={handleChangeDuration}
       />
     </Container>
   )

@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react'
+import { FC, ChangeEvent, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useIsSignedIn } from 'services/auth'
@@ -39,6 +39,14 @@ const Header: FC = () => {
     fullNameRef.current?.focus()
   }, [isSignedIn])
 
+  const handleChangeFullName = (e: ChangeEvent<HTMLInputElement>) => {
+    changeFullName(e.target.value)
+  }
+
+  const handleChangPosition = (e: ChangeEvent<HTMLInputElement>) => {
+    changePosition(e.target.value)
+  }
+
   return (
     <header>
       <FullName
@@ -48,7 +56,7 @@ const Header: FC = () => {
         value={fullName}
         placeholder={t('fullName.placeholder')}
         maxLength={FULL_NAME_MAX_LENGTH}
-        onChange={changeFullName}
+        onChange={handleChangeFullName}
       />
       <Position
         size='xl'
@@ -56,7 +64,7 @@ const Header: FC = () => {
         value={position}
         placeholder={t('position.placeholder')}
         maxLength={POSITION_MAX_LENGTH}
-        onChange={changePosition}
+        onChange={handleChangPosition}
       />
     </header>
   )

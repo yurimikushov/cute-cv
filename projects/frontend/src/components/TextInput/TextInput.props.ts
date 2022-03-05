@@ -1,3 +1,5 @@
+import { ChangeEvent } from 'react'
+
 type TextInputPropsT = {
   className?: string
   readonly?: boolean
@@ -6,7 +8,7 @@ type TextInputPropsT = {
   value: string
   placeholder?: string
   maxLength?: number
-  onChange: (value: string) => void
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 export default TextInputPropsT

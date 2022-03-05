@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
@@ -55,6 +55,18 @@ const Experience: FC<ExperiencePropsT> = ({
   const { t } = useTranslation('translation', { keyPrefix: 'experience' })
   const { editable } = useEditable()
 
+  const handleChangePosition = (e: ChangeEvent<HTMLInputElement>) => {
+    onPositionChange(e.target.value)
+  }
+
+  const handleChangeCompany = (e: ChangeEvent<HTMLInputElement>) => {
+    onCompanyChange(e.target.value)
+  }
+
+  const handleChangeDuration = (e: ChangeEvent<HTMLInputElement>) => {
+    onDurationChange(e.target.value)
+  }
+
   return (
     <Container
       {...props}
@@ -69,7 +81,7 @@ const Experience: FC<ExperiencePropsT> = ({
         value={position}
         placeholder={t('position.placeholder')}
         maxLength={EXPERIENCE_POSITION_MAX_LENGTH}
-        onChange={onPositionChange}
+        onChange={handleChangePosition}
       />
       <Company
         size='md'
@@ -77,7 +89,7 @@ const Experience: FC<ExperiencePropsT> = ({
         value={company}
         placeholder={t('company.placeholder')}
         maxLength={EXPERIENCE_COMPANY_MAX_LENGTH}
-        onChange={onCompanyChange}
+        onChange={handleChangeCompany}
       />
       <Duration
         size='sm'
@@ -85,7 +97,7 @@ const Experience: FC<ExperiencePropsT> = ({
         value={duration}
         placeholder={t('duration.placeholder')}
         maxLength={EXPERIENCE_DURATION_MAX_LENGTH}
-        onChange={onDurationChange}
+        onChange={handleChangeDuration}
       />
       <Description
         readonly={!editable}
