@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import { useIsSignedIn } from 'services/auth'
 import Popup from 'components/Popup'
 import Card from 'components/Card'
 import Button from 'components/Button'
@@ -42,7 +43,7 @@ const Version: FC<VersionProps> = ({
   ...props
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
-
+  const { isSignedIn } = useIsSignedIn()
   const {
     isEditNameModalOpened,
     handleOpenEditNameModal,
@@ -54,28 +55,32 @@ const Version: FC<VersionProps> = ({
   return (
     <Container {...props}>
       <Name>{name}</Name>
-      <Popup
-        trigger='click'
-        content={
-          <Content>
-            <Button withPaddings={false} onClick={handleOpenEditNameModal}>
-              {t('toolsPopup.editName')}
-            </Button>
-            <Button withPaddings={false} onClick={onDelete}>
-              {t('toolsPopup.delete')}
-            </Button>
-          </Content>
-        }
-      >
-        <ArrowButton withPaddings={false} disabled={disabled} />
-      </Popup>
-      {isEditNameModalOpened && (
-        <EditNameModal
-          name={name}
-          isSaving={isSaving}
-          onClose={handleCloseEditNameModal}
-          onSave={handleUpdateCvName}
-        />
+      {isSignedIn && (
+        <>
+          <Popup
+            trigger='click'
+            content={
+              <Content>
+                <Button withPaddings={false} onClick={handleOpenEditNameModal}>
+                  {t('toolsPopup.editName')}
+                </Button>
+                <Button withPaddings={false} onClick={onDelete}>
+                  {t('toolsPopup.delete')}
+                </Button>
+              </Content>
+            }
+          >
+            <ArrowButton withPaddings={false} disabled={disabled} />
+          </Popup>
+          {isEditNameModalOpened && (
+            <EditNameModal
+              name={name}
+              isSaving={isSaving}
+              onClose={handleCloseEditNameModal}
+              onSave={handleUpdateCvName}
+            />
+          )}
+        </>
       )}
     </Container>
   )
