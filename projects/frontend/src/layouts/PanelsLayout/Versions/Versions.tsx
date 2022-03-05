@@ -9,6 +9,7 @@ import {
   useCurrentCvMetadata,
   useSelectCv,
   useAddCv,
+  useUpdateCvName,
   useDeleteCv,
   useIsCvSaving,
   useIsCvDeleting,
@@ -35,6 +36,7 @@ const Versions: FC<VersionsProps> = (props) => {
   const { id, isNew, isSaved } = useCurrentCvMetadata()
   const selectCv = useSelectCv()
   const addCv = useAddCv()
+  const updateCvName = useUpdateCvName()
   const deleteCv = useDeleteCv()
   const { isCvSaving } = useIsCvSaving()
   const { isCvDeleting } = useIsCvDeleting()
@@ -46,8 +48,8 @@ const Versions: FC<VersionsProps> = (props) => {
     addCv()
   }
 
-  const handleEditCvName = (id: string) => {
-    console.log('updateCvName', { id })
+  const handleUpdateCvName = async (id: string, name: string) => {
+    await updateCvName(id, name)
   }
 
   const handleDeleteCv = (id: string, isNew: boolean) => {
@@ -65,7 +67,7 @@ const Versions: FC<VersionsProps> = (props) => {
             <Version
               name={name}
               disabled={shouldDisable}
-              onEditCvName={() => handleEditCvName(id)}
+              onUpdateCvName={(name) => handleUpdateCvName(id, name)}
               onDelete={() => handleDeleteCv(id, isNew)}
             />
           </Radio.Item>

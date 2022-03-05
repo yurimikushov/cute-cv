@@ -5,6 +5,8 @@ import Popup from 'components/Popup'
 import Card from 'components/Card'
 import Button from 'components/Button'
 import { ReactComponent as ArrowBottomIcon } from 'icons/arrow-bottom.svg'
+import useEditNameModal from './hooks/useEditNameModal'
+import EditNameModal from './EditNameModal'
 import VersionProps from './Version.props'
 
 const Container = styled.div`
@@ -19,6 +21,11 @@ const Content = styled(Card)`
   gap: 0.5rem;
 `
 
+const Name = styled.span`
+  max-width: 5rem;
+  overflow-wrap: break-word;
+`
+
 const ArrowButton = styled(Button).attrs({
   children: <ArrowBottomIcon />,
 })`
@@ -29,20 +36,28 @@ const ArrowButton = styled(Button).attrs({
 const Version: FC<VersionProps> = ({
   name,
   disabled,
-  onEditCvName,
+  onUpdateCvName,
   onDelete,
   ...props
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
 
+  const {
+    isEditNameModalOpened,
+    handleOpenEditNameModal,
+    handleCloseEditNameModal,
+    isSaving,
+    handleUpdateCvName,
+  } = useEditNameModal(onUpdateCvName)
+
   return (
     <Container {...props}>
-      {name}
+      <Name>{name}</Name>
       <Popup
         trigger='click'
         content={
           <Content>
-            <Button withPaddings={false} onClick={onEditCvName}>
+            <Button withPaddings={false} onClick={handleOpenEditNameModal}>
               {t('editName')}
             </Button>
             <Button withPaddings={false} onClick={onDelete}>
@@ -53,6 +68,14 @@ const Version: FC<VersionProps> = ({
       >
         <ArrowButton withPaddings={false} disabled={disabled} />
       </Popup>
+      {isEditNameModalOpened && (
+        <EditNameModal
+          name={name}
+          isSaving={isSaving}
+          onClose={handleCloseEditNameModal}
+          onSave={handleUpdateCvName}
+        />
+      )}
     </Container>
   )
 }

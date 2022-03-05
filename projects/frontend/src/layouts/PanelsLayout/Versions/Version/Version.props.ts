@@ -2,7 +2,7 @@ type VersionProps = {
   className?: string
   name: string
   disabled: boolean
-  onEditCvName: () => void
+  onUpdateCvName: (name: string) => Promise<void>
   onDelete: () => void
 }
 

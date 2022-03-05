@@ -5,8 +5,8 @@ const useUpdateCvName = () => {
   const updateCvNameOnBackend = useUpdateCvNameOnBackend()
   const updateCvNameInStore = useUpdateCvNameInStore()
 
-  const handleUpdateCvName = (id: string, name: string) => {
-    updateCvNameOnBackend(id, name).then(() => {
+  const handleUpdateCvName = async (id: string, name: string) => {
+    await updateCvNameOnBackend(id, name).then(() => {
       updateCvNameInStore(id, name)
     })
   }

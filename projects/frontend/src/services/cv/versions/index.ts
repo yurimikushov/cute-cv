@@ -23,6 +23,7 @@ export {
 export type { CV } from './selectors'
 export {
   CV_VERSIONS_MAX_COUNT,
+  CV_NAME_MAX_LENGTH,
   FULL_NAME_MAX_LENGTH,
   POSITION_MAX_LENGTH,
   ABOUT_ME_MAX_LENGTH,
