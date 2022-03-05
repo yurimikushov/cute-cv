@@ -1,9 +1,11 @@
-import { RefObject, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import 'wicg-inert'
 import forEach from 'lodash/forEach'
 import getSiblings from 'lib/getSiblings'
 
-const useInertSiblings = <T extends HTMLElement>(elementRef: RefObject<T>) => {
+const useInertSiblings = <T extends HTMLElement>() => {
+  const elementRef = useRef<T>(null)
+
   useEffect(() => {
     const siblings = getSiblings(elementRef.current)
 
@@ -17,6 +19,10 @@ const useInertSiblings = <T extends HTMLElement>(elementRef: RefObject<T>) => {
       })
     }
   }, [])
+
+  return {
+    elementRef,
+  }
 }
 
 export default useInertSiblings

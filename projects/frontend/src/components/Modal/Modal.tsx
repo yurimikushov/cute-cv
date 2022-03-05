@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 import noop from 'lodash/noop'
 import useInertSiblings from 'hooks/useInertSiblings'
@@ -28,10 +28,8 @@ const Content = styled.div`
 `
 
 const Modal: FC<ModalProps> = ({ children, onClose = noop, ...props }) => {
-  const portalRef = useRef<HTMLDivElement>(null)
+  const { elementRef: portalRef } = useInertSiblings<HTMLDivElement>()
   const { contentRef } = useCloseModal<HTMLDivElement>(onClose)
-
-  useInertSiblings(portalRef)
 
   return (
     <Portal ref={portalRef}>
