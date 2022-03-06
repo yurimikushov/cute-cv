@@ -48,7 +48,6 @@ const Version: FC<VersionProps> = ({
     isEditNameModalOpened,
     handleOpenEditNameModal,
     handleCloseEditNameModal,
-    isSaving,
     handleUpdateCvName,
   } = useEditNameModal(onUpdateCvName)
 
@@ -75,7 +74,6 @@ const Version: FC<VersionProps> = ({
           {isEditNameModalOpened && (
             <EditNameModal
               name={name}
-              isSaving={isSaving}
               onClose={handleCloseEditNameModal}
               onSave={handleUpdateCvName}
             />

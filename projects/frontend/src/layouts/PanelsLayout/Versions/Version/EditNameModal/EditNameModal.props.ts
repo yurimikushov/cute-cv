@@ -1,8 +1,7 @@
 type EditNameModalProps = {
   className?: string
   name: string
-  isSaving: boolean
-  onSave: (name: string) => void
+  onSave: (name: string) => Promise<void>
   onClose: () => void
 }
 

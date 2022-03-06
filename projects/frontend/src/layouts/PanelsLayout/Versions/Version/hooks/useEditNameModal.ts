@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import useManageModal from 'hooks/useManageModal'
 
 const useEditNameModal = (onUpdateCvName: (name: string) => Promise<void>) => {
@@ -8,21 +7,15 @@ const useEditNameModal = (onUpdateCvName: (name: string) => Promise<void>) => {
     close: handleCloseEditNameModal,
   } = useManageModal()
 
-  const [isSaving, setIsSaving] = useState(false)
-
-  const handleUpdateCvName = (name: string) => {
-    setIsSaving(true)
-
-    onUpdateCvName(name)
-      .then(() => handleCloseEditNameModal())
-      .finally(() => setIsSaving(false))
+  const handleUpdateCvName = async (name: string) => {
+    await onUpdateCvName(name)
+    handleCloseEditNameModal()
   }
 
   return {
     isEditNameModalOpened,
     handleOpenEditNameModal,
     handleCloseEditNameModal,
-    isSaving,
     handleUpdateCvName,
   }
 }

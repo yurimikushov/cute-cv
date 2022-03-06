@@ -1,18 +1,18 @@
-import { FC, ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import replace from 'lodash/replace'
 import { CV_NAME_MAX_LENGTH } from 'services/cv'
 import Modal from 'components/Modal'
-import TextInput from 'components/TextInput'
-import Button from 'components/Button'
+import BaseForm, { FormProps } from 'components/Form'
 import colors from 'styles/colors'
 import fonts from 'styles/fonts'
 import radiuses from 'styles/radiuses'
 import EditNameModalProps from './EditNameModal.props'
 
 const Container = styled(Modal)`
-  width: 26rem;
-  padding: 2rem 3rem;
+  width: 24rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,22 +27,28 @@ const Title = styled.h1`
   color: ${colors.black};
 `
 
-const Form = styled.form`
+const stretchClassName = replace(String(styled.div``), '.', '')
+
+const Form = styled(BaseForm)`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+
+  & .${stretchClassName} {
+    min-width: 100%;
+    max-width: 100%;
+  }
 `
 
-const Name = styled(TextInput)`
-  min-width: 100%;
-`
+type FormValues = {
+  name: string
+}
 
 const EditNameModal: FC<EditNameModalProps> = ({
   name,
-  isSaving,
   onSave,
   onClose,
   ...props
@@ -50,36 +56,29 @@ const EditNameModal: FC<EditNameModalProps> = ({
   const { t } = useTranslation('translation', {
     keyPrefix: 'versions.editNameModal',
   })
-  const [currentName, setCurrentName] = useState(name)
 
-  useEffect(() => {
-    setCurrentName(name)
-  }, [name])
-
-  const handleChangeCurrentName = (e: ChangeEvent<HTMLInputElement>) => {
-    setCurrentName(e.target.value)
-  }
-
-  const handleSave = (e: FormEvent) => {
-    e.preventDefault()
-    onSave(currentName)
+  const handleSave = async ({ name }: FormValues) => {
+    await onSave(name)
   }
 
   return (
     <Container {...props} onClose={onClose}>
       <Title>{t('title')}</Title>
-      <Form onSubmit={handleSave}>
-        <Name
+      <Form<FC<FormProps<FormValues>>>
+        initialValues={{
+          name,
+        }}
+        onSubmit={handleSave}
+      >
+        <Form.TextInput
+          containerClassName={stretchClassName}
+          className={stretchClassName}
           size='lg'
-          value={currentName}
+          name='name'
           placeholder={t('name.placeholder')}
-          disabled={isSaving}
           maxLength={CV_NAME_MAX_LENGTH}
-          onChange={handleChangeCurrentName}
         />
-        <Button type='submit' disabled={isSaving}>
-          {t('save')}
-        </Button>
+        <Form.Button type='submit'>{t('save')}</Form.Button>
       </Form>
     </Container>
   )
