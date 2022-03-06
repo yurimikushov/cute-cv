@@ -6,6 +6,7 @@ import { useAuth, useIsSignInChecking } from 'services/auth'
 import {
   useAutoLoadAllCv,
   useAutoLoadCurrentCv,
+  useCleanUpAllCvAfterSignOut,
   useCurrentCvContent,
   useIsCVLoading,
 } from 'services/cv'
@@ -60,6 +61,7 @@ const HomePage: FC = () => {
   useAuth()
   useAutoLoadAllCv()
   useAutoLoadCurrentCv()
+  useCleanUpAllCvAfterSignOut()
 
   const { i18n } = useTranslation()
   const { cv } = useCurrentCvContent()

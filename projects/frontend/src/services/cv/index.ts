@@ -2,6 +2,7 @@ export { default as cvReducer } from './reducer'
 export {
   useAutoLoadAllCv,
   useAutoLoadCurrentCv,
+  useCleanUpAllCvAfterSignOut,
   useUpdateCvName,
   useDeleteCv,
 } from './hooks'
