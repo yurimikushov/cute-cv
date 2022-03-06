@@ -228,7 +228,7 @@ type DeleteLanguagePayload = {
 
 type AddCvPayload = {
   id: string
-  name: string
+  name?: string
   number: number
 }
 

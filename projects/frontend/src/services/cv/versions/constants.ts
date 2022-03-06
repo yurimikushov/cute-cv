@@ -1,5 +1,4 @@
 export const CV_VERSIONS_MAX_COUNT = 5
-export const VERSION_PREFIX = 'Version #'
 export const CV_NAME_MAX_LENGTH = 50
 
 export const FULL_NAME_MAX_LENGTH = 50

@@ -24,7 +24,7 @@ const useCleanUpAllCvAfterSignOut = () => {
       return
     }
 
-    const newCvId = addCv('Dummy')
+    const newCvId = addCv()
     selectCv(newCvId)
 
     forEach(allCv, ({ id }) => {

@@ -13,7 +13,7 @@ const useAddCv = () => {
 
   const dispatch = useDispatch()
 
-  const handleAddCv = (name: string) => {
+  const handleAddCv = (name?: string) => {
     if (cvCount >= CV_VERSIONS_MAX_COUNT) {
       throw new Error(
         `You already have ${cvCount} cv versions.

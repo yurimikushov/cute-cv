@@ -1,5 +1,4 @@
 import { nanoid } from '@reduxjs/toolkit'
-import { VERSION_PREFIX } from '../constants'
 import { Version } from '../model'
 
 const DEFAULT_CV_NUMBER = 1
@@ -12,11 +11,9 @@ type CreateCvParams = {
 
 const createCv = ({
   id = nanoid(),
-  name,
+  name = 'Dummy',
   number = DEFAULT_CV_NUMBER,
 }: CreateCvParams = {}): Version => {
-  name ??= `${VERSION_PREFIX}${number}`
-
   const experienceId = nanoid()
   const educationId = nanoid()
   const contactId = nanoid()
