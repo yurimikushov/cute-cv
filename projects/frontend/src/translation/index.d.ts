@@ -33,6 +33,7 @@ type TranslationT = {
       title: string
       name: {
         placeholder: string
+        required: string
       }
       save: string
     }

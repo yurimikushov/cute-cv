@@ -1,5 +1,6 @@
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import * as Yup from 'yup'
 import styled from 'styled-components'
 import replace from 'lodash/replace'
 import { CV_NAME_MAX_LENGTH } from 'services/cv'
@@ -57,6 +58,17 @@ const EditNameModal: FC<EditNameModalProps> = ({
     keyPrefix: 'versions.editNameModal',
   })
 
+  const validationSchema = useMemo(() => {
+    return Yup.object({
+      // eslint-disable-next-line lodash/prefer-lodash-method
+      name: Yup.string()
+        .strict(false)
+        .trim()
+        .max(CV_NAME_MAX_LENGTH)
+        .required(t('name.required')),
+    })
+  }, [])
+
   const handleSave = async ({ name }: FormValues) => {
     await onSave(name)
   }
@@ -68,6 +80,7 @@ const EditNameModal: FC<EditNameModalProps> = ({
         initialValues={{
           name,
         }}
+        validationSchema={validationSchema}
         onSubmit={handleSave}
       >
         <Form.TextInput

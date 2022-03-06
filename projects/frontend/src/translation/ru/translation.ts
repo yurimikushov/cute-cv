@@ -35,6 +35,7 @@ const ru: TranslationT = {
       title: 'Изменить название',
       name: {
         placeholder: 'Название резюме',
+        required: 'Это обязательное поле',
       },
       save: 'Сохранить',
     },

@@ -35,6 +35,7 @@ const en: TranslationT = {
       title: 'Edit name',
       name: {
         placeholder: 'CV name',
+        required: `It's required field`,
       },
       save: 'Save',
     },
