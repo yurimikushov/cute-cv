@@ -3,6 +3,7 @@ import defer from 'lodash/defer'
 import nonNullable from 'lib/nonNullable'
 import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import useOutsideClick from 'hooks/useOutsideClick'
+import useKeyDown from 'hooks/useKeyDown'
 import { Placement, Trigger } from '../Popup.props'
 import getContentPosition from './utils/getContentPosition'
 
@@ -52,6 +53,11 @@ const usePopup = (trigger: Trigger, placement: Placement) => {
     }
 
     hideContent()
+  })
+
+  useKeyDown({
+    code: 'Escape',
+    listener: hideContent,
   })
 
   return {
