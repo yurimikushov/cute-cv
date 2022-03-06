@@ -36,6 +36,14 @@ type TranslationT = {
       }
       save: string
     }
+    addModal: {
+      title: string
+      name: {
+        placeholder: string
+        required: string
+      }
+      add: string
+    }
     add: string
   }
   toolbar: {

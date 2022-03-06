@@ -21,7 +21,9 @@ import Radio from 'components/Radio'
 import Divider from 'components/Divider'
 import Button from 'components/Button'
 import { panelMixin } from '../mixins'
+import useAddCvModal from './hooks/useAddCvModal'
 import Version from './Version'
+import AddCvModal from './AddCvModal'
 import VersionsProps from './Versions.props'
 
 const Container = styled(Card)`
@@ -41,12 +43,14 @@ const Versions: FC<VersionsProps> = (props) => {
   const { isCvSaving } = useIsCvSaving()
   const { isCvDeleting } = useIsCvDeleting()
   const { isSignedIn } = useIsSignedIn()
+  const {
+    isAddModalOpened,
+    handleOpenAddModal,
+    handleCloseAddModal,
+    handleAddCv,
+  } = useAddCvModal(addCv)
 
   const shouldDisable = (!isNew && !isSaved) || isCvSaving || isCvDeleting
-
-  const handleAddCv = () => {
-    addCv()
-  }
 
   const handleUpdateCvName = async (id: string, name: string) => {
     await updateCvName(id, name)
@@ -84,11 +88,14 @@ const Versions: FC<VersionsProps> = (props) => {
           <Button
             withPaddings={false}
             disabled={shouldDisable}
-            onClick={handleAddCv}
+            onClick={handleOpenAddModal}
           >
             {t('add')}
           </Button>
         </>
+      )}
+      {isAddModalOpened && (
+        <AddCvModal onAdd={handleAddCv} onClose={handleCloseAddModal} />
       )}
     </Container>
   )

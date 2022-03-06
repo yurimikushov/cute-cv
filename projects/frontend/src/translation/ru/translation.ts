@@ -38,6 +38,14 @@ const ru: TranslationT = {
       },
       save: 'Сохранить',
     },
+    addModal: {
+      title: 'Добавить резюме',
+      name: {
+        placeholder: 'Название резюме',
+        required: 'Это обязательное поле',
+      },
+      add: 'Добавить',
+    },
     add: 'Добавить',
   },
   toolbar: {

@@ -38,6 +38,14 @@ const en: TranslationT = {
       },
       save: 'Save',
     },
+    addModal: {
+      title: 'Add CV',
+      name: {
+        placeholder: 'CV name',
+        required: `It's required field`,
+      },
+      add: 'Add',
+    },
     add: 'Add',
   },
   toolbar: {
