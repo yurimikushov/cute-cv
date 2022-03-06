@@ -378,8 +378,8 @@ const { actions, reducer } = createSlice({
     },
 
     addCv: (state, { payload }: PayloadAction<AddCvPayload>) => {
-      const { id, number } = payload
-      const { metadata, content } = createCv(id, number)
+      const { id, name, number } = payload
+      const { metadata, content } = createCv({ id, name, number })
 
       state.ids.push(id)
       state.byId[id] = {

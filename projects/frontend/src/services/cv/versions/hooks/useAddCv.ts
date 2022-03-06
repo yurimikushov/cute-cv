@@ -13,7 +13,7 @@ const useAddCv = () => {
 
   const dispatch = useDispatch()
 
-  const handleAddCv = (number?: number) => {
+  const handleAddCv = (name: string) => {
     if (cvCount >= CV_VERSIONS_MAX_COUNT) {
       throw new Error(
         `You already have ${cvCount} cv versions.
@@ -23,9 +23,9 @@ const useAddCv = () => {
 
     const id = nanoid()
     // eslint-disable-next-line no-magic-numbers
-    number ??= Math.max(...cvNumbers) + 1
+    const number = Math.max(...cvNumbers) + 1
 
-    dispatch(addCv({ id, number }))
+    dispatch(addCv({ id, name, number }))
     selectCv(id)
 
     return id

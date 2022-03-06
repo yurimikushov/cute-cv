@@ -23,8 +23,7 @@ const useDeleteCv = () => {
     const cvIds = map(allCv, 'id')
 
     if (isEmpty(without(cvIds, id))) {
-      const FIRST_CV_VERSION_NUMBER = 1
-      const newCvId = addCv(FIRST_CV_VERSION_NUMBER)
+      const newCvId = addCv('Dummy')
       cvIds.push(newCvId)
     }
 

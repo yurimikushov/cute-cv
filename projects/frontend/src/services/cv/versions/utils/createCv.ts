@@ -4,7 +4,19 @@ import { Version } from '../model'
 
 const DEFAULT_CV_NUMBER = 1
 
-const createCv = (id = nanoid(), number = DEFAULT_CV_NUMBER): Version => {
+type CreateCvParams = {
+  id?: string
+  name?: string
+  number?: number
+}
+
+const createCv = ({
+  id = nanoid(),
+  name,
+  number = DEFAULT_CV_NUMBER,
+}: CreateCvParams = {}): Version => {
+  name ??= `${VERSION_PREFIX}${number}`
+
   const experienceId = nanoid()
   const educationId = nanoid()
   const contactId = nanoid()
@@ -13,7 +25,7 @@ const createCv = (id = nanoid(), number = DEFAULT_CV_NUMBER): Version => {
   return {
     metadata: {
       id,
-      name: `${VERSION_PREFIX}${number}`,
+      name,
       number,
       isNew: true,
       isSaved: false,
