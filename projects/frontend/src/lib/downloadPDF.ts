@@ -1,6 +1,8 @@
-import html2pdf from 'html2pdf.js'
-
 const downloadPDF = async (filename: string, fromSelector: string) => {
+  const { default: html2pdf } = await import(
+    /* webpackPrefetch: true */ /* webpackChunkName: "html2pdf" */ 'html2pdf.js'
+  )
+
   const options = {
     filename: `${filename}.pdf`,
     margin: 15,
