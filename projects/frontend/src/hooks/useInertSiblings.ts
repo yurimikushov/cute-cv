@@ -18,7 +18,7 @@ const useInertSiblings = <T extends HTMLElement>() => {
         sibling.inert = false
       })
     }
-  }, [])
+  }, [elementRef.current])
 
   return {
     elementRef,
