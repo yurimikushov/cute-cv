@@ -1,21 +1,7 @@
 import { FC, cloneElement } from 'react'
-import styled from 'styled-components'
-import Portal from 'components/Portal'
-import zIndex from 'styles/zIndex'
 import usePopup from './hooks/usePopup'
 import PopupProps from './Popup.props'
-
-type ContentProps = {
-  top: number
-  left: number
-}
-
-const Content = styled.div<ContentProps>`
-  position: absolute;
-  top: ${({ top }) => top}px;
-  left: ${({ left }) => left}px;
-  z-index: ${zIndex.popup};
-`
+import ContentPortal from './ContentPortal'
 
 const Popup: FC<PopupProps> = ({
   trigger = 'click',
@@ -28,11 +14,7 @@ const Popup: FC<PopupProps> = ({
   return (
     <>
       {cloneElement(children, triggerProps)}
-      {isVisible && (
-        <Portal>
-          <Content {...contentProps}>{content}</Content>
-        </Portal>
-      )}
+      {isVisible && <ContentPortal {...contentProps}>{content}</ContentPortal>}
     </>
   )
 }
