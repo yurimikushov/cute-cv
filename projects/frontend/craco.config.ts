@@ -1,5 +1,10 @@
-import { CracoConfig, whenProd } from '@craco/craco'
+import { CracoConfig, when, whenProd } from '@craco/craco'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import includes from 'lodash/includes'
+
+const whenBundleAnalyzing = <T>(cb: () => T) => {
+  return when(Boolean(process.env.BUNDLE_ANALYZING), cb)
+}
 
 const willBeDynamicallyImported = ['html2pdf']
 
@@ -25,6 +30,9 @@ const config: CracoConfig = {
           },
         },
       })),
+      plugins: [
+        ...(whenBundleAnalyzing(() => [new BundleAnalyzerPlugin()]) ?? []),
+      ],
     },
   },
 }
