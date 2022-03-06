@@ -28,6 +28,11 @@ const Name = styled.span`
   overflow-wrap: break-word;
 `
 
+const PopupButton = styled(Button)`
+  min-width: 5rem;
+  width: min-content;
+`
+
 const ArrowButton = styled(Button).attrs({
   children: <ArrowBottomIcon />,
 })`
@@ -60,12 +65,15 @@ const Version: FC<VersionProps> = ({
             trigger='click'
             content={
               <Content>
-                <Button withPaddings={false} onClick={handleOpenEditNameModal}>
+                <PopupButton
+                  withPaddings={false}
+                  onClick={handleOpenEditNameModal}
+                >
                   {t('toolsPopup.editName')}
-                </Button>
-                <Button withPaddings={false} onClick={onDelete}>
+                </PopupButton>
+                <PopupButton withPaddings={false} onClick={onDelete}>
                   {t('toolsPopup.delete')}
-                </Button>
+                </PopupButton>
               </Content>
             }
           >
