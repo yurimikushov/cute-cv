@@ -15,7 +15,7 @@ const Container = styled.div`
 `
 
 const Download: FC<DownloadPropsT> = (props) => {
-  const { t } = useTranslation('translation', { keyPrefix: 'toolbar' })
+  const { t } = useTranslation('translation', { keyPrefix: 'toolbar.download' })
   const prevEditableRef = useRef<boolean>(false)
   const { editable, handleToggle } = useEditable()
   const { isDownloading, handleDownloadPDF, handleDownloadJSON } = useDownload()
@@ -38,20 +38,20 @@ const Download: FC<DownloadPropsT> = (props) => {
 
   return (
     <Container {...props}>
-      <H2>{t('download.title')}</H2>
+      <H2>{t('title')}</H2>
       <Button
         withPaddings={false}
         disabled={isDownloading}
         onClick={withToggleEditable(handleDownloadPDF)}
       >
-        {t('download.pdf')}
+        {t('pdf')}
       </Button>
       <Button
         withPaddings={false}
         disabled={isDownloading}
         onClick={withToggleEditable(handleDownloadJSON)}
       >
-        {t('download.json')}
+        {t('json')}
       </Button>
     </Container>
   )
