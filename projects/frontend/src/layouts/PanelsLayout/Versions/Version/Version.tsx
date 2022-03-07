@@ -4,8 +4,7 @@ import styled from 'styled-components'
 import { useIsSignedIn } from 'services/auth'
 import Popup from 'components/Popup'
 import Card from 'components/Card'
-import Button from 'components/Button'
-import { ReactComponent as ArrowBottomIcon } from 'icons/arrow-bottom.svg'
+import Button, { ArrowButton } from 'components/Button'
 import useEditNameModal from './hooks/useEditNameModal'
 import EditNameModal from './EditNameModal'
 import VersionProps from './Version.props'
@@ -31,13 +30,6 @@ const Name = styled.span`
 const PopupButton = styled(Button)`
   min-width: 5rem;
   width: min-content;
-`
-
-const ArrowButton = styled(Button).attrs({
-  children: <ArrowBottomIcon />,
-})`
-  width: 0.9rem;
-  height: 0.9rem;
 `
 
 const Version: FC<VersionProps> = ({
@@ -82,11 +74,7 @@ const Version: FC<VersionProps> = ({
               </Content>
             }
           >
-            <ArrowButton
-              appearance='text'
-              withoutPaddings
-              disabled={disabled}
-            />
+            <ArrowButton disabled={disabled} />
           </Popup>
           {isEditNameModalOpened && (
             <EditNameModal
