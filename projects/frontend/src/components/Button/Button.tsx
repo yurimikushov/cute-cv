@@ -5,7 +5,6 @@ import radiuses from 'styles/radiuses'
 import focusMixin from 'styles/mixins/focus'
 import ButtonProps from './Button.props'
 
-// @ts-expect-error bad typing
 const Button: FC<ButtonProps> = styled.button.attrs(
   ({
     type = 'button',
