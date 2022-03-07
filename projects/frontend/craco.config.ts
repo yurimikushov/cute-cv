@@ -6,7 +6,8 @@ const whenBundleAnalyzing = <T>(cb: () => T) => {
   return when(Boolean(process.env.BUNDLE_ANALYZING), cb)
 }
 
-const willBeDynamicallyImported = ['html2pdf']
+const dynamicImports = ['html2pdf']
+const isDynamicImport = (name: string) => includes(dynamicImports, name)
 
 const config: CracoConfig = {
   webpack: {
@@ -19,11 +20,7 @@ const config: CracoConfig = {
                 test: /[\\/]node_modules[\\/]/u,
                 name: 'vendor',
                 chunks({ name }) {
-                  if (includes(willBeDynamicallyImported, name)) {
-                    return false
-                  }
-
-                  return true
+                  return !isDynamicImport(name)
                 },
               },
             },
