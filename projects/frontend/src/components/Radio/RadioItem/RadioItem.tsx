@@ -35,8 +35,11 @@ const RadioItem: FC<RadioItemProps> = ({
     onClick()
   }
 
-  const handleKeyDown = ({ code }: KeyboardEvent) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    const { code } = e
+
     if (code === 'Space' || code === 'Enter') {
+      e.preventDefault()
       handleClick()
     }
   }
