@@ -10,7 +10,7 @@ import {
 import Card from 'components/Card'
 import TextInput from 'components/TextInput'
 import colors from 'styles/colors'
-import EducationPropsT from './Education.props'
+import EducationProps from './Education.props'
 
 const Container = styled(Card)`
   display: flex;
@@ -33,7 +33,7 @@ const Duration = styled(TextInput)`
   color: ${colors.gray300};
 `
 
-const Education: FC<EducationPropsT> = ({
+const Education: FC<EducationProps> = ({
   degree,
   university,
   duration,

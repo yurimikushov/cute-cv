@@ -1,5 +1,5 @@
-type HiddenImgInputPropsT = {
+type HiddenImgInputProps = {
   className?: string
 }
 
-export default HiddenImgInputPropsT
+export default HiddenImgInputProps

@@ -1,5 +1,5 @@
-type FullScreenPropsT = {
+type FullScreenProps = {
   className?: string
 }
 
-export default FullScreenPropsT
+export default FullScreenProps

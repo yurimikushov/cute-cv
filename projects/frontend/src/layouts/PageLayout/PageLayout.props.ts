@@ -1,5 +1,5 @@
-type PageLayoutPropsT = {
+type PageLayoutProps = {
   className?: string
 }
 
-export default PageLayoutPropsT
+export default PageLayoutProps

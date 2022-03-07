@@ -1,5 +1,5 @@
-type ContactsPropsT = {
+type ContactsProps = {
   className?: string
 }
 
-export default ContactsPropsT
+export default ContactsProps

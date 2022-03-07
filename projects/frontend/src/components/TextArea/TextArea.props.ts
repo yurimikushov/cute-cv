@@ -1,6 +1,6 @@
 import { ChangeEvent, FocusEvent } from 'react'
 
-type TextAreaPropsT = {
+type TextAreaProps = {
   className?: string
   readonly?: boolean
   disabled?: boolean
@@ -11,4 +11,4 @@ type TextAreaPropsT = {
   onBlur?: (e: FocusEvent<HTMLTextAreaElement>) => void
 }
 
-export default TextAreaPropsT
+export default TextAreaProps

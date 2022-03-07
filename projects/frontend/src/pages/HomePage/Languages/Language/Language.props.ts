@@ -1,8 +1,8 @@
-type LanguagePropsT = {
+type LanguageProps = {
   className?: string
   language: string
   onChange: (language: string) => void
   onDelete: () => void
 }
 
-export default LanguagePropsT
+export default LanguageProps

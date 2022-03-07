@@ -6,7 +6,7 @@ import { useDownload, useEditable } from 'services/cv'
 import Button from 'components/Button'
 import colors from 'styles/colors'
 import useSavedStatus from './hooks/useSavedStatus'
-import PanelPropsT from './Panel.props'
+import PanelProps from './Panel.props'
 
 const Container = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ const SavedStatus = styled.div`
   color: ${colors.gray300};
 `
 
-const Panel: FC<PanelPropsT> = (props) => {
+const Panel: FC<PanelProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'panel' })
   const { editable, handleToggle } = useEditable()
   const savedStatus = useSavedStatus()

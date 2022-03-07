@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useEditable, LANGUAGE_MAX_LENGTH } from 'services/cv'
 import TextInput from 'components/TextInput'
 import { CloseButton } from 'components/Button'
-import LanguagePropsT from './Language.props'
+import LanguageProps from './Language.props'
 
 const Container = styled.div`
   position: relative;
@@ -21,7 +21,7 @@ const Close = styled(CloseButton)`
   right: 0.375rem;
 `
 
-const Language: FC<LanguagePropsT> = ({
+const Language: FC<LanguageProps> = ({
   language,
   onChange,
   onDelete,

@@ -10,7 +10,7 @@ import Card from 'components/Card'
 import Href from 'components/Href'
 import TextInput from 'components/TextInput'
 import { CloseButton } from 'components/Button'
-import ContactPropsT from './Contact.props'
+import ContactProps from './Contact.props'
 
 const Container = styled(Card)`
   position: relative;
@@ -38,7 +38,7 @@ const Close = styled(CloseButton)`
   right: 0.65rem;
 `
 
-const Contact: FC<ContactPropsT> = ({
+const Contact: FC<ContactProps> = ({
   text,
   href,
   onTextChange,

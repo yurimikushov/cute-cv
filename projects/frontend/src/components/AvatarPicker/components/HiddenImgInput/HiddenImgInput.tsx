@@ -1,6 +1,6 @@
 import { forwardRef, ForwardRefRenderFunction } from 'react'
 import styled from 'styled-components'
-import HiddenImgInputPropsT from './HiddenImgInput.props'
+import HiddenImgInputProps from './HiddenImgInput.props'
 
 const HiddenFileInput = styled.input.attrs({
   type: 'file',
@@ -12,7 +12,7 @@ const ACCEPT_FORMATS = ['.png', '.jpg', '.jpeg'].join(',')
 
 const HiddenImgInput: ForwardRefRenderFunction<
   HTMLInputElement,
-  HiddenImgInputPropsT
+  HiddenImgInputProps
 > = (props, ref) => (
   <HiddenFileInput {...props} ref={ref} accept={ACCEPT_FORMATS} />
 )

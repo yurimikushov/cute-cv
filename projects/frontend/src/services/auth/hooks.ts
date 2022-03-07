@@ -6,7 +6,7 @@ import {
   useIsSignInChecking,
   useIsSignedIn,
   watchSignInStateChange,
-  SignInChangedStateT,
+  SignInChangedState,
 } from './signIn'
 import { useUser } from './user'
 import { resetToken, setToken } from './utils'
@@ -22,7 +22,7 @@ const useAuth = () => {
     const finishFirstChecking = once(handleFinish)
 
     const unsubscribe = watchSignInStateChange(
-      (signInState: SignInChangedStateT | null) => {
+      (signInState: SignInChangedState | null) => {
         if (isNull(signInState)) {
           handleReset()
           resetToken()

@@ -1,21 +1,21 @@
 import { RootState } from 'services/store'
-import { SignInStateT } from './model'
+import { SignInState } from './model'
 
-const selectIsChecking = ({ auth }: RootState): SignInStateT['isChecking'] => {
+const selectIsChecking = ({ auth }: RootState): SignInState['isChecking'] => {
   return auth.signIn.isChecking
 }
 
-const selectIsSignedIn = ({ auth }: RootState): SignInStateT['isSignedIn'] => {
+const selectIsSignedIn = ({ auth }: RootState): SignInState['isSignedIn'] => {
   return auth.signIn.isSignedIn
 }
 
-const selectIsSkipped = ({ auth }: RootState): SignInStateT['isSkipped'] => {
+const selectIsSkipped = ({ auth }: RootState): SignInState['isSkipped'] => {
   return auth.signIn.isSkipped
 }
 
 const selectIsModalDisplayed = ({
   auth,
-}: RootState): SignInStateT['isModalDisplayed'] => {
+}: RootState): SignInState['isModalDisplayed'] => {
   return auth.signIn.isModalDisplayed
 }
 

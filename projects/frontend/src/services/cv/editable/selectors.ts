@@ -1,7 +1,7 @@
 import { RootState } from 'services/store'
-import { EditableStateT } from './model'
+import { EditableState } from './model'
 
-const selectEditable = ({ cv }: RootState): EditableStateT['editable'] => {
+const selectEditable = ({ cv }: RootState): EditableState['editable'] => {
   return cv.editable.editable
 }
 

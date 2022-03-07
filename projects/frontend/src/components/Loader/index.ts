@@ -1,13 +1,13 @@
 import InnerLoader from './Loader'
 import FullScreen from './FullScreen'
 
-type InnerLoaderT = typeof InnerLoader
+type InnerLoaderInterface = typeof InnerLoader
 
-type LoaderT = InnerLoaderT & {
+type LoaderInterface = InnerLoaderInterface & {
   FullScreen: typeof FullScreen
 }
 
-const Loader = InnerLoader as LoaderT
+const Loader = InnerLoader as LoaderInterface
 
 Loader.FullScreen = FullScreen
 

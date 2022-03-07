@@ -1,5 +1,5 @@
-type ToolbarPropsT = {
+type ToolbarProps = {
   className?: string
 }
 
-export default ToolbarPropsT
+export default ToolbarProps

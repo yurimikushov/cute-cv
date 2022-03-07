@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import HrefPropsT from './Href.props'
+import HrefProps from './Href.props'
 
 // @ts-expect-error bad typing
-const Href: FC<HrefPropsT> = styled.a.attrs({
+const Href: FC<HrefProps> = styled.a.attrs({
   rel: 'noreferrer',
   target: '_blank',
 })``

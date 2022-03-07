@@ -1,13 +1,13 @@
-import { User } from 'firebase/auth'
+import { User as FirebaseUser } from 'firebase/auth'
 
-type UserStateT = {
-  user: UserT | null
+type UserState = {
+  user: User | null
 }
 
-type UserT = Pick<User, 'uid' | 'displayName' | 'email'>
+type User = Pick<FirebaseUser, 'uid' | 'displayName' | 'email'>
 
-type SetUserPayloadT = {
-  user: UserT
+type SetUserPayload = {
+  user: User
 }
 
-export type { UserStateT, SetUserPayloadT }
+export type { UserState, SetUserPayload }

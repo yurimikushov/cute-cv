@@ -3,9 +3,9 @@ import { mkdirSync, writeFileSync } from 'fs'
 
 const createComponent = (name: string) =>
   `import { FC } from 'react'
-import ${name}PropsT from './${name}.props'
+import ${name}Props from './${name}.props'
 
-const ${name}: FC<${name}PropsT> = () => {
+const ${name}: FC<${name}Props> = () => {
   return (
     <div>
       It was automatically generated
@@ -17,11 +17,11 @@ export default ${name}
 `
 
 const createComponentProps = (name: string) =>
-  `type ${name}PropsT = {
+  `type ${name}Props = {
   className?: string
 }
 
-export default ${name}PropsT
+export default ${name}Props
 `
 
 const createIndexFile = (name: string) =>

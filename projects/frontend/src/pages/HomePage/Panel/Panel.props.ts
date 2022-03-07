@@ -1,5 +1,5 @@
-type PanelPropsT = {
+type PanelProps = {
   className?: string
 }
 
-export default PanelPropsT
+export default PanelProps

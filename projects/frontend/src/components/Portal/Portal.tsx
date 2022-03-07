@@ -7,9 +7,9 @@ import { createPortal } from 'react-dom'
 import nonNullable from 'lib/nonNullable'
 import usePortalRef from './hooks/usePortalRef'
 import useAppendIntoRoot from './hooks/useAppendIntoRoot'
-import PortalPropsT from './Portal.props'
+import PortalProps from './Portal.props'
 
-const Portal: ForwardRefRenderFunction<HTMLDivElement, PortalPropsT> = (
+const Portal: ForwardRefRenderFunction<HTMLDivElement, PortalProps> = (
   { children },
   externalRef
 ) => {

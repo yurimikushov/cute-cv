@@ -2,9 +2,9 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import colors from 'styles/colors'
 import radiuses from 'styles/radiuses'
-import PageLayoutPropsT from './PageLayout.props'
+import PageLayoutProps from './PageLayout.props'
 
-const PageLayout: FC<PageLayoutPropsT> = styled.div`
+const PageLayout: FC<PageLayoutProps> = styled.div`
   max-width: 765px;
   min-height: 900px;
   background-color: ${colors.white};

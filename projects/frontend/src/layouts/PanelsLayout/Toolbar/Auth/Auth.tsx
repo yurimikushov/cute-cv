@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { useSignOut, useIsSignedIn, useSignInModal } from 'services/auth'
 import { useDownload } from 'services/cv'
 import Button from 'components/Button'
-import AuthPropsT from './Auth.props'
+import AuthProps from './Auth.props'
 
-const Auth: FC<AuthPropsT> = (props) => {
+const Auth: FC<AuthProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'toolbar' })
   const { isSignedIn } = useIsSignedIn()
   const { handleDisplaySignInModal } = useSignInModal()

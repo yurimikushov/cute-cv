@@ -5,9 +5,9 @@ import { CloseButton } from 'components/Button'
 import colors from 'styles/colors'
 import radiuses from 'styles/radiuses'
 import shadows from 'styles/shadows'
-import CardPropsT from './Card.props'
+import CardProps from './Card.props'
 
-const Container = styled.div<CardPropsT>`
+const Container = styled.div<CardProps>`
   position: relative;
   background-color: ${colors.white};
   border-radius: ${radiuses.md};
@@ -31,7 +31,7 @@ const Close = styled(CloseButton)`
   right: 0.375rem;
 `
 
-const Card: FC<CardPropsT> = ({
+const Card: FC<CardProps> = ({
   withBorder = true,
   hasClose = false,
   hoverable = false,

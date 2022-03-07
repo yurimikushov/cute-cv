@@ -15,7 +15,7 @@ import colors from 'styles/colors'
 import fonts from 'styles/fonts'
 import radiuses from 'styles/radiuses'
 import SignInButton from './SignInButton'
-import SignInModalPropsT from './SignInModal.props'
+import SignInModalProps from './SignInModal.props'
 
 const Container = styled(Modal)`
   padding: 5rem 6rem;
@@ -42,7 +42,7 @@ const Skip = styled.div`
   margin-top: 2rem;
 `
 
-const SignInModal: FC<SignInModalPropsT> = ({ onSkip, ...props }) => {
+const SignInModal: FC<SignInModalProps> = ({ onSkip, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'signIn' })
   const { handleSignInGoogle } = useSignInGoogle()
   const { handleSignInFacebook } = useSignInFacebook()

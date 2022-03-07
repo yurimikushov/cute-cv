@@ -1,5 +1,5 @@
-type LanguagesPropsT = {
+type LanguagesProps = {
   className?: string
 }
 
-export default LanguagesPropsT
+export default LanguagesProps

@@ -1,5 +1,5 @@
-type CVLayoutPropsT = {
+type CVLayoutProps = {
   className?: string
 }
 
-export default CVLayoutPropsT
+export default CVLayoutProps

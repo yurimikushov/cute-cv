@@ -1,5 +1,5 @@
-type EditableStateT = {
+type EditableState = {
   editable: boolean
 }
 
-export type { EditableStateT }
+export type { EditableState }

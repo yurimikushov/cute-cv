@@ -7,7 +7,7 @@ import AvatarImg from './components/AvatarImg'
 import PickBtn from './components/PickBtn'
 import ClearBtn from './components/ClearBtn'
 import HiddenImgInput from './components/HiddenImgInput'
-import AvatarPickerPropsT from './AvatarPicker.props'
+import AvatarPickerProps from './AvatarPicker.props'
 
 const Container = styled.div`
   position: relative;
@@ -50,7 +50,7 @@ const Clear = styled(ClearBtn)`
   }
 `
 
-const AvatarPicker: FC<AvatarPickerPropsT> = ({
+const AvatarPicker: FC<AvatarPickerProps> = ({
   editable = true,
   src,
   onPick,

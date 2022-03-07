@@ -13,7 +13,7 @@ import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { H2 } from 'components/H'
 import Button from 'components/Button'
 import Language from './Language'
-import LanguagesPropsT from './Languages.props'
+import LanguagesProps from './Languages.props'
 
 const Container = styled.div`
   & > * + * {
@@ -26,7 +26,7 @@ const Add = styled(Button)`
   margin: 0.5rem auto 0;
 `
 
-const Languages: FC<LanguagesPropsT> = (props) => {
+const Languages: FC<LanguagesProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'languages' })
   const { editable } = useEditable()
   const {

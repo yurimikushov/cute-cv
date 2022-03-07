@@ -1,5 +1,5 @@
-type DownloadStateT = {
+type DownloadState = {
   isDownloading: boolean
 }
 
-export type { DownloadStateT }
+export type { DownloadState }

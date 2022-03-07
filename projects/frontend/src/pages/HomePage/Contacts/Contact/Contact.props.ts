@@ -1,4 +1,4 @@
-type ContactPropsT = {
+type ContactProps = {
   className?: string
   text: string
   href: string
@@ -7,4 +7,4 @@ type ContactPropsT = {
   onDelete: () => void
 }
 
-export default ContactPropsT
+export default ContactProps

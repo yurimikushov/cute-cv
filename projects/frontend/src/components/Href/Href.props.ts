@@ -1,6 +1,6 @@
-type HrefPropsT = {
+type HrefProps = {
   className?: string
   href: string
 }
 
-export default HrefPropsT
+export default HrefProps

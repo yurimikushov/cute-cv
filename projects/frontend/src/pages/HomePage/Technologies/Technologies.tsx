@@ -8,7 +8,7 @@ import {
 } from 'services/cv'
 import { H2 } from 'components/H'
 import TextArea from 'components/TextArea'
-import TechnologiesPropsT from './Technologies.props'
+import TechnologiesProps from './Technologies.props'
 
 const Container = styled.div`
   & > * + * {
@@ -18,7 +18,7 @@ const Container = styled.div`
 
 const Description = styled(TextArea)``
 
-const Technologies: FC<TechnologiesPropsT> = (props) => {
+const Technologies: FC<TechnologiesProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'technologies' })
   const { editable } = useEditable()
   const {

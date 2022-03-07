@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from 'services'
-import { DownloadStateT } from './model'
+import { DownloadState } from './model'
 
-const initialState: DownloadStateT = {
+const initialState: DownloadState = {
   isDownloading: false,
 }
 

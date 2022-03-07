@@ -1,5 +1,5 @@
-type EducationsPropsT = {
+type EducationsProps = {
   className?: string
 }
 
-export default EducationsPropsT
+export default EducationsProps

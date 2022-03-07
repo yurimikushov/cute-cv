@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from './selectors'
-import { SetUserPayloadT } from './model'
+import { SetUserPayload } from './model'
 import { reset, set } from './slice'
 
 const useUser = () => {
@@ -9,7 +9,7 @@ const useUser = () => {
 
   const dispatch = useDispatch()
 
-  const handleSet = useCallback((payload: SetUserPayloadT) => {
+  const handleSet = useCallback((payload: SetUserPayload) => {
     dispatch(set(payload))
   }, [])
 

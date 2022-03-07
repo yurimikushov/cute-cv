@@ -1,4 +1,4 @@
-type EducationPropsT = {
+type EducationProps = {
   className?: string
   degree: string
   university: string
@@ -9,4 +9,4 @@ type EducationPropsT = {
   onDelete: () => void
 }
 
-export default EducationPropsT
+export default EducationProps

@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from 'services'
-import { UserStateT, SetUserPayloadT } from './model'
+import { UserState, SetUserPayload } from './model'
 
-const initialState: UserStateT = {
+const initialState: UserState = {
   user: null,
 }
 
@@ -10,7 +10,7 @@ const { actions, reducer } = createSlice({
   name: `${ServiceNameEnum.auth}/user`,
   initialState,
   reducers: {
-    set: (state, { payload }: PayloadAction<SetUserPayloadT>) => {
+    set: (state, { payload }: PayloadAction<SetUserPayload>) => {
       state.user = payload.user
     },
     reset: (state) => {

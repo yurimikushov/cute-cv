@@ -6,7 +6,7 @@ import colors from 'styles/colors'
 import radiuses from 'styles/radiuses'
 import focusMixin from 'styles/mixins/focus'
 import useElementHeight from './hooks/useElementHeight'
-import TextAreaPropsT from './TextArea.props'
+import TextAreaProps from './TextArea.props'
 
 const textAreaMixin = css`
   max-width: 100%;
@@ -43,7 +43,7 @@ const DisabledTextArea = styled.div`
   white-space: pre-line;
 `
 
-const TextArea: FC<TextAreaPropsT> = ({
+const TextArea: FC<TextAreaProps> = ({
   readonly = false,
   disabled = false,
   value,

@@ -1,5 +1,5 @@
-type ExperiencesPropsT = {
+type ExperiencesProps = {
   className?: string
 }
 
-export default ExperiencesPropsT
+export default ExperiencesProps

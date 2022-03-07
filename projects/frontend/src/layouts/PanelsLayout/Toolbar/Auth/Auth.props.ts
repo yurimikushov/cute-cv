@@ -1,5 +1,5 @@
-type AuthPropsT = {
+type AuthProps = {
   className?: string
 }
 
-export default AuthPropsT
+export default AuthProps

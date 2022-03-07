@@ -4,7 +4,7 @@ import colors from 'styles/colors'
 import fonts from 'styles/fonts'
 import radiuses from 'styles/radiuses'
 import shadows from 'styles/shadows'
-import PickBtnPropsT from './PickBtn.props'
+import PickBtnProps from './PickBtn.props'
 
 const Container = styled.button.attrs({
   type: 'button',
@@ -18,7 +18,7 @@ const Container = styled.button.attrs({
   box-shadow: ${shadows.sm};
 `
 
-const PickBtn: ForwardRefRenderFunction<HTMLButtonElement, PickBtnPropsT> = (
+const PickBtn: ForwardRefRenderFunction<HTMLButtonElement, PickBtnProps> = (
   props,
   ref
 ) => (

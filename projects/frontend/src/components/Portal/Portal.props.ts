@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
-type PortalPropsT = {
+type PortalProps = {
   children: ReactNode
 }
 
-export default PortalPropsT
+export default PortalProps

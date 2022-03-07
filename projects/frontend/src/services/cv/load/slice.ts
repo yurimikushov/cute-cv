@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from 'services'
-import { LoadingStateT } from './model'
+import { LoadingState } from './model'
 import { loadAll, load } from './thunks'
 
-const initialState: LoadingStateT = {
+const initialState: LoadingState = {
   isLoadingAll: false,
   errorAll: null,
   isLoading: false,

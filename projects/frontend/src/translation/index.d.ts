@@ -1,4 +1,4 @@
-type TranslationT = {
+type Translation = {
   signIn: {
     greeting: string
     google: {
@@ -124,4 +124,4 @@ type TranslationT = {
   }
 }
 
-export { TranslationT }
+export { Translation }

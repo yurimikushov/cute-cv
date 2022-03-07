@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from 'services'
-import { SignInStateT } from './model'
+import { SignInState } from './model'
 
-const initialState: SignInStateT = {
+const initialState: SignInState = {
   isChecking: true, // to don't have glitch of sign in modal
   isSignedIn: false,
   isSkipped: false,

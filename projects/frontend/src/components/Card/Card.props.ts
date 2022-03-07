@@ -1,4 +1,4 @@
-type CardPropsT = {
+type CardProps = {
   className?: string
   withBorder?: boolean
   hasClose?: boolean
@@ -6,4 +6,4 @@ type CardPropsT = {
   onClose?: () => void
 }
 
-export default CardPropsT
+export default CardProps

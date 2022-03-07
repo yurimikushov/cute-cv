@@ -1,7 +1,7 @@
 import { SerializedError } from '@reduxjs/toolkit'
 import { CV } from 'services/cv'
 
-type SaveStateT = {
+type SaveState = {
   isSaving: boolean
   error: SerializedError | null
 }
@@ -13,4 +13,4 @@ type SavePayload = {
   cv: CV
 }
 
-export type { SaveStateT, SavePayload }
+export type { SaveState, SavePayload }

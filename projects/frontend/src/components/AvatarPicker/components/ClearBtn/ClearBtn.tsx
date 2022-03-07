@@ -4,7 +4,7 @@ import { ReactComponent as CloseIcon } from 'icons/close.svg'
 import colors from 'styles/colors'
 import radiuses from 'styles/radiuses'
 import shadows from 'styles/shadows'
-import ClearBtnPropsT from './ClearBtn.props'
+import ClearBtnProps from './ClearBtn.props'
 
 const Container = styled.button.attrs({
   type: 'button',
@@ -22,7 +22,7 @@ const CloseSvg = styled(CloseIcon)`
   color: ${colors.gray300};
 `
 
-const ClearBtn: FC<ClearBtnPropsT> = (props) => (
+const ClearBtn: FC<ClearBtnProps> = (props) => (
   <Container {...props}>
     <CloseSvg />
   </Container>

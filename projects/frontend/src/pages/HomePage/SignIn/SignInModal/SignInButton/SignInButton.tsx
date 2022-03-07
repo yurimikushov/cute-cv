@@ -1,7 +1,7 @@
 import { FC, cloneElement } from 'react'
 import styled from 'styled-components'
 import BaseButton from 'components/Button'
-import SignInButtonPropsT from './SignInButton.props'
+import SignInButtonProps from './SignInButton.props'
 
 const Button = styled(BaseButton)`
   padding: 0.5rem 1rem;
@@ -19,7 +19,7 @@ const Title = styled.span`
   white-space: nowrap;
 `
 
-const SignInButton: FC<SignInButtonPropsT> = ({
+const SignInButton: FC<SignInButtonProps> = ({
   icon,
   children: title,
   ...props

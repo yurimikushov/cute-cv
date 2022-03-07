@@ -1,4 +1,4 @@
-type AvatarPickerPropsT = {
+type AvatarPickerProps = {
   className?: string
   editable?: boolean
   src: string | null
@@ -6,4 +6,4 @@ type AvatarPickerPropsT = {
   onClear: () => void
 }
 
-export default AvatarPickerPropsT
+export default AvatarPickerProps

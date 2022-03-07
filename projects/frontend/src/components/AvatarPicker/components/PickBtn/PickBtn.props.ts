@@ -1,6 +1,6 @@
-type PickBtnPropsT = {
+type PickBtnProps = {
   className?: string
   onClick: () => void
 }
 
-export default PickBtnPropsT
+export default PickBtnProps

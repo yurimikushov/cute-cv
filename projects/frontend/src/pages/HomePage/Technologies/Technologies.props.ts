@@ -1,5 +1,5 @@
-type TechnologiesPropsT = {
+type TechnologiesProps = {
   className?: string
 }
 
-export default TechnologiesPropsT
+export default TechnologiesProps

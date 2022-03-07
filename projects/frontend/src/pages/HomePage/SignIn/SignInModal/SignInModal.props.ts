@@ -1,6 +1,6 @@
-type SignInModalPropsT = {
+type SignInModalProps = {
   className?: string
   onSkip: () => void
 }
 
-export default SignInModalPropsT
+export default SignInModalProps

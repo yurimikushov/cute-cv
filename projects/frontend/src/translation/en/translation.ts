@@ -1,6 +1,6 @@
-import { TranslationT } from 'translation'
+import { Translation } from 'translation'
 
-const en: TranslationT = {
+const en: Translation = {
   signIn: {
     greeting: 'Hello!',
     google: {

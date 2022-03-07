@@ -12,7 +12,7 @@ import Card from 'components/Card'
 import TextInput from 'components/TextInput'
 import TextArea from 'components/TextArea'
 import colors from 'styles/colors'
-import ExperiencePropsT from './Experience.props'
+import ExperienceProps from './Experience.props'
 
 const Container = styled(Card)`
   display: flex;
@@ -40,7 +40,7 @@ const Description = styled(TextArea)`
   min-width: 100%;
 `
 
-const Experience: FC<ExperiencePropsT> = ({
+const Experience: FC<ExperienceProps> = ({
   position,
   company,
   duration,

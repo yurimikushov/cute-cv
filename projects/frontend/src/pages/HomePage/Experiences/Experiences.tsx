@@ -14,7 +14,7 @@ import { H1 } from 'components/H'
 import DndList from 'components/DndList'
 import Button from 'components/Button'
 import Experience from './Experience'
-import ExperiencesPropsT from './Experiences.props'
+import ExperiencesProps from './Experiences.props'
 
 const Container = styled.div`
   & > * + * {
@@ -33,7 +33,7 @@ const Add = styled(Button)`
   margin: 0.5rem auto 0;
 `
 
-const Experiences: FC<ExperiencesPropsT> = (props) => {
+const Experiences: FC<ExperiencesProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'experience' })
   const { editable } = useEditable()
   const {

@@ -2,7 +2,7 @@ import { FC } from 'react'
 import styled, { css } from 'styled-components'
 import colors from 'styles/colors'
 import fonts from 'styles/fonts'
-import HPropsT from './H.props'
+import HProps from './H.props'
 
 const HMixin = css`
   color: ${colors.gray300};
@@ -20,7 +20,7 @@ const H2 = styled.h1`
   font-weight: bold;
 `
 
-const H: FC<HPropsT> = ({ tag, children, ...props }) => {
+const H: FC<HProps> = ({ tag, children, ...props }) => {
   switch (tag) {
     case '1':
       return <H1 {...props}>{children}</H1>

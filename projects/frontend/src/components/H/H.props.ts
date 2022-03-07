@@ -1,6 +1,6 @@
-type HPropsT = {
+type HProps = {
   className?: string
   tag: '1' | '2'
 }
 
-export default HPropsT
+export default HProps

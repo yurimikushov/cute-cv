@@ -1,6 +1,6 @@
-type AvatarImgPropsT = {
+type AvatarImgProps = {
   className?: string
   src: string | null
 }
 
-export default AvatarImgPropsT
+export default AvatarImgProps

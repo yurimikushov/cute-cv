@@ -11,9 +11,9 @@ import fonts from 'styles/fonts'
 import radiuses from 'styles/radiuses'
 import focusMixin from 'styles/mixins/focus'
 import useElementWidth from './hooks/useElementWidth'
-import TextInputPropsT from './TextInput.props'
+import TextInputProps from './TextInput.props'
 
-const textInputMixin = css<Pick<TextInputPropsT, 'size'>>`
+const textInputMixin = css<Pick<TextInputProps, 'size'>>`
   max-width: 100%;
   background-color: ${colors.white};
   color: ${colors.black};
@@ -54,7 +54,7 @@ const DisabledTextInput = styled.div`
   ${textInputMixin}
 `
 
-const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputPropsT> = (
+const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputProps> = (
   {
     readonly = false,
     disabled = false,

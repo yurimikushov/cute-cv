@@ -1,5 +1,5 @@
-type LoaderPropsT = {
+type LoaderProps = {
   className?: string
 }
 
-export default LoaderPropsT
+export default LoaderProps

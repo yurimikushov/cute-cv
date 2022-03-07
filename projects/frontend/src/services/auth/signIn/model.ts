@@ -1,15 +1,15 @@
 import { User } from 'firebase/auth'
 
-type SignInStateT = {
+type SignInState = {
   isChecking: boolean
   isSignedIn: boolean
   isSkipped: boolean
   isModalDisplayed: boolean
 }
 
-type SignInChangedStateT = {
+type SignInChangedState = {
   user: User
   token: string
 }
 
-export type { SignInStateT, SignInChangedStateT }
+export type { SignInState, SignInChangedState }

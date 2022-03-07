@@ -14,7 +14,7 @@ import { H2 } from 'components/H'
 import DndList from 'components/DndList'
 import Button from 'components/Button'
 import Contact from './Contact'
-import ContactsPropsT from './Contacts.props'
+import ContactsProps from './Contacts.props'
 
 const Container = styled.div`
   display: flex;
@@ -33,7 +33,7 @@ const Add = styled(Button)`
   margin: 0.5rem auto 0;
 `
 
-const Contacts: FC<ContactsPropsT> = (props) => {
+const Contacts: FC<ContactsProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'contacts' })
   const { editable } = useEditable()
   const {

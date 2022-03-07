@@ -1,4 +1,4 @@
-type ExperiencePropsT = {
+type ExperienceProps = {
   className?: string
   position: string
   company: string
@@ -11,4 +11,4 @@ type ExperiencePropsT = {
   onDelete: () => void
 }
 
-export default ExperiencePropsT
+export default ExperienceProps

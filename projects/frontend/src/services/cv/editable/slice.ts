@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from 'services'
-import { EditableStateT } from './model'
+import { EditableState } from './model'
 
-const initialState: EditableStateT = {
+const initialState: EditableState = {
   editable: true,
 }
 

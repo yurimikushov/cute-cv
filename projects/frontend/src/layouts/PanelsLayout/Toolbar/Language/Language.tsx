@@ -6,7 +6,7 @@ import { LanguageEnum } from 'translation'
 import { useDownload } from 'services/cv'
 import { H2 } from 'components/H'
 import Radio from 'components/Radio'
-import LanguagePropsT from './Language.props'
+import LanguageProps from './Language.props'
 
 const Container = styled.div`
   & > * + * {
@@ -14,7 +14,7 @@ const Container = styled.div`
   }
 `
 
-const Language: FC<LanguagePropsT> = (props) => {
+const Language: FC<LanguageProps> = (props) => {
   const { t, i18n } = useTranslation('translation', { keyPrefix: 'toolbar' })
   const { isDownloading } = useDownload()
 

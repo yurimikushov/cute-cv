@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import { CV_CONTAINER_ID } from 'services/cv'
-import CVLayoutPropsT from './CVLayout.props'
+import CVLayoutProps from './CVLayout.props'
 
-const CVLayout: FC<CVLayoutPropsT> = styled.div.attrs({
+const CVLayout: FC<CVLayoutProps> = styled.div.attrs({
   id: CV_CONTAINER_ID,
 })`
   padding-bottom: 0.75rem; /* to print correctly out of bounds text */

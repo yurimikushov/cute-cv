@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import colors from 'styles/colors'
 import zIndex from 'styles/zIndex'
 import Loader from '../Loader'
-import FullScreenPropsT from './FullScreen.props'
+import FullScreenProps from './FullScreen.props'
 
-const FullScreen: FC<FullScreenPropsT> = styled.div.attrs({
+const FullScreen: FC<FullScreenProps> = styled.div.attrs({
   children: <Loader />,
 })`
   position: fixed;

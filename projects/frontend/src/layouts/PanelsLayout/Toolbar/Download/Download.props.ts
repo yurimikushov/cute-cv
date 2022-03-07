@@ -1,5 +1,5 @@
-type DownloadPropsT = {
+type DownloadProps = {
   className?: string
 }
 
-export default DownloadPropsT
+export default DownloadProps

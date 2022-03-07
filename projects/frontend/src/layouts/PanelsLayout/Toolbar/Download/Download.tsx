@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useDownload, useEditable } from 'services/cv'
 import { H2 } from 'components/H'
 import Button from 'components/Button'
-import DownloadPropsT from './Download.props'
+import DownloadProps from './Download.props'
 
 const Container = styled.div`
   & > * + * {
@@ -14,7 +14,7 @@ const Container = styled.div`
   }
 `
 
-const Download: FC<DownloadPropsT> = (props) => {
+const Download: FC<DownloadProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'toolbar.download' })
   const prevEditableRef = useRef<boolean>(false)
   const { editable, handleToggle } = useEditable()

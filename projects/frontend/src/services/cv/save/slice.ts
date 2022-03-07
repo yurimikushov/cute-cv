@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from 'services'
-import { SaveStateT } from './model'
+import { SaveState } from './model'
 import { save } from './thunks'
 
-const initialState: SaveStateT = {
+const initialState: SaveState = {
   isSaving: false,
   error: null,
 }

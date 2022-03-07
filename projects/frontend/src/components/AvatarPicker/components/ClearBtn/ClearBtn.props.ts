@@ -1,6 +1,6 @@
-type ClearBtnPropsT = {
+type ClearBtnProps = {
   className?: string
   onClick: () => void
 }
 
-export default ClearBtnPropsT
+export default ClearBtnProps

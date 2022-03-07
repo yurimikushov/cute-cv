@@ -1,6 +1,6 @@
 import { ChangeEvent, FocusEvent } from 'react'
 
-type TextInputPropsT = {
+type TextInputProps = {
   className?: string
   readonly?: boolean
   disabled?: boolean
@@ -12,4 +12,4 @@ type TextInputPropsT = {
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void
 }
 
-export default TextInputPropsT
+export default TextInputProps
