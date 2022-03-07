@@ -35,6 +35,7 @@ type Translation = {
         placeholder: string
         required: string
       }
+      savingStatus: string
       save: string
     }
     addModal: {

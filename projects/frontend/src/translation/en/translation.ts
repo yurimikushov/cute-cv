@@ -37,6 +37,7 @@ const en: Translation = {
         placeholder: 'CV name',
         required: `It's required field`,
       },
+      savingStatus: 'Saving...',
       save: 'Save',
     },
     addModal: {

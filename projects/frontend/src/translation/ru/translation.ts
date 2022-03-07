@@ -37,6 +37,7 @@ const ru: Translation = {
         placeholder: 'Название резюме',
         required: 'Это обязательное поле',
       },
+      savingStatus: 'Сохранение...',
       save: 'Сохранить',
     },
     addModal: {
