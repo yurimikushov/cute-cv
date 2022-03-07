@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent } from 'react'
+import { FC, KeyboardEvent, useRef } from 'react'
 import styled from 'styled-components'
 import colors from 'styles/colors'
 import radiuses from 'styles/radiuses'
@@ -27,6 +27,8 @@ const RadioItem: FC<RadioItemProps> = ({
   onClick,
   ...props
 }) => {
+  const itemRef = useRef<HTMLLIElement>(null)
+
   const handleClick = () => {
     if (isActive || disabled) {
       return
@@ -36,7 +38,11 @@ const RadioItem: FC<RadioItemProps> = ({
   }
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    const { code } = e
+    const { target, code } = e
+
+    if (target !== itemRef.current) {
+      return
+    }
 
     if (code === 'Space' || code === 'Enter') {
       e.preventDefault()
@@ -47,6 +53,7 @@ const RadioItem: FC<RadioItemProps> = ({
   return (
     <Item
       {...props}
+      ref={itemRef}
       isActive={isActive}
       disabled={disabled}
       // eslint-disable-next-line no-magic-numbers
