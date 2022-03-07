@@ -78,7 +78,9 @@ const Experiences: FC<ExperiencesPropsT> = (props) => {
         )}
       </DraggableList>
       {editable && size(experiences) < EXPERIENCES_MAX_COUNT && (
-        <Add onClick={addExperience}>{t('add')}</Add>
+        <Add appearance='text' onClick={addExperience}>
+          {t('add')}
+        </Add>
       )}
     </Container>
   )

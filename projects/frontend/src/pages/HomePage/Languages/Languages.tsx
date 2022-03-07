@@ -50,7 +50,9 @@ const Languages: FC<LanguagesPropsT> = (props) => {
         />
       ))}
       {editable && size(languages) < LANGUAGES_MAX_COUNT && (
-        <Add onClick={addLanguage}>{t('add')}</Add>
+        <Add appearance='text' onClick={addLanguage}>
+          {t('add')}
+        </Add>
       )}
     </Container>
   )

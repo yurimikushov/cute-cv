@@ -1,17 +1,13 @@
 import { FC, cloneElement } from 'react'
 import styled from 'styled-components'
-import Button from 'components/Button'
-import colors from 'styles/colors'
-import radiuses from 'styles/radiuses'
+import BaseButton from 'components/Button'
 import SignInButtonPropsT from './SignInButton.props'
 
-const StyledButton = styled(Button)`
+const Button = styled(BaseButton)`
   padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  border: 1px solid ${colors.gray100};
-  border-radius: ${radiuses.md};
 `
 
 const Icon = styled(({ children, ...props }) => cloneElement(children, props))`
@@ -28,10 +24,10 @@ const SignInButton: FC<SignInButtonPropsT> = ({
   children: title,
   ...props
 }) => (
-  <StyledButton {...props}>
+  <Button {...props} appearance='outlined'>
     <Icon>{icon}</Icon>
     <Title>{title}</Title>
-  </StyledButton>
+  </Button>
 )
 
 export default SignInButton

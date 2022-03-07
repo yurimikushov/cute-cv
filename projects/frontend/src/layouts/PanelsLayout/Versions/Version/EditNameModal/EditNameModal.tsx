@@ -91,7 +91,9 @@ const EditNameModal: FC<EditNameModalProps> = ({
           placeholder={t('name.placeholder')}
           maxLength={CV_NAME_MAX_LENGTH}
         />
-        <Form.Button type='submit'>{t('save')}</Form.Button>
+        <Form.Button type='submit' appearance='outlined'>
+          {t('save')}
+        </Form.Button>
       </Form>
     </Container>
   )

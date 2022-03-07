@@ -32,7 +32,7 @@ const Panel: FC<PanelPropsT> = (props) => {
   return (
     <Container {...props}>
       <SavedStatus>{savedStatus}</SavedStatus>
-      <Button disabled={isDownloading} onClick={handleToggle}>
+      <Button appearance='text' disabled={isDownloading} onClick={handleToggle}>
         {editable ? t('preview') : t('edit')}
       </Button>
     </Container>

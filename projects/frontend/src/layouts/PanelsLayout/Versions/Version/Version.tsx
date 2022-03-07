@@ -66,18 +66,27 @@ const Version: FC<VersionProps> = ({
             content={
               <Content>
                 <PopupButton
+                  appearance='text'
                   withPaddings={false}
                   onClick={handleOpenEditNameModal}
                 >
                   {t('toolsPopup.editName')}
                 </PopupButton>
-                <PopupButton withPaddings={false} onClick={onDelete}>
+                <PopupButton
+                  appearance='text'
+                  withPaddings={false}
+                  onClick={onDelete}
+                >
                   {t('toolsPopup.delete')}
                 </PopupButton>
               </Content>
             }
           >
-            <ArrowButton withPaddings={false} disabled={disabled} />
+            <ArrowButton
+              appearance='text'
+              withPaddings={false}
+              disabled={disabled}
+            />
           </Popup>
           {isEditNameModalOpened && (
             <EditNameModal

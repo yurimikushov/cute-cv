@@ -86,6 +86,7 @@ const Versions: FC<VersionsProps> = (props) => {
         <>
           <Divider />
           <Button
+            appearance='text'
             withPaddings={false}
             disabled={shouldDisable}
             onClick={handleOpenAddModal}

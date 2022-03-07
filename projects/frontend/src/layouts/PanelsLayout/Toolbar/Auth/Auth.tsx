@@ -16,6 +16,7 @@ const Auth: FC<AuthPropsT> = (props) => {
     <div {...props}>
       {isSignedIn ? (
         <Button
+          appearance='text'
           withPaddings={false}
           disabled={isDownloading}
           onClick={handleSignOut}
@@ -24,6 +25,7 @@ const Auth: FC<AuthPropsT> = (props) => {
         </Button>
       ) : (
         <Button
+          appearance='text'
           withPaddings={false}
           disabled={isDownloading}
           onClick={handleDisplaySignInModal}
