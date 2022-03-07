@@ -3,12 +3,16 @@ import { useFormikContext } from 'formik'
 import Button from 'components/Button'
 import FormButtonProps from './Button.props'
 
-const FormButton: FC<FormButtonProps> = ({ children, ...props }) => {
+const FormButton: FC<FormButtonProps> = ({
+  submittingContent,
+  children,
+  ...props
+}) => {
   const { isSubmitting } = useFormikContext()
 
   return (
     <Button {...props} disabled={isSubmitting}>
-      {children}
+      {isSubmitting && submittingContent ? submittingContent : children}
     </Button>
   )
 }

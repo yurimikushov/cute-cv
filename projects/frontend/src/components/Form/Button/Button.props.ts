@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { ButtonProps } from 'components/Button'
 
 type FormButtonProps = Pick<
@@ -8,6 +9,8 @@ type FormButtonProps = Pick<
   | 'withoutPaddings'
   | 'disabled'
   | 'onClick'
->
+> & {
+  submittingContent?: ReactNode
+}
 
 export default FormButtonProps
