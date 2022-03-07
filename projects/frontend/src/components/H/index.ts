@@ -1,1 +1,1 @@
-export { default, H1, H2 } from './H'
+export { H1, H2 } from './H'
