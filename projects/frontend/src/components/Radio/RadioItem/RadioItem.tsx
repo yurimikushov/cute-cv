@@ -1,6 +1,7 @@
 import { FC, KeyboardEvent } from 'react'
 import styled from 'styled-components'
 import colors from 'styles/colors'
+import radiuses from 'styles/radiuses'
 import focusMixin from 'styles/mixins/focus'
 import RadioItemProps from './RadioItem.props'
 
@@ -8,6 +9,7 @@ const Item = styled.li<RadioItemProps>`
   ${focusMixin}
 
   color: ${({ isActive }) => (isActive ? colors.black : colors.gray300)};
+  border-radius: ${radiuses.sm};
   cursor: default;
   ${({ isActive }) => !isActive && 'cursor: pointer;'}
   ${({ disabled }) => disabled && 'cursor: not-allowed;'}

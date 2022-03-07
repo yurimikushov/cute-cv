@@ -22,6 +22,7 @@ const Button: FC<ButtonProps> = styled.button.attrs(
 
   color: ${colors.gray300};
   line-height: 1.25rem;
+  border-radius: ${radiuses.sm};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
   ${({ isOutlined }) =>
@@ -29,7 +30,6 @@ const Button: FC<ButtonProps> = styled.button.attrs(
     `
     padding: 0.25rem 0.5rem;
     border: 1px solid ${colors.gray200};
-    border-radius: ${radiuses.sm};
   `}
 
   ${({ withoutPaddings }) => withoutPaddings && 'padding: 0;'}
