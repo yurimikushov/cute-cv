@@ -18,14 +18,14 @@ const Button: FC<ButtonProps> = styled.button.attrs(
 )`
   ${focusMixin}
 
-  ${({ withPaddings }) => (withPaddings ? 'padding-left: 0.5rem;' : '')}
-  ${({ withPaddings }) => (withPaddings ? 'padding-right: 0.5rem;' : '')}
+  ${({ withPaddings }) => withPaddings && 'padding-left: 0.5rem;'}
+  ${({ withPaddings }) => withPaddings && 'padding-right: 0.5rem;'}
   color: ${colors.gray300};
   line-height: 1.25rem;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
   &:hover {
-    ${({ disabled }) => (!disabled && `color: ${colors.black};`) || ''}
+    ${({ disabled }) => !disabled && `color: ${colors.black};`}
   }
 `
 
