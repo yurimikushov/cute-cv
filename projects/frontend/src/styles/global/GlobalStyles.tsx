@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 import colors from 'styles/colors'
 import gradients from 'styles/gradients'
+import radiuses from 'styles/radiuses'
 import focusMixin from 'styles/mixins/focus'
 
 const GlobalStyles = createGlobalStyle`
@@ -19,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
     ${focusMixin}
 
     color: ${colors.gray300};
+    border-radius: ${radiuses.sm};
 
     &:hover {
       color: ${colors.black};
