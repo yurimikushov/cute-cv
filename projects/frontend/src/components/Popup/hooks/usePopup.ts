@@ -15,10 +15,20 @@ const OFFSET_BETWEEN_TRIGGER_AND_CONTENT = 3
 const usePopup = (trigger: Trigger, placement: Placement) => {
   const triggerElementRef = useRef<HTMLElement>(null)
   const contentElementRef = useRef<HTMLDivElement>(null)
+  const prevActiveElementRef = useRef<HTMLElement | null>(null)
 
   const [isVisible, setIsVisible] = useState(false)
-  const showContent = () => setIsVisible(true)
-  const hideContent = () => setIsVisible(false)
+
+  const showContent = () => {
+    prevActiveElementRef.current = document.activeElement as HTMLElement
+    setIsVisible(true)
+  }
+  const hideContent = () => {
+    defer(() => {
+      prevActiveElementRef.current?.focus()
+    })
+    setIsVisible(false)
+  }
 
   const [top, setTop] = useState(INITIAL_TOP_POSITION)
   const [left, setLeft] = useState(INITIAL_LEFT_POSITION)
