@@ -22,4 +22,6 @@ const ArrowButton: FC<ArrowButtonProps> = styled.button.attrs({
   }
 `
 
+ArrowButton.displayName = 'ArrowButton'
+
 export default ArrowButton

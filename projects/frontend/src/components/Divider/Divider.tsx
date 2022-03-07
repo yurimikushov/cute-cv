@@ -7,4 +7,6 @@ const Divider = styled.div`
   background-color: ${colors.gray100};
 `
 
+Divider.displayName = 'Divider'
+
 export default Divider

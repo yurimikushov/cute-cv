@@ -14,11 +14,16 @@ const H1 = styled.h1`
   font-size: ${fonts.size.xs};
   text-transform: uppercase;
 `
+
+H1.displayName = 'H1'
+
 const H2 = styled.h1`
   ${HMixin}
   font-size: ${fonts.size.sm};
   font-weight: bold;
 `
+
+H2.displayName = 'H2'
 
 const H: FC<HProps> = ({ tag, children, ...props }) => {
   switch (tag) {

@@ -24,4 +24,6 @@ const CloseButton: FC<CloseButtonProps> = styled.button.attrs({
   }
 `
 
+CloseButton.displayName = 'CloseButton'
+
 export default CloseButton

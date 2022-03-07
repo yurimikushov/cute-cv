@@ -12,4 +12,6 @@ const Loader: FC<LoaderProps> = styled(LoaderIcon)`
   animation: ${keyframes.spin} 1s linear infinite;
 `
 
+Loader.displayName = 'Loader'
+
 export default Loader

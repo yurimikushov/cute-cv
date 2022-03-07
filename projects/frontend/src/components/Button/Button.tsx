@@ -44,4 +44,6 @@ const Button: FC<ButtonProps> = styled.button.attrs(
   }
 `
 
+Button.displayName = 'Button'
+
 export default Button

@@ -8,4 +8,6 @@ const Href: FC<HrefProps> = styled.a.attrs({
   target: '_blank',
 })``
 
+Href.displayName = 'Href'
+
 export default Href

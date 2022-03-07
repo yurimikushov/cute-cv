@@ -21,4 +21,6 @@ const FullScreen: FC<FullScreenProps> = styled.div.attrs({
   opacity: 0.95;
 `
 
+FullScreen.displayName = 'FullScreenLoader'
+
 export default FullScreen
