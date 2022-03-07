@@ -10,12 +10,12 @@ const Button: FC<ButtonProps> = styled.button.attrs(
   ({
     type = 'button',
     appearance = 'outlined',
-    withPaddings = true,
+    withoutPaddings = false,
     disabled = false,
   }: ButtonProps) => ({
     type,
     isOutlined: appearance === 'outlined',
-    withPaddings,
+    withoutPaddings,
     disabled,
   })
 )`
@@ -33,7 +33,7 @@ const Button: FC<ButtonProps> = styled.button.attrs(
     border-radius: ${radiuses.sm};
   `}
 
-  ${({ withPaddings }) => !withPaddings && 'padding: 0;'}
+  ${({ withoutPaddings }) => withoutPaddings && 'padding: 0;'}
 
   &:hover {
     ${({ disabled }) =>

@@ -41,7 +41,7 @@ const Download: FC<DownloadPropsT> = (props) => {
       <H2>{t('title')}</H2>
       <Button
         appearance='text'
-        withPaddings={false}
+        withoutPaddings
         disabled={isDownloading}
         onClick={withToggleEditable(handleDownloadPDF)}
       >
@@ -49,7 +49,7 @@ const Download: FC<DownloadPropsT> = (props) => {
       </Button>
       <Button
         appearance='text'
-        withPaddings={false}
+        withoutPaddings
         disabled={isDownloading}
         onClick={withToggleEditable(handleDownloadJSON)}
       >

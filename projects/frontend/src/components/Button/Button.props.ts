@@ -2,7 +2,7 @@ type ButtonProps = {
   className?: string
   type?: 'button' | 'submit'
   appearance: 'outlined' | 'text'
-  withPaddings?: boolean
+  withoutPaddings?: boolean
   disabled?: boolean
   onClick?: (e: MouseEvent) => void
 }

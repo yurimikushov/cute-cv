@@ -66,7 +66,7 @@ const SignInModal: FC<SignInModalPropsT> = ({ onSkip, ...props }) => {
         </SignInButton>
       </SignInOptions>
       <Skip>
-        <Button appearance='text' withPaddings={false} onClick={onSkip}>
+        <Button appearance='text' withoutPaddings onClick={onSkip}>
           {t('skip.title')}
         </Button>
         &#44;&nbsp;
