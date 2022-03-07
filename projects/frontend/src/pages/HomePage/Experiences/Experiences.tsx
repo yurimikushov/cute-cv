@@ -13,6 +13,7 @@ import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { H1 } from 'components/H'
 import DndList from 'components/DndList'
 import Button from 'components/Button'
+import radiuses from 'styles/radiuses'
 import Experience from './Experience'
 import ExperiencesProps from './Experiences.props'
 
@@ -26,6 +27,10 @@ const DraggableList = styled(DndList)`
   & > * + * {
     margin-top: 1rem;
   }
+`
+
+const DraggableItem = styled(DraggableList.Item)`
+  border-radius: ${radiuses.md};
 `
 
 const Add = styled(Button)`
@@ -53,7 +58,7 @@ const Experiences: FC<ExperiencesProps> = (props) => {
         {map(
           experiences,
           ({ id, position, company, duration, description }) => (
-            <DraggableList.Item key={id}>
+            <DraggableItem key={id}>
               <Experience
                 position={position}
                 company={company}
@@ -73,7 +78,7 @@ const Experiences: FC<ExperiencesProps> = (props) => {
                 }
                 onDelete={() => deleteExperience(id)}
               />
-            </DraggableList.Item>
+            </DraggableItem>
           )
         )}
       </DraggableList>

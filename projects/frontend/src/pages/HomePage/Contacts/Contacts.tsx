@@ -13,6 +13,7 @@ import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { H2 } from 'components/H'
 import DndList from 'components/DndList'
 import Button from 'components/Button'
+import radiuses from 'styles/radiuses'
 import Contact from './Contact'
 import ContactsProps from './Contacts.props'
 
@@ -26,6 +27,10 @@ const DraggableList = styled(DndList)`
   & > * + * {
     margin-top: 0.5rem;
   }
+`
+
+const DraggableItem = styled(DraggableList.Item)`
+  border-radius: ${radiuses.md};
 `
 
 const Add = styled(Button)`
@@ -51,7 +56,7 @@ const Contacts: FC<ContactsProps> = (props) => {
       <H2>{t('title')}</H2>
       <DraggableList isDndDisabled={!editable} onDragEnd={reorderContact}>
         {map(contacts, ({ id, text, href }) => (
-          <DraggableList.Item key={id}>
+          <DraggableItem key={id}>
             <Contact
               text={text}
               href={href}
@@ -59,7 +64,7 @@ const Contacts: FC<ContactsProps> = (props) => {
               onHrefChange={(href) => changeContact(id, text, href)}
               onDelete={() => deleteContact(id)}
             />
-          </DraggableList.Item>
+          </DraggableItem>
         ))}
       </DraggableList>
       {editable && size(contacts) < CONTACTS_MAX_COUNT && (

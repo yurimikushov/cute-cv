@@ -13,6 +13,7 @@ import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { H1 } from 'components/H'
 import DndList from 'components/DndList'
 import Button from 'components/Button'
+import radiuses from 'styles/radiuses'
 import Education from './Education'
 import EducationsProps from './Educations.props'
 
@@ -26,6 +27,10 @@ const DraggableList = styled(DndList)`
   & > * + * {
     margin-top: 1rem;
   }
+`
+
+const DraggableItem = styled(DraggableList.Item)`
+  border-radius: ${radiuses.md};
 `
 
 const Add = styled(Button)`
@@ -51,7 +56,7 @@ const Educations: FC<EducationsProps> = (props) => {
       <H1>{t('title')}</H1>
       <DraggableList isDndDisabled={!editable} onDragEnd={reorderEducation}>
         {map(educations, ({ id, degree, university, duration }) => (
-          <DraggableList.Item key={id}>
+          <DraggableItem key={id}>
             <Education
               degree={degree}
               university={university}
@@ -67,7 +72,7 @@ const Educations: FC<EducationsProps> = (props) => {
               }
               onDelete={() => deleteEducation(id)}
             />
-          </DraggableList.Item>
+          </DraggableItem>
         ))}
       </DraggableList>
       {editable && size(educations) < EDUCATIONS_MAX_COUNT && (
