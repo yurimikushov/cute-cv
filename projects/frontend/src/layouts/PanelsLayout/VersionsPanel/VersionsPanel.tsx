@@ -24,14 +24,14 @@ import { panelMixin } from '../mixins'
 import useAddCvModal from './hooks/useAddCvModal'
 import Version from './Version'
 import AddCvModal from './AddCvModal'
-import VersionsProps from './Versions.props'
+import VersionsPanelProps from './VersionsPanel.props'
 
 const Container = styled(Card)`
   ${panelMixin}
 `
 
 // eslint-disable-next-line max-statements
-const Versions: FC<VersionsProps> = (props) => {
+const VersionsPanel: FC<VersionsPanelProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const cvCount = useCvCount()
   const allCv = useAllCvMetadata()
@@ -102,4 +102,4 @@ const Versions: FC<VersionsProps> = (props) => {
   )
 }
 
-export default Versions
+export default VersionsPanel
