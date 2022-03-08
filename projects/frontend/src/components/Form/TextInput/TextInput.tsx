@@ -14,6 +14,7 @@ const ErrorMessage = styled.div`
 `
 
 const FormTextInput: FC<FromTextInputProps> = ({
+  inputRef,
   containerClassName,
   ...props
 }) => {
@@ -21,7 +22,7 @@ const FormTextInput: FC<FromTextInputProps> = ({
 
   return (
     <Container className={containerClassName}>
-      <TextInput {...props} {...field} />
+      <TextInput {...props} {...field} ref={inputRef} />
       {touched && error && <ErrorMessage>{error}</ErrorMessage>}
     </Container>
   )

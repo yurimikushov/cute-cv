@@ -1,6 +1,8 @@
+import { RefObject } from 'react'
 import { TextInputProps } from 'components/TextInput'
 
 type FormTextInputProps = {
+  inputRef?: RefObject<HTMLInputElement>
   containerClassName?: string
   id?: string
   name: string
