@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import * as Yup from 'yup'
 import styled from 'styled-components'
 import replace from 'lodash/replace'
+import useAutoFocus from 'hooks/useAutoFocus'
 import { CV_NAME_MAX_LENGTH } from 'services/cv'
 import Modal from 'components/Modal'
 import BaseForm, { FormProps } from 'components/Form'
@@ -57,6 +58,7 @@ const EditNameModal: FC<EditNameModalProps> = ({
   const { t } = useTranslation('translation', {
     keyPrefix: 'versions.editNameModal',
   })
+  const nameInputRef = useAutoFocus<HTMLInputElement>()
 
   const validationSchema = useMemo(() => {
     return Yup.object({
@@ -84,6 +86,7 @@ const EditNameModal: FC<EditNameModalProps> = ({
         onSubmit={handleSave}
       >
         <Form.TextInput
+          inputRef={nameInputRef}
           containerClassName={stretchClassName}
           className={stretchClassName}
           size='lg'
