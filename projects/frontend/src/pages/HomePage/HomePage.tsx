@@ -14,7 +14,6 @@ import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import CVLayout from 'layouts/CVLayout'
 import Loader from 'components/Loader'
-import SignIn from './SignIn'
 import Panel from './Panel'
 import Header from './Header'
 import Avatar from './Avatar'
@@ -74,7 +73,6 @@ const HomePage: FC = () => {
         <title>{cv.fullName || 'Cute CV'} </title>
       </Helmet>
       {(isSignInChecking || isCVLoading) && <Loader.FullScreen />}
-      <SignIn />
       <PanelsLayout>
         <PageLayout>
           <StyledPanel />
