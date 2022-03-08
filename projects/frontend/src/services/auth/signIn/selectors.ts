@@ -13,15 +13,4 @@ const selectIsSkipped = ({ auth }: RootState): SignInState['isSkipped'] => {
   return auth.signIn.isSkipped
 }
 
-const selectIsModalDisplayed = ({
-  auth,
-}: RootState): SignInState['isModalDisplayed'] => {
-  return auth.signIn.isModalDisplayed
-}
-
-export {
-  selectIsChecking,
-  selectIsSignedIn,
-  selectIsSkipped,
-  selectIsModalDisplayed,
-}
+export { selectIsChecking, selectIsSignedIn, selectIsSkipped }

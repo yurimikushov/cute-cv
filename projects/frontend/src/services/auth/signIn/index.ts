@@ -10,5 +10,4 @@ export {
   useIsSignInChecking,
   useIsSignedIn,
   useSkipSignIn,
-  useSignInModal,
 } from './hooks'

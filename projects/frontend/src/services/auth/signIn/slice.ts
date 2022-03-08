@@ -6,7 +6,6 @@ const initialState: SignInState = {
   isChecking: true, // to don't have glitch of sign in modal
   isSignedIn: false,
   isSkipped: false,
-  isModalDisplayed: true,
 }
 
 const { actions, reducer } = createSlice({
@@ -28,22 +27,9 @@ const { actions, reducer } = createSlice({
     skip: (state) => {
       state.isSkipped = true
     },
-    displayModal: (state) => {
-      state.isModalDisplayed = true
-    },
-    hideModal: (state) => {
-      state.isModalDisplayed = false
-    },
   },
 })
 
-export const {
-  beginChecking,
-  finishChecking,
-  signedIn,
-  signedOut,
-  skip,
-  displayModal,
-  hideModal,
-} = actions
+export const { beginChecking, finishChecking, signedIn, signedOut, skip } =
+  actions
 export default reducer
