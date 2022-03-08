@@ -7,6 +7,7 @@ type TextInputProps = {
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
   value: string
   placeholder?: string
+  autoComplete?: string
   maxLength?: number
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void

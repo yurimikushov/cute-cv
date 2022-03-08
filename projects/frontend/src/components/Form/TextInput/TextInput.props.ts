@@ -8,7 +8,13 @@ type FormTextInputProps = {
   name: string
 } & Pick<
   TextInputProps,
-  'className' | 'readonly' | 'disabled' | 'size' | 'placeholder' | 'maxLength'
+  | 'className'
+  | 'readonly'
+  | 'disabled'
+  | 'size'
+  | 'placeholder'
+  | 'autoComplete'
+  | 'maxLength'
 >
 
 export default FormTextInputProps
