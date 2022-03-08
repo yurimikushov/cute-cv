@@ -6,13 +6,13 @@ import { panelMixin } from '../mixins'
 import Download from './Download'
 import Language from './Language'
 import Auth from './Auth'
-import ToolbarProps from './Toolbar.props'
+import ToolbarPanelProps from './ToolbarPanel.props'
 
 const Container = styled(Card)`
   ${panelMixin}
 `
 
-const Toolbar: FC<ToolbarProps> = (props) => (
+const ToolbarPanel: FC<ToolbarPanelProps> = (props) => (
   <Container {...props}>
     <Download />
     <Language />
@@ -21,4 +21,4 @@ const Toolbar: FC<ToolbarProps> = (props) => (
   </Container>
 )
 
-export default Toolbar
+export default ToolbarPanel

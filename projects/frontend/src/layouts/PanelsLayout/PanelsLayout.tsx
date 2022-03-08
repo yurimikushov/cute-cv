@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import BaseVersions from './Versions'
-import BaseToolbar from './Toolbar'
+import BaseToolbarPanel from './ToolbarPanel'
 import { marginTopMixin } from './mixins'
 import PanelsLayoutProps from './PanelsLayout.props'
 
@@ -14,7 +14,7 @@ const Versions = styled(BaseVersions)`
   ${marginTopMixin}
 `
 
-const Toolbar = styled(BaseToolbar)`
+const ToolbarPanel = styled(BaseToolbarPanel)`
   ${marginTopMixin}
 `
 
@@ -26,7 +26,7 @@ const PanelsLayout: FC<PanelsLayoutProps> = ({ children, ...props }) => {
       </div>
       <div>{children}</div>
       <div>
-        <Toolbar />
+        <ToolbarPanel />
       </div>
     </Container>
   )
