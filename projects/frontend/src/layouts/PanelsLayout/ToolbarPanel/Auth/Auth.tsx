@@ -13,27 +13,15 @@ const Auth: FC<AuthProps> = (props) => {
   const { isDownloading } = useDownload()
 
   return (
-    <div {...props}>
-      {isSignedIn ? (
-        <Button
-          appearance='text'
-          withoutPaddings
-          disabled={isDownloading}
-          onClick={handleSignOut}
-        >
-          {t('signOut')}
-        </Button>
-      ) : (
-        <Button
-          appearance='text'
-          withoutPaddings
-          disabled={isDownloading}
-          onClick={handleDisplaySignInModal}
-        >
-          {t('signIn')}
-        </Button>
-      )}
-    </div>
+    <Button
+      {...props}
+      appearance='text'
+      withoutPaddings
+      disabled={isDownloading}
+      onClick={isSignedIn ? handleSignOut : handleDisplaySignInModal}
+    >
+      {isSignedIn ? t('signOut') : t('signIn')}
+    </Button>
   )
 }
 
