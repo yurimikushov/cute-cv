@@ -16,7 +16,9 @@ const Container = styled.div`
   }
 `
 
-const Description = styled(TextArea)``
+const Description = styled(TextArea)`
+  ${({ readonly }) => !readonly && 'min-height: 5rem;'}
+`
 
 const Technologies: FC<TechnologiesProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'technologies' })

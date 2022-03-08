@@ -10,6 +10,7 @@ import TextArea from 'components/TextArea'
 
 const Description = styled(TextArea)`
   width: 100%;
+  ${({ readonly }) => !readonly && 'min-height: 5rem;'}
 `
 
 const AboutMe: FC = () => {

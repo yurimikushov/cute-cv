@@ -38,6 +38,7 @@ const Duration = styled(TextInput)`
 const Description = styled(TextArea)`
   display: block;
   min-width: 100%;
+  ${({ readonly }) => !readonly && 'min-height: 5rem;'}
 `
 
 const Experience: FC<ExperienceProps> = ({
