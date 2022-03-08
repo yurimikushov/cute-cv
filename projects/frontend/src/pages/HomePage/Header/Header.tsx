@@ -1,8 +1,8 @@
-import { FC, ChangeEvent, useRef } from 'react'
+import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import useEffectWhen from 'hooks/useEffectWhen'
 import { useIsSignedIn } from 'services/auth'
+import useAutoFocusWhen from 'hooks/useAutoFocusWhen'
 import {
   useEditable,
   useCurrentCvContent,
@@ -30,11 +30,9 @@ const Header: FC = () => {
     changeFullName,
     changePosition,
   } = useCurrentCvContent()
-  const fullNameRef = useRef<HTMLInputElement>(null)
-
-  useEffectWhen(() => {
-    fullNameRef.current?.focus()
-  }, isSignedIn)
+  const fullNameRef = useAutoFocusWhen<HTMLInputElement>({
+    predicate: isSignedIn && editable,
+  })
 
   const handleChangeFullName = (e: ChangeEvent<HTMLInputElement>) => {
     changeFullName(e.target.value)
