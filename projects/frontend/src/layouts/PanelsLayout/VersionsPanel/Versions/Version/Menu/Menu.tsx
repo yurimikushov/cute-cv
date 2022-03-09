@@ -21,6 +21,7 @@ const MenuItem = styled(Button)`
 const Menu: FC<MenuProps> = ({
   disabled = false,
   onEditName,
+  onMakeCopy,
   onDelete,
   ...props
 }) => {
@@ -36,6 +37,9 @@ const Menu: FC<MenuProps> = ({
         <Content>
           <MenuItem appearance='text' withoutPaddings onClick={onEditName}>
             {t('editName')}
+          </MenuItem>
+          <MenuItem appearance='text' withoutPaddings onClick={onMakeCopy}>
+            {t('makeCopy')}
           </MenuItem>
           <MenuItem appearance='text' withoutPaddings onClick={onDelete}>
             {t('delete')}

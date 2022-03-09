@@ -2,8 +2,10 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import { useIsSignedIn } from 'services/auth'
 import useEditNameModal from './hooks/useEditNameModal'
+import useMakeCopyModal from './hooks/useMakeCopyModal'
 import Menu from './Menu'
 import EditNameModal from './EditNameModal'
+import MakeCopyModal from './MakeCopyModal'
 import VersionProps from './Version.props'
 
 const Container = styled.div`
@@ -21,6 +23,7 @@ const Version: FC<VersionProps> = ({
   name,
   disabled,
   onUpdateCvName,
+  onMakeCvCopy,
   onDelete,
   ...props
 }) => {
@@ -31,6 +34,12 @@ const Version: FC<VersionProps> = ({
     handleCloseEditNameModal,
     handleUpdateCvName,
   } = useEditNameModal(onUpdateCvName)
+  const {
+    isMakeCopyModalOpened,
+    handleOpenMakeCopyModal,
+    handleCloseMakeCopyModal,
+    handleMakeCopy,
+  } = useMakeCopyModal(onMakeCvCopy)
 
   return (
     <Container {...props}>
@@ -39,6 +48,7 @@ const Version: FC<VersionProps> = ({
         <Menu
           disabled={disabled}
           onEditName={handleOpenEditNameModal}
+          onMakeCopy={handleOpenMakeCopyModal}
           onDelete={onDelete}
         />
       )}
@@ -47,6 +57,12 @@ const Version: FC<VersionProps> = ({
           name={name}
           onClose={handleCloseEditNameModal}
           onSave={handleUpdateCvName}
+        />
+      )}
+      {isSignedIn && isMakeCopyModalOpened && (
+        <MakeCopyModal
+          onSubmit={handleMakeCopy}
+          onClose={handleCloseMakeCopyModal}
         />
       )}
     </Container>

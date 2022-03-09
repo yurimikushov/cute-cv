@@ -26,6 +26,7 @@ type Translation = {
     title: string
     menu: {
       editName: string
+      makeCopy: string
       delete: string
       confirmDelete: string
     }
@@ -37,6 +38,14 @@ type Translation = {
       }
       savingStatus: string
       save: string
+    }
+    makeCopyModal: {
+      title: string
+      name: {
+        placeholder: string
+        required: string
+      }
+      makeCopy: string
     }
     addModal: {
       title: string

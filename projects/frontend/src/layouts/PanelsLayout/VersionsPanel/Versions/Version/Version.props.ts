@@ -3,6 +3,7 @@ type VersionProps = {
   name: string
   disabled: boolean
   onUpdateCvName: (name: string) => Promise<void>
+  onMakeCvCopy: (name: string) => void
   onDelete: () => void
 }
 

@@ -28,6 +28,7 @@ const en: Translation = {
     title: 'Versions',
     menu: {
       editName: 'Edit name',
+      makeCopy: 'Make copy',
       delete: 'Delete',
       confirmDelete: 'Are you sure you wanna delete this version?',
     },
@@ -39,6 +40,14 @@ const en: Translation = {
       },
       savingStatus: 'Saving...',
       save: 'Save',
+    },
+    makeCopyModal: {
+      title: 'Make copy',
+      name: {
+        placeholder: 'CV name',
+        required: `It's required field`,
+      },
+      makeCopy: 'Make copy',
     },
     addModal: {
       title: 'Add CV',

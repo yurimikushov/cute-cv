@@ -28,6 +28,7 @@ const ru: Translation = {
     title: 'Версии',
     menu: {
       editName: 'Изменить название',
+      makeCopy: 'Сделать копию',
       delete: 'Удалить',
       confirmDelete: 'Вы точно хотите удалить эту версию?',
     },
@@ -39,6 +40,14 @@ const ru: Translation = {
       },
       savingStatus: 'Сохранение...',
       save: 'Сохранить',
+    },
+    makeCopyModal: {
+      title: 'Сделать копию',
+      name: {
+        placeholder: 'Название резюме',
+        required: 'Это обязательное поле',
+      },
+      makeCopy: 'Сделать копию',
     },
     addModal: {
       title: 'Добавить резюме',

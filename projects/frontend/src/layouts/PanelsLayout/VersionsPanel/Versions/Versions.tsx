@@ -7,6 +7,7 @@ import {
   useCurrentCvMetadata,
   useSelectCv,
   useUpdateCvName,
+  useMakeCvCopy,
   useDeleteCv,
   useIsCvSaving,
   useIsCvDeleting,
@@ -31,6 +32,7 @@ const Versions: FC<VersionsProps> = (props) => {
   const { isCvDeleting } = useIsCvDeleting()
   const selectCv = useSelectCv()
   const updateCvName = useUpdateCvName()
+  const makeCvCopy = useMakeCvCopy()
   const deleteCv = useDeleteCv()
 
   const shouldDisableActiveElements =
@@ -61,7 +63,8 @@ const Versions: FC<VersionsProps> = (props) => {
             <Version
               name={name}
               disabled={shouldDisableActiveElements}
-              onUpdateCvName={(name) => updateCvName(id, name)}
+              onUpdateCvName={(newName) => updateCvName(id, newName)}
+              onMakeCvCopy={(copyName) => makeCvCopy(id, copyName)}
               onDelete={() => handleDeleteCv(id, isNew)}
             />
           </Radio.Item>
