@@ -7,7 +7,16 @@ const useUpdateCvName = () => {
   const updateCvNameInStore = useUpdateCvNameInStore()
   const updateCvMetadataInStore = useUpdateCvMetadataInStore()
 
-  const handleUpdateCvName = async (id: string, name: string) => {
+  const handleUpdateCvName = async (
+    id: string,
+    name: string,
+    isNew: boolean
+  ) => {
+    if (isNew) {
+      updateCvNameInStore(id, name)
+      return
+    }
+
     await updateCvNameOnBackend(id, name).then(({ id, name, savedAt }) => {
       updateCvNameInStore(id, name)
       updateCvMetadataInStore({

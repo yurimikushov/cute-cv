@@ -63,7 +63,7 @@ const Versions: FC<VersionsProps> = (props) => {
             <Version
               name={name}
               disabled={shouldDisableActiveElements}
-              onUpdateCvName={(newName) => updateCvName(id, newName)}
+              onUpdateCvName={(newName) => updateCvName(id, newName, isNew)}
               onMakeCvCopy={(copyName) => makeCvCopy(id, copyName)}
               onDelete={() => handleDeleteCv(id, isNew)}
             />
