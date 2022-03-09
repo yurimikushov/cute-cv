@@ -18,6 +18,7 @@ export {
   useCurrentCvContent,
   useSelectCv,
   useAddEmptyCv,
+  useMakeCvCopy,
   useDeleteCv,
 } from './hooks'
 export type { CV } from './selectors'

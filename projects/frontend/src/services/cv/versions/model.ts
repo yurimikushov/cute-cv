@@ -232,6 +232,13 @@ type AddCvPayload = {
   number: number
 }
 
+type CopyCvPayload = {
+  baseCvId: string
+  copyCvId: string
+  copyCvNumber: number
+  copyCvName: string
+}
+
 type DeleteCvPayload = {
   id: string
 }
@@ -272,6 +279,7 @@ export type {
   UpdateLanguagePayload,
   DeleteLanguagePayload,
   AddCvPayload,
+  CopyCvPayload,
   DeleteCvPayload,
   SelectCvPayload,
 }

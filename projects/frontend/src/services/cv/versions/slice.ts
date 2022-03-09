@@ -6,6 +6,7 @@ import forEach from 'lodash/forEach'
 import keyBy from 'lodash/keyBy'
 import without from 'lodash/without'
 import omit from 'lodash/omit'
+import cloneDeep from 'lodash/cloneDeep'
 import swap from 'lib/reorder'
 import { ServiceNameEnum } from 'services'
 import createCv from './utils/createCv'
@@ -39,6 +40,7 @@ import {
   UpdateLanguagePayload,
   DeleteLanguagePayload,
   AddCvPayload,
+  CopyCvPayload,
   DeleteCvPayload,
   SelectCvPayload,
 } from './model'
@@ -388,6 +390,26 @@ const { actions, reducer } = createSlice({
       }
     },
 
+    makeCvCopy: (state, { payload }: PayloadAction<CopyCvPayload>) => {
+      const { baseCvId, copyCvId, copyCvNumber, copyCvName } = payload
+
+      const { content: baseCvContent } = state.byId[baseCvId]
+      const copyCvContent = cloneDeep(baseCvContent)
+
+      state.ids.push(copyCvId)
+      state.byId[copyCvId] = {
+        metadata: {
+          id: copyCvId,
+          number: copyCvNumber,
+          name: copyCvName,
+          isNew: true,
+          isSaved: false,
+          savedAt: null,
+        },
+        content: copyCvContent,
+      }
+    },
+
     deleteCv: (state, { payload }: PayloadAction<DeleteCvPayload>) => {
       const { id } = payload
 
@@ -427,6 +449,7 @@ export const {
   deleteLanguage,
   selectCv,
   addEmptyCv,
+  makeCvCopy,
   deleteCv,
 } = actions
 export default reducer
