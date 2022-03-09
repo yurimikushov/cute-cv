@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import defer from 'lodash/defer'
 import nonNullable from 'lib/nonNullable'
+import useManageModal from 'hooks/useManageModal'
 import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import useOutsideClick from 'hooks/useOutsideClick'
 import useKeyDown from 'hooks/useKeyDown'
@@ -13,22 +14,13 @@ const OFFSET_BETWEEN_TRIGGER_AND_CONTENT = 3
 
 // eslint-disable-next-line max-statements
 const usePopup = (trigger: Trigger, placement: Placement) => {
+  const {
+    isOpened: isVisible,
+    open: showContent,
+    close: hideContent,
+  } = useManageModal()
   const triggerElementRef = useRef<HTMLElement>(null)
   const contentElementRef = useRef<HTMLDivElement>(null)
-  const prevActiveElementRef = useRef<HTMLElement | null>(null)
-
-  const [isVisible, setIsVisible] = useState(false)
-
-  const showContent = () => {
-    prevActiveElementRef.current = document.activeElement as HTMLElement
-    setIsVisible(true)
-  }
-  const hideContent = () => {
-    defer(() => {
-      prevActiveElementRef.current?.focus()
-    })
-    setIsVisible(false)
-  }
 
   const [top, setTop] = useState(INITIAL_TOP_POSITION)
   const [left, setLeft] = useState(INITIAL_LEFT_POSITION)
