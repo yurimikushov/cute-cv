@@ -24,7 +24,7 @@ type Translation = {
   }
   versions: {
     title: string
-    toolsPopup: {
+    menu: {
       editName: string
       delete: string
       confirmDelete: string

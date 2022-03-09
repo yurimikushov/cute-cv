@@ -26,7 +26,7 @@ const en: Translation = {
   },
   versions: {
     title: 'Versions',
-    toolsPopup: {
+    menu: {
       editName: 'Edit name',
       delete: 'Delete',
       confirmDelete: 'Are you sure you wanna delete this version?',

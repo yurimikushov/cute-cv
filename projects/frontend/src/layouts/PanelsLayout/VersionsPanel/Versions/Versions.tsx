@@ -42,7 +42,7 @@ const Versions: FC<VersionsProps> = (props) => {
       return
     }
 
-    if (confirm(t('toolsPopup.confirmDelete'))) {
+    if (confirm(t('menu.confirmDelete'))) {
       deleteCv(id, isNew)
     }
   }

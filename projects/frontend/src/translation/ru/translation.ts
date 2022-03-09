@@ -26,7 +26,7 @@ const ru: Translation = {
   },
   versions: {
     title: 'Версии',
-    toolsPopup: {
+    menu: {
       editName: 'Изменить название',
       delete: 'Удалить',
       confirmDelete: 'Вы точно хотите удалить эту версию?',
