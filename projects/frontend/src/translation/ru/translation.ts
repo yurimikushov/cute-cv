@@ -32,29 +32,25 @@ const ru: Translation = {
       delete: 'Удалить',
       confirmDelete: 'Вы точно хотите удалить эту версию?',
     },
-    editNameModal: {
-      title: 'Изменить название',
+    editCvModal: {
+      title: 'Изменить резюме',
       name: {
         placeholder: 'Название резюме',
         required: 'Это обязательное поле',
       },
+      submit: 'Сохранить',
+    },
+    editNameModal: {
+      title: 'Изменить название',
       savingStatus: 'Сохранение...',
       save: 'Сохранить',
     },
     makeCopyModal: {
       title: 'Сделать копию',
-      name: {
-        placeholder: 'Название резюме',
-        required: 'Это обязательное поле',
-      },
       makeCopy: 'Сделать копию',
     },
     addModal: {
       title: 'Добавить резюме',
-      name: {
-        placeholder: 'Название резюме',
-        required: 'Это обязательное поле',
-      },
       add: 'Добавить',
     },
     add: 'Добавить',

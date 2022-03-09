@@ -1,6 +1,6 @@
 import useManageModal from 'hooks/useManageModal'
 
-const useAddCvModal = (onAddCv: (name: string) => void) => {
+const useAddEditCvModal = (onAddCv: (name: string) => void) => {
   const {
     isOpened: isAddModalOpened,
     open: handleOpenAddModal,
@@ -20,4 +20,4 @@ const useAddCvModal = (onAddCv: (name: string) => void) => {
   }
 }
 
-export default useAddCvModal
+export default useAddEditCvModal

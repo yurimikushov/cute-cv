@@ -10,7 +10,7 @@ import BaseForm, { FormProps } from 'components/Form'
 import colors from 'styles/colors'
 import fonts from 'styles/fonts'
 import radiuses from 'styles/radiuses'
-import EditNameModalProps from './EditNameModal.props'
+import EditCvModalProps from './EditCvModal.props'
 
 const Container = styled(Modal)`
   width: 24rem;
@@ -29,7 +29,7 @@ const Title = styled.h1`
   color: ${colors.black};
 `
 
-const stretchClassName = replace(String(styled.div``), '.', '')
+const stretchClassName = replace(styled.div``.toString(), '.', '')
 
 const Form = styled(BaseForm)`
   width: 100%;
@@ -49,14 +49,17 @@ type FormValues = {
   name: string
 }
 
-const EditNameModal: FC<EditNameModalProps> = ({
-  name,
-  onSave,
+const EditCvModal: FC<EditCvModalProps> = ({
+  title,
+  submitTitle,
+  submitSubmittingTitle,
+  initialName = '',
+  onSubmit,
   onClose,
   ...props
 }) => {
   const { t } = useTranslation('translation', {
-    keyPrefix: 'versions.editNameModal',
+    keyPrefix: 'versions.editCvModal',
   })
   const nameInputRef = useAutoFocus<HTMLInputElement>()
 
@@ -71,19 +74,20 @@ const EditNameModal: FC<EditNameModalProps> = ({
     })
   }, [])
 
-  const handleSave = async ({ name }: FormValues) => {
-    await onSave(name)
+  const handleSubmit = async ({ name }: FormValues) => {
+    // if onSubmit will return void, we will wrap this into Promise
+    await Promise.resolve(onSubmit(name))
   }
 
   return (
     <Container {...props} onClose={onClose}>
-      <Title>{t('title')}</Title>
+      <Title>{title ?? t('title')}</Title>
       <Form<FC<FormProps<FormValues>>>
         initialValues={{
-          name,
+          name: initialName,
         }}
         validationSchema={validationSchema}
-        onSubmit={handleSave}
+        onSubmit={handleSubmit}
       >
         <Form.TextInput
           inputRef={nameInputRef}
@@ -97,13 +101,13 @@ const EditNameModal: FC<EditNameModalProps> = ({
         <Form.Button
           type='submit'
           appearance='outlined'
-          submittingContent={t('savingStatus')}
+          submittingContent={submitSubmittingTitle}
         >
-          {t('save')}
+          {submitTitle ?? t('submit')}
         </Form.Button>
       </Form>
     </Container>
   )
 }
 
-export default EditNameModal
+export default EditCvModal

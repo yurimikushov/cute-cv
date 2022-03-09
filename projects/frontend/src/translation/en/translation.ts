@@ -32,29 +32,25 @@ const en: Translation = {
       delete: 'Delete',
       confirmDelete: 'Are you sure you wanna delete this version?',
     },
-    editNameModal: {
-      title: 'Edit name',
+    editCvModal: {
+      title: 'Edit CV',
       name: {
         placeholder: 'CV name',
         required: `It's required field`,
       },
+      submit: 'Сохранить',
+    },
+    editNameModal: {
+      title: 'Edit name',
       savingStatus: 'Saving...',
       save: 'Save',
     },
     makeCopyModal: {
       title: 'Make copy',
-      name: {
-        placeholder: 'CV name',
-        required: `It's required field`,
-      },
       makeCopy: 'Make copy',
     },
     addModal: {
       title: 'Add CV',
-      name: {
-        placeholder: 'CV name',
-        required: `It's required field`,
-      },
       add: 'Add',
     },
     add: 'Add',

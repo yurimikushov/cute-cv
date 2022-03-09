@@ -1,11 +1,11 @@
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useIsSignedIn } from 'services/auth'
+import EditCvModal from '../../EditCvModal'
 import useEditNameModal from './hooks/useEditNameModal'
 import useMakeCopyModal from './hooks/useMakeCopyModal'
 import Menu from './Menu'
-import EditNameModal from './EditNameModal'
-import MakeCopyModal from './MakeCopyModal'
 import VersionProps from './Version.props'
 
 const Container = styled.div`
@@ -27,6 +27,7 @@ const Version: FC<VersionProps> = ({
   onDelete,
   ...props
 }) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const { isSignedIn } = useIsSignedIn()
   const {
     isEditNameModalOpened,
@@ -53,14 +54,19 @@ const Version: FC<VersionProps> = ({
         />
       )}
       {isSignedIn && isEditNameModalOpened && (
-        <EditNameModal
-          name={name}
+        <EditCvModal
+          title={t('editNameModal.title')}
+          submitTitle={t('editNameModal.save')}
+          submitSubmittingTitle={t('editNameModal.savingStatus')}
+          initialName={name}
+          onSubmit={handleUpdateCvName}
           onClose={handleCloseEditNameModal}
-          onSave={handleUpdateCvName}
         />
       )}
       {isSignedIn && isMakeCopyModalOpened && (
-        <MakeCopyModal
+        <EditCvModal
+          title={t('makeCopyModal.title')}
+          submitTitle={t('makeCopyModal.makeCopy')}
           onSubmit={handleMakeCopy}
           onClose={handleCloseMakeCopyModal}
         />

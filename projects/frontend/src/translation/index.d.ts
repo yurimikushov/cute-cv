@@ -30,29 +30,25 @@ type Translation = {
       delete: string
       confirmDelete: string
     }
-    editNameModal: {
+    editCvModal: {
       title: string
       name: {
         placeholder: string
         required: string
       }
+      submit: string
+    }
+    editNameModal: {
+      title: string
       savingStatus: string
       save: string
     }
     makeCopyModal: {
       title: string
-      name: {
-        placeholder: string
-        required: string
-      }
       makeCopy: string
     }
     addModal: {
       title: string
-      name: {
-        placeholder: string
-        required: string
-      }
       add: string
     }
     add: string

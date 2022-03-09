@@ -16,7 +16,7 @@ import Button from 'components/Button'
 import { panelMixin } from '../mixins'
 import useAddCvModal from './hooks/useAddCvModal'
 import Versions from './Versions'
-import AddCvModal from './AddCvModal'
+import EditCvModal from './EditCvModal'
 import VersionsPanelProps from './VersionsPanel.props'
 
 const Container = styled(Card)`
@@ -60,7 +60,12 @@ const VersionsPanel: FC<VersionsPanelProps> = (props) => {
         </>
       )}
       {isAddModalOpened && (
-        <AddCvModal onAdd={handleAddCv} onClose={handleCloseAddModal} />
+        <EditCvModal
+          title={t('addModal.title')}
+          submitTitle={t('addModal.add')}
+          onSubmit={handleAddCv}
+          onClose={handleCloseAddModal}
+        />
       )}
     </Container>
   )
