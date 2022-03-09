@@ -6,7 +6,7 @@ import {
   useAllCvMetadata,
   useCurrentCvMetadata,
   useSelectCv,
-  useAddCv,
+  useAddEmptyCv,
   useDeleteCv as useDeleteCvFromStore,
 } from '../versions'
 import getNextCurrentId from './utils/getNextCurrentId'
@@ -15,7 +15,7 @@ const useDeleteCv = () => {
   const allCv = useAllCvMetadata()
   const { id: currentId } = useCurrentCvMetadata()
   const selectCv = useSelectCv()
-  const addCv = useAddCv()
+  const addEmptyCv = useAddEmptyCv()
   const deleteCvFromBackend = useDeleteCvFromBackend()
   const deleteCvFromStore = useDeleteCvFromStore()
 
@@ -23,7 +23,7 @@ const useDeleteCv = () => {
     const cvIds = map(allCv, 'id')
 
     if (isEmpty(without(cvIds, id))) {
-      const newCvId = addCv()
+      const newCvId = addEmptyCv()
       cvIds.push(newCvId)
     }
 

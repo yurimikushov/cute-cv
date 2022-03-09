@@ -17,7 +17,7 @@ export {
   useCurrentCvMetadata,
   useCurrentCvContent,
   useSelectCv,
-  useAddCv,
+  useAddEmptyCv,
   selectCvContent,
   selectCvMetadata,
   CV_VERSIONS_MAX_COUNT,

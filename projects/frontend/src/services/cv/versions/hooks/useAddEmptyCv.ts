@@ -1,12 +1,12 @@
 import { nanoid } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 import { CV_VERSIONS_MAX_COUNT } from '../constants'
-import { addCv } from '../slice'
+import { addEmptyCv } from '../slice'
 import useCvCount from './useCvCount'
 import useCvNumbers from './useCvNumbers'
 import useSelectCv from './useSelectCv'
 
-const useAddCv = () => {
+const useAddEmptyCv = () => {
   const cvCount = useCvCount()
   const cvNumbers = useCvNumbers()
   const selectCv = useSelectCv()
@@ -25,7 +25,7 @@ const useAddCv = () => {
     // eslint-disable-next-line no-magic-numbers
     const number = Math.max(...cvNumbers) + 1
 
-    dispatch(addCv({ id, name, number }))
+    dispatch(addEmptyCv({ id, name, number }))
     selectCv(id)
 
     return id
@@ -34,4 +34,4 @@ const useAddCv = () => {
   return handleAddCv
 }
 
-export default useAddCv
+export default useAddEmptyCv

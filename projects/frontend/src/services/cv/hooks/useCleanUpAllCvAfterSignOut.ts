@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import forEach from 'lodash/forEach'
 import { useIsSignedIn } from 'services/auth'
 import {
-  useAddCv,
+  useAddEmptyCv,
   useAllCvMetadata,
   useDeleteCv,
   useSelectCv,
@@ -13,7 +13,7 @@ const useCleanUpAllCvAfterSignOut = () => {
   const isSignInPrevRef = useRef(isSignedIn)
   const allCv = useAllCvMetadata()
   const selectCv = useSelectCv()
-  const addCv = useAddCv()
+  const addEmptyCv = useAddEmptyCv()
   const deleteCv = useDeleteCv()
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const useCleanUpAllCvAfterSignOut = () => {
       return
     }
 
-    const newCvId = addCv()
+    const newCvId = addEmptyCv()
     selectCv(newCvId)
 
     forEach(allCv, ({ id }) => {

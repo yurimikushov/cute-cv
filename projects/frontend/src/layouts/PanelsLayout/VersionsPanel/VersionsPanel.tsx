@@ -5,7 +5,7 @@ import { useIsSignedIn } from 'services/auth'
 import {
   useCvCount,
   useCurrentCvMetadata,
-  useAddCv,
+  useAddEmptyCv,
   useIsCvSaving,
   useIsCvDeleting,
   CV_VERSIONS_MAX_COUNT,
@@ -28,7 +28,7 @@ const VersionsPanel: FC<VersionsPanelProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const cvCount = useCvCount()
   const { isNew, isSaved } = useCurrentCvMetadata()
-  const addCv = useAddCv()
+  const addEmptyCv = useAddEmptyCv()
   const { isCvSaving } = useIsCvSaving()
   const { isCvDeleting } = useIsCvDeleting()
   const { isSignedIn } = useIsSignedIn()
@@ -37,7 +37,7 @@ const VersionsPanel: FC<VersionsPanelProps> = (props) => {
     handleOpenAddModal,
     handleCloseAddModal,
     handleAddCv,
-  } = useAddCvModal(addCv)
+  } = useAddCvModal(addEmptyCv)
 
   const shouldDisableActiveElements =
     (!isNew && !isSaved) || isCvSaving || isCvDeleting

@@ -377,7 +377,7 @@ const { actions, reducer } = createSlice({
       state.currentId = payload.id
     },
 
-    addCv: (state, { payload }: PayloadAction<AddCvPayload>) => {
+    addEmptyCv: (state, { payload }: PayloadAction<AddCvPayload>) => {
       const { id, name, number } = payload
       const { metadata, content } = createCv({ id, name, number })
 
@@ -426,7 +426,7 @@ export const {
   updateLanguage,
   deleteLanguage,
   selectCv,
-  addCv,
+  addEmptyCv,
   deleteCv,
 } = actions
 export default reducer
