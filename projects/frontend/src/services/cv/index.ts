@@ -14,6 +14,7 @@ export { useIsCvDeleting } from './delete'
 export {
   useCvCount,
   useAllCvMetadata,
+  useCurrentCv,
   useCurrentCvMetadata,
   useCurrentCvContent,
   useSelectCv,

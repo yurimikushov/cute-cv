@@ -15,6 +15,7 @@ export {
   useUpdateCvName,
   useCvCount,
   useAllCvMetadata,
+  useCurrentCv,
   useCurrentCvMetadata,
   useCurrentCvContent,
   useSelectCv,
