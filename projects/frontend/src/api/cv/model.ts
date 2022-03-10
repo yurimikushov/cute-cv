@@ -1,11 +1,8 @@
-import { CvMetadata, CvContent } from 'services/cv'
+import { CvContent } from 'services/cv'
 
-type LoadAllResult = Array<Metadata>
+type LoadAllResult = Array<RawMetadata>
 
-type LoadResult = {
-  metadata: Metadata
-  content: Content
-}
+type LoadResult = RawCv
 
 type SavePayload = {
   id: string
@@ -14,7 +11,7 @@ type SavePayload = {
   cv: Content
 }
 
-type SaveResult = Metadata
+type SaveResult = RawMetadata
 
 type PatchPayload = {
   id: string
@@ -23,11 +20,21 @@ type PatchPayload = {
   cv?: Partial<Content>
 }
 
-type PatchResult = Metadata
+type PatchResult = RawMetadata
 
-type Metadata = Pick<CvMetadata, 'id' | 'name' | 'number'> & {
+type RawCv = {
+  metadata: RawMetadata
+  content: RawContent
+}
+
+type RawMetadata = {
+  id: string
+  name: string
+  number: number
   savedAt: string
 }
+
+type RawContent = CvContent
 
 type Content = CvContent
 
@@ -38,4 +45,7 @@ export type {
   SaveResult,
   PatchPayload,
   PatchResult,
+  RawCv,
+  RawMetadata,
+  RawContent,
 }

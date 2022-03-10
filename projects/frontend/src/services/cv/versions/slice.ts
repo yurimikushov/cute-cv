@@ -98,7 +98,6 @@ const { actions, reducer } = createSlice({
           ...metadata,
           isNew: false,
           isSaved: Boolean(savedAt),
-          savedAt: new Date(savedAt),
         },
         content: {
           ...content,

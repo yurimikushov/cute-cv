@@ -23,7 +23,7 @@ const useUpdateCvName = () => {
         id,
         isNew: false,
         isSaved: Boolean(savedAt),
-        savedAt: new Date(savedAt),
+        savedAt,
       })
     })
   }

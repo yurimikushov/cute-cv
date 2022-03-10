@@ -1,5 +1,6 @@
 import axios from 'axios'
 import isString from 'lodash/isString'
+import map from 'lodash/map'
 import {
   LoadAllResult,
   LoadResult,
@@ -8,6 +9,7 @@ import {
   PatchPayload,
   PatchResult,
 } from './model'
+import { convertRawCv, convertRawCvMetadata } from './utils'
 
 class cvApi {
   static async loadAll() {
@@ -18,7 +20,7 @@ class cvApi {
       throw new Error(`Unexpected response status code: ${status}`)
     }
 
-    return data
+    return map(data, convertRawCvMetadata)
   }
 
   static async load(id: string) {
@@ -33,7 +35,7 @@ class cvApi {
       return null
     }
 
-    return data
+    return convertRawCv(data)
   }
 
   static async save({ id, name, number, cv }: SavePayload) {
@@ -45,7 +47,7 @@ class cvApi {
       content: cv,
     })
 
-    return data
+    return convertRawCvMetadata(data)
   }
 
   static async patch({ id, name, number, cv }: PatchPayload) {
@@ -57,7 +59,7 @@ class cvApi {
       content: cv,
     })
 
-    return data
+    return convertRawCvMetadata(data)
   }
 
   static async delete(id: string) {

@@ -25,7 +25,7 @@ const debouncedSave = debounce((store: Store) => {
           id,
           isNew: false,
           isSaved: Boolean(savedAt),
-          savedAt: new Date(savedAt),
+          savedAt,
         })
       )
     })

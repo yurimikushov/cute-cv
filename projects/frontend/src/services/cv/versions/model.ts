@@ -79,7 +79,7 @@ type RawMetadata = {
   id: string
   name: string
   number: number
-  savedAt: string
+  savedAt: Date | null
 }
 
 type RawContent = {
