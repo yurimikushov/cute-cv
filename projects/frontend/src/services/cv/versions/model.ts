@@ -71,6 +71,7 @@ type Language = {
 type InitAllCvPayload = Array<RawMetadata>
 
 type UpdateCvPayload = {
+  id: string
   metadata: RawMetadata
   content: RawContent
 }

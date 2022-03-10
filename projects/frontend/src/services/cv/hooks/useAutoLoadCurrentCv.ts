@@ -21,8 +21,12 @@ const useAutoLoadCurrentCv = () => {
       return
     }
 
-    loadCv(id).then((cv) => {
-      updateCv(cv)
+    loadCv(id).then(({ metadata, content }) => {
+      updateCv({
+        id,
+        metadata,
+        content,
+      })
     })
   }, [isSignedIn, id, isNew])
 }
