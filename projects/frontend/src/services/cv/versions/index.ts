@@ -5,6 +5,7 @@ export {
 } from './slice'
 export {
   selectCurrentCvId,
+  selectCurrentCv,
   selectCvContent,
   selectCvMetadata,
 } from './selectors'

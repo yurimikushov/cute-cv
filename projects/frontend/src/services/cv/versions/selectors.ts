@@ -17,12 +17,42 @@ const selectCvNumbers = (state: RootState) => {
   return map(versions.ids, (id) => versions.byId[id].metadata.number)
 }
 
-const selectCurrentVersion = (state: RootState) => {
+const selectCurrentRawCv = (state: RootState) => {
   const id = selectCurrentCvId(state)
   const versions = selectCvVersions(state)
 
   return versions.byId[id]
 }
+
+const selectCurrentCv = createSelector(
+  selectCurrentRawCv,
+  ({ metadata, content }) => {
+    content ??= {
+      fullName: '',
+      position: '',
+      aboutMe: '',
+      avatar: null,
+      experiences: { ids: [], byId: {} },
+      educations: { ids: [], byId: {} },
+      contacts: { ids: [], byId: {} },
+      technologies: '',
+      languages: { ids: [], byId: {} },
+    }
+
+    const { experiences, educations, contacts, languages } = content
+
+    return {
+      metadata,
+      content: {
+        ...content,
+        experiences: map(experiences.ids, (id) => experiences.byId[id]),
+        educations: map(educations.ids, (id) => educations.byId[id]),
+        contacts: map(contacts.ids, (id) => contacts.byId[id]),
+        languages: map(languages.ids, (id) => languages.byId[id]),
+      },
+    }
+  }
+)
 
 const selectAllCvMetadata = (state: RootState) => {
   const { ids, byId } = selectCvVersions(state)
@@ -36,38 +66,15 @@ const selectAllCvMetadata = (state: RootState) => {
 }
 
 const selectCvMetadata = (state: RootState) => {
-  const { metadata } = selectCurrentVersion(state)
+  const { metadata } = selectCurrentRawCv(state)
   return metadata
 }
 
-const selectRawCvContent = (state: RootState) => {
-  const { content } = selectCurrentVersion(state)
+const selectCvContent = (state: RootState) => {
+  const { content } = selectCurrentCv(state)
+
   return content
 }
-
-const selectCvContent = createSelector(selectRawCvContent, (content) => {
-  content ??= {
-    fullName: '',
-    position: '',
-    aboutMe: '',
-    avatar: null,
-    experiences: { ids: [], byId: {} },
-    educations: { ids: [], byId: {} },
-    contacts: { ids: [], byId: {} },
-    technologies: '',
-    languages: { ids: [], byId: {} },
-  }
-
-  const { experiences, educations, contacts, languages } = content
-
-  return {
-    ...content,
-    experiences: map(experiences.ids, (id) => experiences.byId[id]),
-    educations: map(educations.ids, (id) => educations.byId[id]),
-    contacts: map(contacts.ids, (id) => contacts.byId[id]),
-    languages: map(languages.ids, (id) => languages.byId[id]),
-  }
-})
 
 type CV = ReturnType<typeof selectCvContent>
 
@@ -75,6 +82,7 @@ export {
   selectCvCount,
   selectCvNumbers,
   selectAllCvMetadata,
+  selectCurrentCv,
   selectCvMetadata,
   selectCvContent,
   selectCurrentCvId,
