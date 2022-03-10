@@ -76,7 +76,9 @@ const selectCvContent = (state: RootState) => {
   return content
 }
 
-type CV = ReturnType<typeof selectCvContent>
+type Cv = ReturnType<typeof selectCurrentCv>
+type CvMetadata = ReturnType<typeof selectCvMetadata>
+type CvContent = ReturnType<typeof selectCvContent>
 
 export {
   selectCvCount,
@@ -87,4 +89,4 @@ export {
   selectCvContent,
   selectCurrentCvId,
 }
-export type { CV }
+export type { Cv, CvMetadata, CvContent }

@@ -43,5 +43,5 @@ export {
   LANGUAGES_MAX_COUNT,
   LANGUAGE_MAX_LENGTH,
 } from './versions'
-export type { CV } from './versions'
+export type { Cv, CvMetadata, CvContent } from './versions'
 export { default as cvMiddlewares } from './middlewares'

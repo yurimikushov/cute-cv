@@ -1,5 +1,5 @@
 import { SerializedError } from '@reduxjs/toolkit'
-import { CV } from 'services/cv'
+import { CvContent } from 'services/cv'
 
 type SaveState = {
   isSaving: boolean
@@ -10,7 +10,7 @@ type SavePayload = {
   id: string
   name: string
   number: number
-  cv: CV
+  cv: CvContent
 }
 
 export type { SaveState, SavePayload }

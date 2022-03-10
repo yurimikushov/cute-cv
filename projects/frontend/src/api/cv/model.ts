@@ -1,17 +1,17 @@
-import { CV } from 'services/cv'
+import { CvMetadata, CvContent } from 'services/cv'
 
 type LoadAllResult = Array<Metadata>
 
 type LoadResult = {
   metadata: Metadata
-  content: CV
+  content: Content
 }
 
 type SavePayload = {
   id: string
   name: string
   number: number
-  cv: CV
+  cv: Content
 }
 
 type SaveResult = Metadata
@@ -20,17 +20,16 @@ type PatchPayload = {
   id: string
   name?: string
   number?: number
-  cv?: Partial<CV>
+  cv?: Partial<Content>
 }
 
 type PatchResult = Metadata
 
-type Metadata = {
-  id: string
-  name: string
-  number: number
+type Metadata = Pick<CvMetadata, 'id' | 'name' | 'number'> & {
   savedAt: string
 }
+
+type Content = CvContent
 
 export type {
   LoadAllResult,

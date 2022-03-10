@@ -23,7 +23,7 @@ export {
   useMakeCvCopy,
   useDeleteCv,
 } from './hooks'
-export type { CV } from './selectors'
+export type { Cv, CvMetadata, CvContent } from './selectors'
 export {
   CV_VERSIONS_MAX_COUNT,
   CV_NAME_MAX_LENGTH,

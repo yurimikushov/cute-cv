@@ -1,5 +1,5 @@
 import { SerializedError } from '@reduxjs/toolkit'
-import { CV } from 'services/cv'
+import { CvContent } from 'services/cv'
 
 type PatchState = {
   isPatching: boolean
@@ -10,7 +10,7 @@ type PatchPayload = {
   id: string
   name?: string
   number?: number
-  cv?: Partial<CV>
+  cv?: Partial<CvContent>
 }
 
 export type { PatchState, PatchPayload }
