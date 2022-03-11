@@ -1,6 +1,7 @@
 import { AnyAction } from '@reduxjs/toolkit'
 import debounce from 'lodash/debounce'
 import defer from 'lodash/defer'
+import cvApi from 'api/cv'
 import { Middleware, Store } from 'services/store'
 import { selectIsSignedIn } from 'services/auth'
 import {
@@ -12,7 +13,7 @@ import { save, SaveResult } from '../save'
 
 const AUTO_SAVE_TIMING = 1_000
 
-const debouncedSave = debounce((store: Store) => {
+const saveCvOfSignedInUser = debounce((store: Store) => {
   const { metadata, content } = selectCurrentCv(store.getState())
   const { id, name, number } = metadata
 
@@ -31,14 +32,22 @@ const debouncedSave = debounce((store: Store) => {
     })
 }, AUTO_SAVE_TIMING)
 
+const saveCvOfUnsignedInUser = (store: Store) => {
+  cvApi.saveCvOfUnsignedInUser(selectCurrentCv(store.getState()))
+}
+
 const saveCvMiddleware: Middleware = (store) => (dispatch) => (action) => {
-  if (!selectIsSignedIn(store.getState())) {
+  if (!isCvContentChanged(action)) {
     return dispatch(action)
   }
 
-  if (isCvContentChanged(action)) {
-    defer(() => debouncedSave(store))
-  }
+  defer(() => {
+    if (selectIsSignedIn(store.getState())) {
+      saveCvOfSignedInUser(store)
+    } else {
+      saveCvOfUnsignedInUser(store)
+    }
+  })
 
   return dispatch(action)
 }

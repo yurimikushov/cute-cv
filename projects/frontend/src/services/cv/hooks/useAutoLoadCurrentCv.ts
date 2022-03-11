@@ -1,4 +1,6 @@
 import { useEffect, useRef } from 'react'
+import isNull from 'lodash/isNull'
+import cvApi from 'api/cv'
 import { useIsSignedIn } from 'services/auth'
 import { useLoadCV } from '../load'
 import { useCurrentCvMetadata, useUpdateCv } from '../versions'
@@ -10,17 +12,20 @@ const useAutoLoadCurrentCv = () => {
   const updateCv = useUpdateCv()
   const prevIdRef = useRef(id)
 
-  useEffect(() => {
-    if (prevIdRef.current === id) {
+  const loadCvOfUnsignedInUser = () => {
+    const cv = cvApi.loadCvOfUnsignedInUser()
+
+    if (isNull(cv)) {
       return
     }
 
-    prevIdRef.current = id
+    updateCv({
+      id,
+      ...cv,
+    })
+  }
 
-    if (!isSignedIn || isNew) {
-      return
-    }
-
+  const loadCvOfSignedInUser = (id: string) => {
     loadCv(id).then(({ metadata, content }) => {
       updateCv({
         id,
@@ -28,6 +33,21 @@ const useAutoLoadCurrentCv = () => {
         content,
       })
     })
+  }
+
+  useEffect(() => {
+    if (!isSignedIn) {
+      loadCvOfUnsignedInUser()
+      return
+    }
+
+    if (isNew || prevIdRef.current === id) {
+      return
+    }
+
+    prevIdRef.current = id
+
+    loadCvOfSignedInUser(id)
   }, [isSignedIn, id, isNew])
 }
 

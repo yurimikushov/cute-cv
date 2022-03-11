@@ -1,6 +1,8 @@
 import axios from 'axios'
 import isString from 'lodash/isString'
 import map from 'lodash/map'
+import isNull from 'lodash/isNull'
+import { Cv } from 'services/cv'
 import {
   LoadAllResult,
   LoadResult,
@@ -69,6 +71,20 @@ class cvApi {
     if (status !== 200) {
       throw new Error(`Unexpected response status code: ${status}`)
     }
+  }
+
+  static loadCvOfUnsignedInUser() {
+    const rawCV = localStorage.getItem('persist:unsignedin:cv')
+
+    if (isNull(rawCV)) {
+      return null
+    }
+
+    return JSON.parse(rawCV) as Cv
+  }
+
+  static saveCvOfUnsignedInUser(cv: Cv) {
+    localStorage.setItem('persist:unsignedin:cv', JSON.stringify(cv))
   }
 }
 
