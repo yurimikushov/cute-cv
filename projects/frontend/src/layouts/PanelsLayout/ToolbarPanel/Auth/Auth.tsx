@@ -26,7 +26,7 @@ const Auth: FC<AuthProps> = (props) => {
         {...props}
         appearance='text'
         withoutPaddings
-        disabled={isDownloading}
+        disabled={isSignInChecking || isDownloading}
         onClick={isSignedIn ? handleSignOut : handleOpenSignInModal}
       >
         {isSignedIn ? t('signOut') : t('signIn')}
