@@ -76,14 +76,15 @@ export class CVRepository {
     const files = await this.getStorageFiles(userId)
 
     return map(files, (file, i) => {
-      const {
-        metadata: { name: fileName, metadata },
-      } = file
+      const { metadata: fileMetadata } = file
+      const { name: fileName, updated: savedAt, metadata } = fileMetadata
+      const { id, name, number } = metadata
 
       return {
-        id: (metadata?.id as string | undefined) ?? getCvId(fileName),
-        name: (metadata?.name as string | undefined) ?? `Draft #${i + 1}`,
-        number: Number((metadata?.number as string | undefined) ?? i + 1),
+        id: (id as string | undefined) ?? getCvId(fileName),
+        name: (name as string | undefined) ?? `Draft #${i + 1}`,
+        number: Number((number as string | undefined) ?? i + 1),
+        savedAt,
       }
     })
   }
