@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+import useEffectWhen from 'hooks/useEffectWhen'
 import { useSignOut, useIsSignedIn, useIsSignInChecking } from 'services/auth'
 import { useDownload } from 'services/cv'
 import Button from 'components/Button'
@@ -17,8 +18,7 @@ const Auth: FC<AuthProps> = (props) => {
   const { isSignInModalOpened, handleOpenSignInModal, handleSkipSignInModal } =
     useSignInModal()
 
-  const shouldDisplaySighInModal =
-    !isSignInChecking && !isSignedIn && isSignInModalOpened
+  useEffectWhen(handleOpenSignInModal, !isSignInChecking && !isSignedIn)
 
   return (
     <>
@@ -31,9 +31,7 @@ const Auth: FC<AuthProps> = (props) => {
       >
         {isSignedIn ? t('signOut') : t('signIn')}
       </Button>
-      {shouldDisplaySighInModal && (
-        <SignInModal onSkip={handleSkipSignInModal} />
-      )}
+      {isSignInModalOpened && <SignInModal onSkip={handleSkipSignInModal} />}
     </>
   )
 }
