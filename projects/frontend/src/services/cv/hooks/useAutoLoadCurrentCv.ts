@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import isNull from 'lodash/isNull'
+import defer from 'lodash/defer'
 import cvApi from 'api/cv'
 import { useIsSignedIn } from 'services/auth'
 import { useLoadCV } from '../load'
@@ -41,11 +42,14 @@ const useAutoLoadCurrentCv = () => {
       return
     }
 
+    // update prev id after executing this effect
+    defer(() => {
+      prevIdRef.current = id
+    })
+
     if (isNew || prevIdRef.current === id) {
       return
     }
-
-    prevIdRef.current = id
 
     loadCvOfSignedInUser(id)
   }, [isSignedIn, id, isNew])
