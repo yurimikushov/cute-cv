@@ -8,6 +8,7 @@ import 'api/config'
 import 'translation/config'
 import { logError } from 'logger'
 import store, { persistor } from 'services/store'
+import GlobalErrorBoundary from 'components/GlobalErrorBoundary'
 import ErrorBoundary from 'components/ErrorBoundary'
 import ErrorBoundaryModal from 'components/ErrorBoundaryModal'
 import ResetStyles from 'styles/global/ResetStyles'
@@ -16,6 +17,7 @@ import App from './App'
 
 render(
   <React.StrictMode>
+    <GlobalErrorBoundary onError={logError} />
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <ResetStyles />
