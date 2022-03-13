@@ -6,6 +6,8 @@ import { HelmetProvider } from 'react-helmet-async'
 import 'api/config'
 import store, { persistor } from 'services/store'
 import 'translation/config'
+import ErrorBoundary from 'components/ErrorBoundary'
+import ErrorBoundaryModal from 'components/ErrorBoundaryModal'
 import ResetStyles from 'styles/global/ResetStyles'
 import GlobalStyles from 'styles/global/GlobalStyles'
 import App from './App'
@@ -16,9 +18,11 @@ render(
       <PersistGate persistor={persistor}>
         <ResetStyles />
         <GlobalStyles />
-        <HelmetProvider>
-          <App />
-        </HelmetProvider>
+        <ErrorBoundary fallback={ErrorBoundaryModal}>
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
+        </ErrorBoundary>
       </PersistGate>
     </Provider>
   </React.StrictMode>,

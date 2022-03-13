@@ -12,3 +12,4 @@ type ErrorBoundaryFallbackProps = {
 }
 
 export default ErrorBoundaryProps
+export type { ErrorBoundaryFallbackProps }
