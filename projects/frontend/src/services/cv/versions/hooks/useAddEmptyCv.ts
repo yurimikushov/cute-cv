@@ -25,7 +25,10 @@ const useAddEmptyCv = () => {
     dispatch(addEmptyCv({ id, name, number }))
     selectCv(id)
 
-    return id
+    return {
+      id,
+      number,
+    }
   }
 
   return handleAddEmptyCv
