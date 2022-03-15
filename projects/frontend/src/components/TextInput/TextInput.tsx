@@ -10,7 +10,7 @@ import colors from 'styles/colors'
 import fonts from 'styles/fonts'
 import radiuses from 'styles/radiuses'
 import focusMixin from 'styles/mixins/focus'
-import useElementWidth from './hooks/useElementWidth'
+import useRecalcElementWidth from './hooks/useRecalcElementWidth'
 import TextInputProps from './TextInput.props'
 
 const textInputMixin = css<Pick<TextInputProps, 'size'>>`
@@ -67,10 +67,10 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputProps> = (
   },
   externalRef
 ) => {
-  const { ref, width, handleWidthChange } = useElementWidth<HTMLInputElement>(
-    [value, readonly],
-    { extraSpace: 3 /* fixes right side padding */ }
-  )
+  const { ref, width, handleWidthChange } =
+    useRecalcElementWidth<HTMLInputElement>([value, readonly], {
+      extraSpace: 3 /* fixes right side padding */,
+    })
 
   useImperativeHandle(externalRef, () => ref.current as HTMLInputElement)
 

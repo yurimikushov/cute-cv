@@ -5,7 +5,7 @@ type Options = {
   extraSpace?: number
 }
 
-const useElementWidth = <T extends HTMLElement>(
+const useRecalcElementWidth = <T extends HTMLElement>(
   deps: DependencyList,
   // eslint-disable-next-line no-magic-numbers
   { extraSpace = 0 }: Options
@@ -32,4 +32,4 @@ const useElementWidth = <T extends HTMLElement>(
   }
 }
 
-export default useElementWidth
+export default useRecalcElementWidth
