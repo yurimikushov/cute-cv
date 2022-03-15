@@ -14,21 +14,24 @@ const useRecalcElementWidth = <T extends HTMLElement>(
   const [width, setWidth] = useState('auto')
 
   useLayoutEffect(() => {
+    setWidth('auto')
+  }, deps)
+
+  useLayoutEffect(() => {
     if (isNull(ref.current)) {
       return
     }
 
-    setWidth(`${ref.current.scrollWidth + extraSpace}px`)
-  }, deps)
+    if (width !== 'auto') {
+      return
+    }
 
-  const handleWidthChange = () => {
-    setWidth('auto')
-  }
+    setWidth(`${ref.current.scrollWidth + extraSpace}px`)
+  }, [...deps, width])
 
   return {
     ref,
     width,
-    handleWidthChange,
   }
 }
 

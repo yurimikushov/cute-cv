@@ -2,7 +2,6 @@ import {
   ForwardRefRenderFunction,
   forwardRef,
   useImperativeHandle,
-  ChangeEvent,
 } from 'react'
 import styled, { css } from 'styled-components'
 import trim from 'lodash/trim'
@@ -67,17 +66,14 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputProps> = (
   },
   externalRef
 ) => {
-  const { ref, width, handleWidthChange } =
-    useRecalcElementWidth<HTMLInputElement>([value, readonly], {
+  const { ref, width } = useRecalcElementWidth<HTMLInputElement>(
+    [value, readonly],
+    {
       extraSpace: 3 /* fixes right side padding */,
-    })
+    }
+  )
 
   useImperativeHandle(externalRef, () => ref.current as HTMLInputElement)
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    handleWidthChange()
-    onChange(e)
-  }
 
   if (readonly) {
     return (
@@ -98,7 +94,7 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputProps> = (
       value={value}
       placeholder={placeholder}
       style={{ width }}
-      onChange={handleChange}
+      onChange={onChange}
       onBlur={onBlur}
     />
   )
