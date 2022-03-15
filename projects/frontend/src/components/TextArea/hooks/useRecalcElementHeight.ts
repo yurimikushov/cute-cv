@@ -1,7 +1,7 @@
 import { DependencyList, useLayoutEffect, useRef, useState } from 'react'
 import isNull from 'lodash/isNull'
 
-const useElementHeight = <T extends HTMLElement>(deps: DependencyList) => {
+const useRecalcElementHeight = <T extends HTMLElement>(deps: DependencyList) => {
   const ref = useRef<T>(null)
   const [height, setHeight] = useState('auto')
 
@@ -27,4 +27,4 @@ const useElementHeight = <T extends HTMLElement>(deps: DependencyList) => {
   }
 }
 
-export default useElementHeight
+export default useRecalcElementHeight

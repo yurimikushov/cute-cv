@@ -5,7 +5,7 @@ import mdToJsx from 'lib/mdToJsx'
 import colors from 'styles/colors'
 import radiuses from 'styles/radiuses'
 import focusMixin from 'styles/mixins/focus'
-import useElementHeight from './hooks/useElementHeight'
+import useRecalcElementHeight from './hooks/useRecalcElementHeight'
 import TextAreaProps from './TextArea.props'
 
 const textAreaMixin = css`
@@ -52,7 +52,7 @@ const TextArea: FC<TextAreaProps> = ({
   onBlur,
   ...props
 }) => {
-  const { ref, height } = useElementHeight<HTMLTextAreaElement>([
+  const { ref, height } = useRecalcElementHeight<HTMLTextAreaElement>([
     value,
     readonly,
   ])
