@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from 'react'
+import { FC } from 'react'
 import styled, { css } from 'styled-components'
 import trim from 'lodash/trim'
 import mdToJsx from 'lib/mdToJsx'
@@ -52,13 +52,10 @@ const TextArea: FC<TextAreaProps> = ({
   onBlur,
   ...props
 }) => {
-  const { ref, height, handleHeightChange } =
-    useElementHeight<HTMLTextAreaElement>([value, readonly])
-
-  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    handleHeightChange()
-    onChange(e)
-  }
+  const { ref, height } = useElementHeight<HTMLTextAreaElement>([
+    value,
+    readonly,
+  ])
 
   if (readonly) {
     return (
@@ -77,7 +74,7 @@ const TextArea: FC<TextAreaProps> = ({
       placeholder={placeholder}
       rows={2}
       style={{ height }}
-      onChange={handleChange}
+      onChange={onChange}
       onBlur={onBlur}
     />
   )

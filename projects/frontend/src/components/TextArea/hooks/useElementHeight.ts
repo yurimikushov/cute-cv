@@ -6,21 +6,24 @@ const useElementHeight = <T extends HTMLElement>(deps: DependencyList) => {
   const [height, setHeight] = useState('auto')
 
   useLayoutEffect(() => {
+    setHeight('auto')
+  }, deps)
+
+  useLayoutEffect(() => {
     if (isNull(ref.current)) {
       return
     }
 
-    setHeight(`${ref.current.scrollHeight}px`)
-  }, deps)
+    if (height !== 'auto') {
+      return
+    }
 
-  const handleHeightChange = () => {
-    setHeight('auto')
-  }
+    setHeight(`${ref.current.scrollHeight}px`)
+  }, [...deps, height])
 
   return {
     ref,
     height,
-    handleHeightChange,
   }
 }
 
