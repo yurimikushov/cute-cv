@@ -12,7 +12,7 @@ const useAddEmptyCv = () => {
 
   const dispatch = useDispatch()
 
-  const handleAddCv = (name?: string) => {
+  const handleAddEmptyCv = (name?: string) => {
     if (cvCount >= CV_VERSIONS_MAX_COUNT) {
       throw new Error(
         `You already have ${cvCount} cv versions.
@@ -28,7 +28,7 @@ const useAddEmptyCv = () => {
     return id
   }
 
-  return handleAddCv
+  return handleAddEmptyCv
 }
 
 export default useAddEmptyCv

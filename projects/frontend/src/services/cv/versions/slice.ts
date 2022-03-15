@@ -40,7 +40,7 @@ import {
   AddLanguagePayload,
   UpdateLanguagePayload,
   DeleteLanguagePayload,
-  AddCvPayload,
+  AddEmptyCvPayload,
   CopyCvPayload,
   DeleteCvPayload,
   SelectCvPayload,
@@ -380,7 +380,7 @@ const { actions, reducer } = createSlice({
       state.currentId = payload.id
     },
 
-    addEmptyCv: (state, { payload }: PayloadAction<AddCvPayload>) => {
+    addEmptyCv: (state, { payload }: PayloadAction<AddEmptyCvPayload>) => {
       const { id, name, number } = payload
       const { metadata, content } = createCv({ id, name, number })
 
