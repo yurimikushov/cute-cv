@@ -8,7 +8,7 @@ import ButtonProps from './Button.props'
 const Button: FC<ButtonProps> = styled.button.attrs(
   ({
     type = 'button',
-    appearance = 'outlined',
+    appearance,
     withoutPaddings = false,
     disabled = false,
   }: ButtonProps) => ({
