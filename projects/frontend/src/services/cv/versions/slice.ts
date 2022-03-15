@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
 import map from 'lodash/map'
+import sortBy from 'lodash/sortBy'
 import head from 'lodash/head'
 import forEach from 'lodash/forEach'
 import keyBy from 'lodash/keyBy'
@@ -66,7 +67,7 @@ const { actions, reducer } = createSlice({
   initialState: createInitialState(),
   reducers: {
     initAllCv: (state, { payload: allCv }: PayloadAction<InitAllCvPayload>) => {
-      state.ids = map(allCv, 'id')
+      state.ids = map(sortBy(allCv, 'number'), 'id')
       state.byId = {}
 
       const { content } = createCv()
