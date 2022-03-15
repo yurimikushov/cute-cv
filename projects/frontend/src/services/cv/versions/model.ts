@@ -234,6 +234,11 @@ type AddEmptyCvPayload = {
   number: number
 }
 
+type AddCvPayload = {
+  metadata: Pick<Metadata, 'id' | 'number' | 'name'>
+  content: RawContent
+}
+
 type CopyCvPayload = {
   baseCvId: string
   copyCvId: string
@@ -281,6 +286,7 @@ export type {
   UpdateLanguagePayload,
   DeleteLanguagePayload,
   AddEmptyCvPayload,
+  AddCvPayload,
   CopyCvPayload,
   DeleteCvPayload,
   SelectCvPayload,

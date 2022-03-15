@@ -41,6 +41,7 @@ import {
   UpdateLanguagePayload,
   DeleteLanguagePayload,
   AddEmptyCvPayload,
+  AddCvPayload,
   CopyCvPayload,
   DeleteCvPayload,
   SelectCvPayload,
@@ -391,6 +392,44 @@ const { actions, reducer } = createSlice({
       }
     },
 
+    addCv: (state, { payload }: PayloadAction<AddCvPayload>) => {
+      const { metadata, content } = payload
+      const { id } = metadata
+      const { avatar, experiences, educations, contacts, languages } = content
+
+      state.ids.push(id)
+
+      state.byId[id] = {
+        metadata: {
+          ...metadata,
+          id,
+          isNew: true,
+          isSaved: false,
+          savedAt: null,
+        },
+        content: {
+          ...content,
+          avatar,
+          experiences: {
+            ids: map(experiences, 'id'),
+            byId: keyBy(experiences, 'id'),
+          },
+          educations: {
+            ids: map(educations, 'id'),
+            byId: keyBy(educations, 'id'),
+          },
+          contacts: {
+            ids: map(contacts, 'id'),
+            byId: keyBy(contacts, 'id'),
+          },
+          languages: {
+            ids: map(languages, 'id'),
+            byId: keyBy(languages, 'id'),
+          },
+        },
+      }
+    },
+
     makeCvCopy: (state, { payload }: PayloadAction<CopyCvPayload>) => {
       const { baseCvId, copyCvId, copyCvNumber, copyCvName } = payload
 
@@ -450,6 +489,7 @@ export const {
   deleteLanguage,
   selectCv,
   addEmptyCv,
+  addCv,
   makeCvCopy,
   deleteCv,
 } = actions

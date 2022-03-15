@@ -20,6 +20,7 @@ export {
   useCurrentCvContent,
   useSelectCv,
   useAddEmptyCv,
+  useAddCv,
   useMakeCvCopy,
   useDeleteCv,
 } from './hooks'
