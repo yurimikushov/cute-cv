@@ -13,7 +13,10 @@ const Content = styled(Card)`
   gap: 0.5rem;
 `
 
-const MenuItem = styled(Button)`
+const MenuItem = styled(Button).attrs({
+  appearance: 'text',
+  withoutPaddings: true,
+})`
   min-width: 5rem;
   width: min-content;
 `
@@ -35,15 +38,9 @@ const Menu: FC<MenuProps> = ({
       trigger='click'
       content={
         <Content>
-          <MenuItem appearance='text' withoutPaddings onClick={onEditName}>
-            {t('editName')}
-          </MenuItem>
-          <MenuItem appearance='text' withoutPaddings onClick={onMakeCopy}>
-            {t('makeCopy')}
-          </MenuItem>
-          <MenuItem appearance='text' withoutPaddings onClick={onDelete}>
-            {t('delete')}
-          </MenuItem>
+          <MenuItem onClick={onEditName}>{t('editName')}</MenuItem>
+          <MenuItem onClick={onMakeCopy}>{t('makeCopy')}</MenuItem>
+          <MenuItem onClick={onDelete}>{t('delete')}</MenuItem>
         </Content>
       }
     >
