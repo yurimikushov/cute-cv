@@ -80,6 +80,7 @@ type RawMetadata = {
   id: string
   name: string
   number: number
+  isNew?: boolean
   savedAt: Date | null
 }
 

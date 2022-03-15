@@ -91,14 +91,14 @@ const { actions, reducer } = createSlice({
 
     updateCv: (state, { payload }: PayloadAction<UpdateCvPayload>) => {
       const { id, metadata, content } = payload
-      const { savedAt } = metadata
+      const { isNew = false, savedAt } = metadata
       const { avatar, experiences, educations, contacts, languages } = content
 
       state.byId[id] = {
         metadata: {
           ...metadata,
           id,
-          isNew: false,
+          isNew,
           isSaved: Boolean(savedAt),
         },
         content: {
