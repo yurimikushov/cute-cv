@@ -4,6 +4,7 @@ import { CloseButton } from 'components/Button'
 import colors from 'styles/colors'
 import shadows from 'styles/shadows'
 import radiuses from 'styles/radiuses'
+import keyframes from 'styles/keyframes'
 import NotificationProps from './Notification.props'
 
 const Container = styled.div`
@@ -17,6 +18,12 @@ const Container = styled.div`
   background-color: ${colors.white};
   border-radius: ${radiuses.md};
   box-shadow: ${shadows.sm};
+
+  animation: ${keyframes['shake-with-delay']} 7s ease 1s infinite;
+
+  &:hover {
+    animation: none;
+  }
 `
 
 const Content = styled.div`
