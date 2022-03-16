@@ -21,7 +21,8 @@ const Container = styled.div`
 
   animation: ${keyframes['shake-with-delay']} 7s ease 1s infinite;
 
-  &:hover {
+  &:hover,
+  &::focus-within {
     animation: none;
   }
 `
