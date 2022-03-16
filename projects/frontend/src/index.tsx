@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
@@ -11,6 +12,7 @@ import store, { persistor } from 'services/store'
 import GlobalErrorBoundary from 'components/GlobalErrorBoundary'
 import ErrorBoundary from 'components/ErrorBoundary'
 import ErrorBoundaryModal from 'components/ErrorBoundaryModal'
+import { NotificationsProvider } from 'components/Notifications'
 import ResetStyles from 'styles/global/ResetStyles'
 import GlobalStyles from 'styles/global/GlobalStyles'
 import App from './App'
@@ -24,7 +26,9 @@ render(
         <GlobalStyles />
         <ErrorBoundary fallback={ErrorBoundaryModal} onError={logError}>
           <HelmetProvider>
-            <App />
+            <NotificationsProvider>
+              <App />
+            </NotificationsProvider>
           </HelmetProvider>
         </ErrorBoundary>
       </PersistGate>
