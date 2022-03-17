@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import noop from 'lodash/noop'
 import { useIsSignedIn } from 'services/auth'
 import {
   useCvCount,
@@ -16,7 +15,7 @@ import Divider from 'components/Divider'
 import Button from 'components/Button'
 import { panelMixin } from '../mixins'
 import useAddCvModal from './hooks/useAddCvModal'
-import useNotifyWhenThereIsCvOfUnsignedInUser from './hooks/useNotifyWhenThereIsCvOfUnsignedInUser'
+import useSaveCvOfUnsignedInUserModal from './hooks/useSaveCvOfUnsignedInUserModal'
 import Versions from './Versions'
 import EditCvModal from './EditCvModal'
 import VersionsPanelProps from './VersionsPanel.props'
@@ -40,7 +39,11 @@ const VersionsPanel: FC<VersionsPanelProps> = (props) => {
     handleCloseAddModal,
     handleAddCv,
   } = useAddCvModal(addEmptyCv)
-  useNotifyWhenThereIsCvOfUnsignedInUser(noop)
+  const {
+    isCopyUnsignedInCvModalOpened,
+    handleCloseCopyUnsignedInCvModal,
+    handleSaveCvOfUnsignedInUser,
+  } = useSaveCvOfUnsignedInUserModal()
 
   const shouldDisableActiveElements =
     (!isNew && !isSaved) || isCvSaving || isCvDeleting
@@ -68,6 +71,14 @@ const VersionsPanel: FC<VersionsPanelProps> = (props) => {
           submitTitle={t('addModal.add')}
           onSubmit={handleAddCv}
           onClose={handleCloseAddModal}
+        />
+      )}
+      {isCopyUnsignedInCvModalOpened && (
+        <EditCvModal
+          title='Сохранить резюме'
+          submitTitle='Сохранить'
+          onSubmit={handleSaveCvOfUnsignedInUser}
+          onClose={handleCloseCopyUnsignedInCvModal}
         />
       )}
     </Container>

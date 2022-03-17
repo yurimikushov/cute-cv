@@ -3,7 +3,7 @@ export {
   useAutoLoadAllCv,
   useAutoLoadCurrentCv,
   useCleanUpAllCvAfterSignOut,
-  useIsThereCvOfUnsignedInUser,
+  useSaveCvOfUnsignedInUser,
   useUpdateCvName,
   useDeleteCv,
 } from './hooks'
@@ -20,6 +20,7 @@ export {
   useCurrentCvContent,
   useSelectCv,
   useAddEmptyCv,
+  useAddCv,
   useMakeCvCopy,
   selectCvContent,
   selectCvMetadata,
