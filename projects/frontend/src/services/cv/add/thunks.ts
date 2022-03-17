@@ -4,7 +4,7 @@ import { ServiceNameEnum } from 'services'
 import { AddPayload } from './model'
 
 const add = createAsyncThunk(
-  `${ServiceNameEnum.cv}/save`,
+  `${ServiceNameEnum.cv}/add`,
   async ({ name, number, cv }: AddPayload) => {
     const metadata = await cvApi.add({ name, number, cv })
     return metadata
