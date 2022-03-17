@@ -10,7 +10,7 @@ import EditCvModal from './EditCvModal'
 const AddCvModal = EditCvModal
 const SaveCvOfUnsignedInUserModal = EditCvModal
 
-const VersionsPanelContainer: FC = () => {
+const VersionsPanelContainer: FC = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const {
     isAddModalOpened,
@@ -30,6 +30,7 @@ const VersionsPanelContainer: FC = () => {
   return (
     <>
       <VersionsPanel
+        {...props}
         disableActiveElements={shouldDisableActiveElements}
         displayAddButton={shouldDisplayAddButton}
         onAdd={handleOpenAddModal}
