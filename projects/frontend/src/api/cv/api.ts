@@ -88,6 +88,10 @@ class cvApi {
   static saveCvOfUnsignedInUser(cv: Cv) {
     localStorage.setItem('persist:unsignedin:cv', JSON.stringify(cv))
   }
+
+  static deleteCvOfUnsignedInUser() {
+    localStorage.removeItem('persist:unsignedin:cv')
+  }
 }
 
 export default cvApi
