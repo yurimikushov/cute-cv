@@ -3,14 +3,18 @@ import isNull from 'lodash/isNull'
 import useEffectWhen from 'hooks/useEffectWhen'
 import cvApi from 'api/cv'
 import { useIsSignedIn } from 'services/auth'
-import { useAddCv, useUpdateCvMetadata, useDeleteCv } from '../versions'
-import { useSaveCv } from '../save'
+import { useAddCv as useAddCvOnBackend } from '../add'
+import {
+  useAddCv as useAddCvInStore,
+  useUpdateCvMetadata,
+  useDeleteCv,
+} from '../versions'
 
 const useSaveCvOfUnsignedInUser = () => {
   const { isSignedIn } = useIsSignedIn()
-  const addCv = useAddCv()
+  const addCvInStore = useAddCvInStore()
+  const addCvOnBackend = useAddCvOnBackend()
   const deleteCv = useDeleteCv()
-  const saveCv = useSaveCv()
   const updateCvMetadata = useUpdateCvMetadata()
   const [cv, setCv] = useState<ReturnType<
     typeof cvApi.loadCvOfUnsignedInUser
@@ -33,7 +37,7 @@ const useSaveCvOfUnsignedInUser = () => {
 
     const { metadata, content } = cv
 
-    const { id, number } = addCv({
+    const { id, number } = addCvInStore({
       metadata: {
         ...metadata,
         name,
@@ -42,9 +46,14 @@ const useSaveCvOfUnsignedInUser = () => {
     })
 
     try {
-      const { savedAt } = await saveCv({ id, number, name, cv: content })
+      const { publicId, savedAt } = await addCvOnBackend({
+        number,
+        name,
+        cv: content,
+      })
 
       updateCvMetadata({
+        publicId,
         id,
         isNew: false,
         isSaved: Boolean(savedAt),

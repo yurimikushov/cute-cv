@@ -13,9 +13,9 @@ const useIsCvSaving = () => {
 const useSaveCv = () => {
   const dispatch = useDispatch()
 
-  const handleSaveCv = ({ id, name, number, cv }: SavePayload) => {
+  const handleSaveCv = (payload: SavePayload) => {
     return (
-      dispatch(save({ id, name, number, cv }))
+      dispatch(save(payload))
         // @ts-expect-error `unwrap` exists in dispatch result
         .unwrap() as unknown as Promise<SaveResult>
     )

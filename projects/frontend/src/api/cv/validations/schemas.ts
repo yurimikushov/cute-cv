@@ -31,6 +31,7 @@ const languageSchema = object({
 })
 
 const cvMetadataSchema = object({
+  publicId: id().optional(),
   id: id().required(),
   name: string().required(),
   number: number().required(),

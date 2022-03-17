@@ -5,7 +5,7 @@ type LoadAllResult = Array<RawMetadata>
 type LoadResult = RawCv
 
 type SavePayload = {
-  id: string
+  publicId: string
   name: string
   number: number
   cv: Content
@@ -14,7 +14,7 @@ type SavePayload = {
 type SaveResult = RawMetadata
 
 type PatchPayload = {
-  id: string
+  publicId: string
   name?: string
   number?: number
   cv?: Partial<Content>

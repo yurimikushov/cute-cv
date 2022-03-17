@@ -7,7 +7,7 @@ type SaveState = {
 }
 
 type SavePayload = {
-  id: string
+  publicId: string
   name: string
   number: number
   cv: CvContent

@@ -38,10 +38,14 @@ const selectCurrentCv = createSelector(
       languages: { ids: [], byId: {} },
     }
 
+    const { publicId } = metadata
     const { experiences, educations, contacts, languages } = content
 
     return {
-      metadata,
+      metadata: {
+        ...metadata,
+        publicId,
+      },
       content: {
         ...content,
         experiences: map(experiences.ids, (id) => experiences.byId[id]),

@@ -5,8 +5,8 @@ import { PatchPayload } from './model'
 
 const patch = createAsyncThunk(
   `${ServiceNameEnum.cv}/patch`,
-  async ({ id, name, number, cv }: PatchPayload) => {
-    const metadata = await cvApi.patch({ id, name, number, cv })
+  async (payload: PatchPayload) => {
+    const metadata = await cvApi.patch(payload)
     return metadata
   }
 )

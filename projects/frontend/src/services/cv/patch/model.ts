@@ -7,7 +7,7 @@ type PatchState = {
 }
 
 type PatchPayload = {
-  id: string
+  publicId: string
   name?: string
   number?: number
   cv?: Partial<CvContent>

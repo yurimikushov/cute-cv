@@ -6,6 +6,10 @@ import useCvCount from './useCvCount'
 import useGetNextCvMetadata from './useGetNextCvMetadata'
 import useSelectCv from './useSelectCv'
 
+type Payload = AddCvPayload & {
+  metadata: Pick<AddCvPayload['metadata'], 'name'>
+}
+
 const useAddCv = () => {
   const cvCount = useCvCount()
   const getNextCvMetadata = useGetNextCvMetadata()
@@ -13,7 +17,7 @@ const useAddCv = () => {
 
   const dispatch = useDispatch()
 
-  const handleAddCv = ({ metadata, content }: AddCvPayload) => {
+  const handleAddCv = ({ metadata, content }: Payload) => {
     if (cvCount >= CV_VERSIONS_MAX_COUNT) {
       throw new Error(
         `You already have ${cvCount} cv versions.

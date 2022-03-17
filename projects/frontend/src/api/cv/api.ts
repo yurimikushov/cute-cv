@@ -27,8 +27,8 @@ class cvApi {
     )
   }
 
-  static async load(id: string) {
-    const { status, data } = await axios.get<LoadResult | ''>(`/cv/${id}`)
+  static async load(publicId: string) {
+    const { status, data } = await axios.get<LoadResult | ''>(`/cv/${publicId}`)
 
     // eslint-disable-next-line no-magic-numbers
     if (status !== 200) {
@@ -42,8 +42,8 @@ class cvApi {
     return validateCv(convertRawCv(data))
   }
 
-  static async save({ id, name, number, cv }: SavePayload) {
-    const { data } = await axios.put<SaveResult>(`/cv/${id}`, {
+  static async save({ publicId, name, number, cv }: SavePayload) {
+    const { data } = await axios.put<SaveResult>(`/cv/${publicId}`, {
       metadata: {
         name,
         number,
@@ -54,8 +54,8 @@ class cvApi {
     return validateCvMetadata(convertRawCvMetadata(data))
   }
 
-  static async patch({ id, name, number, cv }: PatchPayload) {
-    const { data } = await axios.patch<PatchResult>(`/cv/${id}`, {
+  static async patch({ publicId, name, number, cv }: PatchPayload) {
+    const { data } = await axios.patch<PatchResult>(`/cv/${publicId}`, {
       metadata: {
         name,
         number,
@@ -66,8 +66,8 @@ class cvApi {
     return validateCvMetadata(convertRawCvMetadata(data))
   }
 
-  static async delete(id: string) {
-    const { status } = await axios.delete(`/cv/${id}`)
+  static async delete(publicId: string) {
+    const { status } = await axios.delete(`/cv/${publicId}`)
 
     // eslint-disable-next-line no-magic-numbers
     if (status !== 200) {

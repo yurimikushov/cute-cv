@@ -2,11 +2,12 @@ import { RawCv } from '../model'
 
 const convertRawCv = (cv: RawCv) => {
   const { metadata, content } = cv
-  const { savedAt } = metadata
+  const { id, savedAt } = metadata
 
   return {
     metadata: {
       ...metadata,
+      publicId: id,
       savedAt: new Date(savedAt),
     },
     content,

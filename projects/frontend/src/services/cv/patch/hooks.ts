@@ -13,9 +13,9 @@ const useIsCvPatching = () => {
 const useUpdateCvName = () => {
   const dispatch = useDispatch()
 
-  const handleUpdateCvName = (id: string, name: string) => {
+  const handleUpdateCvName = (publicId: string, name: string) => {
     return (
-      dispatch(patch({ id, name }))
+      dispatch(patch({ publicId, name }))
         // @ts-expect-error bad typing
         .unwrap() as unknown as Promise<PatchResult>
     )

@@ -73,9 +73,10 @@ const { actions, reducer } = createSlice({
 
       const { content } = createCv()
 
-      forEach(allCv, ({ id, name, number }) => {
+      forEach(allCv, ({ publicId, id, name, number }) => {
         state.byId[id] = {
           metadata: {
+            publicId,
             id,
             name,
             number,
@@ -129,9 +130,10 @@ const { actions, reducer } = createSlice({
       state,
       { payload }: PayloadAction<UpdateCvMetadataPayload>
     ) => {
-      const { id, isNew, isSaved, savedAt } = payload
+      const { publicId, id, isNew, isSaved, savedAt } = payload
       const { metadata } = state.byId[id]
 
+      metadata.publicId = publicId
       metadata.isNew = isNew
       metadata.isSaved = isSaved
       metadata.savedAt = savedAt

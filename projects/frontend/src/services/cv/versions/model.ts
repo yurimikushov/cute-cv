@@ -10,6 +10,7 @@ type Version = {
 }
 
 type Metadata = {
+  publicId?: string
   id: string
   name: string
   number: number
@@ -77,6 +78,7 @@ type UpdateCvPayload = {
 }
 
 type RawMetadata = {
+  publicId?: string
   id: string
   name: string
   number: number
@@ -98,7 +100,7 @@ type RawContent = {
 
 type UpdateCvMetadataPayload = Pick<
   Metadata,
-  'id' | 'isNew' | 'isSaved' | 'savedAt'
+  'publicId' | 'id' | 'isNew' | 'isSaved' | 'savedAt'
 >
 
 type UpdateCvNamePayload = {
