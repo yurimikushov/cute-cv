@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, BadRequestException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import firebase from 'firebase-admin'
 import { getStorage, Storage } from 'firebase-admin/storage'
@@ -51,10 +51,15 @@ export class CVRepository {
   }
 
   async update(userId: UserId, cvId: CvId, cv: CV) {
+    const [isCvExists] = await this.getStorageFile(userId, cvId).exists()
+
+    if (!isCvExists) {
+      throw new BadRequestException(`CV isn't exists`)
+    }
+
     const { metadata, content } = cv
     const { name, number } = metadata
 
-    // The Storage API dynamically creates "folders" if isn't exist
     await this.getStorageFile(userId, cvId).save(JSON.stringify(content))
 
     await this.getStorageFile(userId, cvId).setMetadata({
