@@ -23,9 +23,20 @@ const selectCurrentRawCv = (state: RootState) => {
   return versions.byId[id]
 }
 
+const selectRawCvMetadata = (state: RootState) => {
+  const { metadata } = selectCurrentRawCv(state)
+  return metadata
+}
+
+const selectRawCvContent = (state: RootState) => {
+  const { content } = selectCurrentRawCv(state)
+  return content
+}
+
 const selectCurrentCv = createSelector(
-  selectCurrentRawCv,
-  ({ metadata, content }) => {
+  selectRawCvMetadata,
+  selectRawCvContent,
+  (metadata, content) => {
     content ??= {
       fullName: '',
       position: '',
@@ -66,10 +77,7 @@ const selectAllCvMetadata = (state: RootState) => {
   })
 }
 
-const selectCvMetadata = (state: RootState) => {
-  const { metadata } = selectCurrentRawCv(state)
-  return metadata
-}
+const selectCvMetadata = selectRawCvMetadata
 
 const selectCvContent = (state: RootState) => {
   const { content } = selectCurrentCv(state)
