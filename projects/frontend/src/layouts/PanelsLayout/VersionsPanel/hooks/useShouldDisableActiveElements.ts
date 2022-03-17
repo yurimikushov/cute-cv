@@ -1,15 +1,15 @@
 import {
   useCurrentCvMetadata,
-  useIsCvSaving,
+  useIsCvUpdating,
   useIsCvDeleting,
 } from 'services/cv'
 
 const useShouldDisableActiveElements = () => {
   const { isNew, isSaved } = useCurrentCvMetadata()
-  const { isCvSaving } = useIsCvSaving()
+  const { isCvUpdating } = useIsCvUpdating()
   const { isCvDeleting } = useIsCvDeleting()
 
-  return (!isNew && !isSaved) || isCvSaving || isCvDeleting
+  return (!isNew && !isSaved) || isCvUpdating || isCvDeleting
 }
 
 export default useShouldDisableActiveElements

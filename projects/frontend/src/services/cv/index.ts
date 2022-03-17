@@ -10,7 +10,7 @@ export {
 export { useDownload, CV_CONTAINER_ID } from './download'
 export { useEditable } from './editable'
 export { useLoadAllCV, useIsCVLoading } from './load'
-export { useIsCvSaving } from './save'
+export { useIsCvUpdating } from './update'
 export { useIsCvDeleting } from './delete'
 export {
   useCvCount,

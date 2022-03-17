@@ -9,7 +9,7 @@ import {
   useUpdateCvName,
   useMakeCvCopy,
   useDeleteCv,
-  useIsCvSaving,
+  useIsCvUpdating,
   useIsCvDeleting,
 } from 'services/cv'
 import { H2 } from 'components/H'
@@ -28,7 +28,7 @@ const Versions: FC<VersionsProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const allCv = useAllCvMetadata()
   const { id, isNew, isSaved } = useCurrentCvMetadata()
-  const { isCvSaving } = useIsCvSaving()
+  const { isCvUpdating } = useIsCvUpdating()
   const { isCvDeleting } = useIsCvDeleting()
   const selectCv = useSelectCv()
   const updateCvName = useUpdateCvName()
@@ -36,7 +36,7 @@ const Versions: FC<VersionsProps> = (props) => {
   const deleteCv = useDeleteCv()
 
   const shouldDisableActiveElements =
-    (!isNew && !isSaved) || isCvSaving || isCvDeleting
+    (!isNew && !isSaved) || isCvUpdating || isCvDeleting
 
   const handleDeleteCv = (id: string, isNew: boolean) => {
     if (isNew) {

@@ -12,14 +12,14 @@ type AddPayload = {
 
 type AddResult = RawMetadata
 
-type SavePayload = {
+type UpdatePayload = {
   publicId: string
   name: string
   number: number
   cv: Content
 }
 
-type SaveResult = RawMetadata
+type UpdateResult = RawMetadata
 
 type PatchPayload = {
   publicId: string
@@ -51,8 +51,8 @@ export type {
   LoadResult,
   AddPayload,
   AddResult,
-  SavePayload,
-  SaveResult,
+  UpdatePayload,
+  UpdateResult,
   PatchPayload,
   PatchResult,
   RawCv,

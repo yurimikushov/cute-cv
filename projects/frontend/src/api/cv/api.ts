@@ -7,8 +7,8 @@ import {
   LoadResult,
   AddPayload,
   AddResult,
-  SavePayload,
-  SaveResult,
+  UpdatePayload,
+  UpdateResult,
   PatchPayload,
   PatchResult,
 } from './model'
@@ -56,8 +56,8 @@ class cvApi {
     return validateCvMetadata(convertRawCvMetadata(data))
   }
 
-  static async save({ publicId, name, number, cv }: SavePayload) {
-    const { data } = await axios.put<SaveResult>(`/cv/${publicId}`, {
+  static async update({ publicId, name, number, cv }: UpdatePayload) {
+    const { data } = await axios.put<UpdateResult>(`/cv/${publicId}`, {
       metadata: {
         name,
         number,

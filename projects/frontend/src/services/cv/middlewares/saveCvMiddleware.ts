@@ -11,7 +11,7 @@ import {
   updateCvMetadata,
 } from '../versions'
 import { add, AddResult } from '../add'
-import { save, SaveResult } from '../save'
+import { update, UpdateResult } from '../update'
 
 const AUTO_SAVE_TIMING = 1_000
 
@@ -37,10 +37,10 @@ const saveCvOfSignedInUser = debounce((store: Store) => {
   } else {
     store
       .dispatch(
-        save({ publicId, name, number, cv: content }) as unknown as AnyAction
+        update({ publicId, name, number, cv: content }) as unknown as AnyAction
       )
       .unwrap()
-      .then(({ publicId, savedAt }: SaveResult) => {
+      .then(({ publicId, savedAt }: UpdateResult) => {
         store.dispatch(
           updateCvMetadata({
             publicId,

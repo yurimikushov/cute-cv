@@ -5,7 +5,7 @@ import { ServiceNameEnum } from 'services'
 import { editableReducer } from './editable'
 import { loadReducer } from './load'
 import { addReducer } from './add'
-import { saveReducer } from './save'
+import { updateReducer } from './update'
 import { patchReducer } from './patch'
 import { deleteReducer } from './delete'
 import { downloadReducer } from './download'
@@ -20,7 +20,7 @@ const cvReducer = combineReducers({
   editable: persistReducer(persistConfig, editableReducer),
   load: loadReducer,
   add: addReducer,
-  save: saveReducer,
+  update: updateReducer,
   patch: patchReducer,
   delete: deleteReducer,
   download: downloadReducer,

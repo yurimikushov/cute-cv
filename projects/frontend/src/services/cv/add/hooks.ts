@@ -3,10 +3,10 @@ import { selectIsAdding } from './selectors'
 import { add, AddPayload, AddResult } from './thunks'
 
 const useIsCvAdding = () => {
-  const isCvSaving = useSelector(selectIsAdding)
+  const isCvUpdating = useSelector(selectIsAdding)
 
   return {
-    isCvSaving,
+    isCvUpdating,
   }
 }
 
