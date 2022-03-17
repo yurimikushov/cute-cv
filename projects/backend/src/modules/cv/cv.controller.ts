@@ -1,16 +1,19 @@
 import {
   Controller,
   Get,
+  Post,
   Put,
   Patch,
   Delete,
   Body,
   Req,
   Param,
+  HttpCode,
 } from '@nestjs/common'
 import { Request } from 'express'
 import {
   FindOneCvParamsDto,
+  AddOneCvDto,
   UpdateOneCvParamsDto,
   UpdateOneCvDto,
   PatchOneCvParamsDto,
@@ -26,6 +29,12 @@ export class CVController {
   @Get()
   async findAll(@Req() req: Request) {
     return await this.cvService.getAll(req.user.uid)
+  }
+
+  @Post()
+  @HttpCode(201)
+  async addOne(@Req() req: Request, @Body() addCvDto: AddOneCvDto) {
+    return await this.cvService.add(req.user.uid, addCvDto)
   }
 
   @Get(':id')

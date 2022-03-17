@@ -26,6 +26,12 @@ export class CVService {
     } as const
   }
 
+  async add(userId: UserId, cv: CV) {
+    const cvId = await this.cvRepository.add(userId, cv)
+
+    return await this.cvRepository.getMetadata(userId, cvId)
+  }
+
   async update(userId: UserId, cvId: CvId, cv: CV) {
     await this.cvRepository.update(userId, cvId, cv)
 

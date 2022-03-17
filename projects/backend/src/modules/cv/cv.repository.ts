@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import firebase from 'firebase-admin'
 import { getStorage, Storage } from 'firebase-admin/storage'
+import { nanoid } from 'nanoid'
 import { map, filter, includes } from 'lodash'
 import { getFirebaseApp } from 'lib/firebase'
 import getCvId from './utils/getCvId'
@@ -28,6 +29,25 @@ export class CVRepository {
     const buffer = await this.getStorageFile(userId, cvId).download()
 
     return JSON.parse(buffer.toString())
+  }
+
+  async add(userId: UserId, cv: CV) {
+    const cvId = nanoid()
+    const { metadata, content } = cv
+    const { name, number } = metadata
+
+    // The Storage API dynamically creates "folders" if isn't exist
+    await this.getStorageFile(userId, cvId).save(JSON.stringify(content))
+
+    await this.getStorageFile(userId, cvId).setMetadata({
+      metadata: {
+        id: cvId,
+        name,
+        number,
+      },
+    })
+
+    return cvId
   }
 
   async update(userId: UserId, cvId: CvId, cv: CV) {
