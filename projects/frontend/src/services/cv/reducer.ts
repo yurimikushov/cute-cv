@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage'
 import { ServiceNameEnum } from 'services'
 import { editableReducer } from './editable'
 import { loadReducer } from './load'
+import { addReducer } from './add'
 import { saveReducer } from './save'
 import { patchReducer } from './patch'
 import { deleteReducer } from './delete'
@@ -18,6 +19,7 @@ const persistConfig = {
 const cvReducer = combineReducers({
   editable: persistReducer(persistConfig, editableReducer),
   load: loadReducer,
+  add: addReducer,
   save: saveReducer,
   patch: patchReducer,
   delete: deleteReducer,

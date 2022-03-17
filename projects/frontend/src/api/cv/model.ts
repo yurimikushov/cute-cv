@@ -4,6 +4,14 @@ type LoadAllResult = Array<RawMetadata>
 
 type LoadResult = RawCv
 
+type AddPayload = {
+  name: string
+  number: number
+  cv: Content
+}
+
+type AddResult = RawMetadata
+
 type SavePayload = {
   publicId: string
   name: string
@@ -41,6 +49,8 @@ type Content = CvContent
 export type {
   LoadAllResult,
   LoadResult,
+  AddPayload,
+  AddResult,
   SavePayload,
   SaveResult,
   PatchPayload,

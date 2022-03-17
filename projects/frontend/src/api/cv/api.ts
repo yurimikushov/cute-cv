@@ -5,6 +5,8 @@ import isNull from 'lodash/isNull'
 import {
   LoadAllResult,
   LoadResult,
+  AddPayload,
+  AddResult,
   SavePayload,
   SaveResult,
   PatchPayload,
@@ -40,6 +42,18 @@ class cvApi {
     }
 
     return validateCv(convertRawCv(data))
+  }
+
+  static async add({ name, number, cv }: AddPayload) {
+    const { data } = await axios.post<AddResult>(`/cv`, {
+      metadata: {
+        name,
+        number,
+      },
+      content: cv,
+    })
+
+    return validateCvMetadata(convertRawCvMetadata(data))
   }
 
   static async save({ publicId, name, number, cv }: SavePayload) {
