@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import Button from 'components/Button'
 import colors from 'styles/colors'
@@ -18,16 +19,15 @@ const Description = styled.p`
 const ThereIsCvOfUnsignedInUserNotification: FC<
   ThereIsCvOfUnsignedInUserNotificationProps
 > = ({ onSave, ...props }) => {
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'versions.saveCvOfUnsignedInUserNotification',
+  })
+
   return (
     <Container {...props}>
-      <Description>
-        {/* Есть резюме, которое вы создали, когда еще не авторизовались.
-          Сохранить его? */}
-        There is a cv that you created when you were not signed in yet. Save it?
-      </Description>
+      <Description>{t('description')}</Description>
       <Button appearance='text' withoutPaddings onClick={onSave}>
-        {/* Да, сохранить */}
-        Yes, save
+        {t('save')}
       </Button>
     </Container>
   )

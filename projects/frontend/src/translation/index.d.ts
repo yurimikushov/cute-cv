@@ -47,6 +47,14 @@ type Translation = {
       title: string
       makeCopy: string
     }
+    saveCvOfUnsignedInUserNotification: {
+      description: string
+      save: string
+    }
+    saveCvOfUnsignedInUserModal: {
+      title: string
+      save: string
+    }
     addModal: {
       title: string
       add: string

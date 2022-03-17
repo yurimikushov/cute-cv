@@ -49,6 +49,15 @@ const en: Translation = {
       title: 'Make copy',
       makeCopy: 'Make copy',
     },
+    saveCvOfUnsignedInUserNotification: {
+      description:
+        'There is a cv that you created when you were not signed in yet. Save it?',
+      save: 'Yes, save',
+    },
+    saveCvOfUnsignedInUserModal: {
+      title: 'Save cv',
+      save: 'Save',
+    },
     addModal: {
       title: 'Add CV',
       add: 'Add',

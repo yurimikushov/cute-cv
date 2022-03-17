@@ -49,6 +49,15 @@ const ru: Translation = {
       title: 'Сделать копию',
       makeCopy: 'Сделать копию',
     },
+    saveCvOfUnsignedInUserNotification: {
+      description:
+        'Есть резюме, которое вы создали, когда еще не авторизовались. Сохранить его?',
+      save: 'Да, сохранить',
+    },
+    saveCvOfUnsignedInUserModal: {
+      title: 'Сохранить резюме',
+      save: 'Сохранить',
+    },
     addModal: {
       title: 'Добавить резюме',
       add: 'Добавить',

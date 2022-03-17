@@ -75,8 +75,8 @@ const VersionsPanel: FC<VersionsPanelProps> = (props) => {
       )}
       {isCopyUnsignedInCvModalOpened && (
         <EditCvModal
-          title='Сохранить резюме'
-          submitTitle='Сохранить'
+          title={t('saveCvOfUnsignedInUserModal.title')}
+          submitTitle={t('saveCvOfUnsignedInUserModal.save')}
           onSubmit={handleSaveCvOfUnsignedInUser}
           onClose={handleCloseCopyUnsignedInCvModal}
         />
