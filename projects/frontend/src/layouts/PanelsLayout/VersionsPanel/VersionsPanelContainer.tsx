@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useAddEmptyCv } from 'services/cv'
 import useAddCvModal from './hooks/useAddCvModal'
 import useSaveCvOfUnsignedInUserModal from './hooks/useSaveCvOfUnsignedInUserModal'
 import useShouldDisplayAddButton from './hooks/useShouldDisplayAddButton'
@@ -13,13 +12,12 @@ const SaveCvOfUnsignedInUserModal = EditCvModal
 
 const VersionsPanelContainer: FC = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
-  const addEmptyCv = useAddEmptyCv()
   const {
     isAddModalOpened,
     handleOpenAddModal,
     handleCloseAddModal,
     handleAddCv,
-  } = useAddCvModal(addEmptyCv)
+  } = useAddCvModal()
   const {
     isCopyUnsignedInCvModalOpened,
     handleCloseCopyUnsignedInCvModal,
