@@ -1,1 +1,1 @@
-export { default } from './VersionsPanel'
+export { default } from './VersionsPanelContainer'
