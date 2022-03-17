@@ -14,4 +14,4 @@ const save = createAsyncThunk(
 type SaveResult = NonNullable<Awaited<ReturnType<typeof cvApi.save>>>
 
 export { save }
-export type { SaveResult }
+export type { SavePayload, SaveResult }
