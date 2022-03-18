@@ -72,7 +72,7 @@ export class CVRepository {
   }
 
   async add(userId: UserId, cv: IncomingCV) {
-    const cvId = nanoid()
+    const cvId = await this.getNewCvId()
     const { metadata, content } = cv
     const { name, number, allowShare } = metadata
 
@@ -146,6 +146,21 @@ export class CVRepository {
     }
 
     return head(result.docs).ref
+  }
+
+  private async getNewCvId() {
+    const cvId = nanoid()
+
+    const cvSnapshot = await this.db
+      .collection(FIRE_STORAGE_COLLECTION)
+      .doc(cvId)
+      .get()
+
+    if (cvSnapshot.exists) {
+      return this.getNewCvId()
+    }
+
+    return cvId
   }
 
   private convertRawMetadata(metadata: RawMetadata) {
