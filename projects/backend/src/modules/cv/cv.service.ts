@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { assign, isNil, isNull } from 'lodash'
-import { CvId, UserId, CV, PartialCV } from './cv.interface'
+import { CvId, UserId, IncomingCV, PartialCV } from './cv.interface'
 import { CVRepository } from './cv.repository'
 
 @Injectable()
@@ -8,34 +8,29 @@ export class CVService {
   constructor(private cvRepository: CVRepository) {}
 
   async getAll(userId: UserId) {
-    return await this.cvRepository.getMetadataAll(userId)
+    return await this.cvRepository.readAllMetadata(userId)
   }
 
   async get(userId: UserId, cvId: CvId) {
-    const content = await this.cvRepository.read(userId, cvId)
+    const cv = await this.cvRepository.read(userId, cvId)
 
-    if (isNull(content)) {
+    if (isNull(cv)) {
       return null
     }
 
-    const metadata = await this.cvRepository.getMetadata(userId, cvId)
-
-    return {
-      metadata,
-      content,
-    } as const
+    return cv
   }
 
-  async add(userId: UserId, cv: CV) {
+  async add(userId: UserId, cv: IncomingCV) {
     const cvId = await this.cvRepository.add(userId, cv)
 
-    return await this.cvRepository.getMetadata(userId, cvId)
+    return await this.cvRepository.readMetadata(userId, cvId)
   }
 
-  async update(userId: UserId, cvId: CvId, cv: CV) {
+  async update(userId: UserId, cvId: CvId, cv: IncomingCV) {
     await this.cvRepository.update(userId, cvId, cv)
 
-    return await this.cvRepository.getMetadata(userId, cvId)
+    return await this.cvRepository.readMetadata(userId, cvId)
   }
 
   async patch(userId: UserId, cvId: CvId, cv: PartialCV) {
@@ -45,10 +40,10 @@ export class CVService {
       return
     }
 
-    const oldMetadata = await this.cvRepository.getMetadata(userId, cvId)
-    const newMetadata = assign(oldMetadata, metadata)
+    const { metadata: oldMetadata, content: oldContent } =
+      await this.cvRepository.read(userId, cvId)
 
-    const oldContent = await this.cvRepository.read(userId, cvId)
+    const newMetadata = assign(oldMetadata, metadata)
     const newContent = assign(oldContent, content)
 
     await this.cvRepository.update(userId, cvId, {
@@ -56,7 +51,7 @@ export class CVService {
       content: newContent,
     })
 
-    return await this.cvRepository.getMetadata(userId, cvId)
+    return await this.cvRepository.readMetadata(userId, cvId)
   }
 
   async delete(userId: UserId, cvId: CvId) {

@@ -1,8 +1,15 @@
+import { Timestamp } from 'firebase-admin/firestore'
+
 type Id = string
 type UserId = Id
 type CvId = Id
 
 interface CV {
+  metadata: Metadata
+  content: Content
+}
+
+interface IncomingCV {
   metadata: Omit<Metadata, 'id' | 'savedAt'>
   content: Content
 }
@@ -17,6 +24,14 @@ interface Metadata {
   name: string
   number: number
   savedAt: string
+  allowShare: boolean
+}
+
+interface RawMetadata {
+  id: string
+  name: string
+  number: number
+  savedAt: Timestamp
   allowShare: boolean
 }
 
@@ -58,4 +73,13 @@ interface Language {
   language: string
 }
 
-export type { UserId, CvId, CV, PartialCV, Metadata, Content }
+export type {
+  UserId,
+  CvId,
+  CV,
+  IncomingCV,
+  PartialCV,
+  Metadata,
+  RawMetadata,
+  Content,
+}

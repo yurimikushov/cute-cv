@@ -1,127 +1,159 @@
-import { Injectable, BadRequestException } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
+import { Injectable } from '@nestjs/common'
 import firebase from 'firebase-admin'
-import { getStorage, Storage } from 'firebase-admin/storage'
+import {
+  getFirestore,
+  Firestore,
+  DocumentReference,
+} from 'firebase-admin/firestore'
 import { nanoid } from 'nanoid'
-import { map, filter, includes } from 'lodash'
+import { head, isNil, isNull } from 'lodash'
 import { getFirebaseApp } from 'lib/firebase'
-import { FILE_STORAGE_ROOT_DIR } from './constants'
-import { UserId, CvId, CV, Metadata, Content } from './cv.interface'
+import { FIRE_STORAGE_COLLECTION } from './constants'
+import {
+  UserId,
+  CvId,
+  CV,
+  IncomingCV,
+  Metadata,
+  RawMetadata,
+} from './cv.interface'
 
 @Injectable()
 export class CVRepository {
   private firebaseApp: firebase.app.App
-  private storage: Storage
+  private db: Firestore
 
-  constructor(private configService: ConfigService) {
+  constructor() {
     this.firebaseApp = getFirebaseApp()
-    this.storage = getStorage(this.firebaseApp)
+    this.db = getFirestore(this.firebaseApp)
   }
 
-  async read(userId: UserId, cvId: CvId): Promise<Content | null> {
-    const [isCvExists] = await this.getStorageFile(userId, cvId).exists()
+  async readAllMetadata(userId: UserId) {
+    const docs = await this.getCvCollection()
+      .where('userId', '==', userId)
+      .get()
 
-    if (!isCvExists) {
+    const allMetadata: Array<Metadata> = []
+
+    docs.forEach((doc) => {
+      const { metadata } = doc.data()
+      allMetadata.push(this.convertRawMetadata(metadata))
+    })
+
+    return allMetadata
+  }
+
+  async readMetadata(userId: UserId, cvId: CvId) {
+    const cvRef = await this.getExistingCvRef(userId, cvId)
+    const cv = (await cvRef.get()).data()
+
+    if (isNil(cv)) {
       return null
     }
 
-    const buffer = await this.getStorageFile(userId, cvId).download()
-
-    return JSON.parse(buffer.toString())
+    const { metadata } = cv
+    return this.convertRawMetadata(metadata)
   }
 
-  async add(userId: UserId, cv: CV) {
+  async read(userId: UserId, cvId: CvId): Promise<CV | null> {
+    const cvRef = await this.getExistingCvRef(userId, cvId)
+    const cv = (await cvRef.get()).data()
+
+    if (isNil(cv)) {
+      return null
+    }
+
+    const { content, metadata } = cv
+
+    return {
+      metadata: this.convertRawMetadata(metadata),
+      content,
+    } as CV
+  }
+
+  async add(userId: UserId, cv: IncomingCV) {
     const cvId = nanoid()
     const { metadata, content } = cv
     const { name, number, allowShare } = metadata
 
-    // The Storage API dynamically creates "folders" if isn't exist
-    await this.getStorageFile(userId, cvId).save(JSON.stringify(content))
-
-    await this.getStorageFile(userId, cvId).setMetadata({
+    await this.getNewCvRef(cvId).set({
+      userId,
       metadata: {
         id: cvId,
         name,
         number,
+        savedAt: new Date(),
         allowShare,
       },
+      content,
     })
 
     return cvId
   }
 
-  async update(userId: UserId, cvId: CvId, cv: CV) {
-    const [isCvExists] = await this.getStorageFile(userId, cvId).exists()
-
-    if (!isCvExists) {
-      throw new BadRequestException(`CV isn't exists`)
-    }
-
+  async update(userId: UserId, cvId: CvId, cv: IncomingCV) {
     const { metadata, content } = cv
     const { name, number, allowShare } = metadata
 
-    await this.getStorageFile(userId, cvId).save(JSON.stringify(content))
+    const cvRef = await this.getExistingCvRef(userId, cvId)
 
-    await this.getStorageFile(userId, cvId).setMetadata({
+    if (isNull(cvRef)) {
+      return
+    }
+
+    await cvRef.update({
+      userId,
       metadata: {
         id: cvId,
         name,
         number,
+        savedAt: new Date(),
         allowShare,
       },
+      content,
     })
   }
 
   async delete(userId: UserId, cvId: CvId) {
-    const [isCvExists] = await this.getStorageFile(userId, cvId).exists()
+    const cvRef = await this.getExistingCvRef(userId, cvId)
 
-    if (!isCvExists) {
+    if (isNull(cvRef)) {
       return
     }
 
-    await this.getStorageFile(userId, cvId).delete()
+    await cvRef.delete()
   }
 
-  async getMetadata(userId: UserId, cvId: CvId) {
-    const [fileMetadata] = await this.getStorageFile(userId, cvId).getMetadata()
-
-    return this.convertRawMetadata(fileMetadata)
+  private getCvCollection() {
+    return this.db.collection(FIRE_STORAGE_COLLECTION)
   }
 
-  async getMetadataAll(userId: UserId) {
-    const files = await this.getStorageFiles(userId)
-
-    return map(files, ({ metadata: fileMetadata }) => {
-      return this.convertRawMetadata(fileMetadata)
-    })
+  private getNewCvRef(cvId: CvId) {
+    return this.db.collection(FIRE_STORAGE_COLLECTION).doc(cvId)
   }
 
-  private getStorageFile(userId: UserId, cvId: CvId) {
-    return this.storage
-      .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      .file(`${FILE_STORAGE_ROOT_DIR}/${userId}/${cvId}.json`)
+  private async getExistingCvRef(
+    userId: UserId,
+    cvId: CvId
+  ): Promise<DocumentReference | null> {
+    const result = await this.getCvCollection()
+      .where('userId', '==', userId)
+      .where('metadata.id', '==', cvId)
+      .get()
+
+    if (result.empty) {
+      return null
+    }
+
+    return head(result.docs).ref
   }
 
-  private async getStorageFiles(userId: UserId) {
-    return this.storage
-      .bucket(this.configService.get('FIREBASE_STORAGE_BUCKET'))
-      .getFiles({ prefix: `cv/${userId}/` })
-      .then((res) => res[0])
-      .then((files) => filter(files, ({ name }) => includes(name, '.'))) // this naive line exclude folders
-  }
-
-  private convertRawMetadata(
-    fileMetadata: ReturnType<typeof this.getStorageFile>['metadata']
-  ) {
-    const { updated: savedAt, metadata } = fileMetadata
-    const { id, name, number, allowShare } = metadata
+  private convertRawMetadata(metadata: RawMetadata) {
+    const { savedAt } = metadata
 
     return {
-      id,
-      name,
-      number: Number(number),
-      savedAt,
-      allowShare: allowShare === 'true' ?? false,
-    } as Metadata
+      ...metadata,
+      savedAt: savedAt.toDate().toISOString(),
+    }
   }
 }

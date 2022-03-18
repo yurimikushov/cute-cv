@@ -1,1 +1,1 @@
-export const FILE_STORAGE_ROOT_DIR = 'cv'
+export const FIRE_STORAGE_COLLECTION = 'cv'
