@@ -17,6 +17,7 @@ interface Metadata {
   name: string
   number: number
   savedAt: string
+  allowShare: boolean
 }
 
 interface Content {

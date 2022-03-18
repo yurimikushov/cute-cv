@@ -40,6 +40,7 @@ type RawMetadata = {
   name: string
   number: number
   savedAt: string
+  allowShare: boolean
 }
 
 type RawContent = CvContent

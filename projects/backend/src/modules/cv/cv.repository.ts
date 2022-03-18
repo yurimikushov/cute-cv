@@ -34,7 +34,7 @@ export class CVRepository {
   async add(userId: UserId, cv: CV) {
     const cvId = nanoid()
     const { metadata, content } = cv
-    const { name, number } = metadata
+    const { name, number, allowShare } = metadata
 
     // The Storage API dynamically creates "folders" if isn't exist
     await this.getStorageFile(userId, cvId).save(JSON.stringify(content))
@@ -44,6 +44,7 @@ export class CVRepository {
         id: cvId,
         name,
         number,
+        allowShare,
       },
     })
 
@@ -58,7 +59,7 @@ export class CVRepository {
     }
 
     const { metadata, content } = cv
-    const { name, number } = metadata
+    const { name, number, allowShare } = metadata
 
     await this.getStorageFile(userId, cvId).save(JSON.stringify(content))
 
@@ -67,6 +68,7 @@ export class CVRepository {
         id: cvId,
         name,
         number,
+        allowShare,
       },
     })
   }
@@ -87,13 +89,14 @@ export class CVRepository {
       cvId
     ).getMetadata()
 
-    const { id, name, number } = metadata
+    const { id, name, number, allowShare } = metadata
 
     return {
       id,
       name,
       number: Number(number),
       savedAt: updated,
+      allowShare: allowShare === 'true' ?? false,
     } as Metadata
   }
 
@@ -103,14 +106,15 @@ export class CVRepository {
     return map(files, (file, i) => {
       const { metadata: fileMetadata } = file
       const { name: fileName, updated: savedAt, metadata } = fileMetadata
-      const { id, name, number } = metadata
+      const { id, name, number, allowShare } = metadata
 
       return {
         id: (id as string | undefined) ?? getCvId(fileName),
         name: (name as string | undefined) ?? `Draft #${i + 1}`,
         number: Number((number as string | undefined) ?? i + 1),
         savedAt,
-      }
+        allowShare: allowShare === 'true' ?? false,
+      } as Metadata
     })
   }
 

@@ -2,6 +2,7 @@ import {
   IsString,
   IsInt,
   IsPositive,
+  IsBoolean,
   IsOptional,
   IsObject,
   IsArray,
@@ -21,7 +22,10 @@ class MetadataDto {
   @IsInt()
   @IsPositive()
   @Max(Number.MAX_SAFE_INTEGER)
-  number: number
+  readonly number: number
+
+  @IsBoolean()
+  readonly allowShare: boolean
 }
 class ContentDto {
   @IsString()

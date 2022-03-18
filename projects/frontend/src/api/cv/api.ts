@@ -49,6 +49,7 @@ class cvApi {
       metadata: {
         name,
         number,
+        allowShare: false,
       },
       content: cv,
     })
@@ -61,6 +62,7 @@ class cvApi {
       metadata: {
         name,
         number,
+        allowShare: false,
       },
       content: cv,
     })
@@ -73,6 +75,7 @@ class cvApi {
       metadata: {
         name,
         number,
+        allowShare: false,
       },
       content: cv,
     })
