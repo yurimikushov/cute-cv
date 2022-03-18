@@ -5,7 +5,6 @@ import { getStorage, Storage } from 'firebase-admin/storage'
 import { nanoid } from 'nanoid'
 import { map, filter, includes } from 'lodash'
 import { getFirebaseApp } from 'lib/firebase'
-import getCvId from './utils/getCvId'
 import { FILE_STORAGE_ROOT_DIR } from './constants'
 import { UserId, CvId, CV, Metadata, Content } from './cv.interface'
 
@@ -84,37 +83,16 @@ export class CVRepository {
   }
 
   async getMetadata(userId: UserId, cvId: CvId) {
-    const [{ updated, metadata }] = await this.getStorageFile(
-      userId,
-      cvId
-    ).getMetadata()
+    const [fileMetadata] = await this.getStorageFile(userId, cvId).getMetadata()
 
-    const { id, name, number, allowShare } = metadata
-
-    return {
-      id,
-      name,
-      number: Number(number),
-      savedAt: updated,
-      allowShare: allowShare === 'true' ?? false,
-    } as Metadata
+    return this.convertRawMetadata(fileMetadata)
   }
 
   async getMetadataAll(userId: UserId) {
     const files = await this.getStorageFiles(userId)
 
-    return map(files, (file, i) => {
-      const { metadata: fileMetadata } = file
-      const { name: fileName, updated: savedAt, metadata } = fileMetadata
-      const { id, name, number, allowShare } = metadata
-
-      return {
-        id: (id as string | undefined) ?? getCvId(fileName),
-        name: (name as string | undefined) ?? `Draft #${i + 1}`,
-        number: Number((number as string | undefined) ?? i + 1),
-        savedAt,
-        allowShare: allowShare === 'true' ?? false,
-      } as Metadata
+    return map(files, ({ metadata: fileMetadata }) => {
+      return this.convertRawMetadata(fileMetadata)
     })
   }
 
@@ -130,5 +108,20 @@ export class CVRepository {
       .getFiles({ prefix: `cv/${userId}/` })
       .then((res) => res[0])
       .then((files) => filter(files, ({ name }) => includes(name, '.'))) // this naive line exclude folders
+  }
+
+  private convertRawMetadata(
+    fileMetadata: ReturnType<typeof this.getStorageFile>['metadata']
+  ) {
+    const { updated: savedAt, metadata } = fileMetadata
+    const { id, name, number, allowShare } = metadata
+
+    return {
+      id,
+      name,
+      number: Number(number),
+      savedAt,
+      allowShare: allowShare === 'true' ?? false,
+    } as Metadata
   }
 }
