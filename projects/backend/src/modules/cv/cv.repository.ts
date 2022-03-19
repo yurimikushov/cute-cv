@@ -108,11 +108,8 @@ export class CVRepository {
   }
 
   async isExist(cvId: CvId) {
-    const result = await this.getCvCollection()
-      .where('metadata.id', '==', cvId)
-      .get()
-
-    return !result.empty
+    const { exists } = await this.getCvCollection().doc(cvId).get()
+    return exists
   }
 
   private getCvCollection() {
