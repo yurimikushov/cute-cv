@@ -19,6 +19,11 @@ interface PartialCV {
   content?: Partial<Content>
 }
 
+type RawCv = {
+  metadata: RawMetadata
+  content: Content
+}
+
 interface Metadata {
   id: string
   name: string
@@ -79,7 +84,7 @@ export type {
   CV,
   IncomingCV,
   PartialCV,
+  RawCv,
   Metadata,
-  RawMetadata,
   Content,
 }

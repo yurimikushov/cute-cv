@@ -9,14 +9,7 @@ import { nanoid } from 'nanoid'
 import { head } from 'lodash'
 import { getFirebaseApp } from 'lib/firebase'
 import { FIRE_STORAGE_COLLECTION } from './constants'
-import {
-  UserId,
-  CvId,
-  CV,
-  IncomingCV,
-  Metadata,
-  RawMetadata,
-} from './cv.interface'
+import { UserId, CvId, CV, IncomingCV, RawCv, Metadata } from './cv.interface'
 
 @Injectable()
 export class CVRepository {
@@ -36,8 +29,9 @@ export class CVRepository {
     const allMetadata: Array<Metadata> = []
 
     docs.forEach((doc) => {
-      const { metadata } = doc.data()
-      allMetadata.push(this.convertRawMetadata(metadata))
+      const rawCv = doc.data() as RawCv
+      const { metadata } = this.convertRawCv(rawCv)
+      allMetadata.push(metadata)
     })
 
     return allMetadata
@@ -45,18 +39,15 @@ export class CVRepository {
 
   async readMetadataByUserId(userId: UserId, cvId: CvId) {
     const cvRef = await this.getExistingCvRefByUserId(userId, cvId)
-    const { metadata } = (await cvRef.get()).data()
-    return this.convertRawMetadata(metadata)
+    const rawCv = (await cvRef.get()).data() as RawCv
+    const { metadata } = this.convertRawCv(rawCv)
+    return metadata
   }
 
   async read(userId: UserId, cvId: CvId): Promise<CV | null> {
     const cvRef = await this.getExistingCvRefByUserId(userId, cvId)
-    const { content, metadata } = (await cvRef.get()).data()
-
-    return {
-      metadata: this.convertRawMetadata(metadata),
-      content,
-    } as CV
+    const rawCv = (await cvRef.get()).data() as RawCv
+    return this.convertRawCv(rawCv)
   }
 
   async addByUserId(userId: UserId, cv: IncomingCV) {
@@ -159,12 +150,18 @@ export class CVRepository {
     return cvId
   }
 
-  private convertRawMetadata(metadata: RawMetadata) {
+  private convertRawCv(cv: RawCv) {
+    const { metadata, content } = cv
     const { savedAt } = metadata
 
     return {
-      ...metadata,
-      savedAt: savedAt.toDate().toISOString(),
+      metadata: {
+        ...metadata,
+        savedAt: savedAt.toDate().toISOString(),
+      },
+      content: {
+        ...content,
+      },
     }
   }
 }
