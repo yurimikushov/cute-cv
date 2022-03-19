@@ -6,7 +6,7 @@ import {
   DocumentReference,
 } from 'firebase-admin/firestore'
 import { nanoid } from 'nanoid'
-import { head, isNil, isNull } from 'lodash'
+import { head } from 'lodash'
 import { getFirebaseApp } from 'lib/firebase'
 import { FIRE_STORAGE_COLLECTION } from './constants'
 import {
@@ -45,25 +45,13 @@ export class CVRepository {
 
   async readMetadata(userId: UserId, cvId: CvId) {
     const cvRef = await this.getExistingCvRef(userId, cvId)
-    const cv = (await cvRef.get()).data()
-
-    if (isNil(cv)) {
-      return null
-    }
-
-    const { metadata } = cv
+    const { metadata } = (await cvRef.get()).data()
     return this.convertRawMetadata(metadata)
   }
 
   async read(userId: UserId, cvId: CvId): Promise<CV | null> {
     const cvRef = await this.getExistingCvRef(userId, cvId)
-    const cv = (await cvRef.get()).data()
-
-    if (isNil(cv)) {
-      return null
-    }
-
-    const { content, metadata } = cv
+    const { content, metadata } = (await cvRef.get()).data()
 
     return {
       metadata: this.convertRawMetadata(metadata),
@@ -97,10 +85,6 @@ export class CVRepository {
 
     const cvRef = await this.getExistingCvRef(userId, cvId)
 
-    if (isNull(cvRef)) {
-      return
-    }
-
     await cvRef.update({
       userId,
       metadata: {
@@ -116,12 +100,28 @@ export class CVRepository {
 
   async delete(userId: UserId, cvId: CvId) {
     const cvRef = await this.getExistingCvRef(userId, cvId)
+    await cvRef.delete()
+  }
 
-    if (isNull(cvRef)) {
-      return
+  async isExistByUserId(userId: UserId, cvId: CvId) {
+    const result = await this.getCvCollection()
+      .where('userId', '==', userId)
+      .where('metadata.id', '==', cvId)
+      .get()
+
+    if (result.empty) {
+      return false
     }
 
-    await cvRef.delete()
+    return true
+  }
+
+  async isExist(cvId: CvId) {
+    const result = await this.getCvCollection()
+      .where('metadata.id', '==', cvId)
+      .get()
+
+    return !result.empty
   }
 
   private getCvCollection() {
@@ -140,10 +140,6 @@ export class CVRepository {
       .where('userId', '==', userId)
       .where('metadata.id', '==', cvId)
       .get()
-
-    if (result.empty) {
-      return null
-    }
 
     return head(result.docs).ref
   }

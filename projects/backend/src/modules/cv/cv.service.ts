@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import { assign, isNil, isNull } from 'lodash'
+import { assign, isNil } from 'lodash'
+import { EntityNotFoundError } from 'errors'
 import { CvId, UserId, IncomingCV, PartialCV } from './cv.interface'
 import { CVRepository } from './cv.repository'
 
@@ -12,13 +13,13 @@ export class CVService {
   }
 
   async get(userId: UserId, cvId: CvId) {
-    const cv = await this.cvRepository.read(userId, cvId)
+    const isExist = await this.cvRepository.isExistByUserId(userId, cvId)
 
-    if (isNull(cv)) {
-      return null
+    if (!isExist) {
+      throw new EntityNotFoundError(`CV isn't exist`)
     }
 
-    return cv
+    return await this.cvRepository.read(userId, cvId)
   }
 
   async add(userId: UserId, cv: IncomingCV) {
@@ -28,12 +29,24 @@ export class CVService {
   }
 
   async update(userId: UserId, cvId: CvId, cv: IncomingCV) {
+    const isExist = await this.cvRepository.isExistByUserId(userId, cvId)
+
+    if (!isExist) {
+      throw new EntityNotFoundError(`CV isn't exist`)
+    }
+
     await this.cvRepository.update(userId, cvId, cv)
 
     return await this.cvRepository.readMetadata(userId, cvId)
   }
 
   async patch(userId: UserId, cvId: CvId, cv: PartialCV) {
+    const isExist = await this.cvRepository.isExistByUserId(userId, cvId)
+
+    if (!isExist) {
+      throw new EntityNotFoundError(`CV isn't exist`)
+    }
+
     const { metadata, content } = cv
 
     if (isNil(metadata) && isNil(content)) {
@@ -55,6 +68,12 @@ export class CVService {
   }
 
   async delete(userId: UserId, cvId: CvId) {
+    const isExist = await this.cvRepository.isExistByUserId(userId, cvId)
+
+    if (!isExist) {
+      return
+    }
+
     await this.cvRepository.delete(userId, cvId)
   }
 }
