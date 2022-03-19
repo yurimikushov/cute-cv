@@ -21,6 +21,7 @@ import {
   PatchOneCvParamsDto,
   PatchOneCvDto,
   DeleteOneCvParamsDto,
+  ShareOneCvParamsDto,
 } from './dto'
 import { CVService } from './cv.service'
 
@@ -67,5 +68,10 @@ export class CVController {
   @Delete(':id')
   async deleteOne(@Req() req: Request, @Param() params: DeleteOneCvParamsDto) {
     return await this.cvService.delete(req.user.uid, params.id)
+  }
+
+  @Get('share/:id')
+  async shareOne(@Param() params: ShareOneCvParamsDto) {
+    return this.cvService.shareOne(params.id)
   }
 }

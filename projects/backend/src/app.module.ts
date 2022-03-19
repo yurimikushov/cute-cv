@@ -44,7 +44,7 @@ export class AppModule implements NestModule {
       .apply(morgan('combined'))
       .forRoutes({ path: '*', method: RequestMethod.ALL })
 
-    consumer.apply(AuthMiddleware).forRoutes({
+    consumer.apply(AuthMiddleware).exclude('cv/share/:id').forRoutes({
       path: '*',
       method: RequestMethod.ALL,
     })

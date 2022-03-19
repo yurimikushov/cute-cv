@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { assign, isNil } from 'lodash'
-import { EntityNotFoundError } from 'errors'
+import { EntityForbiddenError, EntityNotFoundError } from 'errors'
 import { CvId, UserId, IncomingCV, PartialCV } from './cv.interface'
 import { CVRepository } from './cv.repository'
 
@@ -75,5 +75,21 @@ export class CVService {
     }
 
     await this.cvRepository.deleteByUserId(userId, cvId)
+  }
+
+  async shareOne(cvId: CvId) {
+    const isExist = await this.cvRepository.isExist(cvId)
+
+    if (!isExist) {
+      throw new EntityNotFoundError(`CV isn't exist`)
+    }
+
+    const isSharable = await this.cvRepository.isShareable(cvId)
+
+    if (!isSharable) {
+      throw new EntityForbiddenError(`Owner forbade share this cv`)
+    }
+
+    return await this.cvRepository.readShareable(cvId)
   }
 }

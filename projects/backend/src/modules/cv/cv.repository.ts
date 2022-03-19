@@ -8,6 +8,7 @@ import {
 import { nanoid } from 'nanoid'
 import { head } from 'lodash'
 import { getFirebaseApp } from 'lib/firebase'
+import { EntityForbiddenError } from 'errors'
 import { FIRE_STORAGE_COLLECTION } from './constants'
 import { UserId, CvId, CV, IncomingCV, RawCv, Metadata } from './cv.interface'
 
@@ -48,6 +49,29 @@ export class CVRepository {
     const cvRef = await this.getExistingCvRefByUserId(userId, cvId)
     const rawCv = (await cvRef.get()).data() as RawCv
     return this.convertRawCv(rawCv)
+  }
+
+  async isShareable(cvId: CvId) {
+    const result = await this.getCvCollection().doc(cvId).get()
+    const { metadata } = this.convertRawCv(result.data() as RawCv)
+    const { allowShare } = metadata
+    return allowShare
+  }
+
+  async readShareable(cvId: CvId): Promise<CV> {
+    const result = await this.getCvCollection().doc(cvId).get()
+    const rawCv = result.data() as RawCv
+    const { content, metadata } = this.convertRawCv(rawCv)
+    const { allowShare } = metadata
+
+    if (!allowShare) {
+      throw new EntityForbiddenError(`Owner forbade share this cv`)
+    }
+
+    return {
+      metadata,
+      content,
+    }
   }
 
   async addByUserId(userId: UserId, cv: IncomingCV) {
