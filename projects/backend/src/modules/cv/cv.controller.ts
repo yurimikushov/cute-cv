@@ -1,5 +1,6 @@
 import {
   Controller,
+  UseInterceptors,
   Get,
   Post,
   Put,
@@ -11,6 +12,7 @@ import {
   HttpCode,
 } from '@nestjs/common'
 import { Request } from 'express'
+import { NotFoundInterceptor } from 'interceptors'
 import {
   FindOneCvParamsDto,
   AddOneCvDto,
@@ -23,6 +25,7 @@ import {
 import { CVService } from './cv.service'
 
 @Controller('cv')
+@UseInterceptors(NotFoundInterceptor)
 export class CVController {
   constructor(private readonly cvService: CVService) {}
 
