@@ -81,6 +81,7 @@ export class CVRepository {
 
     await this.getNewCvRef(cvId).set({
       userId,
+      cvId,
       metadata: {
         id: cvId,
         name,
@@ -102,6 +103,7 @@ export class CVRepository {
 
     await cvRef.update({
       userId,
+      cvId,
       metadata: {
         id: cvId,
         name,
@@ -121,7 +123,7 @@ export class CVRepository {
   async isExistByUserId(userId: UserId, cvId: CvId) {
     const result = await this.getCvCollection()
       .where('userId', '==', userId)
-      .where('metadata.id', '==', cvId)
+      .where('cvId', '==', cvId)
       .get()
 
     if (result.empty) {
@@ -150,7 +152,7 @@ export class CVRepository {
   ): Promise<DocumentReference | null> {
     const result = await this.getCvCollection()
       .where('userId', '==', userId)
-      .where('metadata.id', '==', cvId)
+      .where('cvId', '==', cvId)
       .get()
 
     return head(result.docs).ref
