@@ -9,7 +9,7 @@ export class CVService {
   constructor(private cvRepository: CVRepository) {}
 
   async getAll(userId: UserId) {
-    return await this.cvRepository.readAllMetadata(userId)
+    return await this.cvRepository.readAllMetadataByUserId(userId)
   }
 
   async get(userId: UserId, cvId: CvId) {
@@ -23,9 +23,9 @@ export class CVService {
   }
 
   async add(userId: UserId, cv: IncomingCV) {
-    const cvId = await this.cvRepository.add(userId, cv)
+    const cvId = await this.cvRepository.addByUserId(userId, cv)
 
-    return await this.cvRepository.readMetadata(userId, cvId)
+    return await this.cvRepository.readMetadataByUserId(userId, cvId)
   }
 
   async update(userId: UserId, cvId: CvId, cv: IncomingCV) {
@@ -35,9 +35,9 @@ export class CVService {
       throw new EntityNotFoundError(`CV isn't exist`)
     }
 
-    await this.cvRepository.update(userId, cvId, cv)
+    await this.cvRepository.updateByUserId(userId, cvId, cv)
 
-    return await this.cvRepository.readMetadata(userId, cvId)
+    return await this.cvRepository.readMetadataByUserId(userId, cvId)
   }
 
   async patch(userId: UserId, cvId: CvId, cv: PartialCV) {
@@ -59,12 +59,12 @@ export class CVService {
     const newMetadata = assign(oldMetadata, metadata)
     const newContent = assign(oldContent, content)
 
-    await this.cvRepository.update(userId, cvId, {
+    await this.cvRepository.updateByUserId(userId, cvId, {
       metadata: newMetadata,
       content: newContent,
     })
 
-    return await this.cvRepository.readMetadata(userId, cvId)
+    return await this.cvRepository.readMetadataByUserId(userId, cvId)
   }
 
   async delete(userId: UserId, cvId: CvId) {
@@ -74,6 +74,6 @@ export class CVService {
       return
     }
 
-    await this.cvRepository.delete(userId, cvId)
+    await this.cvRepository.deleteByUserId(userId, cvId)
   }
 }

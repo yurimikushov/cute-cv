@@ -28,7 +28,7 @@ export class CVRepository {
     this.db = getFirestore(this.firebaseApp)
   }
 
-  async readAllMetadata(userId: UserId) {
+  async readAllMetadataByUserId(userId: UserId) {
     const docs = await this.getCvCollection()
       .where('userId', '==', userId)
       .get()
@@ -43,14 +43,14 @@ export class CVRepository {
     return allMetadata
   }
 
-  async readMetadata(userId: UserId, cvId: CvId) {
-    const cvRef = await this.getExistingCvRef(userId, cvId)
+  async readMetadataByUserId(userId: UserId, cvId: CvId) {
+    const cvRef = await this.getExistingCvRefByUserId(userId, cvId)
     const { metadata } = (await cvRef.get()).data()
     return this.convertRawMetadata(metadata)
   }
 
   async read(userId: UserId, cvId: CvId): Promise<CV | null> {
-    const cvRef = await this.getExistingCvRef(userId, cvId)
+    const cvRef = await this.getExistingCvRefByUserId(userId, cvId)
     const { content, metadata } = (await cvRef.get()).data()
 
     return {
@@ -59,7 +59,7 @@ export class CVRepository {
     } as CV
   }
 
-  async add(userId: UserId, cv: IncomingCV) {
+  async addByUserId(userId: UserId, cv: IncomingCV) {
     const cvId = await this.getNewCvId()
     const { metadata, content } = cv
     const { name, number, allowShare } = metadata
@@ -79,11 +79,11 @@ export class CVRepository {
     return cvId
   }
 
-  async update(userId: UserId, cvId: CvId, cv: IncomingCV) {
+  async updateByUserId(userId: UserId, cvId: CvId, cv: IncomingCV) {
     const { metadata, content } = cv
     const { name, number, allowShare } = metadata
 
-    const cvRef = await this.getExistingCvRef(userId, cvId)
+    const cvRef = await this.getExistingCvRefByUserId(userId, cvId)
 
     await cvRef.update({
       userId,
@@ -98,8 +98,8 @@ export class CVRepository {
     })
   }
 
-  async delete(userId: UserId, cvId: CvId) {
-    const cvRef = await this.getExistingCvRef(userId, cvId)
+  async deleteByUserId(userId: UserId, cvId: CvId) {
+    const cvRef = await this.getExistingCvRefByUserId(userId, cvId)
     await cvRef.delete()
   }
 
@@ -132,7 +132,7 @@ export class CVRepository {
     return this.db.collection(FIRE_STORAGE_COLLECTION).doc(cvId)
   }
 
-  private async getExistingCvRef(
+  private async getExistingCvRefByUserId(
     userId: UserId,
     cvId: CvId
   ): Promise<DocumentReference | null> {
