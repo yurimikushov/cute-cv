@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { useField } from 'formik'
+import { useField, useFormikContext } from 'formik'
 import styled from 'styled-components'
 import TextInput from 'components/TextInput'
 import colors from 'styles/colors'
@@ -16,13 +16,20 @@ const ErrorMessage = styled.div`
 const FormTextInput: FC<FromTextInputProps> = ({
   inputRef,
   containerClassName,
+  disabled,
   ...props
 }) => {
   const [field, { touched, error }] = useField(props)
+  const { isSubmitting } = useFormikContext()
 
   return (
     <Container className={containerClassName}>
-      <TextInput {...props} {...field} ref={inputRef} />
+      <TextInput
+        {...props}
+        {...field}
+        ref={inputRef}
+        disabled={disabled || isSubmitting}
+      />
       {touched && error && <ErrorMessage>{error}</ErrorMessage>}
     </Container>
   )
