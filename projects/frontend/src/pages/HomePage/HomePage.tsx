@@ -10,13 +10,13 @@ import {
   useCurrentCvContent,
   useIsCVLoading,
 } from 'services/cv'
-import BasePanelsLayout from 'layouts/PanelsLayout'
+import PanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import Loader from 'components/ui/Loader'
 import CurrentCv from '../common/CurrentCv'
 import BaseToolPanel from './ToolPanel'
 
-const PanelsLayout = styled(BasePanelsLayout)`
+const Container = styled.div`
   margin-top: 1.25rem;
   margin-bottom: 3.5rem;
   display: flex;
@@ -51,14 +51,16 @@ const HomePage: FC = () => {
         <title>{fullName || 'Cute CV'} </title>
       </Helmet>
       {(isSignInChecking || isCVLoading) && <Loader.FullScreen />}
-      <PanelsLayout>
-        <PageLayout>
-          <ToolPanel />
-          <CurrentCvWrapper>
-            <CurrentCv />
-          </CurrentCvWrapper>
-        </PageLayout>
-      </PanelsLayout>
+      <Container>
+        <PanelsLayout>
+          <PageLayout>
+            <ToolPanel />
+            <CurrentCvWrapper>
+              <CurrentCv />
+            </CurrentCvWrapper>
+          </PageLayout>
+        </PanelsLayout>
+      </Container>
     </>
   )
 }
