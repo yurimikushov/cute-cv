@@ -8,13 +8,13 @@ const useEditable = () => {
 
   const dispatch = useDispatch()
 
-  const handleToggle = useCallback(() => {
+  const toggleEditable = useCallback(() => {
     dispatch(toggle())
   }, [])
 
   return {
     editable,
-    handleToggle,
+    toggleEditable,
   }
 }
 

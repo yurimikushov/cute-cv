@@ -17,7 +17,7 @@ const Container = styled.div`
 const Download: FC<DownloadProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'toolbar.download' })
   const prevEditableRef = useRef<boolean>(false)
-  const { editable, handleToggle } = useEditable()
+  const { editable, toggleEditable } = useEditable()
   const { isDownloading, handleDownloadPDF, handleDownloadJSON } = useDownload()
 
   const withToggleEditable = (handler: () => Promise<void>) => {
@@ -25,13 +25,13 @@ const Download: FC<DownloadProps> = (props) => {
       prevEditableRef.current = editable
 
       if (editable) {
-        handleToggle()
+        toggleEditable()
       }
 
       await handler()
 
       if (prevEditableRef.current) {
-        handleToggle()
+        toggleEditable()
       }
     }
   }

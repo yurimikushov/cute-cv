@@ -19,20 +19,24 @@ const SavedStatus = styled.div`
 
 const Panel: FC<PanelProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'panel' })
-  const { editable, handleToggle } = useEditable()
+  const { editable, toggleEditable } = useEditable()
   const savedStatus = useSavedStatus()
   const { isDownloading } = useDownload()
 
   useKeyDown({
     code: 'Space',
     altKey: true,
-    listener: handleToggle,
+    listener: toggleEditable,
   })
 
   return (
     <Container {...props}>
       <SavedStatus>{savedStatus}</SavedStatus>
-      <Button appearance='text' disabled={isDownloading} onClick={handleToggle}>
+      <Button
+        appearance='text'
+        disabled={isDownloading}
+        onClick={toggleEditable}
+      >
         {editable ? t('preview') : t('edit')}
       </Button>
     </Container>
