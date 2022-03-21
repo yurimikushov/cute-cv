@@ -17,7 +17,6 @@ const Position = styled(TextInput)`
 
 const Header: FC<HeaderProps> = ({
   editable,
-  autoFocusFullName,
   fullName,
   position,
   fullNameMaxLength,
@@ -28,7 +27,7 @@ const Header: FC<HeaderProps> = ({
   const { t } = useTranslation('translation')
 
   const fullNameRef = useAutoFocusWhen<HTMLInputElement>({
-    predicate: autoFocusFullName,
+    predicate: editable,
   })
 
   const handleChangeFullName = (e: ChangeEvent<HTMLInputElement>) => {

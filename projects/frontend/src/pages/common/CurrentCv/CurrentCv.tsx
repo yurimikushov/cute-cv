@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import isEmpty from 'lodash/isEmpty'
 import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
-import { useIsSignedIn } from 'services/auth'
 import {
   useEditable,
   useCurrentCvContent,
@@ -38,7 +37,6 @@ import CurrentCvProps from './CurrentCv.props'
 
 // eslint-disable-next-line max-statements
 const CurrentCv: FC<CurrentCvProps> = () => {
-  const { isSignedIn } = useIsSignedIn()
   const { editable } = useEditable()
   const {
     cv,
@@ -88,7 +86,6 @@ const CurrentCv: FC<CurrentCvProps> = () => {
       header={
         <Header
           editable={editable}
-          autoFocusFullName={isSignedIn && editable}
           fullName={fullName}
           position={position}
           fullNameMaxLength={FULL_NAME_MAX_LENGTH}

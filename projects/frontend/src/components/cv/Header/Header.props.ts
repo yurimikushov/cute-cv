@@ -1,7 +1,6 @@
 type HeaderProps = {
   className?: string
   editable: boolean
-  autoFocusFullName: boolean
   fullName: string
   position: string
   fullNameMaxLength: number
