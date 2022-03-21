@@ -18,7 +18,7 @@ import CVLayout from 'layouts/CVLayout'
 import Loader from 'components/ui/Loader'
 import Panel from './Panel'
 import Header from './Header'
-import Avatar from './Avatar'
+import Avatar from 'components/cv/Avatar'
 import AboutMe from 'components/cv/AboutMe'
 import Experiences from './Experiences'
 import Educations from './Educations'
@@ -67,11 +67,12 @@ const HomePage: FC = () => {
 
   const { i18n } = useTranslation()
   const { editable } = useEditable()
-  const { cv, changeAboutMe } = useCurrentCvContent()
+  const { cv, changeAvatar, deleteAvatar, changeAboutMe } =
+    useCurrentCvContent()
   const { isCVLoading } = useIsCVLoading()
   const { isSignInChecking } = useIsSignInChecking()
 
-  const { aboutMe } = cv
+  const { avatar, aboutMe } = cv
 
   return (
     <>
@@ -84,7 +85,12 @@ const HomePage: FC = () => {
           <StyledPanel />
           <StyledCVLayout>
             <Header />
-            <Avatar />
+            <Avatar
+              src={avatar}
+              editable={editable}
+              onPick={changeAvatar}
+              onClear={deleteAvatar}
+            />
             <Main>
               <AboutMe
                 value={aboutMe}
