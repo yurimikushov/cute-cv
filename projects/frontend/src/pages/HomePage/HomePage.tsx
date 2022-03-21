@@ -12,6 +12,7 @@ import {
   useEditable,
   useCurrentCvContent,
   useIsCVLoading,
+  CV_CONTAINER_ID,
   FULL_NAME_MAX_LENGTH,
   POSITION_MAX_LENGTH,
   ABOUT_ME_MAX_LENGTH,
@@ -33,7 +34,7 @@ import {
 } from 'services/cv'
 import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
-import CVLayout from 'layouts/CVLayout'
+import CvLayout, { CvLayoutProps } from 'layouts/CvLayout'
 import Loader from 'components/ui/Loader'
 import Panel from './Panel'
 import Header from 'components/cv/Header'
@@ -56,25 +57,15 @@ const StyledPanel = styled(Panel)`
   padding: 1rem;
 `
 
-const StyledCVLayout = styled(({ children, ...props }) => (
-  <div {...props}>
-    <CVLayout>{children}</CVLayout>
+const CvLayoutWrapper = styled(({ className, ...props }: CvLayoutProps) => (
+  <div className={className}>
+    <CvLayout {...props} />
   </div>
-))`
+)).attrs({
+  id: CV_CONTAINER_ID,
+})`
   padding: 4rem;
   margin-top: -3rem;
-`
-
-const Main = styled.main`
-  & > * + * {
-    margin-top: 1.5rem;
-  }
-`
-
-const Aside = styled.aside`
-  & > * + * {
-    margin-top: 1rem;
-  }
 `
 
 // eslint-disable-next-line max-statements
@@ -140,85 +131,93 @@ const HomePage: FC = () => {
       <PanelsLayout>
         <PageLayout>
           <StyledPanel />
-          <StyledCVLayout>
-            <Header
-              editable={editable}
-              autoFocusFullName={isSignedIn && editable}
-              fullName={fullName}
-              position={position}
-              fullNameMaxLength={FULL_NAME_MAX_LENGTH}
-              positionMaxLength={POSITION_MAX_LENGTH}
-              onChangeFullName={changeFullName}
-              onChangePosition={changePosition}
-            />
-            <Avatar
-              src={avatar}
-              editable={editable}
-              onPick={changeAvatar}
-              onClear={deleteAvatar}
-            />
-            <Main>
-              <AboutMe
-                value={aboutMe}
+          <CvLayoutWrapper
+            header={
+              <Header
                 editable={editable}
-                maxLength={ABOUT_ME_MAX_LENGTH}
-                onChange={changeAboutMe}
+                autoFocusFullName={isSignedIn && editable}
+                fullName={fullName}
+                position={position}
+                fullNameMaxLength={FULL_NAME_MAX_LENGTH}
+                positionMaxLength={POSITION_MAX_LENGTH}
+                onChangeFullName={changeFullName}
+                onChangePosition={changePosition}
               />
-              <Experiences
+            }
+            avatar={
+              <Avatar
+                src={avatar}
                 editable={editable}
-                experiences={experiences}
-                maxCount={EXPERIENCES_MAX_COUNT}
-                positionMaxLength={EXPERIENCE_POSITION_MAX_LENGTH}
-                companyMaxLength={EXPERIENCE_COMPANY_MAX_LENGTH}
-                durationMaxLength={EXPERIENCE_DURATION_MAX_LENGTH}
-                descriptionMaxLength={EXPERIENCE_DESCRIPTION_MAX_LENGTH}
-                onChange={changeExperience}
-                onReorder={reorderExperience}
-                onDelete={deleteExperience}
-                onAdd={addExperience}
+                onPick={changeAvatar}
+                onClear={deleteAvatar}
               />
-              <Educations
-                editable={editable}
-                educations={educations}
-                maxCount={EDUCATIONS_MAX_COUNT}
-                degreeMaxLength={EDUCATION_DEGREE_MAX_LENGTH}
-                universityMaxLength={EDUCATION_UNIVERSITY_MAX_LENGTH}
-                durationMaxLength={EDUCATION_DURATION_MAX_LENGTH}
-                onChange={changeEducation}
-                onReorder={reorderEducation}
-                onDelete={deleteEducation}
-                onAdd={addEduction}
-              />
-            </Main>
-            <Aside>
-              <Contacts
-                editable={editable}
-                contacts={contacts}
-                maxCount={CONTACTS_MAX_COUNT}
-                textMaxLength={CONTACT_TEXT_MAX_LENGTH}
-                hrefMaxLength={CONTACT_HREF_MAX_LENGTH}
-                onChange={changeContact}
-                onReorder={reorderContact}
-                onDelete={deleteContact}
-                onAdd={addContact}
-              />
-              <Technologies
-                editable={editable}
-                technologies={technologies}
-                maxLength={TECHNOLOGIES_MAX_LENGTH}
-                onChange={changeTechnologies}
-              />
-              <Languages
-                editable={editable}
-                languages={languages}
-                maxCount={LANGUAGES_MAX_COUNT}
-                maxLength={LANGUAGE_MAX_LENGTH}
-                onChange={changeLanguage}
-                onDelete={deleteLanguage}
-                onAdd={addLanguage}
-              />
-            </Aside>
-          </StyledCVLayout>
+            }
+            main={
+              <>
+                <AboutMe
+                  value={aboutMe}
+                  editable={editable}
+                  maxLength={ABOUT_ME_MAX_LENGTH}
+                  onChange={changeAboutMe}
+                />
+                <Experiences
+                  editable={editable}
+                  experiences={experiences}
+                  maxCount={EXPERIENCES_MAX_COUNT}
+                  positionMaxLength={EXPERIENCE_POSITION_MAX_LENGTH}
+                  companyMaxLength={EXPERIENCE_COMPANY_MAX_LENGTH}
+                  durationMaxLength={EXPERIENCE_DURATION_MAX_LENGTH}
+                  descriptionMaxLength={EXPERIENCE_DESCRIPTION_MAX_LENGTH}
+                  onChange={changeExperience}
+                  onReorder={reorderExperience}
+                  onDelete={deleteExperience}
+                  onAdd={addExperience}
+                />
+                <Educations
+                  editable={editable}
+                  educations={educations}
+                  maxCount={EDUCATIONS_MAX_COUNT}
+                  degreeMaxLength={EDUCATION_DEGREE_MAX_LENGTH}
+                  universityMaxLength={EDUCATION_UNIVERSITY_MAX_LENGTH}
+                  durationMaxLength={EDUCATION_DURATION_MAX_LENGTH}
+                  onChange={changeEducation}
+                  onReorder={reorderEducation}
+                  onDelete={deleteEducation}
+                  onAdd={addEduction}
+                />
+              </>
+            }
+            aside={
+              <>
+                <Contacts
+                  editable={editable}
+                  contacts={contacts}
+                  maxCount={CONTACTS_MAX_COUNT}
+                  textMaxLength={CONTACT_TEXT_MAX_LENGTH}
+                  hrefMaxLength={CONTACT_HREF_MAX_LENGTH}
+                  onChange={changeContact}
+                  onReorder={reorderContact}
+                  onDelete={deleteContact}
+                  onAdd={addContact}
+                />
+                <Technologies
+                  editable={editable}
+                  technologies={technologies}
+                  maxLength={TECHNOLOGIES_MAX_LENGTH}
+                  onChange={changeTechnologies}
+                />
+                <Languages
+                  editable={editable}
+                  languages={languages}
+                  maxCount={LANGUAGES_MAX_COUNT}
+                  maxLength={LANGUAGE_MAX_LENGTH}
+                  onChange={changeLanguage}
+                  onDelete={deleteLanguage}
+                  onAdd={addLanguage}
+                />
+              </>
+            }
+          />
         </PageLayout>
       </PanelsLayout>
     </>

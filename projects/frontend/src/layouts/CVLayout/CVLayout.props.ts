@@ -1,5 +1,12 @@
-type CVLayoutProps = {
+import { ReactNode } from 'react'
+
+type CvLayoutProps = {
   className?: string
+  id?: string
+  header: ReactNode
+  avatar: ReactNode
+  main: ReactNode
+  aside: ReactNode
 }
 
-export default CVLayoutProps
+export default CvLayoutProps
