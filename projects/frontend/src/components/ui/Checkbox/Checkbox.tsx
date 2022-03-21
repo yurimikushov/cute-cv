@@ -61,9 +61,8 @@ const Label = styled.span`
 `
 
 const Checkbox: FC<CheckboxProps> = ({ children, ...props }) => {
-  const { containerProps, checkboxInputProps, checkmarkProps } = useCheckbox({
-    ...props,
-  })
+  const { containerProps, checkboxInputProps, checkmarkProps } =
+    useCheckbox(props)
 
   return (
     <Container {...containerProps}>
