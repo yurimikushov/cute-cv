@@ -10,7 +10,7 @@ import BaseForm, { FormProps } from 'components/ui/Form'
 import colors from 'styles/colors'
 import fonts from 'styles/fonts'
 import radiuses from 'styles/radiuses'
-import EditCvModalProps from './EditCvModal.props'
+import EditCvMetadataModalProps from './EditCvMetadataModal.props'
 
 const Container = styled(Modal)`
   width: 24rem;
@@ -49,7 +49,7 @@ type FormValues = {
   name: string
 }
 
-const EditCvModal: FC<EditCvModalProps> = ({
+const EditCvMetadataModal: FC<EditCvMetadataModalProps> = ({
   title,
   submitTitle,
   submitSubmittingTitle,
@@ -110,4 +110,4 @@ const EditCvModal: FC<EditCvModalProps> = ({
   )
 }
 
-export default EditCvModal
+export default EditCvMetadataModal

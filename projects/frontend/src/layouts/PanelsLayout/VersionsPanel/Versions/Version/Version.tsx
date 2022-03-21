@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useIsSignedIn } from 'services/auth'
-import EditCvModal from '../../EditCvModal'
+import EditCvMetadataModal from 'components/cv/EditCvMetadataModal'
 import useEditNameModal from './hooks/useEditNameModal'
 import useMakeCopyModal from './hooks/useMakeCopyModal'
 import Menu from './Menu'
@@ -13,6 +13,8 @@ const Container = styled.div`
   align-items: center;
   gap: 0.5rem;
 `
+
+const MakeCvCopyModal = EditCvMetadataModal
 
 const Name = styled.span`
   max-width: 5rem;
@@ -54,7 +56,7 @@ const Version: FC<VersionProps> = ({
         />
       )}
       {isSignedIn && isEditNameModalOpened && (
-        <EditCvModal
+        <EditCvMetadataModal
           title={t('editNameModal.title')}
           submitTitle={t('editNameModal.save')}
           submitSubmittingTitle={t('editNameModal.savingStatus')}
@@ -64,7 +66,7 @@ const Version: FC<VersionProps> = ({
         />
       )}
       {isSignedIn && isMakeCopyModalOpened && (
-        <EditCvModal
+        <MakeCvCopyModal
           title={t('makeCopyModal.title')}
           submitTitle={t('makeCopyModal.makeCopy')}
           onSubmit={handleMakeCopy}

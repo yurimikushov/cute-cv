@@ -1,4 +1,4 @@
-type EditEditCvModalProps = {
+type EditCvMetadataModalProps = {
   className?: string
   title?: string
   submitTitle?: string
@@ -8,4 +8,4 @@ type EditEditCvModalProps = {
   onClose: () => void
 }
 
-export default EditEditCvModalProps
+export default EditCvMetadataModalProps

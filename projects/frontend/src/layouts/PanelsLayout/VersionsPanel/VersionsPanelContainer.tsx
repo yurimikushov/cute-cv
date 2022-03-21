@@ -1,14 +1,14 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+import EditCvMetadataModal from 'components/cv/EditCvMetadataModal'
 import useAddCvModal from './hooks/useAddCvModal'
 import useSaveCvOfUnsignedInUserModal from './hooks/useSaveCvOfUnsignedInUserModal'
 import useShouldDisplayAddButton from './hooks/useShouldDisplayAddButton'
 import useShouldDisableActiveElements from './hooks/useShouldDisableActiveElements'
 import VersionsPanel from './VersionsPanel'
-import EditCvModal from './EditCvModal'
 
-const AddCvModal = EditCvModal
-const SaveCvOfUnsignedInUserModal = EditCvModal
+const AddCvModal = EditCvMetadataModal
+const SaveCvOfUnsignedInUserModal = EditCvMetadataModal
 
 const VersionsPanelContainer: FC = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
