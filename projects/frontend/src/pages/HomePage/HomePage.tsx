@@ -20,6 +20,10 @@ import {
   EXPERIENCE_COMPANY_MAX_LENGTH,
   EXPERIENCE_DURATION_MAX_LENGTH,
   EXPERIENCE_DESCRIPTION_MAX_LENGTH,
+  EDUCATIONS_MAX_COUNT,
+  EDUCATION_DEGREE_MAX_LENGTH,
+  EDUCATION_UNIVERSITY_MAX_LENGTH,
+  EDUCATION_DURATION_MAX_LENGTH,
 } from 'services/cv'
 import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
@@ -30,7 +34,7 @@ import Header from 'components/cv/Header'
 import Avatar from 'components/cv/Avatar'
 import AboutMe from 'components/cv/AboutMe'
 import Experiences from 'components/cv/Experiences'
-import Educations from './Educations'
+import Educations from 'components/cv/Educations'
 import Contacts from './Contacts'
 import Technologies from './Technologies'
 import Languages from './Languages'
@@ -88,13 +92,18 @@ const HomePage: FC = () => {
     reorderExperience,
     deleteExperience,
     addExperience,
+    changeEducation,
+    reorderEducation,
+    deleteEducation,
+    addEduction,
   } = useCurrentCvContent()
   const { isCVLoading } = useIsCVLoading()
   const { isSignInChecking } = useIsSignInChecking()
 
-  const { fullName, position, avatar, aboutMe, experiences } = cv
+  const { fullName, position, avatar, aboutMe, experiences, educations } = cv
 
   useLayoutEffectWhen(addExperience, isEmpty(experiences))
+  useLayoutEffectWhen(addEduction, isEmpty(educations))
 
   return (
     <>
@@ -142,7 +151,18 @@ const HomePage: FC = () => {
                 onDelete={deleteExperience}
                 onAdd={addExperience}
               />
-              <Educations />
+              <Educations
+                editable={editable}
+                educations={educations}
+                maxCount={EDUCATIONS_MAX_COUNT}
+                degreeMaxLength={EDUCATION_DEGREE_MAX_LENGTH}
+                universityMaxLength={EDUCATION_UNIVERSITY_MAX_LENGTH}
+                durationMaxLength={EDUCATION_DURATION_MAX_LENGTH}
+                onChange={changeEducation}
+                onReorder={reorderEducation}
+                onDelete={deleteEducation}
+                onAdd={addEduction}
+              />
             </Main>
             <Aside>
               <Contacts />

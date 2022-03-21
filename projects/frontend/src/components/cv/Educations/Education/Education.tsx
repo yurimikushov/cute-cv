@@ -1,12 +1,6 @@
 import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import {
-  useEditable,
-  EDUCATION_DEGREE_MAX_LENGTH,
-  EDUCATION_UNIVERSITY_MAX_LENGTH,
-  EDUCATION_DURATION_MAX_LENGTH,
-} from 'services/cv'
 import Card from 'components/ui/Card'
 import TextInput from 'components/ui/TextInput'
 import colors from 'styles/colors'
@@ -34,9 +28,13 @@ const Duration = styled(TextInput)`
 `
 
 const Education: FC<EducationProps> = ({
+  editable,
   degree,
   university,
   duration,
+  degreeMaxLength,
+  universityMaxLength,
+  durationMaxLength,
   onDegreeChange,
   onUniversityChange,
   onDurationChange,
@@ -44,7 +42,6 @@ const Education: FC<EducationProps> = ({
   ...props
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'education' })
-  const { editable } = useEditable()
 
   const handleChangeDegree = (e: ChangeEvent<HTMLInputElement>) => {
     onDegreeChange(e.target.value)
@@ -71,7 +68,7 @@ const Education: FC<EducationProps> = ({
         readonly={!editable}
         value={degree}
         placeholder={t('degree.placeholder')}
-        maxLength={EDUCATION_DEGREE_MAX_LENGTH}
+        maxLength={degreeMaxLength}
         onChange={handleChangeDegree}
       />
       <University
@@ -79,7 +76,7 @@ const Education: FC<EducationProps> = ({
         readonly={!editable}
         value={university}
         placeholder={t('university.placeholder')}
-        maxLength={EDUCATION_UNIVERSITY_MAX_LENGTH}
+        maxLength={universityMaxLength}
         onChange={handleChangeUniversity}
       />
       <Duration
@@ -87,7 +84,7 @@ const Education: FC<EducationProps> = ({
         readonly={!editable}
         value={duration}
         placeholder={t('duration.placeholder')}
-        maxLength={EDUCATION_DURATION_MAX_LENGTH}
+        maxLength={durationMaxLength}
         onChange={handleChangeDuration}
       />
     </Container>

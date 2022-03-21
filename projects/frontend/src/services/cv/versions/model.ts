@@ -261,6 +261,7 @@ export type {
   Version,
   Content,
   Experience,
+  Education,
   InitAllCvPayload,
   UpdateCvPayload,
   UpdateCvMetadataPayload,

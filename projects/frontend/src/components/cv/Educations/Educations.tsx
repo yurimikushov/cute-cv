@@ -1,15 +1,8 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
-import {
-  useEditable,
-  useCurrentCvContent,
-  EDUCATIONS_MAX_COUNT,
-} from 'services/cv'
-import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { H1 } from 'components/ui/H'
 import DndList from 'components/ui/DndList'
 import Button from 'components/ui/Button'
@@ -38,45 +31,51 @@ const Add = styled(Button)`
   margin: 0.5rem auto 0;
 `
 
-const Educations: FC<EducationsProps> = (props) => {
+const Educations: FC<EducationsProps> = ({
+  editable,
+  educations,
+  maxCount,
+  degreeMaxLength,
+  universityMaxLength,
+  durationMaxLength,
+  onChange,
+  onReorder,
+  onDelete,
+  onAdd,
+  ...props
+}) => {
   const { t } = useTranslation('translation', { keyPrefix: 'education' })
-  const { editable } = useEditable()
-  const {
-    cv: { educations },
-    addEduction,
-    changeEducation,
-    reorderEducation,
-    deleteEducation,
-  } = useCurrentCvContent()
-
-  useLayoutEffectWhen(addEduction, isEmpty(educations))
 
   return (
     <Container {...props}>
       <H1>{t('title')}</H1>
-      <DraggableList isDndDisabled={!editable} onDragEnd={reorderEducation}>
+      <DraggableList isDndDisabled={!editable} onDragEnd={onReorder}>
         {map(educations, ({ id, degree, university, duration }) => (
           <DraggableItem key={id}>
             <Education
+              editable={editable}
               degree={degree}
               university={university}
               duration={duration}
+              degreeMaxLength={degreeMaxLength}
+              universityMaxLength={universityMaxLength}
+              durationMaxLength={durationMaxLength}
               onDegreeChange={(degree) =>
-                changeEducation(id, degree, university, duration)
+                onChange(id, degree, university, duration)
               }
               onUniversityChange={(university) =>
-                changeEducation(id, degree, university, duration)
+                onChange(id, degree, university, duration)
               }
               onDurationChange={(duration) =>
-                changeEducation(id, degree, university, duration)
+                onChange(id, degree, university, duration)
               }
-              onDelete={() => deleteEducation(id)}
+              onDelete={() => onDelete(id)}
             />
           </DraggableItem>
         ))}
       </DraggableList>
-      {editable && size(educations) < EDUCATIONS_MAX_COUNT && (
-        <Add appearance='text' onClick={addEduction}>
+      {editable && size(educations) < maxCount && (
+        <Add appearance='text' onClick={onAdd}>
           {t('add')}
         </Add>
       )}
