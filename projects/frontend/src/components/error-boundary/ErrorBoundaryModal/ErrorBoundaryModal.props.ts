@@ -1,4 +1,4 @@
-import { ErrorBoundaryFallbackProps } from 'components/ErrorBoundary'
+import { ErrorBoundaryFallbackProps } from 'components/error-boundary/ErrorBoundary'
 
 type ErrorBoundaryModalProps = ErrorBoundaryFallbackProps & {
   className?: string
