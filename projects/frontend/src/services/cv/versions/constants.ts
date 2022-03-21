@@ -20,7 +20,7 @@ export const CONTACTS_MAX_COUNT = 10
 export const CONTACT_TEXT_MAX_LENGTH = 50
 export const CONTACT_HREF_MAX_LENGTH = 50
 
-export const MAX_TECHNOLOGIES_LENGTH = 500
+export const TECHNOLOGIES_MAX_LENGTH = 500
 
 export const LANGUAGES_MAX_COUNT = 10
 export const LANGUAGE_MAX_LENGTH = 25

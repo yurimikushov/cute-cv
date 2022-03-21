@@ -27,7 +27,7 @@ import {
   CONTACTS_MAX_COUNT,
   CONTACT_TEXT_MAX_LENGTH,
   CONTACT_HREF_MAX_LENGTH,
-  MAX_TECHNOLOGIES_LENGTH,
+  TECHNOLOGIES_MAX_LENGTH,
   LANGUAGES_MAX_COUNT,
   LANGUAGE_MAX_LENGTH,
 } from 'services/cv'
@@ -205,7 +205,7 @@ const HomePage: FC = () => {
               <Technologies
                 editable={editable}
                 technologies={technologies}
-                maxLength={MAX_TECHNOLOGIES_LENGTH}
+                maxLength={TECHNOLOGIES_MAX_LENGTH}
                 onChange={changeTechnologies}
               />
               <Languages
