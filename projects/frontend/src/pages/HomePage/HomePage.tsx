@@ -146,8 +146,8 @@ const HomePage: FC = () => {
             }
             avatar={
               <Avatar
-                src={avatar}
                 editable={editable}
+                src={avatar}
                 onPick={changeAvatar}
                 onClear={deleteAvatar}
               />
@@ -155,8 +155,8 @@ const HomePage: FC = () => {
             main={
               <>
                 <AboutMe
-                  value={aboutMe}
                   editable={editable}
+                  value={aboutMe}
                   maxLength={ABOUT_ME_MAX_LENGTH}
                   onChange={changeAboutMe}
                 />

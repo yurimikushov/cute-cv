@@ -1,7 +1,7 @@
 type AboutMeProps = {
   className?: string
-  value: string
   editable: boolean
+  value: string
   maxLength: number
   onChange: (value: string) => void
 }

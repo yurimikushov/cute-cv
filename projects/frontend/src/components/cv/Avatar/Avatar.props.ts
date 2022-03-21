@@ -1,7 +1,7 @@
 type AvatarProps = {
   className?: string
-  src: string | null
   editable: boolean
+  src: string | null
   onPick: (src: string) => void
   onClear: () => void
 }
