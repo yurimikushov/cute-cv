@@ -1,11 +1,6 @@
 import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import {
-  useEditable,
-  useCurrentCvContent,
-  MAX_TECHNOLOGIES_LENGTH,
-} from 'services/cv'
 import { H2 } from 'components/ui/H'
 import TextArea from 'components/ui/TextArea'
 import TechnologiesProps from './Technologies.props'
@@ -20,16 +15,17 @@ const Description = styled(TextArea)`
   ${({ readonly }) => !readonly && 'min-height: 5rem;'}
 `
 
-const Technologies: FC<TechnologiesProps> = (props) => {
+const Technologies: FC<TechnologiesProps> = ({
+  editable,
+  technologies,
+  maxLength,
+  onChange,
+  ...props
+}) => {
   const { t } = useTranslation('translation', { keyPrefix: 'technologies' })
-  const { editable } = useEditable()
-  const {
-    cv: { technologies },
-    changeTechnologies,
-  } = useCurrentCvContent()
 
   const handleChangeTechnologies = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    changeTechnologies(e.target.value)
+    onChange(e.target.value)
   }
 
   return (
@@ -39,7 +35,7 @@ const Technologies: FC<TechnologiesProps> = (props) => {
         readonly={!editable}
         value={technologies}
         placeholder={t('placeholder')}
-        maxLength={MAX_TECHNOLOGIES_LENGTH}
+        maxLength={maxLength}
         onChange={handleChangeTechnologies}
       />
     </Container>

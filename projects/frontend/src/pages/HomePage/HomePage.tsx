@@ -27,6 +27,7 @@ import {
   CONTACTS_MAX_COUNT,
   CONTACT_TEXT_MAX_LENGTH,
   CONTACT_HREF_MAX_LENGTH,
+  MAX_TECHNOLOGIES_LENGTH,
 } from 'services/cv'
 import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
@@ -39,7 +40,7 @@ import AboutMe from 'components/cv/AboutMe'
 import Experiences from 'components/cv/Experiences'
 import Educations from 'components/cv/Educations'
 import Contacts from 'components/cv/Contacts'
-import Technologies from './Technologies'
+import Technologies from 'components/cv/Technologies'
 import Languages from './Languages'
 
 const PanelsLayout = styled(BasePanelsLayout)`
@@ -103,6 +104,7 @@ const HomePage: FC = () => {
     reorderContact,
     deleteContact,
     addContact,
+    changeTechnologies,
   } = useCurrentCvContent()
   const { isCVLoading } = useIsCVLoading()
   const { isSignInChecking } = useIsSignInChecking()
@@ -115,6 +117,7 @@ const HomePage: FC = () => {
     experiences,
     educations,
     contacts,
+    technologies,
   } = cv
 
   useLayoutEffectWhen(addExperience, isEmpty(experiences))
@@ -192,7 +195,12 @@ const HomePage: FC = () => {
                 onDelete={deleteContact}
                 onAdd={addContact}
               />
-              <Technologies />
+              <Technologies
+                editable={editable}
+                technologies={technologies}
+                maxLength={MAX_TECHNOLOGIES_LENGTH}
+                onChange={changeTechnologies}
+              />
               <Languages />
             </Aside>
           </StyledCVLayout>
