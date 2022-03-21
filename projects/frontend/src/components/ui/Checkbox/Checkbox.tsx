@@ -34,7 +34,7 @@ const Checkmark = styled(CheckmarkIcon)<{
   border-radius: ${radiuses.sm};
 
   & > line {
-    color: ${colors.gray300};
+    color: ${colors.black};
   }
 
   ${({ value }) =>
