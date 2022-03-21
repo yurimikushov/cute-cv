@@ -24,6 +24,9 @@ import {
   EDUCATION_DEGREE_MAX_LENGTH,
   EDUCATION_UNIVERSITY_MAX_LENGTH,
   EDUCATION_DURATION_MAX_LENGTH,
+  CONTACTS_MAX_COUNT,
+  CONTACT_TEXT_MAX_LENGTH,
+  CONTACT_HREF_MAX_LENGTH,
 } from 'services/cv'
 import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
@@ -35,7 +38,7 @@ import Avatar from 'components/cv/Avatar'
 import AboutMe from 'components/cv/AboutMe'
 import Experiences from 'components/cv/Experiences'
 import Educations from 'components/cv/Educations'
-import Contacts from './Contacts'
+import Contacts from 'components/cv/Contacts'
 import Technologies from './Technologies'
 import Languages from './Languages'
 
@@ -96,14 +99,27 @@ const HomePage: FC = () => {
     reorderEducation,
     deleteEducation,
     addEduction,
+    changeContact,
+    reorderContact,
+    deleteContact,
+    addContact,
   } = useCurrentCvContent()
   const { isCVLoading } = useIsCVLoading()
   const { isSignInChecking } = useIsSignInChecking()
 
-  const { fullName, position, avatar, aboutMe, experiences, educations } = cv
+  const {
+    fullName,
+    position,
+    avatar,
+    aboutMe,
+    experiences,
+    educations,
+    contacts,
+  } = cv
 
   useLayoutEffectWhen(addExperience, isEmpty(experiences))
   useLayoutEffectWhen(addEduction, isEmpty(educations))
+  useLayoutEffectWhen(addContact, isEmpty(contacts))
 
   return (
     <>
@@ -165,7 +181,17 @@ const HomePage: FC = () => {
               />
             </Main>
             <Aside>
-              <Contacts />
+              <Contacts
+                editable={editable}
+                contacts={contacts}
+                maxCount={CONTACTS_MAX_COUNT}
+                textMaxLength={CONTACT_TEXT_MAX_LENGTH}
+                hrefMaxLength={CONTACT_HREF_MAX_LENGTH}
+                onChange={changeContact}
+                onReorder={reorderContact}
+                onDelete={deleteContact}
+                onAdd={addContact}
+              />
               <Technologies />
               <Languages />
             </Aside>

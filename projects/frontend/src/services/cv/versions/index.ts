@@ -48,5 +48,5 @@ export {
   LANGUAGES_MAX_COUNT,
   LANGUAGE_MAX_LENGTH,
 } from './constants'
-export type { Experience, Education } from './model'
+export type { Experience, Education, Contact } from './model'
 export { isCvContentChanged } from './matchers'

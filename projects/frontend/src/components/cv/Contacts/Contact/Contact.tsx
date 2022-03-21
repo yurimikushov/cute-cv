@@ -1,11 +1,6 @@
 import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import {
-  useEditable,
-  CONTACT_TEXT_MAX_LENGTH,
-  CONTACT_HREF_MAX_LENGTH,
-} from 'services/cv'
 import Card from 'components/ui/Card'
 import Href from 'components/ui/Href'
 import TextInput from 'components/ui/TextInput'
@@ -39,15 +34,17 @@ const Close = styled(CloseButton)`
 `
 
 const Contact: FC<ContactProps> = ({
+  editable,
   text,
   href,
+  textMaxLength,
+  hrefMaxLength,
   onTextChange,
   onHrefChange,
   onDelete,
   ...props
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'contacts' })
-  const { editable } = useEditable()
 
   const handleChangeText = (e: ChangeEvent<HTMLInputElement>) => {
     onTextChange(e.target.value)
@@ -67,14 +64,14 @@ const Contact: FC<ContactProps> = ({
         readonly={!editable}
         value={text}
         placeholder={t('text.placeholder')}
-        maxLength={CONTACT_TEXT_MAX_LENGTH}
+        maxLength={textMaxLength}
         onChange={handleChangeText}
       />
       <Reference
         readonly={!editable}
         value={href}
         placeholder={t('reference.placeholder')}
-        maxLength={CONTACT_HREF_MAX_LENGTH}
+        maxLength={hrefMaxLength}
         onChange={handleChangeHref}
       />
       {editable && <Close onClick={onDelete} />}
