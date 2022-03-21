@@ -1,36 +1,26 @@
 import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import {
-  useEditable,
-  useCurrentCvContent,
-  ABOUT_ME_MAX_LENGTH,
-} from 'services/cv'
 import TextArea from 'components/ui/TextArea'
+import AboutMeProps from './AboutMe.props'
 
 const Description = styled(TextArea)`
   width: 100%;
   ${({ readonly }) => !readonly && 'min-height: 5rem;'}
 `
 
-const AboutMe: FC = () => {
+const AboutMe: FC<AboutMeProps> = ({ editable, onChange, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'aboutMe' })
-  const { editable } = useEditable()
-  const {
-    cv: { aboutMe },
-    changeAboutMe,
-  } = useCurrentCvContent()
 
   const handleChangeAboutMe = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    changeAboutMe(e.target.value)
+    onChange(e.target.value)
   }
 
   return (
     <Description
+      {...props}
       readonly={!editable}
-      value={aboutMe}
       placeholder={t('placeholder')}
-      maxLength={ABOUT_ME_MAX_LENGTH}
       onChange={handleChangeAboutMe}
     />
   )

@@ -7,8 +7,10 @@ import {
   useAutoLoadAllCv,
   useAutoLoadCurrentCv,
   useCleanUpAllCvAfterSignOut,
+  useEditable,
   useCurrentCvContent,
   useIsCVLoading,
+  ABOUT_ME_MAX_LENGTH,
 } from 'services/cv'
 import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
@@ -17,7 +19,7 @@ import Loader from 'components/ui/Loader'
 import Panel from './Panel'
 import Header from './Header'
 import Avatar from './Avatar'
-import AboutMe from './AboutMe'
+import AboutMe from 'components/cv/AboutMe'
 import Experiences from './Experiences'
 import Educations from './Educations'
 import Contacts from './Contacts'
@@ -56,6 +58,7 @@ const Aside = styled.aside`
   }
 `
 
+// eslint-disable-next-line max-statements
 const HomePage: FC = () => {
   useAuth()
   useAutoLoadAllCv()
@@ -63,9 +66,12 @@ const HomePage: FC = () => {
   useCleanUpAllCvAfterSignOut()
 
   const { i18n } = useTranslation()
-  const { cv } = useCurrentCvContent()
+  const { editable } = useEditable()
+  const { cv, changeAboutMe } = useCurrentCvContent()
   const { isCVLoading } = useIsCVLoading()
   const { isSignInChecking } = useIsSignInChecking()
+
+  const { aboutMe } = cv
 
   return (
     <>
@@ -80,7 +86,12 @@ const HomePage: FC = () => {
             <Header />
             <Avatar />
             <Main>
-              <AboutMe />
+              <AboutMe
+                value={aboutMe}
+                editable={editable}
+                maxLength={ABOUT_ME_MAX_LENGTH}
+                onChange={changeAboutMe}
+              />
               <Experiences />
               <Educations />
             </Main>
