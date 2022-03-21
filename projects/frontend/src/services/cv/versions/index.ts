@@ -48,4 +48,5 @@ export {
   LANGUAGES_MAX_COUNT,
   LANGUAGE_MAX_LENGTH,
 } from './constants'
+export type { Experience } from './model'
 export { isCvContentChanged } from './matchers'

@@ -260,6 +260,7 @@ export type {
   VersionsState,
   Version,
   Content,
+  Experience,
   InitAllCvPayload,
   UpdateCvPayload,
   UpdateCvMetadataPayload,

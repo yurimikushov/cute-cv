@@ -1,13 +1,6 @@
 import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import {
-  useEditable,
-  EXPERIENCE_POSITION_MAX_LENGTH,
-  EXPERIENCE_COMPANY_MAX_LENGTH,
-  EXPERIENCE_DURATION_MAX_LENGTH,
-  EXPERIENCE_DESCRIPTION_MAX_LENGTH,
-} from 'services/cv'
 import Card from 'components/ui/Card'
 import TextInput from 'components/ui/TextInput'
 import TextArea from 'components/ui/TextArea'
@@ -42,10 +35,15 @@ const Description = styled(TextArea)`
 `
 
 const Experience: FC<ExperienceProps> = ({
+  editable,
   position,
   company,
   duration,
   description,
+  positionMaxLength,
+  companyMaxLength,
+  durationMaxLength,
+  descriptionMaxLength,
   onPositionChange,
   onCompanyChange,
   onDurationChange,
@@ -54,7 +52,6 @@ const Experience: FC<ExperienceProps> = ({
   ...props
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'experience' })
-  const { editable } = useEditable()
 
   const handleChangePosition = (e: ChangeEvent<HTMLInputElement>) => {
     onPositionChange(e.target.value)
@@ -85,7 +82,7 @@ const Experience: FC<ExperienceProps> = ({
         readonly={!editable}
         value={position}
         placeholder={t('position.placeholder')}
-        maxLength={EXPERIENCE_POSITION_MAX_LENGTH}
+        maxLength={positionMaxLength}
         onChange={handleChangePosition}
       />
       <Company
@@ -93,7 +90,7 @@ const Experience: FC<ExperienceProps> = ({
         readonly={!editable}
         value={company}
         placeholder={t('company.placeholder')}
-        maxLength={EXPERIENCE_COMPANY_MAX_LENGTH}
+        maxLength={companyMaxLength}
         onChange={handleChangeCompany}
       />
       <Duration
@@ -101,14 +98,14 @@ const Experience: FC<ExperienceProps> = ({
         readonly={!editable}
         value={duration}
         placeholder={t('duration.placeholder')}
-        maxLength={EXPERIENCE_DURATION_MAX_LENGTH}
+        maxLength={durationMaxLength}
         onChange={handleChangeDuration}
       />
       <Description
         readonly={!editable}
         value={description}
         placeholder={t('description.placeholder')}
-        maxLength={EXPERIENCE_DESCRIPTION_MAX_LENGTH}
+        maxLength={descriptionMaxLength}
         onChange={handleChangeDescription}
       />
     </Container>

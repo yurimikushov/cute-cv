@@ -2,6 +2,8 @@ import { FC } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import isEmpty from 'lodash/isEmpty'
+import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { useAuth, useIsSignedIn, useIsSignInChecking } from 'services/auth'
 import {
   useAutoLoadAllCv,
@@ -13,6 +15,11 @@ import {
   FULL_NAME_MAX_LENGTH,
   POSITION_MAX_LENGTH,
   ABOUT_ME_MAX_LENGTH,
+  EXPERIENCES_MAX_COUNT,
+  EXPERIENCE_POSITION_MAX_LENGTH,
+  EXPERIENCE_COMPANY_MAX_LENGTH,
+  EXPERIENCE_DURATION_MAX_LENGTH,
+  EXPERIENCE_DESCRIPTION_MAX_LENGTH,
 } from 'services/cv'
 import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
@@ -22,7 +29,7 @@ import Panel from './Panel'
 import Header from 'components/cv/Header'
 import Avatar from 'components/cv/Avatar'
 import AboutMe from 'components/cv/AboutMe'
-import Experiences from './Experiences'
+import Experiences from 'components/cv/Experiences'
 import Educations from './Educations'
 import Contacts from './Contacts'
 import Technologies from './Technologies'
@@ -77,11 +84,17 @@ const HomePage: FC = () => {
     changeAvatar,
     deleteAvatar,
     changeAboutMe,
+    changeExperience,
+    reorderExperience,
+    deleteExperience,
+    addExperience,
   } = useCurrentCvContent()
   const { isCVLoading } = useIsCVLoading()
   const { isSignInChecking } = useIsSignInChecking()
 
-  const { fullName, position, avatar, aboutMe } = cv
+  const { fullName, position, avatar, aboutMe, experiences } = cv
+
+  useLayoutEffectWhen(addExperience, isEmpty(experiences))
 
   return (
     <>
@@ -116,7 +129,19 @@ const HomePage: FC = () => {
                 maxLength={ABOUT_ME_MAX_LENGTH}
                 onChange={changeAboutMe}
               />
-              <Experiences />
+              <Experiences
+                editable={editable}
+                experiences={experiences}
+                maxCount={EXPERIENCES_MAX_COUNT}
+                positionMaxLength={EXPERIENCE_POSITION_MAX_LENGTH}
+                companyMaxLength={EXPERIENCE_COMPANY_MAX_LENGTH}
+                durationMaxLength={EXPERIENCE_DURATION_MAX_LENGTH}
+                descriptionMaxLength={EXPERIENCE_DESCRIPTION_MAX_LENGTH}
+                onChange={changeExperience}
+                onReorder={reorderExperience}
+                onDelete={deleteExperience}
+                onAdd={addExperience}
+              />
               <Educations />
             </Main>
             <Aside>

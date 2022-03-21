@@ -1,15 +1,8 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import map from 'lodash/map'
-import {
-  useEditable,
-  useCurrentCvContent,
-  EXPERIENCES_MAX_COUNT,
-} from 'services/cv'
-import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import { H1 } from 'components/ui/H'
 import DndList from 'components/ui/DndList'
 import Button from 'components/ui/Button'
@@ -38,52 +31,60 @@ const Add = styled(Button)`
   margin: 0.5rem auto 0;
 `
 
-const Experiences: FC<ExperiencesProps> = (props) => {
+const Experiences: FC<ExperiencesProps> = ({
+  editable,
+  experiences,
+  maxCount,
+  positionMaxLength,
+  companyMaxLength,
+  durationMaxLength,
+  descriptionMaxLength,
+  onChange,
+  onReorder,
+  onDelete,
+  onAdd,
+  ...props
+}) => {
   const { t } = useTranslation('translation', { keyPrefix: 'experience' })
-  const { editable } = useEditable()
-  const {
-    cv: { experiences },
-    addExperience,
-    changeExperience,
-    reorderExperience,
-    deleteExperience,
-  } = useCurrentCvContent()
-
-  useLayoutEffectWhen(addExperience, isEmpty(experiences))
 
   return (
     <Container {...props}>
       <H1>{t('title')}</H1>
-      <DraggableList isDndDisabled={!editable} onDragEnd={reorderExperience}>
+      <DraggableList isDndDisabled={!editable} onDragEnd={onReorder}>
         {map(
           experiences,
           ({ id, position, company, duration, description }) => (
             <DraggableItem key={id}>
               <Experience
+                editable={editable}
                 position={position}
                 company={company}
                 duration={duration}
                 description={description}
+                positionMaxLength={positionMaxLength}
+                companyMaxLength={companyMaxLength}
+                durationMaxLength={durationMaxLength}
+                descriptionMaxLength={descriptionMaxLength}
                 onPositionChange={(position) =>
-                  changeExperience(id, position, company, duration, description)
+                  onChange(id, position, company, duration, description)
                 }
                 onCompanyChange={(company) =>
-                  changeExperience(id, position, company, duration, description)
+                  onChange(id, position, company, duration, description)
                 }
                 onDurationChange={(duration) =>
-                  changeExperience(id, position, company, duration, description)
+                  onChange(id, position, company, duration, description)
                 }
                 onDescriptionChange={(description) =>
-                  changeExperience(id, position, company, duration, description)
+                  onChange(id, position, company, duration, description)
                 }
-                onDelete={() => deleteExperience(id)}
+                onDelete={() => onDelete(id)}
               />
             </DraggableItem>
           )
         )}
       </DraggableList>
-      {editable && size(experiences) < EXPERIENCES_MAX_COUNT && (
-        <Add appearance='text' onClick={addExperience}>
+      {editable && size(experiences) < maxCount && (
+        <Add appearance='text' onClick={onAdd}>
           {t('add')}
         </Add>
       )}
