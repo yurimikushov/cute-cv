@@ -1,15 +1,9 @@
 import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useIsSignedIn } from 'services/auth'
 import useAutoFocusWhen from 'hooks/useAutoFocusWhen'
-import {
-  useEditable,
-  useCurrentCvContent,
-  FULL_NAME_MAX_LENGTH,
-  POSITION_MAX_LENGTH,
-} from 'services/cv'
 import TextInput from 'components/ui/TextInput'
+import HeaderProps from './Header.props'
 
 const FullName = styled(TextInput)`
   display: block;
@@ -21,25 +15,28 @@ const Position = styled(TextInput)`
   margin-top: 0.375rem;
 `
 
-const Header: FC = () => {
-  const { t } = useTranslation()
-  const { isSignedIn } = useIsSignedIn()
-  const { editable } = useEditable()
-  const {
-    cv: { fullName, position },
-    changeFullName,
-    changePosition,
-  } = useCurrentCvContent()
+const Header: FC<HeaderProps> = ({
+  editable,
+  autoFocusFullName,
+  fullName,
+  position,
+  fullNameMaxLength,
+  positionMaxLength,
+  onChangeFullName,
+  onChangePosition,
+}) => {
+  const { t } = useTranslation('translation')
+
   const fullNameRef = useAutoFocusWhen<HTMLInputElement>({
-    predicate: isSignedIn && editable,
+    predicate: autoFocusFullName,
   })
 
   const handleChangeFullName = (e: ChangeEvent<HTMLInputElement>) => {
-    changeFullName(e.target.value)
+    onChangeFullName(e.target.value)
   }
 
   const handleChangPosition = (e: ChangeEvent<HTMLInputElement>) => {
-    changePosition(e.target.value)
+    onChangePosition(e.target.value)
   }
 
   return (
@@ -50,7 +47,7 @@ const Header: FC = () => {
         readonly={!editable}
         value={fullName}
         placeholder={t('fullName.placeholder')}
-        maxLength={FULL_NAME_MAX_LENGTH}
+        maxLength={fullNameMaxLength}
         onChange={handleChangeFullName}
       />
       <Position
@@ -58,7 +55,7 @@ const Header: FC = () => {
         readonly={!editable}
         value={position}
         placeholder={t('position.placeholder')}
-        maxLength={POSITION_MAX_LENGTH}
+        maxLength={positionMaxLength}
         onChange={handleChangPosition}
       />
     </header>

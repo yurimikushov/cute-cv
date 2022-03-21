@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useAuth, useIsSignInChecking } from 'services/auth'
+import { useAuth, useIsSignedIn, useIsSignInChecking } from 'services/auth'
 import {
   useAutoLoadAllCv,
   useAutoLoadCurrentCv,
@@ -10,6 +10,8 @@ import {
   useEditable,
   useCurrentCvContent,
   useIsCVLoading,
+  FULL_NAME_MAX_LENGTH,
+  POSITION_MAX_LENGTH,
   ABOUT_ME_MAX_LENGTH,
 } from 'services/cv'
 import BasePanelsLayout from 'layouts/PanelsLayout'
@@ -17,7 +19,7 @@ import PageLayout from 'layouts/PageLayout'
 import CVLayout from 'layouts/CVLayout'
 import Loader from 'components/ui/Loader'
 import Panel from './Panel'
-import Header from './Header'
+import Header from 'components/cv/Header'
 import Avatar from 'components/cv/Avatar'
 import AboutMe from 'components/cv/AboutMe'
 import Experiences from './Experiences'
@@ -66,13 +68,20 @@ const HomePage: FC = () => {
   useCleanUpAllCvAfterSignOut()
 
   const { i18n } = useTranslation()
+  const { isSignedIn } = useIsSignedIn()
   const { editable } = useEditable()
-  const { cv, changeAvatar, deleteAvatar, changeAboutMe } =
-    useCurrentCvContent()
+  const {
+    cv,
+    changeFullName,
+    changePosition,
+    changeAvatar,
+    deleteAvatar,
+    changeAboutMe,
+  } = useCurrentCvContent()
   const { isCVLoading } = useIsCVLoading()
   const { isSignInChecking } = useIsSignInChecking()
 
-  const { avatar, aboutMe } = cv
+  const { fullName, position, avatar, aboutMe } = cv
 
   return (
     <>
@@ -84,7 +93,16 @@ const HomePage: FC = () => {
         <PageLayout>
           <StyledPanel />
           <StyledCVLayout>
-            <Header />
+            <Header
+              editable={editable}
+              autoFocusFullName={isSignedIn && editable}
+              fullName={fullName}
+              position={position}
+              fullNameMaxLength={FULL_NAME_MAX_LENGTH}
+              positionMaxLength={POSITION_MAX_LENGTH}
+              onChangeFullName={changeFullName}
+              onChangePosition={changePosition}
+            />
             <Avatar
               src={avatar}
               editable={editable}
