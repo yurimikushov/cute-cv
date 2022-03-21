@@ -263,6 +263,7 @@ export type {
   Experience,
   Education,
   Contact,
+  Language,
   InitAllCvPayload,
   UpdateCvPayload,
   UpdateCvMetadataPayload,

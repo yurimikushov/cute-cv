@@ -28,6 +28,8 @@ import {
   CONTACT_TEXT_MAX_LENGTH,
   CONTACT_HREF_MAX_LENGTH,
   MAX_TECHNOLOGIES_LENGTH,
+  LANGUAGES_MAX_COUNT,
+  LANGUAGE_MAX_LENGTH,
 } from 'services/cv'
 import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
@@ -41,7 +43,7 @@ import Experiences from 'components/cv/Experiences'
 import Educations from 'components/cv/Educations'
 import Contacts from 'components/cv/Contacts'
 import Technologies from 'components/cv/Technologies'
-import Languages from './Languages'
+import Languages from 'components/cv/Languages'
 
 const PanelsLayout = styled(BasePanelsLayout)`
   margin-top: 1.25rem;
@@ -105,6 +107,9 @@ const HomePage: FC = () => {
     deleteContact,
     addContact,
     changeTechnologies,
+    changeLanguage,
+    deleteLanguage,
+    addLanguage,
   } = useCurrentCvContent()
   const { isCVLoading } = useIsCVLoading()
   const { isSignInChecking } = useIsSignInChecking()
@@ -118,11 +123,13 @@ const HomePage: FC = () => {
     educations,
     contacts,
     technologies,
+    languages,
   } = cv
 
   useLayoutEffectWhen(addExperience, isEmpty(experiences))
   useLayoutEffectWhen(addEduction, isEmpty(educations))
   useLayoutEffectWhen(addContact, isEmpty(contacts))
+  useLayoutEffectWhen(addLanguage, isEmpty(languages))
 
   return (
     <>
@@ -201,7 +208,15 @@ const HomePage: FC = () => {
                 maxLength={MAX_TECHNOLOGIES_LENGTH}
                 onChange={changeTechnologies}
               />
-              <Languages />
+              <Languages
+                editable={editable}
+                languages={languages}
+                maxCount={LANGUAGES_MAX_COUNT}
+                maxLength={LANGUAGE_MAX_LENGTH}
+                onChange={changeLanguage}
+                onDelete={deleteLanguage}
+                onAdd={addLanguage}
+              />
             </Aside>
           </StyledCVLayout>
         </PageLayout>

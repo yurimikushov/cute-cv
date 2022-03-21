@@ -1,7 +1,6 @@
 import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useEditable, LANGUAGE_MAX_LENGTH } from 'services/cv'
 import TextInput from 'components/ui/TextInput'
 import { CloseButton } from 'components/ui/Button'
 import LanguageProps from './Language.props'
@@ -22,13 +21,14 @@ const Close = styled(CloseButton)`
 `
 
 const Language: FC<LanguageProps> = ({
+  editable,
   language,
+  maxLength,
   onChange,
   onDelete,
   ...props
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'languages' })
-  const { editable } = useEditable()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value)
@@ -40,7 +40,7 @@ const Language: FC<LanguageProps> = ({
         readonly={!editable}
         value={language}
         placeholder={t('placeholder')}
-        maxLength={LANGUAGE_MAX_LENGTH}
+        maxLength={maxLength}
         onChange={handleChange}
       />
       {editable && <Close onClick={onDelete} />}
