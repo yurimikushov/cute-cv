@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { useFormikContext } from 'formik'
+import { useField, useFormikContext } from 'formik'
 import Checkbox from 'components/ui/Checkbox'
 import FormCheckboxProps from './Checkbox.props'
 
@@ -8,10 +8,11 @@ const FormCheckbox: FC<FormCheckboxProps> = ({
   children,
   ...props
 }) => {
+  const [field] = useField(props)
   const { isSubmitting } = useFormikContext()
 
   return (
-    <Checkbox {...props} disabled={disabled || isSubmitting}>
+    <Checkbox {...props} {...field} disabled={disabled || isSubmitting}>
       {children}
     </Checkbox>
   )

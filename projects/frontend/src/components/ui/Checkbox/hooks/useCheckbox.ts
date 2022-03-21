@@ -3,6 +3,8 @@ import CheckboxProps from '../Checkbox.props'
 
 const useCheckbox = ({
   className,
+  id,
+  name,
   value,
   disabled = false,
   onChange,
@@ -25,6 +27,8 @@ const useCheckbox = ({
     },
     checkboxInputProps: {
       ref: checkboxInputRef,
+      id,
+      name,
       value: String(value),
       disabled,
       onChange,
