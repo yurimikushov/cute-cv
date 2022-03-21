@@ -36,7 +36,6 @@ import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import CvLayout, { CvLayoutProps } from 'layouts/CvLayout'
 import Loader from 'components/ui/Loader'
-import Panel from './Panel'
 import Header from 'components/cv/Header'
 import Avatar from 'components/cv/Avatar'
 import AboutMe from 'components/cv/AboutMe'
@@ -45,6 +44,7 @@ import Educations from 'components/cv/Educations'
 import Contacts from 'components/cv/Contacts'
 import Technologies from 'components/cv/Technologies'
 import Languages from 'components/cv/Languages'
+import BaseToolPanel from './ToolPanel'
 
 const PanelsLayout = styled(BasePanelsLayout)`
   margin-top: 1.25rem;
@@ -53,7 +53,7 @@ const PanelsLayout = styled(BasePanelsLayout)`
   justify-content: center;
 `
 
-const StyledPanel = styled(Panel)`
+const ToolPanel = styled(BaseToolPanel)`
   padding: 1rem;
 `
 
@@ -130,7 +130,7 @@ const HomePage: FC = () => {
       {(isSignInChecking || isCVLoading) && <Loader.FullScreen />}
       <PanelsLayout>
         <PageLayout>
-          <StyledPanel />
+          <ToolPanel />
           <CvLayoutWrapper
             header={
               <Header
