@@ -7,8 +7,8 @@ import {
   EDUCATION_UNIVERSITY_MAX_LENGTH,
   EDUCATION_DURATION_MAX_LENGTH,
 } from 'services/cv'
-import Card from 'components/Card'
-import TextInput from 'components/TextInput'
+import Card from 'components/ui/Card'
+import TextInput from 'components/ui/TextInput'
 import colors from 'styles/colors'
 import EducationProps from './Education.props'
 

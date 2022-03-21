@@ -10,8 +10,8 @@ import {
   LANGUAGES_MAX_COUNT,
 } from 'services/cv'
 import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
-import { H2 } from 'components/H'
-import Button from 'components/Button'
+import { H2 } from 'components/ui/H'
+import Button from 'components/ui/Button'
 import Language from './Language'
 import LanguagesProps from './Languages.props'
 

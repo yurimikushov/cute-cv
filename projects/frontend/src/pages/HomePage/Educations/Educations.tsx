@@ -10,9 +10,9 @@ import {
   EDUCATIONS_MAX_COUNT,
 } from 'services/cv'
 import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
-import { H1 } from 'components/H'
-import DndList from 'components/DndList'
-import Button from 'components/Button'
+import { H1 } from 'components/ui/H'
+import DndList from 'components/ui/DndList'
+import Button from 'components/ui/Button'
 import radiuses from 'styles/radiuses'
 import Education from './Education'
 import EducationsProps from './Educations.props'

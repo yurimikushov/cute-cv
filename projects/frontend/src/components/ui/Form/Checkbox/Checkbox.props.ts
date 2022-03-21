@@ -1,4 +1,4 @@
-import { CheckboxProps } from 'components/Checkbox'
+import { CheckboxProps } from 'components/ui/Checkbox'
 
 type FormCheckboxProps = Pick<
   CheckboxProps,

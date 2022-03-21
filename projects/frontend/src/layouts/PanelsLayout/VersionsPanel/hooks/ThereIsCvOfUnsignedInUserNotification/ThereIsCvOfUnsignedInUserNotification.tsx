@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import Button from 'components/Button'
+import Button from 'components/ui/Button'
 import colors from 'styles/colors'
 import ThereIsCvOfUnsignedInUserNotificationProps from './ThereIsCvOfUnsignedInUserNotification.props'
 

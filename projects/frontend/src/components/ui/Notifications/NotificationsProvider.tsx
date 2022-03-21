@@ -1,5 +1,5 @@
 import { FC, useMemo } from 'react'
-import Portal from 'components/Portal'
+import Portal from 'components/ui/Portal'
 import useNotifications from './hooks/useNotifications'
 import NotificationsContext from './NotificationsContext'
 import Notifications from './Notifications'

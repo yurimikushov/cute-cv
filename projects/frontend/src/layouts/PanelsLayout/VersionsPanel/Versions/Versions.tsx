@@ -12,8 +12,8 @@ import {
   useIsCvUpdating,
   useIsCvDeleting,
 } from 'services/cv'
-import { H2 } from 'components/H'
-import Radio from 'components/Radio'
+import { H2 } from 'components/ui/H'
+import Radio from 'components/ui/Radio'
 import Version from './Version'
 import VersionsProps from './Versions.props'
 

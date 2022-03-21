@@ -8,9 +8,9 @@ import {
   EXPERIENCE_DURATION_MAX_LENGTH,
   EXPERIENCE_DESCRIPTION_MAX_LENGTH,
 } from 'services/cv'
-import Card from 'components/Card'
-import TextInput from 'components/TextInput'
-import TextArea from 'components/TextArea'
+import Card from 'components/ui/Card'
+import TextInput from 'components/ui/TextInput'
+import TextArea from 'components/ui/TextArea'
 import colors from 'styles/colors'
 import ExperienceProps from './Experience.props'
 

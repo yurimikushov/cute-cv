@@ -9,7 +9,7 @@ import {
   FULL_NAME_MAX_LENGTH,
   POSITION_MAX_LENGTH,
 } from 'services/cv'
-import TextInput from 'components/TextInput'
+import TextInput from 'components/ui/TextInput'
 
 const FullName = styled(TextInput)`
   display: block;

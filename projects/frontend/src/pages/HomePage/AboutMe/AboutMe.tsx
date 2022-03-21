@@ -6,7 +6,7 @@ import {
   useCurrentCvContent,
   ABOUT_ME_MAX_LENGTH,
 } from 'services/cv'
-import TextArea from 'components/TextArea'
+import TextArea from 'components/ui/TextArea'
 
 const Description = styled(TextArea)`
   width: 100%;

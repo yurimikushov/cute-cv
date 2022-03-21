@@ -6,10 +6,10 @@ import {
   CONTACT_TEXT_MAX_LENGTH,
   CONTACT_HREF_MAX_LENGTH,
 } from 'services/cv'
-import Card from 'components/Card'
-import Href from 'components/Href'
-import TextInput from 'components/TextInput'
-import { CloseButton } from 'components/Button'
+import Card from 'components/ui/Card'
+import Href from 'components/ui/Href'
+import TextInput from 'components/ui/TextInput'
+import { CloseButton } from 'components/ui/Button'
 import ContactProps from './Contact.props'
 
 const Container = styled(Card)`

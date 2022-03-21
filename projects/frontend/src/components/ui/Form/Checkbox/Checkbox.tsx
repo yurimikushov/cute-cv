@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useFormikContext } from 'formik'
-import Checkbox from 'components/Checkbox'
+import Checkbox from 'components/ui/Checkbox'
 import FormCheckboxProps from './Checkbox.props'
 
 const FormCheckbox: FC<FormCheckboxProps> = ({

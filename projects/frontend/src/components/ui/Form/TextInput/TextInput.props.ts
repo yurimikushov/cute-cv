@@ -1,5 +1,5 @@
 import { RefObject } from 'react'
-import { TextInputProps } from 'components/TextInput'
+import { TextInputProps } from 'components/ui/TextInput'
 
 type FormTextInputProps = {
   inputRef?: RefObject<HTMLInputElement>

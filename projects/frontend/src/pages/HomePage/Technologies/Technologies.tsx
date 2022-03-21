@@ -6,8 +6,8 @@ import {
   useCurrentCvContent,
   MAX_TECHNOLOGIES_LENGTH,
 } from 'services/cv'
-import { H2 } from 'components/H'
-import TextArea from 'components/TextArea'
+import { H2 } from 'components/ui/H'
+import TextArea from 'components/ui/TextArea'
 import TechnologiesProps from './Technologies.props'
 
 const Container = styled.div`

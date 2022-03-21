@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { CloseButton } from 'components/Button'
+import { CloseButton } from 'components/ui/Button'
 import colors from 'styles/colors'
 import shadows from 'styles/shadows'
 import radiuses from 'styles/radiuses'

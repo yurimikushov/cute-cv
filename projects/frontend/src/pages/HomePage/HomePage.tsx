@@ -13,7 +13,7 @@ import {
 import BasePanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import CVLayout from 'layouts/CVLayout'
-import Loader from 'components/Loader'
+import Loader from 'components/ui/Loader'
 import Panel from './Panel'
 import Header from './Header'
 import Avatar from './Avatar'

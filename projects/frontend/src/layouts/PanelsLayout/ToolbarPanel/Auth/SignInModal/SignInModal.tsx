@@ -6,8 +6,8 @@ import {
   useSignInFacebook,
   useSignInGoogle,
 } from 'services/auth'
-import Modal from 'components/Modal'
-import Button from 'components/Button'
+import Modal from 'components/ui/Modal'
+import Button from 'components/ui/Button'
 import { ReactComponent as GoogleIcon } from 'icons/google.svg'
 import { ReactComponent as FacebookIcon } from 'icons/facebook.svg'
 import { ReactComponent as GitHubIcon } from 'icons/github.svg'

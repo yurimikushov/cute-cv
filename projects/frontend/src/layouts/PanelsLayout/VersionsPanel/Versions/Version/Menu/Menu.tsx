@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import Popup from 'components/Popup'
-import Card from 'components/Card'
-import Button, { ArrowButton } from 'components/Button'
+import Popup from 'components/ui/Popup'
+import Card from 'components/ui/Card'
+import Button, { ArrowButton } from 'components/ui/Button'
 import MenuProps from './Menu.props'
 
 const Content = styled(Card)`

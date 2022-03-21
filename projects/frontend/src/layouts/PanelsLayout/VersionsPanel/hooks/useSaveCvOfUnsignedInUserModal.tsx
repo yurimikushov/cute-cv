@@ -3,7 +3,7 @@ import isNull from 'lodash/isNull'
 import useManageModal from 'hooks/useManageModal'
 import { useIsSignedIn } from 'services/auth'
 import { useSaveCvOfUnsignedInUser } from 'services/cv'
-import { useNotification } from 'components/Notifications'
+import { useNotification } from 'components/ui/Notifications'
 import ThereIsCvOfUnsignedInUserNotification from './ThereIsCvOfUnsignedInUserNotification'
 
 const useSaveCvOfUnsignedInUserModal = () => {

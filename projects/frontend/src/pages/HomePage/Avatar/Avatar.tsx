@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useEditable, useCurrentCvContent } from 'services/cv'
-import AvatarPicker from 'components/AvatarPicker'
+import AvatarPicker from 'components/ui/AvatarPicker'
 
 const Avatar: FC = () => {
   const { editable } = useEditable()

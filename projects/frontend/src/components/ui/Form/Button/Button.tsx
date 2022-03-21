@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useFormikContext } from 'formik'
-import Button from 'components/Button'
+import Button from 'components/ui/Button'
 import FormButtonProps from './Button.props'
 
 const FormButton: FC<FormButtonProps> = ({

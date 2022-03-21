@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import map from 'lodash/map'
 import { LanguageEnum } from 'translation'
 import { useDownload } from 'services/cv'
-import { H2 } from 'components/H'
-import Radio from 'components/Radio'
+import { H2 } from 'components/ui/H'
+import Radio from 'components/ui/Radio'
 import LanguageProps from './Language.props'
 
 const Container = styled.div`

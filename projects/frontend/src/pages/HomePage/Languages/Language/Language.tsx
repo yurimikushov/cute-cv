@@ -2,8 +2,8 @@ import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useEditable, LANGUAGE_MAX_LENGTH } from 'services/cv'
-import TextInput from 'components/TextInput'
-import { CloseButton } from 'components/Button'
+import TextInput from 'components/ui/TextInput'
+import { CloseButton } from 'components/ui/Button'
 import LanguageProps from './Language.props'
 
 const Container = styled.div`

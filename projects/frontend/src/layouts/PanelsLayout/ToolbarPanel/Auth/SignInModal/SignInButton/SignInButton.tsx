@@ -1,6 +1,6 @@
 import { FC, cloneElement } from 'react'
 import styled from 'styled-components'
-import BaseButton from 'components/Button'
+import BaseButton from 'components/ui/Button'
 import SignInButtonProps from './SignInButton.props'
 
 const Button = styled(BaseButton)`
