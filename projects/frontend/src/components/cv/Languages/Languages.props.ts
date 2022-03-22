@@ -1,4 +1,4 @@
-import { Language } from 'services/cv'
+import { Language } from 'services/edit-cv'
 
 type LanguagesProps = {
   className?: string

@@ -1,6 +1,6 @@
 enum ServiceNameEnum {
   auth = 'auth',
-  cv = 'cv',
+  EditCv = 'edit-cv',
 }
 
 export { ServiceNameEnum }

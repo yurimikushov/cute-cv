@@ -2,7 +2,7 @@ import {
   useCurrentCvMetadata,
   useIsCvUpdating,
   useIsCvDeleting,
-} from 'services/cv'
+} from 'services/edit-cv'
 
 const useShouldDisableActiveElements = () => {
   const { isNew, isSaved } = useCurrentCvMetadata()

@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit'
 import { persistStore } from 'redux-persist'
 import rootReducer from './reducer'
-import { cvMiddlewares } from './cv'
+import { cvMiddlewares } from './edit-cv'
 
 const store = configureStore({
   reducer: rootReducer,

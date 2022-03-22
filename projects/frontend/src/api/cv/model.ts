@@ -1,4 +1,4 @@
-import { CvContent } from 'services/cv'
+import { CvContent } from 'services/edit-cv'
 
 type LoadAllResult = Array<RawMetadata>
 

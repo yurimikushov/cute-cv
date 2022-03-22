@@ -1,4 +1,4 @@
-import { Experience } from 'services/cv'
+import { Experience } from 'services/edit-cv'
 
 type ExperiencesProps = {
   className?: string

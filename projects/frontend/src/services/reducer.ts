@@ -1,11 +1,11 @@
 import { combineReducers } from '@reduxjs/toolkit'
 import { ServiceNameEnum } from './constants'
 import { authReducer } from './auth'
-import { cvReducer } from './cv'
+import { cvReducer } from './edit-cv'
 
 const rootReducer = combineReducers({
   [ServiceNameEnum.auth]: authReducer,
-  [ServiceNameEnum.cv]: cvReducer,
+  [ServiceNameEnum.EditCv]: cvReducer,
 })
 
 export default rootReducer

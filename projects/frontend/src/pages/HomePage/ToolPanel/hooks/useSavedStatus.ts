@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import isNull from 'lodash/isNull'
 import { LanguageEnum } from 'translation'
 import timeSince from 'lib/timeSince'
-import { useCurrentCvMetadata } from 'services/cv'
+import { useCurrentCvMetadata } from 'services/edit-cv'
 import { useSkipSignIn } from 'services/auth'
 
 const UPDATE_TIMING = 5_000

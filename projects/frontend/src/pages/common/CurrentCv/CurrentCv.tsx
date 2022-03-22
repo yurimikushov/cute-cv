@@ -23,7 +23,7 @@ import {
   TECHNOLOGIES_MAX_LENGTH,
   LANGUAGES_MAX_COUNT,
   LANGUAGE_MAX_LENGTH,
-} from 'services/cv'
+} from 'services/edit-cv'
 import CvLayout from 'layouts/CvLayout'
 import Header from 'components/cv/Header'
 import Avatar from 'components/cv/Avatar'

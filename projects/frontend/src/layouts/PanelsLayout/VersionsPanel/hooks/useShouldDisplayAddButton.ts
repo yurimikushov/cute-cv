@@ -1,5 +1,5 @@
 import { useIsSignedIn } from 'services/auth'
-import { useCvCount, CV_VERSIONS_MAX_COUNT } from 'services/cv'
+import { useCvCount, CV_VERSIONS_MAX_COUNT } from 'services/edit-cv'
 
 const useShouldDisplayAddButton = () => {
   const cvCount = useCvCount()

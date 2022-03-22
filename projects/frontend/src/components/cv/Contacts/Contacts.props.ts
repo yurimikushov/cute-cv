@@ -1,4 +1,4 @@
-import { Contact } from 'services/cv'
+import { Contact } from 'services/edit-cv'
 
 type ContactsProps = {
   className?: string

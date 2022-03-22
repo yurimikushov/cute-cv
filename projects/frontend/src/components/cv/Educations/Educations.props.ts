@@ -1,4 +1,4 @@
-import { Education } from 'services/cv'
+import { Education } from 'services/edit-cv'
 
 type EducationsProps = {
   className?: string

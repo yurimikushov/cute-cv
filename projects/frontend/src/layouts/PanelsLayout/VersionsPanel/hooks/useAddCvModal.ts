@@ -1,5 +1,5 @@
 import useManageModal from 'hooks/useManageModal'
-import { useAddEmptyCv } from 'services/cv'
+import { useAddEmptyCv } from 'services/edit-cv'
 
 const useAddEditCvModal = () => {
   const {

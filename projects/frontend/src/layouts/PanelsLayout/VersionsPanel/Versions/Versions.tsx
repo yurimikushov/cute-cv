@@ -11,7 +11,7 @@ import {
   useDeleteCv,
   useIsCvUpdating,
   useIsCvDeleting,
-} from 'services/cv'
+} from 'services/edit-cv'
 import { H2 } from 'components/ui/H'
 import Radio from 'components/ui/Radio'
 import Version from './Version'

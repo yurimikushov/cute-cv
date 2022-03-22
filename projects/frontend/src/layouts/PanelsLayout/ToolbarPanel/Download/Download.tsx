@@ -1,7 +1,7 @@
 import { FC, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useDownload, useEditable } from 'services/cv'
+import { useDownload, useEditable } from 'services/edit-cv'
 import { H2 } from 'components/ui/H'
 import Button from 'components/ui/Button'
 import DownloadProps from './Download.props'

@@ -9,7 +9,7 @@ import {
   useCleanUpAllCvAfterSignOut,
   useCurrentCvContent,
   useIsCVLoading,
-} from 'services/cv'
+} from 'services/edit-cv'
 import PanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import Loader from 'components/ui/Loader'
