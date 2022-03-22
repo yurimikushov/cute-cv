@@ -85,6 +85,7 @@
       { "default": "generic", "readonly": "generic" }
     ],
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-extra-semi": "off",
     "lodash/preferred-alias": "off"
   }
 }
