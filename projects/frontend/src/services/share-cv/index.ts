@@ -1,0 +1,1 @@
+export { useSharableCv } from './hooks'
