@@ -4,7 +4,7 @@ import { authReducer } from './auth'
 import { cvReducer } from './edit-cv'
 
 const rootReducer = combineReducers({
-  [ServiceNameEnum.auth]: authReducer,
+  [ServiceNameEnum.Auth]: authReducer,
   [ServiceNameEnum.EditCv]: cvReducer,
 })
 

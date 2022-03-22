@@ -9,7 +9,7 @@ const initialState: SignInState = {
 }
 
 const { actions, reducer } = createSlice({
-  name: `${ServiceNameEnum.auth}/signIn`,
+  name: `${ServiceNameEnum.Auth}/signIn`,
   initialState,
   reducers: {
     beginChecking: (state) => {

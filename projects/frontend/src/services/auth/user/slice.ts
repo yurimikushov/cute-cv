@@ -7,7 +7,7 @@ const initialState: UserState = {
 }
 
 const { actions, reducer } = createSlice({
-  name: `${ServiceNameEnum.auth}/user`,
+  name: `${ServiceNameEnum.Auth}/user`,
   initialState,
   reducers: {
     set: (state, { payload }: PayloadAction<SetUserPayload>) => {

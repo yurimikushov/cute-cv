@@ -1,5 +1,5 @@
 enum ServiceNameEnum {
-  auth = 'auth',
+  Auth = 'auth',
   EditCv = 'edit-cv',
 }
 
