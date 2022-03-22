@@ -5,6 +5,7 @@ import isNull from 'lodash/isNull'
 import {
   LoadAllResult,
   LoadResult,
+  LoadSharableResult,
   AddPayload,
   AddResult,
   UpdatePayload,
@@ -40,6 +41,14 @@ class cvApi {
     if (isString(data)) {
       return null
     }
+
+    return validateCv(convertRawCv(data))
+  }
+
+  static async loadSharable(publicId: string) {
+    const { data } = await axios.get<LoadSharableResult>(
+      `/cv/share/${publicId}`
+    )
 
     return validateCv(convertRawCv(data))
   }

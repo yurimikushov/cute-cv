@@ -4,6 +4,8 @@ type LoadAllResult = Array<RawMetadata>
 
 type LoadResult = RawCv
 
+type LoadSharableResult = RawCv
+
 type AddPayload = {
   name: string
   number: number
@@ -50,6 +52,7 @@ type Content = CvContent
 export type {
   LoadAllResult,
   LoadResult,
+  LoadSharableResult,
   AddPayload,
   AddResult,
   UpdatePayload,
