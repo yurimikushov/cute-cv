@@ -1,4 +1,4 @@
-import { object, array, string, number, date, InferType } from 'yup'
+import { object, array, string, number, date, boolean, InferType } from 'yup'
 
 const ID_LENGTH = 21 // nanoid length
 
@@ -36,6 +36,7 @@ const cvMetadataSchema = object({
   name: string().required(),
   number: number().required(),
   savedAt: date().nullable().defined(),
+  allowShare: boolean().required(),
 }).required()
 
 const contentSchema = object({
