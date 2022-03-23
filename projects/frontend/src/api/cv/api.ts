@@ -108,7 +108,7 @@ class cvApi {
       return null
     }
 
-    return validateCv(JSON.parse(rawCV))
+    return validateCv(convertRawCv(JSON.parse(rawCV)))
   }
 
   static saveCvOfUnsignedInUser(cv: Cv) {
