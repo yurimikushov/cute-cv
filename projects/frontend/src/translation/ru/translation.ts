@@ -38,6 +38,9 @@ const ru: Translation = {
         placeholder: 'Название резюме',
         required: 'Это обязательное поле',
       },
+      allowShare: {
+        title: 'Разрешить доступ по ссылке',
+      },
       submit: 'Сохранить',
     },
     editNameModal: {

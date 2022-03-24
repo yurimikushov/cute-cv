@@ -36,6 +36,9 @@ type Translation = {
         placeholder: string
         required: string
       }
+      allowShare: {
+        title: string
+      }
       submit: string
     }
     editNameModal: {

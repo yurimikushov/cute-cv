@@ -45,8 +45,23 @@ const Form = styled(BaseForm)`
   }
 `
 
+const FieldsContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+
+  & .${stretchClassName} {
+    min-width: 100%;
+    max-width: 100%;
+  }
+`
+
 type FormValues = {
   name: string
+  allowShare: boolean
 }
 
 const EditCvMetadataModal: FC<EditCvMetadataModalProps> = ({
@@ -54,6 +69,7 @@ const EditCvMetadataModal: FC<EditCvMetadataModalProps> = ({
   submitTitle,
   submitSubmittingTitle,
   initialName = '',
+  initialAllowShare = false,
   onSubmit,
   onClose,
   ...props
@@ -74,9 +90,9 @@ const EditCvMetadataModal: FC<EditCvMetadataModalProps> = ({
     })
   }, [])
 
-  const handleSubmit = async ({ name }: FormValues) => {
+  const handleSubmit = async ({ name, allowShare }: FormValues) => {
     // if onSubmit will return void, we will wrap this into Promise
-    await Promise.resolve(onSubmit(name))
+    await Promise.resolve(onSubmit(name, allowShare))
   }
 
   return (
@@ -85,19 +101,25 @@ const EditCvMetadataModal: FC<EditCvMetadataModalProps> = ({
       <Form<FC<FormProps<FormValues>>>
         initialValues={{
           name: initialName,
+          allowShare: initialAllowShare,
         }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        <Form.TextInput
-          inputRef={nameInputRef}
-          containerClassName={stretchClassName}
-          className={stretchClassName}
-          size='lg'
-          name='name'
-          placeholder={t('name.placeholder')}
-          maxLength={CV_NAME_MAX_LENGTH}
-        />
+        <FieldsContainer>
+          <Form.TextInput
+            inputRef={nameInputRef}
+            containerClassName={stretchClassName}
+            className={stretchClassName}
+            size='lg'
+            name='name'
+            placeholder={t('name.placeholder')}
+            maxLength={CV_NAME_MAX_LENGTH}
+          />
+          <Form.Checkbox name='allowShare'>
+            {t('allowShare.title')}
+          </Form.Checkbox>
+        </FieldsContainer>
         <Form.Button
           type='submit'
           appearance='outlined'

@@ -4,7 +4,8 @@ type EditCvMetadataModalProps = {
   submitTitle?: string
   submitSubmittingTitle?: string
   initialName?: string
-  onSubmit: (name: string) => void | Promise<void>
+  initialAllowShare?: boolean
+  onSubmit: (name: string, allowShare: boolean) => void | Promise<void>
   onClose: () => void
 }
 

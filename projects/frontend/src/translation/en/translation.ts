@@ -38,6 +38,9 @@ const en: Translation = {
         placeholder: 'CV name',
         required: `It's required field`,
       },
+      allowShare: {
+        title: 'Allow share by link',
+      },
       submit: 'Сохранить',
     },
     editNameModal: {
