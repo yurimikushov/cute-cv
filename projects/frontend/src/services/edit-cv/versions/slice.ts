@@ -386,8 +386,8 @@ const { actions, reducer } = createSlice({
     },
 
     addEmptyCv: (state, { payload }: PayloadAction<AddEmptyCvPayload>) => {
-      const { id, name, number } = payload
-      const { metadata, content } = createCv({ id, name, number })
+      const { id, name, number, allowShare } = payload
+      const { metadata, content } = createCv({ id, name, number, allowShare })
 
       state.ids.push(id)
       state.byId[id] = {
@@ -410,6 +410,7 @@ const { actions, reducer } = createSlice({
           isNew: true,
           isSaved: false,
           savedAt: null,
+          allowShare: false,
         },
         content: {
           ...content,

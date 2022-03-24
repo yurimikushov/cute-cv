@@ -7,12 +7,14 @@ type CreateCvParams = {
   id?: string
   name?: string
   number?: number
+  allowShare?: boolean
 }
 
 const createCv = ({
   id = nanoid(),
   name = 'Dummy',
   number = DEFAULT_CV_NUMBER,
+  allowShare = false,
 }: CreateCvParams = {}): Version => {
   const experienceId = nanoid()
   const educationId = nanoid()
@@ -27,7 +29,7 @@ const createCv = ({
       isNew: true,
       isSaved: false,
       savedAt: null,
-      allowShare: false,
+      allowShare,
     },
     content: {
       fullName: '',

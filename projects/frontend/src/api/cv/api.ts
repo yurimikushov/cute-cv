@@ -53,12 +53,12 @@ class cvApi {
     return validateCv(convertRawCv(data))
   }
 
-  static async add({ name, number, cv }: AddPayload) {
+  static async add({ name, number, allowShare, cv }: AddPayload) {
     const { data } = await axios.post<AddResult>(`/cv`, {
       metadata: {
         name,
         number,
-        allowShare: false,
+        allowShare,
       },
       content: cv,
     })

@@ -237,6 +237,7 @@ type AddEmptyCvPayload = {
   id: string
   name?: string
   number: number
+  allowShare: boolean
 }
 
 type AddCvPayload = {

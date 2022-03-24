@@ -10,6 +10,7 @@ type AddPayload = {
   name: string
   number: number
   cv: CvContent
+  allowShare: boolean
 }
 
 export type { AddState, AddPayload }

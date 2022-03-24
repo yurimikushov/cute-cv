@@ -12,7 +12,7 @@ const useAddEmptyCv = () => {
 
   const dispatch = useDispatch()
 
-  const handleAddEmptyCv = (name?: string) => {
+  const handleAddEmptyCv = (name?: string, allowShare = false) => {
     if (cvCount >= CV_VERSIONS_MAX_COUNT) {
       throw new Error(
         `You already have ${cvCount} cv versions.
@@ -22,7 +22,7 @@ const useAddEmptyCv = () => {
 
     const { id, number } = getNextCvMetadata()
 
-    dispatch(addEmptyCv({ id, name, number }))
+    dispatch(addEmptyCv({ id, name, number, allowShare }))
     selectCv(id)
 
     return {

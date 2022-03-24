@@ -22,7 +22,7 @@ const saveCvOfSignedInUser = debounce((store: Store) => {
   if (isNil(publicId)) {
     store
       .dispatch(
-        add({ name, number, cv: content }) as unknown as AnyAction
+        add({ name, number, allowShare, cv: content }) as unknown as AnyAction
       )
       .unwrap()
       .then(({ publicId, savedAt, allowShare }: AddResult) => {

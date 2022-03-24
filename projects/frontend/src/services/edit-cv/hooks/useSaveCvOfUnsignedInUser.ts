@@ -30,7 +30,7 @@ const useSaveCvOfUnsignedInUser = () => {
     setCv(cv)
   }, isSignedIn)
 
-  const handleCopy = async (name: string) => {
+  const handleCopy = async (name: string, allowShare: boolean) => {
     if (!isSignedIn || isNull(cv)) {
       return
     }
@@ -49,6 +49,7 @@ const useSaveCvOfUnsignedInUser = () => {
       const metadata = await addCvOnBackend({
         number,
         name,
+        allowShare,
         cv: content,
       })
 

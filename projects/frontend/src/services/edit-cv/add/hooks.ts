@@ -13,9 +13,9 @@ const useIsCvAdding = () => {
 const useAddCv = () => {
   const dispatch = useDispatch()
 
-  const handleAddCv = ({ name, number, cv }: AddPayload) => {
+  const handleAddCv = ({ name, number, allowShare, cv }: AddPayload) => {
     return (
-      dispatch(add({ name, number, cv }))
+      dispatch(add({ name, number, allowShare, cv }))
         // @ts-expect-error `unwrap` exists in dispatch result
         .unwrap() as unknown as Promise<AddResult>
     )

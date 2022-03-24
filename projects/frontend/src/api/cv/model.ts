@@ -9,6 +9,7 @@ type LoadSharableResult = RawCv
 type AddPayload = {
   name: string
   number: number
+  allowShare: boolean
   cv: Content
 }
 

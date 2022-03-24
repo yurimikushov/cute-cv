@@ -10,8 +10,8 @@ const useAddEditCvModal = () => {
 
   const addEmptyCv = useAddEmptyCv()
 
-  const handleAddCv = (name: string) => {
-    addEmptyCv(name)
+  const handleAddCv = (name: string, allowShare: boolean) => {
+    addEmptyCv(name, allowShare)
     handleCloseAddModal()
   }
 
