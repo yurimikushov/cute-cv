@@ -27,6 +27,7 @@ const createCv = ({
       isNew: true,
       isSaved: false,
       savedAt: null,
+      allowShare: false,
     },
     content: {
       fullName: '',
