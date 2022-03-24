@@ -48,8 +48,11 @@ const useSaveCvOfUnsignedInUserModal = () => {
     hide(id)
   }
 
-  const handleSaveCvOfUnsignedInUser = async (name: string) => {
-    await copy(name)
+  const handleSaveCvOfUnsignedInUser = async (
+    name: string,
+    allowShare: boolean
+  ) => {
+    await copy(name, allowShare)
     handleCloseCopyUnsignedInCvModal()
     hideNotification()
   }

@@ -10,6 +10,7 @@ type PatchPayload = {
   publicId: string
   name?: string
   number?: number
+  allowShare?: boolean
   cv?: Partial<CvContent>
 }
 

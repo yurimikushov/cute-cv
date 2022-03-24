@@ -18,6 +18,7 @@ type UpdatePayload = {
   publicId: string
   name: string
   number: number
+  allowShare: boolean
   cv: Content
 }
 
@@ -27,6 +28,7 @@ type PatchPayload = {
   publicId: string
   name?: string
   number?: number
+  allowShare?: boolean
   cv?: Partial<Content>
 }
 

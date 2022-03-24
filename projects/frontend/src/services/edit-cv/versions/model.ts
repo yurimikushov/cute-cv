@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 type VersionsState = {
   ids: Array<string>
   byId: Record<string, Version>
@@ -17,6 +18,7 @@ type Metadata = {
   isNew: boolean
   isSaved: boolean
   savedAt: Date | null
+  allowShare: boolean
 }
 
 type Content = {
@@ -84,6 +86,7 @@ type RawMetadata = {
   number: number
   isNew?: boolean
   savedAt: Date | null
+  allowShare: boolean
 }
 
 type RawContent = {
@@ -100,7 +103,7 @@ type RawContent = {
 
 type UpdateCvMetadataPayload = Pick<
   Metadata,
-  'publicId' | 'id' | 'isNew' | 'isSaved' | 'savedAt'
+  'publicId' | 'id' | 'isNew' | 'isSaved' | 'savedAt' | 'allowShare'
 >
 
 type UpdateCvNamePayload = {

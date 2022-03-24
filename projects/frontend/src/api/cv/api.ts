@@ -66,12 +66,18 @@ class cvApi {
     return validateCvMetadata(convertRawCvMetadata(data))
   }
 
-  static async update({ publicId, name, number, cv }: UpdatePayload) {
+  static async update({
+    publicId,
+    name,
+    number,
+    allowShare,
+    cv,
+  }: UpdatePayload) {
     const { data } = await axios.put<UpdateResult>(`/cv/${publicId}`, {
       metadata: {
         name,
         number,
-        allowShare: false,
+        allowShare,
       },
       content: cv,
     })
@@ -79,12 +85,12 @@ class cvApi {
     return validateCvMetadata(convertRawCvMetadata(data))
   }
 
-  static async patch({ publicId, name, number, cv }: PatchPayload) {
+  static async patch({ publicId, name, number, allowShare, cv }: PatchPayload) {
     const { data } = await axios.patch<PatchResult>(`/cv/${publicId}`, {
       metadata: {
         name,
         number,
-        allowShare: false,
+        allowShare,
       },
       content: cv,
     })

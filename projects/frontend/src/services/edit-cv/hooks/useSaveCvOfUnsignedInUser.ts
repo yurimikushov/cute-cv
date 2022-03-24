@@ -46,18 +46,16 @@ const useSaveCvOfUnsignedInUser = () => {
     })
 
     try {
-      const { publicId, savedAt } = await addCvOnBackend({
+      const metadata = await addCvOnBackend({
         number,
         name,
         cv: content,
       })
 
       updateCvMetadata({
-        publicId,
-        id,
+        ...metadata,
         isNew: false,
-        isSaved: Boolean(savedAt),
-        savedAt,
+        isSaved: true,
       })
     } catch {
       deleteCv(id)

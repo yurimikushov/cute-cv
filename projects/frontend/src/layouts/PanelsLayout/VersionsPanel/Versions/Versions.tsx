@@ -58,12 +58,15 @@ const Versions: FC<VersionsProps> = (props) => {
         disabled={shouldDisableActiveElements}
         onChange={selectCv}
       >
-        {map(allCv, ({ id, name, isNew }) => (
+        {map(allCv, ({ id, name, isNew, allowShare }) => (
           <Radio.Item key={id} value={id}>
             <Version
               name={name}
+              allowShare={allowShare}
               disabled={shouldDisableActiveElements}
-              onUpdateCvName={(newName) => updateCvName(id, newName, isNew)}
+              onUpdateCvName={(newName, allowShare) =>
+                updateCvName(id, newName, isNew, allowShare)
+              }
               onMakeCvCopy={(copyName) => makeCvCopy(id, copyName)}
               onDelete={() => handleDeleteCv(id, isNew)}
             />

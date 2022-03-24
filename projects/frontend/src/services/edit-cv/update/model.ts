@@ -10,6 +10,7 @@ type UpdatePayload = {
   publicId: string
   name: string
   number: number
+  allowShare: boolean
   cv: CvContent
 }
 

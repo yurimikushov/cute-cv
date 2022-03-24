@@ -17,13 +17,15 @@ const AUTO_SAVE_TIMING = 1_000
 
 const saveCvOfSignedInUser = debounce((store: Store) => {
   const { metadata, content } = selectCurrentCv(store.getState())
-  const { publicId, id, name, number } = metadata
+  const { publicId, id, name, number, allowShare } = metadata
 
   if (isNil(publicId)) {
     store
-      .dispatch(add({ name, number, cv: content }) as unknown as AnyAction)
+      .dispatch(
+        add({ name, number, cv: content }) as unknown as AnyAction
+      )
       .unwrap()
-      .then(({ publicId, savedAt }: AddResult) => {
+      .then(({ publicId, savedAt, allowShare }: AddResult) => {
         store.dispatch(
           updateCvMetadata({
             publicId,
@@ -31,16 +33,23 @@ const saveCvOfSignedInUser = debounce((store: Store) => {
             isNew: false,
             isSaved: Boolean(savedAt),
             savedAt,
+            allowShare,
           })
         )
       })
   } else {
     store
       .dispatch(
-        update({ publicId, name, number, cv: content }) as unknown as AnyAction
+        update({
+          publicId,
+          name,
+          number,
+          allowShare,
+          cv: content,
+        }) as unknown as AnyAction
       )
       .unwrap()
-      .then(({ publicId, savedAt }: UpdateResult) => {
+      .then(({ publicId, savedAt, allowShare }: UpdateResult) => {
         store.dispatch(
           updateCvMetadata({
             publicId,
@@ -48,6 +57,7 @@ const saveCvOfSignedInUser = debounce((store: Store) => {
             isNew: false,
             isSaved: Boolean(savedAt),
             savedAt,
+            allowShare,
           })
         )
       })

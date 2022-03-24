@@ -73,7 +73,7 @@ const { actions, reducer } = createSlice({
 
       const { content } = createCv()
 
-      forEach(allCv, ({ publicId, id, name, number }) => {
+      forEach(allCv, ({ publicId, id, name, number, allowShare }) => {
         state.byId[id] = {
           metadata: {
             publicId,
@@ -83,6 +83,7 @@ const { actions, reducer } = createSlice({
             isNew: false,
             isSaved: true,
             savedAt: null,
+            allowShare,
           },
           content,
         }
@@ -130,13 +131,14 @@ const { actions, reducer } = createSlice({
       state,
       { payload }: PayloadAction<UpdateCvMetadataPayload>
     ) => {
-      const { publicId, id, isNew, isSaved, savedAt } = payload
+      const { publicId, id, isNew, isSaved, allowShare, savedAt } = payload
       const { metadata } = state.byId[id]
 
       metadata.publicId = publicId
       metadata.isNew = isNew
       metadata.isSaved = isSaved
       metadata.savedAt = savedAt
+      metadata.allowShare = allowShare
     },
 
     updateCvName: (state, { payload }: PayloadAction<UpdateCvNamePayload>) => {
@@ -434,8 +436,10 @@ const { actions, reducer } = createSlice({
 
     makeCvCopy: (state, { payload }: PayloadAction<CopyCvPayload>) => {
       const { baseCvId, copyCvId, copyCvNumber, copyCvName } = payload
+      const { metadata: baseCvMetadata, content: baseCvContent } =
+        state.byId[baseCvId]
 
-      const { content: baseCvContent } = state.byId[baseCvId]
+      const { allowShare } = baseCvMetadata
       const copyCvContent = cloneDeep(baseCvContent)
 
       state.ids.push(copyCvId)
@@ -447,6 +451,7 @@ const { actions, reducer } = createSlice({
           isNew: true,
           isSaved: false,
           savedAt: null,
+          allowShare,
         },
         content: copyCvContent,
       }

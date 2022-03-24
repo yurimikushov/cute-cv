@@ -23,6 +23,7 @@ const Name = styled.span`
 
 const Version: FC<VersionProps> = ({
   name,
+  allowShare,
   disabled,
   onUpdateCvName,
   onMakeCvCopy,
@@ -61,6 +62,7 @@ const Version: FC<VersionProps> = ({
           submitTitle={t('editNameModal.save')}
           submitSubmittingTitle={t('editNameModal.savingStatus')}
           initialName={name}
+          initialAllowShare={allowShare}
           onSubmit={handleUpdateCvName}
           onClose={handleCloseEditNameModal}
         />
