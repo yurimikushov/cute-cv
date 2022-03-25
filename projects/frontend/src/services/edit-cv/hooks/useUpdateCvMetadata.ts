@@ -1,17 +1,26 @@
+import nonNullable from 'lib/nonNullable'
 import { useUpdateCvMetadata as useUpdateCvMetadataOnBackend } from '../patch'
 import { useUpdateCvMetadata as useUpdateCvMetadataInStore } from '../versions'
+
+type UpdateCvMetadataPayload = {
+  publicId?: string
+  id: string
+  name: string
+  isNew: boolean
+  allowShare: boolean
+}
 
 const useUpdateCvMetadata = () => {
   const updateCvNameOnBackend = useUpdateCvMetadataOnBackend()
   const updateCvMetadataInStore = useUpdateCvMetadataInStore()
 
-  const handleUpdateCvMetadata = async (
-    id: string,
-    name: string,
-    isNew: boolean,
-    allowShare: boolean
-    // eslint-disable-next-line max-params
-  ) => {
+  const handleUpdateCvMetadata = async ({
+    publicId,
+    id,
+    name,
+    isNew,
+    allowShare,
+  }: UpdateCvMetadataPayload) => {
     if (isNew) {
       updateCvMetadataInStore({
         id,
@@ -21,7 +30,7 @@ const useUpdateCvMetadata = () => {
       return
     }
 
-    await updateCvNameOnBackend(id, name, allowShare).then(
+    await updateCvNameOnBackend(nonNullable(publicId), name, allowShare).then(
       ({ id, name, savedAt, allowShare }) => {
         updateCvMetadataInStore({
           id,
