@@ -4,7 +4,7 @@ export {
   useAutoLoadCurrentCv,
   useCleanUpAllCvAfterSignOut,
   useSaveCvOfUnsignedInUser,
-  useUpdateCvName,
+  useUpdateCvMetadata,
   useDeleteCv,
 } from './hooks'
 export { useDownload, CV_CONTAINER_ID } from './download'

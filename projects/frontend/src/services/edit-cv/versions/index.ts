@@ -13,7 +13,6 @@ export {
   useInitAllCv,
   useUpdateCv,
   useUpdateCvMetadata,
-  useUpdateCvName,
   useCvCount,
   useAllCvMetadata,
   useCurrentCv,

@@ -1,7 +1,7 @@
 import useManageModal from 'hooks/useManageModal'
 
-const useEditNameModal = (
-  onUpdateCvName: (name: string, allowShare: boolean) => Promise<void>
+const useEditCvMetadataModal = (
+  onUpdateCvMetadata: (name: string, allowShare: boolean) => Promise<void>
 ) => {
   const {
     isOpened: isEditNameModalOpened,
@@ -9,8 +9,8 @@ const useEditNameModal = (
     close: handleCloseEditNameModal,
   } = useManageModal()
 
-  const handleUpdateCvName = async (name: string, allowShare: boolean) => {
-    await onUpdateCvName(name, allowShare)
+  const handleUpdateCvMetadata = async (name: string, allowShare: boolean) => {
+    await onUpdateCvMetadata(name, allowShare)
     handleCloseEditNameModal()
   }
 
@@ -18,8 +18,8 @@ const useEditNameModal = (
     isEditNameModalOpened,
     handleOpenEditNameModal,
     handleCloseEditNameModal,
-    handleUpdateCvName,
+    handleUpdateCvMetadata,
   }
 }
 
-export default useEditNameModal
+export default useEditCvMetadataModal

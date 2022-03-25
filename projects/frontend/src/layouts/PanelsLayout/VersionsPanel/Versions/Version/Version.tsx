@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useIsSignedIn } from 'services/auth'
 import EditCvMetadataModal from 'components/cv/EditCvMetadataModal'
-import useEditNameModal from './hooks/useEditNameModal'
+import useEditCvMetadataModal from './hooks/useEditCvMetadataModal'
 import useMakeCopyModal from './hooks/useMakeCopyModal'
 import Menu from './Menu'
 import VersionProps from './Version.props'
@@ -25,7 +25,7 @@ const Version: FC<VersionProps> = ({
   name,
   allowShare,
   disabled,
-  onUpdateCvName,
+  onUpdateCvMetadata,
   onMakeCvCopy,
   onDelete,
   ...props
@@ -36,8 +36,8 @@ const Version: FC<VersionProps> = ({
     isEditNameModalOpened,
     handleOpenEditNameModal,
     handleCloseEditNameModal,
-    handleUpdateCvName,
-  } = useEditNameModal(onUpdateCvName)
+    handleUpdateCvMetadata,
+  } = useEditCvMetadataModal(onUpdateCvMetadata)
   const {
     isMakeCopyModalOpened,
     handleOpenMakeCopyModal,
@@ -63,7 +63,7 @@ const Version: FC<VersionProps> = ({
           submitSubmittingTitle={t('editNameModal.savingStatus')}
           initialName={name}
           initialAllowShare={allowShare}
-          onSubmit={handleUpdateCvName}
+          onSubmit={handleUpdateCvMetadata}
           onClose={handleCloseEditNameModal}
         />
       )}

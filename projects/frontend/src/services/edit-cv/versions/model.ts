@@ -101,15 +101,13 @@ type RawContent = {
   languages: Array<Language>
 }
 
-type UpdateCvMetadataPayload = Pick<
-  Metadata,
-  'publicId' | 'id' | 'isNew' | 'isSaved' | 'savedAt' | 'allowShare'
->
-
-type UpdateCvNamePayload = {
-  id: string
-  name: string
-}
+type UpdateCvMetadataPayload = Pick<Metadata, 'id'> &
+  Partial<
+    Pick<
+      Metadata,
+      'publicId' | 'name' | 'isNew' | 'isSaved' | 'savedAt' | 'allowShare'
+    >
+  >
 
 type MarkAsSavedPayload = {
   id: string
@@ -271,7 +269,6 @@ export type {
   InitAllCvPayload,
   UpdateCvPayload,
   UpdateCvMetadataPayload,
-  UpdateCvNamePayload,
   MarkAsSavedPayload,
   MarkAsUnsavedPayload,
   UpdateFullNamePayload,

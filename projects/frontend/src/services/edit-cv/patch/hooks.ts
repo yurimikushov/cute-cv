@@ -10,10 +10,10 @@ const useIsCvPatching = () => {
   }
 }
 
-const useUpdateCvName = () => {
+const useUpdateCvMetadata = () => {
   const dispatch = useDispatch()
 
-  const handleUpdateCvName = (
+  const handleUpdateCvMetadata = (
     publicId: string,
     name: string,
     allowShare: boolean
@@ -25,7 +25,7 @@ const useUpdateCvName = () => {
     )
   }
 
-  return handleUpdateCvName
+  return handleUpdateCvMetadata
 }
 
-export { useIsCvPatching, useUpdateCvName }
+export { useIsCvPatching, useUpdateCvMetadata }

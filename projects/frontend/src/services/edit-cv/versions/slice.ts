@@ -9,6 +9,7 @@ import without from 'lodash/without'
 import omit from 'lodash/omit'
 import cloneDeep from 'lodash/cloneDeep'
 import swap from 'lib/reorder'
+import isDefined from 'lib/isDefined'
 import { ServiceNameEnum } from 'services'
 import createCv from './utils/createCv'
 import {
@@ -16,7 +17,6 @@ import {
   InitAllCvPayload,
   UpdateCvPayload,
   UpdateCvMetadataPayload,
-  UpdateCvNamePayload,
   MarkAsSavedPayload,
   MarkAsUnsavedPayload,
   UpdateFullNamePayload,
@@ -127,25 +127,38 @@ const { actions, reducer } = createSlice({
       }
     },
 
+    // eslint-disable-next-line max-statements
     updateCvMetadata: (
       state,
       { payload }: PayloadAction<UpdateCvMetadataPayload>
     ) => {
-      const { publicId, id, isNew, isSaved, allowShare, savedAt } = payload
+      const { publicId, id, name, isNew, isSaved, allowShare, savedAt } =
+        payload
       const { metadata } = state.byId[id]
 
-      metadata.publicId = publicId
-      metadata.isNew = isNew
-      metadata.isSaved = isSaved
-      metadata.savedAt = savedAt
-      metadata.allowShare = allowShare
-    },
+      if (isDefined(publicId)) {
+        metadata.publicId = publicId
+      }
 
-    updateCvName: (state, { payload }: PayloadAction<UpdateCvNamePayload>) => {
-      const { id, name } = payload
-      const { metadata } = state.byId[id]
+      if (isDefined(name)) {
+        metadata.name = name
+      }
 
-      metadata.name = name
+      if (isDefined(isNew)) {
+        metadata.isNew = isNew
+      }
+
+      if (isDefined(isSaved)) {
+        metadata.isSaved = isSaved
+      }
+
+      if (isDefined(savedAt)) {
+        metadata.savedAt = savedAt
+      }
+
+      if (isDefined(allowShare)) {
+        metadata.allowShare = allowShare
+      }
     },
 
     markAsSaved: (state, { payload }: PayloadAction<MarkAsSavedPayload>) => {
@@ -471,7 +484,6 @@ export const {
   initAllCv,
   updateCv,
   updateCvMetadata,
-  updateCvName,
   markAsSaved,
   markAsUnsaved,
   updateFullName,

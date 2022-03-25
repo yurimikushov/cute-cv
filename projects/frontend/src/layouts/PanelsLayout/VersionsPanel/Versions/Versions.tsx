@@ -6,7 +6,7 @@ import {
   useAllCvMetadata,
   useCurrentCvMetadata,
   useSelectCv,
-  useUpdateCvName,
+  useUpdateCvMetadata,
   useMakeCvCopy,
   useDeleteCv,
   useIsCvUpdating,
@@ -31,7 +31,7 @@ const Versions: FC<VersionsProps> = (props) => {
   const { isCvUpdating } = useIsCvUpdating()
   const { isCvDeleting } = useIsCvDeleting()
   const selectCv = useSelectCv()
-  const updateCvName = useUpdateCvName()
+  const updateCvMetadata = useUpdateCvMetadata()
   const makeCvCopy = useMakeCvCopy()
   const deleteCv = useDeleteCv()
 
@@ -64,8 +64,8 @@ const Versions: FC<VersionsProps> = (props) => {
               name={name}
               allowShare={allowShare}
               disabled={shouldDisableActiveElements}
-              onUpdateCvName={(newName, allowShare) =>
-                updateCvName(id, newName, isNew, allowShare)
+              onUpdateCvMetadata={(newName, allowShare) =>
+                updateCvMetadata(id, newName, isNew, allowShare)
               }
               onMakeCvCopy={(copyName) => makeCvCopy(id, copyName)}
               onDelete={() => handleDeleteCv(id, isNew)}

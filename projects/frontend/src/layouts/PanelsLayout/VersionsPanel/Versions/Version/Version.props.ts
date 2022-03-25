@@ -3,7 +3,7 @@ type VersionProps = {
   name: string
   allowShare: boolean
   disabled: boolean
-  onUpdateCvName: (name: string, allowShare: boolean) => Promise<void>
+  onUpdateCvMetadata: (name: string, allowShare: boolean) => Promise<void>
   onMakeCvCopy: (name: string, allowShare: boolean) => void
   onDelete: () => void
 }
