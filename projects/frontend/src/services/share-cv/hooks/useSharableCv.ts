@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import cvApi from 'api/cv'
-
-type Cv = Awaited<ReturnType<typeof cvApi.loadSharable>>
+import { Cv } from '../model'
 
 const useSharableCv = (id: string) => {
   const [isLoading, setIsLoading] = useState(true)
