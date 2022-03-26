@@ -1,18 +1,25 @@
-import { FC } from 'react'
+import { lazy, Suspense, FC } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import HomePage from 'pages/HomePage'
-import SharePage from 'pages/SharePage'
+import Loader from 'components/ui/Loader'
 
-// TODO: should lazy load pages
+const HomePage = lazy(
+  () => import(/* webpackChunkName: "HomePage" */ 'pages/HomePage')
+)
+const SharePage = lazy(
+  () => import(/* webpackChunkName: "SharePage" */ 'pages/SharePage')
+)
+
 const App: FC = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/cv/:id' element={<SharePage />} />
-        <Route path='*' element={<Navigate to='/' replace />} />
-      </Routes>
-    </BrowserRouter>
+    <Suspense fallback={<Loader.FullScreen />}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/cv/:id' element={<SharePage />} />
+          <Route path='*' element={<Navigate to='/' replace />} />
+        </Routes>
+      </BrowserRouter>
+    </Suspense>
   )
 }
 
