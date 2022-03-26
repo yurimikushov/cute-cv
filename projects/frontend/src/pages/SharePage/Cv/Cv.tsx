@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import noop from 'lodash/noop'
-import { CV_CONTAINER_ID } from 'services/edit-cv'
+import { CV_CONTAINER_ID } from 'services/share-cv'
 import CvLayout from 'layouts/CvLayout'
 import Header from 'components/cv/Header'
 import Avatar from 'components/cv/Avatar'
