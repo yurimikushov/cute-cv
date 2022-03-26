@@ -26,6 +26,7 @@
     ]
   },
   "dependencies": {
+    "@nanostores/react": "^0.1.5",
     "@reduxjs/toolkit": "^1.8.0",
     "@sentry/browser": "^6.18.2",
     "@sentry/tracing": "^6.18.2",
@@ -37,6 +38,7 @@
     "i18next": "^21.6.12",
     "lodash": "^4.17.21",
     "markdown-to-jsx": "^7.1.6",
+    "nanostores": "^0.5.12",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.2",
