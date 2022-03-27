@@ -15,7 +15,7 @@ const App: FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/cv/:id' element={<SharePage />} />
+          <Route path='/share/cv/:id' element={<SharePage />} />
           <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>
       </BrowserRouter>
