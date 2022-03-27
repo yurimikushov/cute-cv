@@ -1,10 +1,10 @@
 import { FC, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useDownload, useEditable } from 'services/edit-cv'
 import { H2 } from 'components/ui/H'
 import Button from 'components/ui/Button'
 import DownloadProps from './Download.props'
+import { useToolbarPanel } from '../ToolbarPanelContext'
 
 const Container = styled.div`
   & > * + * {
@@ -16,22 +16,28 @@ const Container = styled.div`
 
 const Download: FC<DownloadProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'toolbar.download' })
+  const {
+    disabled,
+    editable,
+    onToggleEditable,
+    onDownloadPDF,
+    onDownloadJSON,
+  } = useToolbarPanel()
+
   const prevEditableRef = useRef<boolean>(false)
-  const { editable, toggleEditable } = useEditable()
-  const { isDownloading, handleDownloadPDF, handleDownloadJSON } = useDownload()
 
   const withToggleEditable = (handler: () => Promise<void>) => {
     return async function withToggleEditable() {
       prevEditableRef.current = editable
 
       if (editable) {
-        toggleEditable()
+        onToggleEditable()
       }
 
       await handler()
 
       if (prevEditableRef.current) {
-        toggleEditable()
+        onToggleEditable()
       }
     }
   }
@@ -42,16 +48,16 @@ const Download: FC<DownloadProps> = (props) => {
       <Button
         appearance='text'
         withoutPaddings
-        disabled={isDownloading}
-        onClick={withToggleEditable(handleDownloadPDF)}
+        disabled={disabled}
+        onClick={withToggleEditable(onDownloadPDF)}
       >
         {t('pdf')}
       </Button>
       <Button
         appearance='text'
         withoutPaddings
-        disabled={isDownloading}
-        onClick={withToggleEditable(handleDownloadJSON)}
+        disabled={disabled}
+        onClick={withToggleEditable(onDownloadJSON)}
       >
         {t('json')}
       </Button>

@@ -1,11 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import {
-  useSignInGitHub,
-  useSignInFacebook,
-  useSignInGoogle,
-} from 'services/auth'
 import Modal from 'components/ui/Modal'
 import Button from 'components/ui/Button'
 import { ReactComponent as GoogleIcon } from 'icons/google.svg'
@@ -42,26 +37,29 @@ const Skip = styled.div`
   margin-top: 2rem;
 `
 
-const SignInModal: FC<SignInModalProps> = ({ onSkip, ...props }) => {
+const SignInModal: FC<SignInModalProps> = ({
+  onSignInGoogle,
+  onSignInFacebook,
+  onSignInGitHub,
+  onSkip,
+  ...props
+}) => {
   const { t } = useTranslation('translation', { keyPrefix: 'signIn' })
-  const { handleSignInGoogle } = useSignInGoogle()
-  const { handleSignInFacebook } = useSignInFacebook()
-  const { handleSignInGitHub } = useSignInGitHub()
 
   return (
     <Container {...props}>
       <Title>{t('greeting')}</Title>
       <SignInOptions>
-        <SignInButton icon={<GoogleIcon />} onClick={handleSignInGoogle}>
+        <SignInButton icon={<GoogleIcon />} onClick={onSignInGoogle}>
           {t('google.title')}
         </SignInButton>
         {/* Should enable Facebook auth on Firebase Console */}
         {false && (
-          <SignInButton icon={<FacebookIcon />} onClick={handleSignInFacebook}>
+          <SignInButton icon={<FacebookIcon />} onClick={onSignInFacebook}>
             {t('facebook.title')}
           </SignInButton>
         )}
-        <SignInButton icon={<GitHubIcon />} onClick={handleSignInGitHub}>
+        <SignInButton icon={<GitHubIcon />} onClick={onSignInGitHub}>
           {t('github.title')}
         </SignInButton>
       </SignInOptions>

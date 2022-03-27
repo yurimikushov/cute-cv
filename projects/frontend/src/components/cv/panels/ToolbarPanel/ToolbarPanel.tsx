@@ -6,19 +6,22 @@ import { panelMixin } from '../mixins'
 import Download from './Download'
 import Language from './Language'
 import Auth from './Auth'
+import ToolbarPanelContext from './ToolbarPanelContext'
 import ToolbarPanelProps from './ToolbarPanel.props'
 
 const Container = styled(Card)`
   ${panelMixin}
 `
 
-const ToolbarPanel: FC<ToolbarPanelProps> = (props) => (
-  <Container {...props}>
-    <Download />
-    <Language />
-    <Divider />
-    <Auth />
-  </Container>
+const ToolbarPanel: FC<ToolbarPanelProps> = ({ className, ...props }) => (
+  <ToolbarPanelContext.Provider value={props}>
+    <Container className={className}>
+      <Download />
+      <Language />
+      <Divider />
+      <Auth />
+    </Container>
+  </ToolbarPanelContext.Provider>
 )
 
 export default ToolbarPanel

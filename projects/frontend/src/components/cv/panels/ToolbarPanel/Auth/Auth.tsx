@@ -1,22 +1,27 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import useEffectWhen from 'hooks/useEffectWhen'
-import { useSignOut, useIsSignedIn, useIsSignInChecking } from 'services/auth'
-import { useDownload } from 'services/edit-cv'
 import Button from 'components/ui/Button'
+import { useToolbarPanel } from '../ToolbarPanelContext'
 import useSignInModal from './hooks/useSignInModal'
 import SignInModal from './SignInModal'
 import AuthProps from './Auth.props'
 
 const Auth: FC<AuthProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'toolbar' })
-  const { isSignedIn } = useIsSignedIn()
-  const { handleSignOut } = useSignOut()
-  const { isDownloading } = useDownload()
-  const { isSignInChecking } = useIsSignInChecking()
+  const {
+    disabled,
+    isSignInChecking,
+    isSignedIn,
+    onSignInGoogle,
+    onSignInFacebook,
+    onSignInGitHub,
+    onSighOut,
+    onSkipSighIn,
+  } = useToolbarPanel()
 
   const { isSignInModalOpened, handleOpenSignInModal, handleSkipSignInModal } =
-    useSignInModal()
+    useSignInModal(onSkipSighIn)
 
   useEffectWhen(handleOpenSignInModal, !isSignInChecking && !isSignedIn)
 
@@ -26,12 +31,19 @@ const Auth: FC<AuthProps> = (props) => {
         {...props}
         appearance='text'
         withoutPaddings
-        disabled={isSignInChecking || isDownloading}
-        onClick={isSignedIn ? handleSignOut : handleOpenSignInModal}
+        disabled={isSignInChecking || disabled}
+        onClick={isSignedIn ? onSighOut : handleOpenSignInModal}
       >
         {isSignedIn ? t('signOut') : t('signIn')}
       </Button>
-      {isSignInModalOpened && <SignInModal onSkip={handleSkipSignInModal} />}
+      {isSignInModalOpened && (
+        <SignInModal
+          onSignInGoogle={onSignInGoogle}
+          onSignInFacebook={onSignInFacebook}
+          onSignInGitHub={onSignInGitHub}
+          onSkip={handleSkipSignInModal}
+        />
+      )}
     </>
   )
 }

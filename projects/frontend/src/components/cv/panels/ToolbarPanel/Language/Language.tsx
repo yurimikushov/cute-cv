@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import map from 'lodash/map'
 import { LanguageEnum } from 'translation'
-import { useDownload } from 'services/edit-cv'
 import { H2 } from 'components/ui/H'
 import Radio from 'components/ui/Radio'
+import { useToolbarPanel } from '../ToolbarPanelContext'
 import LanguageProps from './Language.props'
 
 const Container = styled.div`
@@ -16,14 +16,14 @@ const Container = styled.div`
 
 const Language: FC<LanguageProps> = (props) => {
   const { t, i18n } = useTranslation('translation', { keyPrefix: 'toolbar' })
-  const { isDownloading } = useDownload()
+  const { disabled } = useToolbarPanel()
 
   return (
     <Container {...props}>
       <H2>{t('language.title')}</H2>
       <Radio
         value={i18n.language}
-        disabled={isDownloading}
+        disabled={disabled}
         onChange={(language) => i18n.changeLanguage(language)}
       >
         {map(LanguageEnum, (lang) => (
