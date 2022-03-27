@@ -9,9 +9,9 @@ import { useSharableCv } from 'services/share-cv'
 import PanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import Loader from 'components/ui/Loader'
+import CvContainer from './containers/CvContainer'
 import ToolbarPanelContainer from './containers/ToolbarPanelContainer'
 import ErrorStub from './ErrorStub'
-import Cv from './Cv'
 
 const Container = styled.div`
   margin-top: 1.25rem;
@@ -21,7 +21,7 @@ const Container = styled.div`
 `
 
 // Wrapper needed to correctly download pdf
-const CvLayoutWrapper = styled.div`
+const CvWrapper = styled.div`
   padding: 4rem;
 `
 
@@ -47,9 +47,9 @@ const SharePage: FC = () => {
           <PanelsLayout
             main={
               <PageLayout>
-                <CvLayoutWrapper>
-                  <Cv cv={nonNullable(cv)} />
-                </CvLayoutWrapper>
+                <CvWrapper>
+                  <CvContainer cv={nonNullable(cv)} />
+                </CvWrapper>
               </PageLayout>
             }
             rightSide={<ToolbarPanelContainer />}

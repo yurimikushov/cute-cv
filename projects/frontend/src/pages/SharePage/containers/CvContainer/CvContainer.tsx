@@ -9,9 +9,9 @@ import Educations from 'components/cv/page/Educations'
 import Contacts from 'components/cv/page/Contacts'
 import Technologies from 'components/cv/page/Technologies'
 import Languages from 'components/cv/page/Languages'
-import CvProps from './Cv.props'
+import CvContainerProps from './CvContainer.props'
 
-const Cv: FC<CvProps> = ({ cv, ...props }) => {
+const CvContainer: FC<CvContainerProps> = ({ cv, ...props }) => {
   const { content } = cv
   const {
     fullName,
@@ -51,4 +51,4 @@ const Cv: FC<CvProps> = ({ cv, ...props }) => {
   )
 }
 
-export default Cv
+export default CvContainer
