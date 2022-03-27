@@ -1,6 +1,7 @@
 import { FC, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import noop from 'lodash/noop'
 import { H2 } from 'components/ui/H'
 import Button from 'components/ui/Button'
 import DownloadProps from './Download.props'
@@ -18,8 +19,8 @@ const Download: FC<DownloadProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'toolbar.download' })
   const {
     disabled,
-    editable,
-    onToggleEditable,
+    editable = false,
+    onToggleEditable = noop,
     onDownloadPDF,
     onDownloadJSON,
   } = useToolbarPanel()

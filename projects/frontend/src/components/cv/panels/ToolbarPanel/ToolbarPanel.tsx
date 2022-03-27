@@ -18,8 +18,12 @@ const ToolbarPanel: FC<ToolbarPanelProps> = ({ className, ...props }) => (
     <Container className={className}>
       <Download />
       <Language />
-      <Divider />
-      <Auth />
+      {!props.disableAuth && (
+        <>
+          <Divider />
+          <Auth />
+        </>
+      )}
     </Container>
   </ToolbarPanelContext.Provider>
 )

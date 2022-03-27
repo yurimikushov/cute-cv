@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+import nonNullable from 'lib/nonNullable'
 import useEffectWhen from 'hooks/useEffectWhen'
 import Button from 'components/ui/Button'
 import SignInModal from 'components/auth/modals/SignInModal'
@@ -10,6 +11,7 @@ import AuthProps from './Auth.props'
 const Auth: FC<AuthProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'toolbar' })
   const {
+    disableAuth = false,
     disabled,
     isSignInChecking,
     isSignedIn,
@@ -20,8 +22,12 @@ const Auth: FC<AuthProps> = (props) => {
     onSkipSighIn,
   } = useToolbarPanel()
 
+  if (disableAuth) {
+    throw new Error('[ToolbarPanel] Auth is disabled but you try to render it')
+  }
+
   const { isSignInModalOpened, handleOpenSignInModal, handleSkipSignInModal } =
-    useSignInModal(onSkipSighIn)
+    useSignInModal(nonNullable(onSkipSighIn))
 
   useEffectWhen(handleOpenSignInModal, !isSignInChecking && !isSignedIn)
 
@@ -38,9 +44,9 @@ const Auth: FC<AuthProps> = (props) => {
       </Button>
       {isSignInModalOpened && (
         <SignInModal
-          onSignInGoogle={onSignInGoogle}
-          onSignInFacebook={onSignInFacebook}
-          onSignInGitHub={onSignInGitHub}
+          onSignInGoogle={nonNullable(onSignInGoogle)}
+          onSignInFacebook={nonNullable(onSignInFacebook)}
+          onSignInGitHub={nonNullable(onSignInGitHub)}
           onSkip={handleSkipSignInModal}
         />
       )}
