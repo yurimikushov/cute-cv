@@ -2,6 +2,7 @@ import { FC, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import noop from 'lodash/noop'
+import isDefined from 'lib/isDefined'
 import { H2 } from 'components/ui/H'
 import Button from 'components/ui/Button'
 import { useToolbarPanel } from '../ToolbarPanelContext'
@@ -54,14 +55,16 @@ const Download: FC<DownloadProps> = (props) => {
       >
         {t('pdf')}
       </Button>
-      <Button
-        appearance='text'
-        withoutPaddings
-        disabled={disabled}
-        onClick={withToggleEditable(onDownloadJSON)}
-      >
-        {t('json')}
-      </Button>
+      {isDefined(onDownloadJSON) && (
+        <Button
+          appearance='text'
+          withoutPaddings
+          disabled={disabled}
+          onClick={withToggleEditable(onDownloadJSON)}
+        >
+          {t('json')}
+        </Button>
+      )}
     </Container>
   )
 }

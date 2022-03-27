@@ -2,7 +2,7 @@ type ToolbarPanelProps = {
   className?: string
   disabled: boolean
   onDownloadPDF: () => Promise<void>
-  onDownloadJSON: () => Promise<void>
+  onDownloadJSON?: () => Promise<void>
 } & (
   | {
       editable: boolean
