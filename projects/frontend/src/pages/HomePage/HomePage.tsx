@@ -36,6 +36,7 @@ import PanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import CvLayout from 'layouts/CvLayout'
 import Loader from 'components/ui/Loader'
+import VersionsPanel from 'components/cv/panels/VersionsPanel'
 import Header from 'components/cv/page/Header'
 import Avatar from 'components/cv/page/Avatar'
 import AboutMe from 'components/cv/page/AboutMe'
@@ -44,6 +45,7 @@ import Educations from 'components/cv/page/Educations'
 import Contacts from 'components/cv/page/Contacts'
 import Technologies from 'components/cv/page/Technologies'
 import Languages from 'components/cv/page/Languages'
+import ToolbarPanelContainer from './containers/ToolbarPanelContainer'
 import BaseToolPanel from './ToolPanel'
 
 const Container = styled.div`
@@ -123,100 +125,104 @@ const HomePage: FC = () => {
       </Helmet>
       {(isSignInChecking || isCVLoading) && <Loader.FullScreen />}
       <Container>
-        <PanelsLayout>
-          <PageLayout>
-            <ToolPanel />
-            <CvLayoutWrapper>
-              <CvLayout
-                id={CV_CONTAINER_ID}
-                header={
-                  <Header
-                    editable={editable}
-                    fullName={fullName}
-                    position={position}
-                    fullNameMaxLength={FULL_NAME_MAX_LENGTH}
-                    positionMaxLength={POSITION_MAX_LENGTH}
-                    onChangeFullName={changeFullName}
-                    onChangePosition={changePosition}
-                  />
-                }
-                avatar={
-                  <Avatar
-                    editable={editable}
-                    src={avatar}
-                    onPick={changeAvatar}
-                    onClear={deleteAvatar}
-                  />
-                }
-                main={
-                  <>
-                    <AboutMe
+        <PanelsLayout
+          leftSide={<VersionsPanel />}
+          middle={
+            <PageLayout>
+              <ToolPanel />
+              <CvLayoutWrapper>
+                <CvLayout
+                  id={CV_CONTAINER_ID}
+                  header={
+                    <Header
                       editable={editable}
-                      value={aboutMe}
-                      maxLength={ABOUT_ME_MAX_LENGTH}
-                      onChange={changeAboutMe}
+                      fullName={fullName}
+                      position={position}
+                      fullNameMaxLength={FULL_NAME_MAX_LENGTH}
+                      positionMaxLength={POSITION_MAX_LENGTH}
+                      onChangeFullName={changeFullName}
+                      onChangePosition={changePosition}
                     />
-                    <Experiences
+                  }
+                  avatar={
+                    <Avatar
                       editable={editable}
-                      experiences={experiences}
-                      maxCount={EXPERIENCES_MAX_COUNT}
-                      positionMaxLength={EXPERIENCE_POSITION_MAX_LENGTH}
-                      companyMaxLength={EXPERIENCE_COMPANY_MAX_LENGTH}
-                      durationMaxLength={EXPERIENCE_DURATION_MAX_LENGTH}
-                      descriptionMaxLength={EXPERIENCE_DESCRIPTION_MAX_LENGTH}
-                      onChange={changeExperience}
-                      onReorder={reorderExperience}
-                      onDelete={deleteExperience}
-                      onAdd={addExperience}
+                      src={avatar}
+                      onPick={changeAvatar}
+                      onClear={deleteAvatar}
                     />
-                    <Educations
-                      editable={editable}
-                      educations={educations}
-                      maxCount={EDUCATIONS_MAX_COUNT}
-                      degreeMaxLength={EDUCATION_DEGREE_MAX_LENGTH}
-                      universityMaxLength={EDUCATION_UNIVERSITY_MAX_LENGTH}
-                      durationMaxLength={EDUCATION_DURATION_MAX_LENGTH}
-                      onChange={changeEducation}
-                      onReorder={reorderEducation}
-                      onDelete={deleteEducation}
-                      onAdd={addEduction}
-                    />
-                  </>
-                }
-                aside={
-                  <>
-                    <Contacts
-                      editable={editable}
-                      contacts={contacts}
-                      maxCount={CONTACTS_MAX_COUNT}
-                      textMaxLength={CONTACT_TEXT_MAX_LENGTH}
-                      hrefMaxLength={CONTACT_HREF_MAX_LENGTH}
-                      onChange={changeContact}
-                      onReorder={reorderContact}
-                      onDelete={deleteContact}
-                      onAdd={addContact}
-                    />
-                    <Technologies
-                      editable={editable}
-                      technologies={technologies}
-                      maxLength={TECHNOLOGIES_MAX_LENGTH}
-                      onChange={changeTechnologies}
-                    />
-                    <Languages
-                      editable={editable}
-                      languages={languages}
-                      maxCount={LANGUAGES_MAX_COUNT}
-                      maxLength={LANGUAGE_MAX_LENGTH}
-                      onChange={changeLanguage}
-                      onDelete={deleteLanguage}
-                      onAdd={addLanguage}
-                    />
-                  </>
-                }
-              />
-            </CvLayoutWrapper>
-          </PageLayout>
-        </PanelsLayout>
+                  }
+                  main={
+                    <>
+                      <AboutMe
+                        editable={editable}
+                        value={aboutMe}
+                        maxLength={ABOUT_ME_MAX_LENGTH}
+                        onChange={changeAboutMe}
+                      />
+                      <Experiences
+                        editable={editable}
+                        experiences={experiences}
+                        maxCount={EXPERIENCES_MAX_COUNT}
+                        positionMaxLength={EXPERIENCE_POSITION_MAX_LENGTH}
+                        companyMaxLength={EXPERIENCE_COMPANY_MAX_LENGTH}
+                        durationMaxLength={EXPERIENCE_DURATION_MAX_LENGTH}
+                        descriptionMaxLength={EXPERIENCE_DESCRIPTION_MAX_LENGTH}
+                        onChange={changeExperience}
+                        onReorder={reorderExperience}
+                        onDelete={deleteExperience}
+                        onAdd={addExperience}
+                      />
+                      <Educations
+                        editable={editable}
+                        educations={educations}
+                        maxCount={EDUCATIONS_MAX_COUNT}
+                        degreeMaxLength={EDUCATION_DEGREE_MAX_LENGTH}
+                        universityMaxLength={EDUCATION_UNIVERSITY_MAX_LENGTH}
+                        durationMaxLength={EDUCATION_DURATION_MAX_LENGTH}
+                        onChange={changeEducation}
+                        onReorder={reorderEducation}
+                        onDelete={deleteEducation}
+                        onAdd={addEduction}
+                      />
+                    </>
+                  }
+                  aside={
+                    <>
+                      <Contacts
+                        editable={editable}
+                        contacts={contacts}
+                        maxCount={CONTACTS_MAX_COUNT}
+                        textMaxLength={CONTACT_TEXT_MAX_LENGTH}
+                        hrefMaxLength={CONTACT_HREF_MAX_LENGTH}
+                        onChange={changeContact}
+                        onReorder={reorderContact}
+                        onDelete={deleteContact}
+                        onAdd={addContact}
+                      />
+                      <Technologies
+                        editable={editable}
+                        technologies={technologies}
+                        maxLength={TECHNOLOGIES_MAX_LENGTH}
+                        onChange={changeTechnologies}
+                      />
+                      <Languages
+                        editable={editable}
+                        languages={languages}
+                        maxCount={LANGUAGES_MAX_COUNT}
+                        maxLength={LANGUAGE_MAX_LENGTH}
+                        onChange={changeLanguage}
+                        onDelete={deleteLanguage}
+                        onAdd={addLanguage}
+                      />
+                    </>
+                  }
+                />
+              </CvLayoutWrapper>
+            </PageLayout>
+          }
+          rightSide={<ToolbarPanelContainer />}
+        />
       </Container>
     </>
   )

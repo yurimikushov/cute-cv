@@ -1,8 +1,5 @@
 import { FC } from 'react'
-import styled from 'styled-components'
-import BaseVersionsPanel from 'components/cv/panels/VersionsPanel'
-import ToolbarPanelContainer from './containers/ToolbarPanelContainer'
-import { marginTopMixin } from './mixins'
+import styled, { css } from 'styled-components'
 import PanelsLayoutProps from './PanelsLayout.props'
 
 const Container = styled.div`
@@ -10,24 +7,31 @@ const Container = styled.div`
   gap: 2.5rem;
 `
 
-const VersionsPanel = styled(BaseVersionsPanel)`
+const marginTopMixin = css`
+  margin-top: 1.5rem;
+`
+
+const LeftSide = styled.div`
   ${marginTopMixin}
 `
 
-const ToolbarPanel = styled(ToolbarPanelContainer)`
+const Middle = styled.div``
+
+const RightSide = styled.div`
   ${marginTopMixin}
 `
 
-const PanelsLayout: FC<PanelsLayoutProps> = ({ children, ...props }) => {
+const PanelsLayout: FC<PanelsLayoutProps> = ({
+  leftSide,
+  middle,
+  rightSide,
+  ...props
+}) => {
   return (
     <Container {...props}>
-      <div>
-        <VersionsPanel />
-      </div>
-      <div>{children}</div>
-      <div>
-        <ToolbarPanel />
-      </div>
+      <LeftSide>{leftSide}</LeftSide>
+      <Middle>{middle}</Middle>
+      <RightSide>{rightSide}</RightSide>
     </Container>
   )
 }
