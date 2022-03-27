@@ -1,8 +1,8 @@
-import { useSharableCv } from 'services/share-cv'
+import { Cv } from 'services/share-cv'
 
 type CvProps = {
   className?: string
-  cv: NonNullable<ReturnType<typeof useSharableCv>['cv']>
+  cv: Cv
 }
 
 export default CvProps
