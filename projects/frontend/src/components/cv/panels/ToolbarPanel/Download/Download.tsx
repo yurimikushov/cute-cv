@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import noop from 'lodash/noop'
 import { H2 } from 'components/ui/H'
 import Button from 'components/ui/Button'
-import DownloadProps from './Download.props'
 import { useToolbarPanel } from '../ToolbarPanelContext'
+import DownloadProps from './Download.props'
 
 const Container = styled.div`
   & > * + * {
