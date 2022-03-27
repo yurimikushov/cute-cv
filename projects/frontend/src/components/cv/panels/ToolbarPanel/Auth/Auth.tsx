@@ -2,9 +2,9 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import useEffectWhen from 'hooks/useEffectWhen'
 import Button from 'components/ui/Button'
+import SignInModal from 'components/auth/modals/SignInModal'
 import { useToolbarPanel } from '../ToolbarPanelContext'
 import useSignInModal from './hooks/useSignInModal'
-import SignInModal from './SignInModal'
 import AuthProps from './Auth.props'
 
 const Auth: FC<AuthProps> = (props) => {
