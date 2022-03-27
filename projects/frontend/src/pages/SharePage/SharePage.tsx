@@ -6,8 +6,10 @@ import styled from 'styled-components'
 import isUndefined from 'lodash/isUndefined'
 import nonNullable from 'lib/nonNullable'
 import { useSharableCv } from 'services/share-cv'
+import PanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import Loader from 'components/ui/Loader'
+import ToolbarPanelContainer from './containers/ToolbarPanelContainer'
 import ErrorStub from './ErrorStub'
 import Cv from './Cv'
 
@@ -42,11 +44,16 @@ const SharePage: FC = () => {
         {isLoading && <Loader.FullScreen />}
         {error && <ErrorStub />}
         {!isLoading && !error && (
-          <PageLayout>
-            <CvLayoutWrapper>
-              <Cv cv={nonNullable(cv)} />
-            </CvLayoutWrapper>
-          </PageLayout>
+          <PanelsLayout
+            main={
+              <PageLayout>
+                <CvLayoutWrapper>
+                  <Cv cv={nonNullable(cv)} />
+                </CvLayoutWrapper>
+              </PageLayout>
+            }
+            rightSide={<ToolbarPanelContainer />}
+          />
         )}
       </Container>
     </>
