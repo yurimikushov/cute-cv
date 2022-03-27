@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
 import styled from 'styled-components'
 import isUndefined from 'lodash/isUndefined'
-import nonNullable from 'lib/nonNullable'
 import { useSharableCv } from 'services/share-cv'
 import PanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
@@ -43,12 +42,12 @@ const SharePage: FC = () => {
       <Container>
         {isLoading && <Loader.FullScreen />}
         {error && <ErrorStub />}
-        {!isLoading && !error && (
+        {!isLoading && !error && cv && (
           <PanelsLayout
             main={
               <PageLayout>
                 <CvWrapper>
-                  <CvContainer cv={nonNullable(cv)} />
+                  <CvContainer cv={cv} />
                 </CvWrapper>
               </PageLayout>
             }
