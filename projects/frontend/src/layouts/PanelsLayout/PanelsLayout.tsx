@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import BaseVersionsPanel from './VersionsPanel'
-import BaseToolbarPanel from './ToolbarPanel'
+import BaseVersionsPanel from 'components/cv/panels/VersionsPanel'
+import BaseToolbarPanel from 'components/cv/panels/ToolbarPanel'
 import { marginTopMixin } from './mixins'
 import PanelsLayoutProps from './PanelsLayout.props'
 
