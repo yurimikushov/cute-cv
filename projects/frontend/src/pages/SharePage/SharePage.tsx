@@ -25,7 +25,7 @@ const CvWrapper = styled.div`
 `
 
 const SharePage: FC = () => {
-  const { i18n } = useTranslation()
+  const { i18n, t } = useTranslation('translation', { keyPrefix: 'share' })
   const { id } = useParams<{ id: string }>()
 
   if (isUndefined(id)) {
@@ -41,9 +41,7 @@ const SharePage: FC = () => {
       </Helmet>
       <Container>
         {isLoading && <Loader.FullScreen />}
-        {error && (
-          <ErrorStub message="The CV doesn't exist or its owner hasn't allow to share it" />
-        )}
+        {error && <ErrorStub message={t('error')} />}
         {!isLoading && !error && cv && (
           <PanelsLayout
             main={

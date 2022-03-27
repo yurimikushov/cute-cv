@@ -79,6 +79,9 @@ const ru: Translation = {
     signIn: 'Войти',
     signOut: 'Выйти',
   },
+  share: {
+    error: 'Резюме не существует или его владелец не разрешил им делиться',
+  },
   fullName: {
     placeholder: 'Полное имя',
   },

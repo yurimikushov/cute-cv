@@ -79,6 +79,9 @@ const en: Translation = {
     signIn: 'Sign in',
     signOut: 'Sign out',
   },
+  share: {
+    error: `The CV doesn't exist or its owner hasn't allow to share it`,
+  },
   fullName: {
     placeholder: 'Full name',
   },

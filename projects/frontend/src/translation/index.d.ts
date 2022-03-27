@@ -76,6 +76,9 @@ type Translation = {
     signIn: string
     signOut: string
   }
+  share: {
+    error: string
+  }
   fullName: {
     placeholder: string
   }
