@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import EditCvMetadataModal from 'components/cv/EditCvMetadataModal'
+import EditCvMetadataModal from 'components/cv/modals/EditCvMetadataModal'
 import useAddCvModal from './hooks/useAddCvModal'
 import useSaveCvOfUnsignedInUserModal from './hooks/useSaveCvOfUnsignedInUserModal'
 import useShouldDisplayAddButton from './hooks/useShouldDisplayAddButton'
