@@ -31,11 +31,15 @@ const Header: FC<HeaderProps> = ({
   })
 
   const handleChangeFullName = (e: ChangeEvent<HTMLInputElement>) => {
-    onChangeFullName(e.target.value)
+    if (editable) {
+      onChangeFullName(e.target.value)
+    }
   }
 
   const handleChangPosition = (e: ChangeEvent<HTMLInputElement>) => {
-    onChangePosition(e.target.value)
+    if (editable) {
+      onChangePosition(e.target.value)
+    }
   }
 
   return (

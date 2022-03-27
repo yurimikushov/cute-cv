@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import noop from 'lodash/noop'
 import size from 'lodash/size'
 import map from 'lodash/map'
 import { H2 } from 'components/ui/H'
@@ -34,12 +35,12 @@ const Add = styled(Button)`
 const Contacts: FC<ContactsProps> = ({
   editable,
   contacts,
-  maxCount,
+  maxCount = Number.MAX_SAFE_INTEGER,
   textMaxLength,
   hrefMaxLength,
-  onChange,
-  onReorder,
-  onDelete,
+  onChange = noop,
+  onReorder = noop,
+  onDelete = noop,
   onAdd,
   ...props
 }) => {

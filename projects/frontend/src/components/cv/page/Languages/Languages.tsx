@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import noop from 'lodash/noop'
 import size from 'lodash/size'
 import map from 'lodash/map'
 import { H2 } from 'components/ui/H'
@@ -22,11 +23,11 @@ const Add = styled(Button)`
 const Languages: FC<LanguagesProps> = ({
   editable,
   languages,
-  maxCount,
+  maxCount = Number.MAX_SAFE_INTEGER,
   maxLength,
-  onChange,
-  onDelete,
-  onAdd,
+  onChange = noop,
+  onDelete = noop,
+  onAdd = noop,
   ...props
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'languages' })

@@ -25,7 +25,9 @@ const Technologies: FC<TechnologiesProps> = ({
   const { t } = useTranslation('translation', { keyPrefix: 'technologies' })
 
   const handleChangeTechnologies = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    onChange(e.target.value)
+    if (editable) {
+      onChange(e.target.value)
+    }
   }
 
   return (

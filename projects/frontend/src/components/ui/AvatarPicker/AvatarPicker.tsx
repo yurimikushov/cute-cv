@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
+import noop from 'lodash/noop'
 import isEmpty from 'lodash/isEmpty'
 import focusMixin from 'styles/mixins/focus'
 import useAvatarPicker from './hooks/useAvatarPicker'
@@ -53,8 +54,8 @@ const Clear = styled(ClearBtn)`
 const AvatarPicker: FC<AvatarPickerProps> = ({
   editable = true,
   src,
-  onPick,
-  onClear,
+  onPick = noop,
+  onClear = noop,
 }) => {
   const { pickButtonRef, fileInputRef, handlePick, handleClear } =
     useAvatarPicker(onPick, onClear)

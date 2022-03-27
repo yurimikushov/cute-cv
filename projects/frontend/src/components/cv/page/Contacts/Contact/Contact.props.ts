@@ -3,8 +3,8 @@ type ContactProps = {
   editable: boolean
   text: string
   href: string
-  textMaxLength: number
-  hrefMaxLength: number
+  textMaxLength?: number
+  hrefMaxLength?: number
   onTextChange: (text: string) => void
   onHrefChange: (href: string) => void
   onDelete: () => void

@@ -4,9 +4,9 @@ type EducationProps = {
   degree: string
   university: string
   duration: string
-  degreeMaxLength: number
-  universityMaxLength: number
-  durationMaxLength: number
+  degreeMaxLength?: number
+  universityMaxLength?: number
+  durationMaxLength?: number
   onDegreeChange: (degree: string) => void
   onUniversityChange: (university: string) => void
   onDurationChange: (duration: string) => void

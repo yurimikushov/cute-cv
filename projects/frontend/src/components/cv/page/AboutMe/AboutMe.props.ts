@@ -1,9 +1,16 @@
 type AboutMeProps = {
   className?: string
-  editable: boolean
   value: string
-  maxLength: number
-  onChange: (value: string) => void
-}
+  maxLength?: number
+} & (
+  | {
+      editable: boolean
+      onChange: (value: string) => void
+    }
+  | {
+      editable: false
+      onChange?: never
+    }
+)
 
 export default AboutMeProps

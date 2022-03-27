@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import noop from 'lodash/noop'
 import size from 'lodash/size'
 import map from 'lodash/map'
 import { H1 } from 'components/ui/H'
@@ -34,13 +35,13 @@ const Add = styled(Button)`
 const Educations: FC<EducationsProps> = ({
   editable,
   educations,
-  maxCount,
+  maxCount = Number.MAX_SAFE_INTEGER,
   degreeMaxLength,
   universityMaxLength,
   durationMaxLength,
-  onChange,
-  onReorder,
-  onDelete,
+  onChange = noop,
+  onReorder = noop,
+  onDelete = noop,
   onAdd,
   ...props
 }) => {

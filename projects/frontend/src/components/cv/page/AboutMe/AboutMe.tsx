@@ -13,7 +13,9 @@ const AboutMe: FC<AboutMeProps> = ({ editable, onChange, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'aboutMe' })
 
   const handleChangeAboutMe = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    onChange(e.target.value)
+    if (editable) {
+      onChange(e.target.value)
+    }
   }
 
   return (
