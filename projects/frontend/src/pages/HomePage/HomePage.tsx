@@ -56,7 +56,7 @@ const HomePage: FC = () => {
       <Container>
         <PanelsLayout
           leftSide={<VersionsPanel />}
-          middle={
+          main={
             <PageLayout>
               <ToolPanel />
               <CvWrapper>

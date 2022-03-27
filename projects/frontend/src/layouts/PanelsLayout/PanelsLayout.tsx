@@ -15,7 +15,7 @@ const LeftSide = styled.div`
   ${marginTopMixin}
 `
 
-const Middle = styled.div``
+const Main = styled.div``
 
 const RightSide = styled.div`
   ${marginTopMixin}
@@ -23,14 +23,14 @@ const RightSide = styled.div`
 
 const PanelsLayout: FC<PanelsLayoutProps> = ({
   leftSide,
-  middle,
+  main,
   rightSide,
   ...props
 }) => {
   return (
     <Container {...props}>
       <LeftSide>{leftSide}</LeftSide>
-      <Middle>{middle}</Middle>
+      <Main>{main}</Main>
       <RightSide>{rightSide}</RightSide>
     </Container>
   )

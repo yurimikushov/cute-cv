@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 type PanelsLayoutProps = {
   className?: string
   leftSide?: ReactNode
-  middle: ReactNode
+  main: ReactNode
   rightSide?: ReactNode
 }
 
