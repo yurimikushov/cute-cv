@@ -8,9 +8,9 @@ import { useSharableCv } from 'services/share-cv'
 import PanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import Loader from 'components/ui/Loader'
+import ErrorStub from 'components/ui/ErrorStub'
 import CvContainer from './containers/CvContainer'
 import ToolbarPanelContainer from './containers/ToolbarPanelContainer'
-import ErrorStub from './ErrorStub'
 
 const Container = styled.div`
   margin-top: 1.25rem;
@@ -41,7 +41,9 @@ const SharePage: FC = () => {
       </Helmet>
       <Container>
         {isLoading && <Loader.FullScreen />}
-        {error && <ErrorStub />}
+        {error && (
+          <ErrorStub message="The CV doesn't exist or its owner hasn't allow to share it" />
+        )}
         {!isLoading && !error && cv && (
           <PanelsLayout
             main={
