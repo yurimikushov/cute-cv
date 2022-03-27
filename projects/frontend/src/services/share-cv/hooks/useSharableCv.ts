@@ -1,25 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useStore } from '@nanostores/react'
 import cvApi from 'api/cv'
-import { Cv } from '../model'
+import {
+  isLoadingAtom,
+  cvAtom,
+  loadingErrorAtom,
+  startLoading,
+  loadingSuccess,
+  loadingFail,
+} from '../store'
 
 const useSharableCv = (id: string) => {
-  const [isLoading, setIsLoading] = useState(true)
-  const [cv, setCv] = useState<Cv | null>(null)
-  const [error, setError] = useState<Error | null>(null)
+  const isLoading = useStore(isLoadingAtom)
+  const cv = useStore(cvAtom)
+  const error = useStore(loadingErrorAtom)
 
   useEffect(() => {
     ;(async () => {
-      setIsLoading(true)
-      setError(null)
+      startLoading()
 
       try {
-        const cv = await cvApi.loadSharable(id)
-        setCv(cv)
+        loadingSuccess(await cvApi.loadSharable(id))
       } catch (err) {
-        setError(err as Error)
+        loadingFail(err as Error)
       }
-
-      setIsLoading(false)
     })()
   }, [id])
 
