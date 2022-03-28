@@ -16,6 +16,7 @@ import Loader from 'components/ui/Loader'
 import VersionsPanelContainer from './containers/VersionsPanelContainer'
 import ToolbarPanelContainer from './containers/ToolbarPanelContainer'
 import CvContainer from './containers/CvContainer'
+import SaveCvOfUnsignedInUserContainer from './containers/SaveCvOfUnsignedInUserContainer'
 import BaseToolPanel from './ToolPanel'
 
 const Container = styled.div`
@@ -67,6 +68,7 @@ const HomePage: FC = () => {
           rightSide={<ToolbarPanelContainer />}
         />
       </Container>
+      <SaveCvOfUnsignedInUserContainer />
     </>
   )
 }

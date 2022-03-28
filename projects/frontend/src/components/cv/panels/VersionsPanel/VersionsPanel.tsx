@@ -7,7 +7,6 @@ import Button from 'components/ui/Button'
 import EditCvMetadataModal from 'components/cv/modals/EditCvMetadataModal'
 import { panelMixin } from '../mixins'
 import useAddEditCvModal from './hooks/useAddCvModal'
-import useSaveCvOfUnsignedInUserModal from './hooks/useSaveCvOfUnsignedInUserModal'
 import VersionsPanelContext from './VersionsPanelContext'
 import Versions from './Versions'
 import VersionsPanelProps from './VersionsPanel.props'
@@ -17,7 +16,6 @@ const Container = styled(Card)`
 `
 
 const AddCvModal = EditCvMetadataModal
-const SaveCvOfUnsignedInUserModal = EditCvMetadataModal
 
 const VersionsPanel: FC<VersionsPanelProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
@@ -30,11 +28,6 @@ const VersionsPanel: FC<VersionsPanelProps> = (props) => {
     handleCloseAddModal,
     handleAddCv,
   } = useAddEditCvModal(onAddEmptyCv)
-  const {
-    isCopyUnsignedInCvModalOpened,
-    handleCloseCopyUnsignedInCvModal,
-    handleSaveCvOfUnsignedInUser,
-  } = useSaveCvOfUnsignedInUserModal()
 
   return (
     <VersionsPanelContext.Provider value={props}>
@@ -60,14 +53,6 @@ const VersionsPanel: FC<VersionsPanelProps> = (props) => {
           submitTitle={t('addModal.add')}
           onSubmit={handleAddCv}
           onClose={handleCloseAddModal}
-        />
-      )}
-      {isCopyUnsignedInCvModalOpened && (
-        <SaveCvOfUnsignedInUserModal
-          title={t('saveCvOfUnsignedInUserModal.title')}
-          submitTitle={t('saveCvOfUnsignedInUserModal.save')}
-          onSubmit={handleSaveCvOfUnsignedInUser}
-          onClose={handleCloseCopyUnsignedInCvModal}
         />
       )}
     </VersionsPanelContext.Provider>
