@@ -13,7 +13,7 @@ import {
 import PanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import Loader from 'components/ui/Loader'
-import VersionsPanel from 'components/cv/panels/VersionsPanel'
+import VersionsPanelContainer from './containers/VersionsPanelContainer'
 import ToolbarPanelContainer from './containers/ToolbarPanelContainer'
 import CvContainer from './containers/CvContainer'
 import BaseToolPanel from './ToolPanel'
@@ -55,7 +55,7 @@ const HomePage: FC = () => {
       {(isSignInChecking || isCVLoading) && <Loader.FullScreen />}
       <Container>
         <PanelsLayout
-          leftSide={<VersionsPanel />}
+          leftSide={<VersionsPanelContainer />}
           main={
             <PageLayout>
               <ToolPanel />

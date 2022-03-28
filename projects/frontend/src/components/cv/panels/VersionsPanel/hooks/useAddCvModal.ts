@@ -1,17 +1,16 @@
 import useManageModal from 'hooks/useManageModal'
-import { useAddEmptyCv } from 'services/edit-cv'
 
-const useAddEditCvModal = () => {
+const useAddEditCvModal = (
+  onAddEmptyCv: (name: string, allowShare: boolean) => void
+) => {
   const {
     isOpened: isAddModalOpened,
     open: handleOpenAddModal,
     close: handleCloseAddModal,
   } = useManageModal()
 
-  const addEmptyCv = useAddEmptyCv()
-
   const handleAddCv = (name: string, allowShare: boolean) => {
-    addEmptyCv(name, allowShare)
+    onAddEmptyCv(name, allowShare)
     handleCloseAddModal()
   }
 
