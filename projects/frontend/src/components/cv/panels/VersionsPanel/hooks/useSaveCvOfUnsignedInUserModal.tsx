@@ -4,7 +4,7 @@ import useManageModal from 'hooks/useManageModal'
 import { useIsSignedIn } from 'services/auth'
 import { useSaveCvOfUnsignedInUser } from 'services/edit-cv'
 import { useNotification } from 'components/ui/Notifications'
-import ThereIsCvOfUnsignedInUserNotification from './ThereIsCvOfUnsignedInUserNotification'
+import CvOfUnsignedInUserExistsNotification from 'components/cv/notifications/CvOfUnsignedInUserExistsNotification'
 
 const useSaveCvOfUnsignedInUserModal = () => {
   const {
@@ -32,7 +32,7 @@ const useSaveCvOfUnsignedInUserModal = () => {
 
   const showNotification = () => {
     notificationIdRef.current = notify(
-      <ThereIsCvOfUnsignedInUserNotification
+      <CvOfUnsignedInUserExistsNotification
         onSave={handleOpenCopyUnsignedInCvModal}
       />
     )

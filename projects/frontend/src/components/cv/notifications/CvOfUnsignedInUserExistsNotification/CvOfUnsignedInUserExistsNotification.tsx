@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import Button from 'components/ui/Button'
 import colors from 'styles/colors'
-import ThereIsCvOfUnsignedInUserNotificationProps from './ThereIsCvOfUnsignedInUserNotification.props'
+import CvOfUnsignedInUserExistsNotificationProps from './CvOfUnsignedInUserExistsNotification.props'
 
 const Container = styled.div`
   display: flex;
@@ -16,8 +16,8 @@ const Description = styled.p`
   color: ${colors.black};
 `
 
-const ThereIsCvOfUnsignedInUserNotification: FC<
-  ThereIsCvOfUnsignedInUserNotificationProps
+const CvOfUnsignedInUserExistsNotification: FC<
+  CvOfUnsignedInUserExistsNotificationProps
 > = ({ onSave, ...props }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'versions.saveCvOfUnsignedInUserNotification',
@@ -33,4 +33,4 @@ const ThereIsCvOfUnsignedInUserNotification: FC<
   )
 }
 
-export default ThereIsCvOfUnsignedInUserNotification
+export default CvOfUnsignedInUserExistsNotification
