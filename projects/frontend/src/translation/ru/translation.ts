@@ -27,12 +27,12 @@ const ru: Translation = {
   versions: {
     title: 'Версии',
     menu: {
-      editName: 'Изменить название',
+      edit: 'Изменить',
       makeCopy: 'Сделать копию',
       delete: 'Удалить',
       confirmDelete: 'Вы точно хотите удалить эту версию?',
     },
-    editCvModal: {
+    editCvMetadataModal: {
       title: 'Изменить резюме',
       name: {
         placeholder: 'Название резюме',
@@ -43,8 +43,8 @@ const ru: Translation = {
       },
       submit: 'Сохранить',
     },
-    editNameModal: {
-      title: 'Изменить название',
+    updateCvMetadataModal: {
+      title: 'Изменить',
       savingStatus: 'Сохранение...',
       save: 'Сохранить',
     },

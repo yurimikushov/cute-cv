@@ -25,12 +25,12 @@ type Translation = {
   versions: {
     title: string
     menu: {
-      editName: string
+      edit: string
       makeCopy: string
       delete: string
       confirmDelete: string
     }
-    editCvModal: {
+    editCvMetadataModal: {
       title: string
       name: {
         placeholder: string
@@ -41,7 +41,7 @@ type Translation = {
       }
       submit: string
     }
-    editNameModal: {
+    updateCvMetadataModal: {
       title: string
       savingStatus: string
       save: string

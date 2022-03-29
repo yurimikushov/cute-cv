@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useIsSignedIn } from 'services/auth'
 import EditCvMetadataModal from 'components/cv/modals/EditCvMetadataModal'
-import useEditCvMetadataModal from './hooks/useEditCvMetadataModal'
+import useUpdateCvMetadataModal from './hooks/useUpdateCvMetadataModal'
 import useMakeCopyModal from './hooks/useMakeCopyModal'
 import Menu from './Menu'
 import VersionProps from './Version.props'
@@ -14,6 +14,7 @@ const Container = styled.div`
   gap: 0.5rem;
 `
 
+const UpdateCvMetadataMetadata = EditCvMetadataModal
 const MakeCvCopyModal = EditCvMetadataModal
 
 const Name = styled.span`
@@ -33,11 +34,11 @@ const Version: FC<VersionProps> = ({
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const { isSignedIn } = useIsSignedIn()
   const {
-    isEditNameModalOpened,
-    handleOpenEditNameModal,
-    handleCloseEditNameModal,
+    isUpdateCvMetadataModalOpened,
+    handleOpenUpdateCvMetadataModal,
+    handleCloseUpdateCvMetadataModal,
     handleUpdateCvMetadata,
-  } = useEditCvMetadataModal(onUpdateCvMetadata)
+  } = useUpdateCvMetadataModal(onUpdateCvMetadata)
   const {
     isMakeCopyModalOpened,
     handleOpenMakeCopyModal,
@@ -51,20 +52,20 @@ const Version: FC<VersionProps> = ({
       {isSignedIn && (
         <Menu
           disabled={disabled}
-          onEditName={handleOpenEditNameModal}
+          onEditName={handleOpenUpdateCvMetadataModal}
           onMakeCopy={handleOpenMakeCopyModal}
           onDelete={onDelete}
         />
       )}
-      {isSignedIn && isEditNameModalOpened && (
-        <EditCvMetadataModal
-          title={t('editNameModal.title')}
-          submitTitle={t('editNameModal.save')}
-          submitSubmittingTitle={t('editNameModal.savingStatus')}
+      {isSignedIn && isUpdateCvMetadataModalOpened && (
+        <UpdateCvMetadataMetadata
+          title={t('updateCvMetadataModal.title')}
+          submitTitle={t('updateCvMetadataModal.save')}
+          submitSubmittingTitle={t('updateCvMetadataModal.savingStatus')}
           initialName={name}
           initialAllowShare={allowShare}
           onSubmit={handleUpdateCvMetadata}
-          onClose={handleCloseEditNameModal}
+          onClose={handleCloseUpdateCvMetadataModal}
         />
       )}
       {isSignedIn && isMakeCopyModalOpened && (

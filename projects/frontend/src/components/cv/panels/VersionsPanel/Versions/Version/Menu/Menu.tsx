@@ -38,7 +38,7 @@ const Menu: FC<MenuProps> = ({
       trigger='click'
       content={
         <Content>
-          <MenuItem onClick={onEditName}>{t('editName')}</MenuItem>
+          <MenuItem onClick={onEditName}>{t('edit')}</MenuItem>
           <MenuItem onClick={onMakeCopy}>{t('makeCopy')}</MenuItem>
           <MenuItem onClick={onDelete}>{t('delete')}</MenuItem>
         </Content>

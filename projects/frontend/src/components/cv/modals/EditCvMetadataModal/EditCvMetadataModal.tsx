@@ -75,7 +75,7 @@ const EditCvMetadataModal: FC<EditCvMetadataModalProps> = ({
   ...props
 }) => {
   const { t } = useTranslation('translation', {
-    keyPrefix: 'versions.editCvModal',
+    keyPrefix: 'versions.editCvMetadataModal',
   })
   const nameInputRef = useAutoFocus<HTMLInputElement>()
 
