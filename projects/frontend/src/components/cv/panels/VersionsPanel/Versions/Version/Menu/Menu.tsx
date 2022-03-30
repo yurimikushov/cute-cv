@@ -17,7 +17,7 @@ const MenuItem = styled(Button).attrs({
   appearance: 'text',
   withoutPaddings: true,
 })`
-  min-width: 5rem;
+  min-width: 3rem;
   width: min-content;
 `
 

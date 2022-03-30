@@ -28,7 +28,7 @@ const en: Translation = {
     title: 'Versions',
     menu: {
       edit: 'Edit',
-      makeCopy: 'Make copy',
+      makeCopy: 'Copy',
       delete: 'Delete',
       confirmDelete: 'Are you sure you wanna delete this version?',
     },
@@ -49,8 +49,8 @@ const en: Translation = {
       save: 'Save',
     },
     makeCopyModal: {
-      title: 'Make copy',
-      makeCopy: 'Make copy',
+      title: 'Copy',
+      makeCopy: 'Copy',
     },
     saveCvOfUnsignedInUserNotification: {
       description:
