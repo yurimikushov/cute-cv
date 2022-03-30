@@ -19,7 +19,7 @@ const AddCvModal = EditCvMetadataModal
 
 const VersionsPanel: FC<VersionsPanelProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
-  const { disableActiveElements, displayAddButton, onAddEmptyCv, ...rest } =
+  const { className, disableActiveElements, displayAddButton, onAddEmptyCv } =
     props
 
   const {
@@ -31,7 +31,7 @@ const VersionsPanel: FC<VersionsPanelProps> = (props) => {
 
   return (
     <VersionsPanelContext.Provider value={props}>
-      <Container {...rest}>
+      <Container className={className}>
         <Versions />
         {displayAddButton && (
           <>
