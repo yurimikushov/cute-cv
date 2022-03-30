@@ -10,6 +10,7 @@ const Content = styled(Card)`
   max-width: 8rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
 `
 
