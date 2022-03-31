@@ -41,7 +41,7 @@ const en: Translation = {
       allowShare: {
         title: 'Allow share by link',
       },
-      submit: 'Сохранить',
+      submit: 'Save',
     },
     updateCvMetadataModal: {
       title: 'Edit',
