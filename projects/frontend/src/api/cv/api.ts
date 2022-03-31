@@ -13,11 +13,11 @@ import {
   PatchPayload,
   PatchResult,
 } from './model'
-import { validateCv, validateCvMetadata, Cv } from './validations'
+import { validateCv, validateCvMetadata, Cv, CvMetadata } from './validations'
 import { convertRawCv, convertRawCvMetadata } from './utils'
 
 class cvApi {
-  static async loadAll() {
+  static async loadAll(): Promise<Array<CvMetadata>> {
     const { status, data } = await axios.get<LoadAllResult>('/cv')
 
     // eslint-disable-next-line no-magic-numbers
@@ -30,7 +30,7 @@ class cvApi {
     )
   }
 
-  static async load(publicId: string) {
+  static async load(publicId: string): Promise<Cv | null> {
     const { status, data } = await axios.get<LoadResult | ''>(`/cv/${publicId}`)
 
     // eslint-disable-next-line no-magic-numbers
@@ -45,7 +45,7 @@ class cvApi {
     return validateCv(convertRawCv(data))
   }
 
-  static async loadSharable(publicId: string) {
+  static async loadSharable(publicId: string): Promise<Cv> {
     const { data } = await axios.get<LoadSharableResult>(
       `/cv/share/${publicId}`
     )
@@ -72,7 +72,7 @@ class cvApi {
     number,
     allowShare,
     cv,
-  }: UpdatePayload) {
+  }: UpdatePayload): Promise<CvMetadata> {
     const { data } = await axios.put<UpdateResult>(`/cv/${publicId}`, {
       metadata: {
         name,
@@ -85,7 +85,13 @@ class cvApi {
     return validateCvMetadata(convertRawCvMetadata(data))
   }
 
-  static async patch({ publicId, name, number, allowShare, cv }: PatchPayload) {
+  static async patch({
+    publicId,
+    name,
+    number,
+    allowShare,
+    cv,
+  }: PatchPayload): Promise<CvMetadata> {
     const { data } = await axios.patch<PatchResult>(`/cv/${publicId}`, {
       metadata: {
         name,
@@ -98,7 +104,7 @@ class cvApi {
     return validateCvMetadata(convertRawCvMetadata(data))
   }
 
-  static async delete(publicId: string) {
+  static async delete(publicId: string): Promise<void> {
     const { status } = await axios.delete(`/cv/${publicId}`)
 
     // eslint-disable-next-line no-magic-numbers
@@ -107,7 +113,7 @@ class cvApi {
     }
   }
 
-  static loadCvOfUnsignedInUser() {
+  static loadCvOfUnsignedInUser(): Cv | null {
     const rawCV = localStorage.getItem('persist:unsignedin:cv')
 
     if (isNull(rawCV)) {
