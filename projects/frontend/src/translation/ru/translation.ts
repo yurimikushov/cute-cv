@@ -44,7 +44,7 @@ const ru: Translation = {
       submit: 'Сохранить',
     },
     updateCvMetadataModal: {
-      title: 'Изменить',
+      title: 'Изменить резюме',
       savingStatus: 'Сохранение...',
       save: 'Сохранить',
     },

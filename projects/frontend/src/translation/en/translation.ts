@@ -44,12 +44,12 @@ const en: Translation = {
       submit: 'Save',
     },
     updateCvMetadataModal: {
-      title: 'Edit',
+      title: 'Edit CV',
       savingStatus: 'Saving...',
       save: 'Save',
     },
     makeCopyModal: {
-      title: 'Copy',
+      title: 'Copy CV',
       makeCopy: 'Copy',
     },
     saveCvOfUnsignedInUserNotification: {
@@ -58,7 +58,7 @@ const en: Translation = {
       save: 'Yes, save',
     },
     saveCvOfUnsignedInUserModal: {
-      title: 'Save cv',
+      title: 'Save CV',
       save: 'Save',
     },
     addModal: {
