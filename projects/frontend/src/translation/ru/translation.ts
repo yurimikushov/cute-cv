@@ -17,6 +17,11 @@ const ru: Translation = {
       description: 'чтобы просто попробовать',
     },
   },
+  errorBoundaryModal: {
+    title: 'Произошла ошибка',
+    description: 'Пожалуйста, попробуйте снова по позже',
+    reset: 'Попробовать еще раз',
+  },
   panel: {
     preview: 'Посмотреть',
     edit: 'Редактировать',

@@ -15,6 +15,11 @@ type Translation = {
       description: string
     }
   }
+  errorBoundaryModal: {
+    title: string
+    description: string
+    reset: string
+  }
   panel: {
     preview: string
     edit: string

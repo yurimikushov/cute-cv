@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import Modal from 'components/ui/Modal'
 import Button from 'components/ui/Button'
@@ -29,12 +30,15 @@ const ErrorBoundaryModal: FC<ErrorBoundaryModalProps> = ({
   onResetErrorBoundary,
   ...props
 }) => {
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'errorBoundaryModal',
+  })
   return (
     <Container {...props}>
-      <Title>An error has occurred</Title>
-      <Error>Sorry, but please try that again later</Error>
+      <Title>{t('title')}</Title>
+      <Error>{t('description')}</Error>
       <Button appearance='outlined' onClick={onResetErrorBoundary}>
-        Try again
+        {t('reset')}
       </Button>
     </Container>
   )

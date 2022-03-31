@@ -17,6 +17,11 @@ const en: Translation = {
       description: 'to just try it',
     },
   },
+  errorBoundaryModal: {
+    title: 'An error has occurred',
+    description: 'Please try it again later',
+    reset: 'Try again',
+  },
   panel: {
     preview: 'Preview',
     edit: 'Edit',
