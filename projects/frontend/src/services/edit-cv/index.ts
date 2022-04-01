@@ -54,4 +54,4 @@ export type {
   Contact,
   Language,
 } from './versions'
-export { default as cvMiddlewares } from './middlewares'
+export { default as editCvMiddlewares } from './middlewares'
