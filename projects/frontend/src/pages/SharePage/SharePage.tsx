@@ -51,7 +51,7 @@ const SharePage: FC = () => {
                 </CvWrapper>
               </PageLayout>
             }
-            rightSide={<ToolbarPanelContainer />}
+            rightSide={<ToolbarPanelContainer id={id} />}
           />
         )}
       </Container>

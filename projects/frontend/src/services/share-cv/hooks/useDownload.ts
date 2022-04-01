@@ -1,18 +1,17 @@
 import { useState } from 'react'
-import isNull from 'lodash/isNull'
+import isUndefined from 'lodash/isUndefined'
 import isEmpty from 'lodash/isEmpty'
 import downloadPDF from 'lib/downloadPDF'
+import { useSharableCv } from '../api'
 import { CV_CONTAINER_ID } from '../constants'
-import { cvAtom } from '../store'
 
-const useDownload = () => {
+const useDownload = (id: string) => {
+  const { data: cv } = useSharableCv(id)
   const [isDownloading, setIsDownloading] = useState(false)
 
   const handleDownloadPDF = async () => {
-    const cv = cvAtom.get()
-
-    if (isNull(cv)) {
-      throw new Error('')
+    if (isUndefined(cv)) {
+      throw new Error(`Cv should be defined to download it`)
     }
 
     setIsDownloading(true)

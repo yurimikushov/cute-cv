@@ -3,8 +3,11 @@ import { useDownload } from 'services/share-cv'
 import ToolbarPanel from 'components/cv/panels/ToolbarPanel'
 import ToolbarPanelContainerProps from './ToolbarPanelContainer.props'
 
-const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = (props) => {
-  const { isDownloading, downloadPDF } = useDownload()
+const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = ({
+  id,
+  ...props
+}) => {
+  const { isDownloading, downloadPDF } = useDownload(id)
 
   return (
     <ToolbarPanel
