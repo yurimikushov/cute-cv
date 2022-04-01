@@ -6,15 +6,13 @@ import {
 } from '@reduxjs/toolkit'
 import { persistStore } from 'redux-persist'
 import rootReducer from './reducer'
-import { editCvMiddlewares } from './edit-cv'
-import { shareCvMiddlewares } from './share-cv'
+import middlewares from './middlewares'
 
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({ serializableCheck: false }),
-    ...editCvMiddlewares,
-    ...shareCvMiddlewares,
+    ...middlewares,
   ],
 })
 
