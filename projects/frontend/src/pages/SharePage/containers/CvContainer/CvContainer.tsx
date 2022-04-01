@@ -1,5 +1,6 @@
 import { FC } from 'react'
-import { CV_CONTAINER_ID } from 'services/share-cv'
+import isUndefined from 'lodash/isUndefined'
+import { useSharableCv, CV_CONTAINER_ID } from 'services/share-cv'
 import CvLayout from 'layouts/CvLayout'
 import Header from 'components/cv/page/Header'
 import Avatar from 'components/cv/page/Avatar'
@@ -11,7 +12,13 @@ import Technologies from 'components/cv/page/Technologies'
 import Languages from 'components/cv/page/Languages'
 import CvContainerProps from './CvContainer.props'
 
-const CvContainer: FC<CvContainerProps> = ({ cv, ...props }) => {
+const CvContainer: FC<CvContainerProps> = ({ id, ...props }) => {
+  const { data: cv } = useSharableCv(id)
+
+  if (isUndefined(cv)) {
+    return null
+  }
+
   const { content } = cv
   const {
     fullName,

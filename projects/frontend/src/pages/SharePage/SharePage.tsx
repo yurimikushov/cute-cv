@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
 import styled from 'styled-components'
 import isUndefined from 'lodash/isUndefined'
-import { useSharableCv } from 'services/share-cv'
+import { useGetSharableCv } from 'services/share-cv'
 import PanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
 import Loader from 'components/ui/Loader'
@@ -32,7 +32,7 @@ const SharePage: FC = () => {
     throw new Error('[SharePage] Required `id` param is missed')
   }
 
-  const { isLoading, cv, error } = useSharableCv(id)
+  const { isLoading, data: cv, error } = useGetSharableCv(id)
 
   return (
     <>
@@ -42,12 +42,12 @@ const SharePage: FC = () => {
       <Container>
         {isLoading && <Loader.FullScreen />}
         {error && <ErrorStub message={t('error')} />}
-        {!isLoading && !error && cv && (
+        {!isLoading && !error && (
           <PanelsLayout
             main={
               <PageLayout>
                 <CvWrapper>
-                  <CvContainer cv={cv} />
+                  <CvContainer id={id} />
                 </CvWrapper>
               </PageLayout>
             }
