@@ -16,8 +16,8 @@ import Loader from 'components/ui/Loader'
 import VersionsPanelContainer from './containers/VersionsPanelContainer'
 import ToolbarPanelContainer from './containers/ToolbarPanelContainer'
 import CvContainer from './containers/CvContainer'
+import BaseToolPanelContainer from './containers/ToolPanelContainer'
 import SaveCvOfUnsignedInUserContainer from './containers/SaveCvOfUnsignedInUserContainer'
-import BaseToolPanel from './ToolPanel'
 
 const Container = styled.div`
   margin-top: 1.25rem;
@@ -26,7 +26,7 @@ const Container = styled.div`
   justify-content: center;
 `
 
-const ToolPanel = styled(BaseToolPanel)`
+const ToolPanelContainer = styled(BaseToolPanelContainer)`
   padding: 1rem;
 `
 
@@ -59,7 +59,7 @@ const HomePage: FC = () => {
           leftSide={<VersionsPanelContainer />}
           main={
             <PageLayout>
-              <ToolPanel />
+              <ToolPanelContainer />
               <CvWrapper>
                 <CvContainer />
               </CvWrapper>

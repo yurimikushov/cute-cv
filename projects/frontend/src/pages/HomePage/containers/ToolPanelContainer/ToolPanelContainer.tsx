@@ -6,7 +6,7 @@ import { useDownload, useEditable } from 'services/edit-cv'
 import Button from 'components/ui/Button'
 import colors from 'styles/colors'
 import useSavedStatus from './hooks/useSavedStatus'
-import ToolPanelProps from './ToolPanel.props'
+import ToolPanelContainerProps from './ToolPanelContainer.props'
 
 const Container = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ const SavedStatus = styled.div`
   color: ${colors.gray300};
 `
 
-const ToolPanel: FC<ToolPanelProps> = (props) => {
+const ToolPanelContainer: FC<ToolPanelContainerProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'panel' })
   const { editable, toggleEditable } = useEditable()
   const savedStatus = useSavedStatus()
@@ -43,4 +43,4 @@ const ToolPanel: FC<ToolPanelProps> = (props) => {
   )
 }
 
-export default ToolPanel
+export default ToolPanelContainer
