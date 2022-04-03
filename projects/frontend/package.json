@@ -26,7 +26,7 @@
     ]
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.8.0",
+    "@reduxjs/toolkit": "^1.8.1",
     "@sentry/browser": "^6.19.3",
     "@sentry/tracing": "^6.18.2",
     "axios": "^0.26.0",
@@ -67,7 +67,7 @@
     "@typescript-eslint/parser": "^5.17.0",
     "cross-env": "^7.0.3",
     "eslint-plugin-lodash": "^7.4.0",
-    "eslint-plugin-react": "^7.29.2",
+    "eslint-plugin-react": "^7.29.4",
     "lint-staged": "^12.3.4",
     "postcss": "^8.4.7",
     "prettier": "^2.6.2",
