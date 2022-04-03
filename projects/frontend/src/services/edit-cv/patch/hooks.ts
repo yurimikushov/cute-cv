@@ -1,3 +1,4 @@
+import { AnyAction } from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectIsPatching } from './selectors'
 import { patch, PatchResult } from './thunks'
@@ -18,11 +19,9 @@ const useUpdateCvMetadata = () => {
     name: string,
     allowShare: boolean
   ) => {
-    return (
-      dispatch(patch({ publicId, name, allowShare }))
-        // @ts-expect-error bad typing
-        .unwrap() as unknown as Promise<PatchResult>
-    )
+    return dispatch(
+      patch({ publicId, name, allowShare }) as unknown as AnyAction
+    ).unwrap() as unknown as Promise<PatchResult>
   }
 
   return handleUpdateCvMetadata
