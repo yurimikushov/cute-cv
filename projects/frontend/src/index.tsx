@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-max-depth */
 import React from 'react'
-import { render } from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { HelmetProvider } from 'react-helmet-async'
@@ -17,7 +17,7 @@ import ResetStyles from 'styles/global/ResetStyles'
 import GlobalStyles from 'styles/global/GlobalStyles'
 import App from './App'
 
-render(
+createRoot(document.querySelector('.app') as HTMLDivElement).render(
   <React.StrictMode>
     <GlobalErrorBoundary onError={logError} />
     <Provider store={store}>
@@ -33,6 +33,5 @@ render(
         </ErrorBoundary>
       </PersistGate>
     </Provider>
-  </React.StrictMode>,
-  document.querySelector('.app')
+  </React.StrictMode>
 )
