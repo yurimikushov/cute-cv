@@ -9,8 +9,8 @@ type Notification = {
 }
 
 type NotificationsContext = {
-  show: (content: NotificationContent) => NotificationId
-  hide: (id: NotificationId) => void
+  open: (content: NotificationContent) => NotificationId
+  close: (id: NotificationId) => void
 }
 
 export default createContext<NotificationsContext | null>(null)

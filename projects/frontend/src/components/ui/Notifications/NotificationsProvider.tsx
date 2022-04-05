@@ -10,8 +10,8 @@ const NotificationsProvider: FC = ({ children }) => {
 
   const contextValue = useMemo(
     () => ({
-      show: showNotification,
-      hide: hideNotification,
+      open: showNotification,
+      close: hideNotification,
     }),
     [showNotification, hideNotification]
   )

@@ -13,13 +13,13 @@ const useSaveCvOfUnsignedInUserModal = () => {
     close: handleCloseCopyUnsignedInCvModal,
   } = useManageModal()
   const { isSignedIn } = useIsSignedIn()
-  const { show: notify, hide } = useNotification()
+  const { open, close } = useNotification()
   const { isExists, copy } = useSaveCvOfUnsignedInUser()
   const notificationIdRef = useRef<string | null>(null)
 
   useEffect(() => {
     if (!isSignedIn) {
-      hideNotification()
+      closeNotification()
       return
     }
 
@@ -31,21 +31,21 @@ const useSaveCvOfUnsignedInUserModal = () => {
   }, [isSignedIn, isExists])
 
   const showNotification = () => {
-    notificationIdRef.current = notify(
+    notificationIdRef.current = open(
       <CvOfUnsignedInUserExistsNotification
         onSave={handleOpenCopyUnsignedInCvModal}
       />
     )
   }
 
-  const hideNotification = () => {
+  const closeNotification = () => {
     const { current: id } = notificationIdRef
 
     if (isNull(id)) {
       return
     }
 
-    hide(id)
+    close(id)
   }
 
   const handleSaveCvOfUnsignedInUser = async (
@@ -54,7 +54,7 @@ const useSaveCvOfUnsignedInUserModal = () => {
   ) => {
     await copy(name, allowShare)
     handleCloseCopyUnsignedInCvModal()
-    hideNotification()
+    closeNotification()
   }
 
   return {
