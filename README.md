@@ -21,7 +21,7 @@ You can make CV with English or Russian section titles. To toggle language, use 
 💥 **Markdown in textarea**
 
 You can use `markdown` syntax in a textarea (field where is supported multiline text).
-So you can add refs, highlight words, even insert pictures. For example, to add this ref [My GitHub profile](https://github.com/yurimikushov) you should write like this  `[My GitHub profile](https://github.com/yurimikushov)`.
+So you can add refs, highlight words, even insert pictures. For example, to add this ref [My GitHub profile](https://github.com/yurimikushov) you should write like this `[My GitHub profile](https://github.com/yurimikushov)`.
 
 ## Dev
 
@@ -53,12 +53,6 @@ npm i
 ```
 
 ## Plans/Ideas
-
-### Versions
-
-You can't create multiple versions of your CV right now. For example, you can't create a targeted CV for specific companies or positions. Sometimes it may be annoying.
-
-Versions may solve this and another issue. Now you can compose a CV even if you aren't signed in. So if you compose a CV and then sign in you'll lose your current CV. It works this way because we can't exactly decide which CV is more important (current or old).
 
 ### Share CV via link
 
