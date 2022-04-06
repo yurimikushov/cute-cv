@@ -1,15 +1,26 @@
-import { AnyAction, configureStore, MiddlewareAPI } from '@reduxjs/toolkit'
+import {
+  AnyAction,
+  configureStore,
+  ConfigureStoreOptions,
+  MiddlewareAPI,
+} from '@reduxjs/toolkit'
 import { persistStore } from 'redux-persist'
 import rootReducer from './reducer'
 import middlewares from './middlewares'
 
-const store = configureStore({
+const config: ConfigureStoreOptions = {
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({ serializableCheck: false }),
     ...middlewares,
   ],
-})
+}
+
+const store = configureStore(
+  // Middleware is described in bad way and it breaks `dispatch` func
+  // It's why `middleware` is omitted
+  config as Omit<ConfigureStoreOptions, 'middleware'>
+)
 
 const persistor = persistStore(store)
 
