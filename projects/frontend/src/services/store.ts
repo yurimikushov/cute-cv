@@ -1,9 +1,4 @@
-import {
-  AnyAction,
-  configureStore,
-  Dispatch,
-  MiddlewareAPI,
-} from '@reduxjs/toolkit'
+import { AnyAction, configureStore, MiddlewareAPI } from '@reduxjs/toolkit'
 import { persistStore } from 'redux-persist'
 import rootReducer from './reducer'
 import middlewares from './middlewares'
@@ -19,6 +14,8 @@ const store = configureStore({
 const persistor = persistStore(store)
 
 type RootState = ReturnType<typeof rootReducer>
+
+type Dispatch = typeof store.dispatch
 
 type Store = MiddlewareAPI<Dispatch, RootState>
 
