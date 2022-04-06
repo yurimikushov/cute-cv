@@ -11,7 +11,4 @@ const patch = createAsyncThunk(
   }
 )
 
-type PatchResult = NonNullable<Awaited<ReturnType<typeof cvApi.patch>>>
-
 export { patch }
-export type { PatchResult }

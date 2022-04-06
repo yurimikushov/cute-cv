@@ -11,7 +11,5 @@ const add = createAsyncThunk(
   }
 )
 
-type AddResult = NonNullable<Awaited<ReturnType<typeof cvApi.add>>>
-
 export { add }
-export type { AddPayload, AddResult }
+export type { AddPayload }

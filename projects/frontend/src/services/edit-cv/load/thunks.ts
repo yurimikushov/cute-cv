@@ -24,8 +24,4 @@ const load = createAsyncThunk(
   }
 )
 
-type LoadAllResult = NonNullable<Awaited<ReturnType<typeof cvApi.loadAll>>>
-type LoadResult = NonNullable<Awaited<ReturnType<typeof cvApi.load>>>
-
 export { loadAll, load }
-export type { LoadAllResult, LoadResult }

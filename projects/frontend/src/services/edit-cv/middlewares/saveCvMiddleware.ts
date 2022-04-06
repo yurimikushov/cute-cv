@@ -1,4 +1,3 @@
-import { AnyAction } from '@reduxjs/toolkit'
 import debounce from 'lodash/debounce'
 import isNil from 'lodash/isNil'
 import defer from 'lodash/defer'
@@ -10,8 +9,8 @@ import {
   isCvContentChanged,
   updateCvMetadata,
 } from '../versions'
-import { add, AddResult } from '../add'
-import { update, UpdateResult } from '../update'
+import { add } from '../add'
+import { update } from '../update'
 
 const AUTO_SAVE_TIMING = 1_000
 
@@ -21,11 +20,9 @@ const saveCvOfSignedInUser = debounce((store: Store) => {
 
   if (isNil(publicId)) {
     store
-      .dispatch(
-        add({ name, number, allowShare, cv: content }) as unknown as AnyAction
-      )
+      .dispatch(add({ name, number, allowShare, cv: content }))
       .unwrap()
-      .then(({ publicId, savedAt, allowShare }: AddResult) => {
+      .then(({ publicId, savedAt, allowShare }) => {
         store.dispatch(
           updateCvMetadata({
             publicId,
@@ -46,10 +43,10 @@ const saveCvOfSignedInUser = debounce((store: Store) => {
           number,
           allowShare,
           cv: content,
-        }) as unknown as AnyAction
+        })
       )
       .unwrap()
-      .then(({ publicId, savedAt, allowShare }: UpdateResult) => {
+      .then(({ publicId, savedAt, allowShare }) => {
         store.dispatch(
           updateCvMetadata({
             publicId,

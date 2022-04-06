@@ -11,7 +11,5 @@ const update = createAsyncThunk(
   }
 )
 
-type UpdateResult = NonNullable<Awaited<ReturnType<typeof cvApi.update>>>
-
 export { update }
-export type { UpdatePayload, UpdateResult }
+export type { UpdatePayload }
