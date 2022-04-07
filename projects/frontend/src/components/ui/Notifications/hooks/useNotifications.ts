@@ -7,7 +7,10 @@ const useNotifications = () => {
   const [notifications, setNotifications] = useState<Array<Notification>>([])
 
   const showNotification = useCallback(
-    (content: Notification['content']): Notification['id'] => {
+    (
+      content: Notification['content'],
+      options: Notification['options'] = {}
+    ): Notification['id'] => {
       const notificationId = nanoid()
 
       setNotifications((notifications) => [
@@ -15,6 +18,7 @@ const useNotifications = () => {
         {
           id: notificationId,
           content,
+          options,
         },
       ])
 
@@ -23,7 +27,7 @@ const useNotifications = () => {
     []
   )
 
-  const hideNotification = useCallback((id: string) => {
+  const hideNotification = useCallback((id: Notification['id']) => {
     setNotifications((notifications) => reject(notifications, { id }))
   }, [])
 

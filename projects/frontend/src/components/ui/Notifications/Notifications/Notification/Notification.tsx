@@ -1,5 +1,6 @@
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import styled from 'styled-components'
+import useTimer from 'hooks/useTimer'
 import { CloseButton } from 'components/ui/Button'
 import colors from 'styles/colors'
 import shadows from 'styles/shadows'
@@ -32,14 +33,23 @@ const Content = styled.div`
 `
 
 const Notification: FC<NotificationProps> = ({
+  id,
+  options,
   children,
   onHide,
   ...props
 }) => {
+  // eslint-disable-next-line no-magic-numbers
+  const { duration = -1 } = options
+
+  const handleHide = useCallback(() => onHide(id), [id])
+
+  useTimer(duration, handleHide)
+
   return (
     <Container {...props}>
       <Content>{children}</Content>
-      <CloseButton onClick={onHide} />
+      <CloseButton onClick={handleHide} />
     </Container>
   )
 }

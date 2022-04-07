@@ -3,13 +3,21 @@ import { createContext } from 'react'
 type NotificationId = string
 type NotificationContent = string | JSX.Element
 
+type NotificationOptions = {
+  duration?: number
+}
+
 type Notification = {
   id: NotificationId
   content: NotificationContent
+  options: NotificationOptions
 }
 
 type NotificationsContext = {
-  open: (content: NotificationContent) => NotificationId
+  open: (
+    content: NotificationContent,
+    options?: NotificationOptions
+  ) => NotificationId
   close: (id: NotificationId) => void
 }
 

@@ -31,8 +31,8 @@ const Notifications: FC<NotificationsProps> = ({
 }) => {
   return (
     <Container {...props}>
-      {map(notifications, ({ id, content }) => (
-        <Notification key={id} onHide={() => onHide(id)}>
+      {map(notifications, ({ id, content, options }) => (
+        <Notification key={id} id={id} options={options} onHide={onHide}>
           {content}
         </Notification>
       ))}

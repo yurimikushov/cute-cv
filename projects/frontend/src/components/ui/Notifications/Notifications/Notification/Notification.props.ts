@@ -1,6 +1,10 @@
+import { Notification } from '../../NotificationsContext'
+
 type NotificationProps = {
   className?: string
-  onHide: () => void
+  id: Notification['id']
+  options: Notification['options']
+  onHide: (id: Notification['id']) => void
 }
 
 export default NotificationProps
