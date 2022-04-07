@@ -15,6 +15,16 @@ type ToolbarPanelProps = {
 ) &
   (
     | {
+        allowShare?: boolean
+        onCopySharableLink: () => void
+      }
+    | {
+        allowShare: false
+        onCopySharableLink?: never
+      }
+  ) &
+  (
+    | {
         disableAuth?: boolean
         isSignInChecking: boolean
         isSignedIn: boolean

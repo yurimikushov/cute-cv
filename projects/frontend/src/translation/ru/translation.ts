@@ -78,6 +78,10 @@ const ru: Translation = {
       pdf: 'PDF',
       json: 'JSON',
     },
+    share: {
+      title: 'Доступ',
+      copyLink: 'Ссылка', // TODO: more successful and short label needed
+    },
     language: {
       title: 'Язык',
     },

@@ -1,5 +1,5 @@
 export { shareCvReducer, useGetSharableCv, useSharableCv } from './api'
 export { default as shareCvMiddlewares } from './middlewares'
-export { useDownload } from './hooks'
+export { useDownload, useCopySharableCvLink } from './hooks'
 export { CV_CONTAINER_ID } from './constants'
 export type { Cv } from './model'

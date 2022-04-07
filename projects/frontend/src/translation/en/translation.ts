@@ -78,6 +78,10 @@ const en: Translation = {
       pdf: 'PDF',
       json: 'JSON',
     },
+    share: {
+      title: 'Share',
+      copyLink: 'Copy link',
+    },
     language: {
       title: 'Language',
     },

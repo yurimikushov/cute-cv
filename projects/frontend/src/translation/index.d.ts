@@ -75,6 +75,10 @@ type Translation = {
       pdf: string
       json: string
     }
+    share: {
+      title: string
+      copyLink: string
+    }
     language: {
       title: string
     }
