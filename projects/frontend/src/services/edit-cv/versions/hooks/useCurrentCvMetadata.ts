@@ -4,7 +4,8 @@ import { selectCvMetadata } from '../selectors'
 import { markAsSaved, markAsUnsaved } from '../slice'
 
 const useCurrentCvMetadata = () => {
-  const { id, name, isNew, isSaved, savedAt } = useSelector(selectCvMetadata)
+  const { id, name, isNew, isSaved, savedAt, allowShare } =
+    useSelector(selectCvMetadata)
 
   const dispatch = useDispatch()
 
@@ -22,6 +23,7 @@ const useCurrentCvMetadata = () => {
     isNew,
     isSaved,
     savedAt,
+    allowShare,
     markAsSaved: handleMarkAsSaved,
     markAsUnsaved: handleMarkAsUnsaved,
   }
