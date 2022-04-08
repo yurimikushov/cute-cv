@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import map from 'lodash/map'
 import { H2 } from 'components/ui/H'
+import { useVersionsPanel } from '../VersionsPanelContext'
 import Version from './Version'
 import VersionsProps from './Versions.props'
-import { useVersionsPanel } from '../VersionsPanelContext'
 
 const Container = styled.div`
   & > * + * {
