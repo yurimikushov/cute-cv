@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useIsSignedIn } from 'services/auth'
 import {
   useAllCvMetadata,
   useCurrentCvMetadata,
@@ -16,6 +17,7 @@ import useShouldDisableActiveElements from './hooks/useShouldDisableActiveElemen
 
 // eslint-disable-next-line max-statements
 const VersionsPanelContainer: FC = (props) => {
+  const { isSignedIn } = useIsSignedIn()
   const allCv = useAllCvMetadata()
   const { id, isNew, isSaved } = useCurrentCvMetadata()
   const { isCvUpdating } = useIsCvUpdating()
@@ -38,6 +40,7 @@ const VersionsPanelContainer: FC = (props) => {
       isSaved={isSaved}
       isCvUpdating={isCvUpdating}
       isCvDeleting={isCvDeleting}
+      isSignedIn={isSignedIn}
       disableActiveElements={shouldDisableActiveElements}
       displayAddButton={shouldDisplayAddButton}
       onAddEmptyCv={addEmptyCv}

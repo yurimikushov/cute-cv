@@ -1,10 +1,10 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useIsSignedIn } from 'services/auth'
 import EditCvMetadataModal from 'components/cv/modals/EditCvMetadataModal'
 import Button from 'components/ui/Button'
 import colors from 'styles/colors'
+import { useVersionsPanel } from '../../VersionsPanelContext'
 import useUpdateCvMetadataModal from './hooks/useUpdateCvMetadataModal'
 import useMakeCopyModal from './hooks/useMakeCopyModal'
 import Menu from './Menu'
@@ -38,7 +38,7 @@ const Version: FC<VersionProps> = ({
   ...props
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
-  const { isSignedIn } = useIsSignedIn()
+  const { isSignedIn } = useVersionsPanel()
   const {
     isUpdateCvMetadataModalOpened,
     handleOpenUpdateCvMetadataModal,

@@ -12,6 +12,7 @@ type VersionsPanelProps = {
   isSaved: boolean
   isCvUpdating: boolean
   isCvDeleting: boolean
+  isSignedIn: boolean
   disableActiveElements: boolean
   displayAddButton: boolean
   onAddEmptyCv: () => void
