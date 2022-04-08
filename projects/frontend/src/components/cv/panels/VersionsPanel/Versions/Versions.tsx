@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import map from 'lodash/map'
 import { H2 } from 'components/ui/H'
-import Radio from 'components/ui/Radio'
 import Version from './Version'
 import VersionsProps from './Versions.props'
 import { useVersionsPanel } from '../VersionsPanelContext'
@@ -19,7 +18,7 @@ const Versions: FC<VersionsProps> = (props) => {
   const {
     isCvUpdating,
     isCvDeleting,
-    id,
+    id: selectedId,
     isNew,
     isSaved,
     allCv,
@@ -46,33 +45,27 @@ const Versions: FC<VersionsProps> = (props) => {
   return (
     <Container {...props}>
       <H2>{t('title')}</H2>
-      <Radio
-        value={id}
-        vertical
-        disabled={shouldDisableActiveElements}
-        onChange={onSelectCv}
-      >
-        {map(allCv, ({ publicId, id, name, isNew, allowShare }) => (
-          <Radio.Item key={id} value={id}>
-            <Version
-              name={name}
-              allowShare={allowShare}
-              disabled={shouldDisableActiveElements}
-              onUpdateCvMetadata={(newName, allowShare) =>
-                onUpdateCvMetadata({
-                  publicId,
-                  id,
-                  name: newName,
-                  isNew,
-                  allowShare,
-                })
-              }
-              onMakeCvCopy={(copyName) => onMakeCvCopy(id, copyName)}
-              onDelete={() => handleDeleteCv(id, isNew)}
-            />
-          </Radio.Item>
-        ))}
-      </Radio>
+      {map(allCv, ({ publicId, id, name, isNew, allowShare }) => (
+        <Version
+          key={id}
+          name={name}
+          current={id === selectedId}
+          allowShare={allowShare}
+          disabled={shouldDisableActiveElements}
+          onSelectCv={() => onSelectCv(id)}
+          onUpdateCvMetadata={(newName, allowShare) =>
+            onUpdateCvMetadata({
+              publicId,
+              id,
+              name: newName,
+              isNew,
+              allowShare,
+            })
+          }
+          onMakeCvCopy={(copyName) => onMakeCvCopy(id, copyName)}
+          onDelete={() => handleDeleteCv(id, isNew)}
+        />
+      ))}
     </Container>
   )
 }

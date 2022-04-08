@@ -3,13 +3,15 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useIsSignedIn } from 'services/auth'
 import EditCvMetadataModal from 'components/cv/modals/EditCvMetadataModal'
+import Button from 'components/ui/Button'
+import colors from 'styles/colors'
 import useUpdateCvMetadataModal from './hooks/useUpdateCvMetadataModal'
 import useMakeCopyModal from './hooks/useMakeCopyModal'
 import Menu from './Menu'
 import VersionProps from './Version.props'
 
 const Container = styled.div`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
 `
@@ -17,15 +19,19 @@ const Container = styled.div`
 const UpdateCvMetadataMetadata = EditCvMetadataModal
 const MakeCvCopyModal = EditCvMetadataModal
 
-const Name = styled.span`
+const Name = styled(Button)<Pick<VersionProps, 'current'>>`
   max-width: 5rem;
   overflow-wrap: break-word;
+
+  ${({ current }) => current && `color: ${colors.black}`}
 `
 
 const Version: FC<VersionProps> = ({
   name,
   allowShare,
+  current,
   disabled,
+  onSelectCv,
   onUpdateCvMetadata,
   onMakeCvCopy,
   onDelete,
@@ -48,7 +54,9 @@ const Version: FC<VersionProps> = ({
 
   return (
     <Container {...props}>
-      <Name>{name}</Name>
+      <Name appearance='text' current={current} onClick={onSelectCv}>
+        {name}
+      </Name>
       {isSignedIn && (
         <Menu
           disabled={disabled}
