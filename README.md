@@ -52,12 +52,6 @@ cd ../../projects/backend
 npm i
 ```
 
-## Plans/Ideas
-
-### Share CV via link
-
-I think it's a good idea to be able to share a composed CV with other people via a link. Just imagine a situation where you can share your CV without saving it as PDf file. Sometimes this ability can save time.
-
 ## License
 
 Cute CV is [MIT licensed](LICENSE).
