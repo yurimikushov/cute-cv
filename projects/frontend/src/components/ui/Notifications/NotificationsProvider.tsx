@@ -7,7 +7,7 @@ import NotificationsContext, {
 import Notifications from './Notifications'
 
 const NotificationsProvider: FC = ({ children }) => {
-  const { notifications, showNotification, hideNotification } =
+  const { notifications, showNotification, closeNotification } =
     useNotifications()
 
   const contextValue = useMemo(
@@ -19,9 +19,9 @@ const NotificationsProvider: FC = ({ children }) => {
       error: (content, options) => {
         return showNotification(content, { ...options, type: 'error' })
       },
-      close: hideNotification,
+      close: closeNotification,
     }),
-    [showNotification, hideNotification]
+    [showNotification, closeNotification]
   )
 
   return (
@@ -30,7 +30,7 @@ const NotificationsProvider: FC = ({ children }) => {
       <Portal>
         <Notifications
           notifications={notifications}
-          onHide={hideNotification}
+          onClose={closeNotification}
         />
       </Portal>
     </NotificationsContext.Provider>

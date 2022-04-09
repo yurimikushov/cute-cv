@@ -26,13 +26,13 @@ const Container = styled.div`
 
 const Notifications: FC<NotificationsProps> = ({
   notifications,
-  onHide,
+  onClose,
   ...props
 }) => {
   return (
     <Container {...props}>
       {map(notifications, ({ id, content, options }) => (
-        <Notification key={id} id={id} options={options} onHide={onHide}>
+        <Notification key={id} id={id} options={options} onClose={onClose}>
           {content}
         </Notification>
       ))}

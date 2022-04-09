@@ -65,13 +65,13 @@ const Notification: FC<NotificationProps> = ({
   id,
   options,
   children,
-  onHide,
+  onClose,
   ...props
 }) => {
   // eslint-disable-next-line no-magic-numbers
   const { type = 'none', duration = -1 } = options
 
-  const handleHide = useCallback(() => onHide(id), [id])
+  const handleHide = useCallback(() => onClose(id), [id])
 
   useTimer(duration, handleHide)
 

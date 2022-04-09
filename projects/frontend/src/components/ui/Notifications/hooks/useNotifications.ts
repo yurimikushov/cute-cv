@@ -27,14 +27,14 @@ const useNotifications = () => {
     []
   )
 
-  const hideNotification = useCallback((id: Notification['id']) => {
+  const closeNotification = useCallback((id: Notification['id']) => {
     setNotifications((notifications) => reject(notifications, { id }))
   }, [])
 
   return {
     notifications,
     showNotification,
-    hideNotification,
+    closeNotification,
   }
 }
 
