@@ -1,6 +1,33 @@
 import useNotification from './useNotification'
 import { Notification } from '../NotificationsContext'
 
+type UseWithNotification = {
+  <R>(
+    callback: () => R | Promise<R | undefined>,
+    options: Options
+  ): () => Promise<R | undefined>
+  <T1, R>(
+    callback: (...args: [T1]) => R | Promise<R | undefined>,
+    options: Options
+  ): (...args: [T1]) => Promise<R | undefined>
+  <T1, T2, R>(
+    callback: (...args: [T1, T2]) => R | Promise<R | undefined>,
+    options: Options
+  ): (...args: [T1, T2]) => Promise<R | undefined>
+  <T1, T2, T3, R>(
+    callback: (...args: [T1, T2, T3]) => R | Promise<R | undefined>,
+    options: Options
+  ): (...args: [T1, T2, T3]) => Promise<R | undefined>
+  <T1, T2, T3, T4, R>(
+    callback: (...args: [T1, T2, T3, T4]) => R | Promise<R | undefined>,
+    options: Options
+  ): (...args: [T1, T2, T3, T4]) => Promise<R | undefined>
+  <T1, T2, T3, T4, T5, R>(
+    callback: (...args: [T1, T2, T3, T4, T5]) => R | Promise<R | undefined>,
+    options: Options
+  ): (...args: [T1, T2, T3, T4, T5]) => Promise<R | undefined>
+}
+
 type Options = {
   successContent: Notification['content']
   errorContent: Notification['content']
@@ -8,16 +35,15 @@ type Options = {
 
 const DURATION = 3_000
 
-// TODO: should describe `callback` better
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useWithNotification = <T extends (...args: any) => any>(
-  callback: T,
+const useWithNotification: UseWithNotification = (
+  callback: (...args: Array<unknown>) => unknown,
   { successContent, errorContent }: Options
 ) => {
   const { success, error } = useNotification()
 
-  const handleWithNotification = async (...args: Parameters<T>) => {
+  const handleWithNotification = async (
+    ...args: Parameters<typeof callback>
+  ) => {
     try {
       const result = await Promise.resolve(callback(...args))
 
