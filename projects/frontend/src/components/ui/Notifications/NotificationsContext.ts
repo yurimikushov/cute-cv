@@ -15,13 +15,21 @@ type Notification = {
   options: NotificationOptions
 }
 
-type NotificationsContext = {
+type NotificationsContextValue = {
   open: (
     content: NotificationContent,
     options?: NotificationOptions
   ) => NotificationId
+  success: (
+    content: NotificationContent,
+    options?: Omit<NotificationOptions, 'type'>
+  ) => NotificationId
+  error: (
+    content: NotificationContent,
+    options?: Omit<NotificationOptions, 'type'>
+  ) => NotificationId
   close: (id: NotificationId) => void
 }
 
-export default createContext<NotificationsContext | null>(null)
-export type { Notification }
+export default createContext<NotificationsContextValue | null>(null)
+export type { NotificationsContextValue, Notification }

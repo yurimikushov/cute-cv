@@ -1,7 +1,9 @@
 import { FC, useMemo } from 'react'
 import Portal from 'components/ui/Portal'
 import useNotifications from './hooks/useNotifications'
-import NotificationsContext from './NotificationsContext'
+import NotificationsContext, {
+  NotificationsContextValue,
+} from './NotificationsContext'
 import Notifications from './Notifications'
 
 const NotificationsProvider: FC = ({ children }) => {
@@ -9,8 +11,14 @@ const NotificationsProvider: FC = ({ children }) => {
     useNotifications()
 
   const contextValue = useMemo(
-    () => ({
+    (): NotificationsContextValue => ({
       open: showNotification,
+      success: (content, options) => {
+        return showNotification(content, { ...options, type: 'success' })
+      },
+      error: (content, options) => {
+        return showNotification(content, { ...options, type: 'error' })
+      },
       close: hideNotification,
     }),
     [showNotification, hideNotification]
