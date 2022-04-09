@@ -1,7 +1,9 @@
 import { FC, useCallback } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import useTimer from 'hooks/useTimer'
 import { CloseButton } from 'components/ui/Button'
+import { ReactComponent as SuccessIcon } from 'icons/success.svg'
+import { ReactComponent as ErrorIcon } from 'icons/error.svg'
 import colors from 'styles/colors'
 import shadows from 'styles/shadows'
 import radiuses from 'styles/radiuses'
@@ -30,7 +32,32 @@ const Container = styled.div`
 
 const Content = styled.div`
   max-width: 20rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 `
+
+const statusIconMixin = css`
+  min-width: 1.5rem;
+  width: 1.5rem;
+  min-height: 1.5rem;
+  height: 1.5rem;
+`
+
+const SuccessStatusIcon = styled(SuccessIcon)`
+  ${statusIconMixin}
+
+  color: ${colors.green200};
+`
+
+const ErrorStatusIcon = styled(ErrorIcon)`
+  ${statusIconMixin}
+
+  color: #ff4d4f;
+  color: ${colors.red200};
+`
+
+const ContentInner = styled.div``
 
 const Notification: FC<NotificationProps> = ({
   id,
@@ -40,7 +67,7 @@ const Notification: FC<NotificationProps> = ({
   ...props
 }) => {
   // eslint-disable-next-line no-magic-numbers
-  const { duration = -1 } = options
+  const { type = 'none', duration = -1 } = options
 
   const handleHide = useCallback(() => onHide(id), [id])
 
@@ -48,7 +75,11 @@ const Notification: FC<NotificationProps> = ({
 
   return (
     <Container {...props}>
-      <Content>{children}</Content>
+      <Content>
+        {type === 'success' && <SuccessStatusIcon />}
+        {type === 'error' && <ErrorStatusIcon />}
+        <ContentInner>{children}</ContentInner>{' '}
+      </Content>
       <CloseButton onClick={handleHide} />
     </Container>
   )

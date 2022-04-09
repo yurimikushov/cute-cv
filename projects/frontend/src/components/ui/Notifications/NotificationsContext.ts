@@ -1,9 +1,11 @@
 import { createContext } from 'react'
 
 type NotificationId = string
+type NotificationType = 'success' | 'error' | 'none'
 type NotificationContent = string | JSX.Element
 
 type NotificationOptions = {
+  type?: NotificationType
   duration?: number
 }
 
