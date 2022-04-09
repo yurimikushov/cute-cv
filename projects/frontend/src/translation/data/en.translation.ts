@@ -1,4 +1,4 @@
-import { Translation } from 'translation'
+import { Translation } from './translation'
 
 const en: Translation = {
   signIn: {
