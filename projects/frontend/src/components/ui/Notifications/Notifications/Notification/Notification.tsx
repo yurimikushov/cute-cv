@@ -57,9 +57,7 @@ const ErrorStatusIcon = styled(ErrorIcon)`
   color: ${colors.red200};
 `
 
-const ContentInner = styled.div`
-  word-break: break-all;
-`
+const ContentInner = styled.div``
 
 const Notification: FC<NotificationProps> = ({
   id,
