@@ -14,12 +14,12 @@ const useNotifications = () => {
       const notificationId = nanoid()
 
       setNotifications((notifications) => [
-        ...notifications,
         {
           id: notificationId,
           content,
           options,
         },
+        ...notifications,
       ])
 
       return notificationId
