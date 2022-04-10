@@ -1,7 +1,7 @@
 type MenuProps = {
   className?: string
   disabled?: boolean
-  onEditName: () => void
+  onEditCvMetadata: () => void
   onMakeCopy: () => void
   onDelete: () => void
 }

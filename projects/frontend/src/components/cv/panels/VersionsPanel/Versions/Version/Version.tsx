@@ -60,7 +60,7 @@ const Version: FC<VersionProps> = ({
       {isSignedIn && (
         <Menu
           disabled={disabled}
-          onEditName={handleOpenUpdateCvMetadataModal}
+          onEditCvMetadata={handleOpenUpdateCvMetadataModal}
           onMakeCopy={handleOpenMakeCopyModal}
           onDelete={onDelete}
         />

@@ -24,7 +24,7 @@ const MenuItem = styled(Button).attrs({
 
 const Menu: FC<MenuProps> = ({
   disabled = false,
-  onEditName,
+  onEditCvMetadata,
   onMakeCopy,
   onDelete,
   ...props
@@ -39,7 +39,7 @@ const Menu: FC<MenuProps> = ({
       trigger='click'
       content={
         <Content>
-          <MenuItem onClick={onEditName}>{t('edit')}</MenuItem>
+          <MenuItem onClick={onEditCvMetadata}>{t('edit')}</MenuItem>
           <MenuItem onClick={onMakeCopy}>{t('makeCopy')}</MenuItem>
           <MenuItem onClick={onDelete}>{t('delete')}</MenuItem>
         </Content>
