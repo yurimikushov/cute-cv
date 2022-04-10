@@ -81,6 +81,12 @@ const ru: Translation = {
     share: {
       title: 'Доступ',
       copyLink: 'Ссылка', // TODO: more successful and short label needed
+      notifications: {
+        linkCopyingResult: {
+          success: 'Ссылка скопирована',
+          error: 'Не удалось скопировать ссылку',
+        },
+      },
     },
     language: {
       title: 'Язык',

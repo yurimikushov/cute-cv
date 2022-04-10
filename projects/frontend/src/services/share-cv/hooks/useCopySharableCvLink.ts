@@ -1,9 +1,9 @@
 import copyToClipboard from 'lib/copyToClipboard'
 
 const useCopySharableCvLink = (id: string) => {
-  const handleCopySharableLink = () => {
+  const handleCopySharableLink = async () => {
     const { origin } = new URL(location.href)
-    copyToClipboard(`${origin}/share/cv/${id}`)
+    await copyToClipboard(`${origin}/share/cv/${id}`)
   }
 
   return {

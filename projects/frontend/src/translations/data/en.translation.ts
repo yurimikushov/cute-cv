@@ -81,6 +81,12 @@ const en: Translation = {
     share: {
       title: 'Share',
       copyLink: 'Copy link',
+      notifications: {
+        linkCopyingResult: {
+          success: 'The link copied',
+          error: `Couldn't copy the link`,
+        },
+      },
     },
     language: {
       title: 'Language',

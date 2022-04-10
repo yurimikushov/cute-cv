@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import noop from 'lodash/noop'
+import { useWithNotification } from 'components/ui/Notifications'
 import { H2 } from 'components/ui/H'
 import Button from 'components/ui/Button'
 import { useToolbarPanel } from '../ToolbarPanelContext'
@@ -17,10 +18,18 @@ const Share: FC<ShareProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'toolbar.share' })
   const { onCopySharableLink = noop } = useToolbarPanel()
 
+  const handleCopySharableLinkAndNotify = useWithNotification(
+    onCopySharableLink,
+    {
+      successContent: t('notifications.linkCopyingResult.success'),
+      errorContent: t('notifications.linkCopyingResult.error'),
+    }
+  )
+
   return (
     <Container {...props}>
       <H2>{t('title')}</H2>
-      <Button appearance='text' onClick={onCopySharableLink}>
+      <Button appearance='text' onClick={handleCopySharableLinkAndNotify}>
         {t('copyLink')}
       </Button>
     </Container>

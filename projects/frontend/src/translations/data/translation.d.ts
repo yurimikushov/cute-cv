@@ -78,6 +78,12 @@ type Translation = {
     share: {
       title: string
       copyLink: string
+      notifications: {
+        linkCopyingResult: {
+          success: string
+          error: string
+        }
+      }
     }
     language: {
       title: string

@@ -4,9 +4,9 @@ import { useCurrentCvMetadata } from '../versions'
 const useCopySharableCvLink = () => {
   const { id, allowShare } = useCurrentCvMetadata()
 
-  const handleCopySharableLink = () => {
+  const handleCopySharableLink = async () => {
     const { origin } = new URL(location.href)
-    copyToClipboard(`${origin}/share/cv/${id}`)
+    await copyToClipboard(`${origin}/share/cv/${id}`)
   }
 
   return {
