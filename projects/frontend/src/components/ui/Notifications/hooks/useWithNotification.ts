@@ -3,29 +3,29 @@ import { Notification } from '../NotificationsContext'
 
 type UseWithNotification = {
   <R>(
-    callback: () => R | Promise<R | undefined>,
+    callback: () => R | Promise<R | void>,
     options: Options
-  ): () => Promise<R | undefined>
+  ): () => Promise<R | void>
   <T1, R>(
-    callback: (...args: [T1]) => R | Promise<R | undefined>,
+    callback: (...args: [T1]) => R | Promise<R | void>,
     options: Options
-  ): (...args: [T1]) => Promise<R | undefined>
+  ): (...args: [T1]) => Promise<R | void>
   <T1, T2, R>(
-    callback: (...args: [T1, T2]) => R | Promise<R | undefined>,
+    callback: (...args: [T1, T2]) => R | Promise<R | void>,
     options: Options
-  ): (...args: [T1, T2]) => Promise<R | undefined>
+  ): (...args: [T1, T2]) => Promise<R | void>
   <T1, T2, T3, R>(
-    callback: (...args: [T1, T2, T3]) => R | Promise<R | undefined>,
+    callback: (...args: [T1, T2, T3]) => R | Promise<R | void>,
     options: Options
-  ): (...args: [T1, T2, T3]) => Promise<R | undefined>
+  ): (...args: [T1, T2, T3]) => Promise<R | void>
   <T1, T2, T3, T4, R>(
-    callback: (...args: [T1, T2, T3, T4]) => R | Promise<R | undefined>,
+    callback: (...args: [T1, T2, T3, T4]) => R | Promise<R | void>,
     options: Options
-  ): (...args: [T1, T2, T3, T4]) => Promise<R | undefined>
+  ): (...args: [T1, T2, T3, T4]) => Promise<R | void>
   <T1, T2, T3, T4, T5, R>(
-    callback: (...args: [T1, T2, T3, T4, T5]) => R | Promise<R | undefined>,
+    callback: (...args: [T1, T2, T3, T4, T5]) => R | Promise<R | void>,
     options: Options
-  ): (...args: [T1, T2, T3, T4, T5]) => Promise<R | undefined>
+  ): (...args: [T1, T2, T3, T4, T5]) => Promise<R | void>
 }
 
 type Options = {
