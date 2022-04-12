@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit'
 import size from 'lodash/size'
 import map from 'lodash/map'
+import memoizeSelectorResultDeeply from 'lib/memoizeSelectorResultDeeply'
 import { RootState } from 'services/store'
 
 const selectCurrentCvId = (state: RootState) =>
@@ -12,10 +13,10 @@ const selectCvCount = (state: RootState) => {
   return size(ids)
 }
 
-const selectCvNumbers = (state: RootState) => {
-  const versions = selectCvVersions(state)
-  return map(versions.ids, (id) => versions.byId[id].metadata.number)
-}
+const selectCvNumbers = memoizeSelectorResultDeeply((state: RootState) => {
+  const { ids, byId } = selectCvVersions(state)
+  return map(ids, (id) => byId[id].metadata.number)
+})
 
 const selectCurrentRawCv = (state: RootState) => {
   const id = selectCurrentCvId(state)
