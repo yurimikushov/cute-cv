@@ -1,7 +1,7 @@
-import { createSelector } from '@reduxjs/toolkit'
 import size from 'lodash/size'
 import map from 'lodash/map'
 import memoizeSelectorResultDeeply from 'lib/memoizeSelectorResultDeeply'
+import createArraySelector from 'lib/createArraySelector'
 import { RootState } from 'services/store'
 
 const selectCurrentCvId = (state: RootState) =>
@@ -18,58 +18,6 @@ const selectCvNumbers = memoizeSelectorResultDeeply((state: RootState) => {
   return map(ids, (id) => byId[id].metadata.number)
 })
 
-const selectCurrentRawCv = (state: RootState) => {
-  const id = selectCurrentCvId(state)
-  const versions = selectCvVersions(state)
-
-  return versions.byId[id]
-}
-
-const selectRawCvMetadata = (state: RootState) => {
-  const { metadata } = selectCurrentRawCv(state)
-  return metadata
-}
-
-const selectRawCvContent = (state: RootState) => {
-  const { content } = selectCurrentRawCv(state)
-  return content
-}
-
-const selectCurrentCv = createSelector(
-  selectRawCvMetadata,
-  selectRawCvContent,
-  (metadata, content) => {
-    content ??= {
-      fullName: '',
-      position: '',
-      aboutMe: '',
-      avatar: null,
-      experiences: { ids: [], byId: {} },
-      educations: { ids: [], byId: {} },
-      contacts: { ids: [], byId: {} },
-      technologies: '',
-      languages: { ids: [], byId: {} },
-    }
-
-    const { publicId } = metadata
-    const { experiences, educations, contacts, languages } = content
-
-    return {
-      metadata: {
-        ...metadata,
-        publicId,
-      },
-      content: {
-        ...content,
-        experiences: map(experiences.ids, (id) => experiences.byId[id]),
-        educations: map(educations.ids, (id) => educations.byId[id]),
-        contacts: map(contacts.ids, (id) => contacts.byId[id]),
-        languages: map(languages.ids, (id) => languages.byId[id]),
-      },
-    }
-  }
-)
-
 const selectAllCvMetadata = (state: RootState) => {
   const { ids, byId } = selectCvVersions(state)
 
@@ -79,25 +27,91 @@ const selectAllCvMetadata = (state: RootState) => {
   })
 }
 
-const selectCvMetadata = selectRawCvMetadata
+const selectCurrentRawCv = (state: RootState) => {
+  const id = selectCurrentCvId(state)
+  const versions = selectCvVersions(state)
 
-const selectCvContent = (state: RootState) => {
-  const { content } = selectCurrentCv(state)
-
-  return content
+  return versions.byId[id]
 }
+
+const selectCvMetadata = (state: RootState) => {
+  const { metadata } = selectCurrentRawCv(state)
+  return metadata
+}
+
+const createCurrentCvContentSelector = <
+  P extends keyof ReturnType<typeof selectCurrentRawCv>['content']
+>(
+  path: P
+) => {
+  return (state: RootState) => {
+    return selectCurrentRawCv(state).content[path]
+  }
+}
+
+const selectCurrentCvFullName = createCurrentCvContentSelector('fullName')
+
+const selectCurrentCvPosition = createCurrentCvContentSelector('position')
+
+const selectCurrentCvAvatar = createCurrentCvContentSelector('avatar')
+
+const selectCurrentCvAboutMe = createCurrentCvContentSelector('aboutMe')
+
+const selectCurrentCvExperiences = createArraySelector(
+  createCurrentCvContentSelector('experiences')
+)
+
+const selectCurrentCvEducations = createArraySelector(
+  createCurrentCvContentSelector('educations')
+)
+
+const selectCurrentCvContacts = createArraySelector(
+  createCurrentCvContentSelector('contacts')
+)
+
+const selectCurrentCvTechnologies =
+  createCurrentCvContentSelector('technologies')
+
+const selectCurrentCvLanguages = createArraySelector(
+  createCurrentCvContentSelector('languages')
+)
+
+const selectCurrentCvContent = (state: RootState) => ({
+  fullName: selectCurrentCvFullName(state),
+  position: selectCurrentCvPosition(state),
+  avatar: selectCurrentCvAvatar(state),
+  aboutMe: selectCurrentCvAboutMe(state),
+  experiences: selectCurrentCvExperiences(state),
+  educations: selectCurrentCvEducations(state),
+  contacts: selectCurrentCvContacts(state),
+  technologies: selectCurrentCvTechnologies(state),
+  languages: selectCurrentCvLanguages(state),
+})
+
+const selectCurrentCv = (state: RootState) => ({
+  metadata: selectCvMetadata(state),
+  content: selectCurrentCvContent(state),
+})
 
 type Cv = ReturnType<typeof selectCurrentCv>
 type CvMetadata = ReturnType<typeof selectCvMetadata>
-type CvContent = ReturnType<typeof selectCvContent>
+type CvContent = ReturnType<typeof selectCurrentCvContent>
 
 export {
   selectCvCount,
   selectCvNumbers,
   selectAllCvMetadata,
   selectCurrentCv,
+  selectCurrentCvFullName,
+  selectCurrentCvPosition,
+  selectCurrentCvAvatar,
+  selectCurrentCvAboutMe,
+  selectCurrentCvExperiences,
+  selectCurrentCvEducations,
+  selectCurrentCvContacts,
+  selectCurrentCvTechnologies,
+  selectCurrentCvLanguages,
   selectCvMetadata,
-  selectCvContent,
   selectCurrentCvId,
 }
 export type { Cv, CvMetadata, CvContent }

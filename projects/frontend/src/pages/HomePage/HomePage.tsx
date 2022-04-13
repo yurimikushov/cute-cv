@@ -7,7 +7,7 @@ import {
   useAutoLoadAllCv,
   useAutoLoadCurrentCv,
   useCleanUpAllCvAfterSignOut,
-  useCurrentCvContent,
+  useCurrentCvFullName,
   useIsCVLoading,
 } from 'services/edit-cv'
 import PanelsLayout from 'layouts/PanelsLayout'
@@ -44,14 +44,14 @@ const HomePage: FC = () => {
   useCleanUpAllCvAfterSignOut()
 
   const { i18n } = useTranslation()
-  const { cv } = useCurrentCvContent()
+  const { fullName } = useCurrentCvFullName()
   const { isCVLoading } = useIsCVLoading()
   const { isSignInChecking } = useIsSignInChecking()
 
   return (
     <>
       <Helmet htmlAttributes={{ lang: i18n.language }}>
-        <title>{cv.fullName || 'Cute CV'} </title>
+        <title>{fullName || 'Cute CV'} </title>
       </Helmet>
       {(isSignInChecking || isCVLoading) && <Loader.FullScreen />}
       <Container>

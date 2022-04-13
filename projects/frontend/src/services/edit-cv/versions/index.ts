@@ -6,7 +6,6 @@ export {
 export {
   selectCurrentCvId,
   selectCurrentCv,
-  selectCvContent,
   selectCvMetadata,
 } from './selectors'
 export {
@@ -17,7 +16,15 @@ export {
   useAllCvMetadata,
   useCurrentCv,
   useCurrentCvMetadata,
-  useCurrentCvContent,
+  useCurrentCvFullName,
+  useCurrentCvPosition,
+  useCurrentCvAvatar,
+  useCurrentCvAboutMe,
+  useCurrentCvExperiences,
+  useCurrentCvEducations,
+  useCurrentCvContacts,
+  useCurrentCvTechnologies,
+  useCurrentCvLanguages,
   useSelectCv,
   useAddEmptyCv,
   useAddCv,
