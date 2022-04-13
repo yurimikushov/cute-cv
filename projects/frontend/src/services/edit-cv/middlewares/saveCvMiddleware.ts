@@ -62,7 +62,16 @@ const saveCvOfSignedInUser = debounce((store: Store) => {
 }, AUTO_SAVE_TIMING)
 
 const saveCvOfUnsignedInUser = (store: Store) => {
-  cvApi.saveCvOfUnsignedInUser(selectCurrentCv(store.getState()))
+  const { metadata, content } = selectCurrentCv(store.getState())
+  const { publicId } = metadata
+
+  cvApi.saveCvOfUnsignedInUser({
+    metadata: {
+      ...metadata,
+      publicId,
+    },
+    content,
+  })
 }
 
 const saveCvMiddleware: Middleware = (store) => (dispatch) => (action) => {
