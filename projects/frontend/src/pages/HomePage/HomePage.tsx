@@ -34,7 +34,6 @@ const CvWrapper = styled.div`
   margin-top: -3rem;
 `
 
-// eslint-disable-next-line max-statements
 const HomePage: FC = () => {
   useAuth()
   useAutoLoadAllCv()
