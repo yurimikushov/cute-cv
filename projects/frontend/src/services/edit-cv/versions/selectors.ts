@@ -18,14 +18,10 @@ const selectCvNumbers = memoizeSelectorResultDeeply((state: RootState) => {
   return map(ids, (id) => byId[id].metadata.number)
 })
 
-const selectAllCvMetadata = (state: RootState) => {
+const selectAllCvMetadata = memoizeSelectorResultDeeply((state: RootState) => {
   const { ids, byId } = selectCvVersions(state)
-
-  return map(ids, (id) => {
-    const { metadata } = byId[id]
-    return metadata
-  })
-}
+  return map(ids, (id) => byId[id].metadata)
+})
 
 const selectCurrentRawCv = (state: RootState) => {
   const id = selectCurrentCvId(state)
