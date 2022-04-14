@@ -30,6 +30,8 @@ export {
   useAddCv,
   useMakeCvCopy,
   useDeleteCv,
+  useGetCurrentCv,
+  useGetCurrentCvFullName,
 } from './hooks'
 export type { Cv, CvMetadata, CvContent } from './selectors'
 export {

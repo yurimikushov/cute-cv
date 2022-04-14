@@ -3,33 +3,36 @@ import { useDispatch, useSelector } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import downloadPDF from 'lib/downloadPDF'
 import downloadJSON from 'lib/downloadJSON'
-import { useCurrentCv } from 'services/edit-cv'
+import { useGetCurrentCv, useGetCurrentCvFullName } from '../versions'
 import { CV_CONTAINER_ID } from './constants'
 import { selectIsDownloading } from './selectors'
 import { begin, success } from './slice'
 
 const useDownload = () => {
   const isDownloading = useSelector(selectIsDownloading)
+  const getCurrentCv = useGetCurrentCv()
+  const getCurrentCvFullName = useGetCurrentCvFullName()
 
   const dispatch = useDispatch()
 
-  const { cv } = useCurrentCv()
-  const { content } = cv
-  const { fullName } = content
-
   const handleDownloadPDF = useCallback(async () => {
+    const fullName = getCurrentCvFullName()
+
     dispatch(begin())
     const fileName = isEmpty(fullName) ? 'cv' : fullName
     await downloadPDF(fileName, `#${CV_CONTAINER_ID}`)
     dispatch(success())
-  }, [fullName])
+  }, [getCurrentCvFullName])
 
   const handleDownloadJSON = useCallback(async () => {
+    const cv = getCurrentCv()
+    const fullName = getCurrentCvFullName()
+
     dispatch(begin())
     const fileName = isEmpty(fullName) ? 'cv' : fullName
     await downloadJSON(cv, fileName)
     dispatch(success())
-  }, [cv, fullName])
+  }, [getCurrentCv, getCurrentCvFullName])
 
   return {
     isDownloading,

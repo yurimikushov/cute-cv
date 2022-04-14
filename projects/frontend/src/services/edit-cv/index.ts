@@ -31,6 +31,8 @@ export {
   useAddEmptyCv,
   useAddCv,
   useMakeCvCopy,
+  useGetCurrentCv,
+  useGetCurrentCvFullName,
   selectCvMetadata,
   CV_VERSIONS_MAX_COUNT,
   CV_NAME_MAX_LENGTH,
