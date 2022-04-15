@@ -52,6 +52,12 @@ const ru: Translation = {
       title: 'Изменить резюме',
       savingStatus: 'Сохранение...',
       save: 'Сохранить',
+      notifications: {
+        saveResult: {
+          success: 'Резюме обновлено',
+          error: 'Не удалось обновить резюме',
+        },
+      },
     },
     makeCopyModal: {
       title: 'Сделать копию',

@@ -52,6 +52,12 @@ const en: Translation = {
       title: 'Edit CV',
       savingStatus: 'Saving...',
       save: 'Save',
+      notifications: {
+        saveResult: {
+          success: 'The CV updated',
+          error: `Couldn't update the CV`,
+        },
+      },
     },
     makeCopyModal: {
       title: 'Copy CV',

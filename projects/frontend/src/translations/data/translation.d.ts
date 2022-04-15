@@ -50,6 +50,12 @@ type Translation = {
       title: string
       savingStatus: string
       save: string
+      notifications: {
+        saveResult: {
+          success: string
+          error: string
+        }
+      }
     }
     makeCopyModal: {
       title: string
