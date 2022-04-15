@@ -75,6 +75,12 @@ const ru: Translation = {
     addModal: {
       title: 'Добавить резюме',
       add: 'Добавить',
+      notifications: {
+        addResult: {
+          success: 'Резюме создано',
+          error: 'Не удалось создать резюме',
+        },
+      },
     },
     add: 'Добавить',
   },

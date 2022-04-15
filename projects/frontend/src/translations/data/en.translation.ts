@@ -75,6 +75,12 @@ const en: Translation = {
     addModal: {
       title: 'Add CV',
       add: 'Add',
+      notifications: {
+        addResult: {
+          success: 'The CV created',
+          error: `Couldn't add the CV`,
+        },
+      },
     },
     add: 'Add',
   },

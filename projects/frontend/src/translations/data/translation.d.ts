@@ -60,6 +60,11 @@ type Translation = {
     makeCopyModal: {
       title: string
       makeCopy: string
+      // notifications: {
+      //   copyResult: {
+      //     success: string
+      //   }
+      // }
     }
     saveCvOfUnsignedInUserNotification: {
       description: string
@@ -68,10 +73,21 @@ type Translation = {
     saveCvOfUnsignedInUserModal: {
       title: string
       save: string
+      // notifications: {
+      //   saveResult: {
+      //     success: string
+      //   }
+      // }
     }
     addModal: {
       title: string
       add: string
+      notifications: {
+        addResult: {
+          success: string
+          error: string
+        }
+      }
     }
     add: string
   }
