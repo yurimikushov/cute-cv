@@ -55,6 +55,7 @@ const useSaveCvOfUnsignedInUser = () => {
 
       updateCvMetadata({
         ...metadata,
+        id,
         isNew: false,
         isSaved: true,
       })
