@@ -15,7 +15,7 @@ type VersionsPanelProps = {
   isSignedIn: boolean
   disableActiveElements: boolean
   displayAddButton: boolean
-  onAddEmptyCv: () => void
+  onAddEmptyCv: () => Promise<{ id: string }>
   onSelectCv: (id: string) => void
   onUpdateCvMetadata: (newMetadata: {
     publicId?: string

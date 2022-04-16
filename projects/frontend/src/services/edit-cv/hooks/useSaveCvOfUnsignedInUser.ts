@@ -8,6 +8,7 @@ import {
   useAddCv as useAddCvInStore,
   useUpdateCvMetadata,
   useDeleteCv,
+  useSelectCv,
 } from '../versions'
 
 const useSaveCvOfUnsignedInUser = () => {
@@ -15,6 +16,7 @@ const useSaveCvOfUnsignedInUser = () => {
   const addCvInStore = useAddCvInStore()
   const addCvOnBackend = useAddCvOnBackend()
   const deleteCv = useDeleteCv()
+  const selectCv = useSelectCv()
   const updateCvMetadata = useUpdateCvMetadata()
   const [cv, setCv] = useState<ReturnType<
     typeof cvApi.loadCvOfUnsignedInUser
@@ -61,6 +63,8 @@ const useSaveCvOfUnsignedInUser = () => {
       })
 
       cvApi.deleteCvOfUnsignedInUser()
+
+      selectCv(id)
     } catch {
       deleteCv(id)
     }

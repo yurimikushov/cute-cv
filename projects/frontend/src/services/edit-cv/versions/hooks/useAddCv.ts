@@ -4,7 +4,6 @@ import { AddCvPayload } from '../model'
 import { addCv } from '../slice'
 import useCvCount from './useCvCount'
 import useGetNextCvMetadata from './useGetNextCvMetadata'
-import useSelectCv from './useSelectCv'
 
 type Payload = AddCvPayload & {
   metadata: Pick<AddCvPayload['metadata'], 'name'>
@@ -13,7 +12,6 @@ type Payload = AddCvPayload & {
 const useAddCv = () => {
   const cvCount = useCvCount()
   const getNextCvMetadata = useGetNextCvMetadata()
-  const selectCv = useSelectCv()
 
   const dispatch = useDispatch()
 
@@ -37,8 +35,6 @@ const useAddCv = () => {
         content,
       })
     )
-
-    selectCv(id)
 
     return {
       id,

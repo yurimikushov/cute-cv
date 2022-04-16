@@ -18,16 +18,21 @@ const Container = styled(Card)`
 const AddCvModal = EditCvMetadataModal
 
 const VersionsPanel: FC<VersionsPanelProps> = (props) => {
-  const { t } = useTranslation('translation', { keyPrefix: 'versions' })
-  const { className, disableActiveElements, displayAddButton, onAddEmptyCv } =
-    props
+  const {
+    className,
+    disableActiveElements,
+    displayAddButton,
+    onAddEmptyCv,
+    onSelectCv,
+  } = props
 
+  const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const {
     isAddModalOpened,
     handleOpenAddModal,
     handleCloseAddModal,
     handleAddCv,
-  } = useAddEditCvModal(onAddEmptyCv)
+  } = useAddEditCvModal(onAddEmptyCv, onSelectCv)
 
   return (
     <VersionsPanelContext.Provider value={props}>
