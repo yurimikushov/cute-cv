@@ -59,11 +59,11 @@ const useSaveCvOfUnsignedInUser = () => {
         isNew: false,
         isSaved: true,
       })
+
+      cvApi.deleteCvOfUnsignedInUser()
     } catch {
       deleteCv(id)
     }
-
-    cvApi.deleteCvOfUnsignedInUser()
   }
 
   return {
