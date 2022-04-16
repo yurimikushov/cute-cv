@@ -25,10 +25,19 @@ const VersionsPanelContainer: FC = (props) => {
   const { id, isNew, isSaved } = useCurrentCvMetadata()
   const { isCvUpdating } = useIsCvUpdating()
   const { isCvDeleting } = useIsCvDeleting()
-  const addEmptyCv = useAddEmptyCv()
+  const addEmptyCv = useWithNotification(useAddEmptyCv(), {
+    successContent: t('notifications.addResult.success'),
+    errorContent: t('notifications.addResult.error'),
+  })
   const selectCv = useSelectCv()
-  const updateCvMetadata = useUpdateCvMetadata()
-  const makeCvCopy = useMakeCvCopy()
+  const updateCvMetadata = useWithNotification(useUpdateCvMetadata(), {
+    successContent: t('notifications.updateMetadataResult.success'),
+    errorContent: t('notifications.updateMetadataResult.error'),
+  })
+  const makeCvCopy = useWithNotification(useMakeCvCopy(), {
+    successContent: t('notifications.makeCopyResult.success'),
+    errorContent: t('notifications.makeCopyResult.error'),
+  })
   const deleteCv = useWithNotification(useDeleteCv(), {
     successContent: t('notifications.deleteResult.success'),
     errorContent: t('notifications.deleteResult.error'),

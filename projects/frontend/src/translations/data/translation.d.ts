@@ -50,22 +50,10 @@ type Translation = {
       title: string
       savingStatus: string
       save: string
-      notifications: {
-        saveResult: {
-          success: string
-          error: string
-        }
-      }
     }
     makeCopyModal: {
       title: string
       makeCopy: string
-      notifications: {
-        copyResult: {
-          success: string
-          error: string
-        }
-      }
     }
     saveCvOfUnsignedInUserNotification: {
       description: string
@@ -83,16 +71,22 @@ type Translation = {
     addModal: {
       title: string
       add: string
-      notifications: {
-        addResult: {
-          success: string
-          error: string
-        }
-      }
     }
     add: string
     notifications: {
+      updateMetadataResult: {
+        success: string
+        error: string
+      }
+      makeCopyResult: {
+        success: string
+        error: string
+      }
       deleteResult: {
+        success: string
+        error: string
+      }
+      addResult: {
         success: string
         error: string
       }

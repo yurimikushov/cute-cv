@@ -52,22 +52,10 @@ const en: Translation = {
       title: 'Edit CV',
       savingStatus: 'Saving...',
       save: 'Save',
-      notifications: {
-        saveResult: {
-          success: 'The CV updated',
-          error: `Couldn't update the CV`,
-        },
-      },
     },
     makeCopyModal: {
       title: 'Copy CV',
       makeCopy: 'Copy',
-      notifications: {
-        copyResult: {
-          success: 'The CV copied',
-          error: `Couldn't copy the CV`,
-        },
-      },
     },
     saveCvOfUnsignedInUserNotification: {
       description:
@@ -81,18 +69,24 @@ const en: Translation = {
     addModal: {
       title: 'Add CV',
       add: 'Add',
-      notifications: {
-        addResult: {
-          success: 'The CV created',
-          error: `Couldn't add the CV`,
-        },
-      },
     },
     add: 'Add',
     notifications: {
+      updateMetadataResult: {
+        success: 'The CV updated',
+        error: `Couldn't update the CV`,
+      },
+      makeCopyResult: {
+        success: 'The CV copied',
+        error: `Couldn't copy the CV`,
+      },
       deleteResult: {
-        success: 'Резюме удалено',
-        error: 'Не удалось удалить резюме',
+        success: 'The CV deleted',
+        error: `Couldn't delete the CV`,
+      },
+      addResult: {
+        success: 'The CV created',
+        error: `Couldn't add the CV`,
       },
     },
   },

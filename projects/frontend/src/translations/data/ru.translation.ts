@@ -52,22 +52,10 @@ const ru: Translation = {
       title: 'Изменить резюме',
       savingStatus: 'Сохранение...',
       save: 'Сохранить',
-      notifications: {
-        saveResult: {
-          success: 'Резюме обновлено',
-          error: 'Не удалось обновить резюме',
-        },
-      },
     },
     makeCopyModal: {
       title: 'Сделать копию',
       makeCopy: 'Сделать копию',
-      notifications: {
-        copyResult: {
-          success: 'Резюме скопировано',
-          error: 'Не удалось скопировать резюме',
-        },
-      },
     },
     saveCvOfUnsignedInUserNotification: {
       description:
@@ -81,18 +69,24 @@ const ru: Translation = {
     addModal: {
       title: 'Добавить резюме',
       add: 'Добавить',
-      notifications: {
-        addResult: {
-          success: 'Резюме создано',
-          error: 'Не удалось создать резюме',
-        },
-      },
     },
     add: 'Добавить',
     notifications: {
+      updateMetadataResult: {
+        success: 'Резюме обновлено',
+        error: 'Не удалось обновить резюме',
+      },
+      makeCopyResult: {
+        success: 'Резюме скопировано',
+        error: 'Не удалось скопировать резюме',
+      },
       deleteResult: {
         success: 'Резюме удалено',
         error: 'Не удалось удалить резюме',
+      },
+      addResult: {
+        success: 'Резюме создано',
+        error: 'Не удалось создать резюме',
       },
     },
   },
