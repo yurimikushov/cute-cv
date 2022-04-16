@@ -91,6 +91,12 @@ type Translation = {
       }
     }
     add: string
+    notifications: {
+      deleteResult: {
+        success: string
+        error: string
+      }
+    }
   }
   toolbar: {
     download: {

@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useIsSignedIn } from 'services/auth'
 import {
   useAllCvMetadata,
@@ -11,12 +12,14 @@ import {
   useUpdateCvMetadata,
   useDeleteCv,
 } from 'services/edit-cv'
+import { useWithNotification } from 'components/ui/Notifications'
 import VersionsPanel from 'components/cv/panels/VersionsPanel'
 import useShouldDisplayAddButton from './hooks/useShouldDisplayAddButton'
 import useShouldDisableActiveElements from './hooks/useShouldDisableActiveElements'
 
 // eslint-disable-next-line max-statements
 const VersionsPanelContainer: FC = (props) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const { isSignedIn } = useIsSignedIn()
   const allCv = useAllCvMetadata()
   const { id, isNew, isSaved } = useCurrentCvMetadata()
@@ -26,7 +29,10 @@ const VersionsPanelContainer: FC = (props) => {
   const selectCv = useSelectCv()
   const updateCvMetadata = useUpdateCvMetadata()
   const makeCvCopy = useMakeCvCopy()
-  const deleteCv = useDeleteCv()
+  const deleteCv = useWithNotification(useDeleteCv(), {
+    successContent: t('notifications.deleteResult.success'),
+    errorContent: t('notifications.deleteResult.error'),
+  })
 
   const shouldDisplayAddButton = useShouldDisplayAddButton()
   const shouldDisableActiveElements = useShouldDisableActiveElements()

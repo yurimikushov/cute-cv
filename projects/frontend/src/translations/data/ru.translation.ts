@@ -89,6 +89,12 @@ const ru: Translation = {
       },
     },
     add: 'Добавить',
+    notifications: {
+      deleteResult: {
+        success: 'Резюме удалено',
+        error: 'Не удалось удалить резюме',
+      },
+    },
   },
   toolbar: {
     download: {
