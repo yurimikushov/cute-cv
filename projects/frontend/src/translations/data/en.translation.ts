@@ -62,6 +62,12 @@ const en: Translation = {
     makeCopyModal: {
       title: 'Copy CV',
       makeCopy: 'Copy',
+      notifications: {
+        copyResult: {
+          success: 'The CV copied',
+          error: `Couldn't copy the CV`,
+        },
+      },
     },
     saveCvOfUnsignedInUserNotification: {
       description:

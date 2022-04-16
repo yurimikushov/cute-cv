@@ -62,6 +62,12 @@ const ru: Translation = {
     makeCopyModal: {
       title: 'Сделать копию',
       makeCopy: 'Сделать копию',
+      notifications: {
+        copyResult: {
+          success: 'Резюме скопировано',
+          error: 'Не удалось скопировать резюме',
+        },
+      },
     },
     saveCvOfUnsignedInUserNotification: {
       description:
