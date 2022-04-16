@@ -1,11 +1,11 @@
-import useManageModal from 'hooks/useManageModal'
+import useModal from 'hooks/useModal'
 
 const useSignInModal = (onSkipSighIn: () => void) => {
   const {
     isOpened: isSignInModalOpened,
     open: handleOpenSignInModal,
     close: handleCloseSignInModal,
-  } = useManageModal()
+  } = useModal()
 
   const handleSkipSignInModal = () => {
     onSkipSighIn()

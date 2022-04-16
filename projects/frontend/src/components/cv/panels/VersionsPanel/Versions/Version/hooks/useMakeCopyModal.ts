@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import useManageModal from 'hooks/useManageModal'
+import useModal from 'hooks/useModal'
 import { useWithNotification } from 'components/ui/Notifications'
 
 const useMakeCopyModal = (
@@ -12,7 +12,7 @@ const useMakeCopyModal = (
     isOpened: isMakeCopyModalOpened,
     open: handleOpenMakeCopyModal,
     close: handleCloseMakeCopyModal,
-  } = useManageModal()
+  } = useModal()
 
   const handleMakeCopy = useWithNotification(
     (name: string, allowShare: boolean) => {

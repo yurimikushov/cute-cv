@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import useManageModal from 'hooks/useManageModal'
+import useModal from 'hooks/useModal'
 import { useWithNotification } from 'components/ui/Notifications'
 
 const useUpdateCvMetadataModal = (
@@ -12,7 +12,7 @@ const useUpdateCvMetadataModal = (
     isOpened: isUpdateCvMetadataModalOpened,
     open: handleOpenUpdateCvMetadataModal,
     close: handleCloseUpdateCvMetadataModal,
-  } = useManageModal()
+  } = useModal()
 
   const handleUpdateCvMetadata = useWithNotification(
     async (name: string, allowShare: boolean) => {

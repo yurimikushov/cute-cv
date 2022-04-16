@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import defer from 'lodash/defer'
 import nonNullable from 'lib/nonNullable'
-import useManageModal from 'hooks/useManageModal'
+import useModal from 'hooks/useModal'
 import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import useOutsideClick from 'hooks/useOutsideClick'
 import useKeyDown from 'hooks/useKeyDown'
@@ -18,7 +18,7 @@ const usePopup = (trigger: Trigger, placement: Placement) => {
     isOpened: isVisible,
     open: showContent,
     close: hideContent,
-  } = useManageModal()
+  } = useModal()
   const triggerElementRef = useRef<HTMLElement>(null)
   const contentElementRef = useRef<HTMLDivElement>(null)
 

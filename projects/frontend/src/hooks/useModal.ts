@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import defer from 'lodash/defer'
 
-const useManageModal = () => {
+const useModal = () => {
   const [isOpened, setIsOpened] = useState(false)
   const prevActiveElementRef = useRef<HTMLElement | null>(null)
 
@@ -29,4 +29,4 @@ const useManageModal = () => {
   }
 }
 
-export default useManageModal
+export default useModal

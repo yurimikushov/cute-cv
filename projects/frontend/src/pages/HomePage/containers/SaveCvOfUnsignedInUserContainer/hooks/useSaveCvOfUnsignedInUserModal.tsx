@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 import isNull from 'lodash/isNull'
-import useManageModal from 'hooks/useManageModal'
+import useModal from 'hooks/useModal'
 import { useIsSignedIn } from 'services/auth'
 import { useSaveCvOfUnsignedInUser } from 'services/edit-cv'
 import { useNotification } from 'components/ui/Notifications'
@@ -11,7 +11,7 @@ const useSaveCvOfUnsignedInUserModal = () => {
     isOpened: isCopyUnsignedInCvModalOpened,
     open: handleOpenCopyUnsignedInCvModal,
     close: handleCloseCopyUnsignedInCvModal,
-  } = useManageModal()
+  } = useModal()
   const { isSignedIn } = useIsSignedIn()
   const { open, close } = useNotification()
   const { isExists, copy } = useSaveCvOfUnsignedInUser()

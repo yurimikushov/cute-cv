@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
+import useModal from 'hooks/useModal'
 import { useWithNotification } from 'components/ui/Notifications'
-import useManageModal from 'hooks/useManageModal'
 
 const useAddEditCvModal = (
   onAddEmptyCv: (name: string, allowShare: boolean) => void
@@ -12,7 +12,7 @@ const useAddEditCvModal = (
     isOpened: isAddModalOpened,
     open: handleOpenAddModal,
     close: handleCloseAddModal,
-  } = useManageModal()
+  } = useModal()
 
   const handleAddCv = useWithNotification(
     (name: string, allowShare: boolean) => {
