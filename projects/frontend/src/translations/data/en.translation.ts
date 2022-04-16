@@ -88,6 +88,10 @@ const en: Translation = {
         success: 'The CV created',
         error: `Couldn't add the CV`,
       },
+      saveCvOfUnsignedInUserResult: {
+        success: 'The CV saved',
+        error: `Couldn't save the CV`,
+      },
     },
   },
   toolbar: {

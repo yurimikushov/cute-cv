@@ -62,11 +62,6 @@ type Translation = {
     saveCvOfUnsignedInUserModal: {
       title: string
       save: string
-      // notifications: {
-      //   saveResult: {
-      //     success: string
-      //   }
-      // }
     }
     addModal: {
       title: string
@@ -87,6 +82,10 @@ type Translation = {
         error: string
       }
       addResult: {
+        success: string
+        error: string
+      }
+      saveCvOfUnsignedInUserResult: {
         success: string
         error: string
       }

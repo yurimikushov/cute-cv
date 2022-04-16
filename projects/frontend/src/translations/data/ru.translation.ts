@@ -88,6 +88,10 @@ const ru: Translation = {
         success: 'Резюме создано',
         error: 'Не удалось создать резюме',
       },
+      saveCvOfUnsignedInUserResult: {
+        success: 'Резюме сохранено',
+        error: 'Не удалось сохранить резюме',
+      },
     },
   },
   toolbar: {

@@ -1,12 +1,18 @@
 import { useRef, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import isNull from 'lodash/isNull'
 import useModal from 'hooks/useModal'
 import { useIsSignedIn } from 'services/auth'
 import { useSaveCvOfUnsignedInUser } from 'services/edit-cv'
-import { useNotification } from 'components/ui/Notifications'
+import {
+  useNotification,
+  useWithNotification,
+} from 'components/ui/Notifications'
 import CvOfUnsignedInUserExistsNotification from 'components/cv/notifications/CvOfUnsignedInUserExistsNotification'
 
+// eslint-disable-next-line max-statements
 const useSaveCvOfUnsignedInUserModal = () => {
+  const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const {
     isOpened: isCopyUnsignedInCvModalOpened,
     open: handleOpenCopyUnsignedInCvModal,
@@ -48,14 +54,17 @@ const useSaveCvOfUnsignedInUserModal = () => {
     close(id)
   }
 
-  const handleSaveCvOfUnsignedInUser = async (
-    name: string,
-    allowShare: boolean
-  ) => {
-    await copy(name, allowShare)
-    handleCloseCopyUnsignedInCvModal()
-    closeNotification()
-  }
+  const handleSaveCvOfUnsignedInUser = useWithNotification(
+    async (name: string, allowShare: boolean) => {
+      await copy(name, allowShare)
+      handleCloseCopyUnsignedInCvModal()
+      closeNotification()
+    },
+    {
+      successContent: t('notifications.saveCvOfUnsignedInUserResult.success'),
+      errorContent: t('notifications.saveCvOfUnsignedInUserResult.error'),
+    }
+  )
 
   return {
     isCopyUnsignedInCvModalOpened,
