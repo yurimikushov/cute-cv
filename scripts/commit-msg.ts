@@ -1,6 +1,9 @@
 import { readFileSync, writeFileSync } from 'fs'
 import * as path from 'path'
 import { execSync } from 'child_process'
+import load from '@commitlint/load'
+import lint from '@commitlint/lint'
+import format from '@commitlint/format'
 
 enum Prefixes {
   Front = '[front]',
@@ -15,16 +18,6 @@ const getMsgFilePath = () => {
   const repoRootPath = process.cwd()
 
   return path.join(repoRootPath, '.git', 'COMMIT_EDITMSG')
-}
-
-const isContainPrefix = (msg: string) => {
-  for (const [_, prefix] of Object.entries(Prefixes)) {
-    if (msg.startsWith(prefix)) {
-      return true
-    }
-  }
-
-  return false
 }
 
 const getStagedFilesPaths = () => {
@@ -62,13 +55,40 @@ const addPrefix = (msg: string, prefix: string) => {
   return msgLines.join('\n')
 }
 
-const main = () => {
+const deletePrefix = (msg: string) => {
+  for (const [_, prefix] of Object.entries(Prefixes)) {
+    if (msg.startsWith(prefix)) {
+      msg = msg.replace(prefix, '').trimStart()
+    }
+  }
+
+  return msg
+}
+
+const isValidMsg = async (msg: string) => {
+  const { rules } = await load({
+    extends: ['@commitlint/config-conventional'],
+  })
+
+  const report = await lint(msg, rules)
+
+  process.stdout.write(
+    format({
+      results: [report],
+    })
+  )
+
+  return report.valid
+}
+
+const main = async () => {
   const msgFilePath = getMsgFilePath()
 
-  const msg = readFileSync(msgFilePath, { encoding: 'utf-8' }).trim()
+  const rawMsg = readFileSync(msgFilePath, { encoding: 'utf-8' })
+  const msg = deletePrefix(rawMsg.trim())
 
-  if (isContainPrefix(msg)) {
-    return
+  if (!(await isValidMsg(msg))) {
+    process.exit(1)
   }
 
   writeFileSync(msgFilePath, addPrefix(msg, getPrefix()), {
