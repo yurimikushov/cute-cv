@@ -1,9 +1,13 @@
-import { FRONTEND_PATH, BACKEND_PATH } from '../../constants'
+import getProjectPath from '../getProjectPath'
 import { PrefixesEnum } from './model'
 
 const getPrefix = (filesPaths: Array<string>) => {
-  const isFrontedChanged = filesPaths.some(path => path.includes(FRONTEND_PATH))
-  const isBackendChanged = filesPaths.some(path => path.includes(BACKEND_PATH))
+  const isFrontedChanged = filesPaths.some(path =>
+    path.includes(getProjectPath('frontend'))
+  )
+  const isBackendChanged = filesPaths.some(path =>
+    path.includes(getProjectPath('backend'))
+  )
 
   if (isFrontedChanged && isBackendChanged) {
     return PrefixesEnum.Front_Back
