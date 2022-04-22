@@ -45,7 +45,7 @@ const main = async () => {
   }
 
   const stagedFilesPaths = getStagedFilesPaths()
-  const prefixedMsg = addPrefix(msg, getPrefix(stagedFilesPaths))
+  const prefixedMsg = addPrefix(msg, getPrefix(stagedFilesPaths)).trim()
 
   writeFileSync(msgFilePath, prefixedMsg, {
     encoding: 'utf-8',
