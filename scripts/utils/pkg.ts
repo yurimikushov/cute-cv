@@ -20,6 +20,10 @@ class Pkg {
     this._pkg = JSON.parse(readFileSync(this._fileName).toString())
   }
 
+  get fileName() {
+    return this._fileName
+  }
+
   get name() {
     return this._pkg.name ?? ''
   }
