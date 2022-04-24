@@ -1,7 +1,6 @@
 import loader from 'conventional-changelog-preset-loader'
 import semver from 'semver'
 import getCommits, { Commit } from './getCommits'
-import getProjectPath from './getProjectPath'
 import Pkg from './pkg'
 import { deletePrefix } from './prefix'
 
@@ -18,8 +17,7 @@ const whatBump = async (commits: Array<Commit>) => {
   return level
 }
 
-const getNextVersion = async (project: 'frontend' | 'backend') => {
-  const path = getProjectPath(project)
+const getNextVersion = async (path: string) => {
   const pkg = new Pkg({ path })
 
   const commits = await getCommits({
@@ -27,6 +25,10 @@ const getNextVersion = async (project: 'frontend' | 'backend') => {
     from: `${pkg.name}@${pkg.version}`,
     cleanMsg: deletePrefix,
   })
+
+  if (commits.length === 0) {
+    return null
+  }
 
   const bumpLevel = await whatBump(commits)
 
