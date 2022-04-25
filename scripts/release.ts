@@ -32,8 +32,13 @@ const release = async (project: 'frontend' | 'backend') => {
 }
 
 const main = async () => {
-  await release('frontend')
-  await release('backend')
+  try {
+    await release('frontend')
+    await release('backend')
+  } catch (err) {
+    console.error(err)
+    process.exit(1)
+  }
 }
 
 main()
