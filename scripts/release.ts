@@ -3,13 +3,23 @@ import git from 'simple-git'
 import getNextVersion from './utils/getNextVersion'
 import Pkg from './utils/pkg'
 
+const logger = (project: string) => (message: string) => {
+  console.log(`[${project}] ${message}`)
+}
+
 const release = async (project: 'frontend' | 'backend') => {
+  const log = logger(project)
+
+  log('Release started')
+
   const path = join(process.cwd(), 'projects', project)
 
   const nextVersion = await getNextVersion(path)
 
+  log(`Next version - ${nextVersion}`)
+
   if (nextVersion === null) {
-    console.log('\x1b[33m%s\x1b[0m', `'${project}' has no new release`)
+    log('Nothing to release')
     return
   }
 
@@ -17,18 +27,34 @@ const release = async (project: 'frontend' | 'backend') => {
   pkg.version = nextVersion
   pkg.save()
 
+  log('package.json is updated')
+
   const pkgLock = new Pkg({ path, lock: true })
   pkgLock.version = nextVersion
   pkgLock.save()
 
-  const versionTag = `${pkg.name}@${nextVersion}`
+  log('package-lock.json is updated')
 
-  await git()
-    .add([pkg.fileName, pkgLock.fileName])
-    .commit(`chore(release): v${nextVersion}`)
-    .addTag(versionTag)
-    .push()
-    .push(['origin', versionTag])
+  const versionTag = `${pkg.name}@${nextVersion}`
+  const changedFiles = [pkg.fileName, pkgLock.fileName]
+
+  await git().add(changedFiles).commit(`chore(release): v${nextVersion}`)
+
+  log(`${changedFiles.join(', ')} are committed`)
+
+  await git().push()
+
+  log(`${changedFiles.join(', ')} are pushed`)
+
+  await git().addTag(versionTag)
+
+  log(`${versionTag} tag is added`)
+
+  await git().push(['origin', versionTag])
+
+  log(`${versionTag} tag is pushed`)
+
+  log(`Release ${nextVersion} successfully completed`)
 }
 
 const main = async () => {
