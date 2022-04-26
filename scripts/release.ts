@@ -54,6 +54,22 @@ const release = async (project: 'frontend' | 'backend') => {
 
   log(`${versionTag} tag is pushed`)
 
+  await git().checkout('develop')
+
+  log(`'develop' is checked out`)
+
+  await git().rebase(['origin/main'])
+
+  log(`'develop' is rebased to 'main'`)
+
+  await git().push()
+
+  log(`Rebased 'develop' is pushed`)
+
+  await git().checkout('main')
+
+  log(`'main' is checked out`)
+
   log(`Release ${nextVersion} successfully completed`)
 }
 
