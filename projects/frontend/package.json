@@ -52,7 +52,7 @@
   "devDependencies": {
     "@craco/craco": "^7.0.0-7.0.0-alpha.2.0",
     "@testing-library/jest-dom": "^5.16.3",
-    "@testing-library/react": "^12.1.4",
+    "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.0.4",
     "@types/craco__craco": "^6.4.0",
     "@types/jest": "^27.4.1",
