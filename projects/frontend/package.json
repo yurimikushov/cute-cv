@@ -9,10 +9,6 @@
     "eject": "react-scripts eject",
     "generate-component": "ts-node ./scripts/generate-component.ts"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --fix",
-    "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -68,7 +64,6 @@
     "cross-env": "^7.0.3",
     "eslint-plugin-lodash": "^7.4.0",
     "eslint-plugin-react": "^7.29.4",
-    "lint-staged": "^12.4.1",
     "postcss": "^8.4.12",
     "prettier": "^2.6.2",
     "react-scripts": "^5.0.1",
