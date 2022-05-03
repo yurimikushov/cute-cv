@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
+import getSearchParam from 'lib/getSearchParam'
 import downloadPDF from 'lib/downloadPDF'
 import downloadJSON from 'lib/downloadJSON'
 import { useGetCurrentCv, useGetCurrentCvFullName } from '../versions'
@@ -19,8 +20,15 @@ const useDownload = () => {
     const fullName = getCurrentCvFullName()
 
     dispatch(begin())
+
     const fileName = isEmpty(fullName) ? 'cv' : fullName
-    await downloadPDF(fileName, `#${CV_CONTAINER_ID}`)
+
+    await downloadPDF({
+      fileName,
+      selector: `#${CV_CONTAINER_ID}`,
+      breakPage: Boolean(getSearchParam('break-page')),
+    })
+
     dispatch(success())
   }, [getCurrentCvFullName])
 

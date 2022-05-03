@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import isUndefined from 'lodash/isUndefined'
 import isEmpty from 'lodash/isEmpty'
+import getSearchParam from 'lib/getSearchParam'
 import downloadPDF from 'lib/downloadPDF'
 import { useSharableCv } from '../api'
 import { CV_CONTAINER_ID } from '../constants'
@@ -20,7 +21,12 @@ const useDownload = (id: string) => {
     const { fullName } = content
 
     const fileName = isEmpty(fullName) ? 'cv' : fullName
-    await downloadPDF(fileName, `#${CV_CONTAINER_ID}`)
+
+    await downloadPDF({
+      fileName,
+      selector: `#${CV_CONTAINER_ID}`,
+      breakPage: Boolean(getSearchParam('break-page')),
+    })
 
     setIsDownloading(false)
   }
