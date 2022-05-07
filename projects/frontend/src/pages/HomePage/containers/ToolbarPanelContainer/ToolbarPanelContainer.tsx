@@ -39,7 +39,6 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = (props) => {
       isSignedIn={isSignedIn}
       onToggleEditable={toggleEditable}
       onDownloadPDF={handleDownloadPDF}
-      onDownloadJSON={handleDownloadJSON}
       onCopySharableLink={copySharableLink}
       onSignInGoogle={handleSignInGoogle}
       onSignInFacebook={handleSignInFacebook}
