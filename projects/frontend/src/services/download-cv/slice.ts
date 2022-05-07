@@ -7,17 +7,17 @@ const initialState: DownloadState = {
 }
 
 const { actions, reducer } = createSlice({
-  name: `${ServiceNameEnum.EditCv}/download`,
+  name: ServiceNameEnum.DownloadCv,
   initialState,
   reducers: {
     begin: (state) => {
       state.isDownloading = true
     },
-    success: (state) => {
+    finish: (state) => {
       state.isDownloading = false
     },
   },
 })
 
-export const { begin, success } = actions
+export const { begin, finish } = actions
 export default reducer

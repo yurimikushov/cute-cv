@@ -2,7 +2,8 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import useKeyDown from 'hooks/useKeyDown'
-import { useDownload, useEditable } from 'services/edit-cv'
+import { useEditable } from 'services/edit-cv'
+import { useDownloadPDF } from 'services/download-cv'
 import Button from 'components/ui/Button'
 import colors from 'styles/colors'
 import useSavedStatus from './hooks/useSavedStatus'
@@ -21,7 +22,7 @@ const ToolPanelContainer: FC<ToolPanelContainerProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'panel' })
   const { editable, toggleEditable } = useEditable()
   const savedStatus = useSavedStatus()
-  const { isDownloading } = useDownload()
+  const { isDownloading } = useDownloadPDF()
 
   useKeyDown({
     code: 'Space',

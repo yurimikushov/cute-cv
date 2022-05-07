@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import isUndefined from 'lodash/isUndefined'
-import { useSharableCv, CV_CONTAINER_ID } from 'services/share-cv'
+import { CV_CONTAINER_ID } from 'services/download-cv'
+import { useSharableCv } from 'services/share-cv'
 import CvLayout from 'layouts/CvLayout'
 import Header from 'components/cv/page/Header'
 import Avatar from 'components/cv/page/Avatar'

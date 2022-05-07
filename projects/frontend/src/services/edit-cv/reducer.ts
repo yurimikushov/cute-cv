@@ -8,7 +8,6 @@ import { addReducer } from './add'
 import { updateReducer } from './update'
 import { patchReducer } from './patch'
 import { deleteReducer } from './delete'
-import { downloadReducer } from './download'
 import { versionsReducer } from './versions'
 
 const persistConfig = {
@@ -23,7 +22,6 @@ const cvReducer = combineReducers({
   update: updateReducer,
   patch: patchReducer,
   delete: deleteReducer,
-  download: downloadReducer,
   versions: versionsReducer,
 })
 

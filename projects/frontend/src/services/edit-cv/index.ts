@@ -8,7 +8,6 @@ export {
   useDeleteCv,
   useCopySharableCvLink,
 } from './hooks'
-export { useDownload, CV_CONTAINER_ID } from './download'
 export { useEditable } from './editable'
 export { useLoadAllCV, useIsCVLoading } from './load'
 export { useIsCvUpdating } from './update'
