@@ -1,86 +1,90 @@
-import { join } from 'path'
-import git from 'simple-git'
-import getNextVersion from './utils/getNextVersion'
-import Pkg from './utils/pkg'
+import { join } from "path";
+import git from "simple-git";
+import getNextVersion from "./utils/getNextVersion";
+import Pkg from "./utils/pkg";
 
 const logger = (project: string) => (message: string) => {
-  console.log(`[${project}] ${message}`)
-}
+  console.log(`[${project}] ${message}`);
+};
 
-const release = async (project: 'frontend' | 'backend') => {
-  const log = logger(project)
+const release = async (project: "frontend" | "backend") => {
+  const log = logger(project);
 
-  log('Release started')
+  log("Release started");
 
-  const path = join(process.cwd(), 'projects', project)
+  await git().checkout("main");
 
-  const nextVersion = await getNextVersion(path)
+  log(`'main' is checked out`);
 
-  log(`Next version - ${nextVersion}`)
+  const path = join(process.cwd(), "projects", project);
+
+  const nextVersion = await getNextVersion(path);
+
+  log(`Next version - ${nextVersion}`);
 
   if (nextVersion === null) {
-    log('Nothing to release')
-    return
+    log("Nothing to release");
+    return;
   }
 
-  const pkg = new Pkg({ path })
-  pkg.version = nextVersion
-  pkg.save()
+  const pkg = new Pkg({ path });
+  pkg.version = nextVersion;
+  pkg.save();
 
-  log('package.json is updated')
+  log("package.json is updated");
 
-  const pkgLock = new Pkg({ path, lock: true })
-  pkgLock.version = nextVersion
-  pkgLock.save()
+  const pkgLock = new Pkg({ path, lock: true });
+  pkgLock.version = nextVersion;
+  pkgLock.save();
 
-  log('package-lock.json is updated')
+  log("package-lock.json is updated");
 
-  const versionTag = `${pkg.name}@${nextVersion}`
-  const changedFiles = [pkg.fileName, pkgLock.fileName]
+  const versionTag = `${pkg.name}@${nextVersion}`;
+  const changedFiles = [pkg.fileName, pkgLock.fileName];
 
-  await git().add(changedFiles).commit(`chore(release): v${nextVersion}`)
+  await git().add(changedFiles).commit(`chore(release): v${nextVersion}`);
 
-  log(`${changedFiles.join(', ')} are committed`)
+  log(`${changedFiles.join(", ")} are committed`);
 
-  await git().push()
+  await git().push();
 
-  log(`${changedFiles.join(', ')} are pushed`)
+  log(`${changedFiles.join(", ")} are pushed`);
 
-  await git().addTag(versionTag)
+  await git().addTag(versionTag);
 
-  log(`${versionTag} tag is added`)
+  log(`${versionTag} tag is added`);
 
-  await git().push(['origin', versionTag])
+  await git().push(["origin", versionTag]);
 
-  log(`${versionTag} tag is pushed`)
+  log(`${versionTag} tag is pushed`);
 
-  await git().checkout('develop')
+  await git().checkout("develop");
 
-  log(`'develop' is checked out`)
+  log(`'develop' is checked out`);
 
-  await git().rebase(['origin/main'])
+  await git().rebase(["origin/main"]);
 
-  log(`'develop' is rebased to 'main'`)
+  log(`'develop' is rebased to 'main'`);
 
-  await git().push()
+  await git().push();
 
-  log(`Rebased 'develop' is pushed`)
+  log(`Rebased 'develop' is pushed`);
 
-  await git().checkout('main')
+  await git().checkout("main");
 
-  log(`'main' is checked out`)
+  log(`'main' is checked out`);
 
-  log(`Release ${nextVersion} successfully completed`)
-}
+  log(`Release ${nextVersion} successfully completed`);
+};
 
 const main = async () => {
   try {
-    await release('frontend')
-    await release('backend')
+    await release("frontend");
+    await release("backend");
   } catch (err) {
-    console.error(err)
-    process.exit(1)
+    console.error(err);
+    process.exit(1);
   }
-}
+};
 
-main()
+main();
