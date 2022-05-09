@@ -4,4 +4,3 @@ export { default as useCleanUpAllCvAfterSignOut } from './useCleanUpAllCvAfterSi
 export { default as useSaveCvOfUnsignedInUser } from './useSaveCvOfUnsignedInUser'
 export { default as useUpdateCvMetadata } from './useUpdateCvMetadata'
 export { default as useDeleteCv } from './useDeleteCv'
-export { default as useCopySharableCvLink } from './useCopySharableCvLink'

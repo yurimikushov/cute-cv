@@ -11,8 +11,9 @@ import {
 import {
   useEditable,
   useGetCurrentCvFullName,
-  useCopySharableCvLink,
+  useCurrentCvMetadata,
 } from 'services/edit-cv'
+import { useCopyCvLink } from 'services/copy-cv-link'
 import { CV_CONTAINER_ID, useDownloadPDF } from 'services/download-cv'
 import ToolbarPanel from 'components/cv/panels/ToolbarPanel'
 import ToolbarPanelContainerProps from './ToolbarPanelContainer.props'
@@ -22,7 +23,8 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = (props) => {
   const { editable, toggleEditable } = useEditable()
   const { isDownloading, downloadPDF } = useDownloadPDF()
   const getCurrentCvFullName = useGetCurrentCvFullName()
-  const { allowShare, copySharableLink } = useCopySharableCvLink()
+  const { id, allowShare } = useCurrentCvMetadata()
+  const { copyCvLink } = useCopyCvLink(id)
   const { isSignInChecking } = useIsSignInChecking()
   const { isSignedIn } = useIsSignedIn()
   const { handleSignInGoogle } = useSignInGoogle()
@@ -48,7 +50,7 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = (props) => {
       isSignedIn={isSignedIn}
       onToggleEditable={toggleEditable}
       onDownloadPDF={handleDownloadPDF}
-      onCopySharableLink={copySharableLink}
+      onCopySharableLink={copyCvLink}
       onSignInGoogle={handleSignInGoogle}
       onSignInFacebook={handleSignInFacebook}
       onSignInGitHub={handleSignInGitHub}

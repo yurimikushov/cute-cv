@@ -1,7 +1,8 @@
 import { FC } from 'react'
 import isUndefined from 'lodash/isUndefined'
 import { useDownloadPDF, CV_CONTAINER_ID } from 'services/download-cv'
-import { useCopySharableCvLink, useSharableCv } from 'services/share-cv'
+import { useSharableCv } from 'services/share-cv'
+import { useCopyCvLink } from 'services/copy-cv-link'
 import ToolbarPanel from 'components/cv/panels/ToolbarPanel'
 import ToolbarPanelContainerProps from './ToolbarPanelContainer.props'
 
@@ -11,7 +12,7 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = ({
 }) => {
   const { data: cv } = useSharableCv(id)
   const { isDownloading, downloadPDF } = useDownloadPDF()
-  const { copySharableLink } = useCopySharableCvLink(id)
+  const { copyCvLink } = useCopyCvLink(id)
 
   const handleDownloadPDF = async () => {
     if (isUndefined(cv)) {
@@ -35,7 +36,7 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = ({
       allowShare
       disableAuth
       onDownloadPDF={handleDownloadPDF}
-      onCopySharableLink={copySharableLink}
+      onCopySharableLink={copyCvLink}
     />
   )
 }

@@ -1,0 +1,1 @@
+export { useCopyCvLink } from './hooks'

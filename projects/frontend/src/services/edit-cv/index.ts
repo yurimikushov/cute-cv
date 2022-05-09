@@ -6,7 +6,6 @@ export {
   useSaveCvOfUnsignedInUser,
   useUpdateCvMetadata,
   useDeleteCv,
-  useCopySharableCvLink,
 } from './hooks'
 export { useEditable } from './editable'
 export { useLoadAllCV, useIsCVLoading } from './load'
