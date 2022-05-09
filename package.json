@@ -8,7 +8,7 @@
     "lint": "concurrently \"eslint './**/*.ts'\" \"prettier --check .\""
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.2.3",
+    "@commitlint/cli": "^16.2.4",
     "@commitlint/config-conventional": "^16.2.1",
     "@types/conventional-changelog-preset-loader": "^2.3.1",
     "@types/conventional-commits-parser": "^3.0.2",
