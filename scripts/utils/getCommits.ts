@@ -29,7 +29,7 @@ const getCommits = (options: Options) => {
       .addListener('end', () => {
         resolve(commits)
       })
-      .addListener('error', err => {
+      .addListener('error', (err) => {
         reject(err)
       })
   })
