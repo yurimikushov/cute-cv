@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  release:
+  lint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -17,13 +17,7 @@ jobs:
           - 14.x
     steps:
       - uses: actions/checkout@v3
-      - run: git fetch --unshallow --tags
-      - name: Setup Git config
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
@@ -31,5 +25,39 @@ jobs:
         run: npm ci --no-progress
       - name: Lint
         run: npm run lint
+
+  release-frontend:
+    needs: lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 14.x
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --no-progress
       - name: Release
-        run: npx ts-node ./scripts/release.ts
+        run: npx ts-node ./scripts/release.ts --project=frontend
+
+  release-backend:
+    needs: lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 14.x
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --no-progress
+      - name: Release
+        run: npx ts-node ./scripts/release.ts --project=backend
