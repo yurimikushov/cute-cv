@@ -50,7 +50,10 @@ jobs:
         run: npx ts-node ./scripts/release.ts --project=frontend
 
   release-backend:
-    needs: lint
+    needs:
+      - lint
+      - release-frontend # run after this job to avoid git conflicts
+    if: ${{ always() && needs.lint.result == 'success' }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
