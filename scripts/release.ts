@@ -26,6 +26,10 @@ const release = async (project: ProjectsEnum) => {
 
   log(`'main' is checked out`)
 
+  await git().pull()
+
+  log(`'main' is pulled`)
+
   const path = join(process.cwd(), 'projects', project)
 
   const nextVersion = await getNextVersion(path)
@@ -71,6 +75,10 @@ const release = async (project: ProjectsEnum) => {
   await git().checkout('develop')
 
   log(`'develop' is checked out`)
+
+  await git().pull()
+
+  log(`'develop' is pulled`)
 
   await git().rebase(['origin/main'])
 
