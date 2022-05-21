@@ -1,13 +1,23 @@
 import { join } from 'path'
 import git from 'simple-git'
 import getNextVersion from './utils/getNextVersion'
+import parseArgs from './utils/parseArgs'
 import Pkg from './utils/pkg'
+
+enum ProjectsEnum {
+  Frontend = 'frontend',
+  Backend = 'backend',
+}
+
+const isValidProjectName = (project: string): project is ProjectsEnum => {
+  return Object.values<string>(ProjectsEnum).includes(project)
+}
 
 const logger = (project: string) => (message: string) => {
   console.log(`[${project}] ${message}`)
 }
 
-const release = async (project: 'frontend' | 'backend') => {
+const release = async (project: ProjectsEnum) => {
   const log = logger(project)
 
   log('Release started')
@@ -79,8 +89,22 @@ const release = async (project: 'frontend' | 'backend') => {
 
 const main = async () => {
   try {
-    await release('frontend')
-    await release('backend')
+    const { project } = await parseArgs({
+      project: {
+        alias: 'p',
+        type: 'string',
+      },
+    })
+
+    if (!project) {
+      throw new Error('Project name is missed')
+    }
+
+    if (!isValidProjectName(project)) {
+      throw new Error('Passed non-existent project name')
+    }
+
+    await release(project)
   } catch (err) {
     console.error(err)
     process.exit(1)
