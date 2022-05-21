@@ -1,7 +1,7 @@
 import { PrefixesEnum } from './model'
 
 const deletePrefix = (msg: string) => {
-  for (const [_, prefix] of Object.entries(PrefixesEnum)) {
+  for (const prefix of Object.values(PrefixesEnum)) {
     if (msg.startsWith(prefix)) {
       msg = msg.replace(prefix, '').trimStart()
     }
