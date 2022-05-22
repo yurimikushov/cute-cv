@@ -9,7 +9,7 @@ import {
 } from 'services/edit-cv'
 import PanelsLayout from 'layouts/PanelsLayout'
 import PageLayout from 'layouts/PageLayout'
-import Loader from 'components/ui/Loader'
+import Loader from 'shared/ui/Loader'
 import HeadContainer from './containers/HeadContainer'
 import VersionsPanelContainer from './containers/VersionsPanelContainer'
 import ToolbarPanelContainer from './containers/ToolbarPanelContainer'

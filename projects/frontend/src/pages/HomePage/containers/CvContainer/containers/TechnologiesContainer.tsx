@@ -4,7 +4,7 @@ import {
   useCurrentCvTechnologies,
   TECHNOLOGIES_MAX_LENGTH,
 } from 'services/edit-cv'
-import Technologies from 'components/cv/page/Technologies'
+import Technologies from 'shared/ui/cv/page/Technologies'
 
 const TechnologiesContainer: FC = () => {
   const { editable } = useEditable()

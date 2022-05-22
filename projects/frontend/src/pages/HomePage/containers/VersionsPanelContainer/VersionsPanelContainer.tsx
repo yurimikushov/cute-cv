@@ -12,8 +12,8 @@ import {
   useUpdateCvMetadata,
   useDeleteCv,
 } from 'services/edit-cv'
-import { useWithNotification } from 'components/ui/Notifications'
-import VersionsPanel from 'components/cv/panels/VersionsPanel'
+import { useWithNotification } from 'shared/ui/Notifications'
+import VersionsPanel from 'shared/ui/cv/panels/VersionsPanel'
 import useShouldDisplayAddButton from './hooks/useShouldDisplayAddButton'
 import useShouldDisableActiveElements from './hooks/useShouldDisableActiveElements'
 

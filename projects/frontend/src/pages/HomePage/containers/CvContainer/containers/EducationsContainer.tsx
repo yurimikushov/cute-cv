@@ -9,7 +9,7 @@ import {
   EDUCATION_UNIVERSITY_MAX_LENGTH,
   EDUCATION_DURATION_MAX_LENGTH,
 } from 'services/edit-cv'
-import Educations from 'components/cv/page/Educations'
+import Educations from 'shared/ui/cv/page/Educations'
 
 const EducationsContainer: FC = () => {
   const { editable } = useEditable()

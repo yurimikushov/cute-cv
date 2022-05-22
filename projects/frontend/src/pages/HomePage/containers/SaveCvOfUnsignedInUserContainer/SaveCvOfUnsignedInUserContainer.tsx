@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import EditCvMetadataModal from 'components/cv/modals/EditCvMetadataModal'
+import EditCvMetadataModal from 'shared/ui/cv/modals/EditCvMetadataModal'
 import useSaveCvOfUnsignedInUserModal from './hooks/useSaveCvOfUnsignedInUserModal'
 
 const SaveCvOfUnsignedInUserModal = EditCvMetadataModal

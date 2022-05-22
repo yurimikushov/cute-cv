@@ -10,7 +10,7 @@ import {
   EXPERIENCE_DURATION_MAX_LENGTH,
   EXPERIENCE_DESCRIPTION_MAX_LENGTH,
 } from 'services/edit-cv'
-import Experiences from 'components/cv/page/Experiences'
+import Experiences from 'shared/ui/cv/page/Experiences'
 
 const ExperiencesContainer: FC = () => {
   const { editable } = useEditable()

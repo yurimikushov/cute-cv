@@ -4,7 +4,7 @@ import {
   useCurrentCvAboutMe,
   ABOUT_ME_MAX_LENGTH,
 } from 'services/edit-cv'
-import AboutMe from 'components/cv/page/AboutMe'
+import AboutMe from 'shared/ui/cv/page/AboutMe'
 
 const AboutMeContainer: FC = () => {
   const { editable } = useEditable()

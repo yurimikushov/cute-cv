@@ -7,8 +7,8 @@ import { useSaveCvOfUnsignedInUser } from 'services/edit-cv'
 import {
   useNotification,
   useWithNotification,
-} from 'components/ui/Notifications'
-import CvOfUnsignedInUserExistsNotification from 'components/cv/notifications/CvOfUnsignedInUserExistsNotification'
+} from 'shared/ui/Notifications'
+import CvOfUnsignedInUserExistsNotification from 'shared/ui/cv/notifications/CvOfUnsignedInUserExistsNotification'
 
 // eslint-disable-next-line max-statements
 const useSaveCvOfUnsignedInUserModal = () => {

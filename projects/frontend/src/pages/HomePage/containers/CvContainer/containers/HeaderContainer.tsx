@@ -6,7 +6,7 @@ import {
   FULL_NAME_MAX_LENGTH,
   POSITION_MAX_LENGTH,
 } from 'services/edit-cv'
-import Header from 'components/cv/page/Header'
+import Header from 'shared/ui/cv/page/Header'
 
 const HeaderContainer: FC = () => {
   const { editable } = useEditable()

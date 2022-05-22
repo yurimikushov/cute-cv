@@ -7,7 +7,7 @@ import {
   LANGUAGES_MAX_COUNT,
   LANGUAGE_MAX_LENGTH,
 } from 'services/edit-cv'
-import Languages from 'components/cv/page/Languages'
+import Languages from 'shared/ui/cv/page/Languages'
 
 const LanguagesContainer: FC = () => {
   const { editable } = useEditable()

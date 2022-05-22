@@ -15,7 +15,7 @@ import {
 } from 'services/edit-cv'
 import { useCopyCvLink } from 'services/copy-cv-link'
 import { CV_CONTAINER_ID, useDownloadPDF } from 'services/download-cv'
-import ToolbarPanel from 'components/cv/panels/ToolbarPanel'
+import ToolbarPanel from 'shared/ui/cv/panels/ToolbarPanel'
 import ToolbarPanelContainerProps from './ToolbarPanelContainer.props'
 
 // eslint-disable-next-line max-statements

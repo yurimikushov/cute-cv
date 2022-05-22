@@ -8,7 +8,7 @@ import {
   CONTACT_TEXT_MAX_LENGTH,
   CONTACT_HREF_MAX_LENGTH,
 } from 'services/edit-cv'
-import Contacts from 'components/cv/page/Contacts'
+import Contacts from 'shared/ui/cv/page/Contacts'
 
 const ContactsContainer: FC = () => {
   const { editable } = useEditable()

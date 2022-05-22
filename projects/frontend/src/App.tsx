@@ -1,6 +1,6 @@
 import { lazy, Suspense, FC } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import Loader from 'components/ui/Loader'
+import Loader from 'shared/ui/Loader'
 
 const HomePage = lazy(
   () => import(/* webpackChunkName: "HomePage" */ 'pages/HomePage')
