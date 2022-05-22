@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { CV_CONTAINER_ID } from 'services/download-cv'
-import CvLayout from 'layouts/CvLayout'
+import CvLayout from 'shared/ui/layouts/CvLayout'
 import HeaderContainer from './containers/HeaderContainer'
 import AvatarContainer from './containers/AvatarContainer'
 import AboutMeContainer from './containers/AboutMeContainer'

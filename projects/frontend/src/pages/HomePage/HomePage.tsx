@@ -7,8 +7,8 @@ import {
   useCleanUpAllCvAfterSignOut,
   useIsCVLoading,
 } from 'services/edit-cv'
-import PanelsLayout from 'layouts/PanelsLayout'
-import PageLayout from 'layouts/PageLayout'
+import PanelsLayout from 'shared/ui/layouts/PanelsLayout'
+import PageLayout from 'shared/ui/layouts/PageLayout'
 import Loader from 'shared/ui/Loader'
 import HeadContainer from './containers/HeadContainer'
 import VersionsPanelContainer from './containers/VersionsPanelContainer'
