@@ -1,5 +1,5 @@
 import 'react-i18next'
-import { Translation } from 'translations'
+import { Translation } from 'shared/translations'
 
 declare module 'react-i18next' {
   interface CustomTypeOptions {

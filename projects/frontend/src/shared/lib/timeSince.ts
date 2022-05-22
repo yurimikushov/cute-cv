@@ -1,7 +1,7 @@
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import enLocale from 'date-fns/locale/en-US'
 import ruLocale from 'date-fns/locale/ru'
-import { LanguageEnum } from 'translations'
+import { LanguageEnum } from 'shared/translations'
 
 const timeSince = (
   date: Date,

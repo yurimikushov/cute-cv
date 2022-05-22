@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import isNull from 'lodash/isNull'
-import { LanguageEnum } from 'translations'
+import { LanguageEnum } from 'shared/translations'
 import timeSince from 'shared/lib/timeSince'
 import { useCurrentCvMetadata } from 'services/edit-cv'
 import { useSkipSignIn } from 'services/auth'
