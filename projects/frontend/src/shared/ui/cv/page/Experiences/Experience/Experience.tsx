@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Card from 'shared/ui/Card'
 import TextInput from 'shared/ui/TextInput'
 import TextArea from 'shared/ui/TextArea'
-import colors from 'styles/colors'
+import colors from 'shared/styles/colors'
 import ExperienceProps from './Experience.props'
 
 const Container = styled(Card)`

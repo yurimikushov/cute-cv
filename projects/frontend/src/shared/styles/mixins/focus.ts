@@ -1,5 +1,5 @@
 import { css } from 'styled-components'
-import colors from 'styles/colors'
+import colors from 'shared/styles/colors'
 
 const focusMixin = css`
   outline: none;

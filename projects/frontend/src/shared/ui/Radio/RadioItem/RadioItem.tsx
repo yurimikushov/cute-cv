@@ -1,8 +1,8 @@
 import { FC, KeyboardEvent, useRef } from 'react'
 import styled from 'styled-components'
-import colors from 'styles/colors'
-import radiuses from 'styles/radiuses'
-import focusMixin from 'styles/mixins/focus'
+import colors from 'shared/styles/colors'
+import radiuses from 'shared/styles/radiuses'
+import focusMixin from 'shared/styles/mixins/focus'
 import RadioItemProps from './RadioItem.props'
 
 const Item = styled.li<RadioItemProps>`

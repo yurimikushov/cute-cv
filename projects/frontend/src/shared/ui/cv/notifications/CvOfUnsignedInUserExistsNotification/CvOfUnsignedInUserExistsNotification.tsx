@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import Button from 'shared/ui/Button'
-import colors from 'styles/colors'
+import colors from 'shared/styles/colors'
 import CvOfUnsignedInUserExistsNotificationProps from './CvOfUnsignedInUserExistsNotification.props'
 
 const Container = styled.div`

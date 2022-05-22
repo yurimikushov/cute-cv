@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
-import colors from 'styles/colors'
-import fonts from 'styles/fonts'
+import colors from 'shared/styles/colors'
+import fonts from 'shared/styles/fonts'
 
 const HMixin = css`
   color: ${colors.gray300};

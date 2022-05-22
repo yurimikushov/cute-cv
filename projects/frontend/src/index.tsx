@@ -13,8 +13,8 @@ import GlobalErrorBoundary from 'shared/ui/error-boundary/GlobalErrorBoundary'
 import ErrorBoundary from 'shared/ui/error-boundary/ErrorBoundary'
 import ErrorBoundaryModal from 'shared/ui/error-boundary/ErrorBoundaryModal'
 import { NotificationsProvider } from 'shared/ui/Notifications'
-import ResetStyles from 'styles/global/ResetStyles'
-import GlobalStyles from 'styles/global/GlobalStyles'
+import ResetStyles from 'shared/styles/global/ResetStyles'
+import GlobalStyles from 'shared/styles/global/GlobalStyles'
 import App from './App'
 
 createRoot(document.querySelector('.app') as HTMLDivElement).render(

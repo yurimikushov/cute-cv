@@ -1,9 +1,9 @@
 import { forwardRef, ForwardRefRenderFunction } from 'react'
 import styled from 'styled-components'
-import colors from 'styles/colors'
-import fonts from 'styles/fonts'
-import radiuses from 'styles/radiuses'
-import shadows from 'styles/shadows'
+import colors from 'shared/styles/colors'
+import fonts from 'shared/styles/fonts'
+import radiuses from 'shared/styles/radiuses'
+import shadows from 'shared/styles/shadows'
 import PickBtnProps from './PickBtn.props'
 
 const Container = styled.button.attrs({

@@ -2,8 +2,8 @@ import { Children, cloneElement } from 'react'
 import styled from 'styled-components'
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd'
 import size from 'lodash/size'
-import colors from 'styles/colors'
-import radiuses from 'styles/radiuses'
+import colors from 'shared/styles/colors'
+import radiuses from 'shared/styles/radiuses'
 import DndListProps from './DndList.props'
 
 const List = styled('ul')<{ isDragging: boolean }>`

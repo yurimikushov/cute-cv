@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import colors from 'styles/colors'
-import zIndex from 'styles/zIndex'
+import colors from 'shared/styles/colors'
+import zIndex from 'shared/styles/zIndex'
 import Loader from '../Loader'
 import FullScreenProps from './FullScreen.props'
 

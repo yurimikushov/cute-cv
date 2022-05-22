@@ -2,9 +2,9 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import noop from 'lodash/noop'
 import { CloseButton } from 'shared/ui/Button'
-import colors from 'styles/colors'
-import radiuses from 'styles/radiuses'
-import shadows from 'styles/shadows'
+import colors from 'shared/styles/colors'
+import radiuses from 'shared/styles/radiuses'
+import shadows from 'shared/styles/shadows'
 import CardProps from './Card.props'
 
 const Container = styled.div<CardProps>`

@@ -7,7 +7,7 @@ import map from 'lodash/map'
 import { H2 } from 'shared/ui/H'
 import DndList from 'shared/ui/DndList'
 import Button from 'shared/ui/Button'
-import radiuses from 'styles/radiuses'
+import radiuses from 'shared/styles/radiuses'
 import Contact from './Contact'
 import ContactsProps from './Contacts.props'
 

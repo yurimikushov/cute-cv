@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import colors from 'styles/colors'
+import colors from 'shared/styles/colors'
 
 const Divider = styled.div`
   width: 100%;

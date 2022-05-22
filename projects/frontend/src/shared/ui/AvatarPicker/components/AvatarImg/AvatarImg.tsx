@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import radiuses from 'styles/radiuses'
+import radiuses from 'shared/styles/radiuses'
 import placeholderSrc from './assets/placeholder.png'
 import AvatarImgProps from './AvatarImg.props'
 

@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import { ReactComponent as CloseIcon } from 'icons/close.svg'
-import colors from 'styles/colors'
-import radiuses from 'styles/radiuses'
-import focusMixin from 'styles/mixins/focus'
+import colors from 'shared/styles/colors'
+import radiuses from 'shared/styles/radiuses'
+import focusMixin from 'shared/styles/mixins/focus'
 import CloseButtonProps from './CloseButton.props'
 
 const CloseButton: FC<CloseButtonProps> = styled.button.attrs({

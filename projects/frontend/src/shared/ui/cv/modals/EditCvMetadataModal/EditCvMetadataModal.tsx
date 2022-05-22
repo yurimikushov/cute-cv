@@ -7,9 +7,9 @@ import useAutoFocus from 'shared/hooks/useAutoFocus'
 import { CV_NAME_MAX_LENGTH } from 'services/edit-cv'
 import Modal from 'shared/ui/Modal'
 import BaseForm, { FormProps } from 'shared/ui/Form'
-import colors from 'styles/colors'
-import fonts from 'styles/fonts'
-import radiuses from 'styles/radiuses'
+import colors from 'shared/styles/colors'
+import fonts from 'shared/styles/fonts'
+import radiuses from 'shared/styles/radiuses'
 import EditCvMetadataModalProps from './EditCvMetadataModal.props'
 
 const Container = styled(Modal)`

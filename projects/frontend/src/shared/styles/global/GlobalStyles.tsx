@@ -1,8 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
-import colors from 'styles/colors'
-import gradients from 'styles/gradients'
-import radiuses from 'styles/radiuses'
-import focusMixin from 'styles/mixins/focus'
+import colors from 'shared/styles/colors'
+import gradients from 'shared/styles/gradients'
+import radiuses from 'shared/styles/radiuses'
+import focusMixin from 'shared/styles/mixins/focus'
 
 const GlobalStyles = createGlobalStyle`
   html {

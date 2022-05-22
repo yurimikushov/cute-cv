@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import Card from 'shared/ui/Card'
 import TextInput from 'shared/ui/TextInput'
-import colors from 'styles/colors'
+import colors from 'shared/styles/colors'
 import EducationProps from './Education.props'
 
 const Container = styled(Card)`

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import map from 'lodash/map'
-import zIndex from 'styles/zIndex'
+import zIndex from 'shared/styles/zIndex'
 import Notification from './Notification'
 import NotificationsProps from './Notifications.props'
 

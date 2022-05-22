@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { useField, useFormikContext } from 'formik'
 import styled from 'styled-components'
 import TextInput from 'shared/ui/TextInput'
-import colors from 'styles/colors'
+import colors from 'shared/styles/colors'
 import FromTextInputProps from './TextInput.props'
 
 const Container = styled.div``

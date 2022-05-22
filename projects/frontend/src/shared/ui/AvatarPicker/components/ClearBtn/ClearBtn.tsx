@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import { ReactComponent as CloseIcon } from 'icons/close.svg'
-import colors from 'styles/colors'
-import radiuses from 'styles/radiuses'
-import shadows from 'styles/shadows'
+import colors from 'shared/styles/colors'
+import radiuses from 'shared/styles/radiuses'
+import shadows from 'shared/styles/shadows'
 import ClearBtnProps from './ClearBtn.props'
 
 const Container = styled.button.attrs({

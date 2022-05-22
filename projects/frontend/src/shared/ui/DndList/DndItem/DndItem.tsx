@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
-import focusMixin from 'styles/mixins/focus'
+import focusMixin from 'shared/styles/mixins/focus'
 import DndItemProps from './DndItem.props'
 
 const STUB_STRING = ''

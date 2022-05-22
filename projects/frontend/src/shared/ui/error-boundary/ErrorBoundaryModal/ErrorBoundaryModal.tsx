@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import Modal from 'shared/ui/Modal'
 import Button from 'shared/ui/Button'
-import colors from 'styles/colors'
-import fonts from 'styles/fonts'
+import colors from 'shared/styles/colors'
+import fonts from 'shared/styles/fonts'
 import ErrorBoundaryModalProps from './ErrorBoundaryModal.props'
 
 const Container = styled(Modal)`

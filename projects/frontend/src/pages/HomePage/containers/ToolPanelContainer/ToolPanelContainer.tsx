@@ -5,7 +5,7 @@ import useKeyDown from 'shared/hooks/useKeyDown'
 import { useEditable } from 'services/edit-cv'
 import { useDownloadPDF } from 'services/download-cv'
 import Button from 'shared/ui/Button'
-import colors from 'styles/colors'
+import colors from 'shared/styles/colors'
 import useSavedStatus from './hooks/useSavedStatus'
 import ToolPanelContainerProps from './ToolPanelContainer.props'
 
