@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import isNull from 'lodash/isNull'
 import isNil from 'lodash/isNil'
 import first from 'lodash/first'
-import fileToBase64 from 'lib/fileToBase64'
+import fileToBase64 from 'shared/lib/fileToBase64'
 
 const useAvatarPicker = (
   onPick: (src: string) => void,

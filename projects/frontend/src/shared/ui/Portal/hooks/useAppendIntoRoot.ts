@@ -1,5 +1,5 @@
 import { RefObject, useLayoutEffect } from 'react'
-import nonNullable from 'lib/nonNullable'
+import nonNullable from 'shared/lib/nonNullable'
 
 const portalContainer = document.querySelector('.app') as HTMLDivElement
 

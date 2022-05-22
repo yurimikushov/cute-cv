@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled, { css } from 'styled-components'
 import trim from 'lodash/trim'
-import mdToJsx from 'lib/mdToJsx'
+import mdToJsx from 'shared/lib/mdToJsx'
 import colors from 'styles/colors'
 import radiuses from 'styles/radiuses'
 import focusMixin from 'styles/mixins/focus'

@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
-import getSearchParam from 'lib/getSearchParam'
-import downloadPDF from 'lib/downloadPDF'
+import getSearchParam from 'shared/lib/getSearchParam'
+import downloadPDF from 'shared/lib/downloadPDF'
 import { selectIsDownloading } from '../selectors'
 import { begin, finish } from '../slice'
 

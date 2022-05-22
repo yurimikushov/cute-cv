@@ -5,7 +5,7 @@ import {
   useImperativeHandle,
 } from 'react'
 import { createPortal } from 'react-dom'
-import nonNullable from 'lib/nonNullable'
+import nonNullable from 'shared/lib/nonNullable'
 import useAppendIntoRoot from './hooks/useAppendIntoRoot'
 import PortalProps from './Portal.props'
 

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import nonNullable from 'lib/nonNullable'
+import nonNullable from 'shared/lib/nonNullable'
 import useEffectWhen from 'hooks/useEffectWhen'
 import Button from 'shared/ui/Button'
 import SignInModal from 'shared/ui/SignInModal'

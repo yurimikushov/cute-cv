@@ -1,4 +1,4 @@
-import copyToClipboard from 'lib/copyToClipboard'
+import copyToClipboard from 'shared/lib/copyToClipboard'
 
 const useCopyCvLink = (id: string) => {
   const handleCopyCvLink = async () => {

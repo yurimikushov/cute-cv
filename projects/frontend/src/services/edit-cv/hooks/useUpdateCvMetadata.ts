@@ -1,4 +1,4 @@
-import nonNullable from 'lib/nonNullable'
+import nonNullable from 'shared/lib/nonNullable'
 import { useUpdateCvMetadata as useUpdateCvMetadataOnBackend } from '../patch'
 import { useUpdateCvMetadata as useUpdateCvMetadataInStore } from '../versions'
 

@@ -1,7 +1,7 @@
 import size from 'lodash/size'
 import map from 'lodash/map'
-import memoizeSelectorResultDeeply from 'lib/memoizeSelectorResultDeeply'
-import createArraySelector from 'lib/createArraySelector'
+import memoizeSelectorResultDeeply from 'shared/lib/memoizeSelectorResultDeeply'
+import createArraySelector from 'shared/lib/createArraySelector'
 import { RootState } from 'services/store'
 
 const selectCurrentCvId = (state: RootState) =>

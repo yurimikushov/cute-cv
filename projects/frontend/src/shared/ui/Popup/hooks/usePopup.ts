@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import defer from 'lodash/defer'
-import nonNullable from 'lib/nonNullable'
+import nonNullable from 'shared/lib/nonNullable'
 import useModal from 'hooks/useModal'
 import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
 import useOutsideClick from 'hooks/useOutsideClick'
