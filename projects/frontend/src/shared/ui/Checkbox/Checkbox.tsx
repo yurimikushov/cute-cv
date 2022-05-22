@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { ReactComponent as CheckmarkIcon } from 'icons/checkmark.svg'
+import { ReactComponent as CheckmarkIcon } from 'shared/icons/checkmark.svg'
 import colors from 'shared/styles/colors'
 import radiuses from 'shared/styles/radiuses'
 import focusMixin from 'shared/styles/mixins/focus'

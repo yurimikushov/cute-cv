@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { ReactComponent as CloseIcon } from 'icons/close.svg'
+import { ReactComponent as CloseIcon } from 'shared/icons/close.svg'
 import colors from 'shared/styles/colors'
 import radiuses from 'shared/styles/radiuses'
 import focusMixin from 'shared/styles/mixins/focus'

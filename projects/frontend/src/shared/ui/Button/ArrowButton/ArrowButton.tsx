@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { ReactComponent as ArrowBottomIcon } from 'icons/arrow-bottom.svg'
+import { ReactComponent as ArrowBottomIcon } from 'shared/icons/arrow-bottom.svg'
 import colors from 'shared/styles/colors'
 import radiuses from 'shared/styles/radiuses'
 import focusMixin from 'shared/styles/mixins/focus'

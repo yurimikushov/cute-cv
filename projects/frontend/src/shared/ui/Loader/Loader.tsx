@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { ReactComponent as LoaderIcon } from 'icons/loader.svg'
+import { ReactComponent as LoaderIcon } from 'shared/icons/loader.svg'
 import colors from 'shared/styles/colors'
 import keyframes from 'shared/styles/keyframes'
 import LoaderProps from './Loader.props'
