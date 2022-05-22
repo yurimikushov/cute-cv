@@ -1,6 +1,6 @@
 import { ForwardRefRenderFunction, forwardRef } from 'react'
 import styled from 'styled-components'
-import useInertSiblings from 'hooks/useInertSiblings'
+import useInertSiblings from 'shared/hooks/useInertSiblings'
 import Portal from 'shared/ui/Portal'
 import zIndex from 'styles/zIndex'
 import ContentPortalProps from './ContentPortal.props'

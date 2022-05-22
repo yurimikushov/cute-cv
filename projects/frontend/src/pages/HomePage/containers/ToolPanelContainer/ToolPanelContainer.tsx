@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import useKeyDown from 'hooks/useKeyDown'
+import useKeyDown from 'shared/hooks/useKeyDown'
 import { useEditable } from 'services/edit-cv'
 import { useDownloadPDF } from 'services/download-cv'
 import Button from 'shared/ui/Button'

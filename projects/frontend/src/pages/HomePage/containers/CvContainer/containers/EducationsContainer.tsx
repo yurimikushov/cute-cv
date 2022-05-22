@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import isEmpty from 'lodash/isEmpty'
-import useLayoutEffectWhen from 'hooks/useLayoutEffectWhen'
+import useLayoutEffectWhen from 'shared/hooks/useLayoutEffectWhen'
 import {
   useEditable,
   useCurrentCvEducations,

@@ -1,6 +1,6 @@
 import { FC, useCallback } from 'react'
 import styled, { css } from 'styled-components'
-import useTimer from 'hooks/useTimer'
+import useTimer from 'shared/hooks/useTimer'
 import { CloseButton } from 'shared/ui/Button'
 import { ReactComponent as SuccessIcon } from 'icons/success.svg'
 import { ReactComponent as ErrorIcon } from 'icons/error.svg'

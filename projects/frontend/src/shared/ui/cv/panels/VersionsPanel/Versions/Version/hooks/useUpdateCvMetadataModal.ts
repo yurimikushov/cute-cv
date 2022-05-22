@@ -1,4 +1,4 @@
-import useModal from 'hooks/useModal'
+import useModal from 'shared/hooks/useModal'
 
 const useUpdateCvMetadataModal = (
   onUpdateCvMetadata: (name: string, allowShare: boolean) => Promise<void>

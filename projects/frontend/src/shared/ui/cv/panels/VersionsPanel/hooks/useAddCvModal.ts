@@ -1,4 +1,4 @@
-import useModal from 'hooks/useModal'
+import useModal from 'shared/hooks/useModal'
 
 const useAddEditCvModal = (
   onAddEmptyCv: (name: string, allowShare: boolean) => Promise<{ id: string }>,

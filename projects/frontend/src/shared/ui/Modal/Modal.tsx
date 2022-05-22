@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import noop from 'lodash/noop'
-import useInertSiblings from 'hooks/useInertSiblings'
+import useInertSiblings from 'shared/hooks/useInertSiblings'
 import Portal from 'shared/ui/Portal'
 import colors from 'styles/colors'
 import shadows from 'styles/shadows'

@@ -1,13 +1,10 @@
 import { useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import isNull from 'lodash/isNull'
-import useModal from 'hooks/useModal'
+import useModal from 'shared/hooks/useModal'
 import { useIsSignedIn } from 'services/auth'
 import { useSaveCvOfUnsignedInUser } from 'services/edit-cv'
-import {
-  useNotification,
-  useWithNotification,
-} from 'shared/ui/Notifications'
+import { useNotification, useWithNotification } from 'shared/ui/Notifications'
 import CvOfUnsignedInUserExistsNotification from 'shared/ui/cv/notifications/CvOfUnsignedInUserExistsNotification'
 
 // eslint-disable-next-line max-statements

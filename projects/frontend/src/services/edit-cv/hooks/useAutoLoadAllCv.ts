@@ -1,5 +1,5 @@
 import isEmpty from 'lodash/isEmpty'
-import useEffectWhen from 'hooks/useEffectWhen'
+import useEffectWhen from 'shared/hooks/useEffectWhen'
 import { useIsSignedIn } from 'services/auth'
 import { useLoadAllCV } from '../load'
 import { useInitAllCv } from '../versions'

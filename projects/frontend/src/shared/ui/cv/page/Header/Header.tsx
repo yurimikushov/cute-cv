@@ -1,7 +1,7 @@
 import { FC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import useAutoFocusWhen from 'hooks/useAutoFocusWhen'
+import useAutoFocusWhen from 'shared/hooks/useAutoFocusWhen'
 import TextInput from 'shared/ui/TextInput'
 import HeaderProps from './Header.props'
 
