@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import isNull from 'lodash/isNull'
 import defer from 'lodash/defer'
-import cvApi from 'api/cv'
+import cvApi from 'shared/api/cv'
 import { useIsSignedIn } from 'services/auth'
 import { useLoadCV } from '../load'
 import { useCurrentCvMetadata, useUpdateCv } from '../versions'

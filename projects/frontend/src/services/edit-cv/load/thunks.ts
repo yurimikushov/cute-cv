@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import isNull from 'lodash/isNull'
-import cvApi from 'api/cv'
+import cvApi from 'shared/api/cv'
 import { ServiceNameEnum } from 'services'
 
 const loadAll = createAsyncThunk(

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import isNull from 'lodash/isNull'
 import useEffectWhen from 'shared/hooks/useEffectWhen'
-import cvApi from 'api/cv'
+import cvApi from 'shared/api/cv'
 import { useIsSignedIn } from 'services/auth'
 import { useAddCv as useAddCvOnBackend } from '../add'
 import {

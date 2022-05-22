@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import cvApi from 'api/cv'
+import cvApi from 'shared/api/cv'
 import { ServiceNameEnum } from 'services'
 import { PatchPayload } from './model'
 

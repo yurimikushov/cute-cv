@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import cvApi from 'api/cv'
+import cvApi from 'shared/api/cv'
 import { ServiceNameEnum } from 'services'
 import { Cv } from './model'
 
