@@ -37,7 +37,6 @@ jobs:
       status: ${{ steps.result.outputs.status }}
     steps:
       - uses: actions/checkout@v3
-      - run: git fetch --unshallow --tags
       - name: Setup Git config
         run: |
           git config user.name "GitHub Actions Bot"
@@ -112,7 +111,6 @@ jobs:
       status: ${{ steps.result.outputs.status }}
     steps:
       - uses: actions/checkout@v3
-      - run: git fetch --unshallow --tags
       - name: Setup Git config
         run: |
           git config user.name "GitHub Actions Bot"

@@ -22,6 +22,10 @@ const release = async (project: ProjectsEnum) => {
 
   log('Release started')
 
+  await git().fetch('--tags')
+
+  log('Tags were fetched')
+
   await git().checkout('main')
 
   log(`'main' is checked out`)
