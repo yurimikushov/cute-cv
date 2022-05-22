@@ -37,6 +37,9 @@ const Skip = styled.div`
   margin-top: 2rem;
 `
 
+// Should enable Facebook auth on Firebase Console
+const ALLOW_FACEBOOK_SIGH_IN = false
+
 const SignInModal: FC<SignInModalProps> = ({
   onSignInGoogle,
   onSignInFacebook,
@@ -53,8 +56,7 @@ const SignInModal: FC<SignInModalProps> = ({
         <SignInButton icon={<GoogleIcon />} onClick={onSignInGoogle}>
           {t('google.title')}
         </SignInButton>
-        {/* Should enable Facebook auth on Firebase Console */}
-        {false && (
+        {ALLOW_FACEBOOK_SIGH_IN && (
           <SignInButton icon={<FacebookIcon />} onClick={onSignInFacebook}>
             {t('facebook.title')}
           </SignInButton>
