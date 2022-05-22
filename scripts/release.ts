@@ -1,8 +1,15 @@
 import { join } from 'path'
+import { writeFileSync } from 'fs'
 import git from 'simple-git'
 import getNextVersion from './utils/getNextVersion'
 import parseArgs from './utils/parseArgs'
 import Pkg from './utils/pkg'
+
+enum StatusesEnum {
+  Released = 'released',
+  Skipped = 'skipped',
+  Failed = 'failed',
+}
 
 enum ProjectsEnum {
   Frontend = 'frontend',
@@ -17,7 +24,7 @@ const logger = (project: string) => (message: string) => {
   console.log(`[${project}] ${message}`)
 }
 
-const release = async (project: ProjectsEnum) => {
+const release = async (project: ProjectsEnum): Promise<boolean> => {
   const log = logger(project)
 
   log('Release started')
@@ -42,7 +49,7 @@ const release = async (project: ProjectsEnum) => {
 
   if (nextVersion === null) {
     log('Nothing to release')
-    return
+    return false
   }
 
   const pkg = new Pkg({ path })
@@ -97,29 +104,40 @@ const release = async (project: ProjectsEnum) => {
   log(`'main' is checked out`)
 
   log(`Release ${nextVersion} successfully completed`)
+
+  return true
+}
+
+const writeReleaseStatus = (project: ProjectsEnum, status: string) => {
+  writeFileSync(`release-status-${project}`, status)
 }
 
 const main = async () => {
+  const { project } = await parseArgs({
+    project: {
+      alias: 'p',
+      type: 'string',
+    },
+  })
+
+  if (!project) {
+    throw new Error('Project name is missed')
+  }
+
+  if (!isValidProjectName(project)) {
+    throw new Error('Passed non-existent project name')
+  }
+
   try {
-    const { project } = await parseArgs({
-      project: {
-        alias: 'p',
-        type: 'string',
-      },
-    })
+    const released = await release(project)
 
-    if (!project) {
-      throw new Error('Project name is missed')
-    }
-
-    if (!isValidProjectName(project)) {
-      throw new Error('Passed non-existent project name')
-    }
-
-    await release(project)
+    writeReleaseStatus(
+      project,
+      released ? StatusesEnum.Released : StatusesEnum.Skipped
+    )
   } catch (err) {
-    console.error(err)
-    process.exit(1)
+    writeReleaseStatus(project, StatusesEnum.Failed)
+    throw err
   }
 }
 
