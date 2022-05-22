@@ -29,7 +29,11 @@ const release = async (project: ProjectsEnum): Promise<boolean> => {
 
   log('Release started')
 
-  await git().fetch('--tags')
+  try {
+    await git().fetch(['--tags', '--unshallow'])
+  } catch {
+    await git().fetch('--tags')
+  }
 
   log('Tags were fetched')
 
