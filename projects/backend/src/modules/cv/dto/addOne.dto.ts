@@ -86,7 +86,7 @@ class ExperienceDto {
   readonly company: string
 
   @IsString()
-  @MaxLength(30)
+  @MaxLength(50)
   readonly duration: string
 
   @IsString()
@@ -107,7 +107,7 @@ class EducationDto {
   readonly university: string
 
   @IsString()
-  @MaxLength(30)
+  @MaxLength(50)
   readonly duration: string
 }
 
