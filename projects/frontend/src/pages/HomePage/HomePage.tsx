@@ -32,6 +32,10 @@ const ToolPanelContainer = styled(BaseToolPanelContainer)`
 const CvWrapper = styled.div`
   padding: 4rem;
   margin-top: -3rem;
+
+  @media print {
+    margin-top: 0;
+  }
 `
 
 const HomePage: FC = () => {

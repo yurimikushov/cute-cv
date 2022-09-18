@@ -7,18 +7,22 @@ const Container = styled.div`
   gap: 2.5rem;
 `
 
-const marginTopMixin = css`
+const panelsMixin = css`
   margin-top: 1.5rem;
+
+  @media print {
+    display: none;
+  }
 `
 
 const LeftSide = styled.div`
-  ${marginTopMixin}
+  ${panelsMixin}
 `
 
 const Main = styled.div``
 
 const RightSide = styled.div`
-  ${marginTopMixin}
+  ${panelsMixin}
 `
 
 const PanelsLayout: FC<PanelsLayoutProps> = ({

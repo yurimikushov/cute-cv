@@ -10,6 +10,10 @@ const PageLayout: FC<PageLayoutProps> = styled.div`
   background-color: ${colors.white};
   border-radius: ${radiuses.sm};
   border-top: 4px solid ${colors.black};
+
+  @media print {
+    border-top: none;
+  }
 `
 
 export default PageLayout

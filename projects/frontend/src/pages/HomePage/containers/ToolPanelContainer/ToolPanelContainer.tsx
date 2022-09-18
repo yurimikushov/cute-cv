@@ -12,6 +12,10 @@ import ToolPanelContainerProps from './ToolPanelContainer.props'
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media print {
+    display: none;
+  }
 `
 
 const SavedStatus = styled.div`

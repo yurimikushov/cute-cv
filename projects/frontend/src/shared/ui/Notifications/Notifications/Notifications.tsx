@@ -22,6 +22,10 @@ const Container = styled.div`
   & > * {
     pointer-events: auto;
   }
+
+  @media print {
+    display: none;
+  }
 `
 
 const Notifications: FC<NotificationsProps> = ({
