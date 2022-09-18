@@ -2,7 +2,7 @@ import { css } from 'styled-components'
 
 const panelMixin = css`
   position: sticky;
-  top: 1.5rem;
+  top: 2.75rem;
 
   min-width: 6rem;
 
