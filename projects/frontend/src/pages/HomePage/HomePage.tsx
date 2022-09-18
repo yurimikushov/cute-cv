@@ -30,8 +30,8 @@ const ToolPanelContainer = styled(BaseToolPanelContainer)`
 
 // Wrapper needed to correctly download pdf
 const CvWrapper = styled.div`
-  padding: 4rem;
-  margin-top: -3rem;
+  padding: 3rem;
+  margin-top: -2rem;
 
   @media print {
     margin-top: 0;

@@ -5,7 +5,7 @@ import CvLayoutProps from './CvLayout.props'
 const Container = styled.div`
   padding-bottom: 0.75rem; /* to print correctly out of bounds text */
   display: grid;
-  grid-template-columns: minmax(auto, 455px) 155px;
+  grid-template-columns: minmax(auto, 482px) 155px;
   grid-template-rows: auto 1fr;
   gap: 40px 50px;
 `
