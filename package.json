@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
-    "@commitlint/config-conventional": "^16.2.1",
+    "@commitlint/config-conventional": "^17.2.0",
     "@types/conventional-changelog-preset-loader": "^2.3.1",
     "@types/conventional-commits-parser": "^3.0.2",
     "@types/git-raw-commits": "^2.0.1",
