@@ -6,7 +6,7 @@ import useWindowResizeObserver from 'shared/hooks/useWindowResizeObserver'
 import useLayoutEffectWhen from 'shared/hooks/useLayoutEffectWhen'
 import useOutsideClick from 'shared/hooks/useOutsideClick'
 import useKeyDown from 'shared/hooks/useKeyDown'
-import { Placement, Trigger } from '../Popup.props'
+import { Placement, Trigger } from '../Dropdown.props'
 import getContentPosition from './utils/getContentPosition'
 
 const INITIAL_TOP_POSITION = 0
@@ -14,7 +14,7 @@ const INITIAL_LEFT_POSITION = 0
 const OFFSET_BETWEEN_TRIGGER_AND_CONTENT = 3
 
 // eslint-disable-next-line max-statements
-const usePopup = (trigger: Trigger, placement: Placement) => {
+const useDropdown = (trigger: Trigger, placement: Placement) => {
   const {
     isOpened: isVisible,
     open: showContent,
@@ -81,4 +81,4 @@ const usePopup = (trigger: Trigger, placement: Placement) => {
   }
 }
 
-export default usePopup
+export default useDropdown

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import Popup from 'shared/ui/Popup'
+import Dropdown from 'shared/ui/Dropdown'
 import Card from 'shared/ui/Card'
 import Button, { ArrowButton } from 'shared/ui/Button'
 import MenuProps from './Menu.props'
@@ -34,7 +34,7 @@ const Menu: FC<MenuProps> = ({
   })
 
   return (
-    <Popup
+    <Dropdown
       {...props}
       trigger='click'
       content={
@@ -46,7 +46,7 @@ const Menu: FC<MenuProps> = ({
       }
     >
       <ArrowButton disabled={disabled} />
-    </Popup>
+    </Dropdown>
   )
 }
 

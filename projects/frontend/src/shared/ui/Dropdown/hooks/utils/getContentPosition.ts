@@ -1,4 +1,4 @@
-import { Placement } from '../../Popup.props'
+import { Placement } from '../../Dropdown.props'
 
 // eslint-disable-next-line no-magic-numbers
 const half = (num: number) => Math.floor(num / 2)

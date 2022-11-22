@@ -1,15 +1,18 @@
 import { FC, cloneElement } from 'react'
-import usePopup from './hooks/usePopup'
-import PopupProps from './Popup.props'
+import useDropdown from './hooks/useDropdown'
+import DropdownProps from './Dropdown.props'
 import ContentPortal from './ContentPortal'
 
-const Popup: FC<PopupProps> = ({
+const Dropdown: FC<DropdownProps> = ({
   trigger = 'click',
   placement = 'bottom',
   content,
   children,
 }) => {
-  const { isVisible, triggerProps, contentProps } = usePopup(trigger, placement)
+  const { isVisible, triggerProps, contentProps } = useDropdown(
+    trigger,
+    placement
+  )
 
   return (
     <>
@@ -19,4 +22,4 @@ const Popup: FC<PopupProps> = ({
   )
 }
 
-export default Popup
+export default Dropdown
