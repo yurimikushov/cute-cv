@@ -1,7 +1,20 @@
 import { FC, cloneElement } from 'react'
+import styled from 'styled-components'
+import useInertSiblings from 'shared/hooks/useInertSiblings'
+import zIndex from 'shared/styles/zIndex'
+import Portal from 'shared/ui/Portal'
 import useDropdown from './hooks/useDropdown'
 import DropdownProps from './Dropdown.props'
-import ContentPortal from './ContentPortal'
+
+const Content = styled.div<{
+  top: number
+  left: number
+}>`
+  position: absolute;
+  top: ${({ top }) => top}px;
+  left: ${({ left }) => left}px;
+  z-index: ${zIndex.popup};
+`
 
 const Dropdown: FC<DropdownProps> = ({
   trigger = 'click',
@@ -14,10 +27,16 @@ const Dropdown: FC<DropdownProps> = ({
     placement
   )
 
+  const { elementRef } = useInertSiblings<HTMLDivElement>(isVisible)
+
   return (
     <>
       {cloneElement(children, triggerProps)}
-      {isVisible && <ContentPortal {...contentProps}>{content}</ContentPortal>}
+      {isVisible && (
+        <Portal ref={elementRef}>
+          <Content {...contentProps}>{content}</Content>
+        </Portal>
+      )}
     </>
   )
 }

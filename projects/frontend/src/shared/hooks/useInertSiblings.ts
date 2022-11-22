@@ -4,10 +4,14 @@ import isNull from 'lodash/isNull'
 import forEach from 'lodash/forEach'
 import getSiblings from 'shared/lib/getSiblings'
 
-const useInertSiblings = <T extends HTMLElement>() => {
+const useInertSiblings = <T extends HTMLElement>(inert = true) => {
   const elementRef = useRef<T>(null)
 
   useEffect(() => {
+    if (!inert) {
+      return
+    }
+
     const { current: currentElement } = elementRef
 
     if (isNull(currentElement)) {
@@ -27,7 +31,7 @@ const useInertSiblings = <T extends HTMLElement>() => {
         sibling.inert = false
       })
     }
-  }, [elementRef.current])
+  }, [inert, elementRef.current])
 
   return {
     elementRef,
