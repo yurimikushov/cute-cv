@@ -35,7 +35,7 @@ const en: Translation = {
       edit: 'Edit',
       makeCopy: 'Copy',
       delete: 'Delete',
-      confirmDelete: 'Are you sure you wanna delete this version?',
+      confirmDelete: 'Are you sure you want to delete this version?',
     },
     editCvMetadataModal: {
       title: 'Edit CV',
@@ -132,7 +132,7 @@ const en: Translation = {
     img: {
       alt: 'Avatar.',
     },
-    confirmDelete: 'Are you sure you wanna delete the pic?',
+    confirmDelete: 'Are you sure you want to delete the pic?',
   },
   experience: {
     title: 'Experience',
