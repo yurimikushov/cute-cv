@@ -1,15 +1,37 @@
-name: Deploy backend to testing stage (Heroku)
+name: Deploy backend to testing stage (Railway)
 
 on: workflow_dispatch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 14.x
+    defaults:
+      run:
+        working-directory: ./projects/backend
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          appdir: projects/backend
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: ${{secrets.HEROKU_TEST_APP_NAME}}
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Install Railway CLI
+        run: npm i -g @railway/cli
+      - name: Install dependencies
+        run: npm ci --no-progress
+      - name: Build
+        run: npm run build
+        env:
+          PORT: ${{ secrets.PORT }}
+          FRONTEND_ORIGIN: ${{ secrets.FRONTEND_ORIGIN }}
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
+          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
+          FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
+          FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      - name: Deploy
+        run: RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN_TESTING }} railway up
