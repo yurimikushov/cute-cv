@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import useEventListener from './useEventListener'
 
 type Options = {
   code: 'Escape' | 'Space' // should expand it as needed
@@ -9,25 +9,17 @@ type Options = {
 const useKeyDown = (options: Options) => {
   const { code, altKey, listener } = options
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (altKey && !e.altKey) {
-        return
-      }
-
-      if (e.code !== code) {
-        return
-      }
-
-      listener(e)
+  useEventListener('keydown', (e) => {
+    if (altKey && !e.altKey) {
+      return
     }
 
-    window.addEventListener('keydown', handleKeyDown)
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown)
+    if (e.code !== code) {
+      return
     }
-  }, [code, altKey, listener])
+
+    listener(e)
+  })
 }
 
 export default useKeyDown

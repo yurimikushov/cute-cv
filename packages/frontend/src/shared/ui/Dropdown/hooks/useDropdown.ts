@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import defer from 'lodash/defer'
 import nonNullable from 'shared/lib/nonNullable'
 import useModal from 'shared/hooks/useModal'
-import useWindowResizeObserver from 'shared/hooks/useWindowResizeObserver'
+import useEventListener from 'shared/hooks/useEventListener'
 import useLayoutEffectWhen from 'shared/hooks/useLayoutEffectWhen'
 import useOutsideClick from 'shared/hooks/useOutsideClick'
 import useKeyDown from 'shared/hooks/useKeyDown'
@@ -38,7 +38,7 @@ const useDropdown = (trigger: Trigger, placement: Placement) => {
     setLeft(left)
   }, [])
 
-  useWindowResizeObserver(updateContentPosition, [])
+  useEventListener('resize', updateContentPosition)
   useLayoutEffectWhen(updateContentPosition, isVisible)
 
   const readyToHideRef = useRef(false)
