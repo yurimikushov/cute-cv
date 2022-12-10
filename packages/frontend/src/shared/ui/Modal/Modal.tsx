@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import noop from 'lodash/noop'
+import useLockBody from 'shared/hooks/useLockBody'
 import useInertSiblings from 'shared/hooks/useInertSiblings'
 import Portal from 'shared/ui/Portal'
 import colors from 'shared/styles/colors'
@@ -28,6 +29,8 @@ const Content = styled.div`
 `
 
 const Modal: FC<ModalProps> = ({ children, onClose = noop, ...props }) => {
+  useLockBody()
+
   const { elementRef: portalRef } = useInertSiblings<HTMLDivElement>()
   const { contentRef } = useCloseModal<HTMLDivElement>(onClose)
 
