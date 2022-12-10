@@ -1,12 +1,11 @@
 import {
   forwardRef,
   ForwardRefRenderFunction,
-  useRef,
   useImperativeHandle,
+  useLayoutEffect,
 } from 'react'
 import { createPortal } from 'react-dom'
-import nonNullable from 'shared/lib/nonNullable'
-import useAppendIntoRoot from './hooks/useAppendIntoRoot'
+import useIsFirstRender from 'shared/hooks/useIsFirstRender'
 import PortalProps from './Portal.props'
 
 const Portal: ForwardRefRenderFunction<HTMLDivElement, PortalProps> = (
@@ -15,11 +14,17 @@ const Portal: ForwardRefRenderFunction<HTMLDivElement, PortalProps> = (
 ) => {
   const portalRef = useRef(document.createElement('div'))
 
-  useImperativeHandle(externalRef, () => nonNullable(portalRef.current))
+  useImperativeHandle(externalRef, () => portalRef.current)
 
-  useAppendIntoRoot(portalRef)
+  useLayoutEffect(() => {
+    document.body.appendChild(portalRef.current)
 
-  return createPortal(children, nonNullable(portalRef.current))
+    return () => {
+      document.body.removeChild(portalRef.current)
+    }
+  }, [portalRef.current])
+
+  return createPortal(children, portalRef.current)
 }
 
 export default forwardRef(Portal)
