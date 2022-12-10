@@ -1,14 +1,12 @@
 import useEventListener from './useEventListener'
 
-type Options = {
-  code: 'Escape' | 'Space' // should expand it as needed
+type Code = 'Escape' | 'Space' // should expand it as needed
+
+const useKeyDown = (
+  code: Code,
+  listener: (e: KeyboardEvent) => void,
   altKey?: boolean
-  listener: (e: KeyboardEvent) => void
-}
-
-const useKeyDown = (options: Options) => {
-  const { code, altKey, listener } = options
-
+) => {
   useEventListener('keydown', (e) => {
     if (altKey && !e.altKey) {
       return

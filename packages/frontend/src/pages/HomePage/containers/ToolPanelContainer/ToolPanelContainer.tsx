@@ -28,11 +28,7 @@ const ToolPanelContainer: FC<ToolPanelContainerProps> = (props) => {
   const savedStatus = useSavedStatus()
   const { isDownloading } = useDownloadPDF()
 
-  useKeyDown({
-    code: 'Space',
-    altKey: true,
-    listener: toggleEditable,
-  })
+  useKeyDown('Space', toggleEditable, true)
 
   return (
     <Container {...props}>

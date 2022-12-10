@@ -21,10 +21,7 @@ const useCloseModal = <T extends HTMLElement>(onClose: () => void) => {
     onClose()
   })
 
-  useKeyDown({
-    code: 'Escape',
-    listener: onClose,
-  })
+  useKeyDown('Escape', onClose)
 
   return {
     contentRef,

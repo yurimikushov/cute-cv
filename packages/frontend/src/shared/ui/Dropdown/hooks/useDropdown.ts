@@ -61,10 +61,7 @@ const useDropdown = (trigger: Trigger, placement: Placement) => {
     hideContent()
   })
 
-  useKeyDown({
-    code: 'Escape',
-    listener: hideContent,
-  })
+  useKeyDown('Escape', hideContent)
 
   return {
     isVisible,
