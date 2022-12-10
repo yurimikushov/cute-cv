@@ -1,6 +1,6 @@
 {
   "name": "cv-editor-frontend",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
