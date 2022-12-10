@@ -65,7 +65,7 @@ jobs:
           - 16.x
     defaults:
       run:
-        working-directory: ./projects/frontend
+        working-directory: ./packages/frontend
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -132,7 +132,7 @@ jobs:
           - 16.x
     defaults:
       run:
-        working-directory: ./projects/backend
+        working-directory: ./packages/backend
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3

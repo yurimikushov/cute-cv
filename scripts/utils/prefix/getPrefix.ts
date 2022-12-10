@@ -2,10 +2,10 @@ import { PrefixesEnum } from './model'
 
 const getPrefix = (filesPaths: Array<string>) => {
   const isFrontedChanged = filesPaths.some((path) =>
-    path.includes('projects/frontend')
+    path.includes('packages/frontend')
   )
   const isBackendChanged = filesPaths.some((path) =>
-    path.includes('projects/backend')
+    path.includes('packages/backend')
   )
 
   if (isFrontedChanged && isBackendChanged) {

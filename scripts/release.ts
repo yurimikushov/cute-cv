@@ -45,7 +45,7 @@ const release = async (project: ProjectsEnum): Promise<boolean> => {
 
   log(`'main' is pulled`)
 
-  const path = join(process.cwd(), 'projects', project)
+  const path = join(process.cwd(), 'packages', project)
 
   const nextVersion = await getNextVersion(path)
 

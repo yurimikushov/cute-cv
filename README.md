@@ -45,11 +45,7 @@ npm run prepare
 Installs frontend and backend deps including `eslint` and `prettier`
 
 ```
-cd projects/frontend
-npm i
-
-cd ../../projects/backend
-npm i
+cd packages/frontend && npm ci && cd ../../packages/backend && npm ci && cd ../..
 ```
 
 ## License
