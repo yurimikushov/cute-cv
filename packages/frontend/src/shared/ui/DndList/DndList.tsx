@@ -1,6 +1,6 @@
 import { Children, cloneElement } from 'react'
 import styled from 'styled-components'
-import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd'
+import { DragDropContext, Droppable, DropResult } from '@hello-pangea/dnd'
 import size from 'lodash/size'
 import colors from 'shared/styles/colors'
 import radiuses from 'shared/styles/radiuses'

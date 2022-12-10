@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { Draggable } from 'react-beautiful-dnd'
+import { Draggable } from '@hello-pangea/dnd'
 import focusMixin from 'shared/styles/mixins/focus'
 import DndItemProps from './DndItem.props'
 
