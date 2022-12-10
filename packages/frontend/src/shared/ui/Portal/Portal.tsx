@@ -5,14 +5,14 @@ import {
   useLayoutEffect,
 } from 'react'
 import { createPortal } from 'react-dom'
-import useIsFirstRender from 'shared/hooks/useIsFirstRender'
+import useLazyRef from 'shared/hooks/useLazyRef'
 import PortalProps from './Portal.props'
 
 const Portal: ForwardRefRenderFunction<HTMLDivElement, PortalProps> = (
   { children },
   externalRef
 ) => {
-  const portalRef = useRef(document.createElement('div'))
+  const portalRef = useLazyRef(() => document.createElement('div'))
 
   useImperativeHandle(externalRef, () => portalRef.current)
 
