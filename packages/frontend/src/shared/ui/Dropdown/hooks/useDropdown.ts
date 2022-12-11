@@ -38,7 +38,14 @@ const useDropdown = (trigger: Trigger, placement: Placement) => {
     setLeft(left)
   }, [])
 
-  useEventListener('resize', updateContentPosition)
+  useEventListener('resize', () => {
+    if (!isVisible) {
+      return
+    }
+
+    updateContentPosition()
+  })
+
   useLayoutEffectWhen(updateContentPosition, isVisible)
 
   const readyToHideRef = useRef(false)
