@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-const useEventListener = <T extends keyof WindowEventMap>(
+const useWindowEventListener = <T extends keyof WindowEventMap>(
   eventName: T,
   listener: (event: WindowEventMap[T]) => void,
   options?: boolean | AddEventListenerOptions
@@ -22,4 +22,4 @@ const useEventListener = <T extends keyof WindowEventMap>(
   }, [eventName, options])
 }
 
-export default useEventListener
+export default useWindowEventListener

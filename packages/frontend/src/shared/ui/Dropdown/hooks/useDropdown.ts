@@ -1,6 +1,6 @@
 import { useRef, useCallback } from 'react'
 import useModal from 'shared/hooks/useModal'
-import useEventListener from 'shared/hooks/useEventListener'
+import useWindowEventListener from 'shared/hooks/useWindowEventListener'
 import useLayoutEffectWhen from 'shared/hooks/useLayoutEffectWhen'
 import useOutsideClick from 'shared/hooks/useOutsideClick'
 import useKeyDown from 'shared/hooks/useKeyDown'
@@ -38,8 +38,8 @@ const useDropdown = (trigger: Trigger, placement: Placement) => {
     contentElement.style.left = `${left}px`
   }, [isVisible])
 
-  useEventListener('resize', updateContentPosition)
-  useEventListener('scroll', updateContentPosition)
+  useWindowEventListener('resize', updateContentPosition)
+  useWindowEventListener('scroll', updateContentPosition)
   useLayoutEffectWhen(updateContentPosition, isVisible)
 
   useOutsideClick(contentElementRef, () => {

@@ -1,4 +1,4 @@
-import useEventListener from './useEventListener'
+import useWindowEventListener from './useWindowEventListener'
 
 type Code = 'Escape' | 'Space' // should expand it as needed
 
@@ -7,7 +7,7 @@ const useKeyDown = (
   listener: (e: KeyboardEvent) => void,
   altKey?: boolean
 ) => {
-  useEventListener('keydown', (e) => {
+  useWindowEventListener('keydown', (e) => {
     if (altKey && !e.altKey) {
       return
     }

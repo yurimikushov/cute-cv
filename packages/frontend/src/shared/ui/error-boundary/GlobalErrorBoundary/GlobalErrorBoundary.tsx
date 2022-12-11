@@ -1,16 +1,16 @@
 import { FC, ReactElement } from 'react'
-import useEventListener from 'shared/hooks/useEventListener'
+import useWindowEventListener from 'shared/hooks/useWindowEventListener'
 import GlobalErrorBoundaryProps from './GlobalErrorBoundary.props'
 
 const GlobalErrorBoundary: FC<GlobalErrorBoundaryProps> = ({
   children,
   onError,
 }) => {
-  useEventListener('error', (e) => {
+  useWindowEventListener('error', (e) => {
     onError(e.error)
   })
 
-  useEventListener('unhandledrejection', (e) => {
+  useWindowEventListener('unhandledrejection', (e) => {
     onError(e.reason)
   })
 

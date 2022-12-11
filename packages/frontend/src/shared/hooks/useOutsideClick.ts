@@ -1,8 +1,8 @@
 import { RefObject } from 'react'
-import useEventListener from './useEventListener'
+import useWindowEventListener from './useWindowEventListener'
 
 const useOutsideClick = (ref: RefObject<HTMLElement>, onClick: () => void) => {
-  useEventListener('click', (e: MouseEvent) => {
+  useWindowEventListener('click', (e: MouseEvent) => {
     if (ref.current && !ref.current.contains(e.target as HTMLElement)) {
       onClick()
     }
