@@ -52,7 +52,7 @@ jobs:
         run: |
           npx ts-node ./scripts/release.ts --project=frontend
           status=$(cat release-status-frontend)
-          echo ::set-output name=status::${status}
+          echo "status=${status}" >> $GITHUB_OUTPUT
           echo Status - ${status}
 
   deploy-frontend:
@@ -119,7 +119,7 @@ jobs:
         run: |
           npx ts-node ./scripts/release.ts --project=backend
           status=$(cat release-status-backend)
-          echo ::set-output name=status::${status}
+          echo "status=${status}" >> $GITHUB_OUTPUT
           echo Status - ${status}
 
   deploy-backend:
