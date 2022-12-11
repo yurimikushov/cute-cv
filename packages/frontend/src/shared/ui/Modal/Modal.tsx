@@ -1,13 +1,14 @@
-import { FC } from 'react'
+import { FC, useRef } from 'react'
 import styled from 'styled-components'
 import noop from 'lodash/noop'
 import useLockBody from 'shared/hooks/useLockBody'
 import useInertSiblings from 'shared/hooks/useInertSiblings'
+import useOutsideClick from 'shared/hooks/useOutsideClick'
+import useKeyDown from 'shared/hooks/useKeyDown'
 import Portal from 'shared/ui/Portal'
 import colors from 'shared/styles/colors'
 import shadows from 'shared/styles/shadows'
 import zIndex from 'shared/styles/zIndex'
-import useCloseModal from './hooks/useCloseModal'
 import ModalProps from './Modal.props'
 
 const Overlay = styled.div`
@@ -29,10 +30,14 @@ const Content = styled.div`
 `
 
 const Modal: FC<ModalProps> = ({ children, onClose = noop, ...props }) => {
+  const contentRef = useRef<HTMLDivElement>(null)
+
   useLockBody()
 
   const { elementRef: portalRef } = useInertSiblings<HTMLDivElement>()
-  const { contentRef } = useCloseModal<HTMLDivElement>(onClose)
+
+  useOutsideClick(contentRef, onClose)
+  useKeyDown('Escape', onClose)
 
   return (
     <Portal ref={portalRef}>

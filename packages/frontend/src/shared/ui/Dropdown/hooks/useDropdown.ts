@@ -1,5 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react'
-import defer from 'lodash/defer'
+import { useRef, useCallback } from 'react'
 import useModal from 'shared/hooks/useModal'
 import useEventListener from 'shared/hooks/useEventListener'
 import useLayoutEffectWhen from 'shared/hooks/useLayoutEffectWhen'
@@ -43,20 +42,8 @@ const useDropdown = (trigger: Trigger, placement: Placement) => {
   useEventListener('scroll', updateContentPosition)
   useLayoutEffectWhen(updateContentPosition, isVisible)
 
-  const readyToHideRef = useRef(false)
-
-  useEffect(() => {
-    defer(() => {
-      readyToHideRef.current = isVisible
-    })
-  }, [isVisible])
-
   useOutsideClick(contentElementRef, () => {
-    if (!readyToHideRef.current || !isVisible) {
-      return
-    }
-
-    if (trigger !== 'click') {
+    if (!isVisible || trigger !== 'click') {
       return
     }
 
