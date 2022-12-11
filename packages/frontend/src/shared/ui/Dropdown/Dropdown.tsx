@@ -6,13 +6,8 @@ import Portal from 'shared/ui/Portal'
 import useDropdown from './hooks/useDropdown'
 import DropdownProps from './Dropdown.props'
 
-const Content = styled.div<{
-  top: number
-  left: number
-}>`
+const Content = styled.div`
   position: absolute;
-  top: ${({ top }) => top}px;
-  left: ${({ left }) => left}px;
   z-index: ${zIndex.popup};
 `
 

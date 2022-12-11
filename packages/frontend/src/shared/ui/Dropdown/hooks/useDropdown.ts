@@ -1,6 +1,5 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useRef, useEffect, useCallback } from 'react'
 import defer from 'lodash/defer'
-import nonNullable from 'shared/lib/nonNullable'
 import useModal from 'shared/hooks/useModal'
 import useEventListener from 'shared/hooks/useEventListener'
 import useLayoutEffectWhen from 'shared/hooks/useLayoutEffectWhen'
@@ -9,8 +8,6 @@ import useKeyDown from 'shared/hooks/useKeyDown'
 import { Placement, Trigger } from '../Dropdown.props'
 import getContentPosition from './utils/getContentPosition'
 
-const INITIAL_TOP_POSITION = 0
-const INITIAL_LEFT_POSITION = 0
 const OFFSET_BETWEEN_TRIGGER_AND_CONTENT = 3
 
 // eslint-disable-next-line max-statements
@@ -23,29 +20,27 @@ const useDropdown = (trigger: Trigger, placement: Placement) => {
   const triggerElementRef = useRef<HTMLElement>(null)
   const contentElementRef = useRef<HTMLDivElement>(null)
 
-  const [top, setTop] = useState(INITIAL_TOP_POSITION)
-  const [left, setLeft] = useState(INITIAL_LEFT_POSITION)
-
   const updateContentPosition = useCallback(() => {
-    const { top, left } = getContentPosition(
-      placement,
-      nonNullable(triggerElementRef.current),
-      nonNullable(contentElementRef.current),
-      OFFSET_BETWEEN_TRIGGER_AND_CONTENT
-    )
+    const { current: triggerElement } = triggerElementRef
+    const { current: contentElement } = contentElementRef
 
-    setTop(top)
-    setLeft(left)
-  }, [])
-
-  useEventListener('resize', () => {
-    if (!isVisible) {
+    if (!isVisible || !triggerElement || !contentElement) {
       return
     }
 
-    updateContentPosition()
-  })
+    const { top, left } = getContentPosition(
+      placement,
+      triggerElement,
+      contentElement,
+      OFFSET_BETWEEN_TRIGGER_AND_CONTENT
+    )
 
+    contentElement.style.top = `${top}px`
+    contentElement.style.left = `${left}px`
+  }, [isVisible])
+
+  useEventListener('resize', updateContentPosition)
+  useEventListener('scroll', updateContentPosition)
   useLayoutEffectWhen(updateContentPosition, isVisible)
 
   const readyToHideRef = useRef(false)
@@ -79,8 +74,6 @@ const useDropdown = (trigger: Trigger, placement: Placement) => {
     },
     contentProps: {
       ref: contentElementRef,
-      top,
-      left,
     },
   }
 }
