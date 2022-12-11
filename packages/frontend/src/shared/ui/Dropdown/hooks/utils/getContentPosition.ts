@@ -22,8 +22,9 @@ const getContentPosition = (
     const { width: contentWidth } = contentElementRect
 
     return {
-      top: triggerBottom + offset,
-      left: triggerLeft - half(contentWidth) + half(triggerWidth),
+      top: triggerBottom + offset + window.scrollY,
+      left:
+        triggerLeft - half(contentWidth) + half(triggerWidth) + window.scrollX,
     }
   }
 

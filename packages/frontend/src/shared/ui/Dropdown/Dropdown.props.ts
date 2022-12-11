@@ -3,7 +3,6 @@ import { ReactElement } from 'react'
 type PopupProps = {
   trigger?: Trigger
   placement?: Placement
-  fixed?: boolean
   content: ReactElement
   children: ReactElement
 }

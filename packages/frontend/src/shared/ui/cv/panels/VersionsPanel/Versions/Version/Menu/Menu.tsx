@@ -37,7 +37,6 @@ const Menu: FC<MenuProps> = ({
     <Dropdown
       {...props}
       trigger='click'
-      fixed
       content={
         <Content>
           <MenuItem onClick={onEditCvMetadata}>{t('edit')}</MenuItem>
