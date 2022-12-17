@@ -82,7 +82,7 @@ class ExperienceDto {
   readonly position: string
 
   @IsString()
-  @MaxLength(50)
+  @MaxLength(100)
   readonly company: string
 
   @IsString()
