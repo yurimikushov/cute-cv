@@ -1,4 +1,3 @@
-import { initializeApp } from 'firebase/app'
 import {
   getAuth,
   GoogleAuthProvider,
@@ -8,16 +7,8 @@ import {
   getIdToken,
 } from 'firebase/auth'
 import isNull from 'lodash/isNull'
+import 'shared/firebase/app/init'
 import { SignInChangedState } from './model'
-
-initializeApp({
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-})
 
 const auth = getAuth()
 
