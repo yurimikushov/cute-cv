@@ -4,7 +4,7 @@ let app: FirebaseApp | null = null
 
 const initFirebaseApp = () => {
   if (app) {
-    return
+    return app
   }
 
   app = initializeApp({
@@ -15,6 +15,10 @@ const initFirebaseApp = () => {
     storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   })
+
+  return app
 }
 
 initFirebaseApp()
+
+export default initFirebaseApp
