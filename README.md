@@ -18,9 +18,9 @@ You can finish your CV later. All changes are automatically saved.
 
 You can make CV with English or Russian section titles. To toggle language, use `en` or `ru` buttons on the toolbar.
 
-💥 **Markdown in textarea**
+💥 **Markdown in text fields**
 
-You can use `markdown` syntax in a textarea (field where is supported multiline text).
+You can use `markdown` syntax in any text field.
 So you can add refs, highlight words, even insert pictures. For example, to add this ref [My GitHub profile](https://github.com/yurimikushov) you should write like this `[My GitHub profile](https://github.com/yurimikushov)`.
 
 ## Dev
