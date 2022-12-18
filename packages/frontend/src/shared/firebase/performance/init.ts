@@ -1,8 +1,17 @@
-import { initializePerformance } from 'firebase/performance'
+import {
+  initializePerformance,
+  FirebasePerformance,
+} from 'firebase/performance'
 import { initFirebaseApp } from '../app'
 
+let performance: FirebasePerformance | null = null
+
 const initFirebasePerformance = () => {
-  initializePerformance(initFirebaseApp())
+  if (performance) {
+    return
+  }
+
+  performance = initializePerformance(initFirebaseApp())
 }
 
 initFirebasePerformance()
