@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import isUndefined from 'lodash/isUndefined'
 import { useDownloadPDF, CV_CONTAINER_ID } from 'services/download-cv'
 import { useSharableCv } from 'services/share-cv'
 import { useCopyCvLink } from 'services/copy-cv-link'
@@ -15,7 +14,7 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = ({
   const { copyCvLink } = useCopyCvLink(id)
 
   const handleDownloadPDF = async () => {
-    if (isUndefined(cv)) {
+    if (!cv) {
       throw new Error(`CV should be defined to download it`)
     }
 

@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
 import styled from 'styled-components'
-import isUndefined from 'lodash/isUndefined'
 import { useGetSharableCv } from 'services/share-cv'
 import PanelsLayout from 'shared/ui/layouts/PanelsLayout'
 import PageLayout from 'shared/ui/layouts/PageLayout'
@@ -28,7 +27,7 @@ const SharePage: FC = () => {
   const { i18n, t } = useTranslation('translation', { keyPrefix: 'share' })
   const { id } = useParams<{ id: string }>()
 
-  if (isUndefined(id)) {
+  if (!id) {
     throw new Error('[SharePage] Required `id` param is missed')
   }
 

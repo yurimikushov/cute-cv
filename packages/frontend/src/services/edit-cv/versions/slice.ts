@@ -9,7 +9,6 @@ import without from 'lodash/without'
 import omit from 'lodash/omit'
 import cloneDeep from 'lodash/cloneDeep'
 import swap from 'shared/lib/reorder'
-import isDefined from 'shared/lib/isDefined'
 import { ServiceNameEnum } from 'services'
 import createCv from './utils/createCv'
 import {
@@ -136,27 +135,27 @@ const { actions, reducer } = createSlice({
         payload
       const { metadata } = state.byId[id]
 
-      if (isDefined(publicId)) {
+      if (publicId) {
         metadata.publicId = publicId
       }
 
-      if (isDefined(name)) {
+      if (name) {
         metadata.name = name
       }
 
-      if (isDefined(isNew)) {
+      if (isNew) {
         metadata.isNew = isNew
       }
 
-      if (isDefined(isSaved)) {
+      if (isSaved) {
         metadata.isSaved = isSaved
       }
 
-      if (isDefined(savedAt)) {
+      if (savedAt) {
         metadata.savedAt = savedAt
       }
 
-      if (isDefined(allowShare)) {
+      if (allowShare) {
         metadata.allowShare = allowShare
       }
     },
