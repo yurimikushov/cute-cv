@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import first from 'lodash/first'
+import first from 'shared/lib/first'
 import fileToBase64 from 'shared/lib/fileToBase64'
 
 const useAvatarPicker = (

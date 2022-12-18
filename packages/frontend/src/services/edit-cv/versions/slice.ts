@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
 import sortBy from 'lodash/sortBy'
-import head from 'lodash/head'
+import first from 'shared/lib/first'
 import keyBy from 'shared/lib/keyBy'
 import without from 'lodash/without'
 import omit from 'lodash/omit'
@@ -86,7 +86,7 @@ const { actions, reducer } = createSlice({
         }
       })
 
-      state.currentId = head(state.ids) as string
+      state.currentId = first(state.ids) as string
     },
 
     updateCv: (state, { payload }: PayloadAction<UpdateCvPayload>) => {
