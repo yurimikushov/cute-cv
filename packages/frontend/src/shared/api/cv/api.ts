@@ -1,5 +1,4 @@
 import axios from 'axios'
-import isString from 'lodash/isString'
 import {
   LoadAllResult,
   LoadResult,
@@ -36,7 +35,7 @@ class cvApi {
       throw new Error(`Unexpected response status code: ${status}`)
     }
 
-    if (isString(data)) {
+    if (!data) {
       return null
     }
 
