@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import noop from 'shared/lib/noop'
 import size from 'lodash/size'
-import map from 'lodash/map'
 import { H2 } from 'shared/ui/H'
 import Button from 'shared/ui/Button'
 import Language from './Language'
@@ -35,7 +34,7 @@ const Languages: FC<LanguagesProps> = ({
   return (
     <Container {...props}>
       <H2>{t('title')}</H2>
-      {map(languages, ({ id, language }) => (
+      {languages.map(({ id, language }) => (
         <Language
           key={id}
           editable={editable}

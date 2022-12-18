@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import noop from 'shared/lib/noop'
 import size from 'lodash/size'
-import map from 'lodash/map'
 import { H2 } from 'shared/ui/H'
 import DndList from 'shared/ui/DndList'
 import Button from 'shared/ui/Button'
@@ -50,7 +49,7 @@ const Contacts: FC<ContactsProps> = ({
     <Container {...props}>
       <H2>{t('title')}</H2>
       <DraggableList isDndDisabled={!editable} onDragEnd={onReorder}>
-        {map(contacts, ({ id, text, href }) => (
+        {contacts.map(({ id, text, href }) => (
           <DraggableItem key={id}>
             <Contact
               editable={editable}

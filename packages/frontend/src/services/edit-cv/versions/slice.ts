@@ -1,6 +1,5 @@
 /* eslint-disable max-lines */
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
-import map from 'lodash/map'
 import sortBy from 'lodash/sortBy'
 import head from 'lodash/head'
 import forEach from 'lodash/forEach'
@@ -67,7 +66,7 @@ const { actions, reducer } = createSlice({
   initialState: createInitialState(),
   reducers: {
     initAllCv: (state, { payload: allCv }: PayloadAction<InitAllCvPayload>) => {
-      state.ids = map(sortBy(allCv, 'number'), 'id')
+      state.ids = sortBy(allCv, 'number').map(({ id }) => id)
       state.byId = {}
 
       const { content } = createCv()
@@ -107,19 +106,19 @@ const { actions, reducer } = createSlice({
           ...content,
           avatar,
           experiences: {
-            ids: map(experiences, 'id'),
+            ids: experiences.map(({ id }) => id),
             byId: keyBy(experiences, 'id'),
           },
           educations: {
-            ids: map(educations, 'id'),
+            ids: educations.map(({ id }) => id),
             byId: keyBy(educations, 'id'),
           },
           contacts: {
-            ids: map(contacts, 'id'),
+            ids: contacts.map(({ id }) => id),
             byId: keyBy(contacts, 'id'),
           },
           languages: {
-            ids: map(languages, 'id'),
+            ids: languages.map(({ id }) => id),
             byId: keyBy(languages, 'id'),
           },
         },
@@ -428,19 +427,19 @@ const { actions, reducer } = createSlice({
           ...content,
           avatar,
           experiences: {
-            ids: map(experiences, 'id'),
+            ids: experiences.map(({ id }) => id),
             byId: keyBy(experiences, 'id'),
           },
           educations: {
-            ids: map(educations, 'id'),
+            ids: educations.map(({ id }) => id),
             byId: keyBy(educations, 'id'),
           },
           contacts: {
-            ids: map(contacts, 'id'),
+            ids: contacts.map(({ id }) => id),
             byId: keyBy(contacts, 'id'),
           },
           languages: {
-            ids: map(languages, 'id'),
+            ids: languages.map(({ id }) => id),
             byId: keyBy(languages, 'id'),
           },
         },

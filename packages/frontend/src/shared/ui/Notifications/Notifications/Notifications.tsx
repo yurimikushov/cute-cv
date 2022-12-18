@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import map from 'lodash/map'
 import zIndex from 'shared/styles/zIndex'
 import Notification from './Notification'
 import NotificationsProps from './Notifications.props'
@@ -35,7 +34,7 @@ const Notifications: FC<NotificationsProps> = ({
 }) => {
   return (
     <Container {...props}>
-      {map(notifications, ({ id, content, options }) => (
+      {notifications.map(({ id, content, options }) => (
         <Notification key={id} id={id} options={options} onClose={onClose}>
           {content}
         </Notification>

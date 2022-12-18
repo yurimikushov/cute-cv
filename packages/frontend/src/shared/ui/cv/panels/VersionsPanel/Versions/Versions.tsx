@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import map from 'lodash/map'
 import { H2 } from 'shared/ui/H'
 import { useVersionsPanel } from '../VersionsPanelContext'
 import Version from './Version'
@@ -45,7 +44,7 @@ const Versions: FC<VersionsProps> = (props) => {
   return (
     <Container {...props}>
       <H2>{t('title')}</H2>
-      {map(allCv, ({ publicId, id, name, isNew, allowShare }) => (
+      {allCv.map(({ publicId, id, name, isNew, allowShare }) => (
         <Version
           key={id}
           name={name}
