@@ -1,4 +1,3 @@
-import size from 'lodash/size'
 import memoizeSelectorResultDeeply from 'shared/lib/memoizeSelectorResultDeeply'
 import createArraySelector from 'shared/lib/createArraySelector'
 import { RootState } from 'services/store'
@@ -9,7 +8,7 @@ const selectCvVersions = (state: RootState) => state['edit-cv'].versions
 
 const selectCvCount = (state: RootState) => {
   const { ids } = selectCvVersions(state)
-  return size(ids)
+  return ids.length
 }
 
 const selectCvNumbers = memoizeSelectorResultDeeply((state: RootState) => {

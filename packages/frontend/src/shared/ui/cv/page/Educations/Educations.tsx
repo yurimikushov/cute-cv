@@ -2,7 +2,6 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import noop from 'shared/lib/noop'
-import size from 'lodash/size'
 import { H1 } from 'shared/ui/H'
 import DndList from 'shared/ui/DndList'
 import Button from 'shared/ui/Button'
@@ -74,7 +73,7 @@ const Educations: FC<EducationsProps> = ({
           </DraggableItem>
         ))}
       </DraggableList>
-      {editable && size(educations) < maxCount && (
+      {editable && educations.length < maxCount && (
         <Add appearance='text' onClick={onAdd}>
           {t('add')}
         </Add>

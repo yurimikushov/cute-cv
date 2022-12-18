@@ -1,7 +1,6 @@
 import { Children, cloneElement } from 'react'
 import styled from 'styled-components'
 import { DragDropContext, Droppable, DropResult } from '@hello-pangea/dnd'
-import size from 'lodash/size'
 import colors from 'shared/styles/colors'
 import radiuses from 'shared/styles/radiuses'
 import DndListProps from './DndList.props'
@@ -27,7 +26,7 @@ const DndList = ({
   onDragEnd,
 }: DndListProps): JSX.Element => {
   // eslint-disable-next-line no-magic-numbers
-  const isDragDisabled = isDndDisabled || size(children) < 2
+  const isDragDisabled = isDndDisabled || children.length < 2
 
   const handleDragEnd = ({ destination, source }: DropResult) => {
     if (!destination) {
