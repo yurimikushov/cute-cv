@@ -2,7 +2,6 @@ import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import * as Yup from 'yup'
 import styled from 'styled-components'
-import replace from 'lodash/replace'
 import useAutoFocus from 'shared/hooks/useAutoFocus'
 import { CV_NAME_MAX_LENGTH } from 'services/edit-cv'
 import Modal from 'shared/ui/Modal'
@@ -29,7 +28,7 @@ const Title = styled.h1`
   color: ${colors.black};
 `
 
-const stretchClassName = replace(styled.div``.toString(), '.', '')
+const stretchClassName = styled.div``.toString().replace('.', '')
 
 const Form = styled(BaseForm)`
   width: 100%;
