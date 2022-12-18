@@ -2,7 +2,6 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import noop from 'shared/lib/noop'
-import size from 'lodash/size'
 import { H2 } from 'shared/ui/H'
 import Button from 'shared/ui/Button'
 import Language from './Language'
@@ -44,7 +43,7 @@ const Languages: FC<LanguagesProps> = ({
           onDelete={() => onDelete(id)}
         />
       ))}
-      {editable && size(languages) < maxCount && (
+      {editable && languages.length < maxCount && (
         <Add appearance='text' onClick={onAdd}>
           {t('add')}
         </Add>

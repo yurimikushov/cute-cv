@@ -2,7 +2,6 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import noop from 'shared/lib/noop'
-import size from 'lodash/size'
 import { H2 } from 'shared/ui/H'
 import DndList from 'shared/ui/DndList'
 import Button from 'shared/ui/Button'
@@ -64,7 +63,7 @@ const Contacts: FC<ContactsProps> = ({
           </DraggableItem>
         ))}
       </DraggableList>
-      {editable && size(contacts) < maxCount && (
+      {editable && contacts.length < maxCount && (
         <Add appearance='text' onClick={onAdd}>
           {t('add')}
         </Add>
