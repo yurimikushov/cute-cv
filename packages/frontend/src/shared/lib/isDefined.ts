@@ -1,7 +1,5 @@
-import isUndefined from 'lodash/isUndefined'
-
 const isDefined = <T>(value?: T): value is T => {
-  return !isUndefined(value)
+  return !value
 }
 
 export default isDefined

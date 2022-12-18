@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import isUndefined from 'lodash/isUndefined'
 import { CV_CONTAINER_ID } from 'services/download-cv'
 import { useSharableCv } from 'services/share-cv'
 import CvLayout from 'shared/ui/layouts/CvLayout'
@@ -16,7 +15,7 @@ import CvContainerProps from './CvContainer.props'
 const CvContainer: FC<CvContainerProps> = ({ id, ...props }) => {
   const { data: cv } = useSharableCv(id)
 
-  if (isUndefined(cv)) {
+  if (!cv) {
     return null
   }
 
