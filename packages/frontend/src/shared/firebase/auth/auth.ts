@@ -5,12 +5,13 @@ import {
   GithubAuthProvider,
   signInWithRedirect,
   getIdToken,
+  User,
 } from 'firebase/auth'
 import isNull from 'lodash/isNull'
-import 'shared/firebase/app/init'
-import { SignInChangedState } from './model'
+import noop from 'lodash/noop'
+import { getFirebaseApp } from '../app'
 
-const auth = getAuth()
+const auth = getAuth(getFirebaseApp())
 
 const signIn = async (
   provider: GoogleAuthProvider | FacebookAuthProvider | GithubAuthProvider
@@ -52,10 +53,15 @@ const signOut = async () => {
 }
 
 const watchSignInStateChange = (
-  cb: (state: SignInChangedState | null) => void
-): (() => void) | null => {
+  cb: (
+    state: {
+      user: User
+      token: string
+    } | null
+  ) => void
+): (() => void) => {
   if (isNull(auth)) {
-    return null
+    return noop
   }
 
   const unsubscribe = auth.onIdTokenChanged(async (user) => {

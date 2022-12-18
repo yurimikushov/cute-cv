@@ -1,6 +1,11 @@
 import { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { signInGoogle, signInFacebook, signInGitHub, signOut } from './firebase'
+import {
+  signInGoogle,
+  signInFacebook,
+  signInGitHub,
+  signOut,
+} from 'shared/firebase/auth'
 import {
   selectIsChecking,
   selectIsSignedIn,
