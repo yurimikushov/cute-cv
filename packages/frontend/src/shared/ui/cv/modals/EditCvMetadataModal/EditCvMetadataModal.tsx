@@ -81,7 +81,6 @@ const EditCvMetadataModal: FC<EditCvMetadataModalProps> = ({
 
   const validationSchema = useMemo(() => {
     return Yup.object({
-      // eslint-disable-next-line lodash/prefer-lodash-method
       name: Yup.string()
         .strict(false)
         .trim()

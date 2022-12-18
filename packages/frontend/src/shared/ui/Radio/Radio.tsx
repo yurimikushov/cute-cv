@@ -22,7 +22,6 @@ const Radio: FC<RadioProps> = ({
   ...props
 }) => (
   <Container {...props}>
-    {/* eslint-disable-next-line lodash/prefer-lodash-method */}
     {Children.map(children, (child: ReactElement<RadioItemProps>) =>
       cloneElement(child, {
         isActive: child.props.value === value,

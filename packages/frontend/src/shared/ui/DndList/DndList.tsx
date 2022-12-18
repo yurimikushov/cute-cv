@@ -54,7 +54,6 @@ const DndList = ({
             className={className}
             isDragging={snapshot.isDraggingOver}
           >
-            {/* eslint-disable-next-line lodash/prefer-lodash-method */}
             {Children.map(children, (child, i) =>
               cloneElement(child, {
                 draggableId: String(child.key ?? i),
