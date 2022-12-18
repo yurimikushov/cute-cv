@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import isEmpty from 'lodash/isEmpty'
+import isEmpty from 'shared/lib/isEmpty'
 import useLayoutEffectWhen from 'shared/hooks/useLayoutEffectWhen'
 import {
   useEditable,

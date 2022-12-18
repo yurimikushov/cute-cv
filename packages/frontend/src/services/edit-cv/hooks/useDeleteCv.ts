@@ -1,5 +1,5 @@
 import without from 'lodash/without'
-import isEmpty from 'lodash/isEmpty'
+import isEmpty from 'shared/lib/isEmpty'
 import { useDeleteCv as useDeleteCvFromBackend } from '../delete'
 import {
   useAllCvMetadata,

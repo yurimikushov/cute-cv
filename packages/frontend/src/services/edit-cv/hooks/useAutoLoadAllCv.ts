@@ -1,4 +1,4 @@
-import isEmpty from 'lodash/isEmpty'
+import isEmpty from 'shared/lib/isEmpty'
 import useEffectWhen from 'shared/hooks/useEffectWhen'
 import { useIsSignedIn } from 'services/auth'
 import { useLoadAllCV } from '../load'
