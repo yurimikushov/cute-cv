@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import defer from 'lodash/defer'
+import defer from 'shared/lib/defer'
 import cvApi from 'shared/api/cv'
 import { useIsSignedIn } from 'services/auth'
 import { useLoadCV } from '../load'

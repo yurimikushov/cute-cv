@@ -1,5 +1,5 @@
 import debounce from 'lodash/debounce'
-import defer from 'lodash/defer'
+import defer from 'shared/lib/defer'
 import cvApi from 'shared/api/cv'
 import { Middleware, Store } from 'services/store'
 import { selectIsSignedIn } from 'services/auth'
