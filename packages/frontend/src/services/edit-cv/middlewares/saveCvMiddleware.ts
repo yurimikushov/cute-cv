@@ -1,5 +1,4 @@
 import debounce from 'lodash/debounce'
-import isNil from 'lodash/isNil'
 import defer from 'lodash/defer'
 import cvApi from 'shared/api/cv'
 import { Middleware, Store } from 'services/store'
@@ -18,9 +17,17 @@ const saveCvOfSignedInUser = debounce((store: Store) => {
   const { metadata, content } = selectCurrentCv(store.getState())
   const { publicId, id, name, number, allowShare } = metadata
 
-  if (isNil(publicId)) {
+  if (publicId) {
     store
-      .dispatch(add({ name, number, allowShare, cv: content }))
+      .dispatch(
+        update({
+          publicId,
+          name,
+          number,
+          allowShare,
+          cv: content,
+        })
+      )
       .unwrap()
       .then(({ publicId, savedAt, allowShare }) => {
         store.dispatch(
@@ -36,15 +43,7 @@ const saveCvOfSignedInUser = debounce((store: Store) => {
       })
   } else {
     store
-      .dispatch(
-        update({
-          publicId,
-          name,
-          number,
-          allowShare,
-          cv: content,
-        })
-      )
+      .dispatch(add({ name, number, allowShare, cv: content }))
       .unwrap()
       .then(({ publicId, savedAt, allowShare }) => {
         store.dispatch(

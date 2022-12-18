@@ -1,7 +1,5 @@
-import isNil from 'lodash/isNil'
-
 const nonNullable = <T>(value: T): NonNullable<T> => {
-  if (isNil(value)) {
+  if (!value) {
     throw new Error('Unexpected nullable value')
   }
 

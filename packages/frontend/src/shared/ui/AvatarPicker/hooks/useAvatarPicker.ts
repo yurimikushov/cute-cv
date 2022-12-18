@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import isNil from 'lodash/isNil'
 import first from 'lodash/first'
 import fileToBase64 from 'shared/lib/fileToBase64'
 
@@ -25,7 +24,7 @@ const useAvatarPicker = (
       const { files } = target as HTMLInputElement
       const file = first(files)
 
-      if (isNil(file)) {
+      if (!file) {
         return
       }
 
