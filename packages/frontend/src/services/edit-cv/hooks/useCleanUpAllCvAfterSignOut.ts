@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import forEach from 'lodash/forEach'
 import { useIsSignedIn } from 'services/auth'
 import {
   useAddEmptyCv,
@@ -27,7 +26,7 @@ const useCleanUpAllCvAfterSignOut = () => {
     const { id: newCvId } = addEmptyCv()
     selectCv(newCvId)
 
-    forEach(allCv, ({ id }) => {
+    allCv.forEach(({ id }) => {
       deleteCv(id)
     })
   }, [isSignedIn])

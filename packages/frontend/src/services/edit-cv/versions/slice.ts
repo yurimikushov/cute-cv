@@ -2,7 +2,6 @@
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
 import sortBy from 'lodash/sortBy'
 import head from 'lodash/head'
-import forEach from 'lodash/forEach'
 import keyBy from 'lodash/keyBy'
 import without from 'lodash/without'
 import omit from 'lodash/omit'
@@ -72,7 +71,7 @@ const { actions, reducer } = createSlice({
 
       const { content } = createCv()
 
-      forEach(allCv, ({ publicId, id, name, number, allowShare }) => {
+      allCv.forEach(({ publicId, id, name, number, allowShare }) => {
         state.byId[id] = {
           metadata: {
             publicId,

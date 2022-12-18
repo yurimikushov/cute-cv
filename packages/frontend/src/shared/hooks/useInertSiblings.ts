@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import 'wicg-inert'
-import forEach from 'lodash/forEach'
 import getSiblings from 'shared/lib/getSiblings'
 
 const useInertSiblings = <T extends HTMLElement>(inert = true) => {
@@ -21,12 +20,12 @@ const useInertSiblings = <T extends HTMLElement>(inert = true) => {
 
     const siblings = getSiblings(currentElement)
 
-    forEach(siblings, (sibling) => {
+    siblings.forEach((sibling) => {
       sibling.inert = true
     })
 
     return () => {
-      forEach(siblings, (sibling) => {
+      siblings.forEach((sibling) => {
         sibling.inert = false
       })
     }
