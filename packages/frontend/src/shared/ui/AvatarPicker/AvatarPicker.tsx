@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import noop from 'shared/lib/noop'
-import isEmpty from 'lodash/isEmpty'
 import focusMixin from 'shared/styles/mixins/focus'
 import useAvatarPicker from './hooks/useAvatarPicker'
 import AvatarImg from './components/AvatarImg'
@@ -66,7 +65,7 @@ const AvatarPicker: FC<AvatarPickerProps> = ({
       {editable && (
         <>
           <Pick ref={pickButtonRef} onClick={handlePick} />
-          {!isEmpty(src) && <Clear onClick={handleClear} />}
+          {Boolean(src) && <Clear onClick={handleClear} />}
           <HiddenImgInput ref={fileInputRef} />
         </>
       )}
