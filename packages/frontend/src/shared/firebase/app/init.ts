@@ -19,6 +19,8 @@ const initFirebaseApp = () => {
   return app
 }
 
+const getFirebaseApp = initFirebaseApp
+
 initFirebaseApp()
 
-export default initFirebaseApp
+export { getFirebaseApp }

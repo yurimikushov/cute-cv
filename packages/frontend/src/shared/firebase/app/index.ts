@@ -1,1 +1,1 @@
-export { default as initFirebaseApp } from './init'
+export { getFirebaseApp } from './init'
