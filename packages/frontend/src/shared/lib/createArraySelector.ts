@@ -1,5 +1,4 @@
 import { createSelector } from '@reduxjs/toolkit'
-import map from 'lodash/map'
 
 const createArraySelector = <S, Id extends string, Item>(
   selector: (state: S) => {
@@ -8,7 +7,7 @@ const createArraySelector = <S, Id extends string, Item>(
   }
 ) => {
   return createSelector(selector, ({ ids, byId }) => {
-    return map(ids, (id) => byId[id])
+    return ids.map((id) => byId[id])
   })
 }
 

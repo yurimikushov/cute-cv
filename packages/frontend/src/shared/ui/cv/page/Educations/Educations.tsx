@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import noop from 'shared/lib/noop'
 import size from 'lodash/size'
-import map from 'lodash/map'
 import { H1 } from 'shared/ui/H'
 import DndList from 'shared/ui/DndList'
 import Button from 'shared/ui/Button'
@@ -51,7 +50,7 @@ const Educations: FC<EducationsProps> = ({
     <Container {...props}>
       <H1>{t('title')}</H1>
       <DraggableList isDndDisabled={!editable} onDragEnd={onReorder}>
-        {map(educations, ({ id, degree, university, duration }) => (
+        {educations.map(({ id, degree, university, duration }) => (
           <DraggableItem key={id}>
             <Education
               editable={editable}

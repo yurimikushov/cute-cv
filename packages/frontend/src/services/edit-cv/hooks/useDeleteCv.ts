@@ -1,4 +1,3 @@
-import map from 'lodash/map'
 import without from 'lodash/without'
 import isEmpty from 'lodash/isEmpty'
 import { useDeleteCv as useDeleteCvFromBackend } from '../delete'
@@ -20,7 +19,7 @@ const useDeleteCv = () => {
   const deleteCvFromStore = useDeleteCvFromStore()
 
   const selectNextCv = (id: string) => {
-    const cvIds = map(allCv, 'id')
+    const cvIds = allCv.map(({ id }) => id)
 
     if (isEmpty(without(cvIds, id))) {
       const { id: newCvId } = addEmptyCv()

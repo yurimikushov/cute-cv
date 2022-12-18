@@ -1,5 +1,4 @@
 import size from 'lodash/size'
-import map from 'lodash/map'
 import memoizeSelectorResultDeeply from 'shared/lib/memoizeSelectorResultDeeply'
 import createArraySelector from 'shared/lib/createArraySelector'
 import { RootState } from 'services/store'
@@ -15,12 +14,12 @@ const selectCvCount = (state: RootState) => {
 
 const selectCvNumbers = memoizeSelectorResultDeeply((state: RootState) => {
   const { ids, byId } = selectCvVersions(state)
-  return map(ids, (id) => byId[id].metadata.number)
+  return ids.map((id) => byId[id].metadata.number)
 })
 
 const selectAllCvMetadata = memoizeSelectorResultDeeply((state: RootState) => {
   const { ids, byId } = selectCvVersions(state)
-  return map(ids, (id) => byId[id].metadata)
+  return ids.map((id) => byId[id].metadata)
 })
 
 const selectCurrentRawCv = (state: RootState) => {

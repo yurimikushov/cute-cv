@@ -1,6 +1,5 @@
 import axios from 'axios'
 import isString from 'lodash/isString'
-import map from 'lodash/map'
 import {
   LoadAllResult,
   LoadResult,
@@ -24,7 +23,7 @@ class cvApi {
       throw new Error(`Unexpected response status code: ${status}`)
     }
 
-    return map(data, (cvMetadata) =>
+    return data.map((cvMetadata) =>
       validateCvMetadata(convertRawCvMetadata(cvMetadata))
     )
   }
