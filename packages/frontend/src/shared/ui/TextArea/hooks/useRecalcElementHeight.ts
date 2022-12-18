@@ -1,5 +1,4 @@
 import { DependencyList, useLayoutEffect, useRef, useState } from 'react'
-import isNull from 'lodash/isNull'
 
 const useRecalcElementHeight = <T extends HTMLElement>(
   deps: DependencyList
@@ -12,7 +11,7 @@ const useRecalcElementHeight = <T extends HTMLElement>(
   }, deps)
 
   useLayoutEffect(() => {
-    if (isNull(ref.current)) {
+    if (!ref.current) {
       return
     }
 

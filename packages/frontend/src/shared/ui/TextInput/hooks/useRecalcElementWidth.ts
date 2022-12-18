@@ -1,5 +1,4 @@
 import { DependencyList, useLayoutEffect, useRef, useState } from 'react'
-import isNull from 'lodash/isNull'
 
 type Options = {
   extraSpace?: number
@@ -18,7 +17,7 @@ const useRecalcElementWidth = <T extends HTMLElement>(
   }, deps)
 
   useLayoutEffect(() => {
-    if (isNull(ref.current)) {
+    if (!ref.current) {
       return
     }
 

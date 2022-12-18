@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import isNull from 'lodash/isNull'
 import defer from 'lodash/defer'
 import cvApi from 'shared/api/cv'
 import { useIsSignedIn } from 'services/auth'
@@ -16,7 +15,7 @@ const useAutoLoadCurrentCv = () => {
   const loadCvOfUnsignedInUser = () => {
     const cv = cvApi.loadCvOfUnsignedInUser()
 
-    if (isNull(cv)) {
+    if (!cv) {
       return
     }
 

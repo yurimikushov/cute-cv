@@ -1,5 +1,4 @@
 import { createContext, useContext } from 'react'
-import isNull from 'lodash/isNull'
 import ToolbarPanelProps from './ToolbarPanel.props'
 
 const ToolbarPanelContext = createContext<Omit<
@@ -10,7 +9,7 @@ const ToolbarPanelContext = createContext<Omit<
 const useToolbarPanel = () => {
   const context = useContext(ToolbarPanelContext)
 
-  if (isNull(context)) {
+  if (!context) {
     throw new Error('[ToolbarPanel] Context initialization is missed ')
   }
 

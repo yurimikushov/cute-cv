@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import isNull from 'lodash/isNull'
 import cvApi from 'shared/api/cv'
 import { ServiceNameEnum } from 'services'
 
@@ -16,7 +15,7 @@ const load = createAsyncThunk(
   async (id: string, { rejectWithValue }) => {
     const cv = await cvApi.load(id)
 
-    if (isNull(cv)) {
+    if (!cv) {
       throw rejectWithValue({ isEmpty: true })
     }
 

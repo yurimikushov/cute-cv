@@ -1,7 +1,6 @@
 import axios from 'axios'
 import isString from 'lodash/isString'
 import map from 'lodash/map'
-import isNull from 'lodash/isNull'
 import {
   LoadAllResult,
   LoadResult,
@@ -116,7 +115,7 @@ class cvApi {
   static loadCvOfUnsignedInUser(): Cv | null {
     const rawCV = localStorage.getItem('persist:unsignedin:cv')
 
-    if (isNull(rawCV)) {
+    if (!rawCV) {
       return null
     }
 

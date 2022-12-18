@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import isNull from 'lodash/isNull'
 import useEffectWhen from 'shared/hooks/useEffectWhen'
 import cvApi from 'shared/api/cv'
 import { useIsSignedIn } from 'services/auth'
@@ -25,7 +24,7 @@ const useSaveCvOfUnsignedInUser = () => {
   useEffectWhen(() => {
     const cv = cvApi.loadCvOfUnsignedInUser()
 
-    if (isNull(cv)) {
+    if (!cv) {
       return
     }
 
@@ -33,7 +32,7 @@ const useSaveCvOfUnsignedInUser = () => {
   }, isSignedIn)
 
   const handleCopy = async (name: string, allowShare: boolean) => {
-    if (!isSignedIn || isNull(cv)) {
+    if (!isSignedIn || !cv) {
       return
     }
 
@@ -71,7 +70,7 @@ const useSaveCvOfUnsignedInUser = () => {
   }
 
   return {
-    isExists: !isNull(cv),
+    isExists: Boolean(cv),
     copy: handleCopy,
   }
 }

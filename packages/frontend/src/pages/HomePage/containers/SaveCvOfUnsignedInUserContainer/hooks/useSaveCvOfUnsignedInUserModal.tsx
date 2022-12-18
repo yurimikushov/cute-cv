@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import isNull from 'lodash/isNull'
 import useModal from 'shared/hooks/useModal'
 import { useIsSignedIn } from 'services/auth'
 import { useSaveCvOfUnsignedInUser } from 'services/edit-cv'
@@ -44,7 +43,7 @@ const useSaveCvOfUnsignedInUserModal = () => {
   const closeNotification = () => {
     const { current: id } = notificationIdRef
 
-    if (isNull(id)) {
+    if (!id) {
       return
     }
 

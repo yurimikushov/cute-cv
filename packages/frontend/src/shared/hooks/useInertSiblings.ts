@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import 'wicg-inert'
-import isNull from 'lodash/isNull'
 import forEach from 'lodash/forEach'
 import getSiblings from 'shared/lib/getSiblings'
 
@@ -14,7 +13,7 @@ const useInertSiblings = <T extends HTMLElement>(inert = true) => {
 
     const { current: currentElement } = elementRef
 
-    if (isNull(currentElement)) {
+    if (!currentElement) {
       return
     }
 

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import isNull from 'lodash/isNull'
 import { LanguageEnum } from 'shared/translations'
 import timeSince from 'shared/lib/timeSince'
 import { useCurrentCvMetadata } from 'services/edit-cv'
@@ -25,7 +24,7 @@ const useSavedStatus = () => {
           return t('notSaved')
         }
 
-        if (isNull(savedAt)) {
+        if (!savedAt) {
           return ''
         }
 

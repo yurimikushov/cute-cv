@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import isNull from 'lodash/isNull'
 import once from 'lodash/once'
 import pick from 'lodash/pick'
 import { watchSignInStateChange } from 'shared/firebase/auth'
@@ -18,15 +17,15 @@ const useAuth = () => {
     const finishFirstChecking = once(handleFinish)
 
     const unsubscribe = watchSignInStateChange((signInState) => {
-      if (isNull(signInState)) {
-        handleReset()
-        resetToken()
-        handleSignedOut()
-      } else {
+      if (signInState) {
         const { user, token } = signInState
         handleSet({ user: pick(user, 'uid', 'displayName', 'email') })
         setToken(token)
         handleSignedIn()
+      } else {
+        handleReset()
+        resetToken()
+        handleSignedOut()
       }
 
       finishFirstChecking()

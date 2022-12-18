@@ -7,7 +7,6 @@ import {
   getIdToken,
   User,
 } from 'firebase/auth'
-import isNull from 'lodash/isNull'
 import noop from 'shared/lib/noop'
 import { getFirebaseApp } from '../app'
 
@@ -16,7 +15,7 @@ const auth = getAuth(getFirebaseApp())
 const signIn = async (
   provider: GoogleAuthProvider | FacebookAuthProvider | GithubAuthProvider
 ) => {
-  if (isNull(auth)) {
+  if (!auth) {
     return
   }
 
@@ -45,7 +44,7 @@ const signInGitHub = async () => {
 }
 
 const signOut = async () => {
-  if (isNull(auth)) {
+  if (!auth) {
     return null
   }
 
@@ -60,12 +59,12 @@ const watchSignInStateChange = (
     } | null
   ) => void
 ): (() => void) => {
-  if (isNull(auth)) {
+  if (!auth) {
     return noop
   }
 
   const unsubscribe = auth.onIdTokenChanged(async (user) => {
-    if (isNull(user)) {
+    if (!user) {
       cb(null)
       return
     }

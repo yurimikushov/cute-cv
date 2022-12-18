@@ -1,5 +1,4 @@
 import { PureComponent } from 'react'
-import isNull from 'lodash/isNull'
 import ErrorBoundaryProps from './ErrorBoundary.props'
 import ErrorBoundaryState from './ErrorBoundary.state'
 
@@ -39,9 +38,7 @@ class ErrorBoundary extends PureComponent<
     const { error } = this.state
     const { fallback: FallbackComponent, children } = this.props
 
-    const hasError = !isNull(error)
-
-    if (hasError) {
+    if (error) {
       return (
         <FallbackComponent
           error={error}

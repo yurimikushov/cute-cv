@@ -1,11 +1,10 @@
 import { useContext } from 'react'
-import isNull from 'lodash/isNull'
 import NotificationsContext from '../NotificationsContext'
 
 const useNotification = () => {
   const notifications = useContext(NotificationsContext)
 
-  if (isNull(notifications)) {
+  if (!notifications) {
     throw new Error(
       '[Notifications] `useNotification` must be wrapped in <NotificationsProvider />'
     )
