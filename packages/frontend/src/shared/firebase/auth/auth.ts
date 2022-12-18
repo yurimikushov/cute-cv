@@ -8,7 +8,7 @@ import {
   User,
 } from 'firebase/auth'
 import isNull from 'lodash/isNull'
-import noop from 'lodash/noop'
+import noop from 'shared/lib/noop'
 import { getFirebaseApp } from '../app'
 
 const auth = getAuth(getFirebaseApp())

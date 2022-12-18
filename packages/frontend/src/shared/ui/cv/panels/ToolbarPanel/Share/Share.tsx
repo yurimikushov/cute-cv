@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import noop from 'lodash/noop'
+import noop from 'shared/lib/noop'
 import { useWithNotification } from 'shared/ui/Notifications'
 import { H2 } from 'shared/ui/H'
 import Button from 'shared/ui/Button'

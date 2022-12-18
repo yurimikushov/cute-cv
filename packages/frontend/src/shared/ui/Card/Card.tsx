@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import noop from 'lodash/noop'
+import noop from 'shared/lib/noop'
 import { CloseButton } from 'shared/ui/Button'
 import colors from 'shared/styles/colors'
 import radiuses from 'shared/styles/radiuses'

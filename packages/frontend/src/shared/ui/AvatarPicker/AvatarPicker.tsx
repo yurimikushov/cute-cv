@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import noop from 'lodash/noop'
+import noop from 'shared/lib/noop'
 import isEmpty from 'lodash/isEmpty'
 import focusMixin from 'shared/styles/mixins/focus'
 import useAvatarPicker from './hooks/useAvatarPicker'

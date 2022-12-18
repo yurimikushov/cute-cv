@@ -1,6 +1,6 @@
 import { FC, useRef } from 'react'
 import styled from 'styled-components'
-import noop from 'lodash/noop'
+import noop from 'shared/lib/noop'
 import useLockBody from 'shared/hooks/useLockBody'
 import useInertSiblings from 'shared/hooks/useInertSiblings'
 import useOutsideClick from 'shared/hooks/useOutsideClick'
