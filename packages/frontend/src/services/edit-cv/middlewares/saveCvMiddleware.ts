@@ -1,4 +1,4 @@
-import debounce from 'lodash/debounce'
+import debounce from 'shared/lib/debounce'
 import defer from 'shared/lib/defer'
 import cvApi from 'shared/api/cv'
 import { Middleware, Store } from 'services/store'
