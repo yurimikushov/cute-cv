@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import isObject from 'lodash/isObject'
+import isObject from 'shared/lib/isObject'
 import { ServiceNameEnum } from 'services'
 import { LoadingState } from './model'
 import { loadAll, load } from './thunks'
