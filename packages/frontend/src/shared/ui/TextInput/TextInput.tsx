@@ -4,7 +4,6 @@ import {
   useImperativeHandle,
 } from 'react'
 import styled, { css } from 'styled-components'
-import trim from 'lodash/trim'
 import mdToJsx from 'shared/lib/mdToJsx'
 import colors from 'shared/styles/colors'
 import fonts from 'shared/styles/fonts'
@@ -79,7 +78,7 @@ const TextInput: ForwardRefRenderFunction<HTMLInputElement, TextInputProps> = (
   if (readonly) {
     return (
       <DisabledTextInput {...props} size={size}>
-        {mdToJsx(trim(value) || placeholder || '')}
+        {mdToJsx(value.trim() || placeholder || '')}
       </DisabledTextInput>
     )
   }

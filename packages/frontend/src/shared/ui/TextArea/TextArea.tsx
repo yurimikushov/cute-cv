@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import styled, { css } from 'styled-components'
-import trim from 'lodash/trim'
 import mdToJsx from 'shared/lib/mdToJsx'
 import colors from 'shared/styles/colors'
 import radiuses from 'shared/styles/radiuses'
@@ -60,7 +59,7 @@ const TextArea: FC<TextAreaProps> = ({
   if (readonly) {
     return (
       <DisabledTextArea {...props}>
-        {mdToJsx(trim(value) || placeholder || '')}
+        {mdToJsx(value.trim() || placeholder || '')}
       </DisabledTextArea>
     )
   }
