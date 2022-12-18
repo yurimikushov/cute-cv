@@ -2,7 +2,7 @@
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
 import sortBy from 'lodash/sortBy'
 import head from 'lodash/head'
-import keyBy from 'lodash/keyBy'
+import keyBy from 'shared/lib/keyBy'
 import without from 'lodash/without'
 import omit from 'lodash/omit'
 import cloneDeep from 'lodash/cloneDeep'
