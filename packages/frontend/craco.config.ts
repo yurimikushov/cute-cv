@@ -1,13 +1,12 @@
 import { CracoConfig, when, whenProd } from '@craco/craco'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
-import includes from 'lodash/includes'
 
 const whenBundleAnalyzing = <T>(cb: () => T) => {
   return when(Boolean(process.env.BUNDLE_ANALYZING), cb)
 }
 
 const dynamicImports = ['html2pdf']
-const isDynamicImport = (name: string) => includes(dynamicImports, name)
+const isDynamicImport = (name: string) => dynamicImports.includes(name)
 
 const config: CracoConfig = {
   webpack: {
