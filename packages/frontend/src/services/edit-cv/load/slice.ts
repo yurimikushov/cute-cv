@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import isObject from 'lodash/isObject'
-import has from 'lodash/has'
 import { ServiceNameEnum } from 'services'
 import { LoadingState } from './model'
 import { loadAll, load } from './thunks'
@@ -27,7 +26,7 @@ const { reducer } = createSlice({
       .addCase(loadAll.rejected, (state, { payload, error }) => {
         state.isLoadingAll = false
 
-        if (!isObject(payload) || has(payload, 'isEmpty')) {
+        if (!isObject(payload) || Object.hasOwn(payload, 'isEmpty')) {
           state.errorAll = error
         }
       })
@@ -42,7 +41,7 @@ const { reducer } = createSlice({
       .addCase(load.rejected, (state, { payload, error }) => {
         state.isLoading = false
 
-        if (!isObject(payload) || has(payload, 'isEmpty')) {
+        if (!isObject(payload) || Object.hasOwn(payload, 'isEmpty')) {
           state.error = error
         }
       })
