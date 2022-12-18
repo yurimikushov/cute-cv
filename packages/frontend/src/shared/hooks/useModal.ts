@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import defer from 'lodash/defer'
+import defer from 'shared/lib/defer'
 
 const useModal = () => {
   const [isOpened, setIsOpened] = useState(false)

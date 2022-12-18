@@ -1,4 +1,4 @@
-import defer from 'lodash/defer'
+import defer from 'shared/lib/defer'
 import { Middleware } from 'services/store'
 import { selectIsSignedIn } from 'services/auth'
 import {
