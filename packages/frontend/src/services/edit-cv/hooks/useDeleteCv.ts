@@ -1,4 +1,4 @@
-import without from 'lodash/without'
+import without from 'shared/lib/without'
 import isEmpty from 'shared/lib/isEmpty'
 import { useDeleteCv as useDeleteCvFromBackend } from '../delete'
 import {

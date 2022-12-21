@@ -1,11 +1,11 @@
-import without from 'lodash/without'
+import without from 'shared/lib/without'
 
 const getSiblings = (element: HTMLElement | null) => {
-  if (!element) {
+  if (!element?.parentNode?.childNodes) {
     return []
   }
 
-  return without(element?.parentNode?.childNodes, element)
+  return without(element.parentNode.childNodes, element)
 }
 
 export default getSiblings
