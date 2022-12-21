@@ -26,6 +26,8 @@
   "rules": {
     "no-unused-vars": "off", // instead use @typescript-eslint/no-unused-var
     "no-console": "warn",
+    "no-plusplus": "off",
+    "no-continue": "off",
     "object-curly-spacing": "off",
     "quotes": "off",
     "semi": "off",
