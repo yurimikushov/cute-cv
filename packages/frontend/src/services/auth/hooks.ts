@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import once from 'shared/lib/once'
-import pick from 'lodash/pick'
+import pick from 'shared/lib/pick'
 import { watchSignInStateChange } from 'shared/firebase/auth'
 import { useIsSignInChecking, useIsSignedIn } from './signIn'
 import { useUser } from './user'
