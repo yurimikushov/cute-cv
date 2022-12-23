@@ -5,7 +5,6 @@ const useTimer = (duration: number, callback: () => void) => {
   const timerRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
-    // eslint-disable-next-line no-magic-numbers
     if (duration < 0) {
       return
     }

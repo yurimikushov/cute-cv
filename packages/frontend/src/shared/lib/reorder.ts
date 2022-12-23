@@ -1,4 +1,3 @@
-/* eslint-disable no-magic-numbers */
 const reorder = <T>(
   list: Array<T>,
   startIndex: number,

@@ -6,7 +6,6 @@ type Options = {
 
 const useRecalcElementWidth = <T extends HTMLElement>(
   deps: DependencyList,
-  // eslint-disable-next-line no-magic-numbers
   { extraSpace = 0 }: Options
 ) => {
   const ref = useRef<T>(null)

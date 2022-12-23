@@ -28,6 +28,7 @@
     "no-console": "warn",
     "no-plusplus": "off",
     "no-continue": "off",
+    "no-magic-numbers": "off",
     "object-curly-spacing": "off",
     "quotes": "off",
     "semi": "off",

@@ -56,7 +56,6 @@ const RadioItem: FC<RadioItemProps> = ({
       ref={itemRef}
       isActive={isActive}
       disabled={disabled}
-      // eslint-disable-next-line no-magic-numbers
       tabIndex={isActive || disabled ? -1 : 0}
       onClick={handleClick}
       onKeyDown={handleKeyDown}

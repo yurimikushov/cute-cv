@@ -17,7 +17,6 @@ class cvApi {
   static async loadAll(): Promise<Array<CvMetadata>> {
     const { status, data } = await axios.get<LoadAllResult>('/cv')
 
-    // eslint-disable-next-line no-magic-numbers
     if (status !== 200) {
       throw new Error(`Unexpected response status code: ${status}`)
     }
@@ -30,7 +29,6 @@ class cvApi {
   static async load(publicId: string): Promise<Cv | null> {
     const { status, data } = await axios.get<LoadResult | ''>(`/cv/${publicId}`)
 
-    // eslint-disable-next-line no-magic-numbers
     if (status !== 200) {
       throw new Error(`Unexpected response status code: ${status}`)
     }
@@ -104,7 +102,6 @@ class cvApi {
   static async delete(publicId: string): Promise<void> {
     const { status } = await axios.delete(`/cv/${publicId}`)
 
-    // eslint-disable-next-line no-magic-numbers
     if (status !== 200) {
       throw new Error(`Unexpected response status code: ${status}`)
     }

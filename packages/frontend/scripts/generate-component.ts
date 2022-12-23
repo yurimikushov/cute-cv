@@ -42,9 +42,9 @@ const main = (name: string, dir: string = defaultDir) => {
   console.log(`'${name}' was generated in '${path.join(dir, name)}'`)
 }
 
-// eslint-disable-next-line prefer-destructuring, no-magic-numbers
+// eslint-disable-next-line prefer-destructuring
 const name = process.argv[2]
-// eslint-disable-next-line prefer-destructuring, no-magic-numbers
+// eslint-disable-next-line prefer-destructuring
 const dir = process.argv[3]
 
 if (!name) {

@@ -25,7 +25,6 @@ const DndList = ({
   children,
   onDragEnd,
 }: DndListProps): JSX.Element => {
-  // eslint-disable-next-line no-magic-numbers
   const isDragDisabled = isDndDisabled || children.length < 2
 
   const handleDragEnd = ({ destination, source }: DropResult) => {

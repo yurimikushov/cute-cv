@@ -19,7 +19,6 @@ const DndItem: FC<DndItemProps> = ({
   children,
 }) => {
   return (
-    // eslint-disable-next-line no-magic-numbers
     <Draggable
       draggableId={draggableId ?? STUB_STRING}
       index={index ?? STUB_NUMBER}

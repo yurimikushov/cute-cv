@@ -7,7 +7,6 @@ const first = <T>(
     | null
     | undefined
 ) => {
-  // eslint-disable-next-line no-magic-numbers
   return list?.[0]
 }
 

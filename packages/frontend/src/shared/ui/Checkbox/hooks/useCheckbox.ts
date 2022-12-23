@@ -35,7 +35,6 @@ const useCheckbox = ({
     },
     checkmarkProps: {
       value,
-      // eslint-disable-next-line no-magic-numbers
       tabIndex: disabled ? -1 : 0,
       disabled,
       onKeyDown: handleKeyDown,
