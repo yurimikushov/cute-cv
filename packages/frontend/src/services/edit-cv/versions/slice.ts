@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
 import sortBy from 'lodash/sortBy'
+import isDefined from 'shared/lib/isDefined'
 import first from 'shared/lib/first'
 import keyBy from 'shared/lib/keyBy'
 import without from 'shared/lib/without'
@@ -141,11 +142,11 @@ const { actions, reducer } = createSlice({
         metadata.name = name
       }
 
-      if (isNew) {
+      if (isDefined(isNew)) {
         metadata.isNew = isNew
       }
 
-      if (isSaved) {
+      if (isDefined(isSaved)) {
         metadata.isSaved = isSaved
       }
 
@@ -153,7 +154,7 @@ const { actions, reducer } = createSlice({
         metadata.savedAt = savedAt
       }
 
-      if (allowShare) {
+      if (isDefined(allowShare)) {
         metadata.allowShare = allowShare
       }
     },
