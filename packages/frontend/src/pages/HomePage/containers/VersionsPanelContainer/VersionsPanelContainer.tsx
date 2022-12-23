@@ -4,6 +4,7 @@ import { useIsSignedIn } from 'services/auth'
 import {
   useAllCvMetadata,
   useCurrentCvMetadata,
+  useIsCvAdding,
   useIsCvUpdating,
   useIsCvDeleting,
   useAddEmptyCv,
@@ -23,6 +24,7 @@ const VersionsPanelContainer: FC = (props) => {
   const { isSignedIn } = useIsSignedIn()
   const allCv = useAllCvMetadata()
   const { id, isNew, isSaved } = useCurrentCvMetadata()
+  const { isCvAdding } = useIsCvAdding()
   const { isCvUpdating } = useIsCvUpdating()
   const { isCvDeleting } = useIsCvDeleting()
   const addEmptyCv = useWithNotification(useAddEmptyCv(), {
@@ -53,6 +55,7 @@ const VersionsPanelContainer: FC = (props) => {
       id={id}
       isNew={isNew}
       isSaved={isSaved}
+      isCvAdding={isCvAdding}
       isCvUpdating={isCvUpdating}
       isCvDeleting={isCvDeleting}
       isSignedIn={isSignedIn}

@@ -9,6 +9,7 @@ export {
 } from './hooks'
 export { useEditable } from './editable'
 export { useLoadAllCV, useIsCVLoading } from './load'
+export { useIsCvAdding } from './add'
 export { useIsCvUpdating } from './update'
 export { useIsCvDeleting } from './delete'
 export {

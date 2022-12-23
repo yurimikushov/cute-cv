@@ -10,6 +10,7 @@ type VersionsPanelProps = {
   id: string
   isNew: boolean
   isSaved: boolean
+  isCvAdding: boolean
   isCvUpdating: boolean
   isCvDeleting: boolean
   isSignedIn: boolean

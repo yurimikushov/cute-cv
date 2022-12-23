@@ -15,6 +15,7 @@ const Container = styled.div`
 const Versions: FC<VersionsProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const {
+    isCvAdding,
     isCvUpdating,
     isCvDeleting,
     id: selectedId,
@@ -28,7 +29,7 @@ const Versions: FC<VersionsProps> = (props) => {
   } = useVersionsPanel()
 
   const shouldDisableActiveElements =
-    (!isNew && !isSaved) || isCvUpdating || isCvDeleting
+    (!isNew && !isSaved) || isCvAdding || isCvUpdating || isCvDeleting
 
   const handleDeleteCv = (id: string, isNew: boolean) => {
     if (isNew) {
