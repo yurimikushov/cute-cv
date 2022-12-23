@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
-import reject from 'lodash/reject'
+import reject from 'shared/lib/reject'
 import { Notification } from '../NotificationsContext'
 
 const useNotifications = () => {
