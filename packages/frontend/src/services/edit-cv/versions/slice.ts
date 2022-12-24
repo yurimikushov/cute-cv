@@ -5,7 +5,6 @@ import first from 'shared/lib/first'
 import keyBy from 'shared/lib/keyBy'
 import without from 'shared/lib/without'
 import omit from 'shared/lib/omit'
-import cloneDeep from 'lodash/cloneDeep'
 import swap from 'shared/lib/reorder'
 import { ServiceNameEnum } from 'services'
 import createCv from './utils/createCv'
@@ -449,11 +448,7 @@ const { actions, reducer } = createSlice({
 
     makeCvCopy: (state, { payload }: PayloadAction<CopyCvPayload>) => {
       const { baseCvId, copyCvId, copyCvNumber, copyCvName } = payload
-      const { metadata: baseCvMetadata, content: baseCvContent } =
-        state.byId[baseCvId]
-
-      const { allowShare } = baseCvMetadata
-      const copyCvContent = cloneDeep(baseCvContent)
+      const { metadata, content } = state.byId[baseCvId]
 
       state.ids.push(copyCvId)
       state.byId[copyCvId] = {
@@ -464,9 +459,10 @@ const { actions, reducer } = createSlice({
           isNew: true,
           isSaved: false,
           savedAt: null,
-          allowShare,
+          allowShare: metadata.allowShare,
         },
-        content: copyCvContent,
+        // content is plain json, it's why cloning in this way is acceptable
+        content: JSON.parse(JSON.stringify(content)),
       }
     },
 
