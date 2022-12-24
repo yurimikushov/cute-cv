@@ -1,6 +1,5 @@
 /* eslint-disable max-lines */
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
-import sortBy from 'lodash/sortBy'
 import isDefined from 'shared/lib/isDefined'
 import first from 'shared/lib/first'
 import keyBy from 'shared/lib/keyBy'
@@ -66,7 +65,9 @@ const { actions, reducer } = createSlice({
   initialState: createInitialState(),
   reducers: {
     initAllCv: (state, { payload: allCv }: PayloadAction<InitAllCvPayload>) => {
-      state.ids = sortBy(allCv, 'number').map(({ id }) => id)
+      state.ids = allCv
+        .sort((a, b) => (a.number < b.number ? -1 : 1))
+        .map(({ id }) => id)
       state.byId = {}
 
       const { content } = createCv()
