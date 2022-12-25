@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import {
   LoadAllResult,
   LoadResult,
@@ -40,9 +40,13 @@ class cvApi {
     return validateCv(convertRawCv(data))
   }
 
-  static async loadSharable(publicId: string): Promise<Cv> {
+  static async loadSharable(
+    publicId: string,
+    config?: AxiosRequestConfig
+  ): Promise<Cv> {
     const { data } = await axios.get<LoadSharableResult>(
-      `/cv/share/${publicId}`
+      `/cv/share/${publicId}`,
+      config
     )
 
     return validateCv(convertRawCv(data))

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
 import styled from 'styled-components'
-import { useGetSharableCv } from 'services/share-cv'
+import { useSharableCv } from 'services/share-cv'
 import PanelsLayout from 'shared/ui/layouts/PanelsLayout'
 import PageLayout from 'shared/ui/layouts/PageLayout'
 import Loader from 'shared/ui/Loader'
@@ -31,7 +31,7 @@ const SharePage: FC = () => {
     throw new Error('[SharePage] Required `id` param is missed')
   }
 
-  const { isLoading, data: cv, error } = useGetSharableCv(id)
+  const { isLoading, data: cv, error } = useSharableCv(id)
 
   return (
     <>
