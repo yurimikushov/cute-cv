@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-max-depth */
 import React from 'react'
 import { createRoot } from 'react-dom/client'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { HelmetProvider } from 'react-helmet-async'
+import { ReactQueryDevtools } from 'shared/react-query'
 import 'shared/sentry/init'
 import 'shared/api/init'
 import 'shared/translations/init'
@@ -18,21 +20,26 @@ import ResetStyles from 'shared/styles/global/ResetStyles'
 import GlobalStyles from 'shared/styles/global/GlobalStyles'
 import App from './App'
 
+const queryClient = new QueryClient()
+
 createRoot(document.querySelector('.app') as HTMLDivElement).render(
   <React.StrictMode>
     <GlobalErrorBoundary onError={logError} />
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <ResetStyles />
-        <GlobalStyles />
-        <ErrorBoundary fallback={ErrorBoundaryModal} onError={logError}>
-          <HelmetProvider>
-            <NotificationsProvider>
-              <App />
-            </NotificationsProvider>
-          </HelmetProvider>
-        </ErrorBoundary>
-      </PersistGate>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools />
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <ResetStyles />
+          <GlobalStyles />
+          <ErrorBoundary fallback={ErrorBoundaryModal} onError={logError}>
+            <HelmetProvider>
+              <NotificationsProvider>
+                <App />
+              </NotificationsProvider>
+            </HelmetProvider>
+          </ErrorBoundary>
+        </PersistGate>
+      </Provider>
+    </QueryClientProvider>
   </React.StrictMode>
 )
