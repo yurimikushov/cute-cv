@@ -1,6 +1,6 @@
 import { useAtom } from '@reatom/npm-react'
 import { signIn, signOut } from 'shared/firebase/auth'
-import { isSignedInAtom, isSignInCheckingAtom, isSkippedAtom } from '../model'
+import { isSignedInAtom, isSignInCheckingAtom, isSkippedAtom } from './model'
 
 const useAuth = () => {
   const [isSignInChecking] = useAtom(isSignInCheckingAtom)
@@ -21,4 +21,4 @@ const useAuth = () => {
   }
 }
 
-export default useAuth
+export { useAuth }
