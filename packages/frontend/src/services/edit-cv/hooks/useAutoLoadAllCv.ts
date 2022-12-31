@@ -1,11 +1,11 @@
 import isEmpty from 'shared/lib/isEmpty'
 import useEffectWhen from 'shared/hooks/useEffectWhen'
-import { useIsSignedIn } from 'services/auth'
+import { useAuth } from 'services/auth'
 import { useLoadAllCV } from '../load'
 import { useInitAllCv } from '../versions'
 
 const useAutoLoadAllCv = () => {
-  const { isSignedIn } = useIsSignedIn()
+  const { isSignedIn } = useAuth()
 
   const loadAllCv = useLoadAllCV()
   const initAllCv = useInitAllCv()

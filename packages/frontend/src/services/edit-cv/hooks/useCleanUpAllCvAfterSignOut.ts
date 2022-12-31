@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { useIsSignedIn } from 'services/auth'
+import { useAuth } from 'services/auth'
 import {
   useAddEmptyCv,
   useAllCvMetadata,
@@ -8,7 +8,7 @@ import {
 } from '../versions'
 
 const useCleanUpAllCvAfterSignOut = () => {
-  const { isSignedIn } = useIsSignedIn()
+  const { isSignedIn } = useAuth()
   const isSignInPrevRef = useRef(isSignedIn)
   const allCv = useAllCvMetadata()
   const selectCv = useSelectCv()

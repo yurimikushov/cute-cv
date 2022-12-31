@@ -10,7 +10,7 @@ import { isSignedInAtom, isSignInCheckingAtom, isSkippedAtom } from '../model'
 const useAuth = () => {
   const [isSignInChecking] = useAtom(isSignInCheckingAtom)
   const [isSignedIn] = useAtom(isSignedInAtom)
-  const [isSkipped, setSkip] = useAtom(isSkippedAtom)
+  const [isSignInSkipped, setIsSignInSkipped] = useAtom(isSkippedAtom)
 
   const onSignIn = (provider: 'google' | 'github' | 'facebook') => {
     switch (provider) {
@@ -31,13 +31,13 @@ const useAuth = () => {
   const onSignOut = signOut
 
   const onSkip = () => {
-    setSkip(true)
+    setIsSignInSkipped(true)
   }
 
   return {
     isSignInChecking,
     isSignedIn,
-    isSkipped,
+    isSignInSkipped,
     onSignIn,
     onSignOut,
     onSkip,

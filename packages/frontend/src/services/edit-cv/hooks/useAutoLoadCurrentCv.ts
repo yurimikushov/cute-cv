@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react'
 import defer from 'shared/lib/defer'
 import cvApi from 'shared/api/cv'
-import { useIsSignedIn } from 'services/auth'
+import { useAuth } from 'services/auth'
 import { useLoadCV } from '../load'
 import { useCurrentCvMetadata, useUpdateCv } from '../versions'
 
 const useAutoLoadCurrentCv = () => {
-  const { isSignedIn } = useIsSignedIn()
+  const { isSignedIn } = useAuth()
   const { id, isNew } = useCurrentCvMetadata()
   const loadCv = useLoadCV()
   const updateCv = useUpdateCv()

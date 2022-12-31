@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import useEffectWhen from 'shared/hooks/useEffectWhen'
 import cvApi from 'shared/api/cv'
-import { useIsSignedIn } from 'services/auth'
+import { useAuth } from 'services/auth'
 import { useAddCv as useAddCvOnBackend } from '../add'
 import {
   useAddCv as useAddCvInStore,
@@ -11,7 +11,7 @@ import {
 } from '../versions'
 
 const useSaveCvOfUnsignedInUser = () => {
-  const { isSignedIn } = useIsSignedIn()
+  const { isSignedIn } = useAuth()
   const addCvInStore = useAddCvInStore()
   const addCvOnBackend = useAddCvOnBackend()
   const deleteCv = useDeleteCv()

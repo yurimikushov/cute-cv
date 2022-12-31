@@ -22,3 +22,4 @@ const withReatom = <P extends object>(Component: FunctionComponent<P>) => {
 }
 
 export default withReatom
+export { ctx }

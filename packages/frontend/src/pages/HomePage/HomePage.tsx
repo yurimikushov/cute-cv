@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { useAuth, useIsSignInChecking, withAuthService } from 'services/auth'
+import { useAuth, withAuthService } from 'services/auth'
 import {
   useAutoLoadAllCv,
   useAutoLoadCurrentCv,
@@ -39,13 +39,12 @@ const CvWrapper = styled.div`
 `
 
 const HomePage: FC = () => {
-  useAuth()
   useAutoLoadAllCv()
   useAutoLoadCurrentCv()
   useCleanUpAllCvAfterSignOut()
 
+  const { isSignInChecking } = useAuth()
   const { isCVLoading } = useIsCVLoading()
-  const { isSignInChecking } = useIsSignInChecking()
 
   return (
     <>

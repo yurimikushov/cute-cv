@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import useModal from 'shared/hooks/useModal'
-import { useIsSignedIn } from 'services/auth'
+import { useAuth } from 'services/auth'
 import { useSaveCvOfUnsignedInUser } from 'services/edit-cv'
 import { useNotification, useWithNotification } from 'shared/ui/Notifications'
 import CvOfUnsignedInUserExistsNotification from 'shared/ui/cv/notifications/CvOfUnsignedInUserExistsNotification'
@@ -14,7 +14,7 @@ const useSaveCvOfUnsignedInUserModal = () => {
     open: handleOpenCopyUnsignedInCvModal,
     close: handleCloseCopyUnsignedInCvModal,
   } = useModal()
-  const { isSignedIn } = useIsSignedIn()
+  const { isSignedIn } = useAuth()
   const { open, close } = useNotification()
   const { isExists, copy } = useSaveCvOfUnsignedInUser()
   const notificationIdRef = useRef<string | null>(null)

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useIsSignedIn } from 'services/auth'
+import { useAuth } from 'services/auth'
 import {
   useAllCvMetadata,
   useCurrentCvMetadata,
@@ -21,7 +21,7 @@ import useShouldDisableActiveElements from './hooks/useShouldDisableActiveElemen
 // eslint-disable-next-line max-statements
 const VersionsPanelContainer: FC = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
-  const { isSignedIn } = useIsSignedIn()
+  const { isSignedIn } = useAuth()
   const allCv = useAllCvMetadata()
   const { id, isNew, isSaved } = useCurrentCvMetadata()
   const { isCvAdding } = useIsCvAdding()

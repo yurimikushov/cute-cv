@@ -2,7 +2,7 @@ import debounce from 'shared/lib/debounce'
 import defer from 'shared/lib/defer'
 import cvApi from 'shared/api/cv'
 import { Middleware, Store } from 'services/store'
-import { selectIsSignedIn } from 'services/auth'
+import { getIsSignedIn } from 'services/auth'
 import {
   selectCurrentCv,
   isCvContentChanged,
@@ -79,7 +79,7 @@ const saveCvMiddleware: Middleware = (store) => (dispatch) => (action) => {
   }
 
   defer(() => {
-    if (selectIsSignedIn(store.getState())) {
+    if (getIsSignedIn()) {
       saveCvOfSignedInUser(store)
     } else {
       saveCvOfUnsignedInUser(store)

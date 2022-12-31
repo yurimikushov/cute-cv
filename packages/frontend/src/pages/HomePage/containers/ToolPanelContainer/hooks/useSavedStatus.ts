@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next'
 import { LanguageEnum } from 'shared/translations'
 import timeSince from 'shared/lib/timeSince'
 import { useCurrentCvMetadata } from 'services/edit-cv'
-import { useSkipSignIn } from 'services/auth'
+import { useAuth } from 'services/auth'
 
 const UPDATE_TIMING = 5_000
 
 const useSavedStatus = () => {
   const { t, i18n } = useTranslation('translation', { keyPrefix: 'panel' })
-  const { isSignInSkipped } = useSkipSignIn()
+  const { isSignInSkipped } = useAuth()
   const { isSaved, savedAt } = useCurrentCvMetadata()
   const [savedStatus, setSavedStatus] = useState('')
 

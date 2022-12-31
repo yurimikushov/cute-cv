@@ -1,1 +1,1 @@
-export { default as withReatom } from './withReatom'
+export { default as withReatom, ctx } from './withReatom'

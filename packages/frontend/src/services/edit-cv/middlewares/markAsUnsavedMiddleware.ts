@@ -1,6 +1,6 @@
 import defer from 'shared/lib/defer'
 import { Middleware } from 'services/store'
-import { selectIsSignedIn } from 'services/auth'
+import { getIsSignedIn } from 'services/auth'
 import {
   markAsUnsaved,
   selectCurrentCvId,
@@ -9,7 +9,7 @@ import {
 
 const markAsUnsavedMiddleware: Middleware =
   (store) => (dispatch) => (action) => {
-    if (!selectIsSignedIn(store.getState())) {
+    if (!getIsSignedIn()) {
       return dispatch(action)
     }
 
