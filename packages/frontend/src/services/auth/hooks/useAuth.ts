@@ -1,34 +1,11 @@
 import { useAtom } from '@reatom/npm-react'
-import {
-  signInGoogle,
-  signInGitHub,
-  signInFacebook,
-  signOut,
-} from 'shared/firebase/auth'
+import { signIn, signOut } from 'shared/firebase/auth'
 import { isSignedInAtom, isSignInCheckingAtom, isSkippedAtom } from '../model'
 
 const useAuth = () => {
   const [isSignInChecking] = useAtom(isSignInCheckingAtom)
   const [isSignedIn] = useAtom(isSignedInAtom)
   const [isSignInSkipped, setIsSignInSkipped] = useAtom(isSkippedAtom)
-
-  const onSignIn = (provider: 'google' | 'github' | 'facebook') => {
-    switch (provider) {
-      case 'google': {
-        return signInGoogle()
-      }
-      case 'github': {
-        return signInGitHub()
-      }
-      case 'facebook': {
-        return signInFacebook()
-      }
-      default:
-        throw new Error(`[AuthService] Provider ${provider} is not implemented`)
-    }
-  }
-
-  const onSignOut = signOut
 
   const onSkip = () => {
     setIsSignInSkipped(true)
@@ -38,8 +15,8 @@ const useAuth = () => {
     isSignInChecking,
     isSignedIn,
     isSignInSkipped,
-    onSignIn,
-    onSignOut,
+    onSignIn: signIn,
+    onSignOut: signOut,
     onSkip,
   }
 }

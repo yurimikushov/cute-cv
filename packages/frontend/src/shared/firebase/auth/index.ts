@@ -1,8 +1,2 @@
-export {
-  signInGoogle,
-  signInFacebook,
-  signInGitHub,
-  signOut,
-  watchSignInStateChange,
-} from './auth'
+export { signIn, signOut, watchSignInStateChange } from './auth'
 export type { User } from './auth'

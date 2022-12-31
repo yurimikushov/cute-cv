@@ -12,7 +12,7 @@ import { getFirebaseApp } from '../app'
 
 const auth = getAuth(getFirebaseApp())
 
-const signIn = async (
+const signInInternal = async (
   provider: GoogleAuthProvider | FacebookAuthProvider | GithubAuthProvider
 ) => {
   if (!auth) {
@@ -25,22 +25,26 @@ const signIn = async (
   await signInWithRedirect(auth, provider)
 }
 
-const signInGoogle = async () => {
-  const provider = new GoogleAuthProvider()
+const signIn = (provider: 'Google' | 'GitHub' | 'Facebook') => {
+  switch (provider) {
+    case 'Google': {
+      const provider = new GoogleAuthProvider()
 
-  provider.setCustomParameters({
-    prompt: 'select_account',
-  })
+      provider.setCustomParameters({
+        prompt: 'select_account',
+      })
 
-  await signIn(provider)
-}
-
-const signInFacebook = async () => {
-  await signIn(new FacebookAuthProvider())
-}
-
-const signInGitHub = async () => {
-  await signIn(new GithubAuthProvider())
+      return signInInternal(provider)
+    }
+    case 'GitHub': {
+      return signInInternal(new GithubAuthProvider())
+    }
+    case 'Facebook': {
+      return signInInternal(new FacebookAuthProvider())
+    }
+    default:
+      throw new Error(`Auth provider '${provider}' is not implemented`)
+  }
 }
 
 const signOut = async () => {
@@ -77,11 +81,5 @@ const watchSignInStateChange = (
   return unsubscribe
 }
 
-export {
-  signInGoogle,
-  signInFacebook,
-  signInGitHub,
-  signOut,
-  watchSignInStateChange,
-}
+export { signIn, signOut, watchSignInStateChange }
 export type { User }

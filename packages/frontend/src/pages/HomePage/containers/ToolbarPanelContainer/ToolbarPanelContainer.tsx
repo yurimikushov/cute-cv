@@ -37,9 +37,9 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = (props) => {
       onToggleEditable={toggleEditable}
       onDownloadPDF={handleDownloadPDF}
       onCopySharableLink={copyCvLink}
-      onSignInGoogle={() => onSignIn('google')}
-      onSignInGitHub={() => onSignIn('github')}
-      onSignInFacebook={() => onSignIn('facebook')}
+      onSignInGoogle={() => onSignIn('Google')}
+      onSignInGitHub={() => onSignIn('GitHub')}
+      onSignInFacebook={() => onSignIn('Facebook')}
       onSighOut={onSignOut}
       onSkipSighIn={onSkip}
     />
