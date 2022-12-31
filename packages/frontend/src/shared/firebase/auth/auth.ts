@@ -45,7 +45,7 @@ const signInGitHub = async () => {
 
 const signOut = async () => {
   if (!auth) {
-    return null
+    return
   }
 
   await auth.signOut()
@@ -84,3 +84,4 @@ export {
   signOut,
   watchSignInStateChange,
 }
+export type { User }
