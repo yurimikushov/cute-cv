@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
 import styled from 'styled-components'
-import { useSharableCv } from 'services/share-cv'
-import { withReactQuery } from 'shared/react-query'
+import { useSharableCv, withShareCvService } from 'services/share-cv'
 import PanelsLayout from 'shared/ui/layouts/PanelsLayout'
 import PageLayout from 'shared/ui/layouts/PageLayout'
 import Loader from 'shared/ui/Loader'
@@ -59,4 +58,4 @@ const SharePage: FC = () => {
   )
 }
 
-export default withReactQuery(SharePage)
+export default withShareCvService(SharePage)
