@@ -7,6 +7,7 @@ const useGetSharableCv = (id: string) => {
     queryFn: ({ signal }) => {
       return cvApi.loadSharable(id, { signal })
     },
+    refetchOnWindowFocus: false,
   })
 
   return {
