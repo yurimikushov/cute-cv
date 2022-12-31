@@ -16,7 +16,7 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = (props) => {
   const getCurrentCvFullName = useGetCurrentCvFullName()
   const { id, allowShare } = useCurrentCvMetadata()
   const { copyCvLink } = useCopyCvLink(id)
-  const { isSignInChecking, isSignedIn, onSignIn, onSignOut, onSkip } =
+  const { isSignInChecking, isSignedIn, signIn, signOut, skipSignIn } =
     useAuth()
 
   const handleDownloadPDF = async () => {
@@ -37,11 +37,11 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = (props) => {
       onToggleEditable={toggleEditable}
       onDownloadPDF={handleDownloadPDF}
       onCopySharableLink={copyCvLink}
-      onSignInGoogle={() => onSignIn('Google')}
-      onSignInGitHub={() => onSignIn('GitHub')}
-      onSignInFacebook={() => onSignIn('Facebook')}
-      onSighOut={onSignOut}
-      onSkipSighIn={onSkip}
+      onSignInGoogle={() => signIn('Google')}
+      onSignInGitHub={() => signIn('GitHub')}
+      onSignInFacebook={() => signIn('Facebook')}
+      onSighOut={signOut}
+      onSkipSighIn={skipSignIn}
     />
   )
 }

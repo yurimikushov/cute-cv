@@ -7,7 +7,7 @@ const useAuth = () => {
   const [isSignedIn] = useAtom(isSignedInAtom)
   const [isSignInSkipped, setIsSignInSkipped] = useAtom(isSkippedAtom)
 
-  const onSkip = () => {
+  const skipSignIn = () => {
     setIsSignInSkipped(true)
   }
 
@@ -15,9 +15,9 @@ const useAuth = () => {
     isSignInChecking,
     isSignedIn,
     isSignInSkipped,
-    onSignIn: signIn,
-    onSignOut: signOut,
-    onSkip,
+    signIn,
+    signOut,
+    skipSignIn,
   }
 }
 
