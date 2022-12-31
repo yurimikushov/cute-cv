@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { useAuth, useIsSignInChecking } from 'services/auth'
+import { useAuth, useIsSignInChecking, withAuthService } from 'services/auth'
 import {
   useAutoLoadAllCv,
   useAutoLoadCurrentCv,
@@ -70,4 +70,4 @@ const HomePage: FC = () => {
   )
 }
 
-export default HomePage
+export default withAuthService(HomePage)

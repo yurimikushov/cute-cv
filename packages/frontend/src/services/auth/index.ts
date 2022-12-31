@@ -12,3 +12,4 @@ export {
   useSkipSignIn,
 } from './signIn'
 export { useUser } from './user'
+export { withAuthService } from './hoc'
