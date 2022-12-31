@@ -1,12 +1,13 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { useAuth, withAuthService } from 'services/auth'
+import { useAuth } from 'services/auth'
 import {
   useAutoLoadAllCv,
   useAutoLoadCurrentCv,
   useCleanUpAllCvAfterSignOut,
   useIsCVLoading,
 } from 'services/edit-cv'
+import { withReatom } from 'shared/reatom'
 import PanelsLayout from 'shared/ui/layouts/PanelsLayout'
 import PageLayout from 'shared/ui/layouts/PageLayout'
 import Loader from 'shared/ui/Loader'
@@ -69,4 +70,4 @@ const HomePage: FC = () => {
   )
 }
 
-export default withAuthService(HomePage)
+export default withReatom(HomePage)
