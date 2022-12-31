@@ -1,5 +1,5 @@
-type DownloadState = {
-  isDownloading: boolean
-}
+import { atom } from '@reatom/framework'
 
-export type { DownloadState }
+const isDownloadingAtom = atom(false, 'isDownloading')
+
+export { isDownloadingAtom }

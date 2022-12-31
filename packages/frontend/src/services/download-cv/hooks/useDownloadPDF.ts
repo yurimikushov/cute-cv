@@ -1,8 +1,7 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useAtom } from '@reatom/npm-react'
 import getSearchParam from 'shared/lib/getSearchParam'
 import downloadPDF from 'shared/lib/downloadPDF'
-import { selectIsDownloading } from '../selectors'
-import { begin, finish } from '../slice'
+import { isDownloadingAtom } from '../model'
 
 type Options = {
   selector: string
@@ -10,11 +9,10 @@ type Options = {
 }
 
 const useDownloadPDF = () => {
-  const isDownloading = useSelector(selectIsDownloading)
-  const dispatch = useDispatch()
+  const [isDownloading, setIsDownloading] = useAtom(isDownloadingAtom)
 
   const handleDownloadPDF = async ({ selector, name }: Options) => {
-    dispatch(begin())
+    setIsDownloading(true)
 
     await downloadPDF({
       fileName: name || 'cv',
@@ -22,7 +20,7 @@ const useDownloadPDF = () => {
       breakPage: Boolean(getSearchParam('break-page')),
     })
 
-    dispatch(finish())
+    setIsDownloading(false)
   }
 
   return {
