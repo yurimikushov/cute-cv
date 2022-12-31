@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useDownloadPDF, CV_CONTAINER_ID } from 'services/download-cv'
 import { useSharableCv } from 'services/share-cv'
-import { useCopyCvLink } from 'services/copy-cv-link'
+import { copyCvLink } from 'services/copy-cv-link'
 import ToolbarPanel from 'shared/ui/cv/panels/ToolbarPanel'
 import ToolbarPanelContainerProps from './ToolbarPanelContainer.props'
 
@@ -11,7 +11,6 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = ({
 }) => {
   const { data: cv } = useSharableCv(id)
   const { isDownloading, downloadPDF } = useDownloadPDF()
-  const { copyCvLink } = useCopyCvLink(id)
 
   const handleDownloadPDF = async () => {
     if (!cv) {
@@ -35,7 +34,7 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = ({
       allowShare
       disableAuth
       onDownloadPDF={handleDownloadPDF}
-      onCopySharableLink={copyCvLink}
+      onCopySharableLink={() => copyCvLink(id)}
     />
   )
 }

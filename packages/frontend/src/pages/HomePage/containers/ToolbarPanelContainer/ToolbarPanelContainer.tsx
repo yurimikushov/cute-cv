@@ -5,7 +5,7 @@ import {
   useGetCurrentCvFullName,
   useCurrentCvMetadata,
 } from 'services/edit-cv'
-import { useCopyCvLink } from 'services/copy-cv-link'
+import { copyCvLink } from 'services/copy-cv-link'
 import { CV_CONTAINER_ID, useDownloadPDF } from 'services/download-cv'
 import ToolbarPanel from 'shared/ui/cv/panels/ToolbarPanel'
 import ToolbarPanelContainerProps from './ToolbarPanelContainer.props'
@@ -15,7 +15,6 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = (props) => {
   const { isDownloading, downloadPDF } = useDownloadPDF()
   const getCurrentCvFullName = useGetCurrentCvFullName()
   const { id, allowShare } = useCurrentCvMetadata()
-  const { copyCvLink } = useCopyCvLink(id)
   const { isSignInChecking, isSignedIn, signIn, signOut, skipSignIn } =
     useAuth()
 
@@ -36,7 +35,7 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = (props) => {
       isSignedIn={isSignedIn}
       onToggleEditable={toggleEditable}
       onDownloadPDF={handleDownloadPDF}
-      onCopySharableLink={copyCvLink}
+      onCopySharableLink={() => copyCvLink(id)}
       onSignInGoogle={() => signIn('Google')}
       onSignInGitHub={() => signIn('GitHub')}
       onSignInFacebook={() => signIn('Facebook')}

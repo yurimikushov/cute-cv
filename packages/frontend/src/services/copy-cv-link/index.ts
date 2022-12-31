@@ -1,1 +1,1 @@
-export { useCopyCvLink } from './hooks'
+export { copyCvLink } from './utils'
