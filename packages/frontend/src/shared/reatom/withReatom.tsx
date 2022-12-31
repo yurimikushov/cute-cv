@@ -1,11 +1,7 @@
 import { FunctionComponent, VFC } from 'react'
-import { createCtx, connectLogger } from '@reatom/framework'
 import { reatomContext } from '@reatom/npm-react'
 import { getDisplayName } from 'shared/react'
-
-const ctx = createCtx()
-
-connectLogger(ctx)
+import ctx from './ctx'
 
 const withReatom = <P extends object>(Component: FunctionComponent<P>) => {
   const WithReatomComponent: VFC<P> = (props) => {
@@ -22,4 +18,3 @@ const withReatom = <P extends object>(Component: FunctionComponent<P>) => {
 }
 
 export default withReatom
-export { ctx }
