@@ -31,7 +31,7 @@ const Language: FC<LanguageProps> = ({
   const { t } = useTranslation('translation', { keyPrefix: 'languages' })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value)
+    onChange?.(e.target.value)
   }
 
   return (

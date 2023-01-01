@@ -8,14 +8,14 @@ import AboutMe from 'shared/ui/cv/page/AboutMe'
 
 const AboutMeContainer: FC = () => {
   const { editable } = useEditable()
-  const { aboutMe, changeAboutMe } = useCurrentCvAboutMe()
+  const { aboutMe, updateAboutMe } = useCurrentCvAboutMe()
 
   return (
     <AboutMe
       editable={editable}
-      value={aboutMe}
+      value={aboutMe ?? ''}
       maxLength={ABOUT_ME_MAX_LENGTH}
-      onChange={changeAboutMe}
+      onChange={updateAboutMe}
     />
   )
 }

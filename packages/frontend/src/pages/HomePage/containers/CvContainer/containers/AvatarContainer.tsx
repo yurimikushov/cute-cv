@@ -4,13 +4,13 @@ import Avatar from 'shared/ui/cv/page/Avatar'
 
 const AvatarContainer: FC = () => {
   const { editable } = useEditable()
-  const { avatar, changeAvatar, deleteAvatar } = useCurrentCvAvatar()
+  const { avatar, updateAvatar, deleteAvatar } = useCurrentCvAvatar()
 
   return (
     <Avatar
       editable={editable}
-      src={avatar}
-      onPick={changeAvatar}
+      src={avatar ?? null}
+      onPick={updateAvatar}
       onClear={deleteAvatar}
     />
   )

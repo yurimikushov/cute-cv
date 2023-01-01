@@ -14,8 +14,12 @@ import { validateCv, validateCvMetadata, Cv, CvMetadata } from './validations'
 import { convertRawCv, convertRawCvMetadata } from './utils'
 
 class cvApi {
-  static async loadAll(): Promise<Array<CvMetadata>> {
-    const { status, data } = await axios.get<LoadAllResult>('/cv')
+  static async loadAll({ signal }: AxiosRequestConfig = {}): Promise<
+    Array<CvMetadata>
+  > {
+    const { status, data } = await axios.get<LoadAllResult>('/cv', {
+      signal,
+    })
 
     if (status !== 200) {
       throw new Error(`Unexpected response status code: ${status}`)
@@ -26,8 +30,14 @@ class cvApi {
     )
   }
 
-  static async load(publicId: string): Promise<Cv | null> {
-    const { status, data } = await axios.get<LoadResult | ''>(`/cv/${publicId}`)
+  static async load(
+    publicId: string,
+    { signal }: AxiosRequestConfig = {}
+  ): Promise<Cv | null> {
+    const { status, data } = await axios.get<LoadResult | ''>(
+      `/cv/${publicId}`,
+      { signal }
+    )
 
     if (status !== 200) {
       throw new Error(`Unexpected response status code: ${status}`)

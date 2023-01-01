@@ -14,7 +14,7 @@ const ToolbarPanelContainer: FC<ToolbarPanelContainerProps> = (props) => {
   const { editable, toggleEditable } = useEditable()
   const { isDownloading, downloadPDF } = useDownloadPDF()
   const getCurrentCvFullName = useGetCurrentCvFullName()
-  const { id, allowShare } = useCurrentCvMetadata()
+  const [{ id, allowShare } = { id: '', allowShare: false }] = useCurrentCvMetadata()
   const { isSignInChecking, isSignedIn, signIn, signOut, skipSignIn } =
     useAuth()
 

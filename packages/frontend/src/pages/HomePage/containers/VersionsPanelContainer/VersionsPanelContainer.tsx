@@ -2,16 +2,16 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'services/auth'
 import {
-  useAllCvMetadata,
+  useAllCv,
   useCurrentCvMetadata,
   useIsCvAdding,
   useIsCvUpdating,
   useIsCvDeleting,
   useAddEmptyCv,
-  useSelectCv,
   useMakeCvCopy,
   useUpdateCvMetadata,
   useDeleteCv,
+  useCurrentCvId,
 } from 'services/edit-cv'
 import { useWithNotification } from 'shared/ui/Notifications'
 import VersionsPanel from 'shared/ui/cv/panels/VersionsPanel'
@@ -22,8 +22,9 @@ import useShouldDisableActiveElements from './hooks/useShouldDisableActiveElemen
 const VersionsPanelContainer: FC = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const { isSignedIn } = useAuth()
-  const allCv = useAllCvMetadata()
-  const { id, isNew, isSaved } = useCurrentCvMetadata()
+  const { data: allCv } = useAllCv({ skip: !isSignedIn })
+  const [currentId, selectCv] = useCurrentCvId()
+  const [{ isNew, isSaved } = { isNew: true, isSaved: false }] = useCurrentCvMetadata()
   const { isCvAdding } = useIsCvAdding()
   const { isCvUpdating } = useIsCvUpdating()
   const { isCvDeleting } = useIsCvDeleting()
@@ -31,7 +32,6 @@ const VersionsPanelContainer: FC = (props) => {
     successContent: t('notifications.addResult.success'),
     errorContent: t('notifications.addResult.error'),
   })
-  const selectCv = useSelectCv()
   const updateCvMetadata = useWithNotification(useUpdateCvMetadata(), {
     successContent: t('notifications.updateMetadataResult.success'),
     errorContent: t('notifications.updateMetadataResult.error'),
@@ -51,8 +51,8 @@ const VersionsPanelContainer: FC = (props) => {
   return (
     <VersionsPanel
       {...props}
-      allCv={allCv}
-      id={id}
+      allCv={allCv ?? []}
+      id={currentId ?? ''}
       isNew={isNew}
       isSaved={isSaved}
       isCvAdding={isCvAdding}

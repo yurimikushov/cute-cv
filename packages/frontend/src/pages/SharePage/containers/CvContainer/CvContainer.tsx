@@ -43,15 +43,42 @@ const CvContainer: FC<CvContainerProps> = ({ id, ...props }) => {
       main={
         <>
           <AboutMe editable={false} value={aboutMe} />
-          <Experiences editable={false} experiences={experiences} />
-          <Educations editable={false} educations={educations} />
+          <Experiences>
+            {experiences.map(
+              ({ id, position, company, duration, description }) => (
+                <Experiences.Experience
+                  key={id}
+                  position={position}
+                  company={company}
+                  duration={duration}
+                  description={description}
+                />
+              )
+            )}
+          </Experiences>
+          <Educations>
+            {educations.map(
+              ({ id, degree, university, duration }) => (
+                <Educations.Education
+                  key={id}
+                  degree={degree}
+                  university={university}
+                  duration={duration}
+                />
+              )
+            )}
+          </Educations>
         </>
       }
       aside={
         <>
           <Contacts editable={false} contacts={contacts} />
           <Technologies editable={false} technologies={technologies} />
-          <Languages editable={false} languages={languages} />
+          <Languages>
+            {languages.map(({ id, language }) => (
+              <Languages.Language key={id} language={language} />
+            ))}
+          </Languages>
         </>
       }
     />

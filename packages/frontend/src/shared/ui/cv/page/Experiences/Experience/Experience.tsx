@@ -54,19 +54,19 @@ const Experience: FC<ExperienceProps> = ({
   const { t } = useTranslation('translation', { keyPrefix: 'experience' })
 
   const handleChangePosition = (e: ChangeEvent<HTMLInputElement>) => {
-    onPositionChange(e.target.value)
+    onPositionChange?.(e.target.value)
   }
 
   const handleChangeCompany = (e: ChangeEvent<HTMLInputElement>) => {
-    onCompanyChange(e.target.value)
+    onCompanyChange?.(e.target.value)
   }
 
   const handleChangeDuration = (e: ChangeEvent<HTMLInputElement>) => {
-    onDurationChange(e.target.value)
+    onDurationChange?.(e.target.value)
   }
 
   const handleChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    onDescriptionChange(e.target.value)
+    onDescriptionChange?.(e.target.value)
   }
 
   return (

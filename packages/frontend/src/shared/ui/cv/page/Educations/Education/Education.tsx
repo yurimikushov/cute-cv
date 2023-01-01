@@ -44,15 +44,15 @@ const Education: FC<EducationProps> = ({
   const { t } = useTranslation('translation', { keyPrefix: 'education' })
 
   const handleChangeDegree = (e: ChangeEvent<HTMLInputElement>) => {
-    onDegreeChange(e.target.value)
+    onDegreeChange?.(e.target.value)
   }
 
   const handleChangeUniversity = (e: ChangeEvent<HTMLInputElement>) => {
-    onUniversityChange(e.target.value)
+    onUniversityChange?.(e.target.value)
   }
 
   const handleChangeDuration = (e: ChangeEvent<HTMLInputElement>) => {
-    onDurationChange(e.target.value)
+    onDurationChange?.(e.target.value)
   }
 
   return (

@@ -8,12 +8,12 @@ import Technologies from 'shared/ui/cv/page/Technologies'
 
 const TechnologiesContainer: FC = () => {
   const { editable } = useEditable()
-  const { technologies, changeTechnologies } = useCurrentCvTechnologies()
+  const [technologies, changeTechnologies] = useCurrentCvTechnologies()
 
   return (
     <Technologies
       editable={editable}
-      technologies={technologies}
+      technologies={technologies ?? ''}
       maxLength={TECHNOLOGIES_MAX_LENGTH}
       onChange={changeTechnologies}
     />

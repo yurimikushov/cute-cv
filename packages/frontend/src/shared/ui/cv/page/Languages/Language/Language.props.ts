@@ -1,10 +1,10 @@
 type LanguageProps = {
   className?: string
-  editable: boolean
+  editable?: boolean
   language: string
   maxLength?: number
-  onChange: (language: string) => void
-  onDelete: () => void
+  onChange?: (language: string) => void
+  onDelete?: () => void
 }
 
 export default LanguageProps

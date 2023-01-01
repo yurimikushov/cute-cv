@@ -1,14 +1,13 @@
 import { FunctionComponent, VFC } from 'react'
-import { reatomContext } from '@reatom/npm-react'
 import { getDisplayName } from 'shared/react'
-import ctx from './ctx'
+import ReatomProvider from './ReatomProvider'
 
 const withReatom = <P extends object>(Component: FunctionComponent<P>) => {
   const WithReatomComponent: VFC<P> = (props) => {
     return (
-      <reatomContext.Provider value={ctx}>
+      <ReatomProvider>
         <Component {...props} />
-      </reatomContext.Provider>
+      </ReatomProvider>
     )
   }
 

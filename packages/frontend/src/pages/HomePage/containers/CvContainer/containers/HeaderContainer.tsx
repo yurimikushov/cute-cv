@@ -10,8 +10,8 @@ import Header from 'shared/ui/cv/page/Header'
 
 const HeaderContainer: FC = () => {
   const { editable } = useEditable()
-  const { fullName, changeFullName } = useCurrentCvFullName()
-  const { position, changePosition } = useCurrentCvPosition()
+  const { fullName = '', updateFullName } = useCurrentCvFullName()
+  const { position = '', updatePosition } = useCurrentCvPosition()
 
   return (
     <Header
@@ -20,8 +20,8 @@ const HeaderContainer: FC = () => {
       position={position}
       fullNameMaxLength={FULL_NAME_MAX_LENGTH}
       positionMaxLength={POSITION_MAX_LENGTH}
-      onChangeFullName={changeFullName}
-      onChangePosition={changePosition}
+      onChangeFullName={updateFullName}
+      onChangePosition={updatePosition}
     />
   )
 }

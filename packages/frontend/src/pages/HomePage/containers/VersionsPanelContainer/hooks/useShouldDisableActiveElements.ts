@@ -5,7 +5,8 @@ import {
 } from 'services/edit-cv'
 
 const useShouldDisableActiveElements = () => {
-  const { isNew, isSaved } = useCurrentCvMetadata()
+  const [{ isNew, isSaved } = { isNew: true, isSaved: false }] =
+    useCurrentCvMetadata()
   const { isCvUpdating } = useIsCvUpdating()
   const { isCvDeleting } = useIsCvDeleting()
 

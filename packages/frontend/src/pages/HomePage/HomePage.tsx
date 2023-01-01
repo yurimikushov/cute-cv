@@ -1,16 +1,9 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 import styled from 'styled-components'
-import { useAuth } from 'services/auth'
-import {
-  useAutoLoadAllCv,
-  useAutoLoadCurrentCv,
-  useCleanUpAllCvAfterSignOut,
-  useIsCVLoading,
-} from 'services/edit-cv'
-import { withReatom } from 'shared/reatom'
+import { ReatomProvider } from 'shared/reatom'
 import PanelsLayout from 'shared/ui/layouts/PanelsLayout'
 import PageLayout from 'shared/ui/layouts/PageLayout'
-import Loader from 'shared/ui/Loader'
+import InitContainer from './containers/InitContainer'
 import HeadContainer from './containers/HeadContainer'
 import VersionsPanelContainer from './containers/VersionsPanelContainer'
 import ToolbarPanelContainer from './containers/ToolbarPanelContainer'
@@ -39,18 +32,11 @@ const CvWrapper = styled.div`
   }
 `
 
-const HomePage: FC = () => {
-  useAutoLoadAllCv()
-  useAutoLoadCurrentCv()
-  useCleanUpAllCvAfterSignOut()
-
-  const { isSignInChecking } = useAuth()
-  const { isCVLoading } = useIsCVLoading()
-
+const HomePage: VFC = () => {
   return (
-    <>
+    <ReatomProvider>
+      <InitContainer />
       <HeadContainer />
-      {(isSignInChecking || isCVLoading) && <Loader.FullScreen />}
       <Container>
         <PanelsLayout
           leftSide={<VersionsPanelContainer />}
@@ -66,8 +52,8 @@ const HomePage: FC = () => {
         />
       </Container>
       <SaveCvOfUnsignedInUserContainer />
-    </>
+    </ReatomProvider>
   )
 }
 
-export default withReatom(HomePage)
+export default HomePage
