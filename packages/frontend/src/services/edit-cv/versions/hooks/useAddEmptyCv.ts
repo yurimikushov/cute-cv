@@ -1,16 +1,18 @@
 import { useDispatch } from 'react-redux'
 import { CV_VERSIONS_MAX_COUNT } from '../constants'
 import { addEmptyCv } from '../slice'
-import useCvCount from './useCvCount'
+import { useAllCv } from 'services/edit-cv'
 import useGetNextCvMetadata from './useGetNextCvMetadata'
 
 const useAddEmptyCv = () => {
-  const cvCount = useCvCount()
+  const { data: allCv = [] } = useAllCv({ policy: 'cache-only' })
   const getNextCvMetadata = useGetNextCvMetadata()
 
   const dispatch = useDispatch()
 
   const handleAddEmptyCv = (name?: string, allowShare = false) => {
+    const cvCount = allCv.length
+
     if (cvCount >= CV_VERSIONS_MAX_COUNT) {
       throw new Error(
         `You already have ${cvCount} cv versions.
