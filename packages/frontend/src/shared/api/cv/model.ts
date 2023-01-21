@@ -1,4 +1,4 @@
-import { CvContent } from 'services/edit-cv'
+import { Content } from 'services/edit-cv/stores/cv-store/model'
 
 type LoadAllResult = Array<RawMetadata>
 
@@ -48,9 +48,7 @@ type RawMetadata = {
   allowShare?: boolean
 }
 
-type RawContent = CvContent
-
-type Content = CvContent
+type RawContent = Content
 
 export type {
   LoadAllResult,

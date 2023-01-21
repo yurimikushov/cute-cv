@@ -1,12 +1,12 @@
 import { useCurrentCvId } from 'services/edit-cv'
-import useCv from './use-cv'
+import { useCv } from './use-cv'
 
-const useCurrentCv = (options: Parameters<typeof useCv>[1] = {}) => {
-  const [currentCvId] = useCurrentCvId()
+const useCurrentCv = (options: Parameters<typeof useCv>[2] = {}) => {
+  const { publicId, id } = useCurrentCvId()
 
-  return useCv(currentCvId!, {
+  return useCv(publicId!, id!, {
     ...options,
-    skip: options.skip || currentCvId === null,
+    skip: options.skip || !publicId,
   })
 }
 

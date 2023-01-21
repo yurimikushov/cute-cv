@@ -1,46 +1,48 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'services/auth'
 import {
   useAllCv,
-  useCurrentCvMetadata,
-  useIsCvAdding,
-  useIsCvUpdating,
-  useIsCvDeleting,
-  useAddEmptyCv,
-  useMakeCvCopy,
-  useUpdateCvMetadata,
+  useAddCv,
   useDeleteCv,
+  useCurrentCvMetadata,
+  // useAddEmptyCv,
+  // useMakeCvCopy,
   useCurrentCvId,
 } from 'services/edit-cv'
+import { useUpdateCurrentCv } from 'services/edit-cv/stores/cv-store'
 import { useWithNotification } from 'shared/ui/Notifications'
 import VersionsPanel from 'shared/ui/cv/panels/VersionsPanel'
 import useShouldDisplayAddButton from './hooks/useShouldDisplayAddButton'
 import useShouldDisableActiveElements from './hooks/useShouldDisableActiveElements'
 
 // eslint-disable-next-line max-statements
-const VersionsPanelContainer: FC = (props) => {
+const VersionsPanelContainer: VFC = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const { isSignedIn } = useAuth()
   const { data: allCv } = useAllCv({ skip: !isSignedIn })
-  const [currentId, selectCv] = useCurrentCvId()
-  const [{ isNew, isSaved } = { isNew: true, isSaved: false }] = useCurrentCvMetadata()
-  const { isCvAdding } = useIsCvAdding()
-  const { isCvUpdating } = useIsCvUpdating()
-  const { isCvDeleting } = useIsCvDeleting()
-  const addEmptyCv = useWithNotification(useAddEmptyCv(), {
+  const { addCv } = useAddCv()
+  const { isDeleting, deleteCv } = useDeleteCv()
+  const { id, updateCurrentId } = useCurrentCvId()
+  const { isUpdating } = useUpdateCurrentCv()
+  const {
+    metadata: { isNew, isSaved } = { isNew: true, isSaved: false },
+    updateMetadata,
+  } = useCurrentCvMetadata()
+
+  const handleAddEmptyCv = useWithNotification(addCv, {
     successContent: t('notifications.addResult.success'),
     errorContent: t('notifications.addResult.error'),
   })
-  const updateCvMetadata = useWithNotification(useUpdateCvMetadata(), {
+  const handleUpdateCvMetadata = useWithNotification(updateMetadata, {
     successContent: t('notifications.updateMetadataResult.success'),
     errorContent: t('notifications.updateMetadataResult.error'),
   })
-  const makeCvCopy = useWithNotification(useMakeCvCopy(), {
+  const handleMakeCvCopy = useWithNotification(() => Promise.resolve(), {
     successContent: t('notifications.makeCopyResult.success'),
     errorContent: t('notifications.makeCopyResult.error'),
   })
-  const deleteCv = useWithNotification(useDeleteCv(), {
+  const handleDeleteCv = useWithNotification(deleteCv, {
     successContent: t('notifications.deleteResult.success'),
     errorContent: t('notifications.deleteResult.error'),
   })
@@ -52,20 +54,19 @@ const VersionsPanelContainer: FC = (props) => {
     <VersionsPanel
       {...props}
       allCv={allCv ?? []}
-      id={currentId ?? ''}
+      id={id ?? ''}
       isNew={isNew}
       isSaved={isSaved}
-      isCvAdding={isCvAdding}
-      isCvUpdating={isCvUpdating}
-      isCvDeleting={isCvDeleting}
+      isCvUpdating={isUpdating}
+      isCvDeleting={isDeleting}
       isSignedIn={isSignedIn}
       disableActiveElements={shouldDisableActiveElements}
       displayAddButton={shouldDisplayAddButton}
-      onAddEmptyCv={addEmptyCv}
-      onSelectCv={selectCv}
-      onUpdateCvMetadata={updateCvMetadata}
-      onMakeCvCopy={makeCvCopy}
-      onDeleteCv={deleteCv}
+      onAddEmptyCv={handleAddEmptyCv}
+      onSelectCvId={updateCurrentId}
+      onUpdateCvMetadata={handleUpdateCvMetadata}
+      onMakeCvCopy={handleMakeCvCopy}
+      onDeleteCv={handleDeleteCv}
     />
   )
 }

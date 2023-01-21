@@ -1,13 +1,6 @@
 import { atom } from '@reatom/framework'
 import { nanoid } from 'nanoid'
-import {
-  Metadata,
-  Content,
-  Experience,
-  Education,
-  Contact,
-  Language,
-} from './model'
+import { Metadata, Experience, Education, Contact, Language } from './model'
 
 const createMetadataAtom = ({
   publicId,
@@ -34,7 +27,17 @@ const createMetadataAtom = ({
   )
 }
 
-const createContentAtom = (content: Content) => {
+const createContentAtom = (content: {
+  fullName: string
+  position: string
+  avatar: string | null
+  aboutMe: string
+  experiences: Array<Partial<Experience>>
+  educations: Array<Partial<Education>>
+  contacts: Array<Partial<Contact>>
+  technologies: string
+  languages: Array<Partial<Language>>
+}) => {
   const {
     fullName,
     position,
@@ -79,7 +82,7 @@ const createAvatarAtom = (avatar: string | null) => {
   return atom(avatar, 'cv.content.avatar')
 }
 
-const createExperiencesAtom = (experiences: Array<Experience>) => {
+const createExperiencesAtom = (experiences: Array<Partial<Experience>>) => {
   return atom(experiences.map(createExperienceAtom), 'cv.content.experiences')
 }
 
@@ -102,7 +105,7 @@ const createExperienceAtom = ({
   )
 }
 
-const createEducationsAtom = (educations: Array<Education>) => {
+const createEducationsAtom = (educations: Array<Partial<Education>>) => {
   return atom(educations.map(createEducationAtom), 'cv.content.educations')
 }
 
@@ -123,7 +126,7 @@ const createEducationAtom = ({
   )
 }
 
-const createContactsAtom = (contacts: Array<Contact>) => {
+const createContactsAtom = (contacts: Array<Partial<Contact>>) => {
   return atom(contacts.map(createContactAtom), 'cv.content.contacts')
 }
 
@@ -146,7 +149,7 @@ const createTechnologiesAtom = (technologies: string) => {
   return atom(technologies, 'cv.content.technologies')
 }
 
-const createLanguagesAtom = (languages: Array<Language>) => {
+const createLanguagesAtom = (languages: Array<Partial<Language>>) => {
   return atom(languages.map(createLanguageAtom), 'cv.content.languages')
 }
 

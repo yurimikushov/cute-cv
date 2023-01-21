@@ -8,35 +8,31 @@ type Options = {
 }
 
 const useCv = (
+  publicId: string | null,
   id: string,
   { policy = 'fetch-if-needed', skip = false }: Options = {}
 ) => {
   const ctx = useCtx()
 
-  const { isFetchNeeded, fetchAction, spyStoreState, updateAction } =
-    useCvStore(id)
+  const { spyIsLoading, spyCv, spyLoadingError, isLoadNeeded, loadCv } =
+    useCvStore(publicId, id)
 
   useEffect(() => {
     if (skip) {
       return
     }
 
-    if (policy === 'fetch-if-needed' && isFetchNeeded(ctx)) {
-      fetchAction(ctx)
+    if (policy === 'fetch-if-needed' && isLoadNeeded(ctx)) {
+      loadCv(ctx)
     }
-  }, [policy, skip, ctx, isFetchNeeded, fetchAction])
-
-  const [cvStoreState] = useAtom(spyStoreState, [spyStoreState])
-
-  const refetch = useAction(fetchAction, [fetchAction])
-
-  const update = useAction(updateAction, [updateAction])
+  }, [policy, skip, ctx, isLoadNeeded, loadCv])
 
   return {
-    ...cvStoreState,
-    refetch,
-    update,
+    isLoading: useAtom(spyIsLoading, [spyIsLoading])[0],
+    data: useAtom(spyCv, [spyCv])[0],
+    error: useAtom(spyLoadingError, [spyLoadingError])[0],
+    refetch: useAction(loadCv, [loadCv]),
   }
 }
 
-export default useCv
+export { useCv }

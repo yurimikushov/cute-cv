@@ -9,7 +9,7 @@ import { useAuth } from 'services/auth'
 const useSavedStatus = () => {
   const { t, i18n } = useTranslation('translation', { keyPrefix: 'panel' })
   const { isSignInSkipped } = useAuth()
-  const [{ isSaved, savedAt } = { isSaved: false, savedAt: null }] =
+  const { metadata: { isSaved, savedAt } = { isSaved: false, savedAt: null } } =
     useCurrentCvMetadata()
 
   if (isSignInSkipped) {

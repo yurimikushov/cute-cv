@@ -1,9 +1,7 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 import styled from 'styled-components'
-import isEmpty from 'shared/lib/isEmpty'
 import radiuses from 'shared/styles/radiuses'
 import DndList from 'shared/ui/DndList'
-import useLayoutEffectWhen from 'shared/hooks/useLayoutEffectWhen'
 import {
   useEditable,
   useCurrentCvEducations,
@@ -22,15 +20,13 @@ const DraggableItem = styled(DraggableList.Item)`
   border-radius: ${radiuses.md};
 `
 
-const EducationsContainer: FC = () => {
+const EducationsContainer: VFC = () => {
   const { editable } = useEditable()
   const {
     educations = [],
     addEducation,
     reorderEducations,
   } = useCurrentCvEducations()
-
-  useLayoutEffectWhen(addEducation, isEmpty(educations))
 
   return (
     <Educations>

@@ -23,7 +23,7 @@ const VersionsPanel: FC<VersionsPanelProps> = (props) => {
     disableActiveElements,
     displayAddButton,
     onAddEmptyCv,
-    onSelectCv,
+    onSelectCvId,
   } = props
 
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
@@ -32,7 +32,7 @@ const VersionsPanel: FC<VersionsPanelProps> = (props) => {
     handleOpenAddModal,
     handleCloseAddModal,
     handleAddCv,
-  } = useAddEditCvModal(onAddEmptyCv, onSelectCv)
+  } = useAddEditCvModal(onAddEmptyCv, onSelectCvId)
 
   return (
     <VersionsPanelContext.Provider value={props}>

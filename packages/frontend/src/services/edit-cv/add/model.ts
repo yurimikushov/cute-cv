@@ -1,5 +1,5 @@
 import { SerializedError } from '@reduxjs/toolkit'
-import { CvContent } from 'services/edit-cv'
+import { Content } from 'services/edit-cv/stores/cv-store/model'
 
 type AddState = {
   isAdding: boolean
@@ -9,7 +9,7 @@ type AddState = {
 type AddPayload = {
   name: string
   number: number
-  cv: CvContent
+  cv: Content
   allowShare: boolean
 }
 

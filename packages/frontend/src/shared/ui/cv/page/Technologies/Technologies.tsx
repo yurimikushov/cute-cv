@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from 'react'
+import { VFC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { H2 } from 'shared/ui/H'
@@ -15,7 +15,7 @@ const Description = styled(TextArea)`
   ${({ readonly }) => !readonly && 'min-height: 5rem;'}
 `
 
-const Technologies: FC<TechnologiesProps> = ({
+const Technologies: VFC<TechnologiesProps> = ({
   editable,
   technologies,
   maxLength,
@@ -26,7 +26,7 @@ const Technologies: FC<TechnologiesProps> = ({
 
   const handleChangeTechnologies = (e: ChangeEvent<HTMLTextAreaElement>) => {
     if (editable) {
-      onChange(e.target.value)
+      onChange?.(e.target.value)
     }
   }
 

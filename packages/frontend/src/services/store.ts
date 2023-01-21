@@ -6,13 +6,11 @@ import {
 } from '@reduxjs/toolkit'
 import { persistStore } from 'redux-persist'
 import rootReducer from './reducer'
-import middlewares from './middlewares'
 
 const config: ConfigureStoreOptions = {
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({ serializableCheck: false }),
-    ...middlewares,
   ],
 }
 

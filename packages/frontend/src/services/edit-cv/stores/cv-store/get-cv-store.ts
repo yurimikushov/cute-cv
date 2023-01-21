@@ -3,9 +3,9 @@ import { CvStore } from './CvStore'
 
 const cvStores: Record<string, CvStore> = {}
 
-const getCvStore = (id: string) => {
+const getCvStore = (publicId: string | null, id: string) => {
   if (!cvStores[id]) {
-    cvStores[id] = new CvStore(id)
+    cvStores[id] = new CvStore(publicId, id)
 
     onConnect(cvStores[id].dataAtom, (ctx) => {
       return () => {

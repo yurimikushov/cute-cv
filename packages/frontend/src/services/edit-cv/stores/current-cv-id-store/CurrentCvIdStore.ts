@@ -13,30 +13,46 @@ class CurrentCvIdStore {
     return this._atom
   }
 
+  public spyCurrentId = (ctx: CtxSpy) => {
+    return ctx.spy(this.dataAtom)
+  }
+
+  public updateCurrentId = (
+    ctx: Ctx,
+    id: string,
+    publicId: string | null = null
+  ) => {
+    return this.dataAtom(ctx, { publicId, id })
+  }
+
   private createDataAtom = () => {
-    return atom<string | null>(null, 'currentCvId')
+    return atom<{ publicId: string | null; id: string } | null>(
+      null,
+      'currentCvId'
+    )
   }
 
   private initCurrentCvId = () => {
     const { dataAtom: allCvAtom } = getAllCvStore()
 
     onUpdate(allCvAtom, (ctx) => {
-      const currentId = ctx.get(this.dataAtom)
+      const { id: currentId } = ctx.get(this.dataAtom) ?? {}
 
       const allCv = ctx.get(allCvAtom)
 
-      if (!currentId && allCv && allCv.length > 0) {
-        this.dataAtom(ctx, allCv[0].publicId!)
+      const { publicId, id } = allCv?.[0] ?? {}
+
+      if (!currentId && publicId && id) {
+        this.dataAtom(ctx, { publicId, id })
+      } else if (
+        currentId &&
+        allCv.length > 0 &&
+        allCv.every(({ id }) => id !== currentId)
+      ) {
+        const { publicId = null, id } = allCv[allCv.length - 1]
+        this.dataAtom(ctx, { publicId, id })
       }
     })
-  }
-
-  public spyCurrentId = (ctx: CtxSpy) => {
-    return ctx.spy(this.dataAtom)
-  }
-
-  public updateCurrentId = (ctx: Ctx, id: string) => {
-    return this.dataAtom(ctx, id)
   }
 }
 

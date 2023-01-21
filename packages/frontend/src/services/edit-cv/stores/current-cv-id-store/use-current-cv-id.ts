@@ -4,10 +4,13 @@ import { getCurrentCvIdStore } from './get-current-cv-id-store'
 const useCurrentCvId = () => {
   const { spyCurrentId, updateCurrentId } = getCurrentCvIdStore()
 
-  return [
-    useAtom(spyCurrentId)[0],
-    useAction(updateCurrentId, [updateCurrentId]),
-  ] as const
+  const { publicId, id } = useAtom(spyCurrentId)[0] ?? {}
+
+  return {
+    publicId,
+    id,
+    updateCurrentId: useAction(updateCurrentId, [updateCurrentId]),
+  }
 }
 
 export { useCurrentCvId }

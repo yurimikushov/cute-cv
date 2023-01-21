@@ -2,9 +2,8 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
 import { HelmetProvider } from 'react-helmet-async'
-import store, { persistor } from 'services/store'
+import store from 'services/store'
 import 'shared/sentry/init'
 import 'shared/api/init'
 import 'shared/translations/init'
@@ -22,17 +21,15 @@ createRoot(document.querySelector('.app') as HTMLDivElement).render(
   <React.StrictMode>
     <GlobalErrorBoundary onError={logError} />
     <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <ResetStyles />
-        <GlobalStyles />
-        <ErrorBoundary fallback={ErrorBoundaryModal} onError={logError}>
-          <HelmetProvider>
-            <NotificationsProvider>
-              <App />
-            </NotificationsProvider>
-          </HelmetProvider>
-        </ErrorBoundary>
-      </PersistGate>
+      <ResetStyles />
+      <GlobalStyles />
+      <ErrorBoundary fallback={ErrorBoundaryModal} onError={logError}>
+        <HelmetProvider>
+          <NotificationsProvider>
+            <App />
+          </NotificationsProvider>
+        </HelmetProvider>
+      </ErrorBoundary>
     </Provider>
   </React.StrictMode>
 )

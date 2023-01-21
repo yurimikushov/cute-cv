@@ -1,8 +1,6 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 import styled from 'styled-components'
-import isEmpty from 'shared/lib/isEmpty'
 import radiuses from 'shared/styles/radiuses'
-import useLayoutEffectWhen from 'shared/hooks/useLayoutEffectWhen'
 import DndList from 'shared/ui/DndList'
 import {
   useEditable,
@@ -22,15 +20,13 @@ const DraggableItem = styled(DraggableList.Item)`
   border-radius: ${radiuses.md};
 `
 
-const ExperiencesContainer: FC = () => {
+const ExperiencesContainer: VFC = () => {
   const { editable } = useEditable()
   const {
     experiences = [],
     addExperience,
     reorderExperiences,
   } = useCurrentCvExperiences()
-
-  useLayoutEffectWhen(addExperience, isEmpty(experiences))
 
   return (
     <Experiences>

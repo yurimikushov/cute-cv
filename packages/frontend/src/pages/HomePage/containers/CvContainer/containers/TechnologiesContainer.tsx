@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 import {
   useEditable,
   useCurrentCvTechnologies,
@@ -6,7 +6,7 @@ import {
 } from 'services/edit-cv'
 import Technologies from 'shared/ui/cv/page/Technologies'
 
-const TechnologiesContainer: FC = () => {
+const TechnologiesContainer: VFC = () => {
   const { editable } = useEditable()
   const [technologies, changeTechnologies] = useCurrentCvTechnologies()
 

@@ -2,9 +2,9 @@ import { useCurrentCvId } from 'services/edit-cv'
 import { useCvStore } from './use-cv-store'
 
 const useCurrentCvStore = () => {
-  const [currentCvId] = useCurrentCvId()
+  const { publicId, id } = useCurrentCvId()
 
-  return useCvStore(currentCvId!)
+  return useCvStore(publicId!, id!)
 }
 
 export { useCurrentCvStore }

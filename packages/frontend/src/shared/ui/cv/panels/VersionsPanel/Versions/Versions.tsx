@@ -15,21 +15,20 @@ const Container = styled.div`
 const Versions: FC<VersionsProps> = (props) => {
   const { t } = useTranslation('translation', { keyPrefix: 'versions' })
   const {
-    isCvAdding,
     isCvUpdating,
     isCvDeleting,
     id: selectedId,
     isNew,
     isSaved,
     allCv,
-    onSelectCv,
+    onSelectCvId,
     onUpdateCvMetadata,
     onMakeCvCopy,
     onDeleteCv,
   } = useVersionsPanel()
 
   const shouldDisableActiveElements =
-    (!isNew && !isSaved) || isCvAdding || isCvUpdating || isCvDeleting
+    (!isNew && !isSaved) || isCvUpdating || isCvDeleting
 
   const handleDeleteCv = (id: string, isNew: boolean) => {
     if (isNew) {
@@ -52,7 +51,7 @@ const Versions: FC<VersionsProps> = (props) => {
           current={id === selectedId}
           allowShare={allowShare}
           disabled={shouldDisableActiveElements}
-          onSelectCv={() => onSelectCv(id)}
+          onSelectCv={() => onSelectCvId(id, publicId)}
           onUpdateCvMetadata={(newName, allowShare) =>
             onUpdateCvMetadata({
               publicId,

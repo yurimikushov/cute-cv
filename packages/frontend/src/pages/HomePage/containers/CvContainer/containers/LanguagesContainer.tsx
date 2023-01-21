@@ -1,6 +1,4 @@
-import { FC } from 'react'
-import isEmpty from 'shared/lib/isEmpty'
-import useLayoutEffectWhen from 'shared/hooks/useLayoutEffectWhen'
+import { VFC } from 'react'
 import {
   useEditable,
   useCurrentCvLanguages,
@@ -9,11 +7,9 @@ import {
 import Languages from 'shared/ui/cv/page/Languages'
 import LanguageContainer from './LanguageContainer'
 
-const LanguagesContainer: FC = () => {
+const LanguagesContainer: VFC = () => {
   const { editable } = useEditable()
   const { languages = [], addLanguage } = useCurrentCvLanguages()
-
-  useLayoutEffectWhen(addLanguage, isEmpty(languages))
 
   return (
     <Languages>

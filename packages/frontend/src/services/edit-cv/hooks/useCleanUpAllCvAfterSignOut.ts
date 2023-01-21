@@ -1,15 +1,16 @@
 import { useEffect, useRef } from 'react'
 import { useAuth } from 'services/auth'
-import { useAllCv } from '../stores/all-cv-store'
-import { useAddEmptyCv, useDeleteCv, useSelectCv } from '../versions'
+import { useAllCv, useAddCv, useDeleteCv } from '../stores/all-cv-store'
+import { useCurrentCvId } from '../stores/current-cv-id-store'
+// import { useAddEmptyCv, useDeleteCv, useSelectCv } from '../versions'
 
 const useCleanUpAllCvAfterSignOut = () => {
   const { isSignedIn } = useAuth()
   const isSignInPrevRef = useRef(isSignedIn)
   const { data: allCv } = useAllCv({ skip: !isSignedIn })
-  const selectCv = useSelectCv()
-  const addEmptyCv = useAddEmptyCv()
-  const deleteCv = useDeleteCv()
+  const { updateCurrentId } = useCurrentCvId()
+  const { addCv } = useAddCv()
+  const { deleteCv } = useDeleteCv()
 
   useEffect(() => {
     const { current: isSignInPrev } = isSignInPrevRef
@@ -19,8 +20,8 @@ const useCleanUpAllCvAfterSignOut = () => {
       return
     }
 
-    const { id: newCvId } = addEmptyCv()
-    selectCv(newCvId)
+    const { id: newCvId } = addCv('New', false)
+    updateCurrentId(newCvId)
 
     allCv?.forEach(({ id }) => {
       deleteCv(id)

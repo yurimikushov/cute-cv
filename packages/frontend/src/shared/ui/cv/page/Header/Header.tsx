@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from 'react'
+import { VFC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import useAutoFocusWhen from 'shared/hooks/useAutoFocusWhen'
@@ -15,8 +15,8 @@ const Position = styled(TextInput)`
   margin-top: 0.375rem;
 `
 
-const Header: FC<HeaderProps> = ({
-  editable,
+const Header: VFC<HeaderProps> = ({
+  editable = false,
   fullName,
   position,
   fullNameMaxLength,
@@ -32,13 +32,13 @@ const Header: FC<HeaderProps> = ({
 
   const handleChangeFullName = (e: ChangeEvent<HTMLInputElement>) => {
     if (editable) {
-      onChangeFullName(e.target.value)
+      onChangeFullName?.(e.target.value)
     }
   }
 
   const handleChangPosition = (e: ChangeEvent<HTMLInputElement>) => {
     if (editable) {
-      onChangePosition(e.target.value)
+      onChangePosition?.(e.target.value)
     }
   }
 

@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
 import { getCvStore } from '../get-cv-store'
 
-const useCvStore = (id: string) => {
+const useCvStore = (publicId: string | null, id: string) => {
   return useMemo(() => {
-    return getCvStore(id)
-  }, [id])
+    return getCvStore(publicId, id)
+  }, [publicId, id])
 }
 
 export { useCvStore }

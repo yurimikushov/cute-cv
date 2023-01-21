@@ -1,7 +1,6 @@
 import { useRef, useCallback } from 'react'
 import useModal from 'shared/hooks/useModal'
 import useWindowEventListener from 'shared/hooks/useWindowEventListener'
-import useLayoutEffectWhen from 'shared/hooks/useLayoutEffectWhen'
 import useOutsideClick from 'shared/hooks/useOutsideClick'
 import useKeyDown from 'shared/hooks/useKeyDown'
 import { Placement, Trigger } from '../Dropdown.props'
@@ -40,7 +39,6 @@ const useDropdown = (trigger: Trigger, placement: Placement) => {
 
   useWindowEventListener('resize', updateContentPosition)
   useWindowEventListener('scroll', updateContentPosition)
-  useLayoutEffectWhen(updateContentPosition, isVisible)
 
   useOutsideClick(contentElementRef, () => {
     if (!isVisible || trigger !== 'click') {

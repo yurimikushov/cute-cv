@@ -1,8 +1,8 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 import { useEditable, useCurrentCvAvatar } from 'services/edit-cv'
 import Avatar from 'shared/ui/cv/page/Avatar'
 
-const AvatarContainer: FC = () => {
+const AvatarContainer: VFC = () => {
   const { editable } = useEditable()
   const { avatar, updateAvatar, deleteAvatar } = useCurrentCvAvatar()
 

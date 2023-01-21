@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from 'react'
+import { VFC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import Card from 'shared/ui/Card'
@@ -33,25 +33,25 @@ const Close = styled(CloseButton)`
   right: 0.65rem;
 `
 
-const Contact: FC<ContactProps> = ({
+const Contact: VFC<ContactProps> = ({
   editable,
-  text,
   href,
-  textMaxLength,
+  text,
   hrefMaxLength,
-  onTextChange,
+  textMaxLength,
   onHrefChange,
+  onTextChange,
   onDelete,
   ...props
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'contacts' })
 
-  const handleChangeText = (e: ChangeEvent<HTMLInputElement>) => {
-    onTextChange(e.target.value)
+  const handleChangeHref = (e: ChangeEvent<HTMLInputElement>) => {
+    onHrefChange?.(e.target.value)
   }
 
-  const handleChangeHref = (e: ChangeEvent<HTMLInputElement>) => {
-    onHrefChange(e.target.value)
+  const handleChangeText = (e: ChangeEvent<HTMLInputElement>) => {
+    onTextChange?.(e.target.value)
   }
 
   if (!editable) {

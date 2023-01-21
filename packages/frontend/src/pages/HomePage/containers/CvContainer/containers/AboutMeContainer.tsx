@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 import {
   useEditable,
   useCurrentCvAboutMe,
@@ -6,7 +6,7 @@ import {
 } from 'services/edit-cv'
 import AboutMe from 'shared/ui/cv/page/AboutMe'
 
-const AboutMeContainer: FC = () => {
+const AboutMeContainer: VFC = () => {
   const { editable } = useEditable()
   const { aboutMe, updateAboutMe } = useCurrentCvAboutMe()
 

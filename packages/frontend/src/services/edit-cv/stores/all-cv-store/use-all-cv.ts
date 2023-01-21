@@ -7,29 +7,32 @@ type Options = {
   skip?: boolean
 }
 
-const useAllCv = ({ policy = 'fetch-if-needed', skip = false }: Options = {}) => {
+const useAllCv = ({
+  policy = 'fetch-if-needed',
+  skip = false,
+}: Options = {}) => {
   const ctx = useCtx()
 
-  const { isFetchNeeded, fetchAction, spyStoreState } = getAllCvStore()
+  const { spyIsLoading, spyAllCv, spyLoadingError, isLoadNeeded, loadAllCv } =
+    getAllCvStore()
 
   useEffect(() => {
     if (skip) {
       return
     }
 
-
-    if (policy === 'fetch-if-needed' && isFetchNeeded(ctx)) {
-      fetchAction(ctx)
+    if (policy === 'fetch-if-needed' && isLoadNeeded(ctx)) {
+      loadAllCv(ctx)
     }
-  }, [policy, skip, ctx, isFetchNeeded, fetchAction])
+  }, [policy, skip, ctx, isLoadNeeded, loadAllCv])
 
-  const [allCvStoreState] = useAtom(spyStoreState, [spyStoreState])
-
-  const refetch = useAction(fetchAction, [fetchAction])
+  // const deleteCv = useAction(addCv, [deleteCv])
 
   return {
-    ...allCvStoreState,
-    refetch,
+    isLoading: useAtom(spyIsLoading, [spyIsLoading])[0],
+    data: useAtom(spyAllCv, [spyAllCv])[0],
+    error: useAtom(spyLoadingError, [spyLoadingError])[0],
+    refetch: useAction(loadAllCv, [loadAllCv]),
   }
 }
 

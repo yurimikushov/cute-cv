@@ -1,5 +1,6 @@
 /* eslint-disable max-lines */
 import {
+  atom,
   AtomReturn,
   Ctx,
   CtxSpy,
@@ -7,7 +8,6 @@ import {
   plain,
   reatomAsync,
   withAbort,
-  withDataAtom,
   withErrorAtom,
   withRetry,
 } from '@reatom/framework'
@@ -25,60 +25,92 @@ import {
 } from './utils'
 
 class CvStore {
-  private _fetchAction
-  private _updateAction
+  private isLoaded = false
 
-  constructor(private id: string) {
-    this._fetchAction = this.createFetchAction()
-    this._updateAction = this.createUpdateAction()
+  private _dataAtom
+
+  private _loadCvAction
+  private _updateCvAction
+
+  constructor(private publicId: string | null, private id: string) {
+    this._dataAtom = this.createDataAtom()
+    this._loadCvAction = this.createLoadCvAction()
+    this._updateCvAction = this.createUpdateCvAction()
   }
 
   public get pendingAtom() {
-    return this._fetchAction.pendingAtom
+    return this._loadCvAction.pendingAtom
   }
 
   public get retriesAtom() {
-    return this._fetchAction.retriesAtom
+    return this._loadCvAction.retriesAtom
   }
 
   public get dataAtom() {
-    return this._fetchAction.dataAtom
+    return this._dataAtom
   }
 
   public get errorAtom() {
-    return this._fetchAction.errorAtom
+    return this._loadCvAction.errorAtom
   }
 
-  public get fetchAction() {
-    return this._fetchAction.pipe(plain)
+  private get loadCvAction() {
+    return this._loadCvAction.pipe(plain)
   }
 
-  public get updateAction() {
-    return this._updateAction.pipe(plain)
+  private get updateCvAction() {
+    return this._updateCvAction.pipe(plain)
   }
 
-  public spyStoreState = (ctx: CtxSpy) => {
-    return {
-      isLoading: ctx.spy(this.pendingAtom) + ctx.spy(this.retriesAtom) > 0,
-      data: parseAtoms(ctx, ctx.spy(this.dataAtom)),
-      dataAtom: this.dataAtom,
-      error: ctx.spy(this.errorAtom),
-    }
-  }
-
-  public isFetchNeeded = (ctx: Ctx) => {
+  public isLoadNeeded = (ctx: Ctx) => {
     return (
-      ctx.get(this.dataAtom) === undefined &&
+      this.publicId &&
+      !this.isLoaded &&
       ctx.get(this.pendingAtom) + ctx.get(this.retriesAtom) === 0
     )
+  }
+
+  public loadCv = (ctx: Ctx) => {
+    return this.loadCvAction(ctx)
+  }
+
+  public spyIsLoading = (ctx: CtxSpy) => {
+    return (
+      ctx.spy(this._loadCvAction.pendingAtom) +
+        ctx.spy(this._loadCvAction.retriesAtom) >
+      0
+    )
+  }
+
+  public spyCv = (ctx: CtxSpy) => {
+    return parseAtoms(ctx, ctx.spy(this.dataAtom))
+  }
+
+  public spyLoadingError = (ctx: CtxSpy) => {
+    return ctx.spy(this._loadCvAction.errorAtom)
+  }
+
+  public updateCv = (ctx: Ctx) => {
+    return this.updateCvAction(ctx)
+  }
+
+  public spyIsUpdating = (ctx: CtxSpy) => {
+    return ctx.spy(this._updateCvAction.pendingAtom) > 0
+  }
+
+  public spyUpdatingError = (ctx: CtxSpy) => {
+    return ctx.spy(this._updateCvAction.errorAtom)
   }
 
   public spyMetadata = this.runIfCvIsDefined((ctx: CtxSpy, cv) => {
     return ctx.spy(cv.metadata)
   })
   public updateMetadata = this.runIfCvIsDefined(
-    (ctx: Ctx, cv, metadata: Metadata | ((metadata: Metadata) => Metadata)) => {
-      cv.metadata(ctx, metadata)
+    (ctx: Ctx, cv, metadata: Partial<Metadata>) => {
+      cv.metadata(ctx, (prevMetadata) => ({
+        ...prevMetadata,
+        ...metadata,
+      }))
     }
   )
 
@@ -87,7 +119,7 @@ class CvStore {
   })
   public updateFullName = this.runIfCvIsDefined((ctx, cv, fullName: string) => {
     ctx.get(cv.content).fullName(ctx, fullName)
-    this.startUpdateCv(ctx)
+    this.startSaveCv(ctx)
   })
 
   public spyPosition = this.runIfCvIsDefined((ctx: CtxSpy, cv) => {
@@ -95,7 +127,7 @@ class CvStore {
   })
   public updatePosition = this.runIfCvIsDefined((ctx, cv, position: string) => {
     ctx.get(cv.content).position(ctx, position)
-    this.startUpdateCv(ctx)
+    this.startSaveCv(ctx)
   })
 
   public spyAvatar = this.runIfCvIsDefined((ctx: CtxSpy, cv) => {
@@ -104,7 +136,7 @@ class CvStore {
   public updateAvatar = this.runIfCvIsDefined(
     (ctx, cv, avatar: string | null) => {
       ctx.get(cv.content).avatar(ctx, avatar)
-      this.startUpdateCv(ctx)
+      this.startSaveCv(ctx)
     }
   )
 
@@ -113,7 +145,7 @@ class CvStore {
   })
   public updateAboutMe = this.runIfCvIsDefined((ctx, cv, aboutMe: string) => {
     ctx.get(cv.content).aboutMe(ctx, aboutMe)
-    this.startUpdateCv(ctx)
+    this.startSaveCv(ctx)
   })
 
   public spyExperiences = this.runIfCvIsDefined((ctx: CtxSpy, cv) => {
@@ -127,7 +159,7 @@ class CvStore {
       ctx.get(cv.content).experiences(ctx, (experiences) => {
         return reorder(experiences, startIndex, endIndex)
       })
-      this.startUpdateCv(ctx)
+      this.startSaveCv(ctx)
     }
   )
   public spyExperience = this.runIfCvIsDefined(
@@ -151,7 +183,7 @@ class CvStore {
           ...experiences,
           createExperienceAtom(experience),
         ])
-      this.startUpdateCv(ctx)
+      this.startSaveCv(ctx)
     }
   )
   public updateExperience = this.runIfCvIsDefined(
@@ -163,7 +195,7 @@ class CvStore {
         ...experience,
         id,
       })
-      this.startUpdateCv(ctx)
+      this.startSaveCv(ctx)
     }
   )
   public deleteExperience = this.runIfCvIsDefined((ctx, cv, id: string) => {
@@ -174,7 +206,7 @@ class CvStore {
         .get(experiencesAtom)
         .filter((experience) => ctx.get(experience).id !== id)
     )
-    this.startUpdateCv(ctx)
+    this.startSaveCv(ctx)
   })
 
   public spyEducations = this.runIfCvIsDefined((ctx: CtxSpy, cv) => {
@@ -185,7 +217,7 @@ class CvStore {
   public updateEducations = this.runIfCvIsDefined(
     (ctx, cv, educations: Array<Education>) => {
       ctx.get(cv.content).educations(ctx, educations.map(createEducationAtom))
-      this.startUpdateCv(ctx)
+      this.startSaveCv(ctx)
     }
   )
   public reorderEducations = this.runIfCvIsDefined(
@@ -194,7 +226,7 @@ class CvStore {
       ctx.get(cv.content).educations(ctx, (educations) => {
         return reorder(educations, startIndex, endIndex)
       })
-      this.startUpdateCv(ctx)
+      this.startSaveCv(ctx)
     }
   )
   public spyEducation = this.runIfCvIsDefined((ctx: CtxSpy, cv, id: string) => {
@@ -216,7 +248,7 @@ class CvStore {
           ...educations,
           createEducationAtom(education),
         ])
-      this.startUpdateCv(ctx)
+      this.startSaveCv(ctx)
     }
   )
   public updateEducation = this.runIfCvIsDefined(
@@ -228,7 +260,7 @@ class CvStore {
         ...education,
         id,
       })
-      this.startUpdateCv(ctx)
+      this.startSaveCv(ctx)
     }
   )
   public deleteEducation = this.runIfCvIsDefined((ctx, cv, id: string) => {
@@ -239,16 +271,27 @@ class CvStore {
         .get(educationsAtom)
         .filter((education) => ctx.get(education).id !== id)
     )
-    this.startUpdateCv(ctx)
+    this.startSaveCv(ctx)
   })
 
   public spyContacts = this.runIfCvIsDefined((ctx: CtxSpy, cv) => {
-    return ctx.spy(ctx.get(cv.content).contacts)
+    return parseAtoms(ctx, ctx.spy(ctx.get(cv.content).contacts)).map(
+      ({ id }) => id
+    )
   })
   public updateContacts = this.runIfCvIsDefined(
     (ctx, cv, contacts: Array<Contact>) => {
       ctx.get(cv.content).contacts(ctx, contacts.map(createContactAtom))
-      this.startUpdateCv(ctx)
+      this.startSaveCv(ctx)
+    }
+  )
+  public reorderContacts = this.runIfCvIsDefined(
+    // eslint-disable-next-line max-params
+    (ctx: Ctx, cv, startIndex: number, endIndex: number) => {
+      ctx.get(cv.content).contacts(ctx, (contacts) => {
+        return reorder(contacts, startIndex, endIndex)
+      })
+      this.startSaveCv(ctx)
     }
   )
   public spyContact = this.runIfCvIsDefined((ctx: CtxSpy, cv, id: string) => {
@@ -262,6 +305,14 @@ class CvStore {
 
     return ctx.spy(contact)
   })
+  public addContact = this.runIfCvIsDefined(
+    (ctx, cv, contact?: Partial<Contact>) => {
+      ctx
+        .get(cv.content)
+        .contacts(ctx, (contacts) => [...contacts, createContactAtom(contact)])
+      this.startSaveCv(ctx)
+    }
+  )
   public updateContact = this.runIfCvIsDefined(
     // eslint-disable-next-line max-params
     (ctx, cv, id: string, contact: Omit<Contact, 'id'>) => {
@@ -271,9 +322,17 @@ class CvStore {
         ...contact,
         id,
       })
-      this.startUpdateCv(ctx)
+      this.startSaveCv(ctx)
     }
   )
+  public deleteContact = this.runIfCvIsDefined((ctx, cv, id: string) => {
+    const contactsAtom = ctx.get(cv.content).contacts
+    contactsAtom(
+      ctx,
+      ctx.get(contactsAtom).filter((contact) => ctx.get(contact).id !== id)
+    )
+    this.startSaveCv(ctx)
+  })
 
   public spyTechnologies = this.runIfCvIsDefined((ctx: CtxSpy, cv) => {
     return ctx.spy(ctx.get(cv.content).technologies)
@@ -281,7 +340,7 @@ class CvStore {
   public updateTechnologies = this.runIfCvIsDefined(
     (ctx, cv, technologies: string) => {
       ctx.get(cv.content).technologies(ctx, technologies)
-      this.startUpdateCv(ctx)
+      this.startSaveCv(ctx)
     }
   )
 
@@ -306,7 +365,7 @@ class CvStore {
       ctx
         .get(cv.content)
         .languages(ctx, (langs) => [...langs, createLanguageAtom(language)])
-      this.startUpdateCv(ctx)
+      this.startSaveCv(ctx)
     }
   )
   public updateLanguage = this.runIfCvIsDefined(
@@ -318,7 +377,7 @@ class CvStore {
         ...language,
         id,
       })
-      this.startUpdateCv(ctx)
+      this.startSaveCv(ctx)
     }
   )
   public deleteLanguage = this.runIfCvIsDefined((ctx, cv, id: string) => {
@@ -327,29 +386,71 @@ class CvStore {
       ctx,
       ctx.get(languagesAtom).filter((language) => ctx.get(language).id !== id)
     )
-    this.startUpdateCv(ctx)
+    this.startSaveCv(ctx)
   })
 
-  private createFetchAction = () => {
-    return reatomAsync(async (ctx) => {
-      const cv = await cvApi.load(this.id, ctx.controller)
-
-      if (!cv) {
-        return
-      }
-
-      const { metadata, content } = cv
-
-      return {
+  private createDataAtom = () => {
+    return atom(
+      {
         metadata: createMetadataAtom({
-          ...metadata,
+          publicId: undefined,
+          id: '1',
+          name: 'New',
+          number: 1,
           isNew: false,
-          isSaved: true,
+          isSaved: false,
+          savedAt: null,
+          allowShare: false,
         }),
-        content: createContentAtom(content),
+        content: createContentAtom({
+          fullName: '',
+          position: '',
+          aboutMe: '',
+          avatar: null,
+          experiences: [{}],
+          educations: [{}],
+          contacts: [{}],
+          technologies: '',
+          languages: [{}],
+        }),
+      },
+      `cv:${this.id}`
+    )
+  }
+
+  private createLoadCvAction = () => {
+    return reatomAsync(
+      async (ctx) => {
+        if (!this.publicId) {
+          return
+        }
+
+        const cv = await cvApi.load(this.publicId, ctx.controller)
+
+        return cv
+      },
+      {
+        name: `loadCv:${this.id}`,
+        onFulfill: (ctx, cv) => {
+          if (!cv) {
+            return
+          }
+
+          const { metadata, content } = cv
+
+          this.isLoaded = true
+
+          this.dataAtom(ctx, {
+            metadata: createMetadataAtom({
+              ...metadata,
+              isNew: false,
+              isSaved: true,
+            }),
+            content: createContentAtom(content),
+          })
+        },
       }
-    }, `cv:${this.id}`).pipe(
-      withDataAtom(undefined),
+    ).pipe(
       withErrorAtom(),
       withAbort({ strategy: 'last-in-win' }),
       withRetry({
@@ -361,7 +462,8 @@ class CvStore {
     )
   }
 
-  private createUpdateAction = () => {
+  private createUpdateCvAction = () => {
+    // eslint-disable-next-line max-statements
     return reatomAsync(async (ctx) => {
       const cv = parseAtoms(ctx, this.dataAtom)
 
@@ -375,7 +477,14 @@ class CvStore {
       } = cv
 
       if (!publicId) {
-        return
+        const metadata = await cvApi.add({
+          name,
+          number,
+          allowShare,
+          cv: content,
+        })
+
+        return metadata
       }
 
       const metadata = await cvApi.update({
@@ -387,7 +496,7 @@ class CvStore {
       })
 
       return metadata
-    }).pipe(withAbort({ strategy: 'last-in-win' }))
+    }, `updateCv:${this.id}`).pipe(withErrorAtom())
   }
 
   private runIfCvIsDefined<
@@ -412,18 +521,17 @@ class CvStore {
     }
   }
 
-  private startUpdateCv = (ctx: Ctx) => {
-    this.updateMetadata(ctx, (metadata) => ({
-      ...metadata,
+  private startSaveCv = (ctx: Ctx) => {
+    this.updateMetadata(ctx, {
       isSaved: false,
       savedAt: null,
-    }))
+    })
 
-    this.debouncedUpdateCv(ctx)
+    this.debouncedSaveCv(ctx)
   }
 
-  private debouncedUpdateCv = debounce(async (ctx: Ctx) => {
-    const metadata = await this.updateAction(ctx)
+  private debouncedSaveCv = debounce(async (ctx: Ctx) => {
+    const metadata = await this.updateCvAction(ctx)
 
     if (!metadata) {
       return

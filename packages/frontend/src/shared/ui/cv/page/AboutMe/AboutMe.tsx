@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from 'react'
+import { VFC, ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import TextArea from 'shared/ui/TextArea'
@@ -9,12 +9,12 @@ const Description = styled(TextArea)`
   ${({ readonly }) => !readonly && 'min-height: 5rem;'}
 `
 
-const AboutMe: FC<AboutMeProps> = ({ editable, onChange, ...props }) => {
+const AboutMe: VFC<AboutMeProps> = ({ editable, onChange, ...props }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'aboutMe' })
 
   const handleChangeAboutMe = (e: ChangeEvent<HTMLTextAreaElement>) => {
     if (editable) {
-      onChange(e.target.value)
+      onChange?.(e.target.value)
     }
   }
 

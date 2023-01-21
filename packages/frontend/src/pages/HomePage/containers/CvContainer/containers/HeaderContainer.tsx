@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 import {
   useEditable,
   useCurrentCvFullName,
@@ -8,7 +8,7 @@ import {
 } from 'services/edit-cv'
 import Header from 'shared/ui/cv/page/Header'
 
-const HeaderContainer: FC = () => {
+const HeaderContainer: VFC = () => {
   const { editable } = useEditable()
   const { fullName = '', updateFullName } = useCurrentCvFullName()
   const { position = '', updatePosition } = useCurrentCvPosition()

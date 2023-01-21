@@ -1,17 +1,9 @@
 type AvatarPickerProps = {
   className?: string
+  editable?: boolean
   src: string | null
-} & (
-  | {
-      editable: boolean
-      onPick: (src: string) => void
-      onClear: () => void
-    }
-  | {
-      editable: false
-      onPick?: never
-      onClear?: never
-    }
-)
+  onPick?: (src: string) => void
+  onClear?: () => void
+}
 
 export default AvatarPickerProps

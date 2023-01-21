@@ -9,7 +9,7 @@ const Add = styled(Button)`
   margin: 0.5rem auto 0;
 `
 
-const Language: VFC<AddButtonProps> = ({ onClick }) => {
+const AddButton: VFC<AddButtonProps> = ({ onClick }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'experience' })
 
   return (
@@ -19,4 +19,4 @@ const Language: VFC<AddButtonProps> = ({ onClick }) => {
   )
 }
 
-export default Language
+export default AddButton

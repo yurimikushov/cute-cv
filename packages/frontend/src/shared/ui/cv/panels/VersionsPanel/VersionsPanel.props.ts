@@ -10,14 +10,13 @@ type VersionsPanelProps = {
   id: string
   isNew: boolean
   isSaved: boolean
-  isCvAdding: boolean
   isCvUpdating: boolean
   isCvDeleting: boolean
   isSignedIn: boolean
   disableActiveElements: boolean
   displayAddButton: boolean
-  onAddEmptyCv: () => Promise<{ id: string }>
-  onSelectCv: (id: string) => void
+  onAddEmptyCv: (name: string, allowShare: boolean) => Promise<{ id: string }>
+  onSelectCvId: (id: string, publicId?: string) => void
   onUpdateCvMetadata: (newMetadata: {
     publicId?: string
     id: string

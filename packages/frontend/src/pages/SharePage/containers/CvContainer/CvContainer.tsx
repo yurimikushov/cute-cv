@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { VFC } from 'react'
 import { CV_CONTAINER_ID } from 'services/download-cv'
 import { useSharableCv } from 'services/share-cv'
 import CvLayout from 'shared/ui/layouts/CvLayout'
@@ -12,7 +12,7 @@ import Technologies from 'shared/ui/cv/page/Technologies'
 import Languages from 'shared/ui/cv/page/Languages'
 import CvContainerProps from './CvContainer.props'
 
-const CvContainer: FC<CvContainerProps> = ({ id, ...props }) => {
+const CvContainer: VFC<CvContainerProps> = ({ id, ...props }) => {
   const { data: cv } = useSharableCv(id)
 
   if (!cv) {
@@ -36,13 +36,11 @@ const CvContainer: FC<CvContainerProps> = ({ id, ...props }) => {
     <CvLayout
       {...props}
       id={CV_CONTAINER_ID}
-      header={
-        <Header editable={false} fullName={fullName} position={position} />
-      }
-      avatar={<Avatar editable={false} src={avatar} />}
+      header={<Header fullName={fullName} position={position} />}
+      avatar={<Avatar src={avatar} />}
       main={
         <>
-          <AboutMe editable={false} value={aboutMe} />
+          <AboutMe value={aboutMe} />
           <Experiences>
             {experiences.map(
               ({ id, position, company, duration, description }) => (
@@ -57,23 +55,25 @@ const CvContainer: FC<CvContainerProps> = ({ id, ...props }) => {
             )}
           </Experiences>
           <Educations>
-            {educations.map(
-              ({ id, degree, university, duration }) => (
-                <Educations.Education
-                  key={id}
-                  degree={degree}
-                  university={university}
-                  duration={duration}
-                />
-              )
-            )}
+            {educations.map(({ id, degree, university, duration }) => (
+              <Educations.Education
+                key={id}
+                degree={degree}
+                university={university}
+                duration={duration}
+              />
+            ))}
           </Educations>
         </>
       }
       aside={
         <>
-          <Contacts editable={false} contacts={contacts} />
-          <Technologies editable={false} technologies={technologies} />
+          <Contacts>
+            {contacts.map(({ id, href, text }) => (
+              <Contacts.Contact key={id} href={href} text={text} />
+            ))}
+          </Contacts>
+          <Technologies technologies={technologies} />
           <Languages>
             {languages.map(({ id, language }) => (
               <Languages.Language key={id} language={language} />

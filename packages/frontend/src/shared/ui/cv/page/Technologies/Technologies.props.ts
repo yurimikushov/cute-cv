@@ -1,16 +1,9 @@
 type TechnologiesProps = {
   className?: string
+  editable?: boolean
   technologies: string
   maxLength?: number
-} & (
-  | {
-      editable: boolean
-      onChange: (technologies: string) => void
-    }
-  | {
-      editable: false
-      onChange?: never
-    }
-)
+  onChange?: (technologies: string) => void
+}
 
 export default TechnologiesProps
