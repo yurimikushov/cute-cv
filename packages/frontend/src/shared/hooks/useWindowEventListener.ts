@@ -1,13 +1,12 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
+import useFunctionRef from './useFunctionRef'
 
 const useWindowEventListener = <T extends keyof WindowEventMap>(
   eventName: T,
   listener: (event: WindowEventMap[T]) => void,
   options?: boolean | AddEventListenerOptions
 ) => {
-  const listenerRef = useRef<typeof listener>(listener)
-
-  listenerRef.current = listener
+  const listenerRef = useFunctionRef(listener)
 
   useEffect(() => {
     const handleEvent: typeof listener = (event) => {
