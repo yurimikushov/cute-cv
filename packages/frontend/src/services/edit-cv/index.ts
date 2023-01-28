@@ -44,4 +44,3 @@ export {
 } from './stores/cv'
 export { useIsCvAdding } from './add'
 export { useIsCvUpdating } from './update'
-export { useIsCvDeleting } from './delete'
