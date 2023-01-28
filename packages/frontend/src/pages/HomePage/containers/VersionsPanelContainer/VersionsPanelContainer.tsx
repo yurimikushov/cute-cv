@@ -6,7 +6,6 @@ import {
   useAddCv,
   useDeleteCv,
   useCurrentCvMetadata,
-  // useAddEmptyCv,
   // useMakeCvCopy,
   useCurrentCvId,
 } from 'services/edit-cv'

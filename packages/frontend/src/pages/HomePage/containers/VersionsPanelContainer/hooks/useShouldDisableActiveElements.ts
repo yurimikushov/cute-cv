@@ -1,16 +1,13 @@
-import {
-  useCurrentCvMetadata,
-  useIsCvUpdating,
-  useDeleteCv,
-} from 'services/edit-cv'
+import { useCurrentCvMetadata, useDeleteCv } from 'services/edit-cv'
+import { useUpdateCurrentCv } from 'services/edit-cv/stores/cv'
 
 const useShouldDisableActiveElements = () => {
   const { metadata: { isNew, isSaved } = { isNew: true, isSaved: false } } =
     useCurrentCvMetadata()
-  const { isCvUpdating } = useIsCvUpdating()
+  const { isUpdating } = useUpdateCurrentCv()
   const { isDeleting } = useDeleteCv()
 
-  return (!isNew && !isSaved) || isCvUpdating || isDeleting
+  return (!isNew && !isSaved) || isUpdating || isDeleting
 }
 
 export default useShouldDisableActiveElements
