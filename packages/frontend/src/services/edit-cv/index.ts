@@ -42,5 +42,4 @@ export {
   LANGUAGES_MAX_COUNT,
   LANGUAGE_MAX_LENGTH,
 } from './stores/cv'
-export { useIsCvAdding } from './add'
 export { useIsCvUpdating } from './update'

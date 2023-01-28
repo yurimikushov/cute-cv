@@ -2,7 +2,7 @@ import { useState } from 'react'
 import useEffectWhen from 'shared/hooks/useEffectWhen'
 import cvApi from 'shared/api/cv'
 import { useAuth } from 'services/auth'
-import { useAddCv as useAddCvOnBackend } from '../add'
+// import { useAddCv as useAddCvOnBackend } from '../add'
 // import {
 //   useAddCv as useAddCvInStore,
 //   useUpdateCvMetadata,
