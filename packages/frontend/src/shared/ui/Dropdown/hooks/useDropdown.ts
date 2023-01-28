@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'react'
+import { useRef, useCallback, useLayoutEffect } from 'react'
 import useModal from 'shared/hooks/useModal'
 import useWindowEventListener from 'shared/hooks/useWindowEventListener'
 import useOutsideClick from 'shared/hooks/useOutsideClick'
@@ -37,6 +37,7 @@ const useDropdown = (trigger: Trigger, placement: Placement) => {
     contentElement.style.left = `${left}px`
   }, [isVisible])
 
+  useLayoutEffect(updateContentPosition, [updateContentPosition])
   useWindowEventListener('resize', updateContentPosition)
   useWindowEventListener('scroll', updateContentPosition)
 
