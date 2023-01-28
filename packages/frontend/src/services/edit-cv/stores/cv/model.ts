@@ -1,5 +1,5 @@
 type Metadata = {
-  publicId: string | undefined
+  publicId: string | null
   id: string
   name: string
   number: number

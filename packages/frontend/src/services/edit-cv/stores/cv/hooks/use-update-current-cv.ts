@@ -2,9 +2,9 @@ import { useCurrentCvId } from 'services/edit-cv'
 import { useUpdateCv } from './use-update-cv'
 
 const useUpdateCurrentCv = () => {
-  const { publicId, id } = useCurrentCvId()
+  const { id } = useCurrentCvId()
 
-  return useUpdateCv(publicId!, id!)
+  return useUpdateCv(id)
 }
 
 export { useUpdateCurrentCv }

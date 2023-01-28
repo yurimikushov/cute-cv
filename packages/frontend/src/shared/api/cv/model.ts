@@ -1,4 +1,4 @@
-import { Content } from 'services/edit-cv/stores/cv-store/model'
+import { Content } from 'services/edit-cv/stores/cv/model'
 
 type LoadAllResult = Array<RawMetadata>
 

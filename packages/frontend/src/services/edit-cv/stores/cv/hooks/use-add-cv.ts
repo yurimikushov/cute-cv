@@ -1,5 +1,5 @@
 import { useAction } from '@reatom/npm-react'
-import { getAllCvStore } from './get-all-cv-store'
+import { getAllCvStore } from '../get-all-cv-store'
 
 const useAddCv = () => {
   const { addCv } = getAllCvStore()

@@ -1,8 +1,8 @@
 import { useAction, useAtom } from '@reatom/npm-react'
 import { useCvStore } from './use-cv-store'
 
-const useUpdateCv = (publicId: string | null, id: string) => {
-  const { spyIsUpdating, spyUpdatingError, updateCv } = useCvStore(publicId, id)
+const useUpdateCv = (id: string) => {
+  const { spyIsUpdating, spyUpdatingError, updateCv } = useCvStore(id)
 
   return {
     isUpdating: useAtom(spyIsUpdating, [spyIsUpdating])[0],

@@ -3,7 +3,7 @@ import { EditableStore } from './EditableStore'
 
 let editableStore: EditableStore | null = null
 
-const getCurrentCvIdStore = () => {
+const getEditableStore = () => {
   if (!editableStore) {
     editableStore = new EditableStore()
 
@@ -23,4 +23,4 @@ const getCurrentCvIdStore = () => {
   return editableStore
 }
 
-export { getCurrentCvIdStore }
+export { getEditableStore }

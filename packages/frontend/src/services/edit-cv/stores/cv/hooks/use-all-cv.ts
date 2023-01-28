@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useAction, useAtom, useCtx } from '@reatom/npm-react'
-import { getAllCvStore } from './get-all-cv-store'
+import { getAllCvStore } from '../get-all-cv-store'
 
 type Options = {
   policy?: 'fetch-if-needed' | 'cache-only'

@@ -2,7 +2,7 @@ import useModal from 'shared/hooks/useModal'
 
 const useAddEditCvModal = (
   onAddEmptyCv: (name: string, allowShare: boolean) => Promise<{ id: string }>,
-  onSelectCvId: (id: string) => void
+  onSelectCvId: (id: string, publicId: string | null) => void
 ) => {
   const {
     isOpened: isAddModalOpened,
@@ -12,7 +12,7 @@ const useAddEditCvModal = (
 
   const handleAddCv = async (name: string, allowShare: boolean) => {
     const { id } = await onAddEmptyCv(name, allowShare)
-    onSelectCvId(id)
+    onSelectCvId(id, null)
     handleCloseAddModal()
   }
 

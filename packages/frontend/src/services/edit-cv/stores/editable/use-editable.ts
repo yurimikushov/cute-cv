@@ -1,8 +1,8 @@
 import { useAction, useAtom } from '@reatom/npm-react'
-import { getCurrentCvIdStore } from './get-editable-store'
+import { getEditableStore } from './get-editable-store'
 
 const useEditable = () => {
-  const { spyEditable, toggleEditable } = getCurrentCvIdStore()
+  const { spyEditable, toggleEditable } = getEditableStore()
 
   return {
     editable: useAtom(spyEditable)[0],

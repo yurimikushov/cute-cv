@@ -1,12 +1,11 @@
 export { default as cvReducer } from './reducer'
-export {
-  useCleanUpAllCvAfterSignOut,
-  useSaveCvOfUnsignedInUser,
-  // useDeleteCv,
-} from './hooks'
+export { useCleanUpAllCvAfterSignOut, useSaveCvOfUnsignedInUser } from './hooks'
 export { useEditable } from './stores/editable'
-export { useAllCv, useAddCv, useDeleteCv } from './stores/all-cv-store'
 export {
+  useCurrentCvId,
+  useAllCv,
+  useAddCv,
+  useDeleteCv,
   useCurrentCv,
   useCurrentCvMetadata,
   useCurrentCvFullName,
@@ -42,8 +41,7 @@ export {
   CONTACTS_MAX_COUNT,
   LANGUAGES_MAX_COUNT,
   LANGUAGE_MAX_LENGTH,
-} from './stores/cv-store'
-export { useCurrentCvId } from './stores/current-cv-id-store'
+} from './stores/cv'
 export { useIsCvAdding } from './add'
 export { useIsCvUpdating } from './update'
 export { useIsCvDeleting } from './delete'

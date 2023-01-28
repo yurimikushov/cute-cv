@@ -31,11 +31,14 @@ class CvStore {
 
   private _loadCvAction
   private _updateCvAction
+  private _deleteCvAction
 
-  constructor(private publicId: string | null, private id: string) {
-    this._dataAtom = this.createDataAtom()
+  constructor(private id: string, metadata: Partial<Metadata> = {}) {
+    this._dataAtom = this.createDataAtom(id, metadata)
+
     this._loadCvAction = this.createLoadCvAction()
     this._updateCvAction = this.createUpdateCvAction()
+    this._deleteCvAction = this.createDeleteCvAction()
   }
 
   public get pendingAtom() {
@@ -62,9 +65,13 @@ class CvStore {
     return this._updateCvAction.pipe(plain)
   }
 
+  private get deleteCvAction() {
+    return this._deleteCvAction.pipe(plain)
+  }
+
   public isLoadNeeded = (ctx: Ctx) => {
     return (
-      this.publicId &&
+      ctx.get(ctx.get(this.dataAtom).metadata).publicId &&
       !this.isLoaded &&
       ctx.get(this.pendingAtom) + ctx.get(this.retriesAtom) === 0
     )
@@ -100,6 +107,10 @@ class CvStore {
 
   public spyUpdatingError = (ctx: CtxSpy) => {
     return ctx.spy(this._updateCvAction.errorAtom)
+  }
+
+  public deleteCv = (ctx: Ctx) => {
+    return this.deleteCvAction(ctx)
   }
 
   public spyMetadata = this.runIfCvIsDefined((ctx: CtxSpy, cv) => {
@@ -389,18 +400,28 @@ class CvStore {
     this.startSaveCv(ctx)
   })
 
-  private createDataAtom = () => {
+  private createDataAtom = (id: string, metadata: Partial<Metadata>) => {
+    const {
+      publicId = null,
+      name = 'New',
+      number = 1,
+      isNew = false,
+      isSaved = false,
+      savedAt = null,
+      allowShare = false,
+    } = metadata
+
     return atom(
       {
         metadata: createMetadataAtom({
-          publicId: undefined,
-          id: '1',
-          name: 'New',
-          number: 1,
-          isNew: false,
-          isSaved: false,
-          savedAt: null,
-          allowShare: false,
+          publicId,
+          id,
+          name,
+          number,
+          isNew,
+          isSaved,
+          savedAt,
+          allowShare,
         }),
         content: createContentAtom({
           fullName: '',
@@ -421,11 +442,13 @@ class CvStore {
   private createLoadCvAction = () => {
     return reatomAsync(
       async (ctx) => {
-        if (!this.publicId) {
+        const { publicId } = ctx.get(ctx.get(this.dataAtom).metadata)
+
+        if (!publicId) {
           return
         }
 
-        const cv = await cvApi.load(this.publicId, ctx.controller)
+        const cv = await cvApi.load(publicId, ctx.controller)
 
         return cv
       },
@@ -443,6 +466,7 @@ class CvStore {
           this.dataAtom(ctx, {
             metadata: createMetadataAtom({
               ...metadata,
+              publicId: metadata?.publicId ?? null,
               isNew: false,
               isSaved: true,
             }),
@@ -471,23 +495,31 @@ class CvStore {
         return
       }
 
-      const {
-        metadata: { publicId, name, number, allowShare },
-        content,
-      } = cv
+      const { metadata, content } = cv
+      const { publicId } = metadata
 
-      if (!publicId) {
-        const metadata = await cvApi.add({
+      if (publicId === null) {
+        const metadata = ctx.get(ctx.get(this.dataAtom).metadata)
+
+        if (!metadata) {
+          return
+        }
+
+        const { name, number, allowShare } = metadata
+
+        const newMetadata = await cvApi.add({
           name,
           number,
           allowShare,
           cv: content,
         })
 
-        return metadata
+        return newMetadata
       }
 
-      const metadata = await cvApi.update({
+      const { name, number, allowShare } = metadata
+
+      const newMetadata = await cvApi.update({
         publicId,
         name,
         number,
@@ -495,8 +527,42 @@ class CvStore {
         cv: content,
       })
 
-      return metadata
+      return newMetadata
     }, `updateCv:${this.id}`).pipe(withErrorAtom())
+  }
+
+  private createDeleteCvAction = () => {
+    return reatomAsync(async (ctx) => {
+      const { publicId } = ctx.get(ctx.get(this.dataAtom).metadata)
+
+      if (publicId) {
+        await cvApi.delete(publicId)
+      }
+
+      this.dataAtom(ctx, {
+        metadata: createMetadataAtom({
+          publicId,
+          id: this.id,
+          name: 'New',
+          number: 1,
+          isNew: false,
+          isSaved: false,
+          savedAt: null,
+          allowShare: false,
+        }),
+        content: createContentAtom({
+          fullName: '',
+          position: '',
+          aboutMe: '',
+          avatar: null,
+          experiences: [{}],
+          educations: [{}],
+          contacts: [{}],
+          technologies: '',
+          languages: [{}],
+        }),
+      })
+    }, `deleteCv:${this.id}`).pipe(withErrorAtom())
   }
 
   private runIfCvIsDefined<

@@ -10,7 +10,7 @@ import {
   // useMakeCvCopy,
   useCurrentCvId,
 } from 'services/edit-cv'
-import { useUpdateCurrentCv } from 'services/edit-cv/stores/cv-store'
+import { useUpdateCurrentCv } from 'services/edit-cv/stores/cv'
 import { useWithNotification } from 'shared/ui/Notifications'
 import VersionsPanel from 'shared/ui/cv/panels/VersionsPanel'
 import useShouldDisplayAddButton from './hooks/useShouldDisplayAddButton'
@@ -53,8 +53,8 @@ const VersionsPanelContainer: VFC = (props) => {
   return (
     <VersionsPanel
       {...props}
-      allCv={allCv ?? []}
-      id={id ?? ''}
+      allCv={allCv}
+      id={id}
       isNew={isNew}
       isSaved={isSaved}
       isCvUpdating={isUpdating}

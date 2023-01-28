@@ -8,14 +8,13 @@ type Options = {
 }
 
 const useCv = (
-  publicId: string | null,
   id: string,
   { policy = 'fetch-if-needed', skip = false }: Options = {}
 ) => {
   const ctx = useCtx()
 
   const { spyIsLoading, spyCv, spyLoadingError, isLoadNeeded, loadCv } =
-    useCvStore(publicId, id)
+    useCvStore(id)
 
   useEffect(() => {
     if (skip) {
@@ -25,7 +24,7 @@ const useCv = (
     if (policy === 'fetch-if-needed' && isLoadNeeded(ctx)) {
       loadCv(ctx)
     }
-  }, [policy, skip, ctx, isLoadNeeded, loadCv])
+  }, [ctx, policy, skip, isLoadNeeded, loadCv])
 
   return {
     isLoading: useAtom(spyIsLoading, [spyIsLoading])[0],

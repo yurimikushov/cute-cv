@@ -1,5 +1,5 @@
 import { SerializedError } from '@reduxjs/toolkit'
-import { Content } from 'services/edit-cv/stores/cv-store/model'
+import { Content } from 'services/edit-cv/stores/cv/model'
 
 type AddState = {
   isAdding: boolean

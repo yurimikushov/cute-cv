@@ -1,8 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useAuth } from 'services/auth'
-import { useAllCv, useAddCv, useDeleteCv } from '../stores/all-cv-store'
-import { useCurrentCvId } from '../stores/current-cv-id-store'
-// import { useAddEmptyCv, useDeleteCv, useSelectCv } from '../versions'
+import { useAllCv, useAddCv, useDeleteCv, useCurrentCvId } from '../stores/cv'
 
 const useCleanUpAllCvAfterSignOut = () => {
   const { isSignedIn } = useAuth()
